@@ -164,12 +164,18 @@ def plot_pca_embeddings(
             )
 
     var1, var2 = pca.explained_variance_ratio_ * 100
+    total_var = var1 + var2
     ax.set_xlabel(f"PC1 ({var1:.1f}% variance)", fontsize=VIZ_CONFIG["font_size"])
     ax.set_ylabel(f"PC2 ({var2:.1f}% variance)", fontsize=VIZ_CONFIG["font_size"])
     ax.set_title(
         "PCA of TF-IDF Document Embeddings",
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
+    )
+    ax.text(
+        0.5, 1.01, f"Total variance explained: {total_var:.1f}%",
+        transform=ax.transAxes, ha="center",
+        fontsize=VIZ_CONFIG["font_size"] - 2, color="gray",
     )
     ax.legend(fontsize=VIZ_CONFIG["font_size"] - 2, loc="best",
               framealpha=0.9, ncol=2)
@@ -322,8 +328,19 @@ def plot_dendrogram(
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
     )
-    ax.set_ylabel("Distance", fontsize=VIZ_CONFIG["font_size"])
+    ax.set_ylabel("Ward Distance", fontsize=VIZ_CONFIG["font_size"])
     ax.grid(axis="y", alpha=VIZ_CONFIG["grid_alpha"])
+
+    # Annotate cophenetic correlation
+    from scipy.cluster.hierarchy import cophenet
+    from scipy.spatial.distance import pdist
+    coph_corr, _ = cophenet(Z, pdist(centroids))
+    ax.text(
+        0.98, 0.96, f"Cophenetic r = {coph_corr:.2f}",
+        transform=ax.transAxes, ha="right", va="top",
+        fontsize=VIZ_CONFIG["font_size"] - 2,
+        bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
+    )
 
     plt.tight_layout()
     fig.savefig(output_path, dpi=VIZ_CONFIG["dpi"], bbox_inches="tight")
@@ -481,7 +498,8 @@ def plot_cooccurrence_matrix(
                 cooc[a, b] += 1
                 cooc[b, a] += 1
 
-    # Normalize to [0, 1]
+    # Normalize to [0, 1], zeroing diagonal (trivial self-co-occurrence)
+    np.fill_diagonal(cooc, 0.0)
     max_val = cooc.max()
     if max_val > 0:
         cooc /= max_val

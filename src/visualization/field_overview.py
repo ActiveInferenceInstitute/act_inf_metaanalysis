@@ -58,12 +58,13 @@ def plot_field_summary(
         linewidth=0.5,
     )
 
-    # Add count labels on bars
+    # Add count + percentage labels on bars
     for bar, count in zip(bars, counts):
+        pct = 100 * count / total_papers if total_papers else 0
         ax.text(
             bar.get_width() + max(counts) * 0.01,
             bar.get_y() + bar.get_height() / 2,
-            str(count),
+            f"{count} ({pct:.1f}%)",
             va="center",
             fontsize=VIZ_CONFIG["font_size"] - 1,
         )
@@ -145,6 +146,15 @@ def plot_subfield_distribution(
         autopct="%1.1f%%",
         startangle=140,
         pctdistance=0.85,
+        wedgeprops=dict(width=0.45, edgecolor="white", linewidth=1.5),
+    )
+
+    # Center text for donut
+    ax.text(
+        0, 0, f"N={total:,}",
+        ha="center", va="center",
+        fontsize=VIZ_CONFIG["title_size"],
+        fontweight="bold",
     )
 
     for text in texts:

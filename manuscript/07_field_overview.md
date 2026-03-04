@@ -1,6 +1,6 @@
 # Field Overview: Disciplinary Structure and Growth Dynamics \label{sec:field_overview}
 
-The Active Inference literature has undergone a profound phase transition. What originated in the late 2000s as a densely clustered niche within theoretical neuroscience has explosively expanded into a multi-disciplinary research program spanning three primary domains and eight strictly tracked categories. Our corpus, extracted from arXiv, Semantic Scholar, and OpenAlex and rigorously deduplicated to $N = {{CORPUS_SIZE}}$ papers ({{YEAR_START}}--{{YEAR_END}}), captures the breadth, tempo, and internal architecture of this expansion.
+The Active Inference literature has undergone a phase transition. What originated in the late 2000s as a niche within theoretical neuroscience has expanded rapidly into a multi-disciplinary research program spanning three primary domains and eight tracked categories. Our corpus, extracted from arXiv, Semantic Scholar, and OpenAlex and deduplicated to $N = {{CORPUS_SIZE}}$ papers ({{YEAR_START}}--{{YEAR_END}}), captures the breadth, tempo, and internal architecture of this expansion (Figure \ref{fig:field_summary}).
 
 \begin{figure}[htbp]
 \centering
@@ -19,7 +19,7 @@ The Active Inference literature has undergone a profound phase transition. What 
 | CAGR | {{CAGR_PCT}}\% |
 | Active domains | 8 of 8 tracked (A1–A2, B, C1–C5) |
 
-The CAGR of {{CAGR_PCT}}\% reflects the corpus's long temporal span from {{YEAR_START}} to {{YEAR_END}}; the field's actual rapid growth phase began around 2013, with annual output accelerating substantially. The fact that sustained high output persists into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{Section 7c}).
+The CAGR of {{CAGR_PCT}}\% reflects the corpus's long temporal span from {{YEAR_START}} to {{YEAR_END}}; the field's actual rapid growth phase began around 2013, with annual output accelerating substantially (Figure \ref{fig:growth_curve}). The fact that sustained high output persists into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{Section 7c}).
 
 \begin{figure}[htbp]
 \centering
@@ -43,7 +43,7 @@ Keyword-based classification assigns each paper to one of eight categories acros
 | | C4: Psychiatry | {{C4_COUNT}} | {{C4_PCT}}\% |
 | | C5: Biology | {{C5_COUNT}} | {{C5_PCT}}\% |
 
-The concentration of papers in A2 (qualitative philosophy and general theory) reflects the broad scope of foundational FEP work. The priority-based classifier mitigates over-assignment by routing papers with mathematical indicators (theorems, proofs, equations, statistical formalism) to A1 before falling back to A2, and by preferring specific application domains (C1–C5) and tools (B) over both core-theory categories. Nevertheless, papers that discuss FEP/AIF conceptually without mathematical formalism or domain-specific vocabulary are legitimately assigned to A2. This figure should be read as a *ceiling* on theoretical generality rather than a literal measure of research focus—embedding-based classification would likely redistribute a further fraction into more specific categories. That all eight categories are populated, including computational psychiatry (C4) and formal theory (A1), indicates genuine diversification beyond the field's neuroscience origins.
+The concentration of papers in A2 (qualitative philosophy and general theory) reflects the broad scope of foundational FEP work (Figure \ref{fig:subfield_distribution}). The priority-based classifier mitigates over-assignment by routing papers with mathematical indicators (theorems, proofs, equations, statistical formalism) to A1 before falling back to A2, and by preferring specific application domains (C1–C5) and tools (B) over both core-theory categories. Papers that discuss FEP/AIF conceptually without mathematical formalism or domain-specific vocabulary are correctly assigned to A2. This figure should be read as a *ceiling* on theoretical generality rather than a literal measure of research focus—embedding-based classification would likely redistribute some fraction into more specific categories. That all eight categories are populated, including computational psychiatry (C4) and formal theory (A1), indicates diversification beyond the field's neuroscience origins.
 
 \begin{figure}[htbp]
 \centering
@@ -67,7 +67,7 @@ Detailed characterizations of each domain—including historical context, growth
 | C | C4: Psychiatry | {{C4_COUNT}} ({{C4_PCT}}\%) | Emerging | Translating models to clinical practice | \citep{smith2021computational} |
 | C | C5: Biology | {{C5_COUNT}} ({{C5_PCT}}\%) | Rapid | Empirical validation of theoretical proposals | \citep{kuchling2020morphogenesis} |
 
-The distribution definitively reveals a diversified topology rather than concentrated isolation in a single legacy domain. Domain B (Tools \& Translation) has surged to constitute the largest single category at {{B_PCT}}\%, immediately followed by the empirical applications of C1 (Neuroscience) at {{C1_PCT}}\% and C2 (Robotics) at {{C2_PCT}}\%. Domain A (Core Theory) aggregates {{A_PCT}}\% collectively (A1 + A2), while the emergent application frontiers (C3–C5) exhibit accelerating growth. Crucially, A1's measured {{A1_COUNT}} papers deliberately belie its overarching intellectual gravity—the mathematical formalisms refined in A1 fundamentally constrain and enable architectural implementations across all operational domains.
+The distribution reveals a diversified topology rather than concentration in a single legacy domain (Figure \ref{fig:subfield_timeline}). Domain B (Tools \& Translation) has emerged as the largest single category at {{B_PCT}}\%, followed by C1 (Neuroscience) at {{C1_PCT}}\% and C2 (Robotics) at {{C2_PCT}}\%. Domain A (Core Theory) aggregates {{A_PCT}}\% collectively (A1 + A2), while the emergent application frontiers (C3–C5) exhibit accelerating growth. Notably, A1's {{A1_COUNT}} papers understate its intellectual influence—the mathematical formalisms developed in A1 shape implementations across all domains.
 
 \begin{figure}[htbp]
 \centering

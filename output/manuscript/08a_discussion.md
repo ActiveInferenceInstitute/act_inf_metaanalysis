@@ -8,25 +8,29 @@ Knight, Cordes, and Friedman \citep{knight2022fep} identified six development di
 
 ### Demand Rigorous Reporting Metadata
 
-Papers must systematically report DOIs, ORCIDs, and explicit hypothesis commitments. To prevent fragmented citation subgraphs, submitted preprints must rigorously forward-link to their definitive published versions. Our extraction pipeline prioritizes the DOI as the apex canonical identifier; failing that, deduplication cascades to arXiv IDs, Semantic Scholar IDs, and OpenAlex IDs. Systemic DOI adoption fundamentally solves the cross-source mismatch barrier, enabling high-resolution evidence mapping.
+Papers should systematically report DOIs, ORCIDs, and explicit hypothesis commitments. Submitted preprints should forward-link to their published versions to prevent fragmented citation subgraphs. Our extraction pipeline prioritizes the DOI as the canonical identifier; failing that, deduplication cascades to arXiv IDs, Semantic Scholar IDs, and OpenAlex IDs. Broad DOI adoption would resolve the cross-source mismatch problem, enabling higher-resolution evidence mapping.
 
 ### Deploy Open Knowledge Graph Infrastructure
 
-We advocate the deployment of a federated nanopublication server architecture to house community-contributed assertions, birthing an uninterrupted, living literature review that seamlessly updates as adjacent work publishes. Interlocking this pipeline with the Active Inference Institute's operational Knowledge-Engineering infrastructure \citep{knight2022fep} would furnish the standardized semantic vocabulary necessary for flawless cross-study comparison.
+We advocate the deployment of a federated nanopublication server architecture to house community-contributed assertions, enabling a continuously updated living literature review that incorporates new findings as they are published. Integrating this pipeline with the Active Inference Institute's Knowledge-Engineering infrastructure \citep{knight2022fep} would provide the standardized semantic vocabulary necessary for rigorous cross-study comparison.
 
 ### Standardize the Ontological Lexicon
 
-Immediate future extraction cycles must structurally align assertion predicates against the formally curated Active Inference Ontology. Enforcing shared ontological primitives across disparate studies will dramatically accelerate the direct mathematical aggregation of evidence spanning siloed research enclaves, actualizing the ultimate interoperability goal mapped by Knight et al. \citep{knight2022fep}.
+Immediate future extraction cycles should align assertion predicates with the formally curated Active Inference Ontology. Enforcing shared ontological primitives across studies will accelerate the aggregation of evidence from otherwise siloed research communities, advancing the interoperability goal outlined by Knight et al. \citep{knight2022fep}.
 
 ## Empirical and Theoretical Imperatives
 
 ### Architect Unified Performance Benchmarks
 
-The computational tools domain (B) suffers from a critical absence of standardized performance benchmarks preventing raw comparative evaluation against deep reinforcement learning architectures. Formalizing baseline metrics analogous to standard RL environments (e.g., OpenAI Gym) is the mandatory prerequisite catalyst for transitioning theoretical propositions into hardened applied systems.
+The computational tools domain (B) lacks standardized performance benchmarks for direct comparison against deep reinforcement learning architectures. Establishing baseline metrics analogous to standard RL environments (e.g., OpenAI Gym) is a prerequisite for transitioning theoretical proposals into applied systems.
 
 ### Prioritize Empirical Validation
 
+<<<<<<< HEAD
 Biology (C5) and Language (C3) possess substantial theoretical foundations but comparatively limited empirical support. Targeted investment in experiments designed to validate specific FEP-derived predictions—such as isolating morphogenesis as Bayesian inference or demonstrating active inference advantages in language tasks—would substantially strengthen the evidence base beyond what further theoretical elaboration alone can achieve.
+=======
+Biology (C5) and Language (C3) have established theoretical frameworks but limited empirical validation. Targeted experiments designed to test specific FEP-derived predictions—such as demonstrating morphogenesis as Bayesian inference or measuring active inference advantages in language tasks—would strengthen the evidence base beyond what further theoretical work alone can achieve.
+>>>>>>> 042a14f (refine: scholarly prose, fix stale data, remove unused refs)
 
 ## Living Review Maintenance
 

@@ -103,6 +103,21 @@ def plot_growth_curve(
     ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left",
                fontsize=VIZ_CONFIG["font_size"] - 2)
 
+    # Annotate median year
+    if annual:
+        weighted_years = []
+        for y, c in zip(years, annual):
+            weighted_years.extend([y] * c)
+        if weighted_years:
+            median_year = int(np.median(weighted_years))
+            ax1.axvline(median_year, color="gray", linestyle=":", linewidth=1.5, alpha=0.7)
+            ax1.text(
+                median_year + 0.3, max(annual) * 0.5,
+                f"Median: {median_year}",
+                fontsize=VIZ_CONFIG["font_size"] - 3,
+                color="gray", rotation=90, va="center",
+            )
+
     ax1.grid(axis="y", alpha=VIZ_CONFIG["grid_alpha"])
 
     import warnings

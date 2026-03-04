@@ -1,6 +1,6 @@
 # Citation Network Topology \label{sec:citation_network}
 
-The intra-corpus citation network provides a structural view of how Active Inference research is organized, identifying influential hub papers, community structure, and patterns of citation isolation.
+The intra-corpus citation network provides a structural view of how Active Inference research is organized, identifying influential hub papers, community structure, and patterns of citation isolation (Figure \ref{fig:citation_network}).
 
 \begin{figure}[htbp]
 \centering
@@ -11,7 +11,11 @@ The intra-corpus citation network provides a structural view of how Active Infer
 
 ## Network Density and Degree Distribution
 
+<<<<<<< HEAD
 The intra-corpus citation network contains 785 nodes and 1{,}873 edges, with a density of 0.30\% and 524 connected components. The average in-degree of $\approx 2.4$ indicates that most papers receive few intra-corpus citations, consistent with the field's rapid expansion: the majority of recent papers have not yet accumulated citations within the corpus. Only 6.6\% of all references (1{,}873 of 28{,}402) resolve to other papers within the corpus, reflecting cross-source identifier mismatches and the field's engagement with a broad external literature base. Community detection identifies clusters via the Louvain algorithm \citep{blondel2008louvain}.
+=======
+The intra-corpus citation network contains 785 nodes and 1{,}873 edges, with a density of 0.30\% and 524 connected components. The average in-degree of $\approx 2.4$ indicates that most papers receive few intra-corpus citations, consistent with the field's rapid expansion: the majority of recent papers have not yet accumulated citations within the corpus (Figure \ref{fig:degree_distribution}). Only 6.6\% of all references (1{,}873 of 28{,}402) resolve to other papers within the corpus, reflecting cross-source identifier mismatches and the field's engagement with a broad external literature base. Community detection identifies clusters via the Louvain algorithm \citep{blondel2008louvain}.
+>>>>>>> 042a14f (refine: scholarly prose, fix stale data, remove unused refs)
 
 \begin{figure}[htbp]
 \centering

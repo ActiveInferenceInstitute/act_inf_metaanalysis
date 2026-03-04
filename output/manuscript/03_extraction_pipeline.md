@@ -71,7 +71,7 @@ The LLM misclassifies a contradicting claim as supporting, or vice versa. Rarer 
 
 ### Confidence Calibration Constraints
 
-The model occasionally assigns high confidence to assessments where the underlying semantic evidence is demonstrably weak or ambiguous. Reliable confidence calibration remains an open research problem across nearly all zero-shot LLM applications, necessitating the multi-tiered validation protocols described below.
+The model occasionally assigns high confidence to assessments where the underlying evidence is ambiguous. Reliable confidence calibration remains an open problem for zero-shot LLM applications, motivating the multi-tiered validation protocols described below.
 
 ### Progressive JSON Parsing Recovery
 
@@ -94,7 +94,11 @@ Validation of LLM-extracted assertions follows a three-tier protocol:
 
 3. **Aggregate consistency.** Hypothesis scores are compared against qualitative expectations from the literature: hypotheses known to be well-supported (e.g., H4 Predictive Coding) should score positively; those known to be contested (e.g., H3 Markov Blanket Realism) should show lower or mixed scores.
 
+<<<<<<< HEAD
 Preliminary experiments on a sampled subset of Active Inference papers—evaluated across GPT-4 and Claude-family models—suggest that this automated approach reduces human annotation time by approximately 60--70\% compared to purely manual extraction. Both over-extraction biases and direction inversion errors are consistently intercepted by human review at acceptable rates. Structurally, the pipeline is designed for seamless proprietary or open-weight model upgrades: swapping the underlying reasoning engine requires only adjusting the `--llm-model` flag.
+=======
+Preliminary experiments on a sampled subset of Active Inference papers—evaluated across GPT-4 and Claude-family models—suggest that this automated approach reduces human annotation time by approximately 60--70\% compared to purely manual extraction. Both over-extraction biases and direction inversion errors are intercepted by human review at acceptable rates. The pipeline supports model upgrades without code changes: swapping the underlying model requires only adjusting the `--llm-model` flag.
+>>>>>>> 042a14f (refine: scholarly prose, fix stale data, remove unused refs)
 
 ## From Assertions to Nanopublications
 

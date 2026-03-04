@@ -10,19 +10,27 @@ Several conscious design constraints scope these findings.
 
 ### Keyword Classifier Resolution
 
-The keyword-based classifier utilizes a deterministic priority system that strategically routes papers to specific application domains (C1–C5) before testing tools (B), formal theory (A1), and the qualitative philosophy catch-all (A2). While the expanded A1 keyword set (65+ mathematical indicators) and word-boundary-aware matching substantially suppress misclassification of formal papers into A2, keyword-based taxonomic gating inherently lacks the granular semantic depth of latent embedding-based approaches. Residual A2 concentration must therefore be interpreted structurally—as a ceiling on broad theoretical generality rather than a literal measure of exclusive philosophical focus.
+The keyword-based classifier uses a deterministic priority system that routes papers to specific application domains (C1–C5) before testing tools (B), formal theory (A1), and the qualitative philosophy catch-all (A2). The expanded A1 keyword set (65+ mathematical indicators) and word-boundary-aware matching reduce misclassification of formal papers into A2, but keyword-based methods lack the semantic resolution of embedding-based approaches. Residual A2 concentration should be interpreted as a ceiling on broad theoretical generality rather than a literal measure of philosophical focus.
 
 ### Citation Network Coverage Gaps
 
+<<<<<<< HEAD
 The 1{,}873 intra-corpus edges spanning 524 distinct connected components provide a meaningful topological skeleton, yet cross-source identifier mismatches inevitably inflate the isolated component count. Exhaustive DOI-level cross-matching would further condense the graph.
 
 ### Temporal and Citation-Count Biases
 
 Citation counts remain fundamentally subject to Matthew effects and cumulative field-size biases. Partial-year indexing for the most recent calendar year predictably undercounts concluding publications. Consequently, the measured 5.02\% CAGR explicitly reflects the dilutive effect of the extensive longitudinal span (1977--2026); the localized growth phase from 2010 onward traverses an aggressively steeper trajectory.
+=======
+The 1{,}873 intra-corpus edges spanning 524 connected components provide a topological skeleton, though cross-source identifier mismatches inflate the isolated component count. Exhaustive DOI-level cross-matching would condense the graph further.
+
+### Temporal and Citation-Count Biases
+
+Citation counts are subject to Matthew effects and cumulative field-size biases. Partial-year indexing for the most recent calendar year undercounts recent publications. The measured 5.02\% CAGR reflects the dilutive effect of the long temporal span (1977–2026); the growth phase from 2010 onward follows a steeper trajectory.
+>>>>>>> 042a14f (refine: scholarly prose, fix stale data, remove unused refs)
 
 ### LLM Extraction Fidelity
 
-Systematic zero-shot extraction biases include over-extraction (hallucinating claims the paper merely mentions) and direction inversion errors (misclassifying opposing evidence as structurally supporting). While human review and the explicit "irrelevant" filtering predicate mitigate these hazards, they are not eliminated. Zero-shot confidence calibration remains arguably the central open challenge for automated evidence synthesis architectures.
+Systematic zero-shot extraction biases include over-extraction (hallucinating claims the paper merely mentions) and direction inversion (misclassifying opposing evidence as supporting). Human review and the explicit "irrelevant" filtering predicate mitigate these errors but do not eliminate them. Zero-shot confidence calibration remains a central open challenge for automated evidence synthesis.
 
 ## Future Directions: Beyond Tally-Based Evidence Aggregation
 
@@ -30,7 +38,7 @@ The current scoring formula (Section 5) aggregates LLM-extracted assertions thro
 
 ### Hierarchical Bayesian Hypothesis Scoring
 
-The most direct extension replaces the additive tally with a **hierarchical Bayesian model** that treats each hypothesis score as a latent variable inferred from noisy assertion observations. Under this formulation, each assertion $a_i$ contributes a likelihood term $P(a_i | \theta_H, \sigma)$ parameterized by the hypothesis-level evidence strength $\theta_H$ and an observation noise term $\sigma$ capturing LLM extraction uncertainty. A hierarchical prior $\theta_H \sim \mathcal{N}(\mu_{\text{field}}, \tau^2)$ pools information across hypotheses, enabling principled shrinkage for hypotheses with sparse evidence (e.g., H6 Clinical Utility, with only 45 assertions). This framework naturally produces posterior credible intervals rather than point estimates, providing honest uncertainty quantification that the current tally-based scores cannot offer. Temporal dynamics can be modeled through time-varying parameters $\theta_H(t)$ using state-space formulations that re-weight older evidence rather than treating all cumulative assertions equally.
+The most direct extension replaces the additive tally with a **hierarchical Bayesian model** that treats each hypothesis score as a latent variable inferred from noisy assertion observations. Under this formulation, each assertion $a_i$ contributes a likelihood term $P(a_i | \theta_H, \sigma)$ parameterized by the hypothesis-level evidence strength $\theta_H$ and an observation noise term $\sigma$ capturing LLM extraction uncertainty. A hierarchical prior $\theta_H \sim \mathcal{N}(\mu_{\text{field}}, \tau^2)$ pools information across hypotheses, enabling principled shrinkage for hypotheses with sparse evidence (e.g., H6 Clinical Utility, with only 33 assertions). This framework produces posterior credible intervals rather than point estimates, providing uncertainty quantification that the current tally-based scores lack. Temporal dynamics can be modeled through time-varying parameters $\theta_H(t)$ using state-space formulations that re-weight older evidence rather than treating all cumulative assertions equally.
 
 ### Causal Evidence Graphs
 
@@ -54,9 +62,13 @@ The current formula weights assertions by $\log(1 + \text{citations}) \cdot \tex
 
 The vision motivating this work is straightforward: a living literature review—a continuously updated knowledge graph tracking what a field claims, what evidence supports those claims, and where the frontiers of understanding lie. This vision builds on the foundation established by Knight et al. \citep{knight2022fep}, who identified the development of systems that could "encompass increased scope of relevant works," "integrate multiple forms of annotation and participation," and "facilitate integration of manual and artificial contributions" as key goals for the field.
 
+<<<<<<< HEAD
 By demonstrating that LLM-driven assertion extraction can produce scalable, queryable representations of scientific evidence—processing $N = 785$ papers spanning nearly five decades (1977--2026), extracting structured semantic assertions, and systematically evaluating 8 core hypotheses—this work provides a robust computational machinery for realizing this vision. The generated citation network metrics (1{,}873 edges, a density of 0.30\%, and an average in-degree of 2.4) quantify the rapid expansion of the active inference ecosystem, which has grown to a 5.02\% CAGR while diversifying across 5 major application domains.
+=======
+By demonstrating that LLM-driven assertion extraction can produce scalable, queryable representations of scientific evidence—processing $N = 785$ papers spanning nearly five decades (1977–2026), extracting structured assertions, and evaluating 8 core hypotheses—this work provides a reusable architecture for realizing this vision. The citation network metrics (1{,}873 edges, 0.30\% density, mean in-degree 2.4) characterize the field's structure, which has grown at a 5.02\% CAGR while diversifying across 5 application domains.
+>>>>>>> 042a14f (refine: scholarly prose, fix stale data, remove unused refs)
 
-Crucially, the inherent limitations of keyword-based retrieval across disjoint academic repositories dictate that any retrieved corpus will contain both false positives and false negatives. There is no single methodological threshold capable of perfectly defining inclusion or exclusion for a dynamic, interdisciplinary research field. Therefore, the primary contribution of this work is not simply a definitive "golden list" of papers. Rather, it is an open-source, modularly updatable, and versioned software package. This tool is built in reference to custom literature bibliographies that can be iteratively curated for relevance through time by the community.
+The limitations of keyword-based retrieval across disjoint academic repositories mean that any retrieved corpus will contain both false positives and false negatives. There is no single threshold that perfectly defines inclusion or exclusion for a dynamic, interdisciplinary research field. The primary contribution of this work is therefore not a definitive corpus but an open-source, modularly updatable, and versioned software package. This tool is built in reference to custom literature bibliographies that can be iteratively curated for relevance by the community.
 
 The combination of multi-source retrieval, LLM-based extraction, and probabilistic knowledge graph construction provides a reusable template that advances each of these goals. As LLM capabilities improve and standardized metadata adoption grows, the cost of maintaining such systems will decrease while their utility increases. By open-sourcing the pipeline and publishing the schema, we provide both a concrete tool for the Active Inference community and a modular blueprint that other fields can adapt and refine.
 

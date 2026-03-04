@@ -12,6 +12,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import networkx as nx
+import numpy as np
 
 from visualization.style import VIZ_CONFIG
 
@@ -100,6 +101,21 @@ def plot_citation_network(
         linewidths=0.5,
     )
 
+    # Label top-5 highest in-degree nodes
+    top5 = sorted(in_degrees, key=in_degrees.get, reverse=True)[:5]
+    for node in top5:
+        if node in pos:
+            x, y = pos[node]
+            short_label = str(node)[:25]
+            ax.annotate(
+                short_label, (x, y),
+                fontsize=max(VIZ_CONFIG["font_size"] - 4, 12),
+                fontweight="bold", alpha=0.85,
+                ha="center", va="bottom",
+                xytext=(0, 6), textcoords="offset points",
+                bbox=dict(boxstyle="round,pad=0.2", fc="white", alpha=0.7, lw=0),
+            )
+
     ax.set_title(
         f"Citation Network ({subgraph.number_of_nodes()} nodes, "
         f"{subgraph.number_of_edges()} edges)",
@@ -143,18 +159,39 @@ def plot_degree_distribution(
         return output_path
 
     in_degrees = [d for _, d in graph.in_degree()]
+    in_arr = np.array(in_degrees, dtype=float)
 
     max_degree = max(in_degrees) if in_degrees else 0
-    n_bins = min(max_degree + 1, 30)
-    n_bins = max(n_bins, 1)
 
-    ax.hist(
-        in_degrees,
-        bins=n_bins,
-        color=VIZ_CONFIG["palette"][0],
-        edgecolor="white",
-        alpha=0.8,
-    )
+    # Use log-log scale if range warrants it
+    use_loglog = max_degree > 20
+
+    if use_loglog:
+        # Log-spaced bins for power-law visualization
+        bins = np.logspace(0, np.log10(max_degree + 1), num=25)
+        ax.hist(
+            in_arr[in_arr > 0], bins=bins,
+            color=VIZ_CONFIG["palette"][0],
+            edgecolor="white", alpha=0.8,
+        )
+        ax.set_xscale("log")
+        ax.set_yscale("log")
+    else:
+        n_bins = min(max_degree + 1, 30)
+        n_bins = max(n_bins, 1)
+        ax.hist(
+            in_degrees, bins=n_bins,
+            color=VIZ_CONFIG["palette"][0],
+            edgecolor="white", alpha=0.8,
+        )
+
+    # Mean and median vertical lines
+    mean_deg = float(np.mean(in_arr))
+    median_deg = float(np.median(in_arr))
+    ax.axvline(mean_deg, color=VIZ_CONFIG["palette"][1], linestyle="--",
+               linewidth=2, label=f"Mean = {mean_deg:.1f}")
+    ax.axvline(median_deg, color=VIZ_CONFIG["palette"][2], linestyle="-.",
+               linewidth=2, label=f"Median = {median_deg:.0f}")
 
     ax.set_xlabel("In-Degree (Citations Received)", fontsize=VIZ_CONFIG["font_size"])
     ax.set_ylabel("Number of Papers", fontsize=VIZ_CONFIG["font_size"])
@@ -163,6 +200,7 @@ def plot_degree_distribution(
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
     )
+    ax.legend(fontsize=VIZ_CONFIG["font_size"] - 2, framealpha=0.9)
     ax.grid(axis="y", alpha=VIZ_CONFIG["grid_alpha"])
 
     plt.tight_layout()

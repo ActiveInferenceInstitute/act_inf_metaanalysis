@@ -134,7 +134,7 @@ def plot_evidence_timeline(
         years = sorted(year_data.keys())
         values = [year_data[y] for y in years]
         color = palette[i % len(palette)]
-        label = hypothesis.replace("_", " ").title()
+        label = _format_hypothesis_label(hypothesis)
         ax.plot(years, values, color=color, linewidth=2.0, marker="o",
                 markersize=5, label=label, alpha=0.85)
 
@@ -221,6 +221,16 @@ def plot_assertion_type_breakdown(
               framealpha=0.9)
     ax.grid(axis="x", alpha=VIZ_CONFIG["grid_alpha"])
     ax.invert_yaxis()
+
+    # Total count labels at bar ends
+    for i, h in enumerate(hypotheses):
+        total = sum(assertion_counts[h].get(k, 0)
+                    for k in ("supports", "contradicts", "neutral"))
+        ax.text(
+            total + max(1, max(supports) + max(contradicts) + max(neutrals)) * 0.01,
+            i, str(total), va="center",
+            fontsize=VIZ_CONFIG["font_size"] - 2, fontweight="bold",
+        )
 
     plt.tight_layout()
     fig.savefig(output_path, dpi=VIZ_CONFIG["dpi"], bbox_inches="tight")
