@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: act_inf_metaanalysis
+Version: 0.1.0
+Summary: Computational literature meta-analysis of the Active Inference field using probabilistic knowledge graphs
+Author-email: Joel Dietz <joel@dietz.com>, Daniel Friedman <daniel@activeinference.org>
+Project-URL: Homepage, https://github.com/docxology/template
+Project-URL: Documentation, https://github.com/docxology/template/tree/main/projects/act_inf_metaanalysis/doc
+Requires-Python: >=3.10
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: scipy>=1.10.0
+Requires-Dist: matplotlib>=3.7.0
+Requires-Dist: pandas>=2.0.0
+Requires-Dist: networkx>=3.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: rdflib>=7.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: wordcloud>=1.9.0
+Requires-Dist: scikit-learn>=1.3.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.4.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.1.0; extra == "dev"
+Requires-Dist: pytest-httpserver>=1.0.8; extra == "dev"
+Provides-Extra: llm
+Requires-Dist: ollama>=0.1.0; extra == "llm"

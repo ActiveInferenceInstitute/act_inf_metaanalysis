@@ -1,0 +1,455 @@
+# Active Inference Meta-Analysis Configuration
+# Probabilistic Knowledge Graphs Applied to Active Inference
+
+paper:
+  title: "Probabilistic Knowledge Graphs Applied to Active Inference"
+  subtitle: "A Computational Meta-Analysis of the Active Inference Literature"
+  version: "1.0"
+  date: "" # Auto-generated
+
+authors:
+  - name: "Daniel Friedman"
+    orcid: "" # e.g. 0000-0000-0000-0000
+    email: "daniel@activeinference.institute"
+    affiliation: "Active Inference Institute"
+    corresponding: true
+  - name: "Joel Dietz"
+    orcid: "" # e.g. 0000-0000-0000-0000
+    email: "joel@dietz.com"
+    affiliation: "Independent Researcher"
+
+publication:
+  doi: ""
+  journal: ""
+  volume: ""
+  pages: ""
+  year: "2026"
+
+keywords:
+  - "active inference"
+  - "free energy principle"
+  - "energy-based models"
+  - "knowledge graphs"
+  - "nanopublications"
+  - "meta-analysis"
+  - "probabilistic modeling"
+  - "literature analysis"
+  - "computational psychiatry"
+  - "bibliometrics"
+  - "hypothesis scoring"
+  - "LLM extraction"
+  - "variational inference"
+  - "Helmholtz machine"
+  - "contrastive learning"
+  - "Boltzmann machine"
+  - "variational autoencoder"
+
+search:
+  query: '"active inference" "free energy principle" "energy-based model"'
+  max_results: 1000
+  resume: true
+  clear_corpus: false
+  arxiv_queries:
+    - 'all:"active inference"'
+    - 'all:"free energy principle"'
+    - 'all:"predictive coding" AND all:"free energy"'
+    - 'all:"expected free energy"'
+    - 'all:"variational free energy" AND all:"inference"'
+    - 'all:"energy-based model" AND all:"free energy"'
+    - 'all:"Helmholtz machine" AND all:"inference"'
+    - 'all:"Boltzmann machine" AND all:"free energy"'
+    - 'all:"contrastive divergence" AND all:"generative model"'
+
+knowledge_graph:
+  resume: true
+  checkpoint_interval: 50
+  checkpoint_path: "output/data/nanopublications.jsonl"
+  clear_assertions: false
+  max_papers: null
+
+metadata:
+  license: "CC-BY-4.0"
+  language: "en"
+  repository: "https://github.com/docxology/act_inf_metaanalysis"
+
+llm:
+  reviews:
+    enabled: true
+    types:
+      - executive_summary
+  translations:
+    enabled: true
+    languages:
+      - zh
+
+pipeline_stages:
+  - name: literature_search
+    script: 01_literature_search.py
+    inputs: []
+    outputs:
+      - output/data/corpus.jsonl
+    description: "Query arXiv, Semantic Scholar, OpenAlex; merge and deduplicate"
+
+  - name: meta_analysis
+    script: 02_meta_analysis_pipeline.py
+    inputs:
+      - output/data/corpus.jsonl
+    outputs:
+      - output/data/subfield_classification.json
+      - output/data/subfield_timeline.json
+      - output/data/temporal_analysis.json
+      - output/data/tfidf_data.json
+      - output/data/topics.json
+      - output/data/citation_network.json
+      - output/data/citation_graph.gml
+    description: "Classify subfields, compute temporal metrics, TF-IDF, NMF, citation network"
+
+  - name: knowledge_graph
+    script: 03_build_knowledge_graph.py
+    inputs:
+      - output/data/corpus.jsonl
+    outputs:
+      - output/data/nanopublications.jsonl
+      - output/data/nanopublications.trig
+      - output/data/hypothesis_scores.json
+      - output/data/hypothesis_trends.json
+      - output/data/assertion_summary.json
+    description: "Extract LLM-based assertions, build KG, score hypotheses, export RDF/TriG nanopubs, compute temporal trends"
+
+  - name: figure_generation
+    script: 04_generate_figures.py
+    inputs:
+      - output/data/subfield_classification.json
+      - output/data/subfield_timeline.json
+      - output/data/temporal_analysis.json
+      - output/data/tfidf_data.json
+      - output/data/topics.json
+      - output/data/citation_network.json
+      - output/data/hypothesis_scores.json
+      - output/data/hypothesis_trends.json
+      - output/data/assertion_summary.json
+    outputs:
+      - output/figures/field_summary.png
+      - output/figures/subfield_distribution.png
+      - output/figures/growth_curve.png
+      - output/figures/subfield_timeline.png
+      - output/figures/citation_network.png
+      - output/figures/degree_distribution.png
+      - output/figures/hypothesis_dashboard.png
+      - output/figures/evidence_timeline.png
+      - output/figures/word_cloud.png
+      - output/figures/pca_embeddings.png
+      - output/figures/term_heatmap.png
+      - output/figures/dendrogram.png
+      - output/figures/topic_term_bars.png
+      - output/figures/cooccurrence_matrix.png
+      - output/figures/assertion_breakdown.png
+      - output/figures/assertion_summary.png
+    description: "Render all publication-ready visualizations from analysis JSON outputs"
+
+  - name: inject_variables
+    script: 05_inject_variables.py
+    inputs:
+      - output/data/corpus.jsonl
+      - output/data/temporal_analysis.json
+      - output/data/subfield_classification.json
+      - output/data/assertion_summary.json
+      - output/data/hypothesis_scores.json
+      - output/data/citation_network.json
+    outputs:
+      - manuscript/00_abstract.md
+      - manuscript/01_introduction.md
+      - manuscript/02_tooling.md
+      - manuscript/03_extraction_pipeline.md
+      - manuscript/04_technical_appendix.md
+      - manuscript/05_methodology.md
+      - manuscript/06_hypothesis_results.md
+      - manuscript/07_field_overview.md
+      - manuscript/07a_subfield_analyses.md
+      - manuscript/07b_text_analytics.md
+      - manuscript/07c_citation_network.md
+      - manuscript/08_conclusion.md
+      - manuscript/08a_discussion.md
+    description: "Compute dynamic variables from pipeline outputs and inject them into manuscript Markdown templates"
+
+testing:
+  max_test_failures: 0
+  max_infra_test_failures: 0
+  max_project_test_failures: 0
+
+llm_extraction:
+  model: "gemma3:4b"
+  base_url: "http://localhost:11434"
+  temperature: 0.1
+  max_tokens: 2048
+  timeout_seconds: 120
+  max_retries: 3
+
+hypothesis_definitions:
+  H1:
+    name: "FEP Universality"
+    description: "The Free Energy Principle applies universally to all self-organizing systems"
+    scope: "theoretical"
+  H2:
+    name: "AIF Optimality"
+    description: "Active Inference agents achieve optimal decision-making under uncertainty"
+    scope: "computational"
+  H3:
+    name: "Markov Blanket Realism"
+    description: "Markov blankets correspond to real physical boundaries"
+    scope: "philosophical"
+  H4:
+    name: "Predictive Coding"
+    description: "Cortical hierarchies minimize prediction errors via predictive coding"
+    scope: "empirical"
+  H5:
+    name: "Scalability"
+    description: "Active Inference scales to complex, high-dimensional environments"
+    scope: "computational"
+  H6:
+    name: "Clinical Utility"
+    description: "Active Inference provides clinically useful models of psychiatric conditions"
+    scope: "applied"
+  H7:
+    name: "Morphogenesis"
+    description: "The FEP explains morphogenetic and developmental processes"
+    scope: "biological"
+  H8:
+    name: "Language AIF"
+    description: "Active Inference provides a viable framework for language processing"
+    scope: "applied"
+
+subfield_keywords:
+  # A: Core Theory
+  # Priority 3: Formal theory (any paper with mathematical formalism)
+  A1_formal:
+    # Mathematical structures and methods
+    - "category theory"
+    - "information geometry"
+    - "bayesian mechanics"
+    - "markov blanket"
+    - "stochastic"
+    - "langevin"
+    - "gauge theory"
+    - "path integral"
+    - "differential equation"
+    - "dynamical system"
+    - "fixed point"
+    - "convergence"
+    - "ergodic"
+    - "measure theory"
+    - "manifold"
+    - "lie group"
+    # Formal reasoning indicators
+    - "theorem"
+    - "proof"
+    - "lemma"
+    - "corollary"
+    - "proposition"
+    - "derivation"
+    - "formalism"
+    - "formulation"
+    - "analytical"
+    # Variational and optimization formalism
+    - "variational inference"
+    - "variational bound"
+    - "kl divergence"
+    - "kullback-leibler"
+    - "elbo"
+    - "evidence lower bound"
+    - "laplace approximation"
+    - "mean field"
+    - "message passing"
+    - "belief propagation"
+    - "expectation propagation"
+    # Statistical mechanics and physics formalism
+    - "partition function"
+    - "hamiltonian"
+    - "lagrangian"
+    - "entropy production"
+    - "fluctuation theorem"
+    - "ito"
+    - "fokker-planck"
+    - "helmholtz"
+    # Probability and inference formalism
+    - "posterior"
+    - "prior"
+    - "likelihood"
+    - "marginal"
+    - "conjugate"
+    - "sufficient statistic"
+    - "exponential family"
+    - "dirichlet"
+    - "state space model"
+    # Mathematical notation indicators
+    - "equation"
+    - "matrix"
+    - "eigenvalue"
+    - "jacobian"
+    - "hessian"
+    - "gradient descent"
+    - "optimization"
+    - "objective function"
+    - "loss function"
+    # Energy-Based Models and related
+    - "energy-based model"
+    - "contrastive divergence"
+    - "restricted boltzmann machine"
+    - "deep boltzmann machine"
+    - "helmholtz machine"
+    - "score matching"
+    - "noise contrastive estimation"
+    - "denoising score matching"
+    - "diffusion model"
+    - "langevin dynamics"
+    - "undirected graphical model"
+    - "partition function estimation"
+  # Priority 4: Qualitative philosophy (catch-all for prose-based FEP/AIF)
+  A2_philosophy:
+    # Genuinely philosophical and qualitative terms
+    - "phenomenology"
+    - "epistemology"
+    - "ontology"
+    - "enactivism"
+    - "4e cognition"
+    - "embodied cognition"
+    - "extended mind"
+    - "predictive processing"
+    - "bayesian brain"
+    - "ecological psychology"
+    - "affordance"
+    - "niche construction"
+    - "autopoiesis"
+    - "sense-making"
+    - "consciousness"
+    - "qualia"
+    - "intentionality"
+    - "teleology"
+    - "reductionism"
+    - "emergence"
+    - "self-organization"
+    - "autonomy"
+    - "agency"
+    - "normativity"
+    - "naturalism"
+    # General FEP/AIF terms (catch-all when no specific domain matches)
+    - "free energy principle"
+    - "active inference"
+    - "generative model"
+  # B: Tools & Translation (Priority 2)
+  B_tools:
+    - "planning"
+    - "reinforcement learning"
+    - "deep active inference"
+    - "neural network"
+    - "amortized"
+    - "scalable"
+    - "monte carlo"
+    - "tree search"
+    - "benchmark"
+    - "implementation"
+    - "library"
+    - "software"
+    - "framework"
+    - "toolkit"
+    - "open source"
+    - "api"
+    - "algorithm"
+    - "gymnasium"
+    - "environment"
+    # EBM-adjacent tools
+    - "variational autoencoder"
+    - "normalizing flow"
+    - "generative adversarial"
+  # C: Domains of Application (Priority 1 — most specific)
+  C1_neuroscience:
+    - "neural"
+    - "cortical"
+    - "hippocampal"
+    - "eeg"
+    - "fmri"
+    - "neuroimaging"
+    - "synaptic"
+    - "dopamine"
+    - "spiking"
+    - "prefrontal"
+    - "basal ganglia"
+    - "cerebellum"
+    - "thalamus"
+    - "electrophysiology"
+    - "meg"
+    - "bold"
+    - "brain imaging"
+    - "neuron"
+    - "dendrit"
+  C2_robotics:
+    - "robot"
+    - "sensorimotor"
+    - "motor control"
+    - "embodied"
+    - "navigation"
+    - "manipulation"
+    - "actuator"
+    - "simulator"
+    - "gazebo"
+    - "ros "
+    - "control loop"
+    - "pid"
+    - "end effector"
+    - "gripper"
+  C3_language:
+    - "language"
+    - "linguistic"
+    - "speech"
+    - "semantic"
+    - "reading"
+    - "communication"
+    - "natural language"
+    - "syntax"
+    - "morphology"
+    - "phonology"
+    - "discourse"
+    - "pragmatics"
+    - "transformer"
+    - "large language model"
+    - "llm"
+    - "tokeniz"
+  C4_psychiatry:
+    - "psychiatric"
+    - "schizophrenia"
+    - "depression"
+    - "autism"
+    - "anxiety"
+    - "psychosis"
+    - "computational psychiatry"
+    - "clinical"
+    - "disorder"
+    - "diagnosis"
+    - "symptom"
+    - "patient"
+    - "therapy"
+    - "treatment"
+    - "mental health"
+    - "ptsd"
+    - "ocd"
+    - "bipolar"
+    - "addiction"
+  C5_biology:
+    - "morphogenesis"
+    - "cell"
+    - "organism"
+    - "evolution"
+    - "life"
+    - "autopoiesis"
+    - "biological"
+    - "developmental"
+    - "gene"
+    - "protein"
+    - "metabolism"
+    - "homeostasis"
+    - "ecological"
+    - "phenotype"
+    - "genotype"
+    - "fitness"
+    - "adaptation"
+    - "species"

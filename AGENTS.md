@@ -1,0 +1,161 @@
+# Active Inference Meta-Analysis
+
+**This is an active project** in the `projects/` directory, discovered and executed by infrastructure discovery functions.
+
+## Overview
+
+A computational meta-analysis of the Active Inference and Free Energy Principle literature. The project retrieves papers from three academic databases, extracts structured assertions using a nanopublication framework, constructs a probabilistic knowledge graph, scores eight standard hypotheses with citation-weighted evidence, and generates publication-ready visualizations. The pipeline is fully tested (496 tests, ≥90% coverage) with zero mocks, following the template's thin orchestrator and test-driven development patterns.
+
+## Key Features & Capabilities
+
+### Literature Mining & Retrieval
+
+- **Multi-Source Search**: arXiv Atom API, Semantic Scholar Graph API, OpenAlex API with injectable base URLs for testing
+- **Cross-Source Deduplication**: Canonical ID priority scheme (DOI > arXiv ID > S2 ID > OpenAlex ID > title hash)
+- **Corpus Management**: JSONL persistence, filtering, merge operations via the `Corpus` class
+- **Rate-Limit Aware**: Synchronous clients with configurable delays matching API policies
+
+### Bibliometric Analysis
+
+- **Domain Classification**: Keyword-based mapping to 8 Active Inference domains — A1 formal, A2 philosophy, B tools, C1 neuroscience, C2 robotics, C3 language, C4 psychiatry, C5 biology
+- **Temporal Metrics**: Annual publication counts, cumulative growth, CAGR, doubling time estimation
+- **Text Analysis**: TF-IDF matrix construction, NMF topic modeling with configurable topic count
+- **Citation Network**: networkx DiGraph with PageRank, community detection, and network density metrics
+
+### Knowledge Graph & Hypothesis Scoring
+
+- **RDF Schema**: Custom namespace `http://activeinference.org/ontology/` with 5 core triple patterns
+- **Nanopublications**: Structured assertions with provenance metadata (Assertion + Nanopublication dataclasses)
+- **8 Standard Hypotheses**: FEP universality, AIF optimality, Markov blanket realism, predictive coding, scalability, clinical utility, morphogenesis, language as active inference
+- **Scoring Formula**: Citation-weighted evidence score in [-1, 1] with log-dampened citation weights and bootstrap 95% CI
+- **Temporal Trends**: Cumulative score evaluation at each year for trajectory analysis
+- **Graceful Fallback**: rdflib for full RDF support, networkx fallback when rdflib unavailable
+
+### Publication-Ready Visualization
+
+- **16 Figure Types**: Field summary, subfield distribution, growth curve, subfield timeline, citation network, degree distribution, hypothesis dashboard, evidence timeline, word cloud, PCA embeddings, term heatmap, dendrogram, topic-term bars, co-occurrence matrix, assertion type breakdown, assertion summary
+- **Colorblind-Safe Palette**: Defined in `VIZ_CONFIG` for accessibility
+- **Manuscript Integration**: Figures referenced via LaTeX `\label`/`\ref` in manuscript sections
+
+### Infrastructure Integration
+
+- **Thin Orchestrators**: 5 scripts that import from `src/` for all computation
+- **≥90% Test Coverage**: 496 tests using real data, pytest-httpserver for API testing, no mocks
+- **Deterministic Results**: Fixed RNG seeds (seed=42) for reproducibility
+- **Structured Logging**: All scripts use Python `logging` module with configurable `--log-level`
+- **Resumable Downloads**: `--resume` flag loads existing corpus before fetching, skipping papers already downloaded
+- **Pipeline Compatible**: Discoverable by `infrastructure.project.discovery`, runs via `execute_pipeline.py`
+
+## Directory Structure
+
+```text
+projects/act_inf_metaanalysis/
+├── src/                        # Core library (45+ public APIs, 5 packages)
+│   ├── __init__.py
+│   ├── literature/             # Multi-source retrieval and corpus management
+│   │   ├── __init__.py
+│   │   ├── models.py           # Paper, Author, Citation dataclasses
+│   │   ├── arxiv_client.py     # arXiv Atom API search + parsing
+│   │   ├── semantic_scholar.py # Semantic Scholar Graph API client
+│   │   ├── openalex_client.py  # OpenAlex API client
+│   │   └── corpus.py           # Unified corpus: dedup, merge, persist
+│   ├── analysis/               # Bibliometric and text analysis
+│   │   ├── __init__.py
+│   │   ├── text_processing.py  # Tokenization, stopwords, TF-IDF matrix
+│   │   ├── citation_network.py # networkx DiGraph, PageRank, communities
+│   │   ├── topic_modeling.py   # NMF topic extraction from TF-IDF
+│   │   ├── temporal_analysis.py# Publication trends, growth rates
+│   │   └── subfield_classifier.py # 8-subfield keyword classification
+│   ├── knowledge_graph/        # RDF knowledge graph and hypothesis scoring
+│   │   ├── __init__.py
+│   │   ├── schema.py           # RDF namespaces, assertion types
+│   │   ├── nanopublication.py  # Assertion + Nanopub dataclasses + persistence
+│   │   ├── hypothesis.py       # 8 hypotheses, citation-weighted scoring
+│   │   ├── graph_builder.py    # KnowledgeGraph (rdflib + networkx fallback)
+│   │   ├── query.py            # Graph query helpers
+│   │   ├── extraction.py       # Assertion extraction dispatcher
+│   │   └── llm_extraction.py   # LLM-based extraction with incremental persistence
+│   └── visualization/          # Publication-ready figures
+│       ├── __init__.py
+│       ├── style.py            # VIZ_CONFIG colorblind-safe palette
+│       ├── field_overview.py   # Field summary + subfield distribution
+│       ├── citation_plots.py   # Citation network + degree distribution
+│       ├── temporal_plots.py   # Growth curve + subfield timeline
+│       ├── hypothesis_charts.py# Hypothesis dashboard + evidence timeline
+│       └── advanced_plots.py   # Word cloud, PCA, heatmap, dendrogram, topics, co-occurrence
+├── tests/                      # 496 tests, zero mocks
+│   ├── __init__.py
+│   ├── conftest.py             # Path setup, MPLBACKEND=Agg, shared fixtures
+│   ├── analysis/
+│   │   ├── test_citation_network.py
+│   │   ├── test_subfield_classifier.py
+│   │   ├── test_temporal_analysis.py
+│   │   ├── test_text_processing.py
+│   │   └── test_topic_modeling.py
+│   ├── knowledge_graph/
+│   │   ├── test_extraction.py
+│   │   ├── test_graph_builder.py
+│   │   ├── test_hypothesis.py
+│   │   ├── test_llm_extraction.py
+│   │   ├── test_nanopublication.py
+│   │   ├── test_query.py
+│   │   └── test_schema.py
+│   ├── literature/
+│   │   ├── test_arxiv_client.py
+│   │   ├── test_corpus.py
+│   │   ├── test_models.py
+│   │   ├── test_openalex_client.py
+│   │   └── test_semantic_scholar.py
+│   ├── visualization/
+│   │   ├── test_advanced_plots.py
+│   │   ├── test_citation_plots.py
+│   │   ├── test_field_overview.py
+│   │   ├── test_hypothesis_charts.py
+│   │   ├── test_style.py
+│   │   └── test_temporal_plots.py
+│   ├── test_scripts.py         # Integration tests for script entry points
+│   └── test_variables.py       # Manuscript variable computation tests
+├── scripts/                    # Thin orchestrators
+│   ├── 01_literature_search.py
+│   ├── 02_meta_analysis_pipeline.py
+│   ├── 03_build_knowledge_graph.py
+│   ├── 04_generate_figures.py
+│   └── 05_inject_variables.py
+├── manuscript/                 # 16 sections + references
+│   ├── config.yaml
+│   ├── preamble.md
+│   ├── 00_abstract.md
+│   ├── 01_introduction.md
+│   ├── 02_tooling.md
+│   ├── 03_extraction_pipeline.md
+│   ├── 04_technical_appendix.md
+│   ├── 05_methodology.md
+│   ├── 06_hypothesis_results.md
+│   ├── 07_field_overview.md
+│   ├── 07a_subfield_analyses.md
+│   ├── 07b_text_analytics.md
+│   ├── 07c_citation_network.md
+│   ├── 08_conclusion.md
+│   ├── 08a_discussion.md
+│   ├── 98_symbols_glossary.md
+│   ├── 99_references.md
+│   └── references.bib
+├── doc/                        # Documentation
+│   ├── README.md
+│   ├── architecture.md
+│   ├── api_reference.md
+│   ├── hypotheses.md
+│   ├── data_formats.md
+│   ├── scripts.md
+│   ├── testing.md
+│   └── visualization_guide.md
+├── output/                     # Disposable, regenerated
+├── pyproject.toml
+├── README.md
+└── AGENTS.md
+```
+
+## See Also
+
+- [Root AGENTS.md](../../AGENTS.md) --- Template documentation
+- [doc/](doc/) --- Architecture, API reference, and hypothesis documentation

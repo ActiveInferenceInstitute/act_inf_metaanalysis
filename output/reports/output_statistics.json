@@ -1,0 +1,312 @@
+{
+  "directories": {
+    "pdf": {
+      "exists": true,
+      "file_count": 10,
+      "size_mb": "3.20",
+      "total_size_bytes": 3357388,
+      "largest_files": [
+        {
+          "name": "act_inf_metaanalysis_combined.pdf",
+          "size_mb": "2.78",
+          "path": "pdf/act_inf_metaanalysis_combined.pdf"
+        },
+        {
+          "name": "_combined_manuscript.tex",
+          "size_mb": "0.14",
+          "path": "pdf/_combined_manuscript.tex"
+        },
+        {
+          "name": "_combined_manuscript.md",
+          "size_mb": "0.11",
+          "path": "pdf/_combined_manuscript.md"
+        }
+      ],
+      "extensions": {
+        ".md": 1,
+        ".log": 2,
+        ".aux": 1,
+        ".blg": 1,
+        ".bib": 1,
+        ".pdf": 1,
+        ".tex": 1,
+        ".toc": 1,
+        ".bbl": 1
+      }
+    },
+    "web": {
+      "exists": true,
+      "file_count": 17,
+      "size_mb": "0.46",
+      "total_size_bytes": 477777,
+      "largest_files": [
+        {
+          "name": "index.html",
+          "size_mb": "0.16",
+          "path": "web/index.html"
+        },
+        {
+          "name": "_combined_manuscript.md",
+          "size_mb": "0.11",
+          "path": "web/_combined_manuscript.md"
+        },
+        {
+          "name": "05_methodology.html",
+          "size_mb": "0.02",
+          "path": "web/05_methodology.html"
+        }
+      ],
+      "extensions": {
+        ".md": 1,
+        ".html": 16
+      }
+    },
+    "slides": {
+      "exists": true,
+      "file_count": 110,
+      "size_mb": "4.07",
+      "total_size_bytes": 4271330,
+      "largest_files": [
+        {
+          "name": "07b_text_analytics_slides.pdf",
+          "size_mb": "1.43",
+          "path": "slides/07b_text_analytics_slides.pdf"
+        },
+        {
+          "name": "06_hypothesis_results_slides.pdf",
+          "size_mb": "0.49",
+          "path": "slides/06_hypothesis_results_slides.pdf"
+        },
+        {
+          "name": "07_field_overview_slides.pdf",
+          "size_mb": "0.46",
+          "path": "slides/07_field_overview_slides.pdf"
+        }
+      ],
+      "extensions": {
+        ".nav": 15,
+        ".pdf": 15,
+        ".tex": 15,
+        ".toc": 15,
+        ".snm": 15,
+        ".aux": 15,
+        ".log": 15,
+        ".vrb": 5
+      }
+    },
+    "figures": {
+      "exists": true,
+      "file_count": 17,
+      "size_mb": "2.49",
+      "total_size_bytes": 2610538,
+      "largest_files": [
+        {
+          "name": "word_cloud.png",
+          "size_mb": "0.50",
+          "path": "figures/word_cloud.png"
+        },
+        {
+          "name": "pca_embeddings.png",
+          "size_mb": "0.26",
+          "path": "figures/pca_embeddings.png"
+        },
+        {
+          "name": "cooccurrence_matrix.png",
+          "size_mb": "0.21",
+          "path": "figures/cooccurrence_matrix.png"
+        }
+      ],
+      "extensions": {
+        ".png": 16,
+        ".json": 1
+      }
+    },
+    "data": {
+      "exists": true,
+      "file_count": 13,
+      "size_mb": "11.51",
+      "total_size_bytes": 12069504,
+      "largest_files": [
+        {
+          "name": "nanopublications.trig",
+          "size_mb": "4.64",
+          "path": "data/nanopublications.trig"
+        },
+        {
+          "name": "tfidf_data.json",
+          "size_mb": "3.31",
+          "path": "data/tfidf_data.json"
+        },
+        {
+          "name": "corpus.jsonl",
+          "size_mb": "2.03",
+          "path": "data/corpus.jsonl"
+        }
+      ],
+      "extensions": {
+        ".json": 9,
+        ".gml": 1,
+        ".jsonl": 2,
+        ".trig": 1
+      }
+    },
+    "reports": {
+      "exists": true,
+      "file_count": 4,
+      "size_mb": "0.01",
+      "total_size_bytes": 5803,
+      "largest_files": [
+        {
+          "name": "validation_report.json",
+          "size_mb": "0.00",
+          "path": "reports/validation_report.json"
+        },
+        {
+          "name": "test_results.json",
+          "size_mb": "0.00",
+          "path": "reports/test_results.json"
+        },
+        {
+          "name": "test_results.md",
+          "size_mb": "0.00",
+          "path": "reports/test_results.md"
+        }
+      ],
+      "extensions": {
+        ".md": 2,
+        ".json": 2
+      }
+    },
+    "simulations": {
+      "exists": true,
+      "file_count": 0,
+      "size_mb": "0.00",
+      "total_size_bytes": 0,
+      "largest_files": [],
+      "extensions": {}
+    },
+    "llm": {
+      "exists": true,
+      "file_count": 0,
+      "size_mb": "0.00",
+      "total_size_bytes": 0,
+      "largest_files": [],
+      "extensions": {}
+    },
+    "logs": {
+      "exists": true,
+      "file_count": 1,
+      "size_mb": "0.00",
+      "total_size_bytes": 3051,
+      "largest_files": [
+        {
+          "name": "pipeline.log",
+          "size_mb": "0.00",
+          "path": "logs/pipeline.log"
+        }
+      ],
+      "extensions": {
+        ".log": 1
+      }
+    }
+  },
+  "total_files": 172,
+  "total_size_mb": 21.739378929138184,
+  "largest_files": [
+    {
+      "name": "nanopublications.trig",
+      "size_mb": "4.64",
+      "category": "data",
+      "path": "data/nanopublications.trig"
+    },
+    {
+      "name": "tfidf_data.json",
+      "size_mb": "3.31",
+      "category": "data",
+      "path": "data/tfidf_data.json"
+    },
+    {
+      "name": "act_inf_metaanalysis_combined.pdf",
+      "size_mb": "2.78",
+      "category": "pdf",
+      "path": "pdf/act_inf_metaanalysis_combined.pdf"
+    },
+    {
+      "name": "corpus.jsonl",
+      "size_mb": "2.03",
+      "category": "data",
+      "path": "data/corpus.jsonl"
+    },
+    {
+      "name": "07b_text_analytics_slides.pdf",
+      "size_mb": "1.43",
+      "category": "slides",
+      "path": "slides/07b_text_analytics_slides.pdf"
+    },
+    {
+      "name": "word_cloud.png",
+      "size_mb": "0.50",
+      "category": "figures",
+      "path": "figures/word_cloud.png"
+    },
+    {
+      "name": "06_hypothesis_results_slides.pdf",
+      "size_mb": "0.49",
+      "category": "slides",
+      "path": "slides/06_hypothesis_results_slides.pdf"
+    },
+    {
+      "name": "07_field_overview_slides.pdf",
+      "size_mb": "0.46",
+      "category": "slides",
+      "path": "slides/07_field_overview_slides.pdf"
+    },
+    {
+      "name": "pca_embeddings.png",
+      "size_mb": "0.26",
+      "category": "figures",
+      "path": "figures/pca_embeddings.png"
+    },
+    {
+      "name": "cooccurrence_matrix.png",
+      "size_mb": "0.21",
+      "category": "figures",
+      "path": "figures/cooccurrence_matrix.png"
+    }
+  ],
+  "missing_expected_files": [],
+  "file_counts_by_type": {
+    ".md": 4,
+    ".log": 18,
+    ".aux": 16,
+    ".blg": 1,
+    ".bib": 1,
+    ".pdf": 16,
+    ".tex": 16,
+    ".toc": 16,
+    ".bbl": 1,
+    ".html": 16,
+    ".nav": 15,
+    ".snm": 15,
+    ".vrb": 5,
+    ".png": 16,
+    ".json": 12,
+    ".gml": 1,
+    ".jsonl": 2,
+    ".trig": 1
+  },
+  "sizes_by_category": {
+    "pdf": 3.201854705810547,
+    "web": 0.4556436538696289,
+    "slides": 4.073457717895508,
+    "figures": 2.489603042602539,
+    "data": 11.5103759765625,
+    "reports": 0.005534172058105469,
+    "simulations": 0.0,
+    "llm": 0.0,
+    "logs": 0.0029096603393554688
+  },
+  "pdf_files": 10,
+  "figures": 17,
+  "data_files": 13
+}

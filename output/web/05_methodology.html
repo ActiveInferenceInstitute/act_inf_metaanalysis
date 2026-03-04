@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>05_methodology</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="methodology-pipeline-design-and-formal-definitions">Methodology:
+Pipeline Design and Formal Definitions</h1>
+<p>This section describes the five-stage computational meta-analysis
+pipeline. Each stage corresponds to a tested, independently executable
+script that reads upstream outputs and produces structured artifacts.
+The pipeline extends the systematic literature analysis approach of
+Knight et al. —which combined manual annotation with ontology-based
+automated analysis—by substituting manual coding with fully automated,
+LLM-driven assertion extraction and citation-weighted hypothesis
+scoring.</p>
+<h2 id="pipeline-overview">Pipeline Overview</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Script</th>
+<th>Primary Input</th>
+<th>Primary Output</th>
+<th>Section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>01_literature_search.py</code></td>
+<td>API queries</td>
+<td><code>corpus.jsonl</code></td>
+<td>§5.1</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>02_meta_analysis_pipeline.py</code></td>
+<td><code>corpus.jsonl</code></td>
+<td>Classification, temporal, TF-IDF, NMF, citation network JSONs</td>
+<td>§5.2</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>03_build_knowledge_graph.py</code></td>
+<td><code>corpus.jsonl</code></td>
+<td><code>nanopublications.jsonl</code>,
+<code>nanopublications.trig</code>, scores</td>
+<td>§5.3</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>04_generate_figures.py</code></td>
+<td>All Stage 2–3 JSONs</td>
+<td>16 publication-ready PNGs</td>
+<td>§5.4</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>05_inject_variables.py</code></td>
+<td>All output JSONs</td>
+<td>Rendered manuscript Markdown</td>
+<td>§5.5</td>
+</tr>
+</tbody>
+</table>
+<p>Scripts act as thin orchestrators that import methods from tested
+library modules and handle file I/O. All computation resides in the
+<code>src/</code> packages; no analysis logic is embedded in
+scripts.</p>
+<h2
+id="stage-1-multi-source-literature-retrieval-and-deduplication">Stage
+1: Multi-Source Literature Retrieval and Deduplication</h2>
+<p>We retrieve papers from three complementary academic databases to
+maximize coverage and enable cross-source deduplication:</p>
+<p><strong>arXiv.</strong> We query the arXiv Atom API using
+phrase-matched searches including <code>all:"active inference"</code>,
+<code>all:"free energy principle"</code>,
+<code>all:"expected free energy"</code>,
+<code>all:"variational free energy" AND all:"inference"</code>, and
+targeted Energy-Based Model queries
+(<code>all:"energy-based model" AND all:"free energy"</code>,
+<code>all:"Helmholtz machine" AND all:"inference"</code>,
+<code>all:"Boltzmann machine" AND all:"free energy"</code>,
+<code>all:"contrastive divergence" AND all:"generative model"</code>).
+The <code>all:</code> prefix searches titles, abstracts, and full text;
+phrase matching reduces contamination from unrelated physics papers that
+mention “free energy” in thermodynamic contexts. The EBM-adjacent
+queries capture research at the intersection of energy-based generative
+modeling and variational inference—a growing convergence area .</p>
+<p><strong>Semantic Scholar.</strong> We query the Semantic Scholar
+Graph API with the same terms. Semantic Scholar provides citation
+graphs, abstract embeddings, and links to published versions. Retry
+logic with exponential backoff handles rate limiting.</p>
+<p><strong>OpenAlex.</strong> We query OpenAlex to capture
+journal-published work that may not appear on arXiv, including clinical
+studies and neuroscience experiments in domain-specific venues. The
+<code>referenced_works</code> field populates citation links for each
+paper.</p>
+<h3 id="canonical-identifier-deduplication">Canonical Identifier
+Deduplication</h3>
+<p>After retrieval, papers are assigned a canonical identifier using the
+priority scheme: DOI <span class="math inline">\(&gt;\)</span> arXiv ID
+<span class="math inline">\(&gt;\)</span> Semantic Scholar ID <span
+class="math inline">\(&gt;\)</span> OpenAlex ID <span
+class="math inline">\(&gt;\)</span> title hash. When the same paper
+appears in multiple sources, the record with the highest metadata
+completeness is retained. For each incoming paper, the two records are
+comparatively evaluated on metadata completeness—defined as the count of
+non-empty attributes among {abstract, DOI, arXiv ID, venue, citation
+count}. The pipeline reliably retains the structurally richer record; in
+the event of a tie, the incumbent is preserved. This “merge-on-add”
+strategy automatically aggregates the richest available metadata without
+mandating an expensive downstream reconciliation pass. Deduplication
+produces <span class="math inline">\(N = 785\)</span> unique papers
+spanning 1977–2026.</p>
+<h3 id="relevance-filtering-and-curation">Relevance Filtering and
+Curation</h3>
+<p>After deduplication, a <strong>relevance filter</strong> removes
+papers whose titles and abstracts lack any core Active Inference
+terminology (e.g., <code>active inference,''</code>free energy
+principle,’’ ``variational free energy’’), eliminating off-topic results
+introduced by broad keyword overlap across heterogeneous databases.</p>
+<p>We emphasize that this process relies fundamentally on keyword search
+strategies across divergent APIs. In any complex research field, there
+is no single optimal word or threshold for definitive inclusion or
+exclusion. Different information sources and repositories yield
+differing schemas and representations, inevitably introducing both false
+positives (extraneous papers overlapping in terminology, such as
+unrelated database or biological toolkits) and false negatives (relevant
+papers employing alternative nomenclature without standard
+keywords).</p>
+<p>Consequently, this pipeline is not intended to produce a static,
+“golden” list of canonical papers. Rather, it is designed as an
+open-source software package that can be modularly updated and
+versioned. Researchers can configure the pipeline to operate on custom
+literature bibliographies curated for specific relevance criteria
+through time, treating the initial query-based retrieval as a
+programmatic starting point rather than an absolute boundary.</p>
+<h2 id="stage-2-bibliometric-analysis">Stage 2: Bibliometric
+Analysis</h2>
+<p>Stage 2 performs four complementary analyses on the deduplicated
+corpus. All analyses are deterministic given fixed random seeds and
+operate on the same <code>corpus.jsonl</code> input.</p>
+<h3 id="subfield-classification">Subfield Classification</h3>
+<p>Each paper is classified into one of eight categories organized
+across three domains: <strong>A – Core Theory</strong> (A1: quantitative
+and formal mathematical theory; A2: qualitative philosophy and general
+FEP theory), <strong>B – Tools &amp; Translation</strong> (algorithms,
+scaling, and software development), and <strong>C – Application
+Domains</strong> (C1: neuroscience, C2: robotics, C3: language
+processing, C4: computational psychiatry, C5: biology and
+morphogenesis). Classification uses word-boundary-aware keyword matching
+against curated lists applied to titles and abstracts. A priority system
+ensures that specific application domains (C1–C5, priority 1) take
+precedence over tools (B, priority 2), formal theory (A1, priority 3),
+and the broad qualitative philosophy catch-all (A2, priority 4). Within
+a priority tier, the domain with the most keyword matches wins. A1’s
+keyword set includes mathematical indicators such as <em>theorem</em>,
+<em>proof</em>, <em>convergence</em>, <em>posterior</em>,
+<em>equation</em>, and <em>Fokker–Planck</em>, ensuring that papers with
+mathematical content are classified as formal theory rather than
+defaulting to the philosophy category.</p>
+<h3 id="temporal-metrics-and-growth-rate-estimation">Temporal Metrics
+and Growth-Rate Estimation</h3>
+<p>We compute temporal publication metrics including year-by-year counts
+with gap-filling, cumulative totals, 3-year smoothed moving averages,
+and peak year identification. Field dynamics are estimated via two
+complementary metrics. The <strong>mean year-over-year growth
+rate</strong> <span class="math inline">\(\bar{g}\)</span> is the
+arithmetic mean of annual growth rates for years with non-zero
+prior-year publications. The <strong>doubling time</strong> <span
+class="math inline">\(t_d = \ln 2 / \ln(1 + \bar{g})\)</span>. The
+<strong>compound annual growth rate</strong> (CAGR) captures the
+annualized rate across the full temporal span. Mathematical details are
+provided in the Technical Appendix (A.3).</p>
+<h3 id="text-analytics">Text Analytics</h3>
+<p>The TF-IDF matrix is constructed manually using tokenization with
+stopword removal and L2-normalized term-frequency
+inverse-document-frequency weighting , with a configurable vocabulary
+size (default: 1000 features). Non-negative matrix factorization (NMF)
+is applied to discover latent topics using multiplicative update rules .
+Mathematical details are provided in the Technical Appendix (A.2).</p>
+<h3 id="citation-network-construction">Citation Network
+Construction</h3>
+<p>The intra-corpus citation network is constructed as a directed graph
+where nodes are papers and edges represent citation relationships
+resolved within the corpus. Network metrics include PageRank centrality,
+HITS hub and authority scores , degree distributions, network density,
+connected components, and community structure via the Louvain algorithm
+.</p>
+<h2 id="stage-3-nanopublication-based-knowledge-graph">Stage 3:
+Nanopublication-Based Knowledge Graph</h2>
+<p>Stage 3 is the methodological core of this work: it transforms
+unstructured abstracts into a structured, RDF-compatible knowledge graph
+of scientific evidence. The stage encompasses four tightly coupled
+operations: LLM-based assertion extraction, nanopublication packaging,
+knowledge graph construction, and citation-weighted hypothesis
+scoring.</p>
+<h3 id="llm-based-assertion-extraction">LLM-Based Assertion
+Extraction</h3>
+<p>We extract assertions by prompting a locally hosted LLM (Ollama ) to
+assess each paper’s abstract against eight standard hypotheses. The
+model receives a structured prompt containing the paper title, abstract,
+and hypothesis definitions, and returns a JSON array where each element
+specifies a hypothesis ID, direction (supports, contradicts, neutral, or
+irrelevant), a confidence score <span class="math inline">\(c \in [0,
+1]\)</span>, and a reasoning string. Assertions marked “irrelevant” are
+discarded; confidence values are clamped to <span
+class="math inline">\([0, 1]\)</span>; and responses are validated
+against the known hypothesis ID set. Papers lacking abstracts are
+skipped. Detailed prompt engineering, error taxonomy, and validation
+methodology are documented in Section 3.</p>
+<h3 id="nanopublication-schema-and-rdf-structure">Nanopublication Schema
+and RDF Structure</h3>
+<p>Each assertion is encoded as a <strong>nanopublication</strong> —a
+minimal, self-contained, machine-readable unit of scientific evidence.
+Formally, each nanopublication is a tuple <span
+class="math inline">\((p, h, d, c)\)</span> where <span
+class="math inline">\(p\)</span> is the paper identifier, <span
+class="math inline">\(h\)</span> the hypothesis identifier, <span
+class="math inline">\(d \in \{\text{supports}, \text{contradicts},
+\text{neutral}\}\)</span> the direction, and <span
+class="math inline">\(c\)</span> the confidence. Provenance metadata
+records the LLM model, UTC timestamp, and paper identifier.</p>
+<p>The pipeline serializes nanopublications in two complementary
+formats:</p>
+<ol type="1">
+<li><p><strong>JSON Lines</strong> (one JSON object per line) for
+efficient incremental checkpointing. Assertions are saved at
+configurable intervals (default: every 50 papers), enabling the pipeline
+to resume from where it left off after interruption without
+re-processing already-analyzed papers. Deduplication uses the composite
+key <span class="math inline">\((paper\_id, hypothesis\_id)\)</span>;
+re-runs with improved models overwrite stale results.</p></li>
+<li><p><strong>RDF/TriG</strong> per the nanopublication standard (<a
+href="https://nanopub.net/" class="uri">https://nanopub.net/</a>),
+producing four named graphs per nanopublication:</p></li>
+</ol>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Named Graph</th>
+<th>Content</th>
+<th>Key Predicates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Head</strong></td>
+<td>Links the nanopub resource to its three component graphs</td>
+<td><code>np:hasAssertion</code>, <code>np:hasProvenance</code>,
+<code>np:hasPublicationInfo</code></td>
+</tr>
+<tr>
+<td><strong>Assertion</strong></td>
+<td>The core scientific claim</td>
+<td><code>aif:asserts</code> (Paper → Assertion),
+<code>aif:supports</code>/<code>aif:contradicts</code> (Assertion →
+Hypothesis), <code>aif:claim</code>, <code>aif:confidence</code>,
+<code>aif:citationCount</code></td>
+</tr>
+<tr>
+<td><strong>Provenance</strong></td>
+<td>How the assertion was generated</td>
+<td><code>prov:wasGeneratedBy</code>, <code>prov:generatedAtTime</code>,
+<code>prov:wasAttributedTo</code>,
+<code>prov:hadPrimarySource</code></td>
+</tr>
+<tr>
+<td><strong>Publication Info</strong></td>
+<td>Metadata about the nanopublication itself</td>
+<td><code>dc:created</code>, <code>dc:creator</code>,
+<code>dc:license</code></td>
+</tr>
+</tbody>
+</table>
+<p>The namespace <code>http://activeinference.org/ontology/</code>
+(prefix <code>aif:</code>) defines all domain predicates; the
+nanopublication schema (<code>http://www.nanopub.org/nschema#</code>,
+prefix <code>np:</code>) provides structural predicates; provenance uses
+PROV-O (<code>http://www.w3.org/ns/prov#</code>); and Dublin Core
+(<code>http://purl.org/dc/terms/</code>) provides publication metadata.
+The TriG output is suitable for publication to the decentralized
+nanopublication network and aligns with FAIR data principles:
+<strong>F</strong>indable via URI-based identification,
+<strong>A</strong>ccessible via standard RDF protocols,
+<strong>I</strong>nteroperable through W3C-standard serialization, and
+<strong>R</strong>eusable with explicit provenance and CC0
+licensing.</p>
+<h3 id="knowledge-graph-construction">Knowledge Graph Construction</h3>
+<p>The knowledge graph is an RDF-compatible directed graph with three
+node types: <strong>paper nodes</strong> (metadata: title, abstract,
+authors, year, venue, citation count, domain), <strong>assertion
+nodes</strong> (claim text, direction, hypothesis ID, confidence), and
+<strong>hypothesis nodes</strong> (the eight standard hypotheses). Edges
+encode five relations defined in the schema:</p>
+<ul>
+<li><code>aif:asserts</code> — Paper <span
+class="math inline">\(\to\)</span> Assertion</li>
+<li><code>aif:cites</code> — Paper <span
+class="math inline">\(\to\)</span> Paper</li>
+<li><code>aif:belongsTo</code> — Paper <span
+class="math inline">\(\to\)</span> Subfield</li>
+<li><code>aif:supports</code> — Assertion <span
+class="math inline">\(\to\)</span> Hypothesis</li>
+<li><code>aif:contradicts</code> — Assertion <span
+class="math inline">\(\to\)</span> Hypothesis</li>
+</ul>
+<p>The graph is implemented with a dual backend: <code>rdflib</code>
+when available (preferred for semantic web compatibility), with
+automatic fallback to <code>networkx.DiGraph</code> for environments
+without RDF dependencies. Both backends maintain identical internal
+indices for efficient paper, assertion, and hypothesis queries.</p>
+<h3 id="citation-weighted-hypothesis-scoring">Citation-Weighted
+Hypothesis Scoring</h3>
+<p>For each hypothesis <span class="math inline">\(H\)</span>, we
+compute a citation-weighted evidence score:</p>
+<p><span class="math display">\[
+\text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)}
+w(a)}{\sum_{a \in A(H)} w(a)}
+\]</span></p>
+<p>where <span class="math inline">\(S(H)\)</span>, <span
+class="math inline">\(C(H)\)</span>, and <span
+class="math inline">\(A(H)\)</span> are the sets of supporting,
+contradicting, and all assertions for <span
+class="math inline">\(H\)</span>, and the weight function is:</p>
+<p><span class="math display">\[
+w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a)
+\]</span></p>
+<p>The logarithmic citation weighting ensures that highly cited papers
+carry more influence without allowing any single paper to dominate. The
+score lies in <span class="math inline">\([-1, 1]\)</span>. Temporal
+trends are computed by evaluating the cumulative score at each year,
+using only assertions from papers published up to that year. A full
+derivation appears in the Technical Appendix (A.1).</p>
+<h3 id="tally-based-evidence-aggregation">Tally-Based Evidence
+Aggregation</h3>
+<p>We emphasize that this algorithmic scoring formula constitutes a
+<strong>tally-based approach</strong> to evidence synthesis: each
+nanopublication assertion operates as an independent evidential vote,
+mathematically weighted by citation impact and the extraction model’s
+semantic confidence. The aggregation is deliberately linear and
+additive—supporting and contradicting assertions are summed and
+differenced, independent from modeling dependencies, correlated evidence
+clustering, or topological causal structure among claims. This
+intentional design choice prioritizes operational transparency, rigorous
+reproducibility, and computational tractability over abstract
+statistical sophistication.</p>
+<p>The tally-based framing introduces three distinct constraints. First,
+assertions extracted from methodologically related papers (e.g.,
+iterative publications originating from a single research group
+validating the same structural model) are counted identically and
+independently, inherently amplifying correlated evidence. Second, the
+scoring metric imposes symmetrical treatment across assertion source
+types: an affirmative assertion parsed from a theoretical review and one
+sourced from an empirical randomized controlled trial carry equivalent
+leverage at a matched confidence bound. Finally, temporal scoring tracks
+<em>cumulative running totals</em> rather than dynamic probabilistic
+estimates; the score at year <span class="math inline">\(t\)</span>
+computes the absolute integrated momentum of all historical evidence,
+rather than a decaying posterior that incrementally downweights early
+foundational texts.</p>
+<p>We embrace these constraints deliberately. The tally-based execution
+furnishes a stable, highly interpretable baseline upon which superior
+configurations can be systematically evaluated. Section 8 scopes these
+concrete extensions—specifically encompassing hierarchical Bayesian
+scoring frameworks, causal evidence directed acyclic graphs (DAGs), and
+evidential diversity indices that geometrically constrain correlated
+research amplification.</p>
+<h2 id="stage-4-visualization">Stage 4: Visualization</h2>
+<p>Stage 4 renders 16 publication-ready figures from the analysis
+outputs of Stages 2 and 3. All figures use the Wong (2011)
+colorblind-safe palette and enforce a 16-point minimum font size for
+accessibility compliance. Figures span six categories: field summary and
+domain distribution (2 figures), growth and temporal dynamics (2
+figures), citation network topology (2 figures), hypothesis evidence
+dashboard and timeline (2 figures), assertion composition (2 figures),
+and text analytics—word cloud, PCA embeddings, term heatmap, dendrogram,
+topic-term bars, and co-occurrence matrix (6 figures). The figure
+generation script reads only JSON outputs and produces only PNG files,
+ensuring strict separation between analysis and visualization.</p>
+<h2 id="stage-5-manuscript-variable-injection">Stage 5: Manuscript
+Variable Injection</h2>
+<p>Stage 5 computes dynamic variables from all pipeline outputs and
+injects them into manuscript Markdown templates via
+<code>{{VAR_NAME}}</code> placeholder substitution. Variables include
+corpus-level metrics (size, year range, CAGR), per-domain counts and
+percentages, citation network statistics (nodes, edges, density,
+components, resolution rate, mean in-degree), hypothesis scores, and
+figure counts. All LaTeX-specific formatting (thousand separators via
+<code>{,}</code>, escaping) is applied during variable computation,
+ensuring the manuscript templates remain human-readable while producing
+publication-ready LaTeX output. Unrecognized placeholders are preserved
+with a warning logged, enabling incremental manuscript development ahead
+of full pipeline execution.</p>
+<h2 id="reproducibility-and-test-driven-validation">Reproducibility and
+Test-Driven Validation</h2>
+<p>The pipeline is deterministic given fixed random seeds and API
+responses. Test-driven development enforces 90% minimum code coverage on
+project modules and 60% on shared infrastructure, with real data and
+computation (no mocking). The test suite validates boundary conditions
+for hypothesis scoring (all-support <span
+class="math inline">\(\to\)</span> +1, all-contradict <span
+class="math inline">\(\to\)</span> <span
+class="math inline">\(-1\)</span>, balanced <span
+class="math inline">\(\to\)</span> 0), schema consistency, serialization
+round-trips, and end-to-end pipeline integrity. Source code,
+configuration, and outputs are available under CC-BY-4.0.</p>
+</body>
+</html>
