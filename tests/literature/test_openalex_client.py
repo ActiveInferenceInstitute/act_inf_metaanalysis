@@ -67,6 +67,18 @@ SEARCH_RESPONSE = {
                     "display_name": "Nature Reviews Neuroscience",
                 }
             },
+            "open_access": {
+                "is_oa": True,
+                "oa_url": "https://europepmc.org/articles/pmc2996528",
+            },
+            "best_oa_location": {
+                "pdf_url": "https://europepmc.org/articles/pmc2996528?pdf=render",
+                "url": "https://europepmc.org/articles/pmc2996528",
+                "source": {
+                    "type": "repository",
+                    "display_name": "Europe PMC",
+                },
+            },
         },
         {
             "id": "https://openalex.org/W5678",
@@ -99,6 +111,9 @@ SEARCH_RESPONSE = {
             "cited_by_count": 200,
             "abstract_inverted_index": None,
             "primary_location": None,
+            "open_access": {
+                "is_oa": False,
+            },
         },
     ],
 }
@@ -240,6 +255,9 @@ class TestSearchOpenalex:
         assert p.openalex_id == "https://openalex.org/W2140"
         assert p.citation_count == 3500
         assert p.venue == "Nature Reviews Neuroscience"
+        assert p.is_open_access is True
+        assert p.pdf_url == "https://europepmc.org/articles/pmc2996528?pdf=render"
+        assert p.full_text_source == "repository"
 
     def test_search_authors_parsed(self, httpserver: HTTPServer):
         """Authors with affiliation and ORCID are parsed."""
@@ -287,6 +305,8 @@ class TestSearchOpenalex:
         )
 
         assert papers[1].venue is None
+        assert papers[1].is_open_access is False
+        assert papers[1].pdf_url is None
 
     def test_search_empty_results(self, httpserver: HTTPServer):
         """Empty search results return empty list."""

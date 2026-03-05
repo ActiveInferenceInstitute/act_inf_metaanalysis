@@ -62,6 +62,10 @@ class Paper:
         citation_count: Number of citations
         references: List of canonical IDs this paper cites
         publication_date: Full publication date if available
+        pdf_url: Direct URL to a PDF of the full text, if available
+        is_open_access: Whether the paper is open access
+        full_text_source: Provenance of the full text (e.g., "arxiv",
+            "publisher", "repository")
     """
 
     title: str
@@ -76,6 +80,9 @@ class Paper:
     citation_count: int = 0
     references: list[str] = field(default_factory=list)
     publication_date: Optional[date] = None
+    pdf_url: Optional[str] = None
+    is_open_access: Optional[bool] = None
+    full_text_source: Optional[str] = None
 
     @property
     def canonical_id(self) -> str:
@@ -120,6 +127,10 @@ class Paper:
             count += 1
         if self.publication_date:
             count += 1
+        if self.pdf_url:
+            count += 1
+        if self.is_open_access is not None:
+            count += 1
         return count
 
     def to_dict(self) -> dict:
@@ -146,6 +157,9 @@ class Paper:
             "publication_date": self.publication_date.isoformat()
             if self.publication_date
             else None,
+            "pdf_url": self.pdf_url,
+            "is_open_access": self.is_open_access,
+            "full_text_source": self.full_text_source,
         }
 
     @classmethod
@@ -175,4 +189,7 @@ class Paper:
             citation_count=data.get("citation_count", 0),
             references=data.get("references", []),
             publication_date=pub_date,
+            pdf_url=data.get("pdf_url"),
+            is_open_access=data.get("is_open_access"),
+            full_text_source=data.get("full_text_source"),
         )

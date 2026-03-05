@@ -49,6 +49,11 @@ SEARCH_RESPONSE = {
                 {"paperId": "def456"},
                 {"paperId": "ghi789"},
             ],
+            "isOpenAccess": True,
+            "openAccessPdf": {
+                "url": "https://arxiv.org/pdf/1709.02341.pdf",
+                "status": "GREEN"
+            },
         },
         {
             "paperId": "xyz789",
@@ -64,6 +69,8 @@ SEARCH_RESPONSE = {
             "citationCount": 3500,
             "venue": "Nature Reviews Neuroscience",
             "references": [],
+            "isOpenAccess": False,
+            "openAccessPdf": None,
         },
     ],
 }
@@ -149,6 +156,14 @@ class TestSearchSemanticScholar:
         assert papers[0].year == 2017
         assert papers[0].citation_count == 450
         assert papers[0].venue == "Neural Computation"
+        assert papers[0].is_open_access is True
+        assert papers[0].pdf_url == "https://arxiv.org/pdf/1709.02341.pdf"
+        assert papers[0].full_text_source == "semantic_scholar"
+
+        # Second paper is not open access
+        assert papers[1].is_open_access is False
+        assert papers[1].pdf_url is None
+        assert papers[1].full_text_source is None
 
     def test_search_authors_parsed(self, httpserver: HTTPServer):
         """Authors are correctly parsed from search results."""
@@ -292,6 +307,8 @@ class TestSearchSemanticScholar:
         assert papers[0].authors == []
         assert papers[0].references == []
         assert papers[0].citation_count == 0
+        assert papers[0].is_open_access is None
+        assert papers[0].pdf_url is None
 
 
 # ---------------------------------------------------------------------------
@@ -477,12 +494,12 @@ class TestS2PaginationAndRetry:
         # Note: dict matching for query params covers specific keys
         httpserver.expect_request(
             "/paper/search", 
-            query_string={"query": "test", "offset": "0", "limit": "100", "fields": "title,abstract,authors,year,externalIds,citationCount,venue,references"}
+            query_string={"query": "test", "offset": "0", "limit": "100", "fields": "title,abstract,authors,year,externalIds,citationCount,venue,references,isOpenAccess,openAccessPdf"}
         ).respond_with_json(page1)
         
         httpserver.expect_request(
             "/paper/search", 
-            query_string={"query": "test", "offset": "100", "limit": "50", "fields": "title,abstract,authors,year,externalIds,citationCount,venue,references"}
+            query_string={"query": "test", "offset": "100", "limit": "50", "fields": "title,abstract,authors,year,externalIds,citationCount,venue,references,isOpenAccess,openAccessPdf"}
         ).respond_with_json(page2)
 
         papers = search_semantic_scholar(

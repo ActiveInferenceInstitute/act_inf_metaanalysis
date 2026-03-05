@@ -128,6 +128,11 @@ def _parse_entry(entry: ET.Element) -> Optional[Paper]:
     if doi_elem is not None and doi_elem.text:
         doi = doi_elem.text.strip()
 
+    # All arXiv papers are open access with PDF available
+    pdf_url = None
+    if arxiv_id:
+        pdf_url = f"https://arxiv.org/pdf/{arxiv_id}.pdf"
+
     return Paper(
         title=title,
         abstract=abstract,
@@ -136,6 +141,9 @@ def _parse_entry(entry: ET.Element) -> Optional[Paper]:
         doi=doi,
         arxiv_id=arxiv_id,
         publication_date=pub_date,
+        pdf_url=pdf_url,
+        is_open_access=True,
+        full_text_source="arxiv" if arxiv_id else None,
     )
 
 

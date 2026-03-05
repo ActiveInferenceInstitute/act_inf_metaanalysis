@@ -204,8 +204,10 @@ class TestPaperConstruction:
             citation_count=100,
             references=["doi:10.other/ref"],
             publication_date=date(2020, 1, 1),
+            pdf_url="https://arxiv.org/pdf/2001.00000.pdf",
+            is_open_access=True,
         )
-        assert p.metadata_completeness == 11  # All 11 optional fields
+        assert p.metadata_completeness == 13  # All 11 original + pdf_url + is_open_access
 
     def test_metadata_completeness_partial(self):
         """Paper with some fields populated has intermediate completeness."""
@@ -280,7 +282,7 @@ class TestPaperSerialization:
         expected_keys = {
             "title", "abstract", "authors", "year", "doi", "arxiv_id",
             "s2_id", "openalex_id", "venue", "citation_count", "references",
-            "publication_date",
+            "publication_date", "pdf_url", "is_open_access", "full_text_source",
         }
         assert set(data.keys()) == expected_keys
 
@@ -329,3 +331,47 @@ class TestPaperSerialization:
         assert len(restored.authors) == 3
         assert restored.authors[0].orcid == "0000-0001-0000-0001"
         assert restored.authors[1].affiliation is None
+
+    def test_round_trip_fulltext_fields(self):
+        """Full-text fields survive serialization round-trip."""
+        original = Paper(
+            title="OA Paper",
+            pdf_url="https://arxiv.org/pdf/2301.12345.pdf",
+            is_open_access=True,
+            full_text_source="arxiv",
+        )
+        data = original.to_dict()
+        assert data["pdf_url"] == "https://arxiv.org/pdf/2301.12345.pdf"
+        assert data["is_open_access"] is True
+        assert data["full_text_source"] == "arxiv"
+
+        restored = Paper.from_dict(data)
+        assert restored.pdf_url == original.pdf_url
+        assert restored.is_open_access is True
+        assert restored.full_text_source == "arxiv"
+
+    def test_from_dict_backward_compatible(self):
+        """from_dict handles legacy data without full-text fields."""
+        data = {
+            "title": "Old Paper",
+            "abstract": "Legacy record",
+            "authors": [],
+            "year": 2019,
+        }
+        p = Paper.from_dict(data)
+        assert p.title == "Old Paper"
+        assert p.pdf_url is None
+        assert p.is_open_access is None
+        assert p.full_text_source is None
+
+    def test_fulltext_fields_default_none(self):
+        """New full-text fields default to None when not specified."""
+        p = Paper(title="No FT")
+        assert p.pdf_url is None
+        assert p.is_open_access is None
+        assert p.full_text_source is None
+
+    def test_metadata_completeness_with_oa_fields(self):
+        """pdf_url and is_open_access contribute to completeness."""
+        p = Paper(title="Test", pdf_url="https://example.com/paper.pdf", is_open_access=False)
+        assert p.metadata_completeness == 2  # pdf_url + is_open_access

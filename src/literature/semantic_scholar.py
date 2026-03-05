@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 S2_API_URL = "https://api.semanticscholar.org/graph/v1"
 
 # Fields we request from the API
-PAPER_FIELDS = "title,abstract,authors,year,externalIds,citationCount,venue,references"
+PAPER_FIELDS = "title,abstract,authors,year,externalIds,citationCount,venue,references,isOpenAccess,openAccessPdf"
 CITATION_FIELDS = "title,authors,year,externalIds"
 
 # Retry settings
@@ -66,6 +66,15 @@ def _parse_s2_paper(data: dict) -> Paper:
         elif isinstance(ref, str):
             references.append(f"s2:{ref}")
 
+    # Open access and PDF URL
+    is_open_access = data.get("isOpenAccess")
+    pdf_url = None
+    full_text_source = None
+    oa_pdf = data.get("openAccessPdf")
+    if isinstance(oa_pdf, dict) and oa_pdf.get("url"):
+        pdf_url = oa_pdf["url"]
+        full_text_source = "semantic_scholar"
+
     return Paper(
         title=data.get("title", ""),
         abstract=data.get("abstract") or "",
@@ -77,6 +86,9 @@ def _parse_s2_paper(data: dict) -> Paper:
         venue=data.get("venue") or None,
         citation_count=data.get("citationCount") or 0,
         references=references,
+        pdf_url=pdf_url,
+        is_open_access=is_open_access,
+        full_text_source=full_text_source,
     )
 
 

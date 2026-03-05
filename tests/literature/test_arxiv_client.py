@@ -187,6 +187,9 @@ class TestParseArxivResponse:
         assert p.year == 2022
         assert p.doi == "10.1162/neco_a_01532"
         assert p.arxiv_id == "2201.06387"
+        assert p.pdf_url == "https://arxiv.org/pdf/2201.06387.pdf"
+        assert p.is_open_access is True
+        assert p.full_text_source == "arxiv"
 
     def test_multi_entry(self):
         """Parse a feed with multiple entries."""
@@ -214,6 +217,9 @@ class TestParseArxivResponse:
         assert len(papers) == 1
         assert papers[0].doi is None
         assert papers[0].arxiv_id == "2107.00000"
+        assert papers[0].pdf_url == "https://arxiv.org/pdf/2107.00000.pdf"
+        assert papers[0].is_open_access is True
+        assert papers[0].full_text_source == "arxiv"
 
     def test_canonical_id_with_doi(self):
         """Paper with DOI uses doi: prefix for canonical_id."""
@@ -296,6 +302,8 @@ class TestParseArxivResponse:
         papers = parse_arxiv_response(ENTRY_ID_WITHOUT_ABS_XML)
         assert len(papers) == 1
         assert papers[0].arxiv_id is None
+        assert papers[0].pdf_url is None
+        assert papers[0].full_text_source is None
 
 
 # ---------------------------------------------------------------------------

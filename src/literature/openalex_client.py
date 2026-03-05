@@ -126,6 +126,35 @@ def _parse_openalex_work(data: dict) -> Paper:
             ref_id = ref_url.split("/")[-1] if "/" in ref_url else ref_url
             references.append(f"openalex:{ref_id}")
 
+    # Open access status and PDF URL
+    oa_data = data.get("open_access") or {}
+    is_open_access = oa_data.get("is_oa")
+    pdf_url = None
+    full_text_source = None
+
+    # Try oa_url first, then best_oa_location for PDF
+    oa_url = oa_data.get("oa_url")
+    if oa_url and oa_url.endswith(".pdf"):
+        pdf_url = oa_url
+
+    best_oa = data.get("best_oa_location") or {}
+    if not pdf_url and best_oa.get("pdf_url"):
+        pdf_url = best_oa["pdf_url"]
+    elif not pdf_url and best_oa.get("url"):
+        # Landing page URL as fallback (not direct PDF)
+        pass
+
+    # Determine full_text_source from location type
+    if pdf_url:
+        source_obj = best_oa.get("source") or {}
+        source_type = source_obj.get("type", "")
+        if source_type == "repository":
+            full_text_source = "repository"
+        elif source_type == "journal":
+            full_text_source = "publisher"
+        else:
+            full_text_source = "openalex"
+
     return Paper(
         title=title,
         abstract=abstract,
@@ -136,6 +165,9 @@ def _parse_openalex_work(data: dict) -> Paper:
         venue=venue,
         citation_count=citation_count,
         references=references,
+        pdf_url=pdf_url,
+        is_open_access=is_open_access,
+        full_text_source=full_text_source,
     )
 
 
