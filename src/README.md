@@ -7,6 +7,7 @@ Core library for the Active Inference Meta-Analysis project. Contains the busine
 - **`literature/`**: Multi-source paper retrieval and unified corpus management.
 - **`analysis/`**: Bibliometric, temporal, and text analytics pipelines.
 - **`knowledge_graph/`**: RDF nanopublication system and hypothesis scoring.
+- **`manuscript/`**: Template variable computation and injection from pipeline output.
 - **`visualization/`**: Generation of publication-ready manuscript figures.
 
 See [AGENTS.md](AGENTS.md) for architectural guidelines and implementation details.

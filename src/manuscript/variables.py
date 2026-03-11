@@ -24,23 +24,26 @@ logger = get_logger(__name__)
 
 
 def _latex_number(n: int) -> str:
-    """Format an integer with LaTeX thousand separators.
+    """Format an integer with comma thousand separators.
+
+    Uses plain commas which render correctly in both LaTeX math mode
+    and plain text contexts (tables, inline prose).
 
     Examples:
         775 -> "775"
-        1834 -> "1{,}834"
-        28073 -> "28{,}073"
+        1834 -> "1,834"
+        28073 -> "28,073"
     """
     s = str(n)
     if len(s) <= 3:
         return s
-    # Insert {,} separators from right
+    # Insert comma separators from right
     parts = []
     while len(s) > 3:
         parts.append(s[-3:])
         s = s[:-3]
     parts.append(s)
-    return "{,}".join(reversed(parts))
+    return ",".join(reversed(parts))
 
 
 def _count_jsonl_lines(path: Path) -> int:
@@ -252,14 +255,18 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
         variables["TOTAL_ASSERTIONS"] = _latex_number(total_assertions)
         variables["TOTAL_ASSERTIONS_RAW"] = str(total_assertions)
 
-        # Per-hypothesis counts if available
-        hyp_counts = assertion.get("hypothesis_counts", {})
+        # Per-hypothesis counts — JSON uses "per_hypothesis" key
+        hyp_counts = assertion.get("per_hypothesis", assertion.get("hypothesis_counts", {}))
         for hid, hdata in hyp_counts.items():
             if isinstance(hdata, dict):
-                variables[f"{hid}_SUPPORT"] = str(hdata.get("supports", 0))
-                variables[f"{hid}_CONTRADICT"] = str(hdata.get("contradicts", 0))
-                variables[f"{hid}_NEUTRAL"] = str(hdata.get("neutral", 0))
-                variables[f"{hid}_TOTAL"] = str(hdata.get("total", 0))
+                sup = hdata.get("supports", 0)
+                con = hdata.get("contradicts", 0)
+                neu = hdata.get("neutral", 0)
+                total = sup + con + neu
+                variables[f"{hid}_SUPPORT"] = str(sup)
+                variables[f"{hid}_CONTRADICT"] = str(con)
+                variables[f"{hid}_NEUTRAL"] = str(neu)
+                variables[f"{hid}_TOTAL"] = str(total)
     else:
         logger.info("assertion_summary.json not found; assertion variables skipped")
 
@@ -277,13 +284,33 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
     else:
         logger.info("hypothesis_scores.json not found; score variables skipped")
 
+    # ── H1–H8 alias mapping ──────────────────────────────────────────
+    # Map short HN_ prefixes to full hypothesis ID prefixes for template
+    # convenience: {{H1_SCORE}}, {{H1_SUPPORT}}, etc.
+    _h_alias = {
+        "H1": "FEP_UNIVERSALITY",
+        "H2": "AIF_OPTIMALITY",
+        "H3": "MARKOV_BLANKET_REALISM",
+        "H4": "PREDICTIVE_CODING",
+        "H5": "SCALABILITY",
+        "H6": "CLINICAL_UTILITY",
+        "H7": "MORPHOGENESIS",
+        "H8": "LANGUAGE_AIF",
+    }
+    for short, full in _h_alias.items():
+        for suffix in ["_SCORE", "_SUPPORT", "_CONTRADICT", "_NEUTRAL", "_TOTAL"]:
+            full_key = f"{full}{suffix}"
+            if full_key in variables:
+                variables[f"{short}{suffix}"] = variables[full_key]
+
     # ── Figure count ─────────────────────────────────────────────────
     figures_dir = output_dir / "figures"
     if figures_dir.exists():
         fig_count = len(list(figures_dir.glob("*.png")))
         variables["NUM_FIGURES"] = str(fig_count)
     else:
-        variables["NUM_FIGURES"] = "16"
+        variables["NUM_FIGURES"] = "0"
+        logger.warning("Figures directory not found at %s; defaulting NUM_FIGURES to 0", figures_dir)
 
     # ── NMF topics (if available) ────────────────────────────────────
     topics = _load_json(data_dir / "topics.json")

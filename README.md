@@ -2,7 +2,7 @@
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis/actions)
 [![Test Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)
-[![Tests](https://img.shields.io/badge/tests-496%20passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)
+[![Tests](https://img.shields.io/badge/tests-534%20passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)
 [![Python 3.12](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -119,7 +119,7 @@ act_inf_metaanalysis/
 │   ├── analysis/               # Temporal, TF-IDF, Topic Modeling, Citation graphs
 │   ├── knowledge_graph/        # RDF structures, Nanopublication logic, Hypothesis scoring
 │   └── visualization/          # 16 standard figure generators, VIZ_CONFIG aesthetic defaults
-├── tests/                      # 🧪 496 rigorous tests achieving ≥90% project coverage
+├── tests/                      # 🧪 534 rigorous tests achieving ≥90% project coverage
 ├── scripts/                    # ⚙️ Execution orchestrators 
 ├── manuscript/                 # 📝 Markdown manuscript sections, References, and config
 └── doc/                        # 📚 Advanced API documentation, Architecture specs, Data formats

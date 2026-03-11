@@ -5,12 +5,19 @@ with titles and abstracts targeting specific Active Inference domains
 (A1–A2, B, C1–C5).
 """
 
+import textwrap
+from pathlib import Path
+
 import pytest
 
 from analysis.subfield_classifier import (
+    DEFAULT_SUBFIELDS,
     SUBFIELDS,
+    _get_default_field,
     classify_corpus,
     classify_paper,
+    configure_subfields,
+    load_subfields_from_config,
 )
 from literature.models import Paper
 
@@ -289,3 +296,103 @@ class TestClassifyCorpus:
         for name in SUBFIELDS:
             if name != "C2_robotics":
                 assert len(result[name]) == 0
+
+
+# ── load_subfields_from_config ───────────────────────────────────────
+
+
+class TestLoadSubfieldsFromConfig:
+    """Tests for YAML-based subfield configuration."""
+
+    def test_valid_config(self, tmp_path: Path):
+        """Config with valid subfield_keywords is loaded correctly."""
+        config = tmp_path / "config.yaml"
+        config.write_text(textwrap.dedent("""\
+            subfield_keywords:
+              C1_neuro:
+                - brain
+                - cortex
+              B_tools:
+                - deep learning
+                - benchmark
+        """))
+        result = load_subfields_from_config(config)
+        assert "C1_neuro" in result
+        assert "B_tools" in result
+        assert result["C1_neuro"]["keywords"] == ["brain", "cortex"]
+        assert result["C1_neuro"]["priority"] == 1  # C-prefix → priority 1
+        assert result["B_tools"]["priority"] == 2   # B-prefix → priority 2
+
+    def test_missing_section_falls_back_to_defaults(self, tmp_path: Path):
+        """Config without subfield_keywords returns defaults."""
+        config = tmp_path / "config.yaml"
+        config.write_text("other_key: value\n")
+        result = load_subfields_from_config(config)
+        assert result == dict(DEFAULT_SUBFIELDS)
+
+    def test_nonexistent_file_falls_back_to_defaults(self, tmp_path: Path):
+        """Non-existent config file returns defaults."""
+        config = tmp_path / "does_not_exist.yaml"
+        result = load_subfields_from_config(config)
+        assert result == dict(DEFAULT_SUBFIELDS)
+
+    def test_malformed_entry_skipped(self, tmp_path: Path):
+        """Non-list keyword entries are skipped with warning."""
+        config = tmp_path / "config.yaml"
+        config.write_text(textwrap.dedent("""\
+            subfield_keywords:
+              C1_neuro:
+                - brain
+              bad_entry: "not a list"
+        """))
+        result = load_subfields_from_config(config)
+        assert "C1_neuro" in result
+        assert "bad_entry" not in result
+
+    def test_empty_keywords_falls_back_to_defaults(self, tmp_path: Path):
+        """Config with empty subfield_keywords dict returns defaults."""
+        config = tmp_path / "config.yaml"
+        config.write_text("subfield_keywords: {}\n")
+        result = load_subfields_from_config(config)
+        assert result == dict(DEFAULT_SUBFIELDS)
+
+
+# ── configure_subfields ──────────────────────────────────────────────
+
+
+class TestConfigureSubfields:
+    """Tests for configure_subfields."""
+
+    def test_with_config_path(self, tmp_path: Path):
+        """configure_subfields loads from config and sets module SUBFIELDS."""
+        config = tmp_path / "config.yaml"
+        config.write_text(textwrap.dedent("""\
+            subfield_keywords:
+              C1_test:
+                - test_keyword
+        """))
+        result = configure_subfields(config)
+        assert "C1_test" in result
+        # Restore defaults after test
+        configure_subfields(None)
+
+    def test_without_config_path_uses_defaults(self):
+        """configure_subfields(None) resets to DEFAULT_SUBFIELDS."""
+        result = configure_subfields(None)
+        assert result == dict(DEFAULT_SUBFIELDS)
+
+
+# ── _get_default_field ───────────────────────────────────────────────
+
+
+class TestGetDefaultField:
+    """Tests for _get_default_field."""
+
+    def test_returns_philosophy_catch_all(self):
+        """Default field is the philosophy/catch-all domain."""
+        result = _get_default_field()
+        # Should be a domain with 'free energy principle' or 'active inference'
+        assert result in SUBFIELDS
+        keywords = [k.lower() for k in SUBFIELDS[result]["keywords"]]
+        assert "free energy principle" in keywords or "active inference" in keywords
+

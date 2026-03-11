@@ -1,6 +1,6 @@
 # Text Analytics: Topic Modeling, Vocabulary Structure, and Document Embeddings \label{sec:text_analytics}
 
-This section examines the latent semantic structure of the Active Inference corpus through complementary text-analytic methods: non-negative matrix factorization for topic discovery, TF-IDF vocabulary analysis, document embedding projections, and term co-occurrence patterns. Together, these analyses reveal thematic structure that cuts across the keyword-based domain taxonomy presented in Section 7.
+This section examines the latent semantic structure of the Active Inference corpus through complementary text-analytic methods: non-negative matrix factorization for topic discovery, TF-IDF vocabulary analysis, document embedding projections, and term co-occurrence patterns. Together, these analyses reveal thematic structure that cuts across the keyword-based domain taxonomy presented in the \hyperref[sec:field_overview]{field overview}.
 
 ## Topic Modeling: Latent Structure
 
@@ -21,7 +21,7 @@ These topics are partially orthogonal to the domain taxonomy. Topic 0 (agent-env
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/topic_term_bars.png}
-\caption{Top 10 terms per NMF topic, revealing the vocabulary structure of each thematic cluster.}
+\caption{Top 10 terms per NMF topic ($k = {{NUM_TOPICS}}$ topics, $500$ vocabulary features). Term weights reflect NMF component loadings; higher-weighted terms define each topic's semantic focus.}
 \label{fig:topic_term_bars}
 \end{figure}
 
@@ -30,7 +30,7 @@ These topics are partially orthogonal to the domain taxonomy. Topic 0 (agent-env
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/word_cloud.png}
-\caption{Word cloud of corpus vocabulary sized by mean TF-IDF weight. Prominent terms—"inference," "active," "free energy," "model"—reflect the field's core theoretical commitments.}
+\caption{Word cloud of corpus vocabulary ($N = {{CORPUS_SIZE}}$ abstracts) sized by maximum NMF component weight. Prominent terms—``inference,'' ``active,'' ``free energy,'' ``model''—reflect the field's core theoretical commitments.}
 \label{fig:word_cloud}
 \end{figure}
 
@@ -41,7 +41,7 @@ The word cloud (Figure \ref{fig:word_cloud}) reveals the conceptual core of the 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/pca_embeddings.png}
-\caption{PCA projection of TF-IDF document embeddings, colored by domain. Loading arrows indicate vocabulary terms contributing most to each principal component.}
+\caption{PCA projection of TF-IDF document embeddings ($N = {{CORPUS_SIZE}}$ documents, $500$ features), colored by domain. Loading arrows indicate vocabulary terms contributing most to each principal component. Variance explained is annotated per axis.}
 \label{fig:pca_embeddings}
 \end{figure}
 
@@ -54,14 +54,14 @@ To further interrogate the latent semantic structure of the subfields, we extrac
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/term_heatmap.png}
-\caption{Mean TF-IDF weight for the top 20 terms across domains. Darker cells indicate higher usage, revealing distinctive vocabulary patterns beyond keyword-level classification.}
+\caption{Mean TF-IDF weight for the top 20 terms across all 8 domains. Darker cells indicate higher usage within a domain, revealing distinctive vocabulary patterns beyond the keyword-level classification used for subfield assignment.}
 \label{fig:term_heatmap}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/dendrogram.png}
-\caption{Hierarchical clustering of domain centroids (Ward linkage on mean TF-IDF vectors). A1 (formal theory) and A2 (philosophy) cluster closely, as do C2 (robotics) and B (tools).}
+\caption{Hierarchical clustering of domain centroids (Ward linkage on mean TF-IDF vectors, 8 domains). Cophenetic correlation annotated on figure. A1 (formal theory) and A2 (philosophy) cluster closely, as do C2 (robotics) and B (tools).}
 \label{fig:dendrogram}
 \end{figure}
 
@@ -70,7 +70,7 @@ To further interrogate the latent semantic structure of the subfields, we extrac
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/cooccurrence_matrix.png}
-\caption{Term co-occurrence matrix for the 30 most frequent terms. Cell intensity reflects normalized document co-occurrence counts.}
+\caption{Normalized co-occurrence matrix for the 30 most frequent terms across $N = {{CORPUS_SIZE}}$ abstracts. Cell intensity reflects the fraction of documents in which two terms co-appear, normalized to $[0, 1]$.}
 \label{fig:cooccurrence_matrix}
 \end{figure}
 

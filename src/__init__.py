@@ -6,5 +6,6 @@ __all__ = [
     "analysis",
     "knowledge_graph",
     "literature",
+    "manuscript",
     "visualization",
 ]

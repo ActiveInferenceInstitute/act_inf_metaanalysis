@@ -229,6 +229,19 @@ def main() -> None:
     if args.resume and corpus_path.exists():
         corpus = Corpus.load(corpus_path)
         logger.info("Resumed existing corpus with %d papers from %s", len(corpus), corpus_path)
+        # If corpus already has data and we're not clearing, skip network searches
+        if len(corpus) > 0 and not args.clear_corpus:
+            logger.info(
+                "Corpus already populated (%d papers) — skipping network searches. "
+                "Use --clear-corpus to force a fresh search.",
+                len(corpus),
+            )
+            corpus.save(corpus_path)
+            logger.info("--- Literature Search Summary (cached) ---")
+            logger.info("Total unique papers: %d", len(corpus))
+            logger.info("Corpus saved to: %s", corpus_path)
+            print(str(corpus_path))
+            return
     else:
         corpus = Corpus()
 

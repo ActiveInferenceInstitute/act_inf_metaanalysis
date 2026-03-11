@@ -435,11 +435,15 @@ def classify_paper(paper: Paper) -> str:
             scores.append((priority, -count, field_name))
 
     if not scores:
+        logger.debug("Classified '%s' → %s (no keyword matches)", paper.title[:60], default_field)
         return default_field
 
     # Sort by (priority ASC, -count ASC i.e. highest count first)
     scores.sort()
-    return scores[0][2]
+    best_field = scores[0][2]
+    best_count = -scores[0][1]
+    logger.debug("Classified '%s' → %s (%d keyword matches)", paper.title[:60], best_field, best_count)
+    return best_field
 
 
 def classify_corpus(

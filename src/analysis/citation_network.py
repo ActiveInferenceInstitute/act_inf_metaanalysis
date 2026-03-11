@@ -148,6 +148,11 @@ def detect_communities(graph: nx.DiGraph) -> dict[str, int]:
         for node in community:
             node_to_community[node] = community_id
 
+    n_communities = len(set(node_to_community.values()))
+    logger.info(
+        "Community detection: %d communities from %d nodes",
+        n_communities, graph.number_of_nodes(),
+    )
     return node_to_community
 
 
@@ -185,6 +190,10 @@ def build_reference_index(papers: list[Paper]) -> dict[str, str]:
                 index[f"openalex:{short_id}"] = cid
                 index[short_id] = cid
             index[paper.openalex_id] = cid
+    logger.info(
+        "Reference index built: %d entries from %d papers",
+        len(index), len(papers),
+    )
     return index
 
 

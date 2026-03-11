@@ -93,22 +93,11 @@ class Corpus:
         return self._papers.get(canonical_id)
 
     def __len__(self) -> int:
-        """Return the number of papers in the corpus.
-
-        Returns:
-            Integer count of papers.
-        """
+        """Return the number of papers in the corpus."""
         return len(self._papers)
 
     def __contains__(self, canonical_id: str) -> bool:
-        """Check if a paper with the given canonical_id exists.
-
-        Args:
-            canonical_id: The canonical identifier to check.
-
-        Returns:
-            True if the paper exists in the corpus.
-        """
+        """Return True if a paper with *canonical_id* is in the corpus."""
         return canonical_id in self._papers
 
     def filter_by_year(

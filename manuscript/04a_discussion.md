@@ -12,7 +12,7 @@ Papers should systematically report DOIs, ORCIDs, and explicit hypothesis commit
 
 ### Deploy Open Knowledge Graph Infrastructure
 
-We advocate the deployment of a federated nanopublication server architecture to house community-contributed assertions, enabling a continuously updated living literature review that incorporates new findings as they are published. Integrating this pipeline with the Active Inference Institute's Knowledge-Engineering infrastructure \citep{knight2022fep} would provide the standardized semantic vocabulary necessary for rigorous cross-study comparison.
+We advocate the deployment of a federated nanopublication server architecture to house community-contributed assertions, enabling a continuously updated living literature review that incorporates new findings as they are published. The release of nanopub-js v0.1.0 \citep{kuhn2026nanopubjs} makes browser-based creation and querying of nanopublications practical, enabling researchers to contribute assertions directly from web interfaces without requiring command-line tools or Python environments. Integrating this pipeline with the Active Inference Institute's Knowledge-Engineering infrastructure \citep{knight2022fep} would provide the standardized semantic vocabulary necessary for rigorous cross-study comparison.
 
 ### Standardize the Ontological Lexicon
 
@@ -26,11 +26,7 @@ The computational tools domain (B) lacks standardized performance benchmarks for
 
 ### Prioritize Empirical Validation
 
-<<<<<<< HEAD
-Biology (C5) and Language (C3) possess substantial theoretical foundations but comparatively limited empirical support. Targeted investment in experiments designed to validate specific FEP-derived predictions—such as isolating morphogenesis as Bayesian inference or demonstrating active inference advantages in language tasks—would substantially strengthen the evidence base beyond what further theoretical elaboration alone can achieve.
-=======
 Biology (C5) and Language (C3) have established theoretical frameworks but limited empirical validation. Targeted experiments designed to test specific FEP-derived predictions—such as demonstrating morphogenesis as Bayesian inference or measuring active inference advantages in language tasks—would strengthen the evidence base beyond what further theoretical work alone can achieve.
->>>>>>> 042a14f (refine: scholarly prose, fix stale data, remove unused refs)
 
 ## Living Review Maintenance
 
@@ -46,4 +42,5 @@ This meta-analysis surfaces questions warranting dedicated investigation:
 - **Domain boundaries:** Do domain boundaries stabilize as the field matures, or continue to shift? Is the 8-category (A/B/C) taxonomy optimal?
 - **Cross-hypothesis evidence:** When a neuroscience (C1) paper supports predictive coding, does this constitute evidence for scalability? How should cross-hypothesis evidence be handled?
 - **Temporal dynamics:** Do hypotheses follow predictable lifecycles (emergence → rapid support → contestation → resolution), and can these patterns inform research prioritization?
+- **EFE decomposition sensitivity:** Variational message passing formulations \citep{champion2021realizing} connect EFE decomposition into risk, ambiguity, epistemic, and instrumental components to practical planning algorithms. When the scoring formula is stratified by decomposition (e.g., risk-driven vs. epistemic-driven papers), do the resulting hypothesis scores differ? This would reveal whether the field's evidence base is driven primarily by curiosity-driven exploration or goal-directed application.
 - **Energy-Based Model convergence:** To what extent do the mathematical structures underlying variational free energy minimization in Active Inference and energy function optimization in Energy-Based Models (Helmholtz machines, Boltzmann machines, VAEs) converge? Are there transferable inference algorithms or architectural insights at this intersection?

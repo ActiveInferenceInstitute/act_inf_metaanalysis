@@ -19,12 +19,12 @@ The Active Inference literature has undergone a phase transition. What originate
 | CAGR | {{CAGR_PCT}}\% |
 | Active domains | 8 of 8 tracked (A1–A2, B, C1–C5) |
 
-The CAGR of {{CAGR_PCT}}\% reflects the corpus's long temporal span from {{YEAR_START}} to {{YEAR_END}}; the field's actual rapid growth phase began around 2013, with annual output accelerating substantially (Figure \ref{fig:growth_curve}). The fact that sustained high output persists into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{Section 7c}).
+The CAGR of {{CAGR_PCT}}\% reflects the corpus's long temporal span from {{YEAR_START}} to {{YEAR_END}}; the field's actual rapid growth phase began around 2013, with annual output accelerating substantially (Figure \ref{fig:growth_curve}). The fact that sustained high output persists into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{the citation network analysis}).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/growth_curve.png}
-\caption{Annual and cumulative publication counts, {{YEAR_START}}--{{YEAR_END}}. The inflection around 2013 marks the onset of rapid growth, sustained by a steady moving average (dashed line) reflecting the field's matured production phase.}
+\caption{Annual (bars) and cumulative (line) publication counts, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$, CAGR = {{CAGR_PCT}}\%). The inflection around 2013 marks the onset of rapid growth. Moving average trendline (dashed), peak year, and median year annotated.}
 \label{fig:growth_curve}
 \end{figure}
 
@@ -52,7 +52,7 @@ The concentration of papers in A2 (qualitative philosophy and general theory) re
 \label{fig:subfield_distribution}
 \end{figure}
 
-Detailed characterizations of each domain—including historical context, growth trends, and open problems—are provided in the supplementary domain analyses (see \hyperref[sec:subfield_analyses]{Section~7a}). Latent topic structure, vocabulary analysis, and document embeddings are presented in the text analytics section (see \hyperref[sec:text_analytics]{Section~7b}).
+Detailed characterizations of each domain—including historical context, growth trends, and open problems—are provided in the supplementary domain analyses (see \hyperref[sec:subfield_analyses]{the domain analyses}). Latent topic structure, vocabulary analysis, and document embeddings are presented in the text analytics section (see \hyperref[sec:text_analytics]{the text analytics section}).
 
 ## Cross-Domain Comparison
 
@@ -67,11 +67,11 @@ Detailed characterizations of each domain—including historical context, growth
 | C | C4: Psychiatry | {{C4_COUNT}} ({{C4_PCT}}\%) | Emerging | Translating models to clinical practice | \citep{smith2021computational} |
 | C | C5: Biology | {{C5_COUNT}} ({{C5_PCT}}\%) | Rapid | Empirical validation of theoretical proposals | \citep{kuchling2020morphogenesis} |
 
-The distribution reveals a diversified topology rather than concentration in a single legacy domain (Figure \ref{fig:subfield_timeline}). Domain B (Tools \& Translation) has emerged as the largest single category at {{B_PCT}}\%, followed by C1 (Neuroscience) at {{C1_PCT}}\% and C2 (Robotics) at {{C2_PCT}}\%. Domain A (Core Theory) aggregates {{A_PCT}}\% collectively (A1 + A2), while the emergent application frontiers (C3–C5) exhibit accelerating growth. Notably, A1's {{A1_COUNT}} papers understate its intellectual influence—the mathematical formalisms developed in A1 shape implementations across all domains.
+Three structural features emerge from the cross-domain comparison (Figure \ref{fig:subfield_timeline}). First, no single legacy domain dominates: Domain B (Tools \& Translation) accounts for {{B_PCT}}\% of the corpus, followed by C1 (Neuroscience) at {{C1_PCT}}\% and C2 (Robotics) at {{C2_PCT}}\%. Second, Domain A (Core Theory) aggregates {{A_PCT}}\% collectively (A1 + A2), while the emergent application frontiers (C3–C5) exhibit accelerating growth. Third, A1's {{A1_COUNT}} papers understate its intellectual influence—the mathematical formalisms developed in A1 shape implementations across all domains.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/subfield_timeline.png}
-\caption{Temporal evolution of publication counts by domain. Domain A (Core Theory) dominates throughout; the other domains show varying growth trajectories.}
+\caption{Stacked area chart of publications by domain, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$). Domain A (Core Theory) dominates throughout; application domains C1--C5 show accelerating diversification from 2015 onward.}
 \label{fig:subfield_timeline}
 \end{figure}

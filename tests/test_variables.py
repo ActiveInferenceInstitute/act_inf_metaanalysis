@@ -45,16 +45,16 @@ class TestLatexNumber:
         assert _latex_number(775) == "775"
 
     def test_four_digits(self):
-        assert _latex_number(1834) == "1{,}834"
+        assert _latex_number(1834) == "1,834"
 
     def test_five_digits(self):
-        assert _latex_number(28073) == "28{,}073"
+        assert _latex_number(28073) == "28,073"
 
     def test_six_digits(self):
-        assert _latex_number(123456) == "123{,}456"
+        assert _latex_number(123456) == "123,456"
 
     def test_seven_digits(self):
-        assert _latex_number(1234567) == "1{,}234{,}567"
+        assert _latex_number(1234567) == "1,234,567"
 
     def test_zero(self):
         assert _latex_number(0) == "0"
@@ -63,7 +63,7 @@ class TestLatexNumber:
         assert _latex_number(1) == "1"
 
     def test_exactly_1000(self):
-        assert _latex_number(1000) == "1{,}000"
+        assert _latex_number(1000) == "1,000"
 
 
 # ── _count_jsonl_lines ──────────────────────────────────────────────────
@@ -436,6 +436,6 @@ class TestInjectVariables:
 
     def test_latex_formatted_value(self):
         content = "$N = {{CORPUS_SIZE_LATEX}}$ papers"
-        variables = {"CORPUS_SIZE_LATEX": "1{,}834"}
+        variables = {"CORPUS_SIZE_LATEX": "1,834"}
         result = inject_variables(content, variables, filename="abstract.md")
-        assert result == "$N = 1{,}834$ papers"
+        assert result == "$N = 1,834$ papers"

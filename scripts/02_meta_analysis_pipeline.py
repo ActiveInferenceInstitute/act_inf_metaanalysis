@@ -70,8 +70,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--min-year",
         type=int,
-        default=1960,
-        help="Filter out papers before this year (default: 1960)",
+        default=2000,
+        help="Filter out papers before this year (default: 2000)",
     )
     parser.add_argument(
         "--seed",

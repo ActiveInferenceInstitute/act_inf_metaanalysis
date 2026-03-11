@@ -509,3 +509,144 @@ class TestOpenAlexPaginationAndRetry:
             )
         assert len(papers) == 1
         assert papers[0].title == "Success"
+
+
+# ---------------------------------------------------------------------------
+# Open access and full-text parsing edge cases
+# ---------------------------------------------------------------------------
+
+
+class TestOpenAlexOAParsing:
+    """Tests for PDF URL and full_text_source resolution branches."""
+
+    def test_oa_url_is_pdf(self, httpserver: HTTPServer):
+        """oa_url ending in .pdf is used directly as pdf_url."""
+        response = {
+            "meta": {"count": 1},
+            "results": [{
+                "id": "https://openalex.org/W9000",
+                "display_name": "OA Paper",
+                "publication_year": 2023,
+                "doi": None,
+                "authorships": [],
+                "cited_by_count": 10,
+                "abstract_inverted_index": None,
+                "primary_location": None,
+                "open_access": {
+                    "is_oa": True,
+                    "oa_url": "https://arxiv.org/pdf/2301.00001.pdf",
+                },
+                "best_oa_location": {},
+            }],
+        }
+        httpserver.expect_request("/works").respond_with_json(response)
+        papers = search_openalex(
+            query="test", base_url=httpserver.url_for(""),
+        )
+        assert papers[0].pdf_url == "https://arxiv.org/pdf/2301.00001.pdf"
+
+    def test_journal_source_type(self, httpserver: HTTPServer):
+        """best_oa_location with 'journal' source type → 'publisher'."""
+        response = {
+            "meta": {"count": 1},
+            "results": [{
+                "id": "https://openalex.org/W9001",
+                "display_name": "Journal Paper",
+                "publication_year": 2023,
+                "doi": None,
+                "authorships": [],
+                "cited_by_count": 5,
+                "abstract_inverted_index": None,
+                "primary_location": None,
+                "open_access": {"is_oa": True},
+                "best_oa_location": {
+                    "pdf_url": "https://journal.org/paper.pdf",
+                    "source": {"type": "journal", "display_name": "Some Journal"},
+                },
+            }],
+        }
+        httpserver.expect_request("/works").respond_with_json(response)
+        papers = search_openalex(
+            query="test", base_url=httpserver.url_for(""),
+        )
+        assert papers[0].pdf_url == "https://journal.org/paper.pdf"
+        assert papers[0].full_text_source == "publisher"
+
+    def test_unknown_source_type_fallback(self, httpserver: HTTPServer):
+        """Unknown source type defaults to 'openalex'."""
+        response = {
+            "meta": {"count": 1},
+            "results": [{
+                "id": "https://openalex.org/W9002",
+                "display_name": "Unknown Source Paper",
+                "publication_year": 2023,
+                "doi": None,
+                "authorships": [],
+                "cited_by_count": 0,
+                "abstract_inverted_index": None,
+                "primary_location": None,
+                "open_access": {"is_oa": True},
+                "best_oa_location": {
+                    "pdf_url": "https://other.org/paper.pdf",
+                    "source": {"type": "other", "display_name": "Other"},
+                },
+            }],
+        }
+        httpserver.expect_request("/works").respond_with_json(response)
+        papers = search_openalex(
+            query="test", base_url=httpserver.url_for(""),
+        )
+        assert papers[0].full_text_source == "openalex"
+
+    def test_referenced_works_parsed(self, httpserver: HTTPServer):
+        """referenced_works URLs are parsed to openalex: prefixed IDs."""
+        response = {
+            "meta": {"count": 1},
+            "results": [{
+                "id": "https://openalex.org/W9003",
+                "display_name": "Referencing Paper",
+                "publication_year": 2024,
+                "doi": "https://doi.org/10.1000/refs",
+                "authorships": [],
+                "cited_by_count": 0,
+                "abstract_inverted_index": None,
+                "primary_location": None,
+                "open_access": {"is_oa": False},
+                "referenced_works": [
+                    "https://openalex.org/W1111",
+                    "https://openalex.org/W2222",
+                ],
+            }],
+        }
+        httpserver.expect_request("/works").respond_with_json(response)
+        papers = search_openalex(
+            query="test", base_url=httpserver.url_for(""),
+        )
+        assert papers[0].references == ["openalex:W1111", "openalex:W2222"]
+
+    def test_venue_from_primary_location(self, httpserver: HTTPServer):
+        """Venue is extracted from primary_location.source.display_name."""
+        response = {
+            "meta": {"count": 1},
+            "results": [{
+                "id": "https://openalex.org/W9004",
+                "display_name": "Venue Paper",
+                "publication_year": 2024,
+                "doi": None,
+                "authorships": [],
+                "cited_by_count": 0,
+                "abstract_inverted_index": None,
+                "primary_location": {
+                    "source": {
+                        "display_name": "Frontiers in Neuroscience",
+                    }
+                },
+                "open_access": {"is_oa": False},
+            }],
+        }
+        httpserver.expect_request("/works").respond_with_json(response)
+        papers = search_openalex(
+            query="test", base_url=httpserver.url_for(""),
+        )
+        assert papers[0].venue == "Frontiers in Neuroscience"
+

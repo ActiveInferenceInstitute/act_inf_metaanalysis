@@ -122,4 +122,4 @@ The pipeline reads settings from `manuscript/config.yaml`. CLI flags override co
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [testing.md](testing.md) | Test architecture, 496 tests across 25 files, coverage configuration |
+| [testing.md](testing.md) | Test architecture, 534 tests across 25 files, coverage configuration |

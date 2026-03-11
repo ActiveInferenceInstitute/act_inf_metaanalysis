@@ -1,16 +1,21 @@
 """Tests for analysis.citation_network module.
 
-Validates citation graph construction, network metrics, and
-community detection using small hand-built paper/citation datasets.
+Validates citation graph construction, network metrics, community
+detection, reference index building, and citation resolution
+using small hand-built paper/citation datasets.
 """
+
+import logging
 
 import networkx as nx
 import pytest
 
 from analysis.citation_network import (
     build_citation_graph,
+    build_reference_index,
     compute_network_metrics,
     detect_communities,
+    resolve_citations,
 )
 from literature.models import Citation, Paper
 
@@ -301,3 +306,121 @@ class TestDetectCommunities:
             communities[papers[0].canonical_id]
             != communities[papers[2].canonical_id]
         )
+
+
+# ── build_citation_graph optional attributes ─────────────────────────
+
+
+class TestBuildCitationGraphOptionalAttrs:
+    """Tests for papers with None title/year/citation_count."""
+
+    def test_minimal_paper_has_no_optional_attrs(self):
+        """Paper with only title has no year or optional numeric attrs."""
+        paper = Paper(title="Minimal", doi="10.1000/minimal")
+        graph = build_citation_graph([paper], [])
+        attrs = graph.nodes[paper.canonical_id]
+        assert attrs["title"] == "Minimal"
+        assert "year" not in attrs
+        # citation_count always present (defaults to 0)
+        assert attrs["citation_count"] == 0
+
+    def test_none_year_excluded_from_attrs(self):
+        """Paper with year=None does not add year attr to node."""
+        paper = Paper(title="Test", abstract="", doi="10.1000/none_year")
+        graph = build_citation_graph([paper], [])
+        attrs = graph.nodes[paper.canonical_id]
+        assert "title" in attrs
+        assert "year" not in attrs
+
+    def test_all_attrs_present_when_set(self):
+        """Paper with all fields populated has all attrs on node."""
+        paper = Paper(title="Full", year=2020, doi="10.1000/full",
+                      citation_count=42)
+        graph = build_citation_graph([paper], [])
+        attrs = graph.nodes[paper.canonical_id]
+        assert attrs["title"] == "Full"
+        assert attrs["year"] == 2020
+        assert attrs["citation_count"] == 42
+
+
+# ── build_reference_index ────────────────────────────────────────────
+
+
+class TestBuildReferenceIndex:
+    """Tests for build_reference_index."""
+
+    def test_doi_mapping(self):
+        """DOI creates both 'doi:' prefixed and raw entries."""
+        paper = Paper(title="P1", doi="10.1000/test")
+        index = build_reference_index([paper])
+        cid = paper.canonical_id
+        assert index["doi:10.1000/test"] == cid
+        assert index["10.1000/test"] == cid
+
+    def test_arxiv_mapping(self):
+        """arXiv ID creates both 'arxiv:' prefixed and raw entries."""
+        paper = Paper(title="P2", arxiv_id="2301.12345")
+        index = build_reference_index([paper])
+        cid = paper.canonical_id
+        assert index["arxiv:2301.12345"] == cid
+        assert index["2301.12345"] == cid
+
+    def test_openalex_full_url_mapping(self):
+        """OpenAlex ID as full URL creates short-form entries too."""
+        paper = Paper(
+            title="P3", doi="10.1000/oa",
+            openalex_id="https://openalex.org/W12345",
+        )
+        index = build_reference_index([paper])
+        cid = paper.canonical_id
+        assert index["openalex:https://openalex.org/W12345"] == cid
+        assert index["openalex:W12345"] == cid
+        assert index["W12345"] == cid
+
+    def test_multiple_papers(self):
+        """Index correctly maps IDs from multiple papers."""
+        p1 = Paper(title="P1", doi="10.1/a")
+        p2 = Paper(title="P2", doi="10.1/b", s2_id="S2_999")
+        index = build_reference_index([p1, p2])
+        assert index["doi:10.1/a"] == p1.canonical_id
+        assert index["s2:S2_999"] == p2.canonical_id
+
+
+# ── resolve_citations ────────────────────────────────────────────────
+
+
+class TestResolveCitations:
+    """Tests for resolve_citations."""
+
+    def test_direct_match(self):
+        """References matching directly in the index produce citations."""
+        p1 = Paper(title="A", doi="10.1/a")
+        p2 = Paper(title="B", doi="10.1/b", references=["doi:10.1/a"])
+        index = build_reference_index([p1, p2])
+        citations = resolve_citations([p2], index, logging.getLogger("test"))
+        assert len(citations) == 1
+        assert citations[0].source_id == p2.canonical_id
+        assert citations[0].target_id == p1.canonical_id
+
+    def test_prefix_stripping_match(self):
+        """References with prefixes are resolved by stripping the prefix."""
+        p1 = Paper(title="A", doi="10.1/a")
+        p2 = Paper(title="B", doi="10.1/b", references=["unknown_prefix:10.1/a"])
+        index = build_reference_index([p1, p2])
+        citations = resolve_citations([p2], index, logging.getLogger("test"))
+        assert len(citations) == 1
+
+    def test_self_references_excluded(self):
+        """A paper referencing itself does not produce a citation."""
+        p1 = Paper(title="A", doi="10.1/a", references=["doi:10.1/a"])
+        index = build_reference_index([p1])
+        citations = resolve_citations([p1], index, logging.getLogger("test"))
+        assert len(citations) == 0
+
+    def test_unresolved_reference_skipped(self):
+        """References not in the index are silently skipped."""
+        p1 = Paper(title="A", doi="10.1/a", references=["doi:10.999/nope"])
+        index = build_reference_index([p1])
+        citations = resolve_citations([p1], index, logging.getLogger("test"))
+        assert len(citations) == 0
+

@@ -108,7 +108,7 @@ Array of topic objects from NMF decomposition:
 | `density` | float | Graph density |
 | `avg_in_degree` | float | Average inbound citations per paper |
 | `connected_components` | int | Number of weakly connected components |
-| `num_communities` | int | Number of detected communities (Louvain) |
+| `num_communities` | int | Number of detected communities (greedy modularity) |
 | `total_references` | int | Total reference count across all papers |
 | `top_pagerank` | object | `{paper_id: score}` for top-5 papers by PageRank |
 | `top_hubs` | object | `{paper_id: score}` for top-5 hub papers (HITS) |

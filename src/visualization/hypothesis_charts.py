@@ -86,6 +86,13 @@ def plot_hypothesis_dashboard(
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
     )
+    # Add N= subtitle
+    n_hypotheses = len(scores)
+    ax.text(
+        0.5, 1.0, f"N = {n_hypotheses} hypotheses",
+        transform=ax.transAxes, ha="center", va="bottom",
+        fontsize=VIZ_CONFIG["font_size"] - 2, color="gray",
+    )
     ax.grid(axis="x", alpha=VIZ_CONFIG["grid_alpha"])
     ax.invert_yaxis()
 
@@ -222,13 +229,15 @@ def plot_assertion_type_breakdown(
     ax.grid(axis="x", alpha=VIZ_CONFIG["grid_alpha"])
     ax.invert_yaxis()
 
-    # Total count labels at bar ends
+    # Total count and support% labels at bar ends
     for i, h in enumerate(hypotheses):
         total = sum(assertion_counts[h].get(k, 0)
                     for k in ("supports", "contradicts", "neutral"))
+        sup = assertion_counts[h].get("supports", 0)
+        pct = 100 * sup / total if total > 0 else 0
         ax.text(
             total + max(1, max(supports) + max(contradicts) + max(neutrals)) * 0.01,
-            i, str(total), va="center",
+            i, f"{total} ({pct:.0f}% support)", va="center",
             fontsize=VIZ_CONFIG["font_size"] - 2, fontweight="bold",
         )
 

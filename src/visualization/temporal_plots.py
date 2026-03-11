@@ -103,6 +103,20 @@ def plot_growth_curve(
     ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left",
                fontsize=VIZ_CONFIG["font_size"] - 2)
 
+    # CAGR and total N annotation
+    total_n = sum(annual)
+    if len(years) >= 2:
+        ratio = cumul[-1] / max(cumul[0], 1)
+        span = years[-1] - years[0]
+        cagr = (ratio ** (1.0 / span) - 1) * 100 if span > 0 else 0
+        ax1.text(
+            0.98, 0.55,
+            f"N = {total_n:,}\nCAGR = {cagr:.1f}%\nSpan: {years[0]}–{years[-1]}",
+            transform=ax1.transAxes, ha="right", va="top",
+            fontsize=VIZ_CONFIG["font_size"] - 2,
+            bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="gray", alpha=0.85),
+        )
+
     # Annotate median year
     if annual:
         weighted_years = []
@@ -198,6 +212,15 @@ def plot_subfield_timeline(
     ax.legend(loc="upper left", fontsize=VIZ_CONFIG["font_size"] - 2,
               ncol=2, framealpha=0.9)
     ax.grid(axis="y", alpha=VIZ_CONFIG["grid_alpha"])
+
+    # Total N annotation
+    total_n = int(sum(data.sum(axis=0)))
+    ax.text(
+        0.98, 0.95, f"N = {total_n:,}",
+        transform=ax.transAxes, ha="right", va="top",
+        fontsize=VIZ_CONFIG["font_size"] - 1, fontweight="bold",
+        bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray", alpha=0.8),
+    )
 
     plt.tight_layout()
     fig.savefig(output_path, dpi=VIZ_CONFIG["dpi"], bbox_inches="tight")

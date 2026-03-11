@@ -328,3 +328,124 @@ class TestTemporalTrend:
         ]
         trend = temporal_trend(assertions, "FEP_UNIVERSALITY", papers)
         assert trend == {}
+
+
+class TestLoadHypothesesFromConfig:
+    """Validate loading hypothesis definitions from YAML config files."""
+
+    def test_valid_yaml(self, tmp_path) -> None:
+        """A well-formed YAML with hypothesis_definitions should parse correctly."""
+        config = tmp_path / "config.yaml"
+        config.write_text(
+            "hypothesis_definitions:\n"
+            "  H1:\n"
+            "    name: FEP Universality\n"
+            "    description: The FEP applies universally\n"
+            "  H2:\n"
+            "    name: AIF Optimality\n"
+            "    description: Active Inference is optimal\n"
+        )
+        from knowledge_graph.hypothesis import load_hypotheses_from_config
+
+        result = load_hypotheses_from_config(config)
+        assert len(result) == 2
+        assert result[0].name == "FEP Universality"
+        assert result[0].hypothesis_id == "FEP_UNIVERSALITY"
+        assert result[1].name == "AIF Optimality"
+        assert result[1].hypothesis_id == "AIF_OPTIMALITY"
+
+    def test_missing_section_falls_back(self, tmp_path) -> None:
+        """YAML without hypothesis_definitions should return STANDARD_HYPOTHESES."""
+        config = tmp_path / "config.yaml"
+        config.write_text("paper:\n  title: Test\n")
+        from knowledge_graph.hypothesis import load_hypotheses_from_config
+
+        result = load_hypotheses_from_config(config)
+        assert len(result) == 8
+        assert result[0].hypothesis_id == STANDARD_HYPOTHESES[0].hypothesis_id
+
+    def test_unreadable_file_falls_back(self, tmp_path) -> None:
+        """Non-existent path should return STANDARD_HYPOTHESES."""
+        from knowledge_graph.hypothesis import load_hypotheses_from_config
+
+        result = load_hypotheses_from_config(tmp_path / "nonexistent.yaml")
+        assert len(result) == 8
+
+    def test_all_eight_from_config(self, tmp_path) -> None:
+        """Config with all H1-H8 keys should map to standard hypothesis IDs."""
+        lines = ["hypothesis_definitions:\n"]
+        for i, h in enumerate(STANDARD_HYPOTHESES, 1):
+            lines.append(f"  H{i}:\n")
+            lines.append(f"    name: \"{h.name}\"\n")
+            lines.append(f"    description: \"{h.description}\"\n")
+        config = tmp_path / "config.yaml"
+        config.write_text("".join(lines))
+        from knowledge_graph.hypothesis import load_hypotheses_from_config
+
+        result = load_hypotheses_from_config(config)
+        assert len(result) == 8
+        for i, h in enumerate(result):
+            assert h.hypothesis_id == STANDARD_HYPOTHESES[i].hypothesis_id
+
+
+class TestConfigKeyToId:
+    """Validate the _config_key_to_id mapping helper."""
+
+    def test_known_keys(self) -> None:
+        """H1-H8 should map to standard hypothesis IDs."""
+        from knowledge_graph.hypothesis import _config_key_to_id
+
+        assert _config_key_to_id("H1", "FEP Universality") == "FEP_UNIVERSALITY"
+        assert _config_key_to_id("H8", "Language AIF") == "LANGUAGE_AIF"
+
+    def test_unknown_key_falls_back_to_name(self) -> None:
+        """Unknown ordinal keys should derive ID from name."""
+        from knowledge_graph.hypothesis import _config_key_to_id
+
+        result = _config_key_to_id("HX", "My Custom Hypothesis")
+        assert result == "MY_CUSTOM_HYPOTHESIS"
+
+    def test_name_with_hyphens(self) -> None:
+        """Hyphens in names should be replaced with underscores."""
+        from knowledge_graph.hypothesis import _config_key_to_id
+
+        result = _config_key_to_id("H99", "Self-Organization")
+        assert result == "SELF_ORGANIZATION"
+
+
+class TestConfigureHypotheses:
+    """Validate the configure_hypotheses function."""
+
+    def test_with_config_file(self, tmp_path) -> None:
+        """Providing a valid config should update HYPOTHESES module var."""
+        config = tmp_path / "config.yaml"
+        config.write_text(
+            "hypothesis_definitions:\n"
+            "  H1:\n"
+            "    name: FEP Universality\n"
+            "    description: Test\n"
+            "  H2:\n"
+            "    name: AIF Optimality\n"
+            "    description: Test\n"
+        )
+        from knowledge_graph.hypothesis import configure_hypotheses, STANDARD_HYPOTHESES
+
+        result = configure_hypotheses(config)
+        assert len(result) == 2
+        # Restore defaults for other tests
+        configure_hypotheses(None)
+
+    def test_without_config(self) -> None:
+        """None path should use STANDARD_HYPOTHESES."""
+        from knowledge_graph.hypothesis import configure_hypotheses
+
+        result = configure_hypotheses(None)
+        assert len(result) == 8
+        assert result[0].hypothesis_id == "FEP_UNIVERSALITY"
+
+    def test_nonexistent_config_path(self, tmp_path) -> None:
+        """Non-existent config file should fall back to defaults."""
+        from knowledge_graph.hypothesis import configure_hypotheses
+
+        result = configure_hypotheses(tmp_path / "missing.yaml")
+        assert len(result) == 8

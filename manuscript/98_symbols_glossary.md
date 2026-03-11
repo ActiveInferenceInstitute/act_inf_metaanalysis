@@ -34,6 +34,8 @@
 | EFE | Expected Free Energy |
 | FAIR | Findable, Accessible, Interoperable, Reusable |
 | FEP | Free Energy Principle |
+| FEPS | Free Energy Projective Simulation |
+| HITS | Hyperlink-Induced Topic Search |
 | JSON | JavaScript Object Notation |
 | JSONL | JSON Lines (newline-delimited JSON) |
 | LLM | Large Language Model |
@@ -50,6 +52,7 @@
 | SPM | Statistical Parametric Mapping |
 | TF-IDF | Term Frequency--Inverse Document Frequency |
 | TriG | Terse RDF Triple Language with Named Graphs |
+| URI | Uniform Resource Identifier |
 | VAE | Variational Autoencoder |
 | VFE | Variational Free Energy |
 
@@ -73,7 +76,7 @@
 | **Active Inference** | A framework in which agents minimize expected free energy to select actions, unifying perception, learning, and decision-making under the Free Energy Principle. |
 | **Assertion** | A directed, confidence-scored claim linking a paper to a hypothesis (supports, contradicts, or neutral). The basic unit of evidence in the knowledge graph. |
 | **Canonical ID** | The unique identifier assigned to each paper during deduplication, following the priority scheme: DOI > arXiv ID > Semantic Scholar ID > OpenAlex ID > title hash. |
-| **Expected Free Energy** | A quantity combining epistemic value (information gain) and pragmatic value (goal achievement) that active inference agents minimize over policies. |
+| **Expected Free Energy** | A quantity combining epistemic value (information gain) and pragmatic value (goal achievement) that active inference agents minimize over policies. Decomposes equivalently into risk + ambiguity or epistemic + instrumental terms \citep{dacosta2020active}. |
 | **Free Energy Principle** | The principle that self-organizing systems minimize variational free energy, an upper bound on surprise, to maintain their structural integrity. |
 | **Generative Model** | A probabilistic model specifying the joint distribution over hidden states and observations, encoding an agent's beliefs about how observations are generated. |
 | **Knowledge Graph** | A directed graph encoding papers, assertions, hypotheses, and their relationships, serialized in an RDF-compatible format. |
@@ -81,7 +84,7 @@
 | **Nanopublication** | A minimal, self-contained unit of publishable knowledge consisting of an assertion, provenance metadata, and publication context. |
 | **Precision** | The inverse variance of a probability distribution; in active inference, precision weighting determines the influence of prediction errors at different levels of a hierarchy. |
 | **Variational Free Energy** | An upper bound on surprise (negative log-evidence) that can be decomposed into complexity (KL divergence from prior) and accuracy (expected log-likelihood). |
-| **Louvain Algorithm** | A greedy modularity-maximization algorithm for community detection in networks. Applied to the citation graph to identify clusters of densely interconnected papers. |
+| **Greedy Modularity Maximization** | The Clauset-Newman-Moore greedy modularity-maximization algorithm for community detection in networks (implemented via NetworkX `greedy_modularity_communities`). Applied to the citation graph to identify clusters of densely interconnected papers. |
 | **PageRank** | A centrality metric originally designed for web page ranking. In citation networks, PageRank identifies highly influential papers that serve as hubs connecting otherwise disconnected subgraphs. |
 | **Ward Linkage** | A hierarchical clustering method that minimizes the total within-cluster variance at each merge step. Used to compute dendrograms of domain centroids from mean TF-IDF vectors. |
 | **Checkpoint** | A JSON Lines snapshot of LLM extraction progress, recording which papers have been processed and the resulting assertions, enabling incremental resume after interruption. |

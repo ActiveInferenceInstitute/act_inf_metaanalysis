@@ -2,7 +2,7 @@
 
 ## Overview
 
-The project maintains **496 tests** across **25 test files**, covering all source modules. Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles.
+The project maintains **534 tests** across **25 test files**, covering all source modules. Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles.
 
 ## Running Tests
 

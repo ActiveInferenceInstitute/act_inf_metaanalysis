@@ -4,7 +4,7 @@
 
 ## Overview
 
-A computational meta-analysis of the Active Inference and Free Energy Principle literature. The project retrieves papers from three academic databases, extracts structured assertions using a nanopublication framework, constructs a probabilistic knowledge graph, scores eight standard hypotheses with citation-weighted evidence, and generates publication-ready visualizations. The pipeline is fully tested (496 tests, ≥90% coverage) with zero mocks, following the template's thin orchestrator and test-driven development patterns.
+A computational meta-analysis of the Active Inference and Free Energy Principle literature. The project retrieves papers from three academic databases, extracts structured assertions using a nanopublication framework, constructs a probabilistic knowledge graph, scores eight standard hypotheses with citation-weighted evidence, and generates publication-ready visualizations. The pipeline is fully tested (534 tests, ≥90% coverage) with zero mocks, following the template's thin orchestrator and test-driven development patterns.
 
 ## Key Features & Capabilities
 
@@ -39,8 +39,8 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 
 ### Infrastructure Integration
 
-- **Thin Orchestrators**: 5 scripts that import from `src/` for all computation
-- **≥90% Test Coverage**: 496 tests using real data, pytest-httpserver for API testing, no mocks
+- **Thin Orchestrators**: 6 scripts that import from `src/` for all computation
+- **≥90% Test Coverage**: 534 tests using real data, pytest-httpserver for API testing, no mocks
 - **Deterministic Results**: Fixed RNG seeds (seed=42) for reproducibility
 - **Structured Logging**: All scripts use Python `logging` module with configurable `--log-level`
 - **Resumable Downloads**: `--resume` flag loads existing corpus before fetching, skipping papers already downloaded
@@ -83,7 +83,7 @@ projects/act_inf_metaanalysis/
 │       ├── temporal_plots.py   # Growth curve + subfield timeline
 │       ├── hypothesis_charts.py# Hypothesis dashboard + evidence timeline
 │       └── advanced_plots.py   # Word cloud, PCA, heatmap, dendrogram, topics, co-occurrence
-├── tests/                      # 496 tests, zero mocks
+├── tests/                      # 534 tests, zero mocks
 │   ├── __init__.py
 │   ├── conftest.py             # Path setup, MPLBACKEND=Agg, shared fixtures
 │   ├── analysis/
@@ -120,23 +120,28 @@ projects/act_inf_metaanalysis/
 │   ├── 02_meta_analysis_pipeline.py
 │   ├── 03_build_knowledge_graph.py
 │   ├── 04_generate_figures.py
-│   └── 05_inject_variables.py
-├── manuscript/                 # 16 sections + references
+│   ├── 05_inject_variables.py
+│   └── 06_fulltext_assessment.py
+├── manuscript/                 # 20 sections + references
 │   ├── config.yaml
 │   ├── preamble.md
 │   ├── 00_abstract.md
 │   ├── 01_introduction.md
-│   ├── 02_tooling.md
-│   ├── 03_extraction_pipeline.md
-│   ├── 04_technical_appendix.md
-│   ├── 05_methodology.md
-│   ├── 06_hypothesis_results.md
-│   ├── 07_field_overview.md
-│   ├── 07a_subfield_analyses.md
-│   ├── 07b_text_analytics.md
-│   ├── 07c_citation_network.md
-│   ├── 08_conclusion.md
-│   ├── 08a_discussion.md
+│   ├── 02_methods_overview.md
+│   ├── 02a_methods_retrieval.md
+│   ├── 02b_methods_extraction.md
+│   ├── 02c_methods_bibliometrics.md
+│   ├── 02d_methods_knowledge_graph.md
+│   ├── 02e_methods_viz_injection.md
+│   ├── 03_results_hypothesis.md
+│   ├── 03a_results_field_overview.md
+│   ├── 03b_results_subfields.md
+│   ├── 03c_results_text_analytics.md
+│   ├── 03d_results_citation_network.md
+│   ├── 04_conclusion.md
+│   ├── 04a_discussion.md
+│   ├── 05_appendix_tooling.md
+│   ├── 06_appendix_technical.md
 │   ├── 98_symbols_glossary.md
 │   ├── 99_references.md
 │   └── references.bib

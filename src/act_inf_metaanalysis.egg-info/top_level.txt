@@ -2,4 +2,5 @@ __init__
 analysis
 knowledge_graph
 literature
+manuscript
 visualization

@@ -239,7 +239,7 @@ Reads pipeline output data, computes template variables, and injects them into m
 
 ### Processing Steps
 
-1. **Compute Variables** — Read pipeline output JSONs (`temporal_analysis.json`, `citation_network.json`, `subfield_classification.json`, `assertion_summary.json`, `hypothesis_scores.json`, `topics.json`) and compute ~40 template variables with LaTeX-formatted values
+1. **Compute Variables** — Read pipeline output JSONs (`temporal_analysis.json`, `citation_network.json`, `subfield_classification.json`, `assertion_summary.json`, `hypothesis_scores.json`, `topics.json`) and compute ~50 template variables with LaTeX-formatted values
 2. **Create Output Directory** — `output/manuscript/` for rendered copies
 3. **Inject Variables** — Replace `{{VAR_NAME}}` placeholders in each manuscript `.md` file
 4. **Copy Non-MD Files** — Copy `config.yaml`, `references.bib`, etc. to output directory

@@ -129,6 +129,22 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def _run_llm_extraction(papers, args, nanopub_path, logger):
+    """Run LLM-based assertion extraction (requires Ollama)."""
+    llm_config = LLMConfig(
+        base_url=args.llm_url,
+        model=args.llm_model,
+        nanopub_path=str(nanopub_path),
+        checkpoint_interval=args.checkpoint_interval,
+        max_papers=args.max_papers,
+    )
+    logger.info(
+        "Extracting assertions via LLM (model=%s, checkpoint_interval=%d)...",
+        llm_config.model, llm_config.checkpoint_interval,
+    )
+    logger.info("Nanopub output file: %s", nanopub_path)
+    return extract_assertions(papers, llm_config=llm_config)
+
 def main() -> None:
     """Build knowledge graph and score hypotheses."""
     args = parse_args()
@@ -192,36 +208,41 @@ def main() -> None:
             logger.info("Cleared: %s", nanopub_path)
 
     # --- LLM extraction (incremental by default) ---
-    # The extraction function handles resume internally by reading
-    # nanopub_path, skipping already-processed papers, and flushing
-    # new assertions at each checkpoint_interval.
-    llm_config = LLMConfig(
-        base_url=args.llm_url,
-        model=args.llm_model,
-        nanopub_path=str(nanopub_path),
-        checkpoint_interval=args.checkpoint_interval,
-        max_papers=args.max_papers,
-    )
+    # If nanopublications already exist and we're not clearing, skip LLM extraction
+    # and reuse existing assertions for scoring. This avoids requiring network/Ollama.
+    if nanopub_path.exists() and not args.clear_assertions:
+        all_nanopubs = deserialize_nanopubs(nanopub_path)
+        if all_nanopubs:
+            logger.info(
+                "Nanopublications already exist (%d nanopubs from %d papers) — "
+                "skipping LLM extraction. Use --clear-assertions to force re-extraction.",
+                len(all_nanopubs),
+                len(get_processed_paper_ids(all_nanopubs)),
+            )
+            assertions = [np.assertion for np in all_nanopubs]
+            logger.info("Loaded %d assertions from existing nanopublications", len(assertions))
+        else:
+            # File exists but empty — fall through to LLM extraction
+            all_nanopubs = []
+            assertions = _run_llm_extraction(papers, args, nanopub_path, logger)
+    else:
+        assertions = _run_llm_extraction(papers, args, nanopub_path, logger)
+        # Load the final nanopubs from disk (authoritative merged set)
+        if nanopub_path.exists():
+            all_nanopubs = deserialize_nanopubs(nanopub_path)
+        else:
+            all_nanopubs = []
 
-    logger.info(
-        "Extracting assertions via LLM (model=%s, checkpoint_interval=%d)...",
-        llm_config.model, llm_config.checkpoint_interval,
-    )
-    logger.info("📄 Nanopub output file: %s", nanopub_path)
-    assertions = extract_assertions(papers, llm_config=llm_config)
     logger.info("Total assertions available: %d", len(assertions))
 
-    # Load the final nanopubs from disk (authoritative merged set)
-    if nanopub_path.exists():
-        all_nanopubs = deserialize_nanopubs(nanopub_path)
+    # Log nanopub statistics
+    if all_nanopubs:
         logger.info(
             "Nanopublications on disk: %d (from %d unique papers) → %s",
             len(all_nanopubs),
             len(get_processed_paper_ids(all_nanopubs)),
             nanopub_path,
         )
-    else:
-        all_nanopubs = []
 
     print(str(nanopub_path))
 

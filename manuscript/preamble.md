@@ -13,6 +13,9 @@ This file contains LaTeX packages and commands that are automatically included i
 \usepackage[margin=2.2cm]{geometry}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage[section]{placeins}  % Constrain floats to their section
+\renewcommand{\floatpagefraction}{0.7}  % Require 70% fill for float-only pages
+\renewcommand{\topfraction}{0.9}        % Allow large top floats
 
 % Tables
 \usepackage{booktabs}

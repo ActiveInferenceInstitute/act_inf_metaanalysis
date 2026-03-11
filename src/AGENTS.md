@@ -8,7 +8,7 @@ The `src/` directory contains all domain logic, classes, and functions required 
 
 ## Implementation Details
 
-All code within `src/` is tested extensively (448 tests, 96.1% coverage) with zero mocks.
+All code within `src/` is tested extensively (534 tests, 94.9% coverage) with zero mocks.
 
 - It uses standard Python dataclasses for data modeling.
 - All visualization code is segregated inside `visualization/`.

@@ -1,74 +1,76 @@
-# Technical Appendix: Mathematical and Algorithmic Details \label{sec:technical_appendix}
+# Appendix A: Mathematical and Algorithmic Details \label{sec:technical_appendix}
 
 _This appendix collects the formal mathematical definitions, derivations, and algorithmic specifications referenced from the main methodology section._
 
-## A.1 Citation-Weighted Hypothesis Scoring Formula
+## A.1 Citation-Weighted Hypothesis Scoring Formula \label{sec:appendix_scoring}
 
 For each hypothesis $H$, we compute a citation-weighted evidence score aggregating all assertions relevant to $H$:
 
-$$
+\begin{equation}
 \text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)} w(a)}{\sum_{a \in A(H)} w(a)}
-$$
+\end{equation}
 
 where $S(H)$ is the set of supporting assertions, $C(H)$ is the set of contradicting assertions, $A(H)$ is all assertions for $H$ (including neutral), and the weight function is:
 
-$$
+\begin{equation}
 w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a)
-$$
+\end{equation}
 
 The logarithmic citation weighting ensures that highly cited papers carry more influence while preventing any single blockbuster paper from dominating the score. The score lies in $[-1, 1]$: values near $+1$ indicate strong supporting evidence, values near $-1$ indicate strong contradicting evidence, and values near $0$ indicate balanced or insufficient evidence.
 
 **Temporal aggregation.** We additionally compute temporal trends by evaluating the cumulative score at each year $t$, using only assertions from papers published in year $\leq t$:
 
-$$
+\begin{equation}
 \text{score}(H, t) = \frac{\sum_{a \in S(H,t)} w(a) - \sum_{a \in C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)}
-$$
+\end{equation}
 
 This reveals whether support for a hypothesis is growing, declining, or plateauing over time.
 
-## A.2 Non-negative Matrix Factorization (NMF) for Topic Modeling
+## A.2 Non-negative Matrix Factorization (NMF) for Topic Modeling \label{sec:appendix_nmf}
 
 We apply NMF to the TF-IDF matrix of the corpus to discover latent topics. Given the document-term matrix $V \in \mathbb{R}^{n \times m}_{\geq 0}$, NMF finds factor matrices $W \in \mathbb{R}^{n \times k}_{\geq 0}$ and $H \in \mathbb{R}^{k \times m}_{\geq 0}$ such that $V \approx WH$, where $k$ is the number of topics.
 
 We use multiplicative update rules \citep{lee1999nmf}:
 
-$$H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \quad W \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon}$$
+\begin{equation}
+H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \quad W \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon}
+\end{equation}
 
 with $\epsilon = 10^{-10}$ for numerical stability and a fixed random seed of 42 for reproducibility.
 
 **Term-Frequency Inverse Document Frequency (TF-IDF).** The document-term matrix is constructed using TF-IDF weighting \citep{salton1975vector}. For term $t$ in document $d$:
 
-$$
+\begin{equation}
 \text{TF-IDF}(t, d) = \text{tf}(t, d) \cdot \log\!\left(\frac{N}{\text{df}(t)}\right)
-$$
+\end{equation}
 
 where $\text{tf}(t, d)$ is the term frequency, $N$ is the total number of documents, and $\text{df}(t)$ is the document frequency of term $t$.
 
-## A.3 Field Growth-Rate Estimation
+## A.3 Field Growth-Rate Estimation \label{sec:appendix_growth}
 
 The **mean year-over-year growth rate** $\bar{g}$ is the arithmetic mean of annual growth rates computed only for years where the prior year had non-zero publications:
 
-$$
+\begin{equation}
 \bar{g} = \frac{1}{|Y|} \sum_{y \in Y} \frac{n_y - n_{y-1}}{n_{y-1}}
-$$
+\end{equation}
 
 where $Y = \{y : n_{y-1} > 0\}$ and $n_y$ is the number of publications in year $y$.
 
 The **doubling time** $t_d$ is derived from the mean annual growth rate:
 
-$$
+\begin{equation}
 t_d = \frac{\ln 2}{\ln(1 + \bar{g})}
-$$
+\end{equation}
 
 The **compound annual growth rate** (CAGR) over the full span $[y_0, y_T]$ is:
 
-$$
+\begin{equation}
 \text{CAGR} = \left(\frac{n_{\text{cumulative}}(y_T)}{n_{\text{cumulative}}(y_0)}\right)^{1/(y_T - y_0)} - 1
-$$
+\end{equation}
 
 For the current corpus, CAGR $= {{CAGR_PCT}}\%$. The more recent growth phase (2010--2025) exhibits substantially higher annualized growth.
 
-## A.4 Advanced Visualization Methods
+## A.4 Advanced Visualization Methods \label{sec:appendix_viz}
 
 ### PCA of TF-IDF Embeddings
 
@@ -86,7 +88,7 @@ For each domain $s$ and term $t$, we compute the mean TF-IDF weight $\bar{w}_{s,
 
 The co-occurrence matrix $C \in \mathbb{R}^{k \times k}$ counts the number of documents in which two terms appear together. For top-$k$ terms by document frequency, $C_{ij} = |\{d : t_i \in d \land t_j \in d\}|$. The matrix is normalized to $[0, 1]$ by dividing by the maximum entry and visualized as a symmetric heatmap.
 
-## A.5 Nanopublication RDF Schema
+## A.5 Nanopublication RDF Schema \label{sec:appendix_rdf}
 
 Each nanopublication is serialized to RDF/TriG per the nanopublication standard \citep{groth2010anatomy, kuhn2016decentralized}, producing four named graphs. The following annotated example illustrates the structure for a single assertion:
 
