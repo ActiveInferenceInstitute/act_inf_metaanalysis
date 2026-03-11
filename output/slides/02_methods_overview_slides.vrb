@@ -1,0 +1,54 @@
+\frametitle{Methodology: Pipeline Design and Formal Definitions \label {sec:methods}}
+\protect\phantomsection\label{methodology-pipeline-design-and-formal-definitions}
+This section describes the five-stage computational meta-analysis
+pipeline. Each stage corresponds to a tested, independently executable
+script that reads upstream outputs and produces structured artifacts.
+The pipeline extends the systematic literature analysis approach of
+Knight et al.~\citep{knight2022fep}---which combined manual annotation
+with ontology-based automated analysis---by substituting manual coding
+with fully automated, LLM-driven assertion extraction and
+citation-weighted hypothesis scoring.
+
+\begin{block}{Pipeline Overview}
+\protect\phantomsection\label{pipeline-overview}
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Stage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Script
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Primary Input
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Primary Output
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Section
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+1 & \texttt{01\_literature\_search.py} & API queries &
+\texttt{corpus.jsonl} & \hyperref[sec:methods_retrieval]{Retrieval} \\
+2 & \texttt{02\_meta\_analysis\_pipeline.py} & \texttt{corpus.jsonl} &
+Classification, temporal, TF-IDF, NMF, citation network JSONs &
+\hyperref[sec:methods_bibliometrics]{Bibliometrics} \\
+3 & \texttt{03\_build\_knowledge\_graph.py} & \texttt{corpus.jsonl} &
+\texttt{nanopublications.jsonl}, \texttt{nanopublications.trig}, scores
+& \hyperref[sec:methods_kg]{Knowledge Graph} \\
+4 & \texttt{04\_generate\_figures.py} & All Stage 2--3 JSONs & 16
+publication-ready PNGs & \hyperref[sec:methods_viz]{Visualization} \\
+5 & \texttt{05\_inject\_variables.py} & All output JSONs & Rendered
+manuscript Markdown & \hyperref[sec:methods_viz]{Injection} \\
+\bottomrule\noalign{}
+\end{longtable}
+}
+
+Scripts act as thin orchestrators that import methods from tested
+library modules and handle file I/O. All computation resides in the
+\texttt{src/} packages; no analysis logic is embedded in scripts.
+\end{block}

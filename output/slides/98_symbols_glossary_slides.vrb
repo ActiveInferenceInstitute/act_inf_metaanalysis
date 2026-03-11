@@ -24,7 +24,9 @@ arXiv ID \textgreater{} Semantic Scholar ID \textgreater{} OpenAlex ID
 \textgreater{} title hash. \\
 \textbf{Expected Free Energy} & A quantity combining epistemic value
 (information gain) and pragmatic value (goal achievement) that active
-inference agents minimize over policies. \\
+inference agents minimize over policies. Decomposes equivalently into
+risk + ambiguity or epistemic + instrumental terms
+\citep{dacosta2020active}. \\
 \textbf{Free Energy Principle} & The principle that self-organizing
 systems minimize variational free energy, an upper bound on surprise, to
 maintain their structural integrity. \\
@@ -46,9 +48,11 @@ prediction errors at different levels of a hierarchy. \\
 \textbf{Variational Free Energy} & An upper bound on surprise (negative
 log-evidence) that can be decomposed into complexity (KL divergence from
 prior) and accuracy (expected log-likelihood). \\
-\textbf{Louvain Algorithm} & A greedy modularity-maximization algorithm
-for community detection in networks. Applied to the citation graph to
-identify clusters of densely interconnected papers. \\
+\textbf{Greedy Modularity Maximization} & The Clauset-Newman-Moore
+greedy modularity-maximization algorithm for community detection in
+networks (implemented via NetworkX
+\texttt{greedy\_modularity\_communities}). Applied to the citation graph
+to identify clusters of densely interconnected papers. \\
 \textbf{PageRank} & A centrality metric originally designed for web page
 ranking. In citation networks, PageRank identifies highly influential
 papers that serve as hubs connecting otherwise disconnected

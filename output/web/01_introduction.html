@@ -201,30 +201,29 @@ bounds. This convergence motivates the inclusion of EBM-adjacent
 literature in our search scope.</p>
 <h2 id="challenges-posed-by-rapid-literature-growth">Challenges Posed by
 Rapid Literature Growth</h2>
-<p>The active inference literature has expanded exponentially over the
-past two decades, sustaining peak publication volumes into the late
-2020s. While early research concentrated almost exclusively on
-theoretical neuroscience, the field has since diversified across biology
-(C5), robotics (C2), computational psychiatry (C4), algorithm scaling
-(B), and formal mathematics (A1). This rapid, multi-disciplinary growth
-creates three interrelated challenges. First, tracking which core
-theoretical claims—such as FEP universality or the physical realism of
-Markov blankets—are deeply supported, contested, or merely assumed
-becomes intractable. Second, because the relationship between
-mathematical formalisms and empirical evidence remains frequently
-implicit, systematic evidence synthesis demands prohibitive manual
-labor. Third, new entrants must navigate a literature heavily weighted
-toward broad qualitative philosophy (A2), interspersed with rapidly
-accelerating, highly specialized applied pockets.</p>
+<p>The active inference literature has grown at a compound annual rate
+of 16.99% across 2005–2026, with annual output accelerating sharply
+after 2013. While early research concentrated on theoretical
+neuroscience, the field has since diversified across biology (C5),
+robotics (C2), computational psychiatry (C4), algorithm scaling (B), and
+formal mathematics (A1). This multi-disciplinary expansion creates three
+interrelated challenges. First, tracking which core theoretical
+claims—such as FEP universality or the physical realism of Markov
+blankets—are well-supported, contested, or merely assumed becomes
+increasingly difficult as the corpus grows. Second, because the
+relationship between mathematical formalisms and empirical evidence is
+frequently implicit, systematic evidence synthesis demands substantial
+manual effort. Third, new entrants must navigate a literature weighted
+toward broad qualitative philosophy (A2), interspersed with specialized
+applied subfields.</p>
 <p>Traditional narrative reviews attempt to address these challenges but
-are inherently static, subjective, and quickly outdated. Systematic
-reviews from evidence-based medicine offer rigorous aggregation but are
-structurally customized for clinical trial data with homogeneous outcome
-measures, rendering them ill-suited for the heterogeneous ontological
-and computational claims endemic to this theoretical literature. The
-expansion of predictive processing and the emergence of formal
-parameterizations like Bayesian mechanics further broaden the scope of
-assertions that any comprehensive meta-analysis must reconcile.</p>
+are static, subjective, and quickly outdated. Systematic reviews from
+evidence-based medicine offer rigorous aggregation but are structured
+for clinical trial data with homogeneous outcome measures, making them
+less suited for the heterogeneous ontological and computational claims
+in this literature. The expansion of predictive processing and the
+emergence of Bayesian mechanics further broaden the scope of assertions
+that a comprehensive meta-analysis must reconcile.</p>
 <h2 id="related-work-and-prior-meta-analyses">Related Work and Prior
 Meta-Analyses</h2>
 <p>Several prior efforts have surveyed aspects of the Active Inference
@@ -274,7 +273,7 @@ format for this extracted knowledge.</p>
 <h2 id="this-study-approach-and-overview">This Study: Approach and
 Overview</h2>
 <p>This paper presents a computational meta-analysis of the Active
-Inference literature (<span class="math inline">\(N = 785\)</span>).
+Inference literature (<span class="math inline">\(N = 849\)</span>).
 Rather than relying exclusively on bibliometric metadata or slow manual
 coding, we deploy a Large Language Model (LLM) to “read” each paper’s
 abstract and assess its relationship to eight core hypotheses within the
@@ -300,7 +299,7 @@ rapid expansion?</li>
 <li><strong>RQ3 (Hypothesis Evidence):</strong> What is the current
 balance of evidence for and against the eight standard hypotheses, and
 how has this balance evolved over time? (See hypothesis dashboard and
-assertion figures in §6.)</li>
+assertion figures in the .)</li>
 <li><strong>RQ4 (Tooling Readiness):</strong> What is the state of
 software tooling and infrastructure for Active Inference research, and
 what gaps remain?</li>
@@ -316,8 +315,8 @@ chapters or monographs not indexed by these sources, software
 documentation, or non-English publications. Domain classification uses
 keyword matching rather than expert annotation—a deliberate trade-off
 favoring reproducibility over precision, whose consequences we quantify
-in Section 7. Hypothesis scoring relies on LLM-extracted assertions; the
-fidelity and limitations of this approach are examined in Section 3. The
+in the . Hypothesis scoring relies on LLM-extracted assertions; the
+fidelity and limitations of this approach are examined in the . The
 hypothesis definitions and domain taxonomy are informed by, but not
 identical to, the Active Inference Ontology used by Knight et al. ;
 future alignment would enable direct comparison with that earlier
@@ -345,17 +344,13 @@ supporting Active Inference research, including the implemented
 extraction pipeline, existing software (pymdp, SPM, RxInfer.jl), and
 knowledge graph infrastructure.</p></li>
 </ol>
-<p>The remainder of this paper is organized as follows. Section 2
-surveys the tooling landscape (RQ4) and extraction pipeline. Section 3
-documents the LLM-based extraction pipeline in detail. Section 4
-provides the technical appendix (notation, abbreviations, hypothesis
-definitions). Section 5 describes the five-stage methodology—the central
-contribution enabling reproducible, automated evidence synthesis.
-Section 6 presents the hypothesis evidence landscape (RQ3). Section 7
-presents the field overview with domain-level analysis (RQ1, RQ2),
-supplemented by detailed domain analyses (§7a), text analytics (§7b),
-and citation network topology (§7c). Section 8 concludes with
-limitations and future directions; Section 8a provides community
-recommendations and open questions.</p>
+<p>The remainder of this paper is organized as follows. describes the
+five-stage pipeline—the central contribution enabling reproducible,
+automated evidence synthesis—with separate treatments of , , , the , and
+. presents quantitative scoring results (RQ3), followed by with
+domain-level analysis (RQ1, RQ2), , , and . addresses limitations and
+future directions; the provides community recommendations and open
+questions. collects mathematical and algorithmic details; surveys the
+tooling landscape (RQ4).</p>
 </body>
 </html>

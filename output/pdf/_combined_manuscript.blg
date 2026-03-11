@@ -1,12 +1,12 @@
-This is BibTeX, Version 0.99d (TeX Live 2025)
+This is BibTeX, Version 0.99e (TeX Live 2026)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: _combined_manuscript.aux
 The style file: plainnat.bst
-Illegal, another \bibdata command---line 630 of file _combined_manuscript.aux
+Illegal, another \bibdata command---line 717 of file _combined_manuscript.aux
  : \bibdata
  :         {references}
 I'm skipping whatever remains of this command
-Illegal, another \bibstyle command---line 631 of file _combined_manuscript.aux
+Illegal, another \bibstyle command---line 718 of file _combined_manuscript.aux
  : \bibstyle
  :          {plainnat}
 I'm skipping whatever remains of this command
@@ -14,46 +14,48 @@ Database file #1: references.bib
 Warning--entry type for "rdflib2023" isn't style-file defined
 --line 344 of file references.bib
 Warning--entry type for "ollama2024" isn't style-file defined
---line 405 of file references.bib
-You've used 46 entries,
+--line 445 of file references.bib
+Warning--entry type for "kuhn2026nanopubjs" isn't style-file defined
+--line 626 of file references.bib
+You've used 55 entries,
             2773 wiz_defined-function locations,
-            899 strings with 14262 characters,
-and the built_in function-call counts, 23495 in all, are:
-= -- 2068
-> -- 1604
-< -- 22
-+ -- 544
-- -- 498
-* -- 2024
-:= -- 3719
-add.period$ -- 178
-call.type$ -- 46
-change.case$ -- 298
-chr.to.int$ -- 46
-cite$ -- 92
-duplicate$ -- 958
-empty$ -- 1735
-format.name$ -- 553
-if$ -- 4840
+            956 strings with 15973 characters,
+and the built_in function-call counts, 27339 in all, are:
+= -- 2420
+> -- 1785
+< -- 26
++ -- 607
+- -- 552
+* -- 2338
+:= -- 4318
+add.period$ -- 214
+call.type$ -- 55
+change.case$ -- 343
+chr.to.int$ -- 55
+cite$ -- 110
+duplicate$ -- 1140
+empty$ -- 2079
+format.name$ -- 616
+if$ -- 5645
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 43
-newline$ -- 276
-num.names$ -- 184
-pop$ -- 561
+missing$ -- 51
+newline$ -- 330
+num.names$ -- 220
+pop$ -- 642
 preamble$ -- 1
-purify$ -- 254
+purify$ -- 290
 quote$ -- 0
-skip$ -- 769
+skip$ -- 895
 stack$ -- 0
-substring$ -- 742
-swap$ -- 82
+substring$ -- 891
+swap$ -- 92
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 496
+type$ -- 595
 warning$ -- 0
-while$ -- 189
+while$ -- 224
 width$ -- 0
-write$ -- 667
+write$ -- 799
 (There were 2 error messages)

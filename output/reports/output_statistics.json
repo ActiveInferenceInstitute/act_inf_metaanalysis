@@ -3,22 +3,22 @@
     "pdf": {
       "exists": true,
       "file_count": 10,
-      "size_mb": "3.20",
-      "total_size_bytes": 3357388,
+      "size_mb": "3.39",
+      "total_size_bytes": 3553980,
       "largest_files": [
         {
           "name": "act_inf_metaanalysis_combined.pdf",
-          "size_mb": "2.78",
+          "size_mb": "2.89",
           "path": "pdf/act_inf_metaanalysis_combined.pdf"
         },
         {
           "name": "_combined_manuscript.tex",
-          "size_mb": "0.14",
+          "size_mb": "0.16",
           "path": "pdf/_combined_manuscript.tex"
         },
         {
           "name": "_combined_manuscript.md",
-          "size_mb": "0.11",
+          "size_mb": "0.13",
           "path": "pdf/_combined_manuscript.md"
         }
       ],
@@ -36,78 +36,78 @@
     },
     "web": {
       "exists": true,
-      "file_count": 17,
-      "size_mb": "0.46",
-      "total_size_bytes": 477777,
+      "file_count": 21,
+      "size_mb": "0.52",
+      "total_size_bytes": 541633,
       "largest_files": [
         {
           "name": "index.html",
-          "size_mb": "0.16",
+          "size_mb": "0.18",
           "path": "web/index.html"
         },
         {
           "name": "_combined_manuscript.md",
-          "size_mb": "0.11",
+          "size_mb": "0.13",
           "path": "web/_combined_manuscript.md"
         },
         {
-          "name": "05_methodology.html",
+          "name": "05_appendix_tooling.html",
           "size_mb": "0.02",
-          "path": "web/05_methodology.html"
+          "path": "web/05_appendix_tooling.html"
         }
       ],
       "extensions": {
-        ".md": 1,
-        ".html": 16
+        ".html": 20,
+        ".md": 1
       }
     },
     "slides": {
       "exists": true,
-      "file_count": 110,
-      "size_mb": "4.07",
-      "total_size_bytes": 4271330,
+      "file_count": 142,
+      "size_mb": "4.71",
+      "total_size_bytes": 4933904,
       "largest_files": [
         {
-          "name": "07b_text_analytics_slides.pdf",
-          "size_mb": "1.43",
-          "path": "slides/07b_text_analytics_slides.pdf"
+          "name": "03c_results_text_analytics_slides.pdf",
+          "size_mb": "1.41",
+          "path": "slides/03c_results_text_analytics_slides.pdf"
         },
         {
-          "name": "06_hypothesis_results_slides.pdf",
-          "size_mb": "0.49",
-          "path": "slides/06_hypothesis_results_slides.pdf"
+          "name": "03_results_hypothesis_slides.pdf",
+          "size_mb": "0.55",
+          "path": "slides/03_results_hypothesis_slides.pdf"
         },
         {
-          "name": "07_field_overview_slides.pdf",
-          "size_mb": "0.46",
-          "path": "slides/07_field_overview_slides.pdf"
+          "name": "03a_results_field_overview_slides.pdf",
+          "size_mb": "0.54",
+          "path": "slides/03a_results_field_overview_slides.pdf"
         }
       ],
       "extensions": {
-        ".nav": 15,
-        ".pdf": 15,
-        ".tex": 15,
-        ".toc": 15,
-        ".snm": 15,
-        ".aux": 15,
-        ".log": 15,
-        ".vrb": 5
+        ".nav": 19,
+        ".pdf": 19,
+        ".vrb": 9,
+        ".snm": 19,
+        ".tex": 19,
+        ".aux": 19,
+        ".log": 19,
+        ".toc": 19
       }
     },
     "figures": {
       "exists": true,
       "file_count": 17,
-      "size_mb": "2.49",
-      "total_size_bytes": 2610538,
+      "size_mb": "2.54",
+      "total_size_bytes": 2663522,
       "largest_files": [
         {
           "name": "word_cloud.png",
-          "size_mb": "0.50",
+          "size_mb": "0.45",
           "path": "figures/word_cloud.png"
         },
         {
           "name": "pca_embeddings.png",
-          "size_mb": "0.26",
+          "size_mb": "0.27",
           "path": "figures/pca_embeddings.png"
         },
         {
@@ -123,28 +123,28 @@
     },
     "data": {
       "exists": true,
-      "file_count": 13,
-      "size_mb": "11.51",
-      "total_size_bytes": 12069504,
+      "file_count": 14,
+      "size_mb": "12.51",
+      "total_size_bytes": 13119453,
       "largest_files": [
         {
           "name": "nanopublications.trig",
-          "size_mb": "4.64",
+          "size_mb": "4.97",
           "path": "data/nanopublications.trig"
         },
         {
           "name": "tfidf_data.json",
-          "size_mb": "3.31",
+          "size_mb": "3.55",
           "path": "data/tfidf_data.json"
         },
         {
           "name": "corpus.jsonl",
-          "size_mb": "2.03",
+          "size_mb": "2.37",
           "path": "data/corpus.jsonl"
         }
       ],
       "extensions": {
-        ".json": 9,
+        ".json": 10,
         ".gml": 1,
         ".jsonl": 2,
         ".trig": 1
@@ -154,7 +154,7 @@
       "exists": true,
       "file_count": 4,
       "size_mb": "0.01",
-      "total_size_bytes": 5803,
+      "total_size_bytes": 5652,
       "largest_files": [
         {
           "name": "validation_report.json",
@@ -197,7 +197,7 @@
       "exists": true,
       "file_count": 1,
       "size_mb": "0.00",
-      "total_size_bytes": 3051,
+      "total_size_bytes": 2672,
       "largest_files": [
         {
           "name": "pipeline.log",
@@ -210,60 +210,60 @@
       }
     }
   },
-  "total_files": 172,
-  "total_size_mb": 21.739378929138184,
+  "total_files": 209,
+  "total_size_mb": 23.670974731445312,
   "largest_files": [
     {
       "name": "nanopublications.trig",
-      "size_mb": "4.64",
+      "size_mb": "4.97",
       "category": "data",
       "path": "data/nanopublications.trig"
     },
     {
       "name": "tfidf_data.json",
-      "size_mb": "3.31",
+      "size_mb": "3.55",
       "category": "data",
       "path": "data/tfidf_data.json"
     },
     {
       "name": "act_inf_metaanalysis_combined.pdf",
-      "size_mb": "2.78",
+      "size_mb": "2.89",
       "category": "pdf",
       "path": "pdf/act_inf_metaanalysis_combined.pdf"
     },
     {
       "name": "corpus.jsonl",
-      "size_mb": "2.03",
+      "size_mb": "2.37",
       "category": "data",
       "path": "data/corpus.jsonl"
     },
     {
-      "name": "07b_text_analytics_slides.pdf",
-      "size_mb": "1.43",
+      "name": "03c_results_text_analytics_slides.pdf",
+      "size_mb": "1.41",
       "category": "slides",
-      "path": "slides/07b_text_analytics_slides.pdf"
+      "path": "slides/03c_results_text_analytics_slides.pdf"
+    },
+    {
+      "name": "03_results_hypothesis_slides.pdf",
+      "size_mb": "0.55",
+      "category": "slides",
+      "path": "slides/03_results_hypothesis_slides.pdf"
+    },
+    {
+      "name": "03a_results_field_overview_slides.pdf",
+      "size_mb": "0.54",
+      "category": "slides",
+      "path": "slides/03a_results_field_overview_slides.pdf"
     },
     {
       "name": "word_cloud.png",
-      "size_mb": "0.50",
+      "size_mb": "0.45",
       "category": "figures",
       "path": "figures/word_cloud.png"
     },
     {
-      "name": "06_hypothesis_results_slides.pdf",
-      "size_mb": "0.49",
-      "category": "slides",
-      "path": "slides/06_hypothesis_results_slides.pdf"
-    },
-    {
-      "name": "07_field_overview_slides.pdf",
-      "size_mb": "0.46",
-      "category": "slides",
-      "path": "slides/07_field_overview_slides.pdf"
-    },
-    {
       "name": "pca_embeddings.png",
-      "size_mb": "0.26",
+      "size_mb": "0.27",
       "category": "figures",
       "path": "figures/pca_embeddings.png"
     },
@@ -277,36 +277,36 @@
   "missing_expected_files": [],
   "file_counts_by_type": {
     ".md": 4,
-    ".log": 18,
-    ".aux": 16,
+    ".log": 22,
+    ".aux": 20,
     ".blg": 1,
     ".bib": 1,
-    ".pdf": 16,
-    ".tex": 16,
-    ".toc": 16,
+    ".pdf": 20,
+    ".tex": 20,
+    ".toc": 20,
     ".bbl": 1,
-    ".html": 16,
-    ".nav": 15,
-    ".snm": 15,
-    ".vrb": 5,
+    ".html": 20,
+    ".nav": 19,
+    ".vrb": 9,
+    ".snm": 19,
     ".png": 16,
-    ".json": 12,
+    ".json": 13,
     ".gml": 1,
     ".jsonl": 2,
     ".trig": 1
   },
   "sizes_by_category": {
-    "pdf": 3.201854705810547,
-    "web": 0.4556436538696289,
-    "slides": 4.073457717895508,
-    "figures": 2.489603042602539,
-    "data": 11.5103759765625,
-    "reports": 0.005534172058105469,
+    "pdf": 3.3893394470214844,
+    "web": 0.5165414810180664,
+    "slides": 4.7053375244140625,
+    "figures": 2.540132522583008,
+    "data": 12.511685371398926,
+    "reports": 0.005390167236328125,
     "simulations": 0.0,
     "llm": 0.0,
-    "logs": 0.0029096603393554688
+    "logs": 0.0025482177734375
   },
   "pdf_files": 10,
   "figures": 17,
-  "data_files": 13
+  "data_files": 14
 }

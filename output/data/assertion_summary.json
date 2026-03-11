@@ -1,46 +1,46 @@
 {
-  "total_assertions": 2615,
+  "total_assertions": 2795,
   "type_counts": {
-    "supports": 1198,
-    "neutral": 1397,
-    "contradicts": 20
+    "supports": 1275,
+    "neutral": 1499,
+    "contradicts": 21
   },
   "per_hypothesis": {
     "FEP_UNIVERSALITY": {
-      "supports": 238,
-      "neutral": 508,
+      "supports": 250,
+      "neutral": 546,
       "contradicts": 1
     },
     "AIF_OPTIMALITY": {
-      "supports": 133,
-      "neutral": 442,
-      "contradicts": 14
+      "supports": 142,
+      "neutral": 477,
+      "contradicts": 15
     },
     "MARKOV_BLANKET_REALISM": {
-      "neutral": 124,
+      "neutral": 130,
       "supports": 11,
       "contradicts": 4
     },
     "PREDICTIVE_CODING": {
-      "supports": 633,
-      "neutral": 109,
+      "supports": 677,
+      "neutral": 115,
       "contradicts": 1
     },
     "SCALABILITY": {
-      "supports": 117,
-      "neutral": 85
+      "supports": 126,
+      "neutral": 95
     },
     "LANGUAGE_AIF": {
-      "supports": 37,
-      "neutral": 65
+      "supports": 39,
+      "neutral": 70
     },
     "MORPHOGENESIS": {
-      "neutral": 44,
+      "neutral": 45,
       "supports": 16
     },
     "CLINICAL_UTILITY": {
-      "neutral": 20,
-      "supports": 13
+      "neutral": 21,
+      "supports": 14
     }
   }
 }

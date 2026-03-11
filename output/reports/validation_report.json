@@ -18,13 +18,14 @@
           "web/ directory is empty",
           "slides/ directory is empty",
           "figures/ directory is empty",
+          "data/ directory is empty",
           "reports/ directory is empty"
         ],
         "warnings": [],
         "directory_structure": {
           "project_combined_pdf": {
             "exists": true,
-            "size_mb": 2.78,
+            "size_mb": 2.89,
             "readable": true
           },
           "pdf": {
@@ -57,8 +58,8 @@
           },
           "data": {
             "exists": true,
-            "files": 3,
-            "size_mb": 7.96,
+            "files": 0,
+            "size_mb": 0.0,
             "readable": true,
             "optional": false
           },
@@ -119,9 +120,9 @@
         },
         "data": {
           "exists": true,
-          "file_count": 3,
-          "size_mb": "7.96",
-          "largest_file": "nanopublications.trig"
+          "file_count": 0,
+          "size_mb": "0.00",
+          "largest_file": null
         },
         "reports": {
           "exists": true,
@@ -153,13 +154,13 @@
         "web": 0,
         "slides": 0,
         "figures": 0,
-        "data": 3,
+        "data": 0,
         "reports": 0,
         "simulations": 0,
         "llm": 0,
         "logs": 0
       },
-      "total_size_mb": 7.959515571594238,
+      "total_size_mb": 0.0,
       "issues_by_severity": {
         "critical": [],
         "warning": [
@@ -167,6 +168,7 @@
           "web/ directory is empty",
           "slides/ directory is empty",
           "figures/ directory is empty",
+          "data/ directory is empty",
           "reports/ directory is empty"
         ],
         "info": []
@@ -175,15 +177,15 @@
     },
     "pdf": {
       "files": 10,
-      "size_mb": 3.201854705810547
+      "size_mb": 3.3893394470214844
     },
     "figures": {
       "files": 17,
-      "size_mb": 2.489603042602539
+      "size_mb": 2.540132522583008
     },
     "data": {
-      "files": 13,
-      "size_mb": 11.5103759765625
+      "files": 14,
+      "size_mb": 12.511685371398926
     }
   },
   "summary": {

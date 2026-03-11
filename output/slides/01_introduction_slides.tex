@@ -122,33 +122,31 @@ search scope.
 
 \begin{frame}{Challenges Posed by Rapid Literature Growth}
 \protect\phantomsection\label{challenges-posed-by-rapid-literature-growth}
-The active inference literature has expanded exponentially over the past
-two decades, sustaining peak publication volumes into the late 2020s.
-While early research concentrated almost exclusively on theoretical
-neuroscience, the field has since diversified across biology (C5),
-robotics (C2), computational psychiatry (C4), algorithm scaling (B), and
-formal mathematics (A1). This rapid, multi-disciplinary growth creates
-three interrelated challenges. First, tracking which core theoretical
+The active inference literature has grown at a compound annual rate of
+16.99\% across 2005--2026, with annual output accelerating sharply after
+2013. While early research concentrated on theoretical neuroscience, the
+field has since diversified across biology (C5), robotics (C2),
+computational psychiatry (C4), algorithm scaling (B), and formal
+mathematics (A1). This multi-disciplinary expansion creates three
+interrelated challenges. First, tracking which core theoretical
 claims---such as FEP universality or the physical realism of Markov
-blankets---are deeply supported, contested, or merely assumed becomes
-intractable. Second, because the relationship between mathematical
-formalisms and empirical evidence remains frequently implicit,
-systematic evidence synthesis demands prohibitive manual labor. Third,
-new entrants must navigate a literature heavily weighted toward broad
-qualitative philosophy (A2), interspersed with rapidly accelerating,
-highly specialized applied pockets.
+blankets---are well-supported, contested, or merely assumed becomes
+increasingly difficult as the corpus grows. Second, because the
+relationship between mathematical formalisms and empirical evidence is
+frequently implicit, systematic evidence synthesis demands substantial
+manual effort. Third, new entrants must navigate a literature weighted
+toward broad qualitative philosophy (A2), interspersed with specialized
+applied subfields.
 
 Traditional narrative reviews attempt to address these challenges but
-are inherently static, subjective, and quickly outdated. Systematic
-reviews from evidence-based medicine offer rigorous aggregation but are
-structurally customized for clinical trial data with homogeneous outcome
-measures, rendering them ill-suited for the heterogeneous ontological
-and computational claims endemic to this theoretical literature. The
-expansion of predictive processing
+are static, subjective, and quickly outdated. Systematic reviews from
+evidence-based medicine offer rigorous aggregation but are structured
+for clinical trial data with homogeneous outcome measures, making them
+less suited for the heterogeneous ontological and computational claims
+in this literature. The expansion of predictive processing
 \citep{clark2013whatever, hohwy2013predictive} and the emergence of
-formal parameterizations like Bayesian mechanics
-\citep{sakthivadivel2023bayesian} further broaden the scope of
-assertions that any comprehensive meta-analysis must reconcile.
+Bayesian mechanics \citep{sakthivadivel2023bayesian} further broaden the
+scope of assertions that a comprehensive meta-analysis must reconcile.
 \end{frame}
 
 \begin{frame}{Related Work and Prior Meta-Analyses}
@@ -211,7 +209,7 @@ format for this extracted knowledge.
 \begin{frame}{This Study: Approach and Overview}
 \protect\phantomsection\label{this-study-approach-and-overview}
 This paper presents a computational meta-analysis of the Active
-Inference literature (\(N = 785\)). Rather than relying exclusively on
+Inference literature (\(N = 849\)). Rather than relying exclusively on
 bibliometric metadata or slow manual coding, we deploy a Large Language
 Model (LLM) to ``read'' each paper's abstract and assess its
 relationship to eight core hypotheses within the FEP paradigm. We
@@ -244,7 +242,8 @@ This meta-analysis addresses four primary research questions:
   \textbf{RQ3 (Hypothesis Evidence):} What is the current balance of
   evidence for and against the eight standard hypotheses, and how has
   this balance evolved over time? (See hypothesis dashboard and
-  assertion figures in §6.)
+  assertion figures in the
+  \hyperref[sec:hypothesis_results]{hypothesis results}.)
 \item
   \textbf{RQ4 (Tooling Readiness):} What is the state of software
   tooling and infrastructure for Active Inference research, and what
@@ -264,8 +263,10 @@ chapters or monographs not indexed by these sources, software
 documentation, or non-English publications. Domain classification uses
 keyword matching rather than expert annotation---a deliberate trade-off
 favoring reproducibility over precision, whose consequences we quantify
-in Section 7. Hypothesis scoring relies on LLM-extracted assertions; the
-fidelity and limitations of this approach are examined in Section 3. The
+in the \hyperref[sec:field_overview]{field overview}. Hypothesis scoring
+relies on LLM-extracted assertions; the fidelity and limitations of this
+approach are examined in the
+\hyperref[sec:extraction_pipeline]{extraction pipeline section}. The
 hypothesis definitions and domain taxonomy are informed by, but not
 identical to, the Active Inference Ontology used by Knight et
 al.~\citep{knight2022fep}; future alignment would enable direct
@@ -303,18 +304,28 @@ This work makes five contributions:
   graph infrastructure.
 \end{enumerate}
 
-The remainder of this paper is organized as follows. Section 2 surveys
-the tooling landscape (RQ4) and extraction pipeline. Section 3 documents
-the LLM-based extraction pipeline in detail. Section 4 provides the
-technical appendix (notation, abbreviations, hypothesis definitions).
-Section 5 describes the five-stage methodology---the central
-contribution enabling reproducible, automated evidence synthesis.
-Section 6 presents the hypothesis evidence landscape (RQ3). Section 7
-presents the field overview with domain-level analysis (RQ1, RQ2),
-supplemented by detailed domain analyses (§7a), text analytics (§7b),
-and citation network topology (§7c). Section 8 concludes with
-limitations and future directions; Section 8a provides community
-recommendations and open questions.
+The remainder of this paper is organized as follows.
+\hyperref[sec:methods]{The methodology section} describes the five-stage
+pipeline---the central contribution enabling reproducible, automated
+evidence synthesis---with separate treatments of
+\hyperref[sec:methods_retrieval]{literature retrieval},
+\hyperref[sec:extraction_pipeline]{LLM-based assertion extraction},
+\hyperref[sec:methods_bibliometrics]{bibliometric analysis}, the
+\hyperref[sec:methods_kg]{nanopublication-based knowledge graph}, and
+\hyperref[sec:methods_viz]{visualization and variable injection}.
+\hyperref[sec:hypothesis_results]{The hypothesis evidence landscape}
+presents quantitative scoring results (RQ3), followed by
+\hyperref[sec:field_overview]{the field overview} with domain-level
+analysis (RQ1, RQ2),
+\hyperref[sec:subfield_analyses]{detailed domain analyses},
+\hyperref[sec:text_analytics]{text analytics}, and
+\hyperref[sec:citation_network]{citation network topology}.
+\hyperref[sec:conclusion]{The conclusion} addresses limitations and
+future directions; the \hyperref[sec:discussion]{discussion} provides
+community recommendations and open questions.
+\hyperref[sec:technical_appendix]{Appendix~A} collects mathematical and
+algorithmic details; \hyperref[sec:tooling]{Appendix~B} surveys the
+tooling landscape (RQ4).
 \end{frame}
 
 \end{document}

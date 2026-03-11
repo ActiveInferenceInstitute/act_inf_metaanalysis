@@ -6,7 +6,7 @@ graph [
     title "ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference"
     year 2026
     citation_count 0
-    community 7
+    community 8
   ]
   node [
     id 1
@@ -14,7 +14,7 @@ graph [
     title "Towards Intelligible Human-Robot Interaction: An Active Inference Approach to Occluded Pedestrian Scenarios"
     year 2026
     citation_count 0
-    community 8
+    community 9
   ]
   node [
     id 2
@@ -22,7 +22,7 @@ graph [
     title "Empathy Modeling in Active Inference Agents for Perspective-Taking and Alignment"
     year 2026
     citation_count 0
-    community 9
+    community 10
   ]
   node [
     id 3
@@ -30,7 +30,7 @@ graph [
     title "Service Orchestration in the Computing Continuum: Structural Challenges and Vision"
     year 2026
     citation_count 0
-    community 10
+    community 11
   ]
   node [
     id 4
@@ -38,7 +38,7 @@ graph [
     title "BRAIN: Bayesian Reasoning via Active Inference for Agentic and Embodied Intelligence in Mobile Networks"
     year 2026
     citation_count 0
-    community 11
+    community 12
   ]
   node [
     id 5
@@ -46,7 +46,7 @@ graph [
     title "Curiosity is Knowledge: Self-Consistent Learning and No-Regret Optimization with Active Inference"
     year 2026
     citation_count 0
-    community 12
+    community 13
   ]
   node [
     id 6
@@ -54,7 +54,7 @@ graph [
     title "Pragmatic Curiosity: A Hybrid Learning-Optimization Paradigm via Active Inference"
     year 2026
     citation_count 0
-    community 13
+    community 14
   ]
   node [
     id 7
@@ -62,7 +62,7 @@ graph [
     title "SCALE: Self-uncertainty Conditioned Adaptive Looking and Execution for Vision-Language-Action Models"
     year 2026
     citation_count 0
-    community 14
+    community 15
   ]
   node [
     id 8
@@ -70,7 +70,7 @@ graph [
     title "Distributional Active Inference"
     year 2026
     citation_count 0
-    community 15
+    community 16
   ]
   node [
     id 9
@@ -78,7 +78,7 @@ graph [
     title "Efficient Evaluation of LLM Performance with Statistical Guarantees"
     year 2026
     citation_count 0
-    community 16
+    community 17
   ]
   node [
     id 10
@@ -86,7 +86,7 @@ graph [
     title "Schema-based active inference supports rapid generalization of experience and frontal cortical coding of abstract structure"
     year 2026
     citation_count 0
-    community 17
+    community 18
   ]
   node [
     id 11
@@ -94,7 +94,7 @@ graph [
     title "Active Inference-Driven World Modeling for Adaptive UAV Swarm Trajectory Design"
     year 2026
     citation_count 0
-    community 18
+    community 19
   ]
   node [
     id 12
@@ -102,7 +102,7 @@ graph [
     title "Active inference and artificial reasoning"
     year 2025
     citation_count 0
-    community 19
+    community 20
   ]
   node [
     id 13
@@ -110,7 +110,7 @@ graph [
     title "Gravity Prior and Temporal Horizon Shape Interceptive Behavior under Active Inference"
     year 2025
     citation_count 0
-    community 20
+    community 21
   ]
   node [
     id 14
@@ -118,7 +118,7 @@ graph [
     title "Gaussian Process Dual MPC using Active Inference: An Autonomous Vehicle Usecase"
     year 2025
     citation_count 0
-    community 21
+    community 22
   ]
   node [
     id 15
@@ -126,7 +126,7 @@ graph [
     title "EcoNet: Multiagent Planning and Control Of Household Energy Resources Using Active Inference"
     year 2025
     citation_count 0
-    community 22
+    community 23
   ]
   node [
     id 16
@@ -134,7 +134,7 @@ graph [
     title "Bayesian Active Inference for Intelligent UAV Anti-Jamming and Adaptive Trajectory Planning"
     year 2025
     citation_count 0
-    community 23
+    community 24
   ]
   node [
     id 17
@@ -142,7 +142,7 @@ graph [
     title "Bridging Probabilistic Inference and Behavior Trees: An Interactive Framework for Adaptive Multi-Robot Cooperation"
     year 2025
     citation_count 0
-    community 24
+    community 25
   ]
   node [
     id 18
@@ -150,7 +150,7 @@ graph [
     title "Active Inference with Reusable State-Dependent Value Profiles"
     year 2025
     citation_count 0
-    community 25
+    community 26
   ]
   node [
     id 19
@@ -158,7 +158,7 @@ graph [
     title "Prior preferences in active inference agents: soft, hard, and goal shaping"
     year 2025
     citation_count 0
-    community 26
+    community 27
   ]
   node [
     id 20
@@ -166,7 +166,7 @@ graph [
     title "Real-World Robot Control by Deep Active Inference With a Temporally Hierarchical World Model"
     year 2025
     citation_count 0
-    community 27
+    community 28
   ]
   node [
     id 21
@@ -174,7 +174,7 @@ graph [
     title "Active Inference in Discrete State Spaces from First Principles"
     year 2025
     citation_count 0
-    community 28
+    community 29
   ]
   node [
     id 22
@@ -182,7 +182,7 @@ graph [
     title "Normative active inference: A numerical proof of principle for a computational and economic legal analytic approach to AI governance"
     year 2025
     citation_count 0
-    community 29
+    community 30
   ]
   node [
     id 23
@@ -190,7 +190,7 @@ graph [
     title "Active Inference is a Subtype of Variational Inference"
     year 2025
     citation_count 0
-    community 30
+    community 31
   ]
   node [
     id 24
@@ -198,7 +198,7 @@ graph [
     title "Think How Your Teammates Think: Active Inference Can Benefit Decentralized Execution"
     year 2025
     citation_count 0
-    community 31
+    community 32
   ]
   node [
     id 25
@@ -206,7 +206,7 @@ graph [
     title "From Representation to Enactment: The ABC Framework of the Translating Mind"
     year 2025
     citation_count 0
-    community 32
+    community 33
   ]
   node [
     id 26
@@ -214,7 +214,7 @@ graph [
     title "What the flock knows that the birds do not: exploring the emergence of joint agency in multi-agent active inference"
     year 2025
     citation_count 0
-    community 33
+    community 34
   ]
   node [
     id 27
@@ -222,7 +222,7 @@ graph [
     title "Robust Sampling for Active Statistical Inference"
     year 2025
     citation_count 0
-    community 34
+    community 35
   ]
   node [
     id 28
@@ -230,7 +230,7 @@ graph [
     title "Resilient by Design -- Active Inference for Distributed Continuum Intelligence"
     year 2025
     citation_count 0
-    community 35
+    community 36
   ]
   node [
     id 29
@@ -238,7 +238,7 @@ graph [
     title "Structural Plasticity as Active Inference: A Biologically-Inspired Architecture for Homeostatic Control"
     year 2025
     citation_count 0
-    community 36
+    community 37
   ]
   node [
     id 30
@@ -246,7 +246,7 @@ graph [
     title "Deep Active Inference with Diffusion Policy and Multiple Timescale World Model for Real-World Exploration and Navigation"
     year 2025
     citation_count 0
-    community 37
+    community 38
   ]
   node [
     id 31
@@ -254,7 +254,7 @@ graph [
     title "Active Inference for an Intelligent Agent in Autonomous Reconnaissance Missions"
     year 2025
     citation_count 0
-    community 38
+    community 39
   ]
   node [
     id 32
@@ -262,7 +262,7 @@ graph [
     title "NAEL: Non-Anthropocentric Ethical Logic"
     year 2025
     citation_count 0
-    community 39
+    community 40
   ]
   node [
     id 33
@@ -270,7 +270,7 @@ graph [
     title "An Active Inference Model of Mouse Point-and-Click Behaviour"
     year 2025
     citation_count 0
-    community 40
+    community 41
   ]
   node [
     id 34
@@ -278,7 +278,7 @@ graph [
     title "Zero-shot Structure Learning and Planning for Autonomous Robot Navigation using Active Inference"
     year 2025
     citation_count 0
-    community 41
+    community 42
   ]
   node [
     id 35
@@ -286,7 +286,7 @@ graph [
     title "Curiosity-Driven Development of Action and Language in Robots Through Self-Exploration"
     year 2025
     citation_count 0
-    community 42
+    community 43
   ]
   node [
     id 36
@@ -294,7 +294,7 @@ graph [
     title "Message passing-based inference in an autoregressive active inference agent"
     year 2025
     citation_count 0
-    community 43
+    community 44
   ]
   node [
     id 37
@@ -302,7 +302,7 @@ graph [
     title "On the Variational Costs of Changing Our Minds"
     year 2025
     citation_count 0
-    community 44
+    community 45
   ]
   node [
     id 38
@@ -310,7 +310,7 @@ graph [
     title "Active Inference Framework for Closed-Loop Sensing, Communication, and Control in UAV Systems"
     year 2025
     citation_count 0
-    community 45
+    community 46
   ]
   node [
     id 39
@@ -318,7 +318,7 @@ graph [
     title "Toward Ownership Understanding of Objects: Active Question Generation with Large Language Model and Probabilistic Generative Model"
     year 2025
     citation_count 0
-    community 46
+    community 47
   ]
   node [
     id 40
@@ -326,7 +326,7 @@ graph [
     title "Orchestrator: Active Inference for Multi-Agent Systems in Long-Horizon Tasks"
     year 2025
     citation_count 0
-    community 47
+    community 48
   ]
   node [
     id 41
@@ -334,7 +334,7 @@ graph [
     title "Integrated information and predictive processing theories of consciousness: An adversarial collaborative review"
     year 2025
     citation_count 0
-    community 48
+    community 49
   ]
   node [
     id 42
@@ -342,7 +342,7 @@ graph [
     title "A coalgebraic perspective on predictive processing"
     year 2025
     citation_count 0
-    community 49
+    community 50
   ]
   node [
     id 43
@@ -350,7 +350,7 @@ graph [
     title "Active inference for action-unaware agents"
     year 2025
     citation_count 0
-    community 50
+    community 51
   ]
   node [
     id 44
@@ -358,7 +358,7 @@ graph [
     title "A Hardware-oriented Approach for Efficient Active Inference Computation and Deployment"
     year 2025
     citation_count 0
-    community 51
+    community 52
   ]
   node [
     id 45
@@ -366,7 +366,7 @@ graph [
     title "Navigation and Exploration with Active Inference: from Biology to Industry"
     year 2025
     citation_count 0
-    community 52
+    community 53
   ]
   node [
     id 46
@@ -374,7 +374,7 @@ graph [
     title "Bio-Inspired Topological Autonomous Navigation with Active Inference in Robotics"
     year 2025
     citation_count 0
-    community 53
+    community 54
   ]
   node [
     id 47
@@ -382,7 +382,7 @@ graph [
     title "Simulating Biological Intelligence: Active Inference with Experiment-Informed Generative Model"
     year 2025
     citation_count 0
-    community 54
+    community 55
   ]
   node [
     id 48
@@ -390,7 +390,7 @@ graph [
     title "A Framework for Inherently Safer AGI through Language-Mediated Active Inference"
     year 2025
     citation_count 0
-    community 55
+    community 56
   ]
   node [
     id 49
@@ -398,7 +398,7 @@ graph [
     title "The Missing Reward: Active Inference in the Era of Experience"
     year 2025
     citation_count 0
-    community 56
+    community 57
   ]
   node [
     id 50
@@ -406,7 +406,7 @@ graph [
     title "Cognitive Effort in the Two-Step Task: An Active Inference Drift-Diffusion Model Approach"
     year 2025
     citation_count 0
-    community 57
+    community 58
   ]
   node [
     id 51
@@ -414,7 +414,7 @@ graph [
     title "Emergence of Active Inference from a Chemical Oscillator: A Constructive Approach to Pre-genetic Homeostasis"
     year 2025
     citation_count 0
-    community 58
+    community 59
   ]
   node [
     id 52
@@ -422,7 +422,7 @@ graph [
     title "A Message Passing Realization of Expected Free Energy Minimization"
     year 2025
     citation_count 0
-    community 59
+    community 60
   ]
   node [
     id 53
@@ -430,7 +430,7 @@ graph [
     title "Theory of Mind Using Active Inference: A Framework for Multi-Agent Cooperation"
     year 2025
     citation_count 0
-    community 60
+    community 61
   ]
   node [
     id 54
@@ -438,7 +438,7 @@ graph [
     title "Mobile Manipulation with Active Inference for Long-Horizon Rearrangement Tasks"
     year 2025
     citation_count 0
-    community 61
+    community 62
   ]
   node [
     id 55
@@ -446,7 +446,7 @@ graph [
     title "Active Inference AI Systems for Scientific Discovery"
     year 2025
     citation_count 0
-    community 62
+    community 63
   ]
   node [
     id 56
@@ -454,7 +454,7 @@ graph [
     title "AGI Enabled Solutions For IoX Layers Bottlenecks In Cyber-Physical-Social-Thinking Space"
     year 2025
     citation_count 0
-    community 63
+    community 64
   ]
   node [
     id 57
@@ -462,7 +462,7 @@ graph [
     title "Active Digital Twins via Active Inference"
     year 2025
     citation_count 0
-    community 64
+    community 65
   ]
   node [
     id 58
@@ -470,7 +470,7 @@ graph [
     title "Active Multimodal Distillation for Few-shot Action Recognition"
     year 2025
     citation_count 0
-    community 65
+    community 66
   ]
   node [
     id 59
@@ -478,7 +478,7 @@ graph [
     title "Multi-dimensional Autoscaling of Processing Services: A Comparison of Agent-based Methods"
     year 2025
     citation_count 0
-    community 66
+    community 67
   ]
   node [
     id 60
@@ -486,7 +486,7 @@ graph [
     title "Patterns for a New Generation: AI and Agents"
     year 2025
     citation_count 0
-    community 67
+    community 68
   ]
   node [
     id 61
@@ -494,7 +494,7 @@ graph [
     title "Finding Similar Objects and Active Inference for Surprise in Numenta Neocortex Model"
     year 2025
     citation_count 0
-    community 68
+    community 69
   ]
   node [
     id 62
@@ -502,7 +502,7 @@ graph [
     title "Geometric Hyperscanning of Affect under Active Inference"
     year 2025
     citation_count 0
-    community 69
+    community 70
   ]
   node [
     id 63
@@ -510,7 +510,7 @@ graph [
     title "Resilience and adaptability in self-evidencing systems"
     year 2025
     citation_count 0
-    community 70
+    community 71
   ]
   node [
     id 64
@@ -518,7 +518,7 @@ graph [
     title "Markov Blanket Density and Free Energy Minimization"
     year 2025
     citation_count 0
-    community 71
+    community 72
   ]
   node [
     id 65
@@ -526,7 +526,7 @@ graph [
     title "Active inference as a unified model of collision avoidance behavior in human drivers"
     year 2025
     citation_count 0
-    community 72
+    community 73
   ]
   node [
     id 66
@@ -534,7 +534,7 @@ graph [
     title "AXIOM: Learning to Play Games in Minutes with Expanding Object-Centric Models"
     year 2025
     citation_count 0
-    community 73
+    community 74
   ]
   node [
     id 67
@@ -542,7 +542,7 @@ graph [
     title "Distributed Intelligence in the Computing Continuum with Active Inference"
     year 2025
     citation_count 0
-    community 74
+    community 75
   ]
   node [
     id 68
@@ -550,7 +550,7 @@ graph [
     title "Self-orthogonalizing attractor neural networks emerging from the free energy principle"
     year 2025
     citation_count 0
-    community 75
+    community 76
   ]
   node [
     id 69
@@ -558,7 +558,7 @@ graph [
     title "Evaluation of &#34;As-Intended&#34; Vehicle Dynamics using the Active Inference Framework"
     year 2025
     citation_count 0
-    community 76
+    community 77
   ]
   node [
     id 70
@@ -566,7 +566,7 @@ graph [
     title "Deep Active Inference Agents for Delayed and Long-Horizon Environments"
     year 2025
     citation_count 0
-    community 77
+    community 78
   ]
   node [
     id 71
@@ -574,7 +574,7 @@ graph [
     title "An Active Inference Model of Covert and Overt Visual Attention"
     year 2025
     citation_count 0
-    community 78
+    community 79
   ]
   node [
     id 72
@@ -582,7 +582,7 @@ graph [
     title "An Active Inference perspective on Neurofeedback Training"
     year 2025
     citation_count 0
-    community 79
+    community 80
   ]
   node [
     id 73
@@ -590,7 +590,7 @@ graph [
     title "From Artificial Intelligence to Active Inference: The Key to True AI and 6G World Brain [Invited]"
     year 2025
     citation_count 0
-    community 80
+    community 81
   ]
   node [
     id 74
@@ -598,7 +598,7 @@ graph [
     title "Contemplative Artificial Intelligence"
     year 2025
     citation_count 0
-    community 81
+    community 82
   ]
   node [
     id 75
@@ -606,7 +606,7 @@ graph [
     title "Expected Free Energy-based Planning as Variational Inference"
     year 2025
     citation_count 0
-    community 82
+    community 83
   ]
   node [
     id 76
@@ -614,7 +614,7 @@ graph [
     title "Emergence of Goal-Directed Behaviors via Active Inference with Self-Prior"
     year 2025
     citation_count 0
-    community 83
+    community 84
   ]
   node [
     id 77
@@ -622,7 +622,7 @@ graph [
     title "Wanting to be Understood"
     year 2025
     citation_count 0
-    community 84
+    community 85
   ]
   node [
     id 78
@@ -630,7 +630,7 @@ graph [
     title "Active Inference for Energy Control and Planning in Smart Buildings and Communities"
     year 2025
     citation_count 0
-    community 85
+    community 86
   ]
   node [
     id 79
@@ -638,7 +638,7 @@ graph [
     title "Meta-Representational Predictive Coding: Biomimetic Self-Supervised Learning"
     year 2025
     citation_count 0
-    community 86
+    community 87
   ]
   node [
     id 80
@@ -646,7 +646,7 @@ graph [
     title "The Role of Affective States in Computational Psychiatry"
     year 2025
     citation_count 0
-    community 87
+    community 88
   ]
   node [
     id 81
@@ -654,7 +654,7 @@ graph [
     title "Addressing the Subsumption Thesis: A Formal Bridge between Microeconomics and Active Inference"
     year 2025
     citation_count 0
-    community 88
+    community 89
   ]
   node [
     id 82
@@ -662,7 +662,7 @@ graph [
     title "Benchmarking Dynamic SLO Compliance in Distributed Computing Continuum Systems"
     year 2025
     citation_count 0
-    community 89
+    community 90
   ]
   node [
     id 83
@@ -670,7 +670,7 @@ graph [
     title "Perceptual Motor Learning with Active Inference Framework for Robust Lateral Control"
     year 2025
     citation_count 0
-    community 90
+    community 91
   ]
   node [
     id 84
@@ -678,7 +678,7 @@ graph [
     title "Actively Inferring Optimal Measurement Sequences"
     year 2025
     citation_count 0
-    community 91
+    community 92
   ]
   node [
     id 85
@@ -686,7 +686,7 @@ graph [
     title "Universal AI maximizes Variational Empowerment"
     year 2025
     citation_count 0
-    community 92
+    community 93
   ]
   node [
     id 86
@@ -694,7 +694,7 @@ graph [
     title "Active Inference through Incentive Design in Markov Decision Processes"
     year 2025
     citation_count 0
-    community 93
+    community 94
   ]
   node [
     id 87
@@ -702,7 +702,7 @@ graph [
     title "Interactive Inference: A Neuromorphic Theory of Human-Computer Interaction"
     year 2025
     citation_count 0
-    community 94
+    community 95
   ]
   node [
     id 88
@@ -710,7 +710,7 @@ graph [
     title "Intrinsic motivation as constrained entropy maximization"
     year 2025
     citation_count 0
-    community 95
+    community 96
   ]
   node [
     id 89
@@ -718,7 +718,7 @@ graph [
     title "The Physics and Metaphysics of Social Powers: Bridging Cognitive Processing and Social Dynamics, a New Perspective on Power through Active Inference"
     year 2025
     citation_count 0
-    community 96
+    community 97
   ]
   node [
     id 90
@@ -726,7 +726,7 @@ graph [
     title "A New Approach for Knowledge Generation Using Active Inference"
     year 2025
     citation_count 0
-    community 97
+    community 98
   ]
   node [
     id 91
@@ -734,7 +734,7 @@ graph [
     title "Boosting MCTS with Free Energy Minimization"
     year 2025
     citation_count 0
-    community 98
+    community 99
   ]
   node [
     id 92
@@ -742,7 +742,7 @@ graph [
     title "Towards smart and adaptive agents for active sensing on edge devices"
     year 2025
     citation_count 0
-    community 99
+    community 100
   ]
   node [
     id 93
@@ -750,7 +750,7 @@ graph [
     title "Implicit Coordination using Active Epistemic Inference for Multi-Robot Systems"
     year 2025
     citation_count 0
-    community 100
+    community 101
   ]
   node [
     id 94
@@ -758,7 +758,7 @@ graph [
     title "A Review of Latent Representation Models in Neuroimaging"
     year 2024
     citation_count 0
-    community 101
+    community 102
   ]
   node [
     id 95
@@ -766,7 +766,7 @@ graph [
     title "Active Inference and Human--Computer Interaction"
     year 2024
     citation_count 0
-    community 102
+    community 103
   ]
   node [
     id 96
@@ -774,7 +774,7 @@ graph [
     title "Active Inference for Self-Organizing Multi-LLM Systems: A Bayesian Thermodynamic Approach to Adaptation"
     year 2024
     citation_count 0
-    community 103
+    community 104
   ]
   node [
     id 97
@@ -782,7 +782,7 @@ graph [
     title "Intent-based Meta-Scheduling in Programmable Networks: A Research Agenda"
     year 2024
     citation_count 0
-    community 104
+    community 105
   ]
   node [
     id 98
@@ -790,7 +790,7 @@ graph [
     title "Rethinking Cognition: Morphological Info-Computation and the Embodied Paradigm in Life and Artificial Intelligence"
     year 2024
     citation_count 0
-    community 105
+    community 106
   ]
   node [
     id 99
@@ -798,7 +798,7 @@ graph [
     title "Exploring Cognition through Morphological Info-Computational Framework"
     year 2024
     citation_count 0
-    community 106
+    community 107
   ]
   node [
     id 100
@@ -806,7 +806,7 @@ graph [
     title "Free Energy Projective Simulation (FEPS): Active inference with interpretability"
     year 2024
     citation_count 0
-    community 107
+    community 108
   ]
   node [
     id 101
@@ -814,7 +814,7 @@ graph [
     title "Learning Dynamic Cognitive Map with Autonomous Navigation"
     year 2024
     citation_count 0
-    community 108
+    community 109
   ]
   node [
     id 102
@@ -822,7 +822,7 @@ graph [
     title "Factorised Active Inference for Strategic Multi-Agent Interactions"
     year 2024
     citation_count 0
-    community 109
+    community 110
   ]
   node [
     id 103
@@ -830,7 +830,7 @@ graph [
     title "Active inference and deep generative modeling for cognitive ultrasound"
     year 2024
     citation_count 0
-    community 110
+    community 111
   ]
   node [
     id 104
@@ -838,7 +838,7 @@ graph [
     title "Coupled autoregressive active inference agents for control of multi-joint dynamical systems"
     year 2024
     citation_count 0
-    community 111
+    community 112
   ]
   node [
     id 105
@@ -846,7 +846,7 @@ graph [
     title "Adaptive Active Inference Agents for Heterogeneous and Lifelong Federated Learning"
     year 2024
     citation_count 0
-    community 112
+    community 113
   ]
   node [
     id 106
@@ -854,7 +854,7 @@ graph [
     title "On the Minimal Theory of Consciousness Implicit in Active Inference"
     year 2024
     citation_count 0
-    community 113
+    community 114
   ]
   node [
     id 107
@@ -862,7 +862,7 @@ graph [
     title "Bayesian model of individual learning to control a motor imagery BCI"
     year 2024
     citation_count 0
-    community 114
+    community 115
   ]
   node [
     id 108
@@ -870,7 +870,7 @@ graph [
     title "Active Inference for Closed-loop transmit beamsteering in Fetal Doppler Ultrasound"
     year 2024
     citation_count 0
-    community 115
+    community 116
   ]
   node [
     id 109
@@ -878,7 +878,7 @@ graph [
     title "Demonstrating the Continual Learning Capabilities and Practical Application of Discrete-Time Active Inference"
     year 2024
     citation_count 0
-    community 116
+    community 117
   ]
   node [
     id 110
@@ -886,7 +886,7 @@ graph [
     title "Adaptive Stream Processing on Edge Devices through Active Inference"
     year 2024
     citation_count 0
-    community 117
+    community 118
   ]
   node [
     id 111
@@ -894,7 +894,7 @@ graph [
     title "Why collective behaviours self-organise to criticality: A primer on information-theoretic and thermodynamic utility measures"
     year 2024
     citation_count 0
-    community 118
+    community 119
   ]
   node [
     id 112
@@ -902,7 +902,7 @@ graph [
     title "R-AIF: Solving Sparse-Reward Robotic Tasks from Pixels with Active Inference and World Models"
     year 2024
     citation_count 0
-    community 119
+    community 120
   ]
   node [
     id 113
@@ -910,7 +910,7 @@ graph [
     title "The Phenomenology of Machine: A Comprehensive Analysis of the Sentience of the OpenAI-o1 Model Integrating Functionalism, Consciousness Theories, Active Inference, and AI Architectures"
     year 2024
     citation_count 0
-    community 120
+    community 121
   ]
   node [
     id 114
@@ -918,7 +918,7 @@ graph [
     title "Reactive Environments for Active Inference Agents with RxEnvironments.jl"
     year 2024
     citation_count 0
-    community 121
+    community 122
   ]
   node [
     id 115
@@ -926,7 +926,7 @@ graph [
     title "Planning to avoid ambiguous states through Gaussian approximations to non-linear sensors in active inference agents"
     year 2024
     citation_count 0
-    community 122
+    community 123
   ]
   node [
     id 116
@@ -934,7 +934,7 @@ graph [
     title "Learning in Hybrid Active Inference Models"
     year 2024
     citation_count 0
-    community 123
+    community 124
   ]
   node [
     id 117
@@ -942,7 +942,7 @@ graph [
     title "From Neuronal Packets to Thoughtseeds: A Hierarchical Model of Embodied Cognition in the Global Workspace"
     year 2024
     citation_count 0
-    community 124
+    community 125
   ]
   node [
     id 118
@@ -950,7 +950,7 @@ graph [
     title "Environment-Centric Active Inference"
     year 2024
     citation_count 0
-    community 125
+    community 126
   ]
   node [
     id 119
@@ -958,7 +958,7 @@ graph [
     title "Hybrid Recurrent Models Support Emergent Descriptions for Hierarchical Planning and Control"
     year 2024
     citation_count 0
-    community 126
+    community 127
   ]
   node [
     id 120
@@ -966,7 +966,7 @@ graph [
     title "Enhancing Population-based Search with Active Inference"
     year 2024
     citation_count 0
-    community 127
+    community 128
   ]
   node [
     id 121
@@ -974,7 +974,7 @@ graph [
     title "Value of Information and Reward Specification in Active Inference and POMDPs"
     year 2024
     citation_count 0
-    community 128
+    community 129
   ]
   node [
     id 122
@@ -982,7 +982,7 @@ graph [
     title "Exploring and Learning Structure: Active Inference Approach in Navigational Agents"
     year 2024
     citation_count 0
-    community 129
+    community 130
   ]
   node [
     id 123
@@ -990,7 +990,7 @@ graph [
     title "Active Inference in Contextual Multi-Armed Bandits for Autonomous Robotic Exploration"
     year 2024
     citation_count 0
-    community 130
+    community 131
   ]
   node [
     id 124
@@ -998,7 +998,7 @@ graph [
     title "From pixels to planning: scale-free active inference"
     year 2024
     citation_count 0
-    community 131
+    community 132
   ]
   node [
     id 125
@@ -1006,7 +1006,7 @@ graph [
     title "An Active Inference Strategy for Prompting Reliable Responses from Large Language Models in Medical Practice"
     year 2024
     citation_count 0
-    community 132
+    community 133
   ]
   node [
     id 126
@@ -1014,7 +1014,7 @@ graph [
     title "Towards Human-Like Driving: Active Inference in Autonomous Vehicle Control"
     year 2024
     citation_count 0
-    community 133
+    community 134
   ]
   node [
     id 127
@@ -1022,7 +1022,7 @@ graph [
     title "Free Energy in a Circumplex Model of Emotion"
     year 2024
     citation_count 0
-    community 134
+    community 135
   ]
   node [
     id 128
@@ -1030,7 +1030,7 @@ graph [
     title "Belief sharing: a blessing or a curse"
     year 2024
     citation_count 0
-    community 135
+    community 136
   ]
   node [
     id 129
@@ -1038,7 +1038,7 @@ graph [
     title "Online Pareto-Optimal Decision-Making for Complex Tasks using Active Inference"
     year 2024
     citation_count 0
-    community 136
+    community 137
   ]
   node [
     id 130
@@ -1046,7 +1046,7 @@ graph [
     title "Active Inference Meeting Energy-Efficient Control of Parallel and Identical Machines"
     year 2024
     citation_count 0
-    community 137
+    community 138
   ]
   node [
     id 131
@@ -1054,7 +1054,7 @@ graph [
     title "Surprise! Using Physiological Stress for Allostatic Regulation Under the Active Inference Framework [Pre-Print]"
     year 2024
     citation_count 0
-    community 138
+    community 139
   ]
   node [
     id 132
@@ -1062,7 +1062,7 @@ graph [
     title "A Concise Mathematical Description of Active Inference in Discrete Time"
     year 2024
     citation_count 0
-    community 139
+    community 140
   ]
   node [
     id 133
@@ -1070,7 +1070,7 @@ graph [
     title "Modeling Sustainable Resource Management using Active Inference"
     year 2024
     citation_count 0
-    community 140
+    community 141
   ]
   node [
     id 134
@@ -1078,7 +1078,7 @@ graph [
     title "Learning EFSM Models with Registers in Guards"
     year 2024
     citation_count 0
-    community 141
+    community 142
   ]
   node [
     id 135
@@ -1086,7 +1086,7 @@ graph [
     title "Structured Active Inference (Extended Abstract)"
     year 2024
     citation_count 0
-    community 142
+    community 143
   ]
   node [
     id 136
@@ -1094,7 +1094,7 @@ graph [
     title "Navigating Autonomous Vehicle on Unmarked Roads with Diffusion-Based Motion Prediction and Active Inference"
     year 2024
     citation_count 0
-    community 143
+    community 144
   ]
   node [
     id 137
@@ -1102,7 +1102,7 @@ graph [
     title "From self-organizing systems to subjective temporal extension"
     year 2024
     citation_count 0
-    community 144
+    community 145
   ]
   node [
     id 138
@@ -1110,7 +1110,7 @@ graph [
     title "Development of Compositionality and Generalization through Interactive Learning of Language and Action of Robots"
     year 2024
     citation_count 0
-    community 145
+    community 146
   ]
   node [
     id 139
@@ -1118,7 +1118,7 @@ graph [
     title "On Predictive planning and counterfactual learning in active inference"
     year 2024
     citation_count 0
-    community 146
+    community 147
   ]
   node [
     id 140
@@ -1126,7 +1126,7 @@ graph [
     title "Enabling self-identification in intelligent agent: insights from computational psychoanalysis"
     year 2024
     citation_count 0
-    community 147
+    community 148
   ]
   node [
     id 141
@@ -1134,7 +1134,7 @@ graph [
     title "Self-Supervised Path Planning in UAV-aided Wireless Networks based on Active Inference"
     year 2024
     citation_count 0
-    community 148
+    community 149
   ]
   node [
     id 142
@@ -1142,7 +1142,7 @@ graph [
     title "Active Statistical Inference"
     year 2024
     citation_count 0
-    community 149
+    community 150
   ]
   node [
     id 143
@@ -1150,7 +1150,7 @@ graph [
     title "Reframing the Expected Free Energy: Four Formulations and a Unification"
     year 2024
     citation_count 0
-    community 150
+    community 151
   ]
   node [
     id 144
@@ -1158,7 +1158,7 @@ graph [
     title "Dynamic planning in hierarchical active inference"
     year 2024
     citation_count 0
-    community 151
+    community 152
   ]
   node [
     id 145
@@ -1166,7 +1166,7 @@ graph [
     title "A call for embodied AI"
     year 2024
     citation_count 0
-    community 152
+    community 153
   ]
   node [
     id 146
@@ -1174,7 +1174,7 @@ graph [
     title "Deep hybrid models: infer and plan in a dynamic world"
     year 2024
     citation_count 0
-    community 153
+    community 154
   ]
   node [
     id 147
@@ -1182,7 +1182,7 @@ graph [
     title "Active Inference as a Model of Agency"
     year 2024
     citation_count 0
-    community 154
+    community 155
   ]
   node [
     id 148
@@ -1190,7 +1190,7 @@ graph [
     title "Active Inference Demonstrated with Artificial Spin Ice"
     year 2024
     citation_count 0
-    community 155
+    community 156
   ]
   node [
     id 149
@@ -1198,7 +1198,7 @@ graph [
     title "Observation-Augmented Contextual Multi-Armed Bandits for Robotic Search and Exploration"
     year 2023
     citation_count 0
-    community 156
+    community 157
   ]
   node [
     id 150
@@ -1206,7 +1206,7 @@ graph [
     title "Active Preference Inference using Language Models and Probabilistic Reasoning"
     year 2023
     citation_count 0
-    community 157
+    community 158
   ]
   node [
     id 151
@@ -1214,7 +1214,7 @@ graph [
     title "Spatial and Temporal Hierarchy for Autonomous Navigation using Active Inference in Minigrid Environment"
     year 2023
     citation_count 0
-    community 158
+    community 159
   ]
   node [
     id 152
@@ -1222,7 +1222,7 @@ graph [
     title "Active Inference and Intentional Behaviour"
     year 2023
     citation_count 0
-    community 159
+    community 160
   ]
   node [
     id 153
@@ -1230,7 +1230,7 @@ graph [
     title "Multi-Modal MPPI and Active Inference for Reactive Task and Motion Planning"
     year 2023
     citation_count 0
-    community 160
+    community 161
   ]
   node [
     id 154
@@ -1238,7 +1238,7 @@ graph [
     title "Anomaly Detection via Learning-Based Sequential Controlled Sensing"
     year 2023
     citation_count 0
-    community 161
+    community 162
   ]
   node [
     id 155
@@ -1246,7 +1246,7 @@ graph [
     title "Equilibrium in the Computing Continuum through Active Inference"
     year 2023
     citation_count 0
-    community 162
+    community 163
   ]
   node [
     id 156
@@ -1254,7 +1254,7 @@ graph [
     title "Tactile Active Inference Reinforcement Learning for Efficient Robotic Manipulation Skill Acquisition"
     year 2023
     citation_count 0
-    community 163
+    community 164
   ]
   node [
     id 157
@@ -1262,7 +1262,7 @@ graph [
     title "Active Inference on the Edge: A Design Study"
     year 2023
     citation_count 0
-    community 164
+    community 165
   ]
   node [
     id 158
@@ -1270,7 +1270,7 @@ graph [
     title "Predictive Minds: LLMs As Atypical Active Inference Agents"
     year 2023
     citation_count 0
-    community 165
+    community 166
   ]
   node [
     id 159
@@ -1278,7 +1278,7 @@ graph [
     title "Resolving uncertainty on the fly: Modeling adaptive driving behavior as active inference"
     year 2023
     citation_count 0
-    community 166
+    community 167
   ]
   node [
     id 160
@@ -1286,7 +1286,7 @@ graph [
     title "Understanding Tool Discovery and Tool Innovation Using Active Inference"
     year 2023
     citation_count 0
-    community 167
+    community 168
   ]
   node [
     id 161
@@ -1294,7 +1294,7 @@ graph [
     title "Neural representation in active inference: using generative models to interact with -- and understand -- the lived world"
     year 2023
     citation_count 0
-    community 168
+    community 169
   ]
   node [
     id 162
@@ -1302,7 +1302,7 @@ graph [
     title "Intelligent Resource Allocation for UAV-Based Cognitive NOMA Networks: An Active Inference Approach"
     year 2023
     citation_count 0
-    community 169
+    community 170
   ]
   node [
     id 163
@@ -1310,7 +1310,7 @@ graph [
     title "Modeling motor control in continuous-time Active Inference: a survey"
     year 2023
     citation_count 0
-    community 170
+    community 171
   ]
   node [
     id 164
@@ -1318,7 +1318,7 @@ graph [
     title "Blind CT Image Quality Assessment Using DDPM-derived Content and Transformer-based Evaluator"
     year 2023
     citation_count 0
-    community 171
+    community 172
   ]
   node [
     id 165
@@ -1326,7 +1326,7 @@ graph [
     title "Tactile-based Active Inference for Force-Controlled Peg-in-Hole Insertions"
     year 2023
     citation_count 0
-    community 172
+    community 173
   ]
   node [
     id 166
@@ -1334,7 +1334,7 @@ graph [
     title "Active Inference for Sum Rate Maximization in UAV-Assisted Cognitive NOMA Networks"
     year 2023
     citation_count 0
-    community 173
+    community 174
   ]
   node [
     id 167
@@ -1342,7 +1342,7 @@ graph [
     title "Learning Spatial and Temporal Hierarchies: Hierarchical Active Inference for navigation in Multi-Room Maze Environments"
     year 2023
     citation_count 0
-    community 174
+    community 175
   ]
   node [
     id 168
@@ -1350,7 +1350,7 @@ graph [
     title "Bridging Cognitive Maps: a Hierarchical Active Inference Model of Spatial Alternation Tasks and the Hippocampal-Prefrontal Circuit"
     year 2023
     citation_count 0
-    community 175
+    community 176
   ]
   node [
     id 169
@@ -1358,7 +1358,7 @@ graph [
     title "A Partially Observable Deep Multi-Agent Active Inference Framework for Resource Allocation in 6G and Beyond Wireless Communications Networks"
     year 2023
     citation_count 0
-    community 176
+    community 177
   ]
   node [
     id 170
@@ -1366,7 +1366,7 @@ graph [
     title "Integrating cognitive map learning and active inference for planning in ambiguous environments"
     year 2023
     citation_count 0
-    community 177
+    community 178
   ]
   node [
     id 171
@@ -1374,7 +1374,7 @@ graph [
     title "Sophisticated Learning: A novel algorithm for active learning during model-based planning"
     year 2023
     citation_count 0
-    community 178
+    community 179
   ]
   node [
     id 172
@@ -1382,7 +1382,7 @@ graph [
     title "Integrating large language models and active inference to understand eye movements in reading and dyslexia"
     year 2023
     citation_count 0
-    community 179
+    community 180
   ]
   node [
     id 173
@@ -1390,7 +1390,7 @@ graph [
     title "Empirical Translation Process Research: Past and Possible Future Perspectives"
     year 2023
     citation_count 0
-    community 180
+    community 181
   ]
   node [
     id 174
@@ -1398,7 +1398,7 @@ graph [
     title "Active Inference in String Diagrams: A Categorical Account of Predictive Processing and Free Energy"
     year 2023
     citation_count 0
-    community 181
+    community 182
   ]
   node [
     id 175
@@ -1406,7 +1406,7 @@ graph [
     title "Collective behavior from surprise minimization"
     year 2023
     citation_count 0
-    community 182
+    community 183
   ]
   node [
     id 176
@@ -1414,15 +1414,15 @@ graph [
     title "Toward Design of Synthetic Active Inference Agents by Mere Mortals"
     year 2023
     citation_count 0
-    community 183
+    community 184
   ]
   node [
     id 177
     label "doi:10.1016/j.eswa.2024.124315"
     title "On efficient computation in active inference"
-    year 2024
-    citation_count 11
-    community 1
+    year 2023
+    citation_count 19
+    community 3
   ]
   node [
     id 178
@@ -1430,7 +1430,7 @@ graph [
     title "An analytical model of active inference in the Iterated Prisoner's Dilemma"
     year 2023
     citation_count 0
-    community 184
+    community 185
   ]
   node [
     id 179
@@ -1438,7 +1438,7 @@ graph [
     title "Inferring Hierarchical Structure in Multi-Room Maze Environments"
     year 2023
     citation_count 0
-    community 185
+    community 186
   ]
   node [
     id 180
@@ -1446,7 +1446,7 @@ graph [
     title "Realising Synthetic Active Inference Agents, Part I: Epistemic Objectives and Graphical Specification Language"
     year 2023
     citation_count 0
-    community 186
+    community 187
   ]
   node [
     id 181
@@ -1454,7 +1454,7 @@ graph [
     title "A Neural Network Implementation for Free Energy Principle"
     year 2023
     citation_count 0
-    community 187
+    community 188
   ]
   node [
     id 182
@@ -1462,7 +1462,7 @@ graph [
     title "Active Inference in Hebbian Learning Networks"
     year 2023
     citation_count 0
-    community 188
+    community 189
   ]
   node [
     id 183
@@ -1470,15 +1470,15 @@ graph [
     title "Designing explainable artificial intelligence with active inference: A framework for transparent introspection and decision-making"
     year 2023
     citation_count 0
-    community 189
+    community 190
   ]
   node [
     id 184
     label "doi:10.1162/neco_a_01713"
-    title "Realising Synthetic Active Inference Agents, Part II: Variational Message Updates"
+    title "Realizing Synthetic Active Inference Agents, Part II: Variational Message Updates"
     year 2023
-    citation_count 0
-    community 190
+    citation_count 3
+    community 3
   ]
   node [
     id 185
@@ -1765,8 +1765,8 @@ graph [
     label "doi:10.3390/e24020301"
     title "The Free Energy Principle for Perception and Action: A Deep Learning Perspective"
     year 2022
-    citation_count 39
-    community 1
+    citation_count 38
+    community 3
   ]
   node [
     id 221
@@ -1838,7 +1838,7 @@ graph [
     title "Inference of affordances and active motor control in simulated agents"
     year 2022
     citation_count 5
-    community 2
+    community 1
   ]
   node [
     id 230
@@ -2022,7 +2022,7 @@ graph [
     title "Active Inference and Epistemic Value in Graphical Models"
     year 2022
     citation_count 7
-    community 2
+    community 1
   ]
   node [
     id 253
@@ -2254,7 +2254,7 @@ graph [
     title "Bayesian mechanics of perceptual inference and motor control in the brain"
     year 2021
     citation_count 9
-    community 0
+    community 1
   ]
   node [
     id 282
@@ -2293,8 +2293,8 @@ graph [
     label "doi:10.3390/e22080889"
     title "Is the Free-Energy Principle a Formal Theory of Semantics? From Variational Density Dynamics to Neural and Phenotypic Representations"
     year 2020
-    citation_count 85
-    community 1
+    citation_count 76
+    community 3
   ]
   node [
     id 287
@@ -2318,7 +2318,7 @@ graph [
     title "A Hybrid Human-Neurorobotics Approach to Primary Intersubjectivity via Active Inference"
     year 2020
     citation_count 10
-    community 6
+    community 0
   ]
   node [
     id 290
@@ -2446,7 +2446,7 @@ graph [
     title "Neural Dynamics under Active Inference: Plausibility and Efficiency of Information Processing"
     year 2021
     citation_count 35
-    community 1
+    community 2
   ]
   node [
     id 306
@@ -2501,7 +2501,7 @@ graph [
     label "doi:10.1109/TSP.2021.3095711"
     title "Application of the Free Energy Principle to Estimation and Control"
     year 2019
-    citation_count 0
+    citation_count 13
     community 309
   ]
   node [
@@ -2539,10 +2539,10 @@ graph [
   node [
     id 317
     label "doi:10.1109/TCDS.2021.3049907"
-    title "Active inference body perception and action for humanoid robots"
-    year 2019
-    citation_count 0
-    community 314
+    title "An Empirical Study of Active Inference on a Humanoid Robot"
+    year 2021
+    citation_count 64
+    community 3
   ]
   node [
     id 318
@@ -2550,7 +2550,7 @@ graph [
     title "Bayesian policy selection using active inference"
     year 2019
     citation_count 0
-    community 315
+    community 314
   ]
   node [
     id 319
@@ -2558,7 +2558,7 @@ graph [
     title "Nonmodular architectures of cognitive systems based on active inference"
     year 2019
     citation_count 0
-    community 316
+    community 315
   ]
   node [
     id 320
@@ -2566,7 +2566,7 @@ graph [
     title "Deep Random Splines for Point Process Intensity Estimation of Neural Population Data"
     year 2019
     citation_count 0
-    community 317
+    community 316
   ]
   node [
     id 321
@@ -2574,7 +2574,7 @@ graph [
     title "Comprehensive Privacy Analysis of Deep Learning: Passive and Active White-box Inference Attacks against Centralized and Federated Learning"
     year 2018
     citation_count 0
-    community 318
+    community 317
   ]
   node [
     id 322
@@ -2582,7 +2582,7 @@ graph [
     title "Geometry of Friston's active inference"
     year 2018
     citation_count 0
-    community 319
+    community 318
   ]
   node [
     id 323
@@ -2590,7 +2590,7 @@ graph [
     title "Active Anomaly Detection with Switching Cost"
     year 2018
     citation_count 0
-    community 320
+    community 319
   ]
   node [
     id 324
@@ -2598,7 +2598,7 @@ graph [
     title "Hybrid Active Inference"
     year 2018
     citation_count 0
-    community 321
+    community 320
   ]
   node [
     id 325
@@ -2606,7 +2606,7 @@ graph [
     title "Active image restoration"
     year 2018
     citation_count 0
-    community 322
+    community 321
   ]
   node [
     id 326
@@ -2614,7 +2614,7 @@ graph [
     title "Learning, Planning, and Control in a Monolithic Neural Event Inference Architecture"
     year 2018
     citation_count 0
-    community 323
+    community 322
   ]
   node [
     id 327
@@ -2622,7 +2622,7 @@ graph [
     title "Expanding the Active Inference Landscape: More Intrinsic Motivations in the Perception-Action Loop"
     year 2018
     citation_count 0
-    community 324
+    community 323
   ]
   node [
     id 328
@@ -2630,7 +2630,7 @@ graph [
     title "The modularity of action and perception revisited using control theory and active inference"
     year 2018
     citation_count 0
-    community 325
+    community 324
   ]
   node [
     id 329
@@ -2638,7 +2638,7 @@ graph [
     title "Being curious about the answers to questions: novelty search with learned attention"
     year 2018
     citation_count 0
-    community 326
+    community 325
   ]
   node [
     id 330
@@ -2646,7 +2646,7 @@ graph [
     title "Active Inference for Adaptive BCI: application to the P300 Speller"
     year 2018
     citation_count 0
-    community 327
+    community 326
   ]
   node [
     id 331
@@ -2654,7 +2654,7 @@ graph [
     title "Exploiting Unintended Feature Leakage in Collaborative Learning"
     year 2018
     citation_count 0
-    community 328
+    community 327
   ]
   node [
     id 332
@@ -2662,7 +2662,7 @@ graph [
     title "AFA-PredNet: The action modulation within predictive coding"
     year 2018
     citation_count 0
-    community 329
+    community 328
   ]
   node [
     id 333
@@ -2670,7 +2670,7 @@ graph [
     title "Ideas from Developmental Robotics and Embodied AI on the Questions of Ethics in Robots"
     year 2018
     citation_count 0
-    community 330
+    community 329
   ]
   node [
     id 334
@@ -2678,7 +2678,7 @@ graph [
     title "Toward predictive machine learning for active vision"
     year 2017
     citation_count 0
-    community 331
+    community 330
   ]
   node [
     id 335
@@ -2686,7 +2686,7 @@ graph [
     title "Anomaly Detection in Hierarchical Data Streams under Unknown Models"
     year 2017
     citation_count 0
-    community 332
+    community 331
   ]
   node [
     id 336
@@ -2702,7 +2702,7 @@ graph [
     title "An active inference implementation of phototaxis"
     year 2017
     citation_count 0
-    community 333
+    community 332
   ]
   node [
     id 338
@@ -2710,7 +2710,7 @@ graph [
     title "Active Anomaly Detection in Heterogeneous Processes"
     year 2017
     citation_count 0
-    community 334
+    community 333
   ]
   node [
     id 339
@@ -2718,7 +2718,7 @@ graph [
     title "Active inference, eye movements and oculomotor delays"
     year 2016
     citation_count 0
-    community 335
+    community 334
   ]
   node [
     id 340
@@ -2726,7 +2726,7 @@ graph [
     title "A Minimal Active Inference Agent"
     year 2015
     citation_count 0
-    community 336
+    community 335
   ]
   node [
     id 341
@@ -2734,7 +2734,7 @@ graph [
     title "Active Inference for Binary Symmetric Hidden Markov Models"
     year 2014
     citation_count 0
-    community 337
+    community 336
   ]
   node [
     id 342
@@ -2742,7 +2742,7 @@ graph [
     title "Thermodynamic Optimization of Sensory Adaptation via Game-Theoretic Path Integrals"
     year 2026
     citation_count 0
-    community 338
+    community 337
   ]
   node [
     id 343
@@ -2750,7 +2750,7 @@ graph [
     title "Condensed Past, Thick Present: Evolutionary Approach to the Conscious Experience"
     year 2026
     citation_count 0
-    community 339
+    community 338
   ]
   node [
     id 344
@@ -2758,7 +2758,7 @@ graph [
     title "Don't Break the Boundary: Continual Unlearning for OOD Detection Based on Free Energy Repulsion"
     year 2026
     citation_count 0
-    community 340
+    community 339
   ]
   node [
     id 345
@@ -2766,7 +2766,7 @@ graph [
     title "How Intrinsic Motivation Underlies Embodied Open-Ended Behavior"
     year 2026
     citation_count 0
-    community 341
+    community 340
   ]
   node [
     id 346
@@ -2774,7 +2774,7 @@ graph [
     title "Trion ordering in the attractive three-color Hubbard model on a $&#960;$-flux square lattice"
     year 2025
     citation_count 0
-    community 342
+    community 341
   ]
   node [
     id 347
@@ -2782,7 +2782,7 @@ graph [
     title "Graph Distance as Surprise: Free Energy Minimization in Knowledge Graph Reasoning"
     year 2025
     citation_count 0
-    community 343
+    community 342
   ]
   node [
     id 348
@@ -2790,7 +2790,7 @@ graph [
     title "Scalable predictive processing framework for multitask caregiving robots"
     year 2025
     citation_count 0
-    community 344
+    community 343
   ]
   node [
     id 349
@@ -2798,7 +2798,7 @@ graph [
     title "Self-Evidencing Through Hierarchical Gradient Decomposition: A Dissipative System That Maintains Non-Equilibrium Steady-State by Minimizing Variational Free Energy"
     year 2025
     citation_count 0
-    community 345
+    community 344
   ]
   node [
     id 350
@@ -2806,7 +2806,7 @@ graph [
     title "Bridging integrated information theory and the free-energy principle in living neuronal networks"
     year 2025
     citation_count 0
-    community 346
+    community 345
   ]
   node [
     id 351
@@ -2814,7 +2814,7 @@ graph [
     title "Bio-Inspired Artificial Neural Networks based on Predictive Coding"
     year 2025
     citation_count 0
-    community 347
+    community 346
   ]
   node [
     id 352
@@ -2822,7 +2822,7 @@ graph [
     title "Free Energy-Inspired Cognitive Risk Integration for AV Navigation in Pedestrian-Rich Environments"
     year 2025
     citation_count 0
-    community 348
+    community 347
   ]
   node [
     id 353
@@ -2830,7 +2830,7 @@ graph [
     title "MorphoNAS: Embryogenic Neural Architecture Search Through Morphogen-Guided Development"
     year 2025
     citation_count 0
-    community 349
+    community 348
   ]
   node [
     id 354
@@ -2838,7 +2838,7 @@ graph [
     title "A Semantic Generalization of Shannon's Information Theory and Applications"
     year 2025
     citation_count 0
-    community 350
+    community 349
   ]
   node [
     id 355
@@ -2846,7 +2846,7 @@ graph [
     title "Cognitive Silicon: An Architectural Blueprint for Post-Industrial Computing Systems"
     year 2025
     citation_count 0
-    community 351
+    community 350
   ]
   node [
     id 356
@@ -2854,7 +2854,7 @@ graph [
     title "The Work Capacity of Channels with Memory: Maximum Extractable Work in Percept-Action Loops"
     year 2025
     citation_count 0
-    community 352
+    community 351
   ]
   node [
     id 357
@@ -2862,7 +2862,7 @@ graph [
     title "What the F*ck Is Artificial General Intelligence?"
     year 2025
     citation_count 0
-    community 353
+    community 352
   ]
   node [
     id 358
@@ -2870,7 +2870,7 @@ graph [
     title "e-person Architecture and Framework for Human-AI Co-adventure Relationship"
     year 2025
     citation_count 0
-    community 354
+    community 353
   ]
   node [
     id 359
@@ -2878,7 +2878,7 @@ graph [
     title "Distributionally Robust Free Energy Principle for Decision-Making"
     year 2025
     citation_count 0
-    community 355
+    community 354
   ]
   node [
     id 360
@@ -2886,7 +2886,7 @@ graph [
     title "Dynamic Markov Blanket Detection for Macroscopic Physics Discovery"
     year 2025
     citation_count 0
-    community 356
+    community 355
   ]
   node [
     id 361
@@ -2894,7 +2894,7 @@ graph [
     title "Free Energy and Network Structure: Breaking Scale-Free Behaviour Through Information Processing Constraints"
     year 2025
     citation_count 0
-    community 357
+    community 356
   ]
   node [
     id 362
@@ -2902,7 +2902,7 @@ graph [
     title "Brain in the Dark: Design Principles for Neuromimetic Inference under the Free Energy Principle"
     year 2025
     citation_count 0
-    community 358
+    community 357
   ]
   node [
     id 363
@@ -2910,7 +2910,7 @@ graph [
     title "Free Energy Risk Metrics for Systemically Safe AI: Gatekeeping Multi-Agent Study"
     year 2025
     citation_count 0
-    community 359
+    community 358
   ]
   node [
     id 364
@@ -2918,7 +2918,7 @@ graph [
     title "Dissociated Neuronal Cultures as Model Systems for Self-Organized Prediction"
     year 2025
     citation_count 0
-    community 360
+    community 359
   ]
   node [
     id 365
@@ -2926,7 +2926,7 @@ graph [
     title "Quantifying system-environment synergistic information by effective information decomposition"
     year 2025
     citation_count 0
-    community 361
+    community 360
   ]
   node [
     id 366
@@ -2934,7 +2934,7 @@ graph [
     title "Balancing Exploration and Cybersickness: Investigating Curiosity-Driven Behavior in Virtual Environments"
     year 2025
     citation_count 0
-    community 362
+    community 361
   ]
   node [
     id 367
@@ -2942,7 +2942,7 @@ graph [
     title "Modeling Autonomous Shifts Between Focus State and Mind-Wandering Using a Predictive-Coding-Inspired Variational RNN Model"
     year 2024
     citation_count 0
-    community 363
+    community 362
   ]
   node [
     id 368
@@ -2950,7 +2950,7 @@ graph [
     title "Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI"
     year 2024
     citation_count 0
-    community 364
+    community 363
   ]
   node [
     id 369
@@ -2958,7 +2958,7 @@ graph [
     title "Probabilistic Principles for Biophysics and Neuroscience: Entropy Production, Bayesian Mechanics &#38; the Free-Energy Principle"
     year 2024
     citation_count 0
-    community 365
+    community 364
   ]
   node [
     id 370
@@ -2966,7 +2966,7 @@ graph [
     title "Bayesian Mechanics of Synaptic Learning under the Free Energy Principle"
     year 2024
     citation_count 0
-    community 366
+    community 365
   ]
   node [
     id 371
@@ -2974,7 +2974,7 @@ graph [
     title "Dynamics of An Information Theoretic Analog of Two Masses on a Spring"
     year 2024
     citation_count 0
-    community 367
+    community 366
   ]
   node [
     id 372
@@ -2982,7 +2982,7 @@ graph [
     title "A framework for the use of generative modelling in non-equilibrium statistical mechanics"
     year 2024
     citation_count 0
-    community 368
+    community 367
   ]
   node [
     id 373
@@ -2990,7 +2990,7 @@ graph [
     title "Intrinsic Rewards for Exploration without Harm from Observational Noise: A Simulation Study Based on the Free Energy Principle"
     year 2024
     citation_count 0
-    community 369
+    community 368
   ]
   node [
     id 374
@@ -2998,7 +2998,7 @@ graph [
     title "From Physics to Sentience: Deciphering the Semantics of the Free-Energy Principle and Evaluating its Claims"
     year 2024
     citation_count 0
-    community 370
+    community 369
   ]
   node [
     id 375
@@ -3006,7 +3006,7 @@ graph [
     title "Modeling arousal potential of epistemic emotions using Bayesian information gain: Inquiry cycle driven by free energy fluctuations"
     year 2023
     citation_count 0
-    community 371
+    community 370
   ]
   node [
     id 376
@@ -3014,7 +3014,7 @@ graph [
     title "Towards a Bayesian mechanics of metacognitive particles: A commentary on &#34;Path integrals, particular kinds, and strange things&#34; by Friston, Da Costa, Sakthivadivel, Heins, Pavliotis, Ramstead, and Parr"
     year 2023
     citation_count 0
-    community 372
+    community 371
   ]
   node [
     id 377
@@ -3022,7 +3022,7 @@ graph [
     title "Mortal Computation: A Foundation for Biomimetic Intelligence"
     year 2023
     citation_count 0
-    community 373
+    community 372
   ]
   node [
     id 378
@@ -3030,7 +3030,7 @@ graph [
     title "Approximate information maximization for bandit games"
     year 2023
     citation_count 0
-    community 374
+    community 373
   ]
   node [
     id 379
@@ -3038,7 +3038,7 @@ graph [
     title "Local Max-Entropy and Free Energy Principles, Belief Diffusions and their Singularities"
     year 2023
     citation_count 0
-    community 375
+    community 374
   ]
   node [
     id 380
@@ -3046,7 +3046,7 @@ graph [
     title "Return to Lacan: an approach to digital twin mind with free energy principle"
     year 2023
     citation_count 0
-    community 376
+    community 375
   ]
   node [
     id 381
@@ -3054,7 +3054,7 @@ graph [
     title "The inner screen model of consciousness: applying the free energy principle directly to the study of conscious experience"
     year 2023
     citation_count 0
-    community 377
+    community 376
   ]
   node [
     id 382
@@ -3062,7 +3062,7 @@ graph [
     title "Human-Robot Kinaesthetic Interaction Based on Free Energy Principle"
     year 2023
     citation_count 0
-    community 378
+    community 377
   ]
   node [
     id 383
@@ -3070,7 +3070,7 @@ graph [
     title "Quantum formalism for cognitive psychology"
     year 2023
     citation_count 0
-    community 379
+    community 378
   ]
   node [
     id 384
@@ -3078,7 +3078,7 @@ graph [
     title "Stochastic Surprisal: An inferential measurement of Free Energy in Neural Networks"
     year 2023
     citation_count 0
-    community 380
+    community 379
   ]
   node [
     id 385
@@ -3086,7 +3086,7 @@ graph [
     title "A Theory of Human-Like Few-Shot Learning"
     year 2023
     citation_count 0
-    community 381
+    community 380
   ]
   node [
     id 386
@@ -3094,7 +3094,7 @@ graph [
     title "Quantum Entanglement and the Thermal Hadron"
     year 2022
     citation_count 0
-    community 382
+    community 381
   ]
   node [
     id 387
@@ -3110,7 +3110,7 @@ graph [
     title "On the map-territory fallacy fallacy"
     year 2022
     citation_count 0
-    community 383
+    community 382
   ]
   node [
     id 389
@@ -3118,7 +3118,7 @@ graph [
     title "The Free Energy Principle drives neuromorphic development"
     year 2022
     citation_count 0
-    community 384
+    community 383
   ]
   node [
     id 390
@@ -3126,7 +3126,7 @@ graph [
     title "Local Max-Entropy and Free Energy Principles Solved by Belief Propagation"
     year 2022
     citation_count 0
-    community 385
+    community 384
   ]
   node [
     id 391
@@ -3134,7 +3134,7 @@ graph [
     title "Knowledge as Fruits of Ignorance: A global Free Energy Principle of our way of thinking"
     year 2022
     citation_count 0
-    community 386
+    community 385
   ]
   node [
     id 392
@@ -3142,7 +3142,7 @@ graph [
     title "On Bayesian Mechanics: A Physics of and by Beliefs"
     year 2022
     citation_count 0
-    community 387
+    community 386
   ]
   node [
     id 393
@@ -3150,7 +3150,7 @@ graph [
     title "Sparse coupling and Markov blankets: A comment on &#34;How particular is the physics of the Free Energy Principle?&#34; by Aguilera, Millidge, Tschantz and Buckley"
     year 2022
     citation_count 0
-    community 388
+    community 387
   ]
   node [
     id 394
@@ -3158,7 +3158,7 @@ graph [
     title "Particular flows and attracting sets: A comment on &#34;How particular is the physics of the Free Energy Principle?&#34; by Aguilera, Millidge, Tschantz and Buckley"
     year 2022
     citation_count 0
-    community 389
+    community 388
   ]
   node [
     id 395
@@ -3166,7 +3166,7 @@ graph [
     title "Regarding Flows Under the Free Energy Principle: A Comment on &#34;How Particular is the Physics of the Free Energy Principle?&#34; by Aguilera, Millidge, Tschantz, and Buckley"
     year 2022
     citation_count 0
-    community 390
+    community 389
   ]
   node [
     id 396
@@ -3174,7 +3174,7 @@ graph [
     title "Some Minimal Notes on Notation and Minima: A Comment on &#34;How Particular is the Physics of the Free Energy Principle?&#34; by Aguilera, Millidge, Tschantz, and Buckley"
     year 2022
     citation_count 0
-    community 391
+    community 390
   ]
   node [
     id 397
@@ -3182,7 +3182,7 @@ graph [
     title "Towards a Geometry and Analysis for Bayesian Mechanics"
     year 2022
     citation_count 0
-    community 392
+    community 391
   ]
   node [
     id 398
@@ -3190,7 +3190,7 @@ graph [
     title "Investigating the impact of free energy based behavior on human in human-agent interaction"
     year 2022
     citation_count 0
-    community 393
+    community 392
   ]
   node [
     id 399
@@ -3198,7 +3198,7 @@ graph [
     title "A continuity of Markov blanket interpretations under the Free Energy Principle"
     year 2022
     citation_count 0
-    community 394
+    community 393
   ]
   node [
     id 400
@@ -3206,7 +3206,7 @@ graph [
     title "Blankets, Heat, and Why Free Energy Has Not Illuminated the Workings of the Brain"
     year 2022
     citation_count 0
-    community 395
+    community 394
   ]
   node [
     id 401
@@ -3214,7 +3214,7 @@ graph [
     title "A free energy principle for generic quantum systems"
     year 2021
     citation_count 0
-    community 396
+    community 395
   ]
   node [
     id 402
@@ -3222,7 +3222,7 @@ graph [
     title "Emergence of sensory attenuation based upon the free-energy principle"
     year 2021
     citation_count 0
-    community 397
+    community 396
   ]
   node [
     id 403
@@ -3230,7 +3230,7 @@ graph [
     title "Free Energy Principle for State and Input Estimation of a Quadcopter Flying in Wind"
     year 2021
     citation_count 0
-    community 398
+    community 397
   ]
   node [
     id 404
@@ -3238,7 +3238,7 @@ graph [
     title "A Brain Inspired Learning Algorithm for the Perception of a Quadrotor in Wind"
     year 2021
     citation_count 0
-    community 399
+    community 398
   ]
   node [
     id 405
@@ -3246,7 +3246,7 @@ graph [
     title "A Mathematical Walkthrough and Discussion of the Free Energy Principle"
     year 2021
     citation_count 0
-    community 400
+    community 399
   ]
   node [
     id 406
@@ -3254,7 +3254,7 @@ graph [
     title "Reinforced Imitation Learning by Free Energy Principle"
     year 2021
     citation_count 0
-    community 401
+    community 400
   ]
   node [
     id 407
@@ -3262,7 +3262,7 @@ graph [
     title "Bounded rationality for relaxing best response and mutual consistency: The Quantal Hierarchy model of decision-making"
     year 2021
     citation_count 0
-    community 402
+    community 401
   ]
   node [
     id 408
@@ -3270,7 +3270,7 @@ graph [
     title "How particular is the physics of the free energy principle?"
     year 2021
     citation_count 0
-    community 403
+    community 402
   ]
   node [
     id 409
@@ -3278,7 +3278,7 @@ graph [
     title "A synapse-centric account of the free energy principle"
     year 2021
     citation_count 0
-    community 404
+    community 403
   ]
   node [
     id 410
@@ -3286,7 +3286,7 @@ graph [
     title "Rethinking Neural Networks With Benford's Law"
     year 2021
     citation_count 0
-    community 405
+    community 404
   ]
   node [
     id 411
@@ -3294,7 +3294,7 @@ graph [
     title "Cognition coming about: self-organisation and free-energy"
     year 2020
     citation_count 0
-    community 406
+    community 405
   ]
   node [
     id 412
@@ -3302,7 +3302,7 @@ graph [
     title "Sensorimotor Visual Perception on Embodied System Using Free Energy Principle"
     year 2021
     citation_count 3
-    community 0
+    community 2
   ]
   node [
     id 413
@@ -3310,7 +3310,7 @@ graph [
     title "Autonomous learning and chaining of motor primitives using the Free Energy Principle"
     year 2020
     citation_count 0
-    community 407
+    community 406
   ]
   node [
     id 414
@@ -3318,7 +3318,7 @@ graph [
     title "DynamicEmbedding: Extending TensorFlow for Colossal-Scale Applications"
     year 2020
     citation_count 0
-    community 408
+    community 407
   ]
   node [
     id 415
@@ -3326,7 +3326,7 @@ graph [
     title "Some interesting observations on the free energy principle"
     year 2020
     citation_count 0
-    community 409
+    community 408
   ]
   node [
     id 416
@@ -3334,7 +3334,7 @@ graph [
     title "A Technical Critique of Some Parts of the Free Energy Principle"
     year 2020
     citation_count 0
-    community 410
+    community 409
   ]
   node [
     id 417
@@ -3342,7 +3342,7 @@ graph [
     title "The Poincar&#233;-Boltzmann Machine: from Statistical Physics to Machine Learning and back"
     year 2019
     citation_count 0
-    community 411
+    community 410
   ]
   node [
     id 418
@@ -3350,7 +3350,7 @@ graph [
     title "A free energy principle for a particular physics"
     year 2019
     citation_count 0
-    community 412
+    community 411
   ]
   node [
     id 419
@@ -3358,7 +3358,7 @@ graph [
     title "The principles of adaptation in organisms and machines I: machine learning, information theory, and thermodynamics"
     year 2019
     citation_count 0
-    community 413
+    community 412
   ]
   node [
     id 420
@@ -3366,7 +3366,7 @@ graph [
     title "What does the free energy principle tell us about the brain?"
     year 2019
     citation_count 0
-    community 414
+    community 413
   ]
   node [
     id 421
@@ -3374,7 +3374,7 @@ graph [
     title "Systems of bounded rational agents with information-theoretic constraints"
     year 2018
     citation_count 0
-    community 415
+    community 414
   ]
   node [
     id 422
@@ -3382,7 +3382,7 @@ graph [
     title "Recognition Dynamics in the Brain under the Free Energy Principle"
     year 2017
     citation_count 0
-    community 416
+    community 415
   ]
   node [
     id 423
@@ -3390,7 +3390,7 @@ graph [
     title "Ultimate Intelligence Part III: Measures of Intelligence, Perception and Intelligent Agents"
     year 2017
     citation_count 0
-    community 417
+    community 416
   ]
   node [
     id 424
@@ -3398,7 +3398,7 @@ graph [
     title "The free energy principle for action and perception: A mathematical review"
     year 2017
     citation_count 0
-    community 418
+    community 417
   ]
   node [
     id 425
@@ -3406,7 +3406,7 @@ graph [
     title "Planning with Information-Processing Constraints and Model Uncertainty in Markov Decision Processes"
     year 2016
     citation_count 0
-    community 419
+    community 418
   ]
   node [
     id 426
@@ -3414,7 +3414,7 @@ graph [
     title "Contributions to the Theory of Thermostated Systems II: Least Dissipation of Helmholtz Free Energy in Nano-Biology"
     year 2015
     citation_count 0
-    community 420
+    community 419
   ]
   node [
     id 427
@@ -3422,7 +3422,7 @@ graph [
     title "Free Energy and the Generalized Optimality Equations for Sequential Decision Making"
     year 2012
     citation_count 0
-    community 421
+    community 420
   ]
   node [
     id 428
@@ -3430,7 +3430,7 @@ graph [
     title "Learning in embodied action-perception loops through exploration"
     year 2011
     citation_count 0
-    community 422
+    community 421
   ]
   node [
     id 429
@@ -3438,7 +3438,7 @@ graph [
     title "On the Topological Foundation of Learning and Memory"
     year 2011
     citation_count 0
-    community 423
+    community 422
   ]
   node [
     id 430
@@ -3446,7 +3446,7 @@ graph [
     title "Inference with minimal Gibbs free energy in information field theory"
     year 2010
     citation_count 0
-    community 424
+    community 423
   ]
   node [
     id 431
@@ -3454,7 +3454,7 @@ graph [
     title "Quantum Darwinism as a Darwinian process"
     year 2010
     citation_count 0
-    community 425
+    community 424
   ]
   node [
     id 432
@@ -3462,7 +3462,7 @@ graph [
     title "EASE: Embodied Active Event Perception via Self-Supervised Energy Minimization"
     year 2025
     citation_count 0
-    community 426
+    community 425
   ]
   node [
     id 433
@@ -3470,7 +3470,7 @@ graph [
     title "Bayesian Predictive Coding"
     year 2025
     citation_count 0
-    community 427
+    community 426
   ]
   node [
     id 434
@@ -3478,7 +3478,7 @@ graph [
     title "Discontinuous phase transition of feature detection in lateral predictive coding"
     year 2025
     citation_count 0
-    community 428
+    community 427
   ]
   node [
     id 435
@@ -3486,7 +3486,7 @@ graph [
     title "Brain-like Variational Inference"
     year 2024
     citation_count 0
-    community 429
+    community 428
   ]
   node [
     id 436
@@ -3494,7 +3494,7 @@ graph [
     title "Energy--Information Trade-off Induces Continuous and Discontinuous Phase Transitions in Lateral Predictive Coding"
     year 2023
     citation_count 0
-    community 430
+    community 429
   ]
   node [
     id 437
@@ -3502,7 +3502,7 @@ graph [
     title "Lifelong Neural Predictive Coding: Learning Cumulatively Online without Forgetting"
     year 2019
     citation_count 0
-    community 431
+    community 430
   ]
   node [
     id 438
@@ -3510,7 +3510,7 @@ graph [
     title "Adaptive robot body learning and estimation through predictive coding"
     year 2018
     citation_count 0
-    community 432
+    community 431
   ]
   node [
     id 439
@@ -3518,7 +3518,7 @@ graph [
     title "Information-seeking polynomial NARX model-predictive control through expected free energy minimization"
     year 2023
     citation_count 0
-    community 433
+    community 432
   ]
   node [
     id 440
@@ -3526,7 +3526,7 @@ graph [
     title "Supervised structure learning"
     year 2023
     citation_count 0
-    community 434
+    community 433
   ]
   node [
     id 441
@@ -3534,7 +3534,7 @@ graph [
     title "Free Energy Subadditivity for Symmetric Random Hamiltonians"
     year 2022
     citation_count 0
-    community 435
+    community 434
   ]
   node [
     id 442
@@ -3542,7 +3542,7 @@ graph [
     title "Dream to Explore: Adaptive Simulations for Autonomous Systems"
     year 2021
     citation_count 0
-    community 436
+    community 435
   ]
   node [
     id 443
@@ -3550,7 +3550,7 @@ graph [
     title "Exploration and preference satisfaction trade-off in reward-free learning"
     year 2021
     citation_count 0
-    community 437
+    community 436
   ]
   node [
     id 444
@@ -3558,7 +3558,7 @@ graph [
     title "The sum of log-normal variates in geometric Brownian motion"
     year 2018
     citation_count 0
-    community 438
+    community 437
   ]
   node [
     id 445
@@ -3566,7 +3566,7 @@ graph [
     title "Predicting Fixation Tendencies of the H3N2 Influenza Virus by Free Energy Calculation"
     year 2012
     citation_count 0
-    community 439
+    community 438
   ]
   node [
     id 446
@@ -3574,7 +3574,7 @@ graph [
     title "LGQ: Learning Discretization Geometry for Scalable and Stable Image Tokenization"
     year 2026
     citation_count 0
-    community 440
+    community 439
   ]
   node [
     id 447
@@ -3582,7 +3582,7 @@ graph [
     title "Metabolic cost of information processing in Poisson variational autoencoders"
     year 2026
     citation_count 0
-    community 441
+    community 440
   ]
   node [
     id 448
@@ -3590,7 +3590,7 @@ graph [
     title "Large-scale Score-based Variational Posterior Inference for Bayesian Deep Neural Networks"
     year 2026
     citation_count 0
-    community 442
+    community 441
   ]
   node [
     id 449
@@ -3598,7 +3598,7 @@ graph [
     title "AutoBayes: A Compositional Framework for Generalized Variational Inference"
     year 2025
     citation_count 0
-    community 443
+    community 442
   ]
   node [
     id 450
@@ -3606,7 +3606,7 @@ graph [
     title "A Tensor-Structured Approach to Dynamic Channel Prediction for Massive MIMO Systems with Temporal Non-Stationarity"
     year 2024
     citation_count 0
-    community 444
+    community 443
   ]
   node [
     id 451
@@ -3614,7 +3614,7 @@ graph [
     title "Improved Depth Estimation of Bayesian Neural Networks"
     year 2024
     citation_count 0
-    community 445
+    community 444
   ]
   node [
     id 452
@@ -3622,7 +3622,7 @@ graph [
     title "Getting Wiser from Multiple Data: Probabilistic Updating according to Jeffrey and Pearl"
     year 2024
     citation_count 0
-    community 446
+    community 445
   ]
   node [
     id 453
@@ -3630,7 +3630,7 @@ graph [
     title "Compositional statistical mechanics, entropy and variational inference"
     year 2024
     citation_count 0
-    community 447
+    community 446
   ]
   node [
     id 454
@@ -3638,7 +3638,7 @@ graph [
     title "Bayesian mechanics of self-organising systems"
     year 2023
     citation_count 0
-    community 448
+    community 447
   ]
   node [
     id 455
@@ -3646,7 +3646,7 @@ graph [
     title "Variational Bayesian Neural Networks via Resolution of Singularities"
     year 2023
     citation_count 0
-    community 449
+    community 448
   ]
   node [
     id 456
@@ -3654,7 +3654,7 @@ graph [
     title "Principled Pruning of Bayesian Neural Networks through Variational Free Energy Minimization"
     year 2022
     citation_count 0
-    community 450
+    community 449
   ]
   node [
     id 457
@@ -3662,7 +3662,7 @@ graph [
     title "Quantum Advantage in Variational Bayes Inference"
     year 2022
     citation_count 0
-    community 451
+    community 450
   ]
   node [
     id 458
@@ -3670,7 +3670,7 @@ graph [
     title "Wasserstein-Splitting Gaussian Process Regression for Heterogeneous Online Bayesian Inference"
     year 2021
     citation_count 0
-    community 452
+    community 451
   ]
   node [
     id 459
@@ -3678,7 +3678,7 @@ graph [
     title "Bayesian brains and the R&#233;nyi divergence"
     year 2021
     citation_count 0
-    community 453
+    community 452
   ]
   node [
     id 460
@@ -3686,7 +3686,7 @@ graph [
     title "Psychophysical identity and free energy"
     year 2020
     citation_count 0
-    community 454
+    community 453
   ]
   node [
     id 461
@@ -3694,7 +3694,7 @@ graph [
     title "The Mean-Field Approximation: Information Inequalities, Algorithms, and Complexity"
     year 2018
     citation_count 0
-    community 455
+    community 454
   ]
   node [
     id 462
@@ -3702,7 +3702,7 @@ graph [
     title "Sentient Self-Organization: Minimal dynamics and circular causality"
     year 2017
     citation_count 0
-    community 456
+    community 455
   ]
   node [
     id 463
@@ -3710,7 +3710,7 @@ graph [
     title "Bayesian Population Receptive Field Modelling"
     year 2016
     citation_count 0
-    community 457
+    community 456
   ]
   node [
     id 464
@@ -3718,7 +3718,7 @@ graph [
     title "Universal Darwinism as a process of Bayesian inference"
     year 2016
     citation_count 0
-    community 458
+    community 457
   ]
   node [
     id 465
@@ -3726,7 +3726,7 @@ graph [
     title "Understanding Probabilistic Sparse Gaussian Process Approximations"
     year 2016
     citation_count 0
-    community 459
+    community 458
   ]
   node [
     id 466
@@ -3734,7 +3734,7 @@ graph [
     title "A Unifying Framework for Gaussian Process Pseudo-Point Approximations using Power Expectation Propagation"
     year 2016
     citation_count 0
-    community 460
+    community 459
   ]
   node [
     id 467
@@ -3742,7 +3742,7 @@ graph [
     title "The Multivariate Generalised von Mises distribution: Inference and applications"
     year 2016
     citation_count 0
-    community 461
+    community 460
   ]
   node [
     id 468
@@ -3750,7 +3750,7 @@ graph [
     title "A Geometric View of Posterior Approximation"
     year 2015
     citation_count 0
-    community 462
+    community 461
   ]
   node [
     id 469
@@ -3758,7 +3758,7 @@ graph [
     title "Rebuilding Factorized Information Criterion: Asymptotically Accurate Marginal Likelihood"
     year 2015
     citation_count 0
-    community 463
+    community 462
   ]
   node [
     id 470
@@ -3766,7 +3766,7 @@ graph [
     title "Quantum Annealing for Variational Bayes Inference"
     year 2014
     citation_count 0
-    community 464
+    community 463
   ]
   node [
     id 471
@@ -3774,7 +3774,7 @@ graph [
     title "Simplifying Generalized Belief Propagation on Redundant Region Graphs"
     year 2013
     citation_count 0
-    community 465
+    community 464
   ]
   node [
     id 472
@@ -3782,7 +3782,7 @@ graph [
     title "Quantum Annealing for Variational Bayes Inference"
     year 2009
     citation_count 0
-    community 466
+    community 465
   ]
   node [
     id 473
@@ -3790,7 +3790,7 @@ graph [
     title "A Variational Inference Framework for Soft-In-Soft-Out Detection in Multiple Access Channels"
     year 2008
     citation_count 0
-    community 467
+    community 466
   ]
   node [
     id 474
@@ -3798,31 +3798,31 @@ graph [
     title "Cluster Variation Method in Statistical Physics and Probabilistic Graphical Models"
     year 2005
     citation_count 0
-    community 468
+    community 467
   ]
   node [
     id 475
     label "doi:10.1098/rsif.2017.0792"
     title "The Markov blankets of life: autonomy, active inference and the free energy principle"
     year 2018
-    citation_count 422
-    community 1
+    citation_count 346
+    community 3
   ]
   node [
     id 476
     label "doi:10.1016/j.plrev.2021.09.001"
-    title "The Markov blanket trick: On the scope of the free energy principle and active inference"
+    title "The Markov blanket trick: On the scope of the free energy principle and active inference."
     year 2021
-    citation_count 75
-    community 1
+    citation_count 52
+    community 3
   ]
   node [
     id 477
     label "doi:10.3389/frai.2020.00030"
     title "An Integrated World Modeling Theory (IWMT) of Consciousness: Combining Integrated Information and Global Neuronal Workspace Theories With the Free Energy Principle and Active Inference Framework; Toward Solving the Hard Problem and Characterizing Agentic Causation"
-    year 2020
-    citation_count 138
-    community 2
+    year 2019
+    citation_count 84
+    community 3
   ]
   node [
     id 478
@@ -3830,15 +3830,15 @@ graph [
     title "Active Inference: A Process Theory"
     year 2016
     citation_count 1121
-    community 1
+    community 2
   ]
   node [
     id 479
     label "doi:10.1007/s11229-016-1239-1"
     title "The anticipating brain is not a scientist: the free-energy principle from an ecological-enactive perspective"
     year 2016
-    citation_count 380
-    community 1
+    citation_count 339
+    community 3
   ]
   node [
     id 480
@@ -3846,15 +3846,15 @@ graph [
     title "Active Inference"
     year 2022
     citation_count 480
-    community 1
+    community 4
   ]
   node [
     id 481
     label "doi:10.31234/osf.io/paz5j"
     title "Integrated World Modeling Theory (IWMT) Implemented: Towards Reverse Engineering Consciousness with the Free Energy Principle and Active Inference"
     year 2020
-    citation_count 14
-    community 2
+    citation_count 7
+    community 468
   ]
   node [
     id 482
@@ -3862,7 +3862,7 @@ graph [
     title "Active inference and epistemic value"
     year 2015
     citation_count 711
-    community 2
+    community 1
   ]
   node [
     id 483
@@ -3870,31 +3870,31 @@ graph [
     title "Reinforcement Learning or Active Inference?"
     year 2009
     citation_count 431
-    community 0
+    community 1
   ]
   node [
     id 484
     label "doi:10.3389/fpsyg.2024.1368265"
     title "The police hunch: the Bayesian brain, active inference, and the free energy principle in action"
     year 2024
-    citation_count 4
-    community 0
+    citation_count 2
+    community 3
   ]
   node [
     id 485
     label "doi:10.3389/fnhum.2013.00547"
     title "Minimal self-models and the free energy principle"
     year 2013
-    citation_count 276
-    community 0
+    citation_count 242
+    community 3
   ]
   node [
     id 486
     label "doi:10.1177/1059712319862774"
     title "A tale of two densities: active inference is enactive inference"
     year 2019
-    citation_count 221
-    community 1
+    citation_count 174
+    community 3
   ]
   node [
     id 487
@@ -3918,7 +3918,7 @@ graph [
     title "Integrated World Modeling Theory (IWMT) Implemented: Towards Reverse Engineering Consciousness with the Free Energy Principle and Active Inference"
     year 2020
     citation_count 3
-    community 2
+    community 0
   ]
   node [
     id 490
@@ -3950,7 +3950,7 @@ graph [
     title "Predicting green: really radical (plant) predictive processing"
     year 2017
     citation_count 113
-    community 0
+    community 1
   ]
   node [
     id 494
@@ -3966,7 +3966,7 @@ graph [
     title "Sophisticated Inference"
     year 2021
     citation_count 113
-    community 1
+    community 2
   ]
   node [
     id 496
@@ -4014,7 +4014,7 @@ graph [
     title "What does the free energy principle tell us about the brain?"
     year 2019
     citation_count 62
-    community 2
+    community 1
   ]
   node [
     id 502
@@ -4030,7 +4030,7 @@ graph [
     title "PID Control as a Process of Active Inference with Linear Generative Models"
     year 2019
     citation_count 66
-    community 0
+    community 1
   ]
   node [
     id 504
@@ -4045,8 +4045,8 @@ graph [
     label "doi:10.3389/fnins.2021.647579"
     title "Keeping the Breath in Mind: Respiration, Neural Oscillations, and the Free Energy Principle"
     year 2021
-    citation_count 68
-    community 0
+    citation_count 44
+    community 470
   ]
   node [
     id 506
@@ -4054,7 +4054,7 @@ graph [
     title "End-to-End Pixel-Based Deep Active Inference for Body Perception and Action"
     year 2020
     citation_count 56
-    community 1
+    community 2
   ]
   node [
     id 507
@@ -4062,7 +4062,7 @@ graph [
     title "A Factor Graph Description of Deep Temporal Active Inference"
     year 2017
     citation_count 25
-    community 2
+    community 1
   ]
   node [
     id 508
@@ -4078,15 +4078,15 @@ graph [
     title "Situated models and the modeler: A comment on &#8220;The Markov blanket trick: On the scope of the free energy principle and active inference&#8221; by Raja, Valluri, Baggs, Chemero and Anderson"
     year 2022
     citation_count 1
-    community 3
+    community 0
   ]
   node [
     id 510
     label "doi:10.3389/fncom.2020.00030"
     title "An Investigation of the Free Energy Principle for Emotion Recognition"
     year 2020
-    citation_count 42
-    community 0
+    citation_count 28
+    community 3
   ]
   node [
     id 511
@@ -4110,7 +4110,7 @@ graph [
     title "An Empirical Study of Active Inference on a Humanoid Robot"
     year 2021
     citation_count 62
-    community 1
+    community 2
   ]
   node [
     id 514
@@ -4118,7 +4118,7 @@ graph [
     title "Simulating Active Inference Processes by Message Passing"
     year 2019
     citation_count 39
-    community 2
+    community 1
   ]
   node [
     id 515
@@ -4134,7 +4134,7 @@ graph [
     title "Active inference models do not contradict folk psychology"
     year 2022
     citation_count 37
-    community 2
+    community 0
   ]
   node [
     id 517
@@ -4142,7 +4142,7 @@ graph [
     title "Reward Maximization Through Discrete Active Inference"
     year 2023
     citation_count 30
-    community 1
+    community 2
   ]
   node [
     id 518
@@ -4150,7 +4150,7 @@ graph [
     title "The Radically Embodied Conscious Cybernetic Bayesian Brain: From Free Energy to Free Will and Back Again"
     year 2021
     citation_count 50
-    community 2
+    community 0
   ]
   node [
     id 519
@@ -4166,7 +4166,7 @@ graph [
     title "Free energy: a user&#8217;s guide"
     year 2022
     citation_count 17
-    community 0
+    community 1
   ]
   node [
     id 521
@@ -4174,7 +4174,7 @@ graph [
     title "PID Control as a Process of Active Inference with Linear Generative Model"
     year 2019
     citation_count 23
-    community 0
+    community 1
   ]
   node [
     id 522
@@ -4190,7 +4190,7 @@ graph [
     title "Deep neurophenomenology: An active inference account of some features of conscious experience and of their disturbance in major depressive disorder"
     year 2020
     citation_count 16
-    community 2
+    community 0
   ]
   node [
     id 524
@@ -4206,7 +4206,7 @@ graph [
     title "Combining Active Inference and Hierarchical Predictive Coding: A Tutorial Introduction and Case Study"
     year 2019
     citation_count 23
-    community 3
+    community 1
   ]
   node [
     id 526
@@ -4214,7 +4214,7 @@ graph [
     title "What is simulated in the action observation network when we observe actions?"
     year 2010
     citation_count 64
-    community 470
+    community 471
   ]
   node [
     id 527
@@ -4230,15 +4230,15 @@ graph [
     title "Limiting the explanatory scope of extended active inference: the implications of a causal pattern analysis of selective niche construction, developmental niche construction, and organism-niche coordination dynamics"
     year 2021
     citation_count 20
-    community 0
+    community 1
   ]
   node [
     id 529
     label "doi:10.3389/fnbot.2022.910161"
     title "Connecting the free energy principle with quantum cognition"
     year 2022
-    citation_count 14
-    community 0
+    citation_count 15
+    community 472
   ]
   node [
     id 530
@@ -4254,34 +4254,26 @@ graph [
     title "Bayesian policy selection using active inference"
     year 2019
     citation_count 22
-    community 1
+    community 2
   ]
   node [
     id 532
-    label "doi:10.1097/00002480-197700230-00148"
-    title "NEUROBEHAVIORAL PROBES FOR ADEQUACY OF DIALYSIS"
-    year 1977
-    citation_count 24
-    community 471
-  ]
-  node [
-    id 533
     label "doi:10.48550/arxiv.1906.03022"
     title "Active inference body perception and action for humanoid robots"
     year 2019
     citation_count 28
-    community 4
+    community 2
   ]
   node [
-    id 534
+    id 533
     label "doi:10.1080/01691864.2023.2225232"
     title "World models and predictive coding for cognitive and developmental robotics: frontiers and challenges"
     year 2023
     citation_count 56
-    community 1
+    community 2
   ]
   node [
-    id 535
+    id 534
     label "doi:10.1016/b978-0-12-819200-9.00010-7"
     title "Integrating Cybernetic Big Five Theory with the free energy principle: A new strategy for modeling personalities as complex systems"
     year 2021
@@ -4289,7 +4281,7 @@ graph [
     community 2
   ]
   node [
-    id 536
+    id 535
     label "doi:10.1016/j.neucom.2021.12.042"
     title "Prior preference learning from experts: Designing a reward with active inference"
     year 2021
@@ -4297,15 +4289,15 @@ graph [
     community 1
   ]
   node [
-    id 537
+    id 536
     label "doi:10.1007/978-3-319-97628-0_2"
     title "A Probabilistic Interpretation of PID Controllers Using Active Inference"
     year 2018
     citation_count 17
-    community 0
+    community 1
   ]
   node [
-    id 538
+    id 537
     label "doi:10.3390/e24111576"
     title "Cognition as Morphological/Morphogenetic Embodied Computation In Vivo"
     year 2022
@@ -4313,7 +4305,7 @@ graph [
     community 1
   ]
   node [
-    id 539
+    id 538
     label "doi:10.3389/fnbot.2022.844773"
     title "The Problem of Meaning: The Free Energy Principle and Artificial Agency"
     year 2022
@@ -4321,7 +4313,7 @@ graph [
     community 1
   ]
   node [
-    id 540
+    id 539
     label "doi:10.1017/9781009026949.007"
     title "Active Inference, Bayesian Optimal Design, and Expected Utility"
     year 2022
@@ -4329,15 +4321,7 @@ graph [
     community 2
   ]
   node [
-    id 541
-    label "openalex:https://openalex.org/W2438016458"
-    title "Squamous carcinoma metastasis to lymph nodes in chronic lymphatic leukaemia."
-    year 1977
-    citation_count 8
-    community 472
-  ]
-  node [
-    id 542
+    id 540
     label "doi:10.1093/nc/niab038"
     title "Bayesian theories of consciousness: a review in search for a minimal unifying model"
     year 2021
@@ -4345,7 +4329,7 @@ graph [
     community 1
   ]
   node [
-    id 543
+    id 541
     label "doi:10.1109/tmbmc.2023.3272158"
     title "Control Flow in Active Inference Systems&#8212;Part II: Tensor Networks as General Models of Control Flow"
     year 2023
@@ -4353,31 +4337,31 @@ graph [
     community 1
   ]
   node [
-    id 544
+    id 542
     label "doi:10.31234/osf.io/kr5xf"
     title "Active inference models do not contradict folk psychology"
     year 2021
     citation_count 11
-    community 2
+    community 0
   ]
   node [
-    id 545
+    id 543
     label "doi:10.1075/tcb.00088.car"
     title "Empirical translation process research"
     year 2023
     citation_count 20
-    community 1
+    community 4
   ]
   node [
-    id 546
+    id 544
     label "doi:10.1007/978-94-017-9900-3_7"
     title "Active Inference, Predictive Coding and Cortical Architecture"
     year 2015
     citation_count 18
-    community 0
+    community 1
   ]
   node [
-    id 547
+    id 545
     label "doi:10.1007/978-3-031-47958-8_9"
     title "Designing Explainable Artificial Intelligence with&#160;Active Inference: A&#160;Framework for&#160;Transparent Introspection and&#160;Decision-Making"
     year 2023
@@ -4385,15 +4369,15 @@ graph [
     community 0
   ]
   node [
-    id 548
+    id 546
     label "openalex:https://openalex.org/W2968268642"
     title "Bayesian policy selection using active inference"
     year 2019
     citation_count 9
-    community 4
+    community 2
   ]
   node [
-    id 549
+    id 547
     label "doi:10.1109/lra.2021.3090015"
     title "Leading or Following? Dyadic Robot Imitative Interaction Using the Active Inference Framework"
     year 2021
@@ -4401,7 +4385,7 @@ graph [
     community 473
   ]
   node [
-    id 550
+    id 548
     label "doi:10.3389/fpsyg.2020.606174"
     title "Cooperation and Social Rules Emerging From the Principle of Surprise Minimization"
     year 2021
@@ -4409,23 +4393,23 @@ graph [
     community 0
   ]
   node [
-    id 551
+    id 549
     label "doi:10.1109/icra48891.2023.10160593"
     title "Active Inference for Autonomous Decision-Making with Contextual Multi-Armed Bandits"
     year 2023
     citation_count 12
-    community 2
-  ]
-  node [
-    id 552
-    label "doi:10.1162/neco_a_01738"
-    title "Active Inference and Intentional Behavior"
-    year 2025
-    citation_count 13
     community 1
   ]
   node [
-    id 553
+    id 550
+    label "doi:10.1162/neco_a_01738"
+    title "Active Inference and Intentional Behavior"
+    year 2025
+    citation_count 12
+    community 3
+  ]
+  node [
+    id 551
     label "doi:10.3389/fnsys.2022.787659"
     title "Generalized Simultaneous Localization and Mapping (G-SLAM) as unification framework for natural and artificial intelligences: towards reverse engineering the hippocampal/entorhinal system and principles of high-level cognition"
     year 2022
@@ -4433,7 +4417,7 @@ graph [
     community 2
   ]
   node [
-    id 554
+    id 552
     label "doi:10.3389/fncom.2022.642397"
     title "Integrated world modeling theory expanded: Implications for the future of consciousness"
     year 2022
@@ -4441,39 +4425,39 @@ graph [
     community 2
   ]
   node [
-    id 555
+    id 553
     label "doi:10.3389/fncir.2024.1283372"
     title "I like therefore I can, and I can therefore I like: the role of self-efficacy and affect in active inference of allostasis"
     year 2024
     citation_count 9
-    community 0
+    community 474
   ]
   node [
-    id 556
+    id 554
     label "doi:10.3390/e25060928"
     title "Models of the Translation Process and the Free Energy Principle"
     year 2023
-    citation_count 8
-    community 1
+    citation_count 7
+    community 3
   ]
   node [
-    id 557
+    id 555
     label "doi:10.48550/arxiv.2201.06387"
     title "The free energy principle made simpler but not too simple"
     year 2022
     citation_count 9
-    community 474
+    community 475
   ]
   node [
-    id 558
+    id 556
     label "doi:10.1177/1059712320962158"
     title "Cognitive neurorobotics and self in the shared world, a focused review of ongoing research"
     year 2020
     citation_count 21
-    community 1
+    community 4
   ]
   node [
-    id 559
+    id 557
     label "doi:10.31234/osf.io/tdw82"
     title "Generalized Simultaneous Localization and Mapping (G-SLAM) as unification framework for natural and artificial intelligences: towards reverse engineering the hippocampal/entorhinal system and principles of high-level cognition"
     year 2021
@@ -4481,7 +4465,7 @@ graph [
     community 2
   ]
   node [
-    id 560
+    id 558
     label "doi:10.3389/fnhum.2022.956831"
     title "Hyperactivity of the default mode network in schizophrenia and free energy: A dialogue between Freudian theory of psychosis and neuroscience"
     year 2022
@@ -4489,111 +4473,111 @@ graph [
     community 1
   ]
   node [
-    id 561
+    id 559
     label "doi:10.48550/arxiv.1503.04187"
     title "A Minimal Active Inference Agent"
     year 2015
     citation_count 5
-    community 0
+    community 1
   ]
   node [
-    id 562
+    id 560
     label "doi:10.3389/fnbot.2024.1341750"
     title "Resolving uncertainty on the fly: modeling adaptive driving behavior as active inference"
     year 2024
     citation_count 13
-    community 1
+    community 4
   ]
   node [
-    id 563
+    id 561
     label "doi:10.1098/rsfs.2022.0041"
     title "Free energy and inference in living systems"
-    year 2023
-    citation_count 9
-    community 1
+    year 2022
+    citation_count 11
+    community 3
   ]
   node [
-    id 564
+    id 562
     label "doi:10.1162/isal_a_00137"
     title "The dark room problem in predictive processing and active inference, a legacy of cognitivism?"
     year 2019
     citation_count 8
-    community 0
+    community 1
   ]
   node [
-    id 565
+    id 563
     label "doi:10.3390/e23111521"
     title "Accessing Active Inference Theory through Its Implicit and Deliberative Practice in Human Organizations"
     year 2021
     citation_count 5
-    community 1
+    community 4
   ]
   node [
-    id 566
+    id 564
     label "doi:10.31234/osf.io/r3fcx"
     title "Natural language syntax complies with the free-energy principle"
     year 2021
     citation_count 6
-    community 1
+    community 2
   ]
   node [
-    id 567
+    id 565
     label "doi:10.1109/icassp49357.2023.10096947"
     title "Adapting Exploratory Behaviour in Active Inference for Autonomous Driving"
     year 2023
     citation_count 5
-    community 1
+    community 2
   ]
   node [
-    id 568
+    id 566
     label "doi:10.3389/frobt.2021.684401"
     title "Active Inference Through Energy Minimization in Multimodal Affective Human&#8211;Robot Interaction"
     year 2021
     citation_count 8
-    community 4
+    community 2
   ]
   node [
-    id 569
+    id 567
     label "doi:10.1109/tsp.2021.3095711"
     title "Application of the Free Energy Principle to Estimation and Control"
     year 2021
     citation_count 10
-    community 4
+    community 1
   ]
   node [
-    id 570
+    id 568
     label "doi:10.1371/journal.pone.0224055"
     title "Exploring disturbance as a force for good in motor learning"
     year 2020
     citation_count 10
-    community 475
+    community 476
   ]
   node [
-    id 571
+    id 569
     label "doi:10.1007/978-3-031-28719-0_9"
     title "World Model Learning from&#160;Demonstrations with&#160;Active Inference: Application to&#160;Driving Behavior"
     year 2023
     citation_count 5
-    community 1
+    community 2
   ]
   node [
-    id 572
+    id 570
     label "doi:10.1007/978-3-031-08629-8_20"
     title "Affordance and Active Inference"
     year 2022
     citation_count 10
-    community 2
+    community 4
   ]
   node [
-    id 573
+    id 571
     label "openalex:https://openalex.org/W3037121306"
     title "Anticipatory action active inference in embodied cognitive activity"
     year 2020
     citation_count 8
-    community 0
+    community 477
   ]
   node [
-    id 574
+    id 572
     label "doi:10.3390/e26060518"
     title "The Universal Optimism of the Self-Evidencing Mind"
     year 2024
@@ -4601,7 +4585,7 @@ graph [
     community 1
   ]
   node [
-    id 575
+    id 573
     label "doi:10.1093/scan/nsw154"
     title "The theory of constructed emotion: an active inference account of interoception and categorization"
     year 2016
@@ -4609,7 +4593,7 @@ graph [
     community 0
   ]
   node [
-    id 576
+    id 574
     label "doi:10.48550/arxiv.1901.07945"
     title "What does the free energy principle tell us about the brain?"
     year 2019
@@ -4617,63 +4601,63 @@ graph [
     community 2
   ]
   node [
-    id 577
+    id 575
     label "openalex:https://openalex.org/W3037369448"
     title "Unfulfilled prophecies in sport performance: Active inference and the choking effect"
     year 2020
     citation_count 10
-    community 2
+    community 0
   ]
   node [
-    id 578
+    id 576
     label "openalex:https://openalex.org/W2786160659"
     title "A Computational Model for the Dynamical Learning of Event Taxonomies."
     year 2017
     citation_count 9
-    community 2
+    community 1
   ]
   node [
-    id 579
+    id 577
     label "openalex:https://openalex.org/W2964662954"
     title "Active inference : building a new bridge between control theory and embodied cognitive science"
     year 2019
     citation_count 5
-    community 476
+    community 478
   ]
   node [
-    id 580
+    id 578
     label "doi:10.1101/2021.12.02.471005"
     title "<i>In vitro</i> neurons learn and exhibit sentience when embodied in a simulated game-world"
     year 2021
     citation_count 13
-    community 2
+    community 1
   ]
   node [
-    id 581
+    id 579
     label "doi:10.1101/284562"
     title "A probabilistic interpretation of PID controllers using active inference"
     year 2018
     citation_count 4
-    community 0
+    community 1
   ]
   node [
-    id 582
+    id 580
     label "doi:10.4324/9781003084082-3"
     title "Deep Neurophenomenology"
     year 2023
     citation_count 6
-    community 477
+    community 479
   ]
   node [
-    id 583
+    id 581
     label "doi:10.3368/lj.42.2.175"
-    title "<i>Active Inference: The Free Energy Principle in Mind, Brain, and Behaviour</i>"
+    title "Active Inference: The Free Energy Principle in Mind, Brain, and Behaviour"
     year 2023
-    citation_count 0
-    community 478
+    citation_count 75
+    community 3
   ]
   node [
-    id 584
+    id 582
     label "doi:10.31234/osf.io/8fm2r"
     title "Keeping the Breath in Mind: Respiration, Neural Oscillations and the Free Energy Principle"
     year 2020
@@ -4681,15 +4665,15 @@ graph [
     community 0
   ]
   node [
-    id 585
+    id 583
     label "doi:10.1007/978-3-030-64919-7_4"
     title "A Worked Example of Fokker-Planck-Based Active Inference"
     year 2020
     citation_count 5
-    community 4
+    community 1
   ]
   node [
-    id 586
+    id 584
     label "doi:10.1098/rstb.2016.0007"
     title "Active interoceptive inference and the emotional brain"
     year 2016
@@ -4697,31 +4681,31 @@ graph [
     community 0
   ]
   node [
-    id 587
+    id 585
     label "doi:10.3390/e27020143"
     title "As One and Many: Relating Individual and Emergent Group-Level Generative Models in Active Inference"
     year 2025
-    citation_count 5
-    community 1
+    citation_count 4
+    community 3
   ]
   node [
-    id 588
+    id 586
     label "doi:10.1007/s10915-022-01939-z"
     title "Scientific Machine Learning Through Physics&#8211;Informed Neural Networks: Where we are and What&#8217;s Next"
     year 2022
     citation_count 1947
-    community 479
+    community 480
   ]
   node [
-    id 589
+    id 587
     label "doi:10.48550/arxiv.2303.01514"
     title "Control flow in active inference systems"
     year 2023
     citation_count 5
-    community 480
+    community 481
   ]
   node [
-    id 590
+    id 588
     label "doi:10.48550/arxiv.1911.02362"
     title "Bayesian Analogical Cybernetics"
     year 2019
@@ -4729,15 +4713,15 @@ graph [
     community 2
   ]
   node [
-    id 591
+    id 589
     label "doi:10.31234/osf.io/653wp"
-    title "Integrating Cybernetic Big Five Theory with the Free Energy Principle: A new strategy for modeling personalities as complex systems"
+    title "Integrating Cybernetic Big Five Theory with the free energy principle: A new strategy for modeling personalities as complex systems"
     year 2020
-    citation_count 9
-    community 2
+    citation_count 15
+    community 482
   ]
   node [
-    id 592
+    id 590
     label "doi:10.3389/fpsyt.2013.00047"
     title "The Computational Anatomy of Psychosis"
     year 2013
@@ -4745,23 +4729,23 @@ graph [
     community 0
   ]
   node [
-    id 593
+    id 591
     label "doi:10.1371/journal.pcbi.1000211"
     title "Hierarchical Models in the Brain"
     year 2008
     citation_count 964
-    community 0
+    community 1
   ]
   node [
-    id 594
+    id 592
     label "doi:10.3389/fncom.2022.869268"
     title "Unification of free energy minimization, spatiotemporal energy, and dimension reduction models of V1 organization: Postnatal learning on an antenatal scaffold"
     year 2022
     citation_count 6
-    community 0
+    community 6
   ]
   node [
-    id 595
+    id 593
     label "doi:10.1098/rsif.2013.0475"
     title "Life as we know it"
     year 2013
@@ -4769,23 +4753,23 @@ graph [
     community 1
   ]
   node [
-    id 596
+    id 594
     label "doi:10.1007/978-3-031-28719-0_25"
     title "Deriving Time-Averaged Active Inference from&#160;Control Principles"
     year 2023
     citation_count 3
-    community 2
+    community 1
   ]
   node [
-    id 597
+    id 595
     label "doi:10.5281/zenodo.18717273"
     title "Metric-Dependent Active Inference: Gauge-Theoretic Degeneracy and the Geometric Extension of the Free Energy Principle"
     year 2026
     citation_count 0
-    community 481
+    community 483
   ]
   node [
-    id 598
+    id 596
     label "doi:10.48550/arxiv.1112.1125"
     title "Learning in embodied action-perception loops through exploration"
     year 2011
@@ -4793,47 +4777,47 @@ graph [
     community 0
   ]
   node [
-    id 599
+    id 597
     label "doi:10.5281/zenodo.18717272"
     title "Metric-Dependent Active Inference: Gauge-Theoretic Degeneracy and the Geometric Extension of the Free Energy Principle"
     year 2026
     citation_count 0
-    community 482
+    community 484
   ]
   node [
-    id 600
+    id 598
     label "doi:10.48550/arxiv.2111.10530"
     title "Kalman filters as the steady-state solution of gradient descent on variational free energy"
     year 2021
     citation_count 3
-    community 0
+    community 1
   ]
   node [
-    id 601
+    id 599
     label "doi:10.48550/arxiv.2210.12761"
     title "Path integrals, particular kinds, and strange things"
     year 2022
     citation_count 5
-    community 483
+    community 485
   ]
   node [
-    id 602
+    id 600
     label "doi:10.3390/books978-3-0365-4774-9"
     title "Applying the Free-Energy Principle to Complex Adaptive Systems"
     year 2022
     citation_count 4
-    community 484
+    community 486
   ]
   node [
-    id 603
+    id 601
     label "doi:10.3390/computers13070161"
     title "Modeling Autonomous Vehicle Responses to Novel Observations Using Hierarchical Cognitive Representations Inspired Active Inference"
     year 2024
-    citation_count 5
-    community 1
+    citation_count 7
+    community 7
   ]
   node [
-    id 604
+    id 602
     label "doi:10.1007/s00429-012-0475-5"
     title "Predictions not commands: active inference in the motor system"
     year 2012
@@ -4841,15 +4825,15 @@ graph [
     community 0
   ]
   node [
-    id 605
+    id 603
     label "doi:10.48550/arxiv.2312.07547"
     title "Active Inference and Intentional Behaviour"
     year 2023
     citation_count 5
-    community 485
+    community 487
   ]
   node [
-    id 606
+    id 604
     label "doi:10.15502/9783958570207"
     title "Perceptual Presence in the Kuhnian-Popperian Bayesian Brain"
     year 2015
@@ -4857,15 +4841,15 @@ graph [
     community 0
   ]
   node [
-    id 607
+    id 605
     label "doi:10.1109/icecce52056.2021.9514227"
     title "Deep active inference in control tasks"
     year 2021
     citation_count 2
-    community 2
+    community 1
   ]
   node [
-    id 608
+    id 606
     label "doi:10.31234/osf.io/rm5b2"
     title "Integrated World Modeling Theory (IWMT) Expanded: Implications for Theories of Consciousness and Artificial Intelligence"
     year 2021
@@ -4873,23 +4857,23 @@ graph [
     community 2
   ]
   node [
-    id 609
+    id 607
     label "doi:10.1007/s11229-024-04679-9"
     title "Ambient smart environments: affordances, allostasis, and wellbeing"
     year 2024
     citation_count 8
-    community 2
-  ]
-  node [
-    id 610
-    label "doi:10.3390/e26100833"
-    title "Active Inference in Psychology and Psychiatry: Progress to Date?"
-    year 2024
-    citation_count 4
     community 0
   ]
   node [
-    id 611
+    id 608
+    label "doi:10.3390/e26100833"
+    title "Active Inference in Psychology and Psychiatry: Progress to Date?"
+    year 2024
+    citation_count 6
+    community 3
+  ]
+  node [
+    id 609
     label "doi:10.1109/pcs.2013.6737675"
     title "A dual-model approach to blind quality assessment of noisy images"
     year 2013
@@ -4897,47 +4881,47 @@ graph [
     community 5
   ]
   node [
-    id 612
+    id 610
     label "doi:10.48550/arxiv.2107.00140"
     title "Applications of the Free Energy Principle to Machine Learning and Neuroscience"
     year 2021
     citation_count 3
-    community 1
+    community 2
   ]
   node [
-    id 613
+    id 611
     label "doi:10.1093/nsr/nwae025"
     title "Bayesian brain computing and the free-energy principle: an interview with Karl Friston"
     year 2024
     citation_count 3
-    community 1
+    community 488
   ]
   node [
-    id 614
+    id 612
     label "doi:10.31234/osf.io/udc42"
     title "The Radically Embodied Conscious Cybernetic Bayesian Brain: From Free Energy to Free Will and Back Again"
     year 2019
     citation_count 5
-    community 2
+    community 0
   ]
   node [
-    id 615
+    id 613
     label "doi:10.1109/access.2024.3477306"
     title "Real-World Robot Control Based on Contrastive Deep Active Inference With Demonstrations"
     year 2024
     citation_count 2
-    community 1
+    community 2
   ]
   node [
-    id 616
+    id 614
     label "doi:10.48550/arxiv.2401.12211"
     title "Active Inference Demonstrated with Artificial Spin Ice"
     year 2024
     citation_count 2
-    community 486
+    community 489
   ]
   node [
-    id 617
+    id 615
     label "doi:10.1162/neco_a_01383"
     title "Predictive Processing in Cognitive Robotics: A Review"
     year 2021
@@ -4945,23 +4929,23 @@ graph [
     community 0
   ]
   node [
-    id 618
+    id 616
     label "doi:10.48550/arxiv.2208.04275"
     title "One person's modus ponens...: Comment on &#34;The Markov blanket trick: On the scope of the free energy principle and active inference&#34; by Raja and colleagues (2021)"
     year 2022
     citation_count 0
-    community 487
+    community 490
   ]
   node [
-    id 619
+    id 617
     label "doi:10.3389/fpsyg.2012.00151"
     title "Perceptions as Hypotheses: Saccades as Experiments"
     year 2012
     citation_count 473
-    community 0
+    community 1
   ]
   node [
-    id 620
+    id 618
     label "doi:10.3389/fnhum.2014.00302"
     title "An aberrant precision account of autism"
     year 2014
@@ -4969,23 +4953,23 @@ graph [
     community 0
   ]
   node [
-    id 621
+    id 619
     label "doi:10.3389/fnhum.2014.00599"
     title "Self-organization, free energy minimization, and optimal grip on a field of affordances"
     year 2014
     citation_count 528
-    community 1
+    community 0
   ]
   node [
-    id 622
+    id 620
     label "doi:10.1101/2025.08.06.668947"
     title "Predicting individual learning trajectories in zebrafish via the free-energy principle"
     year 2025
     citation_count 2
-    community 1
+    community 4
   ]
   node [
-    id 623
+    id 621
     label "doi:10.3390/e25091275"
     title "Mental Gravity: Depression as Spacetime Curvature of the Self, Mind, and Brain"
     year 2023
@@ -4993,15 +4977,15 @@ graph [
     community 0
   ]
   node [
-    id 624
+    id 622
     label "doi:10.13140/rg.2.2.26826.02244"
     title "From Neuroscience to Artificial Intelligence: Karl Friston's Free Energy Principle and the Rise of Active Inference"
     year 2025
     citation_count 0
-    community 488
+    community 491
   ]
   node [
-    id 625
+    id 623
     label "doi:10.1007/s10339-013-0571-3"
     title "Active inference, sensory attenuation and illusions"
     year 2013
@@ -5009,15 +4993,15 @@ graph [
     community 0
   ]
   node [
-    id 626
+    id 624
     label "doi:10.48550/arxiv.2009.08111"
     title "Reward Maximisation through Discrete Active Inference"
     year 2020
     citation_count 2
-    community 489
+    community 492
   ]
   node [
-    id 627
+    id 625
     label "doi:10.1016/j.bbrc.2024.150141"
     title "Form, function, mind: What doesn't compute (and what might)"
     year 2024
@@ -5025,7 +5009,7 @@ graph [
     community 1
   ]
   node [
-    id 628
+    id 626
     label "doi:10.3389/fpsyg.2015.00763"
     title "Interoception, contemplative practice, and health"
     year 2015
@@ -5033,23 +5017,23 @@ graph [
     community 0
   ]
   node [
-    id 629
+    id 627
     label "doi:10.3390/e26070582"
     title "Active Inference for Learning and Development in Embodied Neuromorphic Agents"
     year 2024
-    citation_count 3
-    community 1
+    citation_count 2
+    community 3
   ]
   node [
-    id 630
+    id 628
     label "doi:10.1101/2021.02.02.429272"
     title "Active Inference as a Framework for Brain-Computer Interfaces"
     year 2021
     citation_count 1
-    community 2
+    community 1
   ]
   node [
-    id 631
+    id 629
     label "doi:10.31234/osf.io/65gzh"
     title "The FEP+ Model of General Intelligence"
     year 2023
@@ -5057,47 +5041,47 @@ graph [
     community 0
   ]
   node [
-    id 632
+    id 630
     label "doi:10.1109/cdc51059.2022.9992717"
     title "Free Energy Principle for the Noise Smoothness Estimation of Linear Systems with Colored Noise"
     year 2022
     citation_count 1
-    community 0
+    community 1
   ]
   node [
-    id 633
+    id 631
     label "doi:10.1126/scirobotics.adp0751"
     title "Development of compositionality through interactive learning of language and action of robots"
     year 2025
     citation_count 7
-    community 3
+    community 1
   ]
   node [
-    id 634
+    id 632
     label "openalex:https://openalex.org/W2901199445"
     title "Robot manipulator control under the Active Inference framework"
     year 2018
     citation_count 2
-    community 490
+    community 493
   ]
   node [
-    id 635
+    id 633
     label "doi:10.1007/978-3-319-53673-6_12"
     title "The Variational Principles of Cognition"
     year 2017
     citation_count 2
-    community 0
+    community 1
   ]
   node [
-    id 636
+    id 634
     label "doi:10.48550/arxiv.2401.12917"
     title "Active Inference as a Model of Agency"
     year 2024
     citation_count 2
-    community 1
+    community 2
   ]
   node [
-    id 637
+    id 635
     label "doi:10.3390/e14112100"
     title "A Free Energy Principle for Biological Systems"
     year 2012
@@ -5105,15 +5089,15 @@ graph [
     community 1
   ]
   node [
-    id 638
+    id 636
     label "doi:10.20944/preprints202410.1895.v1"
     title "As One and Many: Relating Individual and Emergent Group-Level Generative Models in Active Inference"
     year 2024
     citation_count 2
-    community 491
+    community 494
   ]
   node [
-    id 639
+    id 637
     label "doi:10.3389/fnhum.2016.00550"
     title "Allostatic Self-efficacy: A Metacognitive Theory of Dyshomeostasis-Induced Fatigue and Depression"
     year 2016
@@ -5121,31 +5105,31 @@ graph [
     community 0
   ]
   node [
-    id 640
+    id 638
     label "doi:10.31234/osf.io/4qkjp"
     title "AIXI, FEP-AI, and integrated world models: Towards a unified understanding of intelligence and consciousness"
     year 2022
     citation_count 2
-    community 1
+    community 2
   ]
   node [
-    id 641
+    id 639
     label "doi:10.48550/arxiv.2210.15098"
     title "Natural Language Syntax Complies with the Free-Energy Principle"
     year 2022
     citation_count 2
-    community 492
+    community 495
   ]
   node [
-    id 642
+    id 640
     label "doi:10.48550/arxiv.2301.05832"
     title "World Models and Predictive Coding for Cognitive and Developmental Robotics: Frontiers and Challenges"
     year 2023
     citation_count 6
-    community 493
+    community 496
   ]
   node [
-    id 643
+    id 641
     label "doi:10.3389/fnhum.2014.00825"
     title "Uncertainty in perception and the Hierarchical Gaussian Filter"
     year 2014
@@ -5153,7 +5137,7 @@ graph [
     community 0
   ]
   node [
-    id 644
+    id 642
     label "doi:10.1162/neco_a_01642"
     title "An Overview of the Free Energy Principle and Related Research"
     year 2024
@@ -5161,7 +5145,7 @@ graph [
     community 1
   ]
   node [
-    id 645
+    id 643
     label "doi:10.1162/netn_a_00018"
     title "The graphical brain: Belief propagation and active inference"
     year 2017
@@ -5169,7 +5153,7 @@ graph [
     community 2
   ]
   node [
-    id 646
+    id 644
     label "doi:10.3389/fpsyg.2012.00096"
     title "Attention and Conscious Perception in the Hypothesis Testing Brain"
     year 2012
@@ -5177,7 +5161,7 @@ graph [
     community 0
   ]
   node [
-    id 647
+    id 645
     label "doi:10.1016/j.plrev.2024.01.004"
     title "&#8216;Snakes and ladders&#8217; in paleoanthropology: From cognitive surprise to skillfulness a million years ago"
     year 2024
@@ -5185,15 +5169,15 @@ graph [
     community 1
   ]
   node [
-    id 648
+    id 646
     label "doi:10.4204/eptcs.372.10"
     title "Polynomial Life: the Structure of Adaptive Systems"
     year 2022
     citation_count 2
-    community 494
+    community 497
   ]
   node [
-    id 649
+    id 647
     label "doi:10.1371/journal.pcbi.1002327"
     title "Dopamine, Affordance and Active Inference"
     year 2012
@@ -5201,7 +5185,7 @@ graph [
     community 0
   ]
   node [
-    id 650
+    id 648
     label "doi:10.20944/preprints202405.0113.v1"
     title "Sustainability under Active Inference"
     year 2024
@@ -5209,23 +5193,23 @@ graph [
     community 1
   ]
   node [
-    id 651
+    id 649
     label "doi:10.3390/systems12050163"
     title "Sustainability under Active Inference"
     year 2024
-    citation_count 3
-    community 1
+    citation_count 5
+    community 498
   ]
   node [
-    id 652
+    id 650
     label "doi:10.48550/arxiv.2204.01796"
     title "Free Energy Principle for the Noise Smoothness Estimation of Linear Systems with Colored Noise"
     year 2022
     citation_count 1
-    community 495
+    community 499
   ]
   node [
-    id 653
+    id 651
     label "doi:10.1098/rstb.2014.0169"
     title "Cerebral hierarchies: predictive processing, precision and the pulvinar"
     year 2015
@@ -5233,15 +5217,15 @@ graph [
     community 0
   ]
   node [
-    id 654
+    id 652
     label "doi:10.3389/fnhum.2013.00598"
     title "The anatomy of choice: active inference and agency"
     year 2013
     citation_count 344
-    community 2
+    community 0
   ]
   node [
-    id 655
+    id 653
     label "doi:10.1017/s0140525x22000206"
     title "Who tailors the blanket?"
     year 2022
@@ -5249,63 +5233,63 @@ graph [
     community 1
   ]
   node [
-    id 656
+    id 654
     label "doi:10.48550/arxiv.2208.10601"
     title "Deriving time-averaged active inference from control principles"
     year 2022
     citation_count 1
-    community 496
+    community 500
   ]
   node [
-    id 657
+    id 655
     label "doi:10.1007/978-3-030-95473-4_4"
     title "Free Energy Principle (FEP)"
     year 2022
     citation_count 1
-    community 1
+    community 4
   ]
   node [
-    id 658
+    id 656
     label "doi:10.48550/arxiv.2505.22749"
     title "Self-orthogonalizing attractor neural networks emerging from the free energy principle"
     year 2025
     citation_count 2
-    community 497
+    community 501
   ]
   node [
-    id 659
+    id 657
     label "doi:10.48550/arxiv.2006.04120"
     title "Sophisticated Inference"
     year 2020
     citation_count 1
-    community 498
+    community 502
   ]
   node [
-    id 660
+    id 658
     label "doi:10.48550/arxiv.2209.09185"
     title "Active Inference for Autonomous Decision-Making with Contextual Multi-Armed Bandits"
     year 2022
     citation_count 1
-    community 499
+    community 503
   ]
   node [
-    id 661
+    id 659
     label "doi:10.31234/osf.io/kjngh"
     title "Integrated World Modeling Theory (IWMT) Revisited"
     year 2019
     citation_count 5
-    community 2
+    community 0
   ]
   node [
-    id 662
+    id 660
     label "doi:10.31234/osf.io/p4z8f"
     title "The dark room problem in predictive processing and active inference, a legacy of cognitivism?"
     year 2019
     citation_count 2
-    community 0
+    community 1
   ]
   node [
-    id 663
+    id 661
     label "doi:10.3389/fnhum.2010.00025"
     title "Prediction, cognition and the brain"
     year 2010
@@ -5313,31 +5297,31 @@ graph [
     community 0
   ]
   node [
-    id 664
+    id 662
     label "doi:10.5281/zenodo.7447893"
     title "Transcript of: ActInf GuestStream #031 ~ Brett Kagan &#38;amp; Adeel Razi, &#34;Free Energy Principle &#38;amp; Active Inference in Synthetic Biological Intelligence&#34;"
     year 2022
     citation_count 0
-    community 500
+    community 504
   ]
   node [
-    id 665
+    id 663
     label "doi:10.1186/s13634-024-01173-9"
     title "Exploring action-oriented models via active inference for autonomous vehicles"
     year 2024
     citation_count 2
-    community 3
+    community 1
   ]
   node [
-    id 666
+    id 664
     label "openalex:https://openalex.org/W3135345398"
     title "Controlling the Sense of Agency in Dyadic Robot Interaction: An Active Inference Approach."
     year 2021
     citation_count 2
-    community 6
+    community 0
   ]
   node [
-    id 667
+    id 665
     label "doi:10.1080/17588928.2013.877880"
     title "A predictive processing theory of sensorimotor contingencies: Explaining the puzzle of perceptual presence and its absence in synesthesia"
     year 2014
@@ -5345,7 +5329,7 @@ graph [
     community 0
   ]
   node [
-    id 668
+    id 666
     label "doi:10.1162/neco_a_01711"
     title "Associative Learning and Active Inference"
     year 2024
@@ -5353,15 +5337,15 @@ graph [
     community 2
   ]
   node [
-    id 669
+    id 667
     label "doi:10.31234/osf.io/3xy5d"
     title "Navigating Complexity: How Resource-Limited Agents Derive Probability and Generate Emergence"
     year 2024
     citation_count 4
-    community 501
+    community 505
   ]
   node [
-    id 670
+    id 668
     label "doi:10.1162/neco_a_01698"
     title "Active Inference and Reinforcement Learning: A Unified Inference on Continuous State and Action Spaces Under Partial Observability"
     year 2024
@@ -5369,7 +5353,7 @@ graph [
     community 1
   ]
   node [
-    id 671
+    id 669
     label "doi:10.1007/978-3-031-72359-9_20"
     title "Active Vision for&#160;Physical Robots Using the&#160;Free Energy Principle"
     year 2024
@@ -5377,7 +5361,7 @@ graph [
     community 2
   ]
   node [
-    id 672
+    id 670
     label "doi:10.1007/978-3-031-26236-4_26"
     title "Markov Blankets for&#160;Sustainability"
     year 2023
@@ -5385,15 +5369,15 @@ graph [
     community 1
   ]
   node [
-    id 673
+    id 671
     label "doi:10.20944/preprints202311.1784.v1"
     title "Modeling Autonomous Vehicle Responses to Novel Observations using Hierarchical Cognitive Representations Inspired Active Inference"
     year 2023
     citation_count 1
-    community 1
+    community 2
   ]
   node [
-    id 674
+    id 672
     label "doi:10.1098/rstb.2016.0003"
     title "&#8216;Bodily precision&#8217;: a predictive coding account of individual differences in interoceptive accuracy"
     year 2016
@@ -5401,7 +5385,7 @@ graph [
     community 0
   ]
   node [
-    id 675
+    id 673
     label "doi:10.1523/jneurosci.4255-12.2013"
     title "Free Energy, Precision and Learning: The Role of Cholinergic Neuromodulation"
     year 2013
@@ -5409,31 +5393,31 @@ graph [
     community 0
   ]
   node [
-    id 676
+    id 674
     label "doi:10.1007/s00422-012-0512-8"
     title "Active inference and agency: optimal control without cost functions"
     year 2012
     citation_count 243
-    community 2
+    community 1
   ]
   node [
-    id 677
+    id 675
     label "doi:10.3389/fpsyg.2023.1150743"
     title "Functional contextual implementation of an evolutionary, entropy-based, and embodied free energy framework: Utilizing Lagrangian mechanics and evolutionary game theory&#8217;s truth vs. fitness test of the veridicality of phenomenological experience"
     year 2023
     citation_count 4
-    community 1
+    community 0
   ]
   node [
-    id 678
+    id 676
     label "doi:10.60087/jaigs.v4i1.78"
     title "Crafting explainable artificial intelligence through active inference: A model for transparent introspection and decision-making"
     year 2024
     citation_count 1
-    community 502
+    community 506
   ]
   node [
-    id 679
+    id 677
     label "doi:10.1093/brain/awaf031"
     title "Reshaping computational neuropsychiatry beyond synaptopathy"
     year 2025
@@ -5441,63 +5425,63 @@ graph [
     community 2
   ]
   node [
-    id 680
+    id 678
     label "doi:10.48550/arxiv.2306.06792"
     title "A Neural Network Implementation for Free Energy Principle"
-    year 2023
-    citation_count 1
-    community 503
-  ]
-  node [
-    id 681
-    label "doi:10.48550/arxiv.2306.04025"
-    title "Designing explainable artificial intelligence with active inference: A framework for transparent introspection and decision-making"
-    year 2023
-    citation_count 1
-    community 504
-  ]
-  node [
-    id 682
-    label "doi:10.5281/zenodo.17880033"
-    title "Meta-Intrinsic Dynamics and Semantic Capacity"
-    year 2025
-    citation_count 2
-    community 505
-  ]
-  node [
-    id 683
-    label "doi:10.3390/info16090751"
-    title "Representationalism and Enactivism in Cognitive Translation Studies: A Predictive Processing Perspective"
-    year 2025
-    citation_count 1
-    community 2
-  ]
-  node [
-    id 684
-    label "doi:10.20944/preprints202411.0649.v1"
-    title "A Computational Model of Minimal Phenomenal Experience (MPE)"
-    year 2024
-    citation_count 1
-    community 506
-  ]
-  node [
-    id 685
-    label "doi:10.48550/arxiv.2306.08014"
-    title "Realising Synthetic Active Inference Agents, Part I: Epistemic Objectives and Graphical Specification Language"
     year 2023
     citation_count 1
     community 507
   ]
   node [
-    id 686
+    id 679
+    label "doi:10.48550/arxiv.2306.04025"
+    title "Designing explainable artificial intelligence with active inference: A framework for transparent introspection and decision-making"
+    year 2023
+    citation_count 1
+    community 508
+  ]
+  node [
+    id 680
+    label "doi:10.5281/zenodo.17880033"
+    title "Meta-Intrinsic Dynamics and Semantic Capacity"
+    year 2025
+    citation_count 2
+    community 509
+  ]
+  node [
+    id 681
+    label "doi:10.3390/info16090751"
+    title "Representationalism and Enactivism in Cognitive Translation Studies: A Predictive Processing Perspective"
+    year 2025
+    citation_count 1
+    community 4
+  ]
+  node [
+    id 682
+    label "doi:10.20944/preprints202411.0649.v1"
+    title "A Computational Model of Minimal Phenomenal Experience (MPE)"
+    year 2024
+    citation_count 1
+    community 510
+  ]
+  node [
+    id 683
+    label "doi:10.48550/arxiv.2306.08014"
+    title "Realising Synthetic Active Inference Agents, Part I: Epistemic Objectives and Graphical Specification Language"
+    year 2023
+    citation_count 1
+    community 511
+  ]
+  node [
+    id 684
     label "doi:10.1007/s11229-016-1269-8"
     title "Active inference, enactivism and the hermeneutics of social cognition"
     year 2016
     citation_count 218
-    community 1
+    community 0
   ]
   node [
-    id 687
+    id 685
     label "doi:10.1098/rsif.2017.0376"
     title "Uncertainty, epistemics and active inference"
     year 2017
@@ -5505,7 +5489,7 @@ graph [
     community 2
   ]
   node [
-    id 688
+    id 686
     label "doi:10.3390/e27090992"
     title "Gradient-Free De Novo Learning"
     year 2025
@@ -5513,31 +5497,31 @@ graph [
     community 1
   ]
   node [
-    id 689
+    id 687
     label "doi:10.48550/arxiv.2412.10425"
     title "Active Inference for Self-Organizing Multi-LLM Systems: A Bayesian Thermodynamic Approach to Adaptation"
     year 2024
     citation_count 1
-    community 508
+    community 512
   ]
   node [
-    id 690
+    id 688
     label "doi:10.1080/13546805.2025.2504604"
     title "Decision-making balance in suicide: an active inference account"
     year 2025
     citation_count 1
-    community 1
+    community 0
   ]
   node [
-    id 691
+    id 689
     label "doi:10.1101/796136"
     title "Exploring Disturbance as a Force for Good in Motor Learning"
     year 2019
     citation_count 1
-    community 509
+    community 513
   ]
   node [
-    id 692
+    id 690
     label "doi:10.3389/fpsyg.2016.01792"
     title "Neural Elements for Predictive Coding"
     year 2016
@@ -5545,39 +5529,39 @@ graph [
     community 0
   ]
   node [
-    id 693
+    id 691
     label "doi:10.1007/s00422-019-00805-w"
     title "Generalised free energy and active inference"
     year 2019
     citation_count 201
-    community 2
+    community 1
   ]
   node [
-    id 694
+    id 692
     label "doi:10.1371/journal.pone.0331047"
     title "Free Energy Projective Simulation (FEPS): Active inference with interpretability"
     year 2025
     citation_count 1
-    community 1
+    community 0
   ]
   node [
-    id 695
+    id 693
     label "doi:10.1111/j.1365-246x.1976.tb01253.x"
     title "Glacial-Isostatic Adjustment-II. The Inverse Problem"
     year 2007
     citation_count 313
-    community 510
+    community 514
   ]
   node [
-    id 696
+    id 694
     label "doi:10.5281/zenodo.4021163"
     title "Active Inference &#38;amp; Behavior Engineering for Teams"
     year 2020
     citation_count 1
-    community 511
+    community 515
   ]
   node [
-    id 697
+    id 695
     label "doi:10.1007/978-3-031-28719-0_18"
     title "AIXI, FEP-AI, and Integrated World Models: Towards a Unified Understanding of Intelligence and Consciousness"
     year 2023
@@ -5585,7 +5569,7 @@ graph [
     community 2
   ]
   node [
-    id 698
+    id 696
     label "doi:10.1371/journal.pcbi.1003157"
     title "Information and Efficiency in the Nervous System&#8212;A Synthesis"
     year 2013
@@ -5593,55 +5577,55 @@ graph [
     community 0
   ]
   node [
-    id 699
+    id 697
     label "doi:10.1162/neco_a_01341"
     title "Deeply Felt Affect: The Emergence of Valence in Deep Active Inference"
     year 2020
     citation_count 215
-    community 2
+    community 0
   ]
   node [
-    id 700
+    id 698
     label "doi:10.3390/e22050516"
     title "Sentience and the Origins of Consciousness: From Cartesian Duality to Markovian Monism"
     year 2020
     citation_count 193
-    community 1
+    community 0
   ]
   node [
-    id 701
+    id 699
     label "doi:10.48550/arxiv.2308.01368"
     title "Empirical Translation Process Research: Past and Possible Future Perspectives"
     year 2023
     citation_count 1
-    community 512
+    community 516
   ]
   node [
-    id 702
+    id 700
     label "doi:10.3389/fncom.2018.00090"
     title "The Anatomy of Inference: Generative Models and Brain Structure"
     year 2018
     citation_count 209
-    community 2
+    community 0
   ]
   node [
-    id 703
+    id 701
     label "doi:10.1093/cercor/bhu159"
     title "The Dopaminergic Midbrain Encodes the Expected Certainty about Desired Outcomes"
     year 2014
     citation_count 222
-    community 2
+    community 0
   ]
   node [
-    id 704
+    id 702
     label "doi:10.3389/fncom.2012.00044"
     title "Perception and self-organized instability"
     year 2012
     citation_count 194
-    community 0
+    community 1
   ]
   node [
-    id 705
+    id 703
     label "doi:10.1007/s00422-018-0753-2"
     title "Planning and navigation as active inference"
     year 2018
@@ -5649,15 +5633,15 @@ graph [
     community 2
   ]
   node [
-    id 706
+    id 704
     label "doi:10.65649/93qfwv21"
     title "Quantum Behavior as a Consequence of Ze Systems"
     year 2026
     citation_count 1
-    community 0
+    community 2
   ]
   node [
-    id 707
+    id 705
     label "doi:10.3389/fsoc.2023.1269621"
     title "Myth of objectivity and the origin of symbols"
     year 2023
@@ -5665,7 +5649,7 @@ graph [
     community 1
   ]
   node [
-    id 708
+    id 706
     label "doi:10.1111/ejn.12816"
     title "Attention and prediction in human audition: a lesson from cognitive psychophysiology"
     year 2015
@@ -5673,15 +5657,15 @@ graph [
     community 0
   ]
   node [
-    id 709
+    id 707
     label "doi:10.1371/journal.pcbi.1003394"
     title "A Unified View of &#8220;How Allostery Works&#8221;"
     year 2014
     citation_count 407
-    community 513
+    community 517
   ]
   node [
-    id 710
+    id 708
     label "doi:10.3389/fncom.2016.00056"
     title "Scene Construction, Visual Foraging, and Active Inference"
     year 2016
@@ -5689,7 +5673,7 @@ graph [
     community 2
   ]
   node [
-    id 711
+    id 709
     label "doi:10.3389/fpsyg.2018.00643"
     title "&#8216;Seeing the Dark&#8217;: Grounding Phenomenal Transparency and Opacity in Precision Estimation for Active Inference"
     year 2018
@@ -5697,15 +5681,15 @@ graph [
     community 0
   ]
   node [
-    id 712
+    id 710
     label "doi:10.3389/fpsyg.2014.01111"
     title "Rhythmic complexity and predictive coding: a novel approach to modeling rhythm and meter perception in music"
     year 2014
     citation_count 287
-    community 3
+    community 0
   ]
   node [
-    id 713
+    id 711
     label "doi:10.3389/fpsyg.2018.02714"
     title "The Hard Problem of Consciousness and the Free Energy Principle"
     year 2019
@@ -5713,7 +5697,7 @@ graph [
     community 1
   ]
   node [
-    id 714
+    id 712
     label "doi:10.1093/cercor/bhn161"
     title "A Dual Role for Prediction Error in Associative Learning"
     year 2008
@@ -5721,7 +5705,7 @@ graph [
     community 0
   ]
   node [
-    id 715
+    id 713
     label "doi:10.3389/fpsyg.2014.01133"
     title "Virtual reality and consciousness inference in dreaming"
     year 2014
@@ -5729,7 +5713,7 @@ graph [
     community 0
   ]
   node [
-    id 716
+    id 714
     label "doi:10.3389/fnhum.2013.00386"
     title "The Social Modulation of Pain: Others as Predictive Signals of Salience &#8211; a Systematic Review"
     year 2013
@@ -5737,7 +5721,7 @@ graph [
     community 0
   ]
   node [
-    id 717
+    id 715
     label "doi:10.1016/j.neuroimage.2018.11.037"
     title "Focus of attention modulates the heartbeat evoked potential"
     year 2018
@@ -5745,31 +5729,31 @@ graph [
     community 0
   ]
   node [
-    id 718
+    id 716
     label "doi:10.1038/s41467-021-21194-4"
     title "RNA secondary structure prediction using deep learning with thermodynamic integration"
     year 2021
     citation_count 465
-    community 514
+    community 518
   ]
   node [
-    id 719
+    id 717
     label "doi:10.3389/fpsyg.2011.00218"
     title "Active Inference, Attention, and Motor Preparation"
     year 2011
     citation_count 172
-    community 3
+    community 0
   ]
   node [
-    id 720
+    id 718
     label "doi:10.1523/jneurosci.5069-11.2012"
     title "Predictive Top-Down Integration of Prior Knowledge during Speech Perception"
     year 2012
     citation_count 392
-    community 515
+    community 519
   ]
   node [
-    id 721
+    id 719
     label "doi:10.1523/jneurosci.5003-11.2012"
     title "A Neuronal Model of Predictive Coding Accounting for the Mismatch Negativity"
     year 2012
@@ -5777,7 +5761,7 @@ graph [
     community 0
   ]
   node [
-    id 722
+    id 720
     label "doi:10.1136/jnnp-2015-310737"
     title "Computational Psychiatry: towards a mathematically informed understanding of mental illness"
     year 2015
@@ -5785,7 +5769,7 @@ graph [
     community 0
   ]
   node [
-    id 723
+    id 721
     label "doi:10.1111/pcn.13138"
     title "Recent advances in the application of predictive coding and active inference models within clinical neuroscience"
     year 2020
@@ -5793,23 +5777,23 @@ graph [
     community 0
   ]
   node [
-    id 724
+    id 722
     label "doi:10.5281/zenodo.17873550"
     title "A Thermodynamic State Inequality for Autopoietic Intelligence"
     year 2025
     citation_count 2
-    community 516
+    community 520
   ]
   node [
-    id 725
+    id 723
     label "doi:10.4000/ejpap.3590"
     title "Neuropragmatism, Neuropsychoanalysis, Therapeutic Trends, and the Care Crisis"
     year 2023
     citation_count 1
-    community 1
+    community 4
   ]
   node [
-    id 726
+    id 724
     label "doi:10.1523/jneurosci.0114-13.2013"
     title "Expectation and Attention in Hierarchical Auditory Prediction"
     year 2013
@@ -5817,15 +5801,15 @@ graph [
     community 0
   ]
   node [
-    id 727
+    id 725
     label "doi:10.1039/c9sc04026a"
     title "Constrained Bayesian optimization for automatic chemical design using variational autoencoders"
     year 2019
     citation_count 349
-    community 517
+    community 521
   ]
   node [
-    id 728
+    id 726
     label "doi:10.1007/s11229-015-0762-9"
     title "Predictive coding and representationalism"
     year 2015
@@ -5833,7 +5817,7 @@ graph [
     community 0
   ]
   node [
-    id 729
+    id 727
     label "doi:10.1007/s10539-020-09746-2"
     title "From allostatic agents to counterfactual cognisers: active inference, biological regulation, and the origins of cognition"
     year 2020
@@ -5841,7 +5825,7 @@ graph [
     community 0
   ]
   node [
-    id 730
+    id 728
     label "doi:10.33735/phimisci.2020.ii.64"
     title "Predictive processing as a systematic basis for identifying the neural correlates of consciousness"
     year 2020
@@ -5849,7 +5833,7 @@ graph [
     community 0
   ]
   node [
-    id 731
+    id 729
     label "doi:10.1146/annurev-clinpsy-050718-095617"
     title "An Active Inference Approach to Interoceptive Psychopathology"
     year 2019
@@ -5857,7 +5841,7 @@ graph [
     community 0
   ]
   node [
-    id 732
+    id 730
     label "doi:10.1007/s11097-017-9525-z"
     title "A nice surprise? Predictive processing and the active pursuit of novelty"
     year 2017
@@ -5865,15 +5849,15 @@ graph [
     community 0
   ]
   node [
-    id 733
+    id 731
     label "doi:10.1155/2009/785152"
     title "Bayesian Inference for Nonnegative Matrix Factorisation Models"
     year 2009
     citation_count 339
-    community 518
+    community 522
   ]
   node [
-    id 734
+    id 732
     label "doi:10.3389/fnhum.2023.1133367"
     title "The role of the salience network in cognitive and affective deficits"
     year 2023
@@ -5881,15 +5865,15 @@ graph [
     community 0
   ]
   node [
-    id 735
+    id 733
     label "doi:10.1080/13546805.2022.2158795"
     title "The key to unlock sentient behaviour <b>Active inference: the free energy principle in mind, brain, and behavior</b> , by T. Parr, G. Pezzulo, K. J. Friston, Cambridge, MA, MIT Press, 2022, pages 296, &#163;35.00 (hardcover), ISBN 978-0262045353"
     year 2022
     citation_count 0
-    community 519
+    community 523
   ]
   node [
-    id 736
+    id 734
     label "doi:10.1111/nyas.14321"
     title "Evaluating the neurophysiological evidence for predictive processing as a model of perception"
     year 2020
@@ -5897,39 +5881,39 @@ graph [
     community 0
   ]
   node [
-    id 737
+    id 735
     label "doi:10.5194/egusphere-egu21-15347"
     title "Earth system resilience through planetary active inference."
     year 2021
     citation_count 1
-    community 520
+    community 524
   ]
   node [
-    id 738
+    id 736
     label "doi:10.48550/arxiv.2412.00748"
     title "Exploring Cognition through Morphological Info-Computational Framework"
     year 2024
     citation_count 1
-    community 521
+    community 525
   ]
   node [
-    id 739
+    id 737
     label "doi:10.1109/tkde.2022.3142856"
     title "On Distributed Computing Continuum Systems"
     year 2022
     citation_count 131
-    community 1
+    community 2
   ]
   node [
-    id 740
+    id 738
     label "doi:10.1155/2012/937860"
     title "Free Energy, Value, and Attractors"
     year 2011
     citation_count 140
-    community 0
+    community 1
   ]
   node [
-    id 741
+    id 739
     label "doi:10.1007/s11023-017-9441-6"
     title "Predictive Processing and the Representation Wars"
     year 2017
@@ -5937,31 +5921,31 @@ graph [
     community 0
   ]
   node [
-    id 742
+    id 740
     label "doi:10.3389/fphar.2018.00172"
     title "Unifying Theories of Psychedelic Drug Effects"
     year 2018
     citation_count 178
-    community 2
+    community 1
   ]
   node [
-    id 743
+    id 741
     label "doi:10.1371/journal.pcbi.1010490"
     title "In the Body&#8217;s Eye: The computational anatomy of interoceptive inference"
     year 2022
     citation_count 131
-    community 2
+    community 0
   ]
   node [
-    id 744
+    id 742
     label "doi:10.3390/e19040169"
     title "Where There is Life There is Mind: In Support of a Strong Life-Mind Continuity Thesis"
     year 2017
     citation_count 114
-    community 1
+    community 0
   ]
   node [
-    id 745
+    id 743
     label "doi:10.3389/fnbeh.2014.00457"
     title "Why empathy has a beneficial impact on others in medicine: unifying theories"
     year 2015
@@ -5969,15 +5953,15 @@ graph [
     community 0
   ]
   node [
-    id 746
+    id 744
     label "doi:10.1017/9781009209793"
     title "Embodied and Enactive Approaches to Cognition"
     year 2023
     citation_count 137
-    community 1
+    community 0
   ]
   node [
-    id 747
+    id 745
     label "doi:10.1098/rsif.2024.0645"
     title "Uncertainty minimization and pattern recognition in <i>Volvox carteri</i> and <i>V. aureus</i>"
     year 2025
@@ -5985,7 +5969,7 @@ graph [
     community 1
   ]
   node [
-    id 748
+    id 746
     label "doi:10.1007/978-3-031-28719-0_24"
     title "Value Cores for&#160;Inner and&#160;Outer Alignment: Simulating Personality Formation via&#160;Iterated Policy Selection and&#160;Preference Learning with&#160;Self-World Modeling Active Inference Agents"
     year 2023
@@ -5993,7 +5977,7 @@ graph [
     community 2
   ]
   node [
-    id 749
+    id 747
     label "doi:10.31234/osf.io/k4cas"
     title "Value Cores for Inner and Outer Alignment: Simulating Personality Formation via Iterated Policy Selection and Preference Learning with Self-World Modeling Active Inference Agents"
     year 2022
@@ -6001,31 +5985,31 @@ graph [
     community 2
   ]
   node [
-    id 750
+    id 748
     label "doi:10.1155/2010/621670"
     title "Generalised Filtering"
     year 2010
     citation_count 167
-    community 0
+    community 1
   ]
   node [
-    id 751
+    id 749
     label "doi:10.3389/fncom.2015.00136"
     title "Dopamine, reward learning, and active inference"
     year 2015
     citation_count 123
-    community 2
+    community 0
   ]
   node [
-    id 752
+    id 750
     label "doi:10.1109/jproc.2014.2306251"
     title "Cognitive Dynamics: From Attractors to Active Inference"
     year 2014
     citation_count 98
-    community 0
+    community 1
   ]
   node [
-    id 753
+    id 751
     label "doi:10.1007/s11229-018-01932-w"
     title "First principles in the life sciences: the free-energy principle, organicism, and mechanism"
     year 2018
@@ -6033,15 +6017,15 @@ graph [
     community 1
   ]
   node [
-    id 754
+    id 752
     label "doi:10.1523/jneurosci.0200-14.2014"
     title "Deficits in Predictive Coding Underlie Hallucinations in Schizophrenia"
     year 2014
     citation_count 182
-    community 2
+    community 0
   ]
   node [
-    id 755
+    id 753
     label "doi:10.1371/journal.pcbi.1000464"
     title "Recognizing Sequences of Sequences"
     year 2009
@@ -6049,23 +6033,23 @@ graph [
     community 1
   ]
   node [
-    id 756
+    id 754
     label "doi:10.3389/fpsyg.2020.598733"
     title "Representation Wars: Enacting an Armistice Through Active Inference"
     year 2021
     citation_count 92
-    community 1
+    community 0
   ]
   node [
-    id 757
+    id 755
     label "doi:10.3389/fpsyg.2022.789377"
     title "Unraveling Negative Expectations and Nocebo-Related Effects in Musculoskeletal Pain"
     year 2022
     citation_count 262
-    community 0
+    community 1
   ]
   node [
-    id 758
+    id 756
     label "doi:10.1371/journal.pcbi.1006267"
     title "Locus Coeruleus tracking of prediction errors optimises cognitive flexibility: An Active Inference model"
     year 2019
@@ -6073,7 +6057,7 @@ graph [
     community 2
   ]
   node [
-    id 759
+    id 757
     label "doi:10.1038/s41467-017-02038-6"
     title "Neurons along the auditory pathway exhibit a hierarchical organization of prediction error"
     year 2017
@@ -6081,15 +6065,15 @@ graph [
     community 0
   ]
   node [
-    id 760
+    id 758
     label "doi:10.1016/j.xcrm.2022.100794"
     title "Deep generative molecular design reshapes drug discovery"
     year 2022
     citation_count 247
-    community 522
+    community 526
   ]
   node [
-    id 761
+    id 759
     label "doi:10.1101/603928"
     title "In the Body&#8217;s Eye: The Computational Anatomy of Interoceptive Inference"
     year 2019
@@ -6097,39 +6081,39 @@ graph [
     community 0
   ]
   node [
-    id 762
+    id 760
     label "doi:10.1098/rstb.2020.0531"
     title "The evolution of brain architectures for predictive coding and active inference"
     year 2021
     citation_count 97
-    community 0
+    community 4
   ]
   node [
-    id 763
+    id 761
     label "doi:10.3389/fnhum.2023.1170480"
     title "Editorial: Frontiers in psychodynamic neuroscience"
     year 2023
     citation_count 3
-    community 523
+    community 527
   ]
   node [
-    id 764
+    id 762
     label "doi:10.48550/arxiv.2507.13616"
     title "Critical Risks and Opportunities of AI, Economics, Social Network Theory"
     year 2025
     citation_count 1
-    community 524
+    community 528
   ]
   node [
-    id 765
+    id 763
     label "doi:10.1038/s41598-018-21407-9"
     title "Frontal cortex function as derived from hierarchical predictive coding"
     year 2018
     citation_count 112
-    community 1
+    community 2
   ]
   node [
-    id 766
+    id 764
     label "doi:10.1093/brain/awac204"
     title "A new science of emotion: implications for functional neurological disorder"
     year 2022
@@ -6137,7 +6121,7 @@ graph [
     community 0
   ]
   node [
-    id 767
+    id 765
     label "doi:10.3389/fpsyg.2019.00592"
     title "&#8220;Surprise&#8221; and the Bayesian Brain: Implications for Psychotherapy Theory and Practice"
     year 2019
@@ -6145,15 +6129,15 @@ graph [
     community 0
   ]
   node [
-    id 768
+    id 766
     label "doi:10.1080/13869795.2018.1477983"
     title "Enactivism and predictive processing: a non-representational view"
     year 2018
     citation_count 92
-    community 1
+    community 0
   ]
   node [
-    id 769
+    id 767
     label "doi:10.1093/nc/niab018"
     title "Towards a computational phenomenology of mental action: modelling meta-awareness and attentional control with deep parametric active inference"
     year 2021
@@ -6161,7 +6145,7 @@ graph [
     community 2
   ]
   node [
-    id 770
+    id 768
     label "doi:10.3389/fpsyg.2013.00276"
     title "What is Bottom-Up and What is Top-Down in Predictive Coding?"
     year 2013
@@ -6169,7 +6153,7 @@ graph [
     community 0
   ]
   node [
-    id 771
+    id 769
     label "doi:10.3389/fpsyg.2020.539726"
     title "Losing Ourselves: Active Inference, Depersonalization, and Meditation"
     year 2020
@@ -6177,15 +6161,15 @@ graph [
     community 0
   ]
   node [
-    id 772
+    id 770
     label "doi:10.1371/journal.pbio.1001926"
     title "A Bioenergetic Basis for Membrane Divergence in Archaea and Bacteria"
     year 2014
     citation_count 149
-    community 525
+    community 529
   ]
   node [
-    id 773
+    id 771
     label "doi:10.1038/s41598-019-50138-8"
     title "Introducing a Bayesian model of selective attention based on active inference"
     year 2019
@@ -6193,7 +6177,7 @@ graph [
     community 2
   ]
   node [
-    id 774
+    id 772
     label "doi:10.1038/s41380-022-01743-z"
     title "Computational psychiatry: from synapses to sentience"
     year 2022
@@ -6201,15 +6185,15 @@ graph [
     community 0
   ]
   node [
-    id 775
+    id 773
     label "doi:10.3389/fpsyg.2018.00664"
     title "Dynamical Relations in the Self-Pattern"
     year 2018
     citation_count 100
-    community 1
+    community 0
   ]
   node [
-    id 776
+    id 774
     label "doi:10.3389/fnhum.2014.00666"
     title "Visual mismatch negativity: a predictive coding view"
     year 2014
@@ -6217,15 +6201,15 @@ graph [
     community 0
   ]
   node [
-    id 777
+    id 775
     label "doi:10.3389/fpsyg.2019.00298"
     title "Toward a Neurobiologically Plausible Model of Language-Related, Negative Event-Related Potentials"
     year 2019
     citation_count 198
-    community 526
+    community 530
   ]
   node [
-    id 778
+    id 776
     label "doi:10.3389/fnint.2018.00039"
     title "Precision and False Perceptual Inference"
     year 2018
@@ -6233,15 +6217,15 @@ graph [
     community 2
   ]
   node [
-    id 779
+    id 777
     label "doi:10.1073/pnas.2024300118"
     title "Improved bounds on entropy production in living systems"
     year 2021
     citation_count 109
-    community 527
+    community 531
   ]
   node [
-    id 780
+    id 778
     label "doi:10.1371/journal.pbio.2006812"
     title "Attention promotes the neural encoding of prediction errors"
     year 2019
@@ -6249,84 +6233,550 @@ graph [
     community 0
   ]
   node [
-    id 781
+    id 779
     label "doi:10.3389/fncom.2019.00049"
     title "The Energy Homeostasis Principle: Neuronal Energy Regulation Drives Local Network Dynamics Generating Behavior"
     year 2019
     citation_count 138
-    community 528
+    community 532
   ]
   node [
-    id 782
+    id 780
     label "doi:10.1016/j.bandc.2016.02.008"
     title "To be precise, the details don&#8217;t matter: On predictive processing, precision, and level of detail of predictions"
     year 2016
     citation_count 77
-    community 2
+    community 1
   ]
   node [
-    id 783
+    id 781
     label "doi:10.3389/fnbot.2012.00011"
     title "What is value&#8212;accumulated reward or evidence?"
     year 2012
     citation_count 68
-    community 0
+    community 1
   ]
   node [
-    id 784
+    id 782
     label "doi:10.1016/j.neunet.2021.05.010"
     title "Robot navigation as hierarchical active inference"
     year 2021
     citation_count 76
-    community 1
+    community 2
+  ]
+  node [
+    id 783
+    label "arxiv:2603.04034"
+    title "The Empty Quadrant: AI Teammates for Embodied Field Learning"
+    year 2026
+    citation_count 0
+    community 533
+  ]
+  node [
+    id 784
+    label "doi:10.1016/j.plrev.2022.11.001"
+    title "One person's modus ponens&#8230;: Comment on &#34;The Markov blanket trick: On the scope of the free energy principle and active inference&#34; by Raja and colleagues (2021)."
+    year 2022
+    citation_count 1
+    community 3
+  ]
+  node [
+    id 785
+    label "s2:dded71d2681fb42c1d149286b636b066ab6a0910"
+    title "Active Inference: The Free Energy Principle in Mind, Brain, and Behaviour by Thomas Parr, Giovanni Pezzulo, and Karl J. Friston (review)"
+    year 2023
+    citation_count 132
+    community 3
+  ]
+  node [
+    id 786
+    label "s2:b0eb317be22c97fcebb61e889cc13b690c5f64ed"
+    title "Free Energy Principle and Active Inference in Neural Language Models(short paper)"
+    year 2024
+    citation_count 0
+    community 534
+  ]
+  node [
+    id 787
+    label "doi:10.1016/j.plrev.2022.09.001"
+    title "Co-constructing Markov blankets: Tricky solutions: Comment on &#34;The Markov blanket trick: On the scope of the free energy principle and active inference&#34; by Vicente Raja et al."
+    year 2022
+    citation_count 1
+    community 535
+  ]
+  node [
+    id 788
+    label "doi:10.1016/j.plrev.2022.08.002"
+    title "The nonequilibrium boundaries of living systems: Comment on &#34;The Markov blanket trick: On the scope of the free energy principle and active inference&#34; by V. Raja et al."
+    year 2022
+    citation_count 2
+    community 536
+  ]
+  node [
+    id 789
+    label "doi:10.1016/j.plrev.2022.07.007"
+    title "The ultimate trick?: Comment on: &#34;The Markov blanket trick: On the scope of the free energy principle and active inference&#34; by Raja et al."
+    year 2022
+    citation_count 1
+    community 537
+  ]
+  node [
+    id 790
+    label "doi:10.1016/j.plrev.2022.08.001"
+    title "Patterns and particles: Comment on &#34;The Markov blanket trick: On the scope of the free energy principle and active inference&#34; by Raja et al."
+    year 2022
+    citation_count 1
+    community 538
+  ]
+  node [
+    id 791
+    label "doi:10.1016/j.plrev.2022.07.006"
+    title "Markov border crossings: Comment on &#34;The Markov blanket trick: On the scope of the free energy principle and active inference&#34; by Vicente Raja et al."
+    year 2022
+    citation_count 1
+    community 539
+  ]
+  node [
+    id 792
+    label "doi:10.1016/j.plrev.2022.09.002"
+    title "From a free energy principle to a free energy model?: Comment on &#34;The Markov blanket trick: On the scope of the free energy principle and active inference&#34; by Vicente Raja et al."
+    year 2022
+    citation_count 1
+    community 540
+  ]
+  node [
+    id 793
+    label "s2:da3e4a8ad14b66c60e838def7ad4ed656190969b"
+    title "Active Inference The Free Energy Principle in Mind, Brain, and Behavior"
+    citation_count 168
+    community 3
+  ]
+  node [
+    id 794
+    label "doi:10.48550/arXiv.2505.22749"
+    title "Self-orthogonalizing attractor neural networks emerging from the free energy principle"
+    year 2025
+    citation_count 3
+    community 541
+  ]
+  node [
+    id 795
+    label "doi:10.5298/1081-5937-53.03.10"
+    title "Biofeedback from the Free Energy Principle Perspective: Some Psychoeducational and Clinical Implications"
+    year 2025
+    citation_count 0
+    community 542
+  ]
+  node [
+    id 796
+    label "doi:10.56082/annalsarscibio.2023.1.108"
+    title "Brain Function: Free Energy, Predictive Processing and Active Inference"
+    year 2023
+    citation_count 0
+    community 543
+  ]
+  node [
+    id 797
+    label "doi:10.3389/fnbot.2021.642780"
+    title "Active Vision for Robot Manipulators Using the Free Energy Principle"
+    year 2021
+    citation_count 28
+    community 3
+  ]
+  node [
+    id 798
+    label "doi:10.48550/arXiv.2306.06792"
+    title "A Neural Network Implementation for Free Energy Principle"
+    year 2023
+    citation_count 1
+    community 3
+  ]
+  node [
+    id 799
+    label "doi:10.48550/arXiv.2504.14898"
+    title "Expected Free Energy-based Planning as Variational Inference"
+    year 2025
+    citation_count 4
+    community 3
+  ]
+  node [
+    id 800
+    label "doi:10.1109/CASE58245.2025.11163878"
+    title "Active Inference for Energy Control and Planning in Smart Buildings and Communities"
+    year 2025
+    citation_count 1
+    community 544
+  ]
+  node [
+    id 801
+    label "doi:10.1007/978-3-030-64919-7_11"
+    title "You Only Look as Much as You Have To - Using the Free Energy Principle for Active Vision"
+    year 2020
+    citation_count 1
+    community 545
+  ]
+  node [
+    id 802
+    label "doi:10.1109/CDC51059.2022.9992717"
+    title "Free Energy Principle for the Noise Smoothness Estimation of Linear Systems with Colored Noise"
+    year 2022
+    citation_count 2
+    community 546
+  ]
+  node [
+    id 803
+    label "doi:10.1007/s11229-024-04566-3"
+    title "Natural language syntax complies with the free-energy principle"
+    year 2021
+    citation_count 19
+    community 3
+  ]
+  node [
+    id 804
+    label "doi:10.7488/ERA/1501"
+    title "Applications of the Free Energy Principle to Machine Learning and Neuroscience"
+    year 2021
+    citation_count 11
+    community 547
+  ]
+  node [
+    id 805
+    label "doi:10.1093/BJS/ZNAB134.237"
+    title "160&#8195;Applying the Free Energy Principle to Surgical Robotics"
+    year 2021
+    citation_count 0
+    community 548
+  ]
+  node [
+    id 806
+    label "doi:10.1016/J.DSP.2019.02.017"
+    title "Free-energy principle inspired visual quality assessment: An overview"
+    year 2019
+    citation_count 35
+    community 549
+  ]
+  node [
+    id 807
+    label "doi:10.1145/3770501.3770527"
+    title "Active Inference for Digital Twins: Predicting and Optimizing IoT Processing Service Performance"
+    year 2025
+    citation_count 1
+    community 550
+  ]
+  node [
+    id 808
+    label "doi:10.48550/arXiv.2510.23258"
+    title "Deep Active Inference with Diffusion Policy and Multiple Timescale World Model for Real-World Exploration and Navigation"
+    year 2025
+    citation_count 1
+    community 3
+  ]
+  node [
+    id 809
+    label "doi:10.48550/arXiv.2511.07202"
+    title "Resilient by Design - Active Inference for Distributed Continuum Intelligence"
+    year 2025
+    citation_count 1
+    community 3
+  ]
+  node [
+    id 810
+    label "doi:10.48550/arXiv.2511.20321"
+    title "Active Inference in Discrete State Spaces from First Principles"
+    year 2025
+    citation_count 0
+    community 551
+  ]
+  node [
+    id 811
+    label "doi:10.48550/arXiv.2504.11075"
+    title "Emergence of Goal-Directed Behaviors via Active Inference with Self-Prior"
+    year 2025
+    citation_count 0
+    community 3
+  ]
+  node [
+    id 812
+    label "doi:10.1109/CoDIT66093.2025.11321670"
+    title "Evaluation of Person Search System Using Multidirectional Cameras and a Drone Based on Active Inference"
+    year 2025
+    citation_count 0
+    community 552
+  ]
+  node [
+    id 813
+    label "doi:10.48550/arXiv.2501.15105"
+    title "A New Approach for Knowledge Generation Using Active Inference"
+    year 2025
+    citation_count 0
+    community 553
+  ]
+  node [
+    id 814
+    label "doi:10.1109/ICRA55743.2025.11128724"
+    title "Interpretable Active Inference Gait Control Learning"
+    year 2025
+    citation_count 0
+    community 554
+  ]
+  node [
+    id 815
+    label "doi:10.3390/e28010001"
+    title "Decision, Inference, and Information: Formal Equivalences Under Active Inference"
+    year 2025
+    citation_count 0
+    community 3
+  ]
+  node [
+    id 816
+    label "doi:10.3390/bs15121727"
+    title "Decision-Making in Repeated Games: Insights from Active Inference"
+    year 2025
+    citation_count 0
+    community 555
+  ]
+  node [
+    id 817
+    label "doi:10.48550/arXiv.2401.12917"
+    title "Active Inference as a Model of Agency"
+    year 2024
+    citation_count 13
+    community 3
+  ]
+  node [
+    id 818
+    label "doi:10.1109/ACCESS.2024.3477306"
+    title "Real-World Robot Control Based on Contrastive Deep Active Inference With Demonstrations"
+    year 2024
+    citation_count 4
+    community 3
+  ]
+  node [
+    id 819
+    label "doi:10.60087/jaigs.vol4.issue1.p26"
+    title "Crafting explainable artificial intelligence through active inference: A model for transparent introspection and decision-making"
+    year 2024
+    citation_count 1
+    community 556
+  ]
+  node [
+    id 820
+    label "doi:10.48550/arXiv.2412.10425"
+    title "Active Inference for Self-Organizing Multi-LLM Systems: A Bayesian Thermodynamic Approach to Adaptation"
+    year 2024
+    citation_count 1
+    community 3
+  ]
+  node [
+    id 821
+    label "doi:10.1109/ICNC59896.2024.10556169"
+    title "Distributed Beamforming by Multi-Agent Active Inference"
+    year 2024
+    citation_count 1
+    community 557
+  ]
+  node [
+    id 822
+    label "doi:10.21146/2072-0726-2025-18-4-23-34"
+    title "Logic, morality and free energy minimization"
+    year 2025
+    citation_count 0
+    community 558
+  ]
+  node [
+    id 823
+    label "doi:10.48550/arXiv.2501.13083"
+    title "Boosting MCTS with Free Energy Minimization"
+    year 2025
+    citation_count 0
+    community 559
+  ]
+  node [
+    id 824
+    label "doi:10.48550/arXiv.2506.05794"
+    title "Markov Blanket Density and Free Energy Minimization"
+    year 2025
+    citation_count 0
+    community 560
+  ]
+  node [
+    id 825
+    label "doi:10.3902/JNNS.25.113"
+    title "How Does the Free Energy Principle Inspire Artificial Intelligence?"
+    year 2018
+    citation_count 0
+    community 561
+  ]
+  node [
+    id 826
+    label "doi:10.3902/JNNS.25.53"
+    title "Free Energy Principle and Visual Consciousness"
+    year 2018
+    citation_count 1
+    community 562
+  ]
+  node [
+    id 827
+    label "doi:10.48550/arXiv.2306.04025"
+    title "Designing explainable artificial intelligence with active inference: A framework for transparent introspection and decision-making"
+    year 2023
+    citation_count 15
+    community 3
+  ]
+  node [
+    id 828
+    label "doi:10.1109/TMBMC.2023.3272150"
+    title "Control Flow in Active Inference Systems&#8212;Part I: Classical and Quantum Formulations of Active Inference"
+    year 2023
+    citation_count 15
+    community 3
+  ]
+  node [
+    id 829
+    label "doi:10.48550/arXiv.2312.07547"
+    title "Active Inference and Intentional Behaviour"
+    year 2023
+    citation_count 10
+    community 3
+  ]
+  node [
+    id 830
+    label "doi:10.1109/TMBMC.2023.3272158"
+    title "Control Flow in Active Inference Systems&#8212;Part II: Tensor Networks as General Models of Control Flow"
+    year 2023
+    citation_count 8
+    community 3
+  ]
+  node [
+    id 831
+    label "doi:10.48550/arXiv.2306.08014"
+    title "Realising Synthetic Active Inference Agents, Part I: Epistemic Objectives and Graphical Specification Language"
+    year 2023
+    citation_count 2
+    community 3
+  ]
+  node [
+    id 832
+    label "doi:10.1109/ICASSP49357.2023.10096947"
+    title "Adapting Exploratory Behaviour in Active Inference for Autonomous Driving"
+    year 2023
+    citation_count 4
+    community 7
+  ]
+  node [
+    id 833
+    label "s2:207c5ff5236b933a2050a0f80b9651a8da7e1082"
+    title "Tutorial in IEEE ICDL-2024 Typical and Atypical Development of Neurorobots Based on Free Energy Principle"
+    citation_count 0
+    community 563
+  ]
+  node [
+    id 834
+    label "doi:10.1109/ICRA48891.2023.10160593"
+    title "Active Inference for Autonomous Decision-Making with Contextual Multi-Armed Bandits"
+    year 2022
+    citation_count 12
+    community 564
+  ]
+  node [
+    id 835
+    label "doi:10.1016/j.plrev.2017.12.009"
+    title "Hierarchical Markov blankets and adaptive active inference: Comment on &#34;Answering Schr&#246;dinger's question: A free-energy formulation&#34; by Maxwell James D&#233;sormeau Ramstead et al."
+    year 2018
+    citation_count 10
+    community 565
+  ]
+  node [
+    id 836
+    label "doi:10.1016/j.jtbi.2018.07.002"
+    title "Free-energy minimization in joint agent-environment systems: A niche construction perspective"
+    year 2018
+    citation_count 102
+    community 4
+  ]
+  node [
+    id 837
+    label "doi:10.1038/s41598-018-38246-3"
+    title "Neuronal message passing using Mean-field, Bethe, and Marginal approximations"
+    year 2019
+    citation_count 131
+    community 2
+  ]
+  node [
+    id 838
+    label "doi:10.1038/s41467-021-26751-5"
+    title "Unsupervised deep learning identifies semantic disentanglement in single inferotemporal face patch neurons"
+    year 2021
+    citation_count 152
+    community 6
+  ]
+  node [
+    id 839
+    label "arxiv:2603.07559"
+    title "Active Inference for Micro-Gesture Recognition: EFE-Guided Temporal Sampling and Adaptive Learning"
+    year 2026
+    citation_count 0
+    community 566
+  ]
+  node [
+    id 840
+    label "arxiv:2603.06831"
+    title "Learning-Based Robust Control: Unifying Exploration and Distributional Robustness for Reliable Robotics via Free Energy"
+    year 2026
+    citation_count 0
+    community 567
+  ]
+  node [
+    id 841
+    label "arxiv:2403.01977"
+    title "Seeing Through Uncertainty: A Free-Energy Approach for Real-Time Perceptual Adaptation in Robust Visual Navigation"
+    year 2024
+    citation_count 0
+    community 568
+  ]
+  node [
+    id 842
+    label "doi:10.1124/pr.118.017160"
+    title "REBUS and the Anarchic Brain: Toward a Unified Model of the Brain Action of Psychedelics"
+    year 2019
+    citation_count 1060
+    community 2
+  ]
+  node [
+    id 843
+    label "doi:10.5281/zenodo.18906553"
+    title "Evaluation Dynamics and the Free Energy Principle: Active Inference as Attribution Entropy Reduction"
+    year 2026
+    citation_count 0
+    community 569
+  ]
+  node [
+    id 844
+    label "doi:10.5281/zenodo.18905666"
+    title "Precision Conservation in Hierarchical Inference: A Geometric Redistribution Principle under Capacity Constraints"
+    year 2026
+    citation_count 4
+    community 570
+  ]
+  node [
+    id 845
+    label "doi:10.1007/s11229-016-1288-5"
+    title "From cognitivism to autopoiesis: towards a computational framework for the embodied mind"
+    year 2016
+    citation_count 377
+    community 0
+  ]
+  node [
+    id 846
+    label "doi:10.1007/s11229-019-02115-x"
+    title "Multiscale integration: beyond internalism and externalism"
+    year 2019
+    citation_count 156
+    community 0
   ]
   edge [
     source 177
-    target 483
-  ]
-  edge [
-    source 177
-    target 637
-  ]
-  edge [
-    source 177
-    target 645
-  ]
-  edge [
-    source 177
-    target 507
-  ]
-  edge [
-    source 177
-    target 705
-  ]
-  edge [
-    source 177
-    target 498
-  ]
-  edge [
-    source 177
-    target 496
-  ]
-  edge [
-    source 177
-    target 693
-  ]
-  edge [
-    source 177
-    target 495
-  ]
-  edge [
-    source 177
-    target 771
-  ]
-  edge [
-    source 177
-    target 513
-  ]
-  edge [
-    source 177
-    target 305
+    target 827
   ]
   edge [
     source 177
@@ -6334,75 +6784,19 @@ graph [
   ]
   edge [
     source 177
-    target 517
+    target 317
   ]
   edge [
-    source 177
-    target 232
+    source 184
+    target 831
   ]
   edge [
-    source 177
-    target 547
-  ]
-  edge [
-    source 220
-    target 595
-  ]
-  edge [
-    source 220
-    target 482
-  ]
-  edge [
-    source 220
-    target 654
-  ]
-  edge [
-    source 220
-    target 483
-  ]
-  edge [
-    source 220
-    target 637
-  ]
-  edge [
-    source 220
-    target 719
-  ]
-  edge [
-    source 220
-    target 710
-  ]
-  edge [
-    source 220
-    target 645
-  ]
-  edge [
-    source 220
-    target 336
-  ]
-  edge [
-    source 220
-    target 687
-  ]
-  edge [
-    source 220
+    source 184
     target 475
   ]
   edge [
     source 220
-    target 778
-  ]
-  edge [
-    source 220
-    target 531
-  ]
-  edge [
-    source 220
-    target 486
-  ]
-  edge [
-    source 220
-    target 506
+    target 797
   ]
   edge [
     source 220
@@ -6410,23 +6804,19 @@ graph [
   ]
   edge [
     source 220
-    target 495
+    target 486
   ]
   edge [
     source 220
-    target 508
-  ]
-  edge [
-    source 220
-    target 784
+    target 475
   ]
   edge [
     source 229
-    target 649
+    target 647
   ]
   edge [
     source 229
-    target 595
+    target 593
   ]
   edge [
     source 229
@@ -6434,15 +6824,15 @@ graph [
   ]
   edge [
     source 232
-    target 595
+    target 593
+  ]
+  edge [
+    source 232
+    target 617
   ]
   edge [
     source 232
     target 619
-  ]
-  edge [
-    source 232
-    target 621
   ]
   edge [
     source 232
@@ -6454,7 +6844,7 @@ graph [
   ]
   edge [
     source 232
-    target 710
+    target 708
   ]
   edge [
     source 232
@@ -6462,7 +6852,7 @@ graph [
   ]
   edge [
     source 232
-    target 645
+    target 643
   ]
   edge [
     source 232
@@ -6470,7 +6860,11 @@ graph [
   ]
   edge [
     source 232
-    target 705
+    target 703
+  ]
+  edge [
+    source 232
+    target 837
   ]
   edge [
     source 232
@@ -6478,7 +6872,7 @@ graph [
   ]
   edge [
     source 232
-    target 693
+    target 691
   ]
   edge [
     source 232
@@ -6490,11 +6884,11 @@ graph [
   ]
   edge [
     source 232
-    target 784
+    target 782
   ]
   edge [
     source 232
-    target 750
+    target 748
   ]
   edge [
     source 232
@@ -6510,11 +6904,11 @@ graph [
   ]
   edge [
     source 252
-    target 654
+    target 652
   ]
   edge [
     source 252
-    target 751
+    target 749
   ]
   edge [
     source 252
@@ -6526,11 +6920,15 @@ graph [
   ]
   edge [
     source 252
+    target 837
+  ]
+  edge [
+    source 252
     target 514
   ]
   edge [
     source 252
-    target 693
+    target 691
   ]
   edge [
     source 252
@@ -6542,7 +6940,15 @@ graph [
   ]
   edge [
     source 281
-    target 740
+    target 738
+  ]
+  edge [
+    source 281
+    target 591
+  ]
+  edge [
+    source 281
+    target 602
   ]
   edge [
     source 281
@@ -6550,15 +6956,7 @@ graph [
   ]
   edge [
     source 281
-    target 604
-  ]
-  edge [
-    source 281
-    target 595
-  ]
-  edge [
-    source 281
-    target 619
+    target 617
   ]
   edge [
     source 281
@@ -6570,11 +6968,11 @@ graph [
   ]
   edge [
     source 281
-    target 645
+    target 643
   ]
   edge [
     source 281
-    target 753
+    target 751
   ]
   edge [
     source 281
@@ -6586,63 +6984,31 @@ graph [
   ]
   edge [
     source 281
-    target 693
+    target 691
   ]
   edge [
     source 281
-    target 750
-  ]
-  edge [
-    source 286
-    target 740
-  ]
-  edge [
-    source 286
-    target 728
-  ]
-  edge [
-    source 286
-    target 637
-  ]
-  edge [
-    source 286
-    target 493
-  ]
-  edge [
-    source 286
-    target 768
-  ]
-  edge [
-    source 286
-    target 498
+    target 748
   ]
   edge [
     source 286
     target 486
   ]
   edge [
-    source 286
-    target 496
-  ]
-  edge [
-    source 286
-    target 756
-  ]
-  edge [
-    source 286
-    target 700
+    source 289
+    target 652
   ]
   edge [
     source 289
-    target 654
+    target 618
   ]
   edge [
     source 289
-    target 620
+    target 684
   ]
   edge [
     source 289
-    target 686
+    target 845
   ]
   edge [
     source 289
@@ -6650,11 +7016,11 @@ graph [
   ]
   edge [
     source 297
-    target 649
+    target 647
   ]
   edge [
     source 297
-    target 595
+    target 593
   ]
   edge [
     source 297
@@ -6662,11 +7028,11 @@ graph [
   ]
   edge [
     source 297
-    target 654
+    target 652
   ]
   edge [
     source 297
-    target 703
+    target 701
   ]
   edge [
     source 297
@@ -6678,15 +7044,15 @@ graph [
   ]
   edge [
     source 297
-    target 645
+    target 643
   ]
   edge [
     source 297
-    target 753
+    target 751
   ]
   edge [
     source 297
-    target 778
+    target 776
   ]
   edge [
     source 297
@@ -6694,15 +7060,19 @@ graph [
   ]
   edge [
     source 297
-    target 758
+    target 837
   ]
   edge [
     source 297
-    target 693
+    target 756
   ]
   edge [
     source 297
-    target 576
+    target 691
+  ]
+  edge [
+    source 297
+    target 574
   ]
   edge [
     source 305
@@ -6710,27 +7080,27 @@ graph [
   ]
   edge [
     source 305
-    target 595
+    target 593
   ]
   edge [
     source 305
-    target 698
+    target 696
   ]
   edge [
     source 305
-    target 703
+    target 701
   ]
   edge [
     source 305
-    target 592
+    target 590
   ]
   edge [
     source 305
-    target 751
+    target 749
   ]
   edge [
     source 305
-    target 710
+    target 708
   ]
   edge [
     source 305
@@ -6742,19 +7112,23 @@ graph [
   ]
   edge [
     source 305
-    target 687
+    target 685
   ]
   edge [
     source 305
-    target 705
+    target 703
   ]
   edge [
     source 305
-    target 753
+    target 751
   ]
   edge [
     source 305
-    target 702
+    target 700
+  ]
+  edge [
+    source 305
+    target 837
   ]
   edge [
     source 305
@@ -6766,11 +7140,11 @@ graph [
   ]
   edge [
     source 336
-    target 593
+    target 591
   ]
   edge [
     source 336
-    target 595
+    target 593
   ]
   edge [
     source 336
@@ -6778,11 +7152,11 @@ graph [
   ]
   edge [
     source 336
-    target 592
+    target 590
   ]
   edge [
     source 336
-    target 637
+    target 635
   ]
   edge [
     source 336
@@ -6790,15 +7164,11 @@ graph [
   ]
   edge [
     source 387
-    target 595
+    target 593
   ]
   edge [
     source 387
-    target 619
-  ]
-  edge [
-    source 387
-    target 485
+    target 617
   ]
   edge [
     source 387
@@ -6806,15 +7176,15 @@ graph [
   ]
   edge [
     source 387
-    target 637
+    target 635
   ]
   edge [
     source 387
-    target 710
+    target 708
   ]
   edge [
     source 387
-    target 586
+    target 584
   ]
   edge [
     source 387
@@ -6822,11 +7192,11 @@ graph [
   ]
   edge [
     source 387
-    target 645
+    target 643
   ]
   edge [
     source 387
-    target 711
+    target 709
   ]
   edge [
     source 387
@@ -6838,19 +7208,15 @@ graph [
   ]
   edge [
     source 387
-    target 486
+    target 691
   ]
   edge [
     source 387
-    target 693
+    target 727
   ]
   edge [
     source 387
-    target 729
-  ]
-  edge [
-    source 387
-    target 750
+    target 748
   ]
   edge [
     source 412
@@ -6858,15 +7224,15 @@ graph [
   ]
   edge [
     source 412
-    target 604
+    target 602
   ]
   edge [
     source 412
-    target 561
+    target 559
   ]
   edge [
     source 412
-    target 710
+    target 708
   ]
   edge [
     source 412
@@ -6874,63 +7240,11 @@ graph [
   ]
   edge [
     source 412
-    target 686
-  ]
-  edge [
-    source 475
-    target 646
-  ]
-  edge [
-    source 475
-    target 595
-  ]
-  edge [
-    source 475
-    target 621
-  ]
-  edge [
-    source 475
-    target 710
+    target 684
   ]
   edge [
     source 475
     target 479
-  ]
-  edge [
-    source 475
-    target 744
-  ]
-  edge [
-    source 475
-    target 645
-  ]
-  edge [
-    source 476
-    target 595
-  ]
-  edge [
-    source 476
-    target 478
-  ]
-  edge [
-    source 476
-    target 475
-  ]
-  edge [
-    source 476
-    target 486
-  ]
-  edge [
-    source 476
-    target 496
-  ]
-  edge [
-    source 476
-    target 693
-  ]
-  edge [
-    source 476
-    target 736
   ]
   edge [
     source 476
@@ -6938,75 +7252,15 @@ graph [
   ]
   edge [
     source 476
-    target 699
+    target 486
   ]
   edge [
-    source 477
-    target 646
-  ]
-  edge [
-    source 477
-    target 649
-  ]
-  edge [
-    source 477
-    target 604
-  ]
-  edge [
-    source 477
-    target 595
-  ]
-  edge [
-    source 477
-    target 704
-  ]
-  edge [
-    source 477
-    target 519
-  ]
-  edge [
-    source 477
-    target 478
-  ]
-  edge [
-    source 477
-    target 645
-  ]
-  edge [
-    source 477
+    source 476
     target 475
   ]
   edge [
     source 477
-    target 502
-  ]
-  edge [
-    source 477
-    target 702
-  ]
-  edge [
-    source 477
-    target 496
-  ]
-  edge [
-    source 477
-    target 729
-  ]
-  edge [
-    source 477
-    target 700
-  ]
-  edge [
-    source 477
-    target 661
-  ]
-  edge [
-    source 477
-    target 518
-  ]
-  edge [
-    source 477
-    target 614
+    target 475
   ]
   edge [
     source 478
@@ -7014,11 +7268,11 @@ graph [
   ]
   edge [
     source 478
-    target 604
+    target 602
   ]
   edge [
     source 478
-    target 595
+    target 593
   ]
   edge [
     source 478
@@ -7026,15 +7280,15 @@ graph [
   ]
   edge [
     source 478
-    target 654
+    target 652
   ]
   edge [
     source 478
-    target 703
+    target 701
   ]
   edge [
     source 478
-    target 783
+    target 781
   ]
   edge [
     source 478
@@ -7042,71 +7296,15 @@ graph [
   ]
   edge [
     source 478
-    target 637
+    target 635
   ]
   edge [
     source 478
-    target 751
+    target 749
   ]
   edge [
     source 478
-    target 710
-  ]
-  edge [
-    source 479
-    target 649
-  ]
-  edge [
-    source 479
-    target 595
-  ]
-  edge [
-    source 479
-    target 667
-  ]
-  edge [
-    source 479
-    target 621
-  ]
-  edge [
-    source 479
-    target 704
-  ]
-  edge [
-    source 479
-    target 752
-  ]
-  edge [
-    source 479
-    target 519
-  ]
-  edge [
-    source 481
-    target 478
-  ]
-  edge [
-    source 481
-    target 705
-  ]
-  edge [
-    source 481
-    target 590
-  ]
-  edge [
-    source 481
-    target 700
-  ]
-  edge [
-    source 481
-    target 477
-  ]
-  edge [
-    source 481
-    target 661
-  ]
-  edge [
-    source 481
-    target 614
+    target 708
   ]
   edge [
     source 482
@@ -7114,19 +7312,19 @@ graph [
   ]
   edge [
     source 482
-    target 619
+    target 617
   ]
   edge [
     source 482
-    target 676
+    target 674
   ]
   edge [
     source 482
-    target 654
+    target 652
   ]
   edge [
     source 482
-    target 703
+    target 701
   ]
   edge [
     source 482
@@ -7134,7 +7332,7 @@ graph [
   ]
   edge [
     source 483
-    target 593
+    target 591
   ]
   edge [
     source 484
@@ -7142,87 +7340,7 @@ graph [
   ]
   edge [
     source 484
-    target 586
-  ]
-  edge [
-    source 484
-    target 711
-  ]
-  edge [
-    source 484
-    target 769
-  ]
-  edge [
-    source 484
-    target 480
-  ]
-  edge [
-    source 485
-    target 646
-  ]
-  edge [
-    source 485
-    target 593
-  ]
-  edge [
-    source 485
-    target 663
-  ]
-  edge [
-    source 485
-    target 595
-  ]
-  edge [
-    source 485
-    target 625
-  ]
-  edge [
-    source 485
-    target 519
-  ]
-  edge [
-    source 486
-    target 595
-  ]
-  edge [
-    source 486
-    target 621
-  ]
-  edge [
-    source 486
-    target 728
-  ]
-  edge [
-    source 486
-    target 519
-  ]
-  edge [
-    source 486
-    target 637
-  ]
-  edge [
-    source 486
-    target 479
-  ]
-  edge [
-    source 486
-    target 478
-  ]
-  edge [
-    source 486
-    target 686
-  ]
-  edge [
-    source 486
-    target 744
-  ]
-  edge [
-    source 486
-    target 645
-  ]
-  edge [
-    source 486
-    target 741
+    target 793
   ]
   edge [
     source 486
@@ -7230,19 +7348,19 @@ graph [
   ]
   edge [
     source 486
-    target 768
+    target 479
   ]
   edge [
     source 487
-    target 675
+    target 673
   ]
   edge [
     source 487
-    target 604
+    target 602
   ]
   edge [
     source 487
-    target 654
+    target 652
   ]
   edge [
     source 487
@@ -7250,7 +7368,7 @@ graph [
   ]
   edge [
     source 487
-    target 592
+    target 590
   ]
   edge [
     source 487
@@ -7258,19 +7376,19 @@ graph [
   ]
   edge [
     source 487
-    target 637
+    target 635
   ]
   edge [
     source 487
-    target 719
+    target 717
   ]
   edge [
     source 489
-    target 604
+    target 602
   ]
   edge [
     source 489
-    target 704
+    target 702
   ]
   edge [
     source 489
@@ -7278,59 +7396,55 @@ graph [
   ]
   edge [
     source 489
-    target 705
+    target 703
   ]
   edge [
     source 489
-    target 729
+    target 837
   ]
   edge [
     source 489
-    target 590
+    target 727
   ]
   edge [
     source 489
-    target 700
+    target 588
   ]
   edge [
     source 489
-    target 477
+    target 698
   ]
   edge [
     source 489
-    target 730
+    target 728
   ]
   edge [
     source 489
-    target 661
+    target 659
   ]
   edge [
     source 489
-    target 614
+    target 612
   ]
   edge [
     source 490
-    target 620
+    target 618
   ]
   edge [
     source 490
-    target 586
+    target 584
   ]
   edge [
     source 490
-    target 639
+    target 637
   ]
   edge [
     source 492
-    target 604
+    target 602
   ]
   edge [
     source 492
-    target 485
-  ]
-  edge [
-    source 492
-    target 625
+    target 623
   ]
   edge [
     source 492
@@ -7338,11 +7452,11 @@ graph [
   ]
   edge [
     source 493
-    target 595
+    target 593
   ]
   edge [
     source 493
-    target 619
+    target 617
   ]
   edge [
     source 493
@@ -7350,27 +7464,27 @@ graph [
   ]
   edge [
     source 493
-    target 750
+    target 748
   ]
   edge [
     source 494
-    target 649
+    target 647
   ]
   edge [
     source 494
-    target 621
+    target 619
   ]
   edge [
     source 494
-    target 704
+    target 702
   ]
   edge [
     source 494
-    target 751
+    target 749
   ]
   edge [
     source 494
-    target 586
+    target 584
   ]
   edge [
     source 494
@@ -7378,19 +7492,19 @@ graph [
   ]
   edge [
     source 494
-    target 687
+    target 685
   ]
   edge [
     source 494
-    target 705
+    target 703
   ]
   edge [
     source 494
-    target 486
+    target 842
   ]
   edge [
     source 494
-    target 535
+    target 534
   ]
   edge [
     source 494
@@ -7398,15 +7512,15 @@ graph [
   ]
   edge [
     source 494
-    target 608
+    target 606
   ]
   edge [
     source 494
-    target 559
+    target 557
   ]
   edge [
     source 494
-    target 748
+    target 746
   ]
   edge [
     source 495
@@ -7414,7 +7528,7 @@ graph [
   ]
   edge [
     source 495
-    target 595
+    target 593
   ]
   edge [
     source 495
@@ -7426,7 +7540,7 @@ graph [
   ]
   edge [
     source 495
-    target 645
+    target 643
   ]
   edge [
     source 495
@@ -7434,7 +7548,11 @@ graph [
   ]
   edge [
     source 495
-    target 705
+    target 703
+  ]
+  edge [
+    source 495
+    target 837
   ]
   edge [
     source 495
@@ -7446,7 +7564,7 @@ graph [
   ]
   edge [
     source 495
-    target 693
+    target 691
   ]
   edge [
     source 495
@@ -7454,15 +7572,23 @@ graph [
   ]
   edge [
     source 496
-    target 740
+    target 738
   ]
   edge [
     source 496
-    target 604
+    target 602
   ]
   edge [
     source 496
-    target 595
+    target 593
+  ]
+  edge [
+    source 496
+    target 617
+  ]
+  edge [
+    source 496
+    target 482
   ]
   edge [
     source 496
@@ -7470,19 +7596,11 @@ graph [
   ]
   edge [
     source 496
-    target 482
+    target 750
   ]
   edge [
     source 496
-    target 621
-  ]
-  edge [
-    source 496
-    target 752
-  ]
-  edge [
-    source 496
-    target 639
+    target 637
   ]
   edge [
     source 496
@@ -7490,7 +7608,7 @@ graph [
   ]
   edge [
     source 496
-    target 645
+    target 643
   ]
   edge [
     source 496
@@ -7498,7 +7616,11 @@ graph [
   ]
   edge [
     source 497
-    target 740
+    target 738
+  ]
+  edge [
+    source 497
+    target 591
   ]
   edge [
     source 497
@@ -7506,23 +7628,19 @@ graph [
   ]
   edge [
     source 497
-    target 595
-  ]
-  edge [
-    source 497
     target 482
   ]
   edge [
     source 497
-    target 592
+    target 590
   ]
   edge [
     source 497
-    target 728
+    target 726
   ]
   edge [
     source 497
-    target 752
+    target 750
   ]
   edge [
     source 497
@@ -7530,11 +7648,7 @@ graph [
   ]
   edge [
     source 497
-    target 637
-  ]
-  edge [
-    source 497
-    target 479
+    target 635
   ]
   edge [
     source 497
@@ -7542,23 +7656,27 @@ graph [
   ]
   edge [
     source 497
-    target 645
+    target 845
   ]
   edge [
     source 497
-    target 741
+    target 643
   ]
   edge [
     source 497
-    target 475
+    target 739
   ]
   edge [
     source 497
-    target 753
+    target 751
   ]
   edge [
     source 497
-    target 768
+    target 766
+  ]
+  edge [
+    source 497
+    target 846
   ]
   edge [
     source 497
@@ -7566,39 +7684,23 @@ graph [
   ]
   edge [
     source 497
-    target 486
-  ]
-  edge [
-    source 497
     target 496
   ]
   edge [
     source 497
-    target 510
-  ]
-  edge [
-    source 497
-    target 700
-  ]
-  edge [
-    source 497
-    target 286
-  ]
-  edge [
-    source 497
-    target 476
+    target 698
   ]
   edge [
     source 498
-    target 604
+    target 602
   ]
   edge [
     source 498
-    target 595
+    target 593
   ]
   edge [
     source 498
-    target 619
+    target 617
   ]
   edge [
     source 498
@@ -7606,7 +7708,7 @@ graph [
   ]
   edge [
     source 498
-    target 750
+    target 748
   ]
   edge [
     source 499
@@ -7614,23 +7716,23 @@ graph [
   ]
   edge [
     source 500
-    target 649
+    target 647
   ]
   edge [
     source 500
-    target 621
+    target 619
   ]
   edge [
     source 500
-    target 704
+    target 702
   ]
   edge [
     source 500
-    target 751
+    target 749
   ]
   edge [
     source 500
-    target 586
+    target 584
   ]
   edge [
     source 500
@@ -7638,15 +7740,19 @@ graph [
   ]
   edge [
     source 500
-    target 687
+    target 685
   ]
   edge [
     source 500
-    target 705
+    target 703
   ]
   edge [
     source 500
-    target 535
+    target 842
+  ]
+  edge [
+    source 500
+    target 534
   ]
   edge [
     source 500
@@ -7654,23 +7760,23 @@ graph [
   ]
   edge [
     source 500
-    target 608
+    target 606
   ]
   edge [
     source 500
-    target 559
+    target 557
   ]
   edge [
     source 500
-    target 748
+    target 746
+  ]
+  edge [
+    source 501
+    target 591
   ]
   edge [
     source 501
     target 593
-  ]
-  edge [
-    source 501
-    target 595
   ]
   edge [
     source 501
@@ -7678,7 +7784,7 @@ graph [
   ]
   edge [
     source 501
-    target 676
+    target 674
   ]
   edge [
     source 501
@@ -7686,11 +7792,11 @@ graph [
   ]
   edge [
     source 501
-    target 645
+    target 643
   ]
   edge [
     source 502
-    target 593
+    target 591
   ]
   edge [
     source 502
@@ -7698,7 +7804,7 @@ graph [
   ]
   edge [
     source 502
-    target 604
+    target 602
   ]
   edge [
     source 502
@@ -7706,11 +7812,11 @@ graph [
   ]
   edge [
     source 502
-    target 698
+    target 696
   ]
   edge [
     source 502
-    target 621
+    target 619
   ]
   edge [
     source 502
@@ -7722,7 +7828,7 @@ graph [
   ]
   edge [
     source 502
-    target 710
+    target 708
   ]
   edge [
     source 502
@@ -7730,11 +7836,7 @@ graph [
   ]
   edge [
     source 502
-    target 586
-  ]
-  edge [
-    source 502
-    target 479
+    target 584
   ]
   edge [
     source 502
@@ -7742,7 +7844,7 @@ graph [
   ]
   edge [
     source 502
-    target 645
+    target 643
   ]
   edge [
     source 502
@@ -7750,11 +7852,11 @@ graph [
   ]
   edge [
     source 503
-    target 593
+    target 591
   ]
   edge [
     source 503
-    target 595
+    target 593
   ]
   edge [
     source 503
@@ -7766,7 +7868,7 @@ graph [
   ]
   edge [
     source 503
-    target 625
+    target 623
   ]
   edge [
     source 503
@@ -7774,23 +7876,23 @@ graph [
   ]
   edge [
     source 503
-    target 637
+    target 635
   ]
   edge [
     source 503
-    target 537
+    target 536
   ]
   edge [
     source 503
-    target 750
+    target 748
   ]
   edge [
     source 504
-    target 593
+    target 591
   ]
   edge [
     source 504
-    target 604
+    target 602
   ]
   edge [
     source 504
@@ -7799,54 +7901,26 @@ graph [
   edge [
     source 504
     target 519
-  ]
-  edge [
-    source 505
-    target 604
-  ]
-  edge [
-    source 505
-    target 586
-  ]
-  edge [
-    source 505
-    target 575
-  ]
-  edge [
-    source 505
-    target 761
-  ]
-  edge [
-    source 505
-    target 780
-  ]
-  edge [
-    source 505
-    target 584
-  ]
-  edge [
-    source 505
-    target 743
   ]
   edge [
     source 506
-    target 533
+    target 532
   ]
   edge [
     source 507
-    target 653
+    target 651
   ]
   edge [
     source 507
-    target 637
+    target 635
   ]
   edge [
     source 507
-    target 645
+    target 643
   ]
   edge [
     source 508
-    target 595
+    target 593
   ]
   edge [
     source 508
@@ -7854,11 +7928,11 @@ graph [
   ]
   edge [
     source 508
-    target 676
+    target 674
   ]
   edge [
     source 508
-    target 755
+    target 753
   ]
   edge [
     source 508
@@ -7866,11 +7940,11 @@ graph [
   ]
   edge [
     source 508
-    target 710
+    target 708
   ]
   edge [
     source 508
-    target 645
+    target 643
   ]
   edge [
     source 508
@@ -7882,15 +7956,15 @@ graph [
   ]
   edge [
     source 509
-    target 604
+    target 602
   ]
   edge [
     source 509
-    target 719
+    target 717
   ]
   edge [
     source 509
-    target 699
+    target 697
   ]
   edge [
     source 509
@@ -7898,107 +7972,27 @@ graph [
   ]
   edge [
     source 509
-    target 476
-  ]
-  edge [
-    source 509
-    target 769
+    target 767
   ]
   edge [
     source 510
-    target 653
-  ]
-  edge [
-    source 510
-    target 649
-  ]
-  edge [
-    source 510
-    target 487
-  ]
-  edge [
-    source 510
-    target 482
-  ]
-  edge [
-    source 510
-    target 621
-  ]
-  edge [
-    source 510
-    target 483
-  ]
-  edge [
-    source 510
-    target 592
+    target 475
   ]
   edge [
     source 510
     target 485
   ]
   edge [
-    source 510
-    target 625
-  ]
-  edge [
-    source 510
-    target 519
-  ]
-  edge [
-    source 510
-    target 586
-  ]
-  edge [
-    source 510
-    target 674
-  ]
-  edge [
-    source 510
-    target 692
-  ]
-  edge [
-    source 510
-    target 478
-  ]
-  edge [
-    source 510
-    target 645
-  ]
-  edge [
-    source 510
-    target 687
-  ]
-  edge [
-    source 510
-    target 475
-  ]
-  edge [
-    source 510
-    target 490
-  ]
-  edge [
-    source 510
-    target 711
-  ]
-  edge [
-    source 510
-    target 778
-  ]
-  edge [
-    source 510
-    target 496
+    source 511
+    target 738
   ]
   edge [
     source 511
-    target 740
+    target 591
   ]
   edge [
     source 511
-    target 593
-  ]
-  edge [
-    source 511
-    target 649
+    target 647
   ]
   edge [
     source 511
@@ -8006,7 +8000,11 @@ graph [
   ]
   edge [
     source 511
-    target 750
+    target 748
+  ]
+  edge [
+    source 512
+    target 591
   ]
   edge [
     source 512
@@ -8014,11 +8012,7 @@ graph [
   ]
   edge [
     source 512
-    target 595
-  ]
-  edge [
-    source 512
-    target 592
+    target 590
   ]
   edge [
     source 512
@@ -8026,15 +8020,15 @@ graph [
   ]
   edge [
     source 512
-    target 645
+    target 643
   ]
   edge [
     source 512
-    target 687
+    target 685
   ]
   edge [
     source 512
-    target 705
+    target 703
   ]
   edge [
     source 512
@@ -8042,11 +8036,7 @@ graph [
   ]
   edge [
     source 513
-    target 687
-  ]
-  edge [
-    source 513
-    target 475
+    target 685
   ]
   edge [
     source 513
@@ -8054,15 +8044,15 @@ graph [
   ]
   edge [
     source 514
-    target 740
+    target 738
   ]
   edge [
     source 514
-    target 643
+    target 641
   ]
   edge [
     source 514
-    target 595
+    target 593
   ]
   edge [
     source 514
@@ -8070,7 +8060,7 @@ graph [
   ]
   edge [
     source 514
-    target 676
+    target 674
   ]
   edge [
     source 514
@@ -8078,7 +8068,7 @@ graph [
   ]
   edge [
     source 514
-    target 645
+    target 643
   ]
   edge [
     source 514
@@ -8090,11 +8080,11 @@ graph [
   ]
   edge [
     source 514
-    target 687
+    target 685
   ]
   edge [
     source 514
-    target 693
+    target 691
   ]
   edge [
     source 515
@@ -8102,23 +8092,23 @@ graph [
   ]
   edge [
     source 515
-    target 646
+    target 644
   ]
   edge [
     source 515
-    target 649
+    target 647
   ]
   edge [
     source 515
-    target 604
+    target 602
   ]
   edge [
     source 515
-    target 595
+    target 593
   ]
   edge [
     source 515
-    target 704
+    target 702
   ]
   edge [
     source 515
@@ -8130,11 +8120,7 @@ graph [
   ]
   edge [
     source 515
-    target 645
-  ]
-  edge [
-    source 515
-    target 475
+    target 643
   ]
   edge [
     source 515
@@ -8142,7 +8128,11 @@ graph [
   ]
   edge [
     source 515
-    target 702
+    target 700
+  ]
+  edge [
+    source 515
+    target 837
   ]
   edge [
     source 515
@@ -8150,15 +8140,39 @@ graph [
   ]
   edge [
     source 515
-    target 700
+    target 698
   ]
   edge [
     source 515
-    target 614
+    target 612
   ]
   edge [
     source 516
-    target 604
+    target 602
+  ]
+  edge [
+    source 516
+    target 641
+  ]
+  edge [
+    source 516
+    target 701
+  ]
+  edge [
+    source 516
+    target 717
+  ]
+  edge [
+    source 516
+    target 749
+  ]
+  edge [
+    source 516
+    target 637
+  ]
+  edge [
+    source 516
+    target 478
   ]
   edge [
     source 516
@@ -8166,51 +8180,7 @@ graph [
   ]
   edge [
     source 516
-    target 703
-  ]
-  edge [
-    source 516
-    target 719
-  ]
-  edge [
-    source 516
-    target 751
-  ]
-  edge [
-    source 516
-    target 639
-  ]
-  edge [
-    source 516
-    target 478
-  ]
-  edge [
-    source 516
-    target 645
-  ]
-  edge [
-    source 516
-    target 475
-  ]
-  edge [
-    source 516
-    target 711
-  ]
-  edge [
-    source 516
-    target 702
-  ]
-  edge [
-    source 516
-    target 486
-  ]
-  edge [
-    source 516
-    target 496
-  ]
-  edge [
-    source 516
-    target 736
+    target 709
   ]
   edge [
     source 516
@@ -8218,19 +8188,27 @@ graph [
   ]
   edge [
     source 516
-    target 286
+    target 496
   ]
   edge [
     source 516
-    target 699
+    target 734
+  ]
+  edge [
+    source 516
+    target 698
+  ]
+  edge [
+    source 516
+    target 697
   ]
   edge [
     source 517
-    target 676
+    target 674
   ]
   edge [
     source 517
-    target 703
+    target 701
   ]
   edge [
     source 517
@@ -8238,7 +8216,7 @@ graph [
   ]
   edge [
     source 517
-    target 592
+    target 590
   ]
   edge [
     source 517
@@ -8246,7 +8224,11 @@ graph [
   ]
   edge [
     source 517
-    target 645
+    target 643
+  ]
+  edge [
+    source 517
+    target 837
   ]
   edge [
     source 517
@@ -8254,7 +8236,7 @@ graph [
   ]
   edge [
     source 517
-    target 758
+    target 756
   ]
   edge [
     source 517
@@ -8270,7 +8252,7 @@ graph [
   ]
   edge [
     source 517
-    target 784
+    target 782
   ]
   edge [
     source 517
@@ -8278,23 +8260,23 @@ graph [
   ]
   edge [
     source 517
-    target 636
+    target 634
   ]
   edge [
     source 517
-    target 612
+    target 610
   ]
   edge [
     source 518
-    target 649
+    target 647
   ]
   edge [
     source 518
-    target 604
+    target 602
   ]
   edge [
     source 518
-    target 595
+    target 593
   ]
   edge [
     source 518
@@ -8302,15 +8284,15 @@ graph [
   ]
   edge [
     source 518
-    target 667
+    target 665
   ]
   edge [
     source 518
-    target 621
+    target 619
   ]
   edge [
     source 518
-    target 754
+    target 752
   ]
   edge [
     source 518
@@ -8318,15 +8300,15 @@ graph [
   ]
   edge [
     source 518
-    target 719
+    target 717
   ]
   edge [
     source 518
-    target 751
+    target 749
   ]
   edge [
     source 518
-    target 586
+    target 584
   ]
   edge [
     source 518
@@ -8334,19 +8316,11 @@ graph [
   ]
   edge [
     source 518
-    target 705
+    target 703
   ]
   edge [
     source 518
-    target 475
-  ]
-  edge [
-    source 518
-    target 711
-  ]
-  edge [
-    source 518
-    target 486
+    target 709
   ]
   edge [
     source 518
@@ -8354,15 +8328,15 @@ graph [
   ]
   edge [
     source 518
-    target 590
+    target 588
   ]
   edge [
     source 518
-    target 736
+    target 734
   ]
   edge [
     source 518
-    target 700
+    target 698
   ]
   edge [
     source 518
@@ -8370,15 +8344,11 @@ graph [
   ]
   edge [
     source 518
-    target 477
+    target 575
   ]
   edge [
     source 518
-    target 577
-  ]
-  edge [
-    source 518
-    target 771
+    target 769
   ]
   edge [
     source 518
@@ -8386,51 +8356,43 @@ graph [
   ]
   edge [
     source 518
-    target 699
+    target 697
   ]
   edge [
     source 518
-    target 784
+    target 782
   ]
   edge [
     source 518
-    target 544
+    target 542
   ]
   edge [
     source 518
-    target 535
+    target 534
   ]
   edge [
-    source 518
-    target 481
+    source 519
+    target 596
   ]
   edge [
-    source 518
+    source 519
+    target 644
+  ]
+  edge [
+    source 519
     target 591
   ]
   edge [
     source 519
-    target 598
+    target 719
   ]
   edge [
     source 519
-    target 646
+    target 661
   ]
   edge [
     source 519
-    target 593
-  ]
-  edge [
-    source 519
-    target 721
-  ]
-  edge [
-    source 519
-    target 663
-  ]
-  edge [
-    source 519
-    target 619
+    target 617
   ]
   edge [
     source 519
@@ -8438,19 +8400,19 @@ graph [
   ]
   edge [
     source 519
-    target 719
+    target 717
   ]
   edge [
     source 520
-    target 740
+    target 738
   ]
   edge [
     source 520
-    target 595
+    target 593
   ]
   edge [
     source 520
-    target 752
+    target 750
   ]
   edge [
     source 520
@@ -8458,7 +8420,7 @@ graph [
   ]
   edge [
     source 520
-    target 637
+    target 635
   ]
   edge [
     source 520
@@ -8466,7 +8428,11 @@ graph [
   ]
   edge [
     source 520
-    target 753
+    target 751
+  ]
+  edge [
+    source 520
+    target 837
   ]
   edge [
     source 520
@@ -8474,7 +8440,7 @@ graph [
   ]
   edge [
     source 520
-    target 729
+    target 727
   ]
   edge [
     source 520
@@ -8486,7 +8452,7 @@ graph [
   ]
   edge [
     source 521
-    target 593
+    target 591
   ]
   edge [
     source 521
@@ -8498,7 +8464,7 @@ graph [
   ]
   edge [
     source 521
-    target 625
+    target 623
   ]
   edge [
     source 521
@@ -8506,11 +8472,11 @@ graph [
   ]
   edge [
     source 521
-    target 637
+    target 635
   ]
   edge [
     source 521
-    target 537
+    target 536
   ]
   edge [
     source 521
@@ -8518,7 +8484,7 @@ graph [
   ]
   edge [
     source 522
-    target 595
+    target 593
   ]
   edge [
     source 522
@@ -8526,19 +8492,19 @@ graph [
   ]
   edge [
     source 524
-    target 649
+    target 647
   ]
   edge [
     source 524
-    target 604
+    target 602
   ]
   edge [
     source 524
-    target 676
+    target 674
   ]
   edge [
     source 524
-    target 703
+    target 701
   ]
   edge [
     source 524
@@ -8546,11 +8512,11 @@ graph [
   ]
   edge [
     source 524
-    target 592
+    target 590
   ]
   edge [
     source 524
-    target 751
+    target 749
   ]
   edge [
     source 524
@@ -8558,7 +8524,7 @@ graph [
   ]
   edge [
     source 524
-    target 645
+    target 643
   ]
   edge [
     source 524
@@ -8566,11 +8532,15 @@ graph [
   ]
   edge [
     source 524
-    target 705
+    target 703
   ]
   edge [
     source 524
-    target 758
+    target 837
+  ]
+  edge [
+    source 524
+    target 756
   ]
   edge [
     source 524
@@ -8578,7 +8548,7 @@ graph [
   ]
   edge [
     source 524
-    target 548
+    target 546
   ]
   edge [
     source 524
@@ -8586,11 +8556,11 @@ graph [
   ]
   edge [
     source 525
-    target 653
+    target 651
   ]
   edge [
     source 525
-    target 593
+    target 591
   ]
   edge [
     source 525
@@ -8598,15 +8568,15 @@ graph [
   ]
   edge [
     source 525
-    target 676
+    target 674
   ]
   edge [
     source 525
-    target 654
+    target 652
   ]
   edge [
     source 525
-    target 620
+    target 618
   ]
   edge [
     source 525
@@ -8614,11 +8584,11 @@ graph [
   ]
   edge [
     source 525
-    target 637
+    target 635
   ]
   edge [
     source 525
-    target 719
+    target 717
   ]
   edge [
     source 525
@@ -8626,15 +8596,11 @@ graph [
   ]
   edge [
     source 525
-    target 475
-  ]
-  edge [
-    source 525
-    target 750
+    target 748
   ]
   edge [
     source 527
-    target 595
+    target 593
   ]
   edge [
     source 527
@@ -8642,7 +8608,7 @@ graph [
   ]
   edge [
     source 527
-    target 586
+    target 584
   ]
   edge [
     source 527
@@ -8650,11 +8616,7 @@ graph [
   ]
   edge [
     source 527
-    target 645
-  ]
-  edge [
-    source 527
-    target 475
+    target 643
   ]
   edge [
     source 527
@@ -8666,11 +8628,11 @@ graph [
   ]
   edge [
     source 527
-    target 693
+    target 691
   ]
   edge [
     source 527
-    target 729
+    target 727
   ]
   edge [
     source 527
@@ -8682,7 +8644,7 @@ graph [
   ]
   edge [
     source 528
-    target 595
+    target 593
   ]
   edge [
     source 528
@@ -8690,7 +8652,7 @@ graph [
   ]
   edge [
     source 528
-    target 752
+    target 750
   ]
   edge [
     source 528
@@ -8698,23 +8660,11 @@ graph [
   ]
   edge [
     source 528
-    target 753
+    target 751
   ]
   edge [
-    source 529
-    target 586
-  ]
-  edge [
-    source 529
-    target 502
-  ]
-  edge [
-    source 529
-    target 736
-  ]
-  edge [
-    source 529
-    target 784
+    source 528
+    target 836
   ]
   edge [
     source 530
@@ -8722,23 +8672,15 @@ graph [
   ]
   edge [
     source 530
-    target 654
+    target 652
   ]
   edge [
     source 530
-    target 621
+    target 619
   ]
   edge [
     source 530
-    target 753
-  ]
-  edge [
-    source 530
-    target 486
-  ]
-  edge [
-    source 530
-    target 286
+    target 751
   ]
   edge [
     source 530
@@ -8750,3411 +8692,2947 @@ graph [
   ]
   edge [
     source 531
-    target 676
-  ]
-  edge [
-    source 531
-    target 654
-  ]
-  edge [
-    source 531
-    target 478
-  ]
-  edge [
-    source 533
-    target 687
-  ]
-  edge [
-    source 533
-    target 475
-  ]
-  edge [
-    source 534
-    target 619
-  ]
-  edge [
-    source 534
-    target 482
-  ]
-  edge [
-    source 534
-    target 676
-  ]
-  edge [
-    source 534
-    target 620
-  ]
-  edge [
-    source 534
-    target 519
-  ]
-  edge [
-    source 534
-    target 478
-  ]
-  edge [
-    source 534
-    target 693
-  ]
-  edge [
-    source 534
-    target 506
-  ]
-  edge [
-    source 534
-    target 513
-  ]
-  edge [
-    source 534
-    target 784
-  ]
-  edge [
-    source 534
-    target 480
-  ]
-  edge [
-    source 535
-    target 649
-  ]
-  edge [
-    source 535
-    target 604
-  ]
-  edge [
-    source 535
-    target 595
-  ]
-  edge [
-    source 535
-    target 621
-  ]
-  edge [
-    source 535
-    target 620
-  ]
-  edge [
-    source 535
-    target 519
-  ]
-  edge [
-    source 535
-    target 751
-  ]
-  edge [
-    source 535
-    target 586
-  ]
-  edge [
-    source 535
-    target 478
-  ]
-  edge [
-    source 535
-    target 687
-  ]
-  edge [
-    source 535
-    target 705
-  ]
-  edge [
-    source 535
-    target 475
-  ]
-  edge [
-    source 535
-    target 496
-  ]
-  edge [
-    source 535
-    target 495
-  ]
-  edge [
-    source 535
-    target 477
-  ]
-  edge [
-    source 536
-    target 482
-  ]
-  edge [
-    source 536
-    target 676
-  ]
-  edge [
-    source 536
-    target 654
-  ]
-  edge [
-    source 536
-    target 483
-  ]
-  edge [
-    source 536
-    target 637
-  ]
-  edge [
-    source 536
-    target 478
-  ]
-  edge [
-    source 536
-    target 336
-  ]
-  edge [
-    source 536
-    target 496
-  ]
-  edge [
-    source 536
-    target 693
-  ]
-  edge [
-    source 537
-    target 593
-  ]
-  edge [
-    source 537
-    target 595
-  ]
-  edge [
-    source 537
-    target 482
-  ]
-  edge [
-    source 537
-    target 483
-  ]
-  edge [
-    source 537
-    target 625
-  ]
-  edge [
-    source 537
-    target 519
-  ]
-  edge [
-    source 538
-    target 595
-  ]
-  edge [
-    source 538
-    target 519
-  ]
-  edge [
-    source 538
-    target 478
-  ]
-  edge [
-    source 538
-    target 475
-  ]
-  edge [
-    source 538
-    target 498
-  ]
-  edge [
-    source 538
-    target 700
-  ]
-  edge [
-    source 538
-    target 699
-  ]
-  edge [
-    source 538
-    target 497
-  ]
-  edge [
-    source 538
-    target 512
-  ]
-  edge [
-    source 539
-    target 740
-  ]
-  edge [
-    source 539
-    target 595
-  ]
-  edge [
-    source 539
-    target 637
-  ]
-  edge [
-    source 539
-    target 479
-  ]
-  edge [
-    source 539
-    target 478
-  ]
-  edge [
-    source 539
-    target 744
-  ]
-  edge [
-    source 539
-    target 687
-  ]
-  edge [
-    source 539
-    target 475
-  ]
-  edge [
-    source 539
-    target 753
-  ]
-  edge [
-    source 539
-    target 486
-  ]
-  edge [
-    source 539
-    target 286
-  ]
-  edge [
-    source 539
-    target 699
-  ]
-  edge [
-    source 539
-    target 497
-  ]
-  edge [
-    source 539
-    target 476
-  ]
-  edge [
-    source 540
-    target 482
-  ]
-  edge [
-    source 540
-    target 710
-  ]
-  edge [
-    source 540
-    target 478
-  ]
-  edge [
-    source 540
-    target 645
-  ]
-  edge [
-    source 540
-    target 705
-  ]
-  edge [
-    source 540
-    target 496
-  ]
-  edge [
-    source 540
-    target 693
-  ]
-  edge [
-    source 540
-    target 495
-  ]
-  edge [
-    source 540
-    target 524
-  ]
-  edge [
-    source 542
-    target 646
-  ]
-  edge [
-    source 542
-    target 604
-  ]
-  edge [
-    source 542
-    target 595
-  ]
-  edge [
-    source 542
-    target 482
-  ]
-  edge [
-    source 542
-    target 782
-  ]
-  edge [
-    source 542
-    target 478
-  ]
-  edge [
-    source 542
-    target 645
-  ]
-  edge [
-    source 542
-    target 336
-  ]
-  edge [
-    source 542
-    target 687
-  ]
-  edge [
-    source 542
-    target 475
-  ]
-  edge [
-    source 542
-    target 711
-  ]
-  edge [
-    source 542
-    target 753
-  ]
-  edge [
-    source 542
-    target 713
-  ]
-  edge [
-    source 542
-    target 486
-  ]
-  edge [
-    source 542
-    target 700
-  ]
-  edge [
-    source 542
-    target 477
-  ]
-  edge [
-    source 542
-    target 497
-  ]
-  edge [
-    source 542
-    target 730
-  ]
-  edge [
-    source 543
-    target 595
-  ]
-  edge [
-    source 543
-    target 586
-  ]
-  edge [
-    source 543
-    target 478
-  ]
-  edge [
-    source 543
-    target 496
-  ]
-  edge [
-    source 543
-    target 729
-  ]
-  edge [
-    source 543
-    target 387
-  ]
-  edge [
-    source 544
-    target 604
-  ]
-  edge [
-    source 544
-    target 643
-  ]
-  edge [
-    source 544
-    target 703
-  ]
-  edge [
-    source 544
-    target 719
-  ]
-  edge [
-    source 544
-    target 751
-  ]
-  edge [
-    source 544
-    target 639
-  ]
-  edge [
-    source 544
-    target 478
-  ]
-  edge [
-    source 544
-    target 645
-  ]
-  edge [
-    source 544
-    target 475
-  ]
-  edge [
-    source 544
-    target 711
-  ]
-  edge [
-    source 544
-    target 702
-  ]
-  edge [
-    source 544
-    target 486
-  ]
-  edge [
-    source 544
-    target 496
-  ]
-  edge [
-    source 544
-    target 736
-  ]
-  edge [
-    source 544
-    target 700
-  ]
-  edge [
-    source 544
-    target 286
-  ]
-  edge [
-    source 544
-    target 524
-  ]
-  edge [
-    source 544
-    target 699
-  ]
-  edge [
-    source 545
-    target 479
-  ]
-  edge [
-    source 545
-    target 478
-  ]
-  edge [
-    source 545
-    target 480
-  ]
-  edge [
-    source 545
-    target 556
-  ]
-  edge [
-    source 546
-    target 593
-  ]
-  edge [
-    source 546
-    target 604
-  ]
-  edge [
-    source 546
-    target 619
-  ]
-  edge [
-    source 547
-    target 646
-  ]
-  edge [
-    source 547
-    target 653
-  ]
-  edge [
-    source 547
-    target 604
-  ]
-  edge [
-    source 547
-    target 595
-  ]
-  edge [
-    source 547
-    target 625
-  ]
-  edge [
-    source 547
     target 674
   ]
   edge [
-    source 547
-    target 645
+    source 531
+    target 652
   ]
   edge [
-    source 547
-    target 711
+    source 531
+    target 478
   ]
   edge [
-    source 547
-    target 769
+    source 532
+    target 685
   ]
   edge [
-    source 550
-    target 487
+    source 533
+    target 617
   ]
   edge [
-    source 550
-    target 604
-  ]
-  edge [
-    source 550
-    target 698
-  ]
-  edge [
-    source 550
-    target 654
-  ]
-  edge [
-    source 550
-    target 726
-  ]
-  edge [
-    source 551
+    source 533
     target 482
   ]
   edge [
-    source 551
-    target 705
+    source 533
+    target 674
   ]
   edge [
-    source 551
-    target 536
+    source 533
+    target 618
   ]
   edge [
-    source 552
-    target 482
-  ]
-  edge [
-    source 552
-    target 705
-  ]
-  edge [
-    source 552
-    target 495
-  ]
-  edge [
-    source 552
-    target 516
-  ]
-  edge [
-    source 552
-    target 480
-  ]
-  edge [
-    source 552
-    target 517
-  ]
-  edge [
-    source 552
-    target 543
-  ]
-  edge [
-    source 552
-    target 232
-  ]
-  edge [
-    source 553
-    target 478
-  ]
-  edge [
-    source 553
-    target 645
-  ]
-  edge [
-    source 553
-    target 705
-  ]
-  edge [
-    source 553
-    target 590
-  ]
-  edge [
-    source 553
-    target 495
-  ]
-  edge [
-    source 553
-    target 477
-  ]
-  edge [
-    source 553
-    target 784
-  ]
-  edge [
-    source 553
-    target 535
-  ]
-  edge [
-    source 553
-    target 518
-  ]
-  edge [
-    source 553
-    target 608
-  ]
-  edge [
-    source 553
-    target 481
-  ]
-  edge [
-    source 554
-    target 492
-  ]
-  edge [
-    source 554
-    target 604
-  ]
-  edge [
-    source 554
-    target 478
-  ]
-  edge [
-    source 554
-    target 645
-  ]
-  edge [
-    source 554
-    target 705
-  ]
-  edge [
-    source 554
-    target 475
-  ]
-  edge [
-    source 554
-    target 711
-  ]
-  edge [
-    source 554
-    target 702
-  ]
-  edge [
-    source 554
-    target 496
-  ]
-  edge [
-    source 554
-    target 590
-  ]
-  edge [
-    source 554
-    target 700
-  ]
-  edge [
-    source 554
-    target 477
-  ]
-  edge [
-    source 554
-    target 784
-  ]
-  edge [
-    source 554
-    target 769
-  ]
-  edge [
-    source 554
-    target 518
-  ]
-  edge [
-    source 554
-    target 559
-  ]
-  edge [
-    source 554
-    target 481
-  ]
-  edge [
-    source 554
-    target 553
-  ]
-  edge [
-    source 555
-    target 649
-  ]
-  edge [
-    source 555
-    target 654
-  ]
-  edge [
-    source 555
-    target 586
-  ]
-  edge [
-    source 555
-    target 639
-  ]
-  edge [
-    source 555
-    target 478
-  ]
-  edge [
-    source 555
-    target 687
-  ]
-  edge [
-    source 555
-    target 705
-  ]
-  edge [
-    source 555
-    target 490
-  ]
-  edge [
-    source 555
-    target 731
-  ]
-  edge [
-    source 555
-    target 699
-  ]
-  edge [
-    source 556
-    target 621
-  ]
-  edge [
-    source 556
-    target 479
-  ]
-  edge [
-    source 556
-    target 566
-  ]
-  edge [
-    source 556
-    target 480
-  ]
-  edge [
-    source 558
-    target 621
-  ]
-  edge [
-    source 558
-    target 485
-  ]
-  edge [
-    source 558
-    target 686
-  ]
-  edge [
-    source 558
-    target 705
-  ]
-  edge [
-    source 558
-    target 537
-  ]
-  edge [
-    source 559
-    target 478
-  ]
-  edge [
-    source 559
-    target 645
-  ]
-  edge [
-    source 559
-    target 705
-  ]
-  edge [
-    source 559
-    target 590
-  ]
-  edge [
-    source 559
-    target 495
-  ]
-  edge [
-    source 559
-    target 477
-  ]
-  edge [
-    source 559
-    target 784
-  ]
-  edge [
-    source 559
-    target 535
-  ]
-  edge [
-    source 559
-    target 518
-  ]
-  edge [
-    source 559
-    target 608
-  ]
-  edge [
-    source 559
-    target 481
-  ]
-  edge [
-    source 560
-    target 482
-  ]
-  edge [
-    source 560
-    target 704
-  ]
-  edge [
-    source 560
-    target 713
-  ]
-  edge [
-    source 560
-    target 480
-  ]
-  edge [
-    source 561
-    target 593
-  ]
-  edge [
-    source 561
-    target 619
-  ]
-  edge [
-    source 561
-    target 676
-  ]
-  edge [
-    source 561
-    target 483
-  ]
-  edge [
-    source 561
+    source 533
     target 519
   ]
   edge [
-    source 562
-    target 482
-  ]
-  edge [
-    source 562
-    target 783
-  ]
-  edge [
-    source 562
-    target 519
-  ]
-  edge [
-    source 562
-    target 639
-  ]
-  edge [
-    source 562
+    source 533
     target 478
   ]
   edge [
-    source 562
-    target 687
+    source 533
+    target 691
   ]
   edge [
-    source 562
-    target 220
-  ]
-  edge [
-    source 562
-    target 480
-  ]
-  edge [
-    source 562
-    target 539
-  ]
-  edge [
-    source 562
-    target 547
-  ]
-  edge [
-    source 563
-    target 740
-  ]
-  edge [
-    source 563
-    target 604
-  ]
-  edge [
-    source 563
-    target 595
-  ]
-  edge [
-    source 563
-    target 698
-  ]
-  edge [
-    source 563
-    target 478
-  ]
-  edge [
-    source 563
-    target 475
-  ]
-  edge [
-    source 563
-    target 753
-  ]
-  edge [
-    source 563
-    target 496
-  ]
-  edge [
-    source 563
+    source 533
     target 506
   ]
   edge [
-    source 563
-    target 281
-  ]
-  edge [
-    source 563
-    target 497
-  ]
-  edge [
-    source 563
-    target 476
-  ]
-  edge [
-    source 563
-    target 784
-  ]
-  edge [
-    source 563
-    target 220
-  ]
-  edge [
-    source 564
-    target 492
-  ]
-  edge [
-    source 564
-    target 593
-  ]
-  edge [
-    source 564
-    target 604
-  ]
-  edge [
-    source 564
-    target 479
-  ]
-  edge [
-    source 564
-    target 537
-  ]
-  edge [
-    source 564
-    target 503
-  ]
-  edge [
-    source 564
-    target 581
-  ]
-  edge [
-    source 565
-    target 621
-  ]
-  edge [
-    source 566
-    target 625
-  ]
-  edge [
-    source 566
-    target 478
-  ]
-  edge [
-    source 566
-    target 645
-  ]
-  edge [
-    source 566
-    target 475
-  ]
-  edge [
-    source 566
-    target 753
-  ]
-  edge [
-    source 566
-    target 768
-  ]
-  edge [
-    source 566
-    target 305
-  ]
-  edge [
-    source 567
-    target 483
-  ]
-  edge [
-    source 567
-    target 478
-  ]
-  edge [
-    source 568
-    target 586
-  ]
-  edge [
-    source 568
-    target 575
-  ]
-  edge [
-    source 568
-    target 478
-  ]
-  edge [
-    source 568
-    target 533
-  ]
-  edge [
-    source 568
-    target 510
-  ]
-  edge [
-    source 568
+    source 533
     target 513
   ]
   edge [
-    source 569
-    target 483
+    source 533
+    target 782
   ]
   edge [
-    source 569
-    target 336
-  ]
-  edge [
-    source 569
-    target 507
-  ]
-  edge [
-    source 569
-    target 514
-  ]
-  edge [
-    source 569
-    target 531
-  ]
-  edge [
-    source 569
-    target 533
-  ]
-  edge [
-    source 569
-    target 548
-  ]
-  edge [
-    source 571
-    target 478
-  ]
-  edge [
-    source 572
-    target 649
-  ]
-  edge [
-    source 572
-    target 619
-  ]
-  edge [
-    source 572
-    target 482
-  ]
-  edge [
-    source 572
-    target 621
-  ]
-  edge [
-    source 572
-    target 710
-  ]
-  edge [
-    source 572
-    target 478
-  ]
-  edge [
-    source 572
-    target 645
-  ]
-  edge [
-    source 572
-    target 493
-  ]
-  edge [
-    source 572
-    target 761
-  ]
-  edge [
-    source 572
-    target 693
-  ]
-  edge [
-    source 574
-    target 595
-  ]
-  edge [
-    source 574
-    target 693
-  ]
-  edge [
-    source 574
+    source 533
     target 480
   ]
   edge [
-    source 575
-    target 675
+    source 534
+    target 647
   ]
   edge [
-    source 575
-    target 604
+    source 534
+    target 602
   ]
   edge [
-    source 575
+    source 534
+    target 593
+  ]
+  edge [
+    source 534
+    target 619
+  ]
+  edge [
+    source 534
+    target 618
+  ]
+  edge [
+    source 534
     target 519
   ]
   edge [
-    source 575
-    target 586
+    source 534
+    target 749
   ]
   edge [
-    source 577
-    target 604
+    source 534
+    target 584
   ]
   edge [
-    source 577
-    target 625
+    source 534
+    target 478
   ]
   edge [
-    source 577
-    target 719
+    source 534
+    target 685
   ]
   edge [
-    source 577
+    source 534
+    target 703
+  ]
+  edge [
+    source 534
+    target 842
+  ]
+  edge [
+    source 534
+    target 496
+  ]
+  edge [
+    source 534
+    target 495
+  ]
+  edge [
+    source 535
+    target 482
+  ]
+  edge [
+    source 535
+    target 674
+  ]
+  edge [
+    source 535
+    target 652
+  ]
+  edge [
+    source 535
+    target 483
+  ]
+  edge [
+    source 535
+    target 635
+  ]
+  edge [
+    source 535
+    target 478
+  ]
+  edge [
+    source 535
+    target 336
+  ]
+  edge [
+    source 535
+    target 496
+  ]
+  edge [
+    source 535
+    target 691
+  ]
+  edge [
+    source 536
+    target 591
+  ]
+  edge [
+    source 536
+    target 593
+  ]
+  edge [
+    source 536
+    target 482
+  ]
+  edge [
+    source 536
+    target 483
+  ]
+  edge [
+    source 536
+    target 623
+  ]
+  edge [
+    source 536
+    target 519
+  ]
+  edge [
+    source 537
+    target 593
+  ]
+  edge [
+    source 537
+    target 519
+  ]
+  edge [
+    source 537
+    target 478
+  ]
+  edge [
+    source 537
+    target 498
+  ]
+  edge [
+    source 537
+    target 698
+  ]
+  edge [
+    source 537
+    target 697
+  ]
+  edge [
+    source 537
+    target 497
+  ]
+  edge [
+    source 537
+    target 512
+  ]
+  edge [
+    source 538
+    target 738
+  ]
+  edge [
+    source 538
+    target 593
+  ]
+  edge [
+    source 538
+    target 635
+  ]
+  edge [
+    source 538
+    target 478
+  ]
+  edge [
+    source 538
+    target 742
+  ]
+  edge [
+    source 538
+    target 685
+  ]
+  edge [
+    source 538
+    target 751
+  ]
+  edge [
+    source 538
+    target 846
+  ]
+  edge [
+    source 538
+    target 697
+  ]
+  edge [
+    source 538
+    target 497
+  ]
+  edge [
+    source 539
+    target 482
+  ]
+  edge [
+    source 539
+    target 708
+  ]
+  edge [
+    source 539
+    target 478
+  ]
+  edge [
+    source 539
+    target 643
+  ]
+  edge [
+    source 539
+    target 703
+  ]
+  edge [
+    source 539
+    target 837
+  ]
+  edge [
+    source 539
+    target 496
+  ]
+  edge [
+    source 539
+    target 691
+  ]
+  edge [
+    source 539
+    target 495
+  ]
+  edge [
+    source 539
+    target 524
+  ]
+  edge [
+    source 540
+    target 644
+  ]
+  edge [
+    source 540
+    target 602
+  ]
+  edge [
+    source 540
+    target 593
+  ]
+  edge [
+    source 540
+    target 482
+  ]
+  edge [
+    source 540
+    target 780
+  ]
+  edge [
+    source 540
+    target 478
+  ]
+  edge [
+    source 540
+    target 643
+  ]
+  edge [
+    source 540
+    target 336
+  ]
+  edge [
+    source 540
+    target 685
+  ]
+  edge [
+    source 540
+    target 709
+  ]
+  edge [
+    source 540
+    target 751
+  ]
+  edge [
+    source 540
+    target 711
+  ]
+  edge [
+    source 540
+    target 837
+  ]
+  edge [
+    source 540
+    target 698
+  ]
+  edge [
+    source 540
+    target 497
+  ]
+  edge [
+    source 540
+    target 728
+  ]
+  edge [
+    source 541
+    target 593
+  ]
+  edge [
+    source 541
+    target 584
+  ]
+  edge [
+    source 541
+    target 478
+  ]
+  edge [
+    source 541
+    target 496
+  ]
+  edge [
+    source 541
+    target 727
+  ]
+  edge [
+    source 541
+    target 387
+  ]
+  edge [
+    source 542
+    target 602
+  ]
+  edge [
+    source 542
+    target 641
+  ]
+  edge [
+    source 542
+    target 701
+  ]
+  edge [
+    source 542
+    target 717
+  ]
+  edge [
+    source 542
+    target 749
+  ]
+  edge [
+    source 542
+    target 637
+  ]
+  edge [
+    source 542
+    target 478
+  ]
+  edge [
+    source 542
+    target 643
+  ]
+  edge [
+    source 542
+    target 709
+  ]
+  edge [
+    source 542
+    target 700
+  ]
+  edge [
+    source 542
+    target 496
+  ]
+  edge [
+    source 542
+    target 734
+  ]
+  edge [
+    source 542
+    target 698
+  ]
+  edge [
+    source 542
+    target 524
+  ]
+  edge [
+    source 542
+    target 697
+  ]
+  edge [
+    source 543
+    target 478
+  ]
+  edge [
+    source 543
+    target 480
+  ]
+  edge [
+    source 544
+    target 591
+  ]
+  edge [
+    source 544
+    target 602
+  ]
+  edge [
+    source 544
+    target 617
+  ]
+  edge [
+    source 545
+    target 644
+  ]
+  edge [
+    source 545
+    target 651
+  ]
+  edge [
+    source 545
+    target 602
+  ]
+  edge [
+    source 545
+    target 593
+  ]
+  edge [
+    source 545
+    target 623
+  ]
+  edge [
+    source 545
+    target 672
+  ]
+  edge [
+    source 545
+    target 643
+  ]
+  edge [
+    source 545
+    target 709
+  ]
+  edge [
+    source 545
+    target 767
+  ]
+  edge [
+    source 548
+    target 487
+  ]
+  edge [
+    source 548
+    target 602
+  ]
+  edge [
+    source 548
+    target 696
+  ]
+  edge [
+    source 548
+    target 652
+  ]
+  edge [
+    source 548
+    target 724
+  ]
+  edge [
+    source 549
+    target 482
+  ]
+  edge [
+    source 549
+    target 703
+  ]
+  edge [
+    source 549
+    target 535
+  ]
+  edge [
+    source 550
+    target 785
+  ]
+  edge [
+    source 550
+    target 177
+  ]
+  edge [
+    source 550
+    target 830
+  ]
+  edge [
+    source 551
+    target 478
+  ]
+  edge [
+    source 551
+    target 643
+  ]
+  edge [
+    source 551
+    target 703
+  ]
+  edge [
+    source 551
+    target 588
+  ]
+  edge [
+    source 551
+    target 495
+  ]
+  edge [
+    source 551
+    target 782
+  ]
+  edge [
+    source 551
+    target 534
+  ]
+  edge [
+    source 551
+    target 518
+  ]
+  edge [
+    source 551
+    target 606
+  ]
+  edge [
+    source 552
+    target 492
+  ]
+  edge [
+    source 552
+    target 602
+  ]
+  edge [
+    source 552
+    target 478
+  ]
+  edge [
+    source 552
+    target 643
+  ]
+  edge [
+    source 552
+    target 703
+  ]
+  edge [
+    source 552
+    target 709
+  ]
+  edge [
+    source 552
+    target 700
+  ]
+  edge [
+    source 552
+    target 837
+  ]
+  edge [
+    source 552
+    target 496
+  ]
+  edge [
+    source 552
+    target 588
+  ]
+  edge [
+    source 552
+    target 698
+  ]
+  edge [
+    source 552
+    target 782
+  ]
+  edge [
+    source 552
+    target 767
+  ]
+  edge [
+    source 552
+    target 518
+  ]
+  edge [
+    source 552
+    target 557
+  ]
+  edge [
+    source 552
+    target 551
+  ]
+  edge [
+    source 554
+    target 803
+  ]
+  edge [
+    source 554
+    target 479
+  ]
+  edge [
+    source 556
+    target 619
+  ]
+  edge [
+    source 556
+    target 684
+  ]
+  edge [
+    source 556
+    target 703
+  ]
+  edge [
+    source 556
+    target 536
+  ]
+  edge [
+    source 556
+    target 836
+  ]
+  edge [
+    source 557
+    target 478
+  ]
+  edge [
+    source 557
+    target 643
+  ]
+  edge [
+    source 557
+    target 703
+  ]
+  edge [
+    source 557
+    target 588
+  ]
+  edge [
+    source 557
+    target 495
+  ]
+  edge [
+    source 557
+    target 782
+  ]
+  edge [
+    source 557
+    target 534
+  ]
+  edge [
+    source 557
+    target 518
+  ]
+  edge [
+    source 557
+    target 606
+  ]
+  edge [
+    source 558
+    target 482
+  ]
+  edge [
+    source 558
+    target 702
+  ]
+  edge [
+    source 558
+    target 711
+  ]
+  edge [
+    source 558
+    target 842
+  ]
+  edge [
+    source 558
+    target 480
+  ]
+  edge [
+    source 559
+    target 591
+  ]
+  edge [
+    source 559
+    target 617
+  ]
+  edge [
+    source 559
+    target 674
+  ]
+  edge [
+    source 559
+    target 483
+  ]
+  edge [
+    source 559
+    target 519
+  ]
+  edge [
+    source 560
+    target 482
+  ]
+  edge [
+    source 560
+    target 781
+  ]
+  edge [
+    source 560
+    target 519
+  ]
+  edge [
+    source 560
+    target 637
+  ]
+  edge [
+    source 560
+    target 478
+  ]
+  edge [
+    source 560
+    target 685
+  ]
+  edge [
+    source 560
+    target 480
+  ]
+  edge [
+    source 560
+    target 538
+  ]
+  edge [
+    source 560
+    target 545
+  ]
+  edge [
+    source 561
+    target 220
+  ]
+  edge [
+    source 561
+    target 476
+  ]
+  edge [
+    source 561
     target 475
   ]
   edge [
-    source 577
+    source 562
+    target 492
+  ]
+  edge [
+    source 562
+    target 591
+  ]
+  edge [
+    source 562
+    target 602
+  ]
+  edge [
+    source 562
+    target 536
+  ]
+  edge [
+    source 562
+    target 503
+  ]
+  edge [
+    source 562
+    target 579
+  ]
+  edge [
+    source 563
+    target 619
+  ]
+  edge [
+    source 563
+    target 836
+  ]
+  edge [
+    source 564
+    target 623
+  ]
+  edge [
+    source 564
+    target 478
+  ]
+  edge [
+    source 564
+    target 643
+  ]
+  edge [
+    source 564
+    target 751
+  ]
+  edge [
+    source 564
+    target 766
+  ]
+  edge [
+    source 564
+    target 846
+  ]
+  edge [
+    source 564
+    target 305
+  ]
+  edge [
+    source 565
+    target 483
+  ]
+  edge [
+    source 565
+    target 478
+  ]
+  edge [
+    source 566
+    target 584
+  ]
+  edge [
+    source 566
+    target 573
+  ]
+  edge [
+    source 566
+    target 478
+  ]
+  edge [
+    source 566
+    target 532
+  ]
+  edge [
+    source 566
+    target 513
+  ]
+  edge [
+    source 567
+    target 483
+  ]
+  edge [
+    source 567
+    target 336
+  ]
+  edge [
+    source 567
+    target 507
+  ]
+  edge [
+    source 567
+    target 514
+  ]
+  edge [
+    source 567
+    target 531
+  ]
+  edge [
+    source 567
+    target 532
+  ]
+  edge [
+    source 567
+    target 546
+  ]
+  edge [
+    source 569
+    target 478
+  ]
+  edge [
+    source 570
+    target 647
+  ]
+  edge [
+    source 570
+    target 617
+  ]
+  edge [
+    source 570
+    target 482
+  ]
+  edge [
+    source 570
+    target 619
+  ]
+  edge [
+    source 570
+    target 708
+  ]
+  edge [
+    source 570
+    target 478
+  ]
+  edge [
+    source 570
+    target 643
+  ]
+  edge [
+    source 570
+    target 493
+  ]
+  edge [
+    source 570
+    target 759
+  ]
+  edge [
+    source 570
+    target 691
+  ]
+  edge [
+    source 572
+    target 593
+  ]
+  edge [
+    source 572
+    target 691
+  ]
+  edge [
+    source 572
+    target 480
+  ]
+  edge [
+    source 573
+    target 673
+  ]
+  edge [
+    source 573
+    target 602
+  ]
+  edge [
+    source 573
+    target 519
+  ]
+  edge [
+    source 573
+    target 584
+  ]
+  edge [
+    source 575
+    target 602
+  ]
+  edge [
+    source 575
+    target 623
+  ]
+  edge [
+    source 575
+    target 717
+  ]
+  edge [
+    source 575
+    target 700
+  ]
+  edge [
+    source 576
+    target 482
+  ]
+  edge [
+    source 578
     target 702
   ]
   edge [
     source 578
-    target 482
+    target 691
   ]
   edge [
-    source 580
-    target 704
-  ]
-  edge [
-    source 580
-    target 693
-  ]
-  edge [
-    source 581
+    source 579
     target 492
   ]
   edge [
-    source 581
-    target 593
-  ]
-  edge [
-    source 581
-    target 595
-  ]
-  edge [
-    source 581
-    target 482
-  ]
-  edge [
-    source 581
-    target 483
-  ]
-  edge [
-    source 581
-    target 625
-  ]
-  edge [
-    source 581
-    target 519
-  ]
-  edge [
-    source 584
-    target 604
-  ]
-  edge [
-    source 584
-    target 586
-  ]
-  edge [
-    source 584
-    target 761
-  ]
-  edge [
-    source 585
-    target 740
-  ]
-  edge [
-    source 585
-    target 482
-  ]
-  edge [
-    source 585
-    target 503
-  ]
-  edge [
-    source 585
-    target 533
-  ]
-  edge [
-    source 585
-    target 496
-  ]
-  edge [
-    source 585
-    target 693
-  ]
-  edge [
-    source 586
-    target 492
-  ]
-  edge [
-    source 586
-    target 593
-  ]
-  edge [
-    source 586
-    target 649
-  ]
-  edge [
-    source 586
-    target 675
-  ]
-  edge [
-    source 586
-    target 604
-  ]
-  edge [
-    source 586
-    target 643
-  ]
-  edge [
-    source 586
-    target 595
-  ]
-  edge [
-    source 586
-    target 619
-  ]
-  edge [
-    source 586
-    target 667
-  ]
-  edge [
-    source 586
-    target 726
-  ]
-  edge [
-    source 586
-    target 592
-  ]
-  edge [
-    source 586
-    target 485
-  ]
-  edge [
-    source 586
-    target 625
-  ]
-  edge [
-    source 586
-    target 519
-  ]
-  edge [
-    source 586
-    target 639
-  ]
-  edge [
-    source 587
-    target 595
-  ]
-  edge [
-    source 587
-    target 483
-  ]
-  edge [
-    source 587
-    target 478
-  ]
-  edge [
-    source 587
-    target 475
-  ]
-  edge [
-    source 587
-    target 498
-  ]
-  edge [
-    source 587
-    target 480
-  ]
-  edge [
-    source 587
-    target 774
-  ]
-  edge [
-    source 587
-    target 232
-  ]
-  edge [
-    source 587
-    target 387
-  ]
-  edge [
-    source 590
-    target 593
-  ]
-  edge [
-    source 591
-    target 492
-  ]
-  edge [
-    source 591
-    target 649
-  ]
-  edge [
-    source 591
-    target 604
-  ]
-  edge [
-    source 591
-    target 595
-  ]
-  edge [
-    source 591
-    target 621
-  ]
-  edge [
-    source 591
-    target 620
-  ]
-  edge [
-    source 591
-    target 519
-  ]
-  edge [
-    source 591
-    target 751
-  ]
-  edge [
-    source 591
-    target 586
-  ]
-  edge [
-    source 591
-    target 478
-  ]
-  edge [
-    source 591
-    target 687
-  ]
-  edge [
-    source 591
-    target 705
-  ]
-  edge [
-    source 591
-    target 475
-  ]
-  edge [
-    source 591
-    target 496
-  ]
-  edge [
-    source 591
-    target 495
-  ]
-  edge [
-    source 591
-    target 477
-  ]
-  edge [
-    source 592
-    target 593
-  ]
-  edge [
-    source 592
-    target 649
-  ]
-  edge [
-    source 592
-    target 604
-  ]
-  edge [
-    source 592
-    target 511
-  ]
-  edge [
-    source 592
-    target 483
-  ]
-  edge [
-    source 592
-    target 625
-  ]
-  edge [
-    source 594
-    target 519
-  ]
-  edge [
-    source 595
-    target 740
-  ]
-  edge [
-    source 595
-    target 604
-  ]
-  edge [
-    source 595
-    target 619
-  ]
-  edge [
-    source 595
-    target 637
-  ]
-  edge [
-    source 596
-    target 604
-  ]
-  edge [
-    source 596
-    target 676
-  ]
-  edge [
-    source 596
-    target 483
-  ]
-  edge [
-    source 596
-    target 478
-  ]
-  edge [
-    source 596
-    target 516
-  ]
-  edge [
-    source 596
-    target 750
-  ]
-  edge [
-    source 600
-    target 593
-  ]
-  edge [
-    source 600
-    target 649
-  ]
-  edge [
-    source 600
-    target 675
-  ]
-  edge [
-    source 600
-    target 619
-  ]
-  edge [
-    source 600
-    target 482
-  ]
-  edge [
-    source 600
-    target 511
-  ]
-  edge [
-    source 600
-    target 592
-  ]
-  edge [
-    source 600
-    target 783
-  ]
-  edge [
-    source 600
-    target 704
-  ]
-  edge [
-    source 600
-    target 625
-  ]
-  edge [
-    source 600
-    target 752
-  ]
-  edge [
-    source 600
-    target 519
-  ]
-  edge [
-    source 600
-    target 637
-  ]
-  edge [
-    source 600
-    target 478
-  ]
-  edge [
-    source 600
-    target 645
-  ]
-  edge [
-    source 600
-    target 507
-  ]
-  edge [
-    source 600
-    target 537
-  ]
-  edge [
-    source 600
-    target 498
-  ]
-  edge [
-    source 600
-    target 496
-  ]
-  edge [
-    source 600
-    target 729
-  ]
-  edge [
-    source 600
-    target 569
-  ]
-  edge [
-    source 603
-    target 478
-  ]
-  edge [
-    source 603
-    target 567
-  ]
-  edge [
-    source 604
-    target 649
-  ]
-  edge [
-    source 604
-    target 719
-  ]
-  edge [
-    source 606
-    target 492
-  ]
-  edge [
-    source 606
-    target 646
-  ]
-  edge [
-    source 606
-    target 619
-  ]
-  edge [
-    source 606
-    target 667
-  ]
-  edge [
-    source 606
-    target 519
-  ]
-  edge [
-    source 607
-    target 676
-  ]
-  edge [
-    source 607
-    target 336
-  ]
-  edge [
-    source 607
-    target 693
-  ]
-  edge [
-    source 609
-    target 595
-  ]
-  edge [
-    source 609
-    target 621
-  ]
-  edge [
-    source 609
-    target 519
-  ]
-  edge [
-    source 609
-    target 637
-  ]
-  edge [
-    source 609
-    target 758
-  ]
-  edge [
-    source 609
-    target 693
-  ]
-  edge [
-    source 609
-    target 771
-  ]
-  edge [
-    source 609
-    target 523
-  ]
-  edge [
-    source 609
-    target 699
-  ]
-  edge [
-    source 609
-    target 769
-  ]
-  edge [
-    source 609
-    target 516
-  ]
-  edge [
-    source 609
-    target 480
-  ]
-  edge [
-    source 610
-    target 722
-  ]
-  edge [
-    source 610
-    target 740
-  ]
-  edge [
-    source 610
-    target 595
-  ]
-  edge [
-    source 610
-    target 483
-  ]
-  edge [
-    source 610
-    target 592
-  ]
-  edge [
-    source 610
-    target 625
-  ]
-  edge [
-    source 610
-    target 519
-  ]
-  edge [
-    source 610
-    target 586
-  ]
-  edge [
-    source 610
-    target 639
-  ]
-  edge [
-    source 610
-    target 490
-  ]
-  edge [
-    source 610
-    target 753
-  ]
-  edge [
-    source 610
-    target 767
-  ]
-  edge [
-    source 610
-    target 731
-  ]
-  edge [
-    source 610
-    target 573
-  ]
-  edge [
-    source 610
-    target 723
-  ]
-  edge [
-    source 610
-    target 518
-  ]
-  edge [
-    source 610
-    target 762
-  ]
-  edge [
-    source 610
-    target 480
-  ]
-  edge [
-    source 610
-    target 774
-  ]
-  edge [
-    source 610
-    target 547
-  ]
-  edge [
-    source 610
-    target 647
-  ]
-  edge [
-    source 611
-    target 488
-  ]
-  edge [
-    source 613
-    target 475
-  ]
-  edge [
-    source 614
-    target 604
-  ]
-  edge [
-    source 614
-    target 595
-  ]
-  edge [
-    source 614
-    target 621
-  ]
-  edge [
-    source 614
-    target 754
-  ]
-  edge [
-    source 614
-    target 586
-  ]
-  edge [
-    source 614
-    target 478
-  ]
-  edge [
-    source 614
-    target 496
-  ]
-  edge [
-    source 614
-    target 590
-  ]
-  edge [
-    source 614
-    target 736
-  ]
-  edge [
-    source 614
-    target 477
-  ]
-  edge [
-    source 614
-    target 577
-  ]
-  edge [
-    source 614
-    target 516
-  ]
-  edge [
-    source 614
-    target 481
-  ]
-  edge [
-    source 614
+    source 579
     target 591
   ]
   edge [
-    source 615
+    source 579
+    target 593
+  ]
+  edge [
+    source 579
     target 482
   ]
   edge [
-    source 615
-    target 478
+    source 579
+    target 483
   ]
   edge [
-    source 615
-    target 513
+    source 579
+    target 623
   ]
   edge [
-    source 615
-    target 536
+    source 579
+    target 519
   ]
   edge [
-    source 615
-    target 784
+    source 582
+    target 602
   ]
   edge [
-    source 615
-    target 220
+    source 582
+    target 584
   ]
   edge [
-    source 617
-    target 604
+    source 582
+    target 759
   ]
   edge [
-    source 617
-    target 619
+    source 583
+    target 738
   ]
   edge [
-    source 617
+    source 583
     target 482
   ]
   edge [
-    source 617
-    target 676
-  ]
-  edge [
-    source 617
-    target 592
-  ]
-  edge [
-    source 617
-    target 485
-  ]
-  edge [
-    source 617
-    target 625
-  ]
-  edge [
-    source 617
-    target 519
-  ]
-  edge [
-    source 617
-    target 741
-  ]
-  edge [
-    source 617
-    target 336
-  ]
-  edge [
-    source 617
-    target 732
-  ]
-  edge [
-    source 617
-    target 705
-  ]
-  edge [
-    source 617
-    target 761
-  ]
-  edge [
-    source 617
-    target 533
-  ]
-  edge [
-    source 617
-    target 486
-  ]
-  edge [
-    source 617
-    target 506
-  ]
-  edge [
-    source 617
-    target 510
-  ]
-  edge [
-    source 619
-    target 740
-  ]
-  edge [
-    source 619
-    target 593
-  ]
-  edge [
-    source 619
-    target 483
-  ]
-  edge [
-    source 619
-    target 750
-  ]
-  edge [
-    source 620
-    target 593
-  ]
-  edge [
-    source 620
-    target 649
-  ]
-  edge [
-    source 620
-    target 675
-  ]
-  edge [
-    source 620
-    target 604
-  ]
-  edge [
-    source 620
-    target 592
-  ]
-  edge [
-    source 620
-    target 625
-  ]
-  edge [
-    source 621
-    target 649
-  ]
-  edge [
-    source 621
-    target 595
-  ]
-  edge [
-    source 621
-    target 654
-  ]
-  edge [
-    source 621
-    target 755
-  ]
-  edge [
-    source 621
-    target 483
-  ]
-  edge [
-    source 621
-    target 519
-  ]
-  edge [
-    source 621
-    target 637
-  ]
-  edge [
-    source 622
-    target 478
-  ]
-  edge [
-    source 622
-    target 336
-  ]
-  edge [
-    source 622
-    target 512
-  ]
-  edge [
-    source 622
-    target 480
-  ]
-  edge [
-    source 623
-    target 586
-  ]
-  edge [
-    source 623
-    target 490
-  ]
-  edge [
-    source 623
-    target 700
-  ]
-  edge [
-    source 625
-    target 593
-  ]
-  edge [
-    source 625
-    target 649
-  ]
-  edge [
-    source 625
-    target 604
-  ]
-  edge [
-    source 625
-    target 483
-  ]
-  edge [
-    source 625
-    target 750
-  ]
-  edge [
-    source 627
-    target 497
-  ]
-  edge [
-    source 628
-    target 485
-  ]
-  edge [
-    source 629
-    target 478
-  ]
-  edge [
-    source 629
-    target 502
-  ]
-  edge [
-    source 629
-    target 486
-  ]
-  edge [
-    source 629
-    target 506
-  ]
-  edge [
-    source 629
-    target 508
-  ]
-  edge [
-    source 629
-    target 513
-  ]
-  edge [
-    source 629
-    target 784
-  ]
-  edge [
-    source 629
-    target 480
-  ]
-  edge [
-    source 630
-    target 487
-  ]
-  edge [
-    source 630
-    target 595
-  ]
-  edge [
-    source 630
-    target 703
-  ]
-  edge [
-    source 630
-    target 710
-  ]
-  edge [
-    source 630
-    target 693
-  ]
-  edge [
-    source 631
-    target 492
-  ]
-  edge [
-    source 631
-    target 519
-  ]
-  edge [
-    source 632
+    source 583
     target 503
   ]
   edge [
-    source 632
-    target 533
+    source 583
+    target 532
   ]
   edge [
-    source 632
-    target 784
-  ]
-  edge [
-    source 632
-    target 600
-  ]
-  edge [
-    source 632
-    target 750
-  ]
-  edge [
-    source 633
-    target 483
-  ]
-  edge [
-    source 633
-    target 719
-  ]
-  edge [
-    source 635
-    target 604
-  ]
-  edge [
-    source 635
-    target 595
-  ]
-  edge [
-    source 635
-    target 755
-  ]
-  edge [
-    source 635
-    target 483
-  ]
-  edge [
-    source 635
-    target 519
-  ]
-  edge [
-    source 637
-    target 740
-  ]
-  edge [
-    source 637
-    target 750
-  ]
-  edge [
-    source 639
-    target 593
-  ]
-  edge [
-    source 639
-    target 721
-  ]
-  edge [
-    source 639
-    target 604
-  ]
-  edge [
-    source 639
-    target 643
-  ]
-  edge [
-    source 639
-    target 482
-  ]
-  edge [
-    source 639
-    target 511
-  ]
-  edge [
-    source 639
-    target 703
-  ]
-  edge [
-    source 639
-    target 592
-  ]
-  edge [
-    source 639
-    target 783
-  ]
-  edge [
-    source 639
-    target 750
-  ]
-  edge [
-    source 640
-    target 492
-  ]
-  edge [
-    source 640
-    target 478
-  ]
-  edge [
-    source 640
-    target 645
-  ]
-  edge [
-    source 640
-    target 475
-  ]
-  edge [
-    source 640
-    target 711
-  ]
-  edge [
-    source 640
-    target 758
-  ]
-  edge [
-    source 640
+    source 583
     target 496
   ]
   edge [
-    source 640
-    target 700
+    source 583
+    target 691
   ]
   edge [
-    source 640
-    target 495
-  ]
-  edge [
-    source 640
-    target 477
-  ]
-  edge [
-    source 640
-    target 784
-  ]
-  edge [
-    source 640
-    target 518
-  ]
-  edge [
-    source 640
-    target 608
-  ]
-  edge [
-    source 640
-    target 559
-  ]
-  edge [
-    source 640
-    target 481
-  ]
-  edge [
-    source 643
-    target 487
-  ]
-  edge [
-    source 643
-    target 654
-  ]
-  edge [
-    source 643
-    target 592
-  ]
-  edge [
-    source 644
-    target 593
-  ]
-  edge [
-    source 644
-    target 604
-  ]
-  edge [
-    source 644
-    target 619
-  ]
-  edge [
-    source 644
-    target 483
-  ]
-  edge [
-    source 644
-    target 478
-  ]
-  edge [
-    source 644
-    target 645
-  ]
-  edge [
-    source 644
-    target 336
-  ]
-  edge [
-    source 644
-    target 501
-  ]
-  edge [
-    source 644
-    target 503
-  ]
-  edge [
-    source 644
-    target 531
-  ]
-  edge [
-    source 644
-    target 495
-  ]
-  edge [
-    source 644
-    target 508
-  ]
-  edge [
-    source 644
-    target 513
-  ]
-  edge [
-    source 644
-    target 784
-  ]
-  edge [
-    source 644
-    target 569
-  ]
-  edge [
-    source 644
-    target 220
-  ]
-  edge [
-    source 645
-    target 653
-  ]
-  edge [
-    source 645
-    target 593
-  ]
-  edge [
-    source 645
-    target 604
-  ]
-  edge [
-    source 645
-    target 595
-  ]
-  edge [
-    source 645
-    target 619
-  ]
-  edge [
-    source 645
-    target 654
-  ]
-  edge [
-    source 645
-    target 625
-  ]
-  edge [
-    source 645
-    target 519
-  ]
-  edge [
-    source 645
-    target 710
-  ]
-  edge [
-    source 645
-    target 692
-  ]
-  edge [
-    source 645
-    target 478
-  ]
-  edge [
-    source 645
-    target 750
-  ]
-  edge [
-    source 646
-    target 593
-  ]
-  edge [
-    source 646
-    target 483
-  ]
-  edge [
-    source 646
-    target 719
-  ]
-  edge [
-    source 647
-    target 740
-  ]
-  edge [
-    source 647
-    target 595
-  ]
-  edge [
-    source 647
-    target 482
-  ]
-  edge [
-    source 647
-    target 783
-  ]
-  edge [
-    source 647
-    target 478
-  ]
-  edge [
-    source 647
-    target 693
-  ]
-  edge [
-    source 647
-    target 387
-  ]
-  edge [
-    source 649
-    target 740
-  ]
-  edge [
-    source 649
-    target 593
-  ]
-  edge [
-    source 649
-    target 483
-  ]
-  edge [
-    source 649
-    target 750
-  ]
-  edge [
-    source 650
-    target 232
-  ]
-  edge [
-    source 650
-    target 387
-  ]
-  edge [
-    source 651
-    target 232
-  ]
-  edge [
-    source 651
-    target 387
-  ]
-  edge [
-    source 653
-    target 593
-  ]
-  edge [
-    source 653
-    target 649
-  ]
-  edge [
-    source 653
-    target 675
-  ]
-  edge [
-    source 653
-    target 604
-  ]
-  edge [
-    source 653
-    target 592
-  ]
-  edge [
-    source 653
-    target 519
-  ]
-  edge [
-    source 653
-    target 750
-  ]
-  edge [
-    source 654
-    target 649
-  ]
-  edge [
-    source 654
-    target 676
-  ]
-  edge [
-    source 654
-    target 637
-  ]
-  edge [
-    source 655
-    target 595
-  ]
-  edge [
-    source 657
-    target 495
-  ]
-  edge [
-    source 657
-    target 480
-  ]
-  edge [
-    source 661
+    source 584
     target 492
   ]
   edge [
-    source 661
-    target 649
+    source 584
+    target 591
   ]
   edge [
-    source 661
-    target 604
+    source 584
+    target 647
   ]
   edge [
-    source 661
-    target 667
+    source 584
+    target 673
   ]
   edge [
-    source 661
-    target 704
+    source 584
+    target 602
   ]
   edge [
-    source 661
-    target 751
+    source 584
+    target 641
   ]
   edge [
-    source 661
-    target 586
+    source 584
+    target 593
   ]
   edge [
-    source 661
-    target 478
+    source 584
+    target 617
   ]
   edge [
-    source 661
-    target 645
+    source 584
+    target 665
   ]
   edge [
-    source 661
-    target 705
+    source 584
+    target 724
   ]
   edge [
-    source 661
-    target 475
-  ]
-  edge [
-    source 661
-    target 502
-  ]
-  edge [
-    source 661
-    target 711
-  ]
-  edge [
-    source 661
-    target 702
-  ]
-  edge [
-    source 661
-    target 486
-  ]
-  edge [
-    source 661
-    target 496
-  ]
-  edge [
-    source 661
-    target 729
-  ]
-  edge [
-    source 661
+    source 584
     target 590
   ]
   edge [
-    source 661
-    target 700
+    source 584
+    target 623
   ]
   edge [
-    source 661
-    target 477
-  ]
-  edge [
-    source 661
-    target 614
-  ]
-  edge [
-    source 662
-    target 593
-  ]
-  edge [
-    source 662
-    target 604
-  ]
-  edge [
-    source 662
-    target 479
-  ]
-  edge [
-    source 662
-    target 503
-  ]
-  edge [
-    source 662
-    target 581
-  ]
-  edge [
-    source 663
-    target 714
-  ]
-  edge [
-    source 665
-    target 525
-  ]
-  edge [
-    source 666
-    target 289
-  ]
-  edge [
-    source 667
-    target 646
-  ]
-  edge [
-    source 667
-    target 663
-  ]
-  edge [
-    source 667
-    target 619
-  ]
-  edge [
-    source 667
-    target 592
-  ]
-  edge [
-    source 667
+    source 584
     target 519
   ]
   edge [
-    source 668
-    target 482
+    source 584
+    target 637
   ]
   edge [
-    source 668
-    target 699
-  ]
-  edge [
-    source 668
-    target 540
-  ]
-  edge [
-    source 668
-    target 480
-  ]
-  edge [
-    source 670
-    target 676
-  ]
-  edge [
-    source 670
-    target 478
-  ]
-  edge [
-    source 670
-    target 336
-  ]
-  edge [
-    source 670
-    target 495
-  ]
-  edge [
-    source 670
-    target 536
-  ]
-  edge [
-    source 670
-    target 220
-  ]
-  edge [
-    source 670
-    target 517
-  ]
-  edge [
-    source 671
-    target 710
-  ]
-  edge [
-    source 671
-    target 478
-  ]
-  edge [
-    source 672
-    target 595
-  ]
-  edge [
-    source 672
-    target 710
-  ]
-  edge [
-    source 672
+    source 585
     target 475
   ]
   edge [
-    source 672
-    target 753
+    source 585
+    target 793
   ]
   edge [
-    source 672
-    target 508
+    source 588
+    target 591
   ]
   edge [
-    source 672
-    target 497
+    source 590
+    target 591
   ]
   edge [
-    source 672
-    target 220
+    source 590
+    target 647
   ]
   edge [
-    source 673
-    target 478
+    source 590
+    target 602
   ]
   edge [
-    source 673
-    target 567
-  ]
-  edge [
-    source 674
-    target 628
-  ]
-  edge [
-    source 674
-    target 646
-  ]
-  edge [
-    source 674
-    target 592
-  ]
-  edge [
-    source 674
-    target 625
-  ]
-  edge [
-    source 675
-    target 593
-  ]
-  edge [
-    source 675
+    source 590
     target 511
   ]
   edge [
-    source 676
-    target 740
-  ]
-  edge [
-    source 676
-    target 593
-  ]
-  edge [
-    source 676
-    target 649
-  ]
-  edge [
-    source 676
-    target 755
-  ]
-  edge [
-    source 676
+    source 590
     target 483
   ]
   edge [
-    source 677
-    target 487
+    source 590
+    target 623
   ]
   edge [
-    source 677
-    target 475
-  ]
-  edge [
-    source 677
-    target 767
-  ]
-  edge [
-    source 677
-    target 498
-  ]
-  edge [
-    source 679
-    target 482
-  ]
-  edge [
-    source 679
-    target 710
-  ]
-  edge [
-    source 679
-    target 692
-  ]
-  edge [
-    source 679
-    target 478
-  ]
-  edge [
-    source 679
-    target 645
-  ]
-  edge [
-    source 679
-    target 705
-  ]
-  edge [
-    source 679
-    target 778
-  ]
-  edge [
-    source 679
-    target 702
-  ]
-  edge [
-    source 683
-    target 486
-  ]
-  edge [
-    source 683
-    target 480
-  ]
-  edge [
-    source 683
-    target 572
-  ]
-  edge [
-    source 686
-    target 487
-  ]
-  edge [
-    source 686
-    target 595
-  ]
-  edge [
-    source 686
-    target 619
-  ]
-  edge [
-    source 686
-    target 654
-  ]
-  edge [
-    source 686
-    target 621
-  ]
-  edge [
-    source 686
+    source 592
     target 519
   ]
   edge [
-    source 686
-    target 479
+    source 592
+    target 838
   ]
   edge [
-    source 687
-    target 619
+    source 593
+    target 738
   ]
   edge [
-    source 687
-    target 482
+    source 593
+    target 602
   ]
   edge [
-    source 687
-    target 654
+    source 593
+    target 617
   ]
   edge [
-    source 687
-    target 592
+    source 593
+    target 635
   ]
   edge [
-    source 687
-    target 710
+    source 594
+    target 602
   ]
   edge [
-    source 687
-    target 478
+    source 594
+    target 674
   ]
   edge [
-    source 687
-    target 645
-  ]
-  edge [
-    source 688
-    target 740
-  ]
-  edge [
-    source 688
-    target 755
-  ]
-  edge [
-    source 688
+    source 594
     target 483
   ]
   edge [
-    source 688
-    target 480
+    source 594
+    target 478
   ]
   edge [
-    source 688
+    source 594
+    target 516
+  ]
+  edge [
+    source 594
+    target 748
+  ]
+  edge [
+    source 598
+    target 591
+  ]
+  edge [
+    source 598
+    target 647
+  ]
+  edge [
+    source 598
+    target 673
+  ]
+  edge [
+    source 598
+    target 617
+  ]
+  edge [
+    source 598
+    target 482
+  ]
+  edge [
+    source 598
+    target 511
+  ]
+  edge [
+    source 598
+    target 590
+  ]
+  edge [
+    source 598
+    target 781
+  ]
+  edge [
+    source 598
+    target 702
+  ]
+  edge [
+    source 598
+    target 623
+  ]
+  edge [
+    source 598
     target 750
   ]
   edge [
-    source 688
+    source 598
+    target 519
+  ]
+  edge [
+    source 598
+    target 635
+  ]
+  edge [
+    source 598
+    target 478
+  ]
+  edge [
+    source 598
+    target 643
+  ]
+  edge [
+    source 598
+    target 507
+  ]
+  edge [
+    source 598
+    target 536
+  ]
+  edge [
+    source 598
+    target 837
+  ]
+  edge [
+    source 598
+    target 498
+  ]
+  edge [
+    source 598
+    target 496
+  ]
+  edge [
+    source 598
+    target 727
+  ]
+  edge [
+    source 598
+    target 567
+  ]
+  edge [
+    source 601
+    target 832
+  ]
+  edge [
+    source 602
+    target 647
+  ]
+  edge [
+    source 602
+    target 717
+  ]
+  edge [
+    source 604
+    target 492
+  ]
+  edge [
+    source 604
+    target 644
+  ]
+  edge [
+    source 604
+    target 617
+  ]
+  edge [
+    source 604
+    target 665
+  ]
+  edge [
+    source 604
+    target 519
+  ]
+  edge [
+    source 605
+    target 674
+  ]
+  edge [
+    source 605
+    target 336
+  ]
+  edge [
+    source 605
+    target 691
+  ]
+  edge [
+    source 607
+    target 593
+  ]
+  edge [
+    source 607
+    target 619
+  ]
+  edge [
+    source 607
+    target 519
+  ]
+  edge [
+    source 607
+    target 635
+  ]
+  edge [
+    source 607
+    target 846
+  ]
+  edge [
+    source 607
+    target 756
+  ]
+  edge [
+    source 607
+    target 691
+  ]
+  edge [
+    source 607
+    target 769
+  ]
+  edge [
+    source 607
+    target 523
+  ]
+  edge [
+    source 607
+    target 697
+  ]
+  edge [
+    source 607
+    target 767
+  ]
+  edge [
+    source 607
+    target 516
+  ]
+  edge [
+    source 607
+    target 480
+  ]
+  edge [
+    source 608
+    target 827
+  ]
+  edge [
+    source 609
+    target 488
+  ]
+  edge [
+    source 612
+    target 602
+  ]
+  edge [
+    source 612
+    target 593
+  ]
+  edge [
+    source 612
+    target 619
+  ]
+  edge [
+    source 612
+    target 752
+  ]
+  edge [
+    source 612
+    target 584
+  ]
+  edge [
+    source 612
+    target 478
+  ]
+  edge [
+    source 612
+    target 496
+  ]
+  edge [
+    source 612
+    target 588
+  ]
+  edge [
+    source 612
+    target 734
+  ]
+  edge [
+    source 612
+    target 575
+  ]
+  edge [
+    source 612
+    target 516
+  ]
+  edge [
+    source 613
+    target 482
+  ]
+  edge [
+    source 613
+    target 478
+  ]
+  edge [
+    source 613
+    target 513
+  ]
+  edge [
+    source 613
+    target 535
+  ]
+  edge [
+    source 613
+    target 782
+  ]
+  edge [
+    source 615
+    target 602
+  ]
+  edge [
+    source 615
+    target 617
+  ]
+  edge [
+    source 615
+    target 482
+  ]
+  edge [
+    source 615
+    target 674
+  ]
+  edge [
+    source 615
+    target 590
+  ]
+  edge [
+    source 615
+    target 623
+  ]
+  edge [
+    source 615
+    target 519
+  ]
+  edge [
+    source 615
+    target 739
+  ]
+  edge [
+    source 615
+    target 336
+  ]
+  edge [
+    source 615
+    target 730
+  ]
+  edge [
+    source 615
+    target 703
+  ]
+  edge [
+    source 615
+    target 759
+  ]
+  edge [
+    source 615
+    target 532
+  ]
+  edge [
+    source 615
+    target 506
+  ]
+  edge [
+    source 617
+    target 738
+  ]
+  edge [
+    source 617
+    target 591
+  ]
+  edge [
+    source 617
+    target 483
+  ]
+  edge [
+    source 617
+    target 748
+  ]
+  edge [
+    source 618
+    target 591
+  ]
+  edge [
+    source 618
+    target 647
+  ]
+  edge [
+    source 618
+    target 673
+  ]
+  edge [
+    source 618
+    target 602
+  ]
+  edge [
+    source 618
+    target 590
+  ]
+  edge [
+    source 618
+    target 623
+  ]
+  edge [
+    source 619
+    target 647
+  ]
+  edge [
+    source 619
+    target 593
+  ]
+  edge [
+    source 619
+    target 652
+  ]
+  edge [
+    source 619
+    target 753
+  ]
+  edge [
+    source 619
+    target 483
+  ]
+  edge [
+    source 619
+    target 519
+  ]
+  edge [
+    source 619
+    target 635
+  ]
+  edge [
+    source 620
+    target 478
+  ]
+  edge [
+    source 620
+    target 336
+  ]
+  edge [
+    source 620
+    target 512
+  ]
+  edge [
+    source 620
+    target 480
+  ]
+  edge [
+    source 621
+    target 584
+  ]
+  edge [
+    source 621
+    target 490
+  ]
+  edge [
+    source 621
+    target 698
+  ]
+  edge [
+    source 623
+    target 591
+  ]
+  edge [
+    source 623
+    target 647
+  ]
+  edge [
+    source 623
+    target 602
+  ]
+  edge [
+    source 623
+    target 483
+  ]
+  edge [
+    source 623
+    target 748
+  ]
+  edge [
+    source 625
+    target 497
+  ]
+  edge [
+    source 627
+    target 797
+  ]
+  edge [
+    source 627
+    target 317
+  ]
+  edge [
+    source 627
+    target 486
+  ]
+  edge [
+    source 627
+    target 793
+  ]
+  edge [
+    source 628
+    target 487
+  ]
+  edge [
+    source 628
+    target 593
+  ]
+  edge [
+    source 628
+    target 701
+  ]
+  edge [
+    source 628
+    target 708
+  ]
+  edge [
+    source 628
+    target 691
+  ]
+  edge [
+    source 629
+    target 492
+  ]
+  edge [
+    source 629
+    target 519
+  ]
+  edge [
+    source 630
+    target 503
+  ]
+  edge [
+    source 630
+    target 532
+  ]
+  edge [
+    source 630
+    target 782
+  ]
+  edge [
+    source 630
+    target 598
+  ]
+  edge [
+    source 630
+    target 748
+  ]
+  edge [
+    source 631
+    target 483
+  ]
+  edge [
+    source 631
+    target 717
+  ]
+  edge [
+    source 633
+    target 602
+  ]
+  edge [
+    source 633
+    target 593
+  ]
+  edge [
+    source 633
+    target 753
+  ]
+  edge [
+    source 633
+    target 483
+  ]
+  edge [
+    source 633
+    target 519
+  ]
+  edge [
+    source 635
+    target 738
+  ]
+  edge [
+    source 635
+    target 748
+  ]
+  edge [
+    source 637
+    target 591
+  ]
+  edge [
+    source 637
+    target 719
+  ]
+  edge [
+    source 637
+    target 602
+  ]
+  edge [
+    source 637
+    target 641
+  ]
+  edge [
+    source 637
+    target 482
+  ]
+  edge [
+    source 637
+    target 511
+  ]
+  edge [
+    source 637
+    target 701
+  ]
+  edge [
+    source 637
+    target 590
+  ]
+  edge [
+    source 637
+    target 781
+  ]
+  edge [
+    source 637
+    target 748
+  ]
+  edge [
+    source 638
+    target 492
+  ]
+  edge [
+    source 638
+    target 478
+  ]
+  edge [
+    source 638
+    target 643
+  ]
+  edge [
+    source 638
+    target 709
+  ]
+  edge [
+    source 638
+    target 837
+  ]
+  edge [
+    source 638
+    target 756
+  ]
+  edge [
+    source 638
+    target 496
+  ]
+  edge [
+    source 638
+    target 698
+  ]
+  edge [
+    source 638
+    target 495
+  ]
+  edge [
+    source 638
+    target 782
+  ]
+  edge [
+    source 638
+    target 518
+  ]
+  edge [
+    source 638
+    target 606
+  ]
+  edge [
+    source 638
+    target 557
+  ]
+  edge [
+    source 641
+    target 487
+  ]
+  edge [
+    source 641
+    target 652
+  ]
+  edge [
+    source 641
+    target 590
+  ]
+  edge [
+    source 642
+    target 591
+  ]
+  edge [
+    source 642
+    target 602
+  ]
+  edge [
+    source 642
+    target 617
+  ]
+  edge [
+    source 642
+    target 483
+  ]
+  edge [
+    source 642
+    target 478
+  ]
+  edge [
+    source 642
+    target 643
+  ]
+  edge [
+    source 642
+    target 336
+  ]
+  edge [
+    source 642
+    target 501
+  ]
+  edge [
+    source 642
+    target 503
+  ]
+  edge [
+    source 642
+    target 531
+  ]
+  edge [
+    source 642
+    target 495
+  ]
+  edge [
+    source 642
+    target 508
+  ]
+  edge [
+    source 642
+    target 513
+  ]
+  edge [
+    source 642
+    target 782
+  ]
+  edge [
+    source 642
+    target 567
+  ]
+  edge [
+    source 643
+    target 651
+  ]
+  edge [
+    source 643
+    target 591
+  ]
+  edge [
+    source 643
+    target 602
+  ]
+  edge [
+    source 643
+    target 593
+  ]
+  edge [
+    source 643
+    target 617
+  ]
+  edge [
+    source 643
+    target 652
+  ]
+  edge [
+    source 643
+    target 623
+  ]
+  edge [
+    source 643
+    target 519
+  ]
+  edge [
+    source 643
+    target 708
+  ]
+  edge [
+    source 643
+    target 690
+  ]
+  edge [
+    source 643
+    target 478
+  ]
+  edge [
+    source 643
+    target 748
+  ]
+  edge [
+    source 644
+    target 591
+  ]
+  edge [
+    source 644
+    target 483
+  ]
+  edge [
+    source 644
+    target 717
+  ]
+  edge [
+    source 645
+    target 738
+  ]
+  edge [
+    source 645
+    target 593
+  ]
+  edge [
+    source 645
+    target 482
+  ]
+  edge [
+    source 645
+    target 781
+  ]
+  edge [
+    source 645
+    target 478
+  ]
+  edge [
+    source 645
+    target 845
+  ]
+  edge [
+    source 645
+    target 691
+  ]
+  edge [
+    source 645
+    target 387
+  ]
+  edge [
+    source 647
+    target 738
+  ]
+  edge [
+    source 647
+    target 591
+  ]
+  edge [
+    source 647
+    target 483
+  ]
+  edge [
+    source 647
+    target 748
+  ]
+  edge [
+    source 648
+    target 232
+  ]
+  edge [
+    source 648
+    target 387
+  ]
+  edge [
+    source 651
+    target 591
+  ]
+  edge [
+    source 651
+    target 647
+  ]
+  edge [
+    source 651
+    target 673
+  ]
+  edge [
+    source 651
+    target 602
+  ]
+  edge [
+    source 651
+    target 590
+  ]
+  edge [
+    source 651
+    target 519
+  ]
+  edge [
+    source 651
+    target 748
+  ]
+  edge [
+    source 652
+    target 647
+  ]
+  edge [
+    source 652
+    target 674
+  ]
+  edge [
+    source 652
+    target 635
+  ]
+  edge [
+    source 653
+    target 593
+  ]
+  edge [
+    source 655
+    target 495
+  ]
+  edge [
+    source 655
+    target 480
+  ]
+  edge [
+    source 659
+    target 492
+  ]
+  edge [
+    source 659
+    target 647
+  ]
+  edge [
+    source 659
+    target 602
+  ]
+  edge [
+    source 659
+    target 665
+  ]
+  edge [
+    source 659
+    target 702
+  ]
+  edge [
+    source 659
+    target 749
+  ]
+  edge [
+    source 659
+    target 584
+  ]
+  edge [
+    source 659
+    target 478
+  ]
+  edge [
+    source 659
+    target 643
+  ]
+  edge [
+    source 659
+    target 703
+  ]
+  edge [
+    source 659
+    target 502
+  ]
+  edge [
+    source 659
+    target 709
+  ]
+  edge [
+    source 659
+    target 700
+  ]
+  edge [
+    source 659
+    target 837
+  ]
+  edge [
+    source 659
+    target 496
+  ]
+  edge [
+    source 659
+    target 727
+  ]
+  edge [
+    source 659
+    target 588
+  ]
+  edge [
+    source 659
+    target 698
+  ]
+  edge [
+    source 659
+    target 612
+  ]
+  edge [
+    source 660
+    target 591
+  ]
+  edge [
+    source 660
+    target 602
+  ]
+  edge [
+    source 660
+    target 503
+  ]
+  edge [
+    source 660
+    target 579
+  ]
+  edge [
+    source 661
+    target 712
+  ]
+  edge [
+    source 663
+    target 525
+  ]
+  edge [
+    source 664
+    target 289
+  ]
+  edge [
+    source 665
+    target 644
+  ]
+  edge [
+    source 665
+    target 661
+  ]
+  edge [
+    source 665
+    target 617
+  ]
+  edge [
+    source 665
+    target 590
+  ]
+  edge [
+    source 665
+    target 519
+  ]
+  edge [
+    source 666
+    target 482
+  ]
+  edge [
+    source 666
+    target 697
+  ]
+  edge [
+    source 666
+    target 539
+  ]
+  edge [
+    source 666
+    target 480
+  ]
+  edge [
+    source 668
+    target 674
+  ]
+  edge [
+    source 668
+    target 478
+  ]
+  edge [
+    source 668
+    target 336
+  ]
+  edge [
+    source 668
+    target 495
+  ]
+  edge [
+    source 668
+    target 535
+  ]
+  edge [
+    source 668
     target 517
   ]
   edge [
-    source 688
+    source 669
+    target 708
+  ]
+  edge [
+    source 669
+    target 478
+  ]
+  edge [
+    source 670
+    target 593
+  ]
+  edge [
+    source 670
+    target 708
+  ]
+  edge [
+    source 670
+    target 751
+  ]
+  edge [
+    source 670
+    target 508
+  ]
+  edge [
+    source 670
+    target 497
+  ]
+  edge [
+    source 671
+    target 478
+  ]
+  edge [
+    source 671
+    target 565
+  ]
+  edge [
+    source 672
+    target 626
+  ]
+  edge [
+    source 672
+    target 644
+  ]
+  edge [
+    source 672
+    target 590
+  ]
+  edge [
+    source 672
+    target 623
+  ]
+  edge [
+    source 673
+    target 591
+  ]
+  edge [
+    source 673
+    target 511
+  ]
+  edge [
+    source 674
+    target 738
+  ]
+  edge [
+    source 674
+    target 591
+  ]
+  edge [
+    source 674
+    target 647
+  ]
+  edge [
+    source 674
+    target 753
+  ]
+  edge [
+    source 674
+    target 483
+  ]
+  edge [
+    source 675
+    target 487
+  ]
+  edge [
+    source 675
+    target 765
+  ]
+  edge [
+    source 675
+    target 498
+  ]
+  edge [
+    source 677
+    target 482
+  ]
+  edge [
+    source 677
+    target 708
+  ]
+  edge [
+    source 677
+    target 690
+  ]
+  edge [
+    source 677
+    target 478
+  ]
+  edge [
+    source 677
+    target 643
+  ]
+  edge [
+    source 677
+    target 703
+  ]
+  edge [
+    source 677
+    target 776
+  ]
+  edge [
+    source 677
+    target 700
+  ]
+  edge [
+    source 681
+    target 480
+  ]
+  edge [
+    source 681
+    target 570
+  ]
+  edge [
+    source 684
+    target 487
+  ]
+  edge [
+    source 684
+    target 593
+  ]
+  edge [
+    source 684
+    target 617
+  ]
+  edge [
+    source 684
+    target 652
+  ]
+  edge [
+    source 684
+    target 619
+  ]
+  edge [
+    source 684
+    target 519
+  ]
+  edge [
+    source 684
+    target 845
+  ]
+  edge [
+    source 685
+    target 617
+  ]
+  edge [
+    source 685
+    target 482
+  ]
+  edge [
+    source 685
+    target 652
+  ]
+  edge [
+    source 685
+    target 590
+  ]
+  edge [
+    source 685
+    target 708
+  ]
+  edge [
+    source 685
+    target 478
+  ]
+  edge [
+    source 685
+    target 643
+  ]
+  edge [
+    source 686
+    target 738
+  ]
+  edge [
+    source 686
+    target 753
+  ]
+  edge [
+    source 686
+    target 483
+  ]
+  edge [
+    source 686
+    target 838
+  ]
+  edge [
+    source 686
+    target 480
+  ]
+  edge [
+    source 686
+    target 748
+  ]
+  edge [
+    source 686
+    target 517
+  ]
+  edge [
+    source 686
     target 387
   ]
   edge [
     source 688
-    target 552
+    target 652
   ]
   edge [
-    source 690
-    target 654
+    source 688
+    target 635
   ]
   edge [
-    source 690
+    source 688
     target 637
   ]
   edge [
-    source 690
-    target 639
-  ]
-  edge [
-    source 690
+    source 688
     target 490
   ]
   edge [
-    source 690
-    target 729
+    source 688
+    target 727
   ]
   edge [
-    source 690
-    target 700
+    source 688
+    target 698
   ]
   edge [
-    source 690
-    target 699
+    source 688
+    target 697
   ]
   edge [
-    source 690
+    source 688
     target 480
   ]
   edge [
     source 690
-    target 555
+    target 651
   ]
   edge [
-    source 692
-    target 653
+    source 690
+    target 591
   ]
   edge [
-    source 692
-    target 593
+    source 690
+    target 602
   ]
   edge [
-    source 692
-    target 604
+    source 690
+    target 618
   ]
   edge [
-    source 692
-    target 620
+    source 690
+    target 701
   ]
   edge [
-    source 692
-    target 703
+    source 690
+    target 590
   ]
   edge [
-    source 692
-    target 592
+    source 691
+    target 617
   ]
   edge [
-    source 693
-    target 619
-  ]
-  edge [
-    source 693
+    source 691
     target 482
   ]
   edge [
-    source 693
-    target 676
+    source 691
+    target 674
   ]
   edge [
-    source 693
-    target 703
+    source 691
+    target 701
   ]
   edge [
-    source 693
-    target 783
+    source 691
+    target 781
   ]
   edge [
-    source 693
-    target 751
+    source 691
+    target 749
   ]
   edge [
-    source 693
-    target 710
+    source 691
+    target 708
   ]
   edge [
-    source 693
-    target 479
-  ]
-  edge [
-    source 693
+    source 691
     target 478
   ]
   edge [
-    source 693
-    target 645
+    source 691
+    target 643
   ]
   edge [
-    source 693
-    target 687
+    source 691
+    target 685
   ]
   edge [
-    source 693
-    target 705
+    source 691
+    target 703
   ]
   edge [
-    source 693
-    target 778
+    source 691
+    target 836
   ]
   edge [
-    source 693
-    target 758
+    source 691
+    target 776
   ]
   edge [
-    source 694
-    target 663
+    source 691
+    target 756
   ]
   edge [
-    source 694
+    source 692
+    target 661
+  ]
+  edge [
+    source 692
     target 519
   ]
   edge [
-    source 694
+    source 692
     target 336
   ]
   edge [
-    source 694
-    target 475
-  ]
-  edge [
-    source 694
+    source 692
     target 502
   ]
   edge [
-    source 694
+    source 692
     target 506
   ]
   edge [
-    source 694
+    source 692
     target 495
   ]
   edge [
-    source 694
-    target 723
+    source 692
+    target 721
   ]
   edge [
-    source 694
-    target 476
-  ]
-  edge [
-    source 694
-    target 220
-  ]
-  edge [
-    source 694
-    target 177
-  ]
-  edge [
-    source 697
+    source 695
     target 492
   ]
   edge [
-    source 697
+    source 695
     target 478
   ]
   edge [
-    source 697
-    target 645
+    source 695
+    target 643
   ]
   edge [
-    source 697
-    target 475
+    source 695
+    target 709
   ]
   edge [
-    source 697
-    target 711
+    source 695
+    target 837
   ]
   edge [
-    source 697
-    target 758
+    source 695
+    target 756
   ]
   edge [
-    source 697
-    target 700
+    source 695
+    target 698
   ]
   edge [
-    source 697
+    source 695
     target 495
   ]
   edge [
-    source 697
-    target 477
+    source 695
+    target 782
   ]
   edge [
-    source 697
-    target 784
-  ]
-  edge [
-    source 697
+    source 695
     target 518
   ]
   edge [
-    source 697
-    target 608
+    source 695
+    target 606
+  ]
+  edge [
+    source 695
+    target 557
+  ]
+  edge [
+    source 696
+    target 738
+  ]
+  edge [
+    source 696
+    target 591
   ]
   edge [
     source 697
-    target 559
-  ]
-  edge [
-    source 697
-    target 481
-  ]
-  edge [
-    source 698
-    target 740
-  ]
-  edge [
-    source 698
-    target 593
-  ]
-  edge [
-    source 699
     target 482
   ]
   edge [
-    source 699
-    target 703
+    source 697
+    target 701
   ]
   edge [
-    source 699
-    target 751
+    source 697
+    target 749
   ]
   edge [
-    source 699
-    target 710
+    source 697
+    target 708
   ]
   edge [
-    source 699
-    target 586
+    source 697
+    target 584
   ]
   edge [
-    source 699
-    target 639
+    source 697
+    target 637
   ]
   edge [
-    source 699
+    source 697
     target 478
   ]
   edge [
-    source 699
-    target 686
+    source 697
+    target 684
   ]
   edge [
-    source 699
-    target 645
+    source 697
+    target 643
   ]
   edge [
-    source 699
-    target 705
+    source 697
+    target 703
   ]
   edge [
-    source 699
+    source 697
     target 490
   ]
   edge [
-    source 699
-    target 711
+    source 697
+    target 709
   ]
   edge [
-    source 699
-    target 761
+    source 697
+    target 846
   ]
   edge [
-    source 699
-    target 743
+    source 697
+    target 837
   ]
   edge [
-    source 700
-    target 740
+    source 697
+    target 759
   ]
   edge [
-    source 700
-    target 604
+    source 697
+    target 741
   ]
   edge [
-    source 700
-    target 595
+    source 698
+    target 738
   ]
   edge [
-    source 700
-    target 619
+    source 698
+    target 602
   ]
   edge [
-    source 700
-    target 621
-  ]
-  edge [
-    source 700
-    target 728
-  ]
-  edge [
-    source 700
-    target 625
-  ]
-  edge [
-    source 700
-    target 639
-  ]
-  edge [
-    source 700
-    target 744
-  ]
-  edge [
-    source 700
-    target 705
-  ]
-  edge [
-    source 700
-    target 475
-  ]
-  edge [
-    source 700
-    target 711
-  ]
-  edge [
-    source 700
-    target 496
-  ]
-  edge [
-    source 702
-    target 740
-  ]
-  edge [
-    source 702
-    target 653
-  ]
-  edge [
-    source 702
-    target 675
-  ]
-  edge [
-    source 702
-    target 604
-  ]
-  edge [
-    source 702
-    target 595
-  ]
-  edge [
-    source 702
-    target 619
-  ]
-  edge [
-    source 702
-    target 482
-  ]
-  edge [
-    source 702
-    target 676
-  ]
-  edge [
-    source 702
-    target 511
-  ]
-  edge [
-    source 702
-    target 620
-  ]
-  edge [
-    source 702
-    target 703
-  ]
-  edge [
-    source 702
-    target 751
-  ]
-  edge [
-    source 702
-    target 710
-  ]
-  edge [
-    source 702
-    target 479
-  ]
-  edge [
-    source 702
-    target 692
-  ]
-  edge [
-    source 702
-    target 478
-  ]
-  edge [
-    source 702
-    target 645
-  ]
-  edge [
-    source 702
-    target 507
-  ]
-  edge [
-    source 702
-    target 687
-  ]
-  edge [
-    source 702
-    target 705
-  ]
-  edge [
-    source 702
-    target 475
-  ]
-  edge [
-    source 702
-    target 537
-  ]
-  edge [
-    source 702
-    target 711
-  ]
-  edge [
-    source 702
-    target 778
-  ]
-  edge [
-    source 702
-    target 758
-  ]
-  edge [
-    source 702
-    target 693
-  ]
-  edge [
-    source 702
-    target 750
-  ]
-  edge [
-    source 703
-    target 649
-  ]
-  edge [
-    source 703
-    target 675
-  ]
-  edge [
-    source 703
-    target 487
-  ]
-  edge [
-    source 703
-    target 619
-  ]
-  edge [
-    source 703
-    target 654
-  ]
-  edge [
-    source 703
-    target 592
-  ]
-  edge [
-    source 704
-    target 740
-  ]
-  edge [
-    source 704
+    source 698
     target 593
   ]
   edge [
-    source 704
-    target 649
+    source 698
+    target 617
   ]
   edge [
-    source 704
+    source 698
     target 619
   ]
   edge [
-    source 704
+    source 698
+    target 726
+  ]
+  edge [
+    source 698
+    target 623
+  ]
+  edge [
+    source 698
+    target 637
+  ]
+  edge [
+    source 698
+    target 742
+  ]
+  edge [
+    source 698
+    target 703
+  ]
+  edge [
+    source 698
+    target 709
+  ]
+  edge [
+    source 698
+    target 496
+  ]
+  edge [
+    source 700
+    target 738
+  ]
+  edge [
+    source 700
+    target 651
+  ]
+  edge [
+    source 700
+    target 673
+  ]
+  edge [
+    source 700
+    target 602
+  ]
+  edge [
+    source 700
+    target 593
+  ]
+  edge [
+    source 700
+    target 617
+  ]
+  edge [
+    source 700
+    target 482
+  ]
+  edge [
+    source 700
+    target 674
+  ]
+  edge [
+    source 700
+    target 511
+  ]
+  edge [
+    source 700
+    target 618
+  ]
+  edge [
+    source 700
+    target 701
+  ]
+  edge [
+    source 700
+    target 749
+  ]
+  edge [
+    source 700
+    target 708
+  ]
+  edge [
+    source 700
+    target 690
+  ]
+  edge [
+    source 700
+    target 478
+  ]
+  edge [
+    source 700
+    target 643
+  ]
+  edge [
+    source 700
+    target 507
+  ]
+  edge [
+    source 700
+    target 685
+  ]
+  edge [
+    source 700
+    target 703
+  ]
+  edge [
+    source 700
+    target 536
+  ]
+  edge [
+    source 700
+    target 709
+  ]
+  edge [
+    source 700
+    target 776
+  ]
+  edge [
+    source 700
+    target 756
+  ]
+  edge [
+    source 700
+    target 691
+  ]
+  edge [
+    source 700
+    target 748
+  ]
+  edge [
+    source 701
+    target 647
+  ]
+  edge [
+    source 701
+    target 673
+  ]
+  edge [
+    source 701
+    target 487
+  ]
+  edge [
+    source 701
+    target 617
+  ]
+  edge [
+    source 701
+    target 652
+  ]
+  edge [
+    source 701
+    target 590
+  ]
+  edge [
+    source 702
+    target 738
+  ]
+  edge [
+    source 702
+    target 591
+  ]
+  edge [
+    source 702
+    target 647
+  ]
+  edge [
+    source 702
+    target 617
+  ]
+  edge [
+    source 702
     target 483
   ]
   edge [
+    source 702
+    target 748
+  ]
+  edge [
+    source 703
+    target 482
+  ]
+  edge [
+    source 703
+    target 701
+  ]
+  edge [
+    source 703
+    target 749
+  ]
+  edge [
+    source 703
+    target 708
+  ]
+  edge [
+    source 703
+    target 478
+  ]
+  edge [
     source 704
-    target 750
+    target 519
+  ]
+  edge [
+    source 704
+    target 842
+  ]
+  edge [
+    source 705
+    target 593
   ]
   edge [
     source 705
@@ -12162,307 +11640,499 @@ graph [
   ]
   edge [
     source 705
-    target 703
+    target 711
   ]
   edge [
-    source 705
-    target 751
+    source 706
+    target 644
   ]
   edge [
-    source 705
-    target 710
+    source 706
+    target 719
   ]
   edge [
-    source 705
-    target 478
+    source 706
+    target 602
+  ]
+  edge [
+    source 706
+    target 724
+  ]
+  edge [
+    source 706
+    target 623
   ]
   edge [
     source 706
     target 519
   ]
   edge [
-    source 707
-    target 595
+    source 706
+    target 768
   ]
   edge [
-    source 707
+    source 708
+    target 617
+  ]
+  edge [
+    source 708
     target 482
   ]
   edge [
-    source 707
+    source 708
+    target 652
+  ]
+  edge [
+    source 708
+    target 701
+  ]
+  edge [
+    source 709
+    target 602
+  ]
+  edge [
+    source 709
+    target 665
+  ]
+  edge [
+    source 709
     target 713
   ]
   edge [
-    source 708
-    target 646
+    source 709
+    target 590
   ]
   edge [
-    source 708
-    target 721
+    source 709
+    target 623
   ]
   edge [
-    source 708
-    target 604
+    source 709
+    target 584
   ]
   edge [
-    source 708
-    target 726
-  ]
-  edge [
-    source 708
-    target 625
-  ]
-  edge [
-    source 708
-    target 519
-  ]
-  edge [
-    source 708
-    target 770
-  ]
-  edge [
-    source 710
-    target 619
-  ]
-  edge [
-    source 710
-    target 482
-  ]
-  edge [
-    source 710
-    target 654
-  ]
-  edge [
-    source 710
-    target 703
-  ]
-  edge [
-    source 711
-    target 604
-  ]
-  edge [
-    source 711
-    target 667
-  ]
-  edge [
-    source 711
-    target 715
-  ]
-  edge [
-    source 711
-    target 592
-  ]
-  edge [
-    source 711
-    target 485
-  ]
-  edge [
-    source 711
-    target 625
-  ]
-  edge [
-    source 711
-    target 586
-  ]
-  edge [
-    source 711
+    source 709
     target 478
   ]
   edge [
-    source 711
-    target 645
+    source 709
+    target 845
   ]
   edge [
-    source 711
-    target 687
-  ]
-  edge [
-    source 711
-    target 475
-  ]
-  edge [
-    source 712
-    target 593
-  ]
-  edge [
-    source 712
-    target 519
-  ]
-  edge [
-    source 712
-    target 719
-  ]
-  edge [
-    source 713
-    target 595
-  ]
-  edge [
-    source 715
-    target 593
-  ]
-  edge [
-    source 715
-    target 604
-  ]
-  edge [
-    source 715
-    target 619
-  ]
-  edge [
-    source 715
-    target 698
-  ]
-  edge [
-    source 715
-    target 511
-  ]
-  edge [
-    source 715
-    target 592
-  ]
-  edge [
-    source 715
-    target 625
-  ]
-  edge [
-    source 715
-    target 519
-  ]
-  edge [
-    source 716
-    target 649
-  ]
-  edge [
-    source 717
-    target 646
-  ]
-  edge [
-    source 717
-    target 653
-  ]
-  edge [
-    source 717
-    target 593
-  ]
-  edge [
-    source 717
-    target 620
-  ]
-  edge [
-    source 717
-    target 726
-  ]
-  edge [
-    source 717
-    target 592
-  ]
-  edge [
-    source 717
-    target 586
-  ]
-  edge [
-    source 717
-    target 674
-  ]
-  edge [
-    source 717
-    target 639
-  ]
-  edge [
-    source 717
-    target 686
-  ]
-  edge [
-    source 722
-    target 654
-  ]
-  edge [
-    source 722
-    target 620
-  ]
-  edge [
-    source 722
-    target 592
-  ]
-  edge [
-    source 723
+    source 709
     target 643
   ]
   edge [
-    source 723
+    source 709
+    target 685
+  ]
+  edge [
+    source 710
+    target 591
+  ]
+  edge [
+    source 710
+    target 519
+  ]
+  edge [
+    source 710
+    target 717
+  ]
+  edge [
+    source 711
+    target 593
+  ]
+  edge [
+    source 713
+    target 591
+  ]
+  edge [
+    source 713
+    target 602
+  ]
+  edge [
+    source 713
+    target 617
+  ]
+  edge [
+    source 713
+    target 696
+  ]
+  edge [
+    source 713
     target 511
   ]
   edge [
-    source 723
-    target 620
+    source 713
+    target 590
   ]
   edge [
-    source 723
-    target 703
+    source 713
+    target 623
   ]
   edge [
-    source 723
-    target 592
+    source 713
+    target 519
   ]
   edge [
-    source 723
-    target 639
+    source 714
+    target 647
   ]
   edge [
-    source 723
+    source 715
+    target 644
+  ]
+  edge [
+    source 715
+    target 651
+  ]
+  edge [
+    source 715
+    target 591
+  ]
+  edge [
+    source 715
+    target 618
+  ]
+  edge [
+    source 715
+    target 724
+  ]
+  edge [
+    source 715
+    target 590
+  ]
+  edge [
+    source 715
+    target 584
+  ]
+  edge [
+    source 715
+    target 672
+  ]
+  edge [
+    source 715
+    target 637
+  ]
+  edge [
+    source 715
+    target 684
+  ]
+  edge [
+    source 715
+    target 845
+  ]
+  edge [
+    source 720
+    target 652
+  ]
+  edge [
+    source 720
+    target 618
+  ]
+  edge [
+    source 720
+    target 590
+  ]
+  edge [
+    source 721
+    target 641
+  ]
+  edge [
+    source 721
+    target 511
+  ]
+  edge [
+    source 721
+    target 618
+  ]
+  edge [
+    source 721
+    target 701
+  ]
+  edge [
+    source 721
+    target 590
+  ]
+  edge [
+    source 721
+    target 637
+  ]
+  edge [
+    source 721
     target 478
   ]
   edge [
-    source 723
-    target 645
+    source 721
+    target 643
   ]
   edge [
-    source 723
-    target 687
+    source 721
+    target 685
   ]
   edge [
-    source 723
-    target 705
+    source 721
+    target 703
   ]
   edge [
-    source 723
+    source 721
     target 490
   ]
   edge [
-    source 723
-    target 702
+    source 721
+    target 700
+  ]
+  edge [
+    source 721
+    target 771
+  ]
+  edge [
+    source 721
+    target 697
   ]
   edge [
     source 723
-    target 773
-  ]
-  edge [
-    source 723
-    target 699
-  ]
-  edge [
-    source 725
     target 480
+  ]
+  edge [
+    source 724
+    target 591
+  ]
+  edge [
+    source 726
+    target 651
   ]
   edge [
     source 726
     target 593
   ]
   edge [
-    source 728
-    target 653
+    source 726
+    target 617
+  ]
+  edge [
+    source 726
+    target 665
+  ]
+  edge [
+    source 726
+    target 713
+  ]
+  edge [
+    source 726
+    target 519
+  ]
+  edge [
+    source 727
+    target 492
+  ]
+  edge [
+    source 727
+    target 738
+  ]
+  edge [
+    source 727
+    target 651
+  ]
+  edge [
+    source 727
+    target 591
+  ]
+  edge [
+    source 727
+    target 487
+  ]
+  edge [
+    source 727
+    target 602
+  ]
+  edge [
+    source 727
+    target 641
+  ]
+  edge [
+    source 727
+    target 593
+  ]
+  edge [
+    source 727
+    target 617
+  ]
+  edge [
+    source 727
+    target 482
+  ]
+  edge [
+    source 727
+    target 696
+  ]
+  edge [
+    source 727
+    target 665
+  ]
+  edge [
+    source 727
+    target 674
+  ]
+  edge [
+    source 727
+    target 652
+  ]
+  edge [
+    source 727
+    target 559
+  ]
+  edge [
+    source 727
+    target 483
+  ]
+  edge [
+    source 727
+    target 781
+  ]
+  edge [
+    source 727
+    target 702
+  ]
+  edge [
+    source 727
+    target 623
+  ]
+  edge [
+    source 727
+    target 635
+  ]
+  edge [
+    source 727
+    target 749
+  ]
+  edge [
+    source 727
+    target 708
+  ]
+  edge [
+    source 727
+    target 584
+  ]
+  edge [
+    source 727
+    target 672
+  ]
+  edge [
+    source 727
+    target 690
+  ]
+  edge [
+    source 727
+    target 637
+  ]
+  edge [
+    source 727
+    target 478
+  ]
+  edge [
+    source 727
+    target 845
+  ]
+  edge [
+    source 727
+    target 742
+  ]
+  edge [
+    source 727
+    target 643
+  ]
+  edge [
+    source 727
+    target 493
+  ]
+  edge [
+    source 727
+    target 730
+  ]
+  edge [
+    source 727
+    target 507
+  ]
+  edge [
+    source 727
+    target 685
+  ]
+  edge [
+    source 727
+    target 703
+  ]
+  edge [
+    source 727
+    target 502
+  ]
+  edge [
+    source 727
+    target 709
+  ]
+  edge [
+    source 727
+    target 836
+  ]
+  edge [
+    source 727
+    target 700
+  ]
+  edge [
+    source 727
+    target 759
+  ]
+  edge [
+    source 727
+    target 756
+  ]
+  edge [
+    source 727
+    target 748
   ]
   edge [
     source 728
-    target 595
+    target 604
   ]
   edge [
     source 728
-    target 619
+    target 492
   ]
   edge [
     source 728
-    target 667
+    target 644
+  ]
+  edge [
+    source 728
+    target 641
+  ]
+  edge [
+    source 728
+    target 482
+  ]
+  edge [
+    source 728
+    target 665
+  ]
+  edge [
+    source 728
+    target 652
+  ]
+  edge [
+    source 728
+    target 623
+  ]
+  edge [
+    source 728
+    target 637
+  ]
+  edge [
+    source 728
+    target 478
+  ]
+  edge [
+    source 728
+    target 643
   ]
   edge [
     source 728
@@ -12470,555 +12140,351 @@ graph [
   ]
   edge [
     source 728
-    target 519
+    target 700
   ]
   edge [
-    source 729
-    target 492
+    source 728
+    target 759
   ]
   edge [
-    source 729
-    target 740
-  ]
-  edge [
-    source 729
-    target 653
-  ]
-  edge [
-    source 729
-    target 593
-  ]
-  edge [
-    source 729
-    target 487
-  ]
-  edge [
-    source 729
-    target 604
-  ]
-  edge [
-    source 729
-    target 643
-  ]
-  edge [
-    source 729
-    target 595
-  ]
-  edge [
-    source 729
-    target 619
-  ]
-  edge [
-    source 729
-    target 482
-  ]
-  edge [
-    source 729
-    target 698
-  ]
-  edge [
-    source 729
-    target 667
-  ]
-  edge [
-    source 729
-    target 676
-  ]
-  edge [
-    source 729
-    target 654
-  ]
-  edge [
-    source 729
-    target 561
-  ]
-  edge [
-    source 729
-    target 483
-  ]
-  edge [
-    source 729
-    target 783
-  ]
-  edge [
-    source 729
-    target 704
-  ]
-  edge [
-    source 729
-    target 625
-  ]
-  edge [
-    source 729
-    target 637
-  ]
-  edge [
-    source 729
-    target 751
-  ]
-  edge [
-    source 729
-    target 710
-  ]
-  edge [
-    source 729
-    target 586
-  ]
-  edge [
-    source 729
-    target 674
-  ]
-  edge [
-    source 729
-    target 692
-  ]
-  edge [
-    source 729
-    target 639
-  ]
-  edge [
-    source 729
-    target 478
-  ]
-  edge [
-    source 729
-    target 744
-  ]
-  edge [
-    source 729
-    target 645
-  ]
-  edge [
-    source 729
-    target 493
-  ]
-  edge [
-    source 729
-    target 732
-  ]
-  edge [
-    source 729
-    target 507
-  ]
-  edge [
-    source 729
-    target 687
-  ]
-  edge [
-    source 729
-    target 705
-  ]
-  edge [
-    source 729
-    target 475
-  ]
-  edge [
-    source 729
-    target 502
-  ]
-  edge [
-    source 729
-    target 711
-  ]
-  edge [
-    source 729
-    target 702
-  ]
-  edge [
-    source 729
-    target 761
-  ]
-  edge [
-    source 729
-    target 758
-  ]
-  edge [
-    source 729
-    target 750
-  ]
-  edge [
-    source 730
-    target 606
-  ]
-  edge [
-    source 730
-    target 492
-  ]
-  edge [
-    source 730
-    target 646
-  ]
-  edge [
-    source 730
-    target 643
-  ]
-  edge [
-    source 730
-    target 482
-  ]
-  edge [
-    source 730
-    target 667
-  ]
-  edge [
-    source 730
-    target 654
-  ]
-  edge [
-    source 730
-    target 485
-  ]
-  edge [
-    source 730
-    target 625
-  ]
-  edge [
-    source 730
-    target 639
-  ]
-  edge [
-    source 730
-    target 478
-  ]
-  edge [
-    source 730
-    target 645
-  ]
-  edge [
-    source 730
-    target 717
-  ]
-  edge [
-    source 730
-    target 702
-  ]
-  edge [
-    source 730
-    target 761
-  ]
-  edge [
-    source 730
+    source 728
     target 496
   ]
   edge [
-    source 730
-    target 736
+    source 728
+    target 734
   ]
   edge [
-    source 730
-    target 700
+    source 728
+    target 698
   ]
   edge [
-    source 730
+    source 728
     target 495
   ]
   edge [
-    source 731
-    target 628
+    source 729
+    target 626
   ]
   edge [
-    source 731
-    target 593
+    source 729
+    target 591
   ]
   edge [
-    source 731
-    target 654
+    source 729
+    target 652
   ]
   edge [
-    source 731
+    source 729
     target 483
   ]
   edge [
-    source 731
-    target 639
-  ]
-  edge [
-    source 732
-    target 653
-  ]
-  edge [
-    source 732
-    target 487
-  ]
-  edge [
-    source 732
-    target 619
-  ]
-  edge [
-    source 732
-    target 519
-  ]
-  edge [
-    source 732
-    target 479
-  ]
-  edge [
-    source 734
-    target 620
-  ]
-  edge [
-    source 736
-    target 653
-  ]
-  edge [
-    source 736
-    target 721
-  ]
-  edge [
-    source 736
-    target 726
-  ]
-  edge [
-    source 736
-    target 714
-  ]
-  edge [
-    source 736
-    target 519
-  ]
-  edge [
-    source 736
-    target 732
-  ]
-  edge [
-    source 739
-    target 475
-  ]
-  edge [
-    source 739
-    target 476
-  ]
-  edge [
-    source 739
-    target 612
-  ]
-  edge [
-    source 740
-    target 593
-  ]
-  edge [
-    source 740
-    target 483
-  ]
-  edge [
-    source 740
-    target 750
-  ]
-  edge [
-    source 741
-    target 492
-  ]
-  edge [
-    source 741
-    target 593
-  ]
-  edge [
-    source 741
-    target 728
-  ]
-  edge [
-    source 741
-    target 519
-  ]
-  edge [
-    source 741
-    target 586
-  ]
-  edge [
-    source 741
-    target 479
-  ]
-  edge [
-    source 741
-    target 575
-  ]
-  edge [
-    source 741
-    target 478
-  ]
-  edge [
-    source 742
-    target 482
-  ]
-  edge [
-    source 742
-    target 485
-  ]
-  edge [
-    source 742
-    target 519
-  ]
-  edge [
-    source 742
-    target 782
-  ]
-  edge [
-    source 743
-    target 482
-  ]
-  edge [
-    source 743
-    target 485
-  ]
-  edge [
-    source 743
-    target 751
-  ]
-  edge [
-    source 743
-    target 710
-  ]
-  edge [
-    source 743
-    target 586
-  ]
-  edge [
-    source 743
-    target 674
-  ]
-  edge [
-    source 743
-    target 639
-  ]
-  edge [
-    source 743
-    target 478
-  ]
-  edge [
-    source 743
-    target 686
-  ]
-  edge [
-    source 743
-    target 645
-  ]
-  edge [
-    source 743
-    target 687
-  ]
-  edge [
-    source 743
-    target 705
-  ]
-  edge [
-    source 743
-    target 729
-  ]
-  edge [
-    source 743
-    target 700
-  ]
-  edge [
-    source 743
-    target 699
-  ]
-  edge [
-    source 744
-    target 646
-  ]
-  edge [
-    source 744
-    target 595
-  ]
-  edge [
-    source 744
-    target 621
-  ]
-  edge [
-    source 744
-    target 728
-  ]
-  edge [
-    source 744
-    target 519
-  ]
-  edge [
-    source 744
-    target 479
-  ]
-  edge [
-    source 745
-    target 620
-  ]
-  edge [
-    source 745
-    target 716
-  ]
-  edge [
-    source 746
-    target 487
-  ]
-  edge [
-    source 746
-    target 595
-  ]
-  edge [
-    source 746
-    target 519
-  ]
-  edge [
-    source 746
-    target 479
-  ]
-  edge [
-    source 746
-    target 686
-  ]
-  edge [
-    source 746
-    target 744
-  ]
-  edge [
-    source 746
-    target 732
-  ]
-  edge [
-    source 746
-    target 756
-  ]
-  edge [
-    source 747
-    target 595
-  ]
-  edge [
-    source 747
+    source 729
     target 637
   ]
   edge [
-    source 747
-    target 475
+    source 730
+    target 651
   ]
   edge [
-    source 747
+    source 730
+    target 487
+  ]
+  edge [
+    source 730
+    target 617
+  ]
+  edge [
+    source 730
+    target 519
+  ]
+  edge [
+    source 732
+    target 618
+  ]
+  edge [
+    source 734
+    target 651
+  ]
+  edge [
+    source 734
+    target 719
+  ]
+  edge [
+    source 734
+    target 724
+  ]
+  edge [
+    source 734
+    target 712
+  ]
+  edge [
+    source 734
+    target 519
+  ]
+  edge [
+    source 734
+    target 730
+  ]
+  edge [
+    source 737
+    target 610
+  ]
+  edge [
+    source 738
+    target 591
+  ]
+  edge [
+    source 738
+    target 483
+  ]
+  edge [
+    source 738
+    target 748
+  ]
+  edge [
+    source 739
+    target 492
+  ]
+  edge [
+    source 739
+    target 591
+  ]
+  edge [
+    source 739
+    target 726
+  ]
+  edge [
+    source 739
+    target 519
+  ]
+  edge [
+    source 739
+    target 584
+  ]
+  edge [
+    source 739
+    target 573
+  ]
+  edge [
+    source 739
+    target 478
+  ]
+  edge [
+    source 740
+    target 482
+  ]
+  edge [
+    source 740
+    target 519
+  ]
+  edge [
+    source 740
+    target 780
+  ]
+  edge [
+    source 740
+    target 845
+  ]
+  edge [
+    source 741
+    target 482
+  ]
+  edge [
+    source 741
+    target 749
+  ]
+  edge [
+    source 741
+    target 708
+  ]
+  edge [
+    source 741
+    target 584
+  ]
+  edge [
+    source 741
+    target 672
+  ]
+  edge [
+    source 741
+    target 637
+  ]
+  edge [
+    source 741
+    target 478
+  ]
+  edge [
+    source 741
+    target 684
+  ]
+  edge [
+    source 741
+    target 845
+  ]
+  edge [
+    source 741
+    target 643
+  ]
+  edge [
+    source 741
+    target 685
+  ]
+  edge [
+    source 741
+    target 703
+  ]
+  edge [
+    source 741
+    target 837
+  ]
+  edge [
+    source 741
+    target 727
+  ]
+  edge [
+    source 741
+    target 698
+  ]
+  edge [
+    source 741
+    target 697
+  ]
+  edge [
+    source 742
+    target 644
+  ]
+  edge [
+    source 742
+    target 593
+  ]
+  edge [
+    source 742
+    target 619
+  ]
+  edge [
+    source 742
+    target 726
+  ]
+  edge [
+    source 742
+    target 519
+  ]
+  edge [
+    source 742
+    target 845
+  ]
+  edge [
+    source 743
+    target 618
+  ]
+  edge [
+    source 743
+    target 714
+  ]
+  edge [
+    source 744
+    target 487
+  ]
+  edge [
+    source 744
+    target 593
+  ]
+  edge [
+    source 744
+    target 519
+  ]
+  edge [
+    source 744
+    target 684
+  ]
+  edge [
+    source 744
+    target 845
+  ]
+  edge [
+    source 744
+    target 742
+  ]
+  edge [
+    source 744
+    target 730
+  ]
+  edge [
+    source 744
+    target 846
+  ]
+  edge [
+    source 744
+    target 754
+  ]
+  edge [
+    source 745
+    target 593
+  ]
+  edge [
+    source 745
+    target 635
+  ]
+  edge [
+    source 745
     target 498
   ]
   edge [
+    source 745
+    target 760
+  ]
+  edge [
+    source 746
+    target 482
+  ]
+  edge [
+    source 746
+    target 700
+  ]
+  edge [
+    source 746
+    target 495
+  ]
+  edge [
+    source 746
+    target 697
+  ]
+  edge [
+    source 746
+    target 534
+  ]
+  edge [
+    source 746
+    target 557
+  ]
+  edge [
     source 747
-    target 762
-  ]
-  edge [
-    source 748
     target 482
   ]
   edge [
-    source 748
-    target 702
+    source 747
+    target 700
   ]
   edge [
-    source 748
+    source 747
     target 495
   ]
   edge [
-    source 748
-    target 699
+    source 747
+    target 557
   ]
   edge [
     source 748
-    target 535
+    target 591
   ]
   edge [
-    source 748
-    target 559
+    source 749
+    target 647
+  ]
+  edge [
+    source 749
+    target 487
   ]
   edge [
     source 749
@@ -13026,750 +12492,998 @@ graph [
   ]
   edge [
     source 749
-    target 702
+    target 674
   ]
   edge [
     source 749
-    target 495
+    target 511
   ]
   edge [
     source 749
-    target 559
+    target 652
+  ]
+  edge [
+    source 749
+    target 701
+  ]
+  edge [
+    source 749
+    target 590
+  ]
+  edge [
+    source 749
+    target 519
+  ]
+  edge [
+    source 750
+    target 738
+  ]
+  edge [
+    source 750
+    target 591
+  ]
+  edge [
+    source 750
+    target 602
   ]
   edge [
     source 750
     target 593
   ]
   edge [
-    source 751
-    target 649
-  ]
-  edge [
-    source 751
-    target 487
-  ]
-  edge [
-    source 751
-    target 482
-  ]
-  edge [
-    source 751
-    target 676
-  ]
-  edge [
-    source 751
-    target 511
-  ]
-  edge [
-    source 751
-    target 654
-  ]
-  edge [
-    source 751
-    target 703
-  ]
-  edge [
-    source 751
-    target 592
-  ]
-  edge [
-    source 751
-    target 519
-  ]
-  edge [
-    source 752
-    target 740
-  ]
-  edge [
-    source 752
-    target 593
-  ]
-  edge [
-    source 752
-    target 604
-  ]
-  edge [
-    source 752
-    target 595
-  ]
-  edge [
-    source 752
+    source 750
     target 483
   ]
   edge [
-    source 752
-    target 625
+    source 750
+    target 623
   ]
   edge [
-    source 752
-    target 637
+    source 750
+    target 635
   ]
   edge [
-    source 752
-    target 750
+    source 750
+    target 748
   ]
   edge [
-    source 753
-    target 595
-  ]
-  edge [
-    source 753
-    target 637
-  ]
-  edge [
-    source 753
-    target 479
-  ]
-  edge [
-    source 753
-    target 744
-  ]
-  edge [
-    source 753
-    target 475
-  ]
-  edge [
-    source 754
-    target 721
-  ]
-  edge [
-    source 755
+    source 751
     target 593
   ]
   edge [
-    source 756
-    target 595
+    source 751
+    target 635
   ]
   edge [
-    source 756
-    target 482
+    source 751
+    target 845
   ]
   edge [
-    source 756
-    target 654
+    source 751
+    target 742
   ]
   edge [
-    source 756
-    target 728
-  ]
-  edge [
-    source 756
-    target 519
-  ]
-  edge [
-    source 756
-    target 710
-  ]
-  edge [
-    source 756
-    target 479
-  ]
-  edge [
-    source 756
-    target 478
-  ]
-  edge [
-    source 756
-    target 645
-  ]
-  edge [
-    source 756
-    target 687
-  ]
-  edge [
-    source 756
-    target 705
-  ]
-  edge [
-    source 756
-    target 475
-  ]
-  edge [
-    source 756
-    target 711
-  ]
-  edge [
-    source 756
-    target 768
-  ]
-  edge [
-    source 756
-    target 778
-  ]
-  edge [
-    source 756
-    target 486
-  ]
-  edge [
-    source 756
-    target 699
-  ]
-  edge [
-    source 757
-    target 593
-  ]
-  edge [
-    source 758
-    target 487
-  ]
-  edge [
-    source 758
-    target 482
-  ]
-  edge [
-    source 758
-    target 654
-  ]
-  edge [
-    source 758
-    target 478
-  ]
-  edge [
-    source 758
-    target 687
-  ]
-  edge [
-    source 759
-    target 721
-  ]
-  edge [
-    source 759
-    target 776
-  ]
-  edge [
-    source 761
-    target 482
-  ]
-  edge [
-    source 761
-    target 485
-  ]
-  edge [
-    source 761
-    target 751
-  ]
-  edge [
-    source 761
-    target 710
-  ]
-  edge [
-    source 761
-    target 586
-  ]
-  edge [
-    source 761
-    target 478
-  ]
-  edge [
-    source 761
-    target 686
-  ]
-  edge [
-    source 761
-    target 645
-  ]
-  edge [
-    source 761
-    target 687
-  ]
-  edge [
-    source 761
-    target 705
-  ]
-  edge [
-    source 762
-    target 649
-  ]
-  edge [
-    source 762
-    target 604
-  ]
-  edge [
-    source 762
-    target 586
-  ]
-  edge [
-    source 762
-    target 639
-  ]
-  edge [
-    source 762
-    target 478
-  ]
-  edge [
-    source 762
-    target 645
-  ]
-  edge [
-    source 762
-    target 753
-  ]
-  edge [
-    source 762
-    target 495
-  ]
-  edge [
-    source 762
-    target 480
-  ]
-  edge [
-    source 765
-    target 519
-  ]
-  edge [
-    source 765
-    target 478
-  ]
-  edge [
-    source 766
-    target 604
-  ]
-  edge [
-    source 766
-    target 625
-  ]
-  edge [
-    source 766
-    target 519
-  ]
-  edge [
-    source 766
-    target 586
-  ]
-  edge [
-    source 766
-    target 674
-  ]
-  edge [
-    source 766
-    target 575
-  ]
-  edge [
-    source 766
-    target 639
-  ]
-  edge [
-    source 766
-    target 730
-  ]
-  edge [
-    source 767
-    target 595
-  ]
-  edge [
-    source 767
-    target 667
-  ]
-  edge [
-    source 767
-    target 625
-  ]
-  edge [
-    source 767
-    target 586
-  ]
-  edge [
-    source 767
-    target 575
-  ]
-  edge [
-    source 767
-    target 475
-  ]
-  edge [
-    source 767
-    target 713
-  ]
-  edge [
-    source 768
-    target 595
-  ]
-  edge [
-    source 768
-    target 621
-  ]
-  edge [
-    source 768
-    target 728
-  ]
-  edge [
-    source 768
-    target 519
-  ]
-  edge [
-    source 768
-    target 744
-  ]
-  edge [
-    source 768
-    target 475
-  ]
-  edge [
-    source 769
-    target 628
-  ]
-  edge [
-    source 769
-    target 653
-  ]
-  edge [
-    source 769
-    target 593
-  ]
-  edge [
-    source 769
-    target 595
-  ]
-  edge [
-    source 769
-    target 625
-  ]
-  edge [
-    source 769
+    source 752
     target 719
   ]
   edge [
-    source 769
-    target 710
+    source 753
+    target 591
   ]
   edge [
-    source 769
-    target 478
-  ]
-  edge [
-    source 769
-    target 645
-  ]
-  edge [
-    source 769
-    target 687
-  ]
-  edge [
-    source 769
-    target 490
-  ]
-  edge [
-    source 769
-    target 711
-  ]
-  edge [
-    source 769
-    target 778
-  ]
-  edge [
-    source 769
-    target 486
-  ]
-  edge [
-    source 769
-    target 773
-  ]
-  edge [
-    source 769
-    target 699
-  ]
-  edge [
-    source 769
-    target 743
-  ]
-  edge [
-    source 770
-    target 519
-  ]
-  edge [
-    source 771
-    target 628
-  ]
-  edge [
-    source 771
-    target 646
-  ]
-  edge [
-    source 771
-    target 487
-  ]
-  edge [
-    source 771
-    target 482
-  ]
-  edge [
-    source 771
-    target 654
-  ]
-  edge [
-    source 771
-    target 621
-  ]
-  edge [
-    source 771
-    target 485
-  ]
-  edge [
-    source 771
-    target 519
-  ]
-  edge [
-    source 771
-    target 710
-  ]
-  edge [
-    source 771
-    target 586
-  ]
-  edge [
-    source 771
-    target 575
-  ]
-  edge [
-    source 771
-    target 639
-  ]
-  edge [
-    source 771
-    target 478
-  ]
-  edge [
-    source 771
-    target 705
-  ]
-  edge [
-    source 771
-    target 699
-  ]
-  edge [
-    source 773
-    target 653
-  ]
-  edge [
-    source 773
-    target 482
-  ]
-  edge [
-    source 773
-    target 620
-  ]
-  edge [
-    source 773
-    target 710
-  ]
-  edge [
-    source 773
-    target 645
-  ]
-  edge [
-    source 773
-    target 687
-  ]
-  edge [
-    source 774
-    target 653
-  ]
-  edge [
-    source 774
-    target 604
-  ]
-  edge [
-    source 774
-    target 667
-  ]
-  edge [
-    source 774
-    target 620
-  ]
-  edge [
-    source 774
-    target 716
-  ]
-  edge [
-    source 774
-    target 592
-  ]
-  edge [
-    source 774
-    target 625
-  ]
-  edge [
-    source 774
-    target 519
-  ]
-  edge [
-    source 774
-    target 586
-  ]
-  edge [
-    source 774
-    target 674
-  ]
-  edge [
-    source 774
-    target 692
-  ]
-  edge [
-    source 774
-    target 478
-  ]
-  edge [
-    source 774
-    target 645
-  ]
-  edge [
-    source 774
-    target 687
-  ]
-  edge [
-    source 774
-    target 490
-  ]
-  edge [
-    source 774
-    target 702
-  ]
-  edge [
-    source 774
-    target 731
-  ]
-  edge [
-    source 774
-    target 305
-  ]
-  edge [
-    source 775
-    target 485
-  ]
-  edge [
-    source 775
-    target 625
-  ]
-  edge [
-    source 775
-    target 479
-  ]
-  edge [
-    source 775
-    target 686
-  ]
-  edge [
-    source 776
+    source 754
     target 593
   ]
   edge [
-    source 776
-    target 721
-  ]
-  edge [
-    source 776
-    target 592
-  ]
-  edge [
-    source 776
-    target 519
-  ]
-  edge [
-    source 778
-    target 675
-  ]
-  edge [
-    source 778
+    source 754
     target 482
   ]
   edge [
-    source 778
-    target 592
+    source 754
+    target 652
   ]
   edge [
-    source 778
-    target 710
+    source 754
+    target 726
   ]
   edge [
-    source 778
+    source 754
+    target 519
+  ]
+  edge [
+    source 754
+    target 708
+  ]
+  edge [
+    source 754
     target 478
   ]
   edge [
-    source 778
-    target 645
+    source 754
+    target 845
   ]
   edge [
-    source 778
-    target 687
+    source 754
+    target 643
   ]
   edge [
-    source 780
+    source 754
+    target 685
+  ]
+  edge [
+    source 754
+    target 703
+  ]
+  edge [
+    source 754
+    target 709
+  ]
+  edge [
+    source 754
+    target 766
+  ]
+  edge [
+    source 754
     target 776
   ]
   edge [
+    source 754
+    target 837
+  ]
+  edge [
+    source 754
+    target 697
+  ]
+  edge [
+    source 755
+    target 591
+  ]
+  edge [
+    source 756
+    target 487
+  ]
+  edge [
+    source 756
+    target 482
+  ]
+  edge [
+    source 756
+    target 652
+  ]
+  edge [
+    source 756
+    target 478
+  ]
+  edge [
+    source 756
+    target 685
+  ]
+  edge [
+    source 757
+    target 719
+  ]
+  edge [
+    source 757
+    target 774
+  ]
+  edge [
+    source 759
+    target 482
+  ]
+  edge [
+    source 759
+    target 749
+  ]
+  edge [
+    source 759
+    target 708
+  ]
+  edge [
+    source 759
+    target 584
+  ]
+  edge [
+    source 759
+    target 478
+  ]
+  edge [
+    source 759
+    target 684
+  ]
+  edge [
+    source 759
+    target 845
+  ]
+  edge [
+    source 759
+    target 643
+  ]
+  edge [
+    source 759
+    target 685
+  ]
+  edge [
+    source 759
+    target 703
+  ]
+  edge [
+    source 759
+    target 837
+  ]
+  edge [
+    source 760
+    target 647
+  ]
+  edge [
+    source 760
+    target 602
+  ]
+  edge [
+    source 760
+    target 584
+  ]
+  edge [
+    source 760
+    target 637
+  ]
+  edge [
+    source 760
+    target 478
+  ]
+  edge [
+    source 760
+    target 643
+  ]
+  edge [
+    source 760
+    target 751
+  ]
+  edge [
+    source 760
+    target 836
+  ]
+  edge [
+    source 760
+    target 495
+  ]
+  edge [
+    source 760
+    target 480
+  ]
+  edge [
+    source 763
+    target 519
+  ]
+  edge [
+    source 763
+    target 478
+  ]
+  edge [
+    source 764
+    target 602
+  ]
+  edge [
+    source 764
+    target 623
+  ]
+  edge [
+    source 764
+    target 519
+  ]
+  edge [
+    source 764
+    target 584
+  ]
+  edge [
+    source 764
+    target 672
+  ]
+  edge [
+    source 764
+    target 573
+  ]
+  edge [
+    source 764
+    target 637
+  ]
+  edge [
+    source 764
+    target 728
+  ]
+  edge [
+    source 765
+    target 593
+  ]
+  edge [
+    source 765
+    target 665
+  ]
+  edge [
+    source 765
+    target 623
+  ]
+  edge [
+    source 765
+    target 584
+  ]
+  edge [
+    source 765
+    target 573
+  ]
+  edge [
+    source 765
+    target 711
+  ]
+  edge [
+    source 766
+    target 593
+  ]
+  edge [
+    source 766
+    target 619
+  ]
+  edge [
+    source 766
+    target 726
+  ]
+  edge [
+    source 766
+    target 519
+  ]
+  edge [
+    source 766
+    target 742
+  ]
+  edge [
+    source 767
+    target 626
+  ]
+  edge [
+    source 767
+    target 651
+  ]
+  edge [
+    source 767
+    target 591
+  ]
+  edge [
+    source 767
+    target 593
+  ]
+  edge [
+    source 767
+    target 623
+  ]
+  edge [
+    source 767
+    target 717
+  ]
+  edge [
+    source 767
+    target 708
+  ]
+  edge [
+    source 767
+    target 478
+  ]
+  edge [
+    source 767
+    target 643
+  ]
+  edge [
+    source 767
+    target 685
+  ]
+  edge [
+    source 767
+    target 490
+  ]
+  edge [
+    source 767
+    target 709
+  ]
+  edge [
+    source 767
+    target 776
+  ]
+  edge [
+    source 767
+    target 771
+  ]
+  edge [
+    source 767
+    target 697
+  ]
+  edge [
+    source 767
+    target 741
+  ]
+  edge [
+    source 768
+    target 519
+  ]
+  edge [
+    source 769
+    target 626
+  ]
+  edge [
+    source 769
+    target 644
+  ]
+  edge [
+    source 769
+    target 487
+  ]
+  edge [
+    source 769
+    target 482
+  ]
+  edge [
+    source 769
+    target 652
+  ]
+  edge [
+    source 769
+    target 619
+  ]
+  edge [
+    source 769
+    target 519
+  ]
+  edge [
+    source 769
+    target 708
+  ]
+  edge [
+    source 769
+    target 584
+  ]
+  edge [
+    source 769
+    target 573
+  ]
+  edge [
+    source 769
+    target 637
+  ]
+  edge [
+    source 769
+    target 478
+  ]
+  edge [
+    source 769
+    target 845
+  ]
+  edge [
+    source 769
+    target 703
+  ]
+  edge [
+    source 769
+    target 697
+  ]
+  edge [
+    source 771
+    target 651
+  ]
+  edge [
+    source 771
+    target 482
+  ]
+  edge [
+    source 771
+    target 618
+  ]
+  edge [
+    source 771
+    target 708
+  ]
+  edge [
+    source 771
+    target 643
+  ]
+  edge [
+    source 771
+    target 685
+  ]
+  edge [
+    source 772
+    target 651
+  ]
+  edge [
+    source 772
+    target 602
+  ]
+  edge [
+    source 772
+    target 665
+  ]
+  edge [
+    source 772
+    target 618
+  ]
+  edge [
+    source 772
+    target 714
+  ]
+  edge [
+    source 772
+    target 590
+  ]
+  edge [
+    source 772
+    target 623
+  ]
+  edge [
+    source 772
+    target 519
+  ]
+  edge [
+    source 772
+    target 584
+  ]
+  edge [
+    source 772
+    target 672
+  ]
+  edge [
+    source 772
+    target 690
+  ]
+  edge [
+    source 772
+    target 478
+  ]
+  edge [
+    source 772
+    target 643
+  ]
+  edge [
+    source 772
+    target 685
+  ]
+  edge [
+    source 772
+    target 490
+  ]
+  edge [
+    source 772
+    target 700
+  ]
+  edge [
+    source 772
+    target 837
+  ]
+  edge [
+    source 772
+    target 729
+  ]
+  edge [
+    source 772
+    target 305
+  ]
+  edge [
+    source 773
+    target 623
+  ]
+  edge [
+    source 773
+    target 684
+  ]
+  edge [
+    source 774
+    target 591
+  ]
+  edge [
+    source 774
+    target 719
+  ]
+  edge [
+    source 774
+    target 590
+  ]
+  edge [
+    source 774
+    target 519
+  ]
+  edge [
+    source 776
+    target 673
+  ]
+  edge [
+    source 776
+    target 482
+  ]
+  edge [
+    source 776
+    target 590
+  ]
+  edge [
+    source 776
+    target 708
+  ]
+  edge [
+    source 776
+    target 478
+  ]
+  edge [
+    source 776
+    target 643
+  ]
+  edge [
+    source 776
+    target 685
+  ]
+  edge [
+    source 778
+    target 774
+  ]
+  edge [
+    source 778
+    target 706
+  ]
+  edge [
     source 780
+    target 591
+  ]
+  edge [
+    source 780
+    target 617
+  ]
+  edge [
+    source 780
+    target 482
+  ]
+  edge [
+    source 780
+    target 753
+  ]
+  edge [
+    source 780
+    target 519
+  ]
+  edge [
+    source 780
+    target 717
+  ]
+  edge [
+    source 781
+    target 738
+  ]
+  edge [
+    source 781
+    target 591
+  ]
+  edge [
+    source 781
+    target 617
+  ]
+  edge [
+    source 781
+    target 674
+  ]
+  edge [
+    source 781
+    target 483
+  ]
+  edge [
+    source 781
+    target 748
+  ]
+  edge [
+    source 782
+    target 593
+  ]
+  edge [
+    source 782
+    target 674
+  ]
+  edge [
+    source 782
     target 708
   ]
   edge [
     source 782
-    target 593
+    target 703
   ]
   edge [
     source 782
-    target 619
-  ]
-  edge [
-    source 782
-    target 482
-  ]
-  edge [
-    source 782
-    target 755
-  ]
-  edge [
-    source 782
-    target 519
-  ]
-  edge [
-    source 782
-    target 719
-  ]
-  edge [
-    source 783
-    target 740
-  ]
-  edge [
-    source 783
-    target 593
-  ]
-  edge [
-    source 783
-    target 619
-  ]
-  edge [
-    source 783
-    target 676
-  ]
-  edge [
-    source 783
-    target 483
-  ]
-  edge [
-    source 783
-    target 750
-  ]
-  edge [
-    source 784
-    target 595
-  ]
-  edge [
-    source 784
-    target 676
-  ]
-  edge [
-    source 784
-    target 710
-  ]
-  edge [
-    source 784
-    target 705
-  ]
-  edge [
-    source 784
     target 495
   ]
   edge [
-    source 784
+    source 782
     target 508
+  ]
+  edge [
+    source 784
+    target 476
+  ]
+  edge [
+    source 798
+    target 220
+  ]
+  edge [
+    source 798
+    target 510
+  ]
+  edge [
+    source 798
+    target 475
+  ]
+  edge [
+    source 799
+    target 184
+  ]
+  edge [
+    source 803
+    target 475
+  ]
+  edge [
+    source 808
+    target 793
+  ]
+  edge [
+    source 809
+    target 475
+  ]
+  edge [
+    source 811
+    target 317
+  ]
+  edge [
+    source 811
+    target 793
+  ]
+  edge [
+    source 815
+    target 550
+  ]
+  edge [
+    source 815
+    target 817
+  ]
+  edge [
+    source 815
+    target 177
+  ]
+  edge [
+    source 815
+    target 793
+  ]
+  edge [
+    source 817
+    target 581
+  ]
+  edge [
+    source 818
+    target 220
+  ]
+  edge [
+    source 818
+    target 797
+  ]
+  edge [
+    source 818
+    target 317
+  ]
+  edge [
+    source 820
+    target 828
+  ]
+  edge [
+    source 820
+    target 793
+  ]
+  edge [
+    source 828
+    target 475
+  ]
+  edge [
+    source 829
+    target 177
+  ]
+  edge [
+    source 829
+    target 830
+  ]
+  edge [
+    source 831
+    target 184
+  ]
+  edge [
+    source 836
+    target 617
+  ]
+  edge [
+    source 836
+    target 482
+  ]
+  edge [
+    source 836
+    target 619
+  ]
+  edge [
+    source 836
+    target 478
+  ]
+  edge [
+    source 836
+    target 845
+  ]
+  edge [
+    source 836
+    target 703
+  ]
+  edge [
+    source 837
+    target 482
+  ]
+  edge [
+    source 837
+    target 674
+  ]
+  edge [
+    source 837
+    target 618
+  ]
+  edge [
+    source 837
+    target 590
+  ]
+  edge [
+    source 837
+    target 702
+  ]
+  edge [
+    source 837
+    target 708
+  ]
+  edge [
+    source 837
+    target 690
+  ]
+  edge [
+    source 837
+    target 478
+  ]
+  edge [
+    source 837
+    target 643
+  ]
+  edge [
+    source 837
+    target 685
+  ]
+  edge [
+    source 837
+    target 703
+  ]
+  edge [
+    source 837
+    target 748
+  ]
+  edge [
+    source 842
+    target 651
+  ]
+  edge [
+    source 842
+    target 674
+  ]
+  edge [
+    source 842
+    target 713
+  ]
+  edge [
+    source 842
+    target 702
+  ]
+  edge [
+    source 842
+    target 584
+  ]
+  edge [
+    source 842
+    target 490
+  ]
+  edge [
+    source 845
+    target 604
+  ]
+  edge [
+    source 845
+    target 492
+  ]
+  edge [
+    source 845
+    target 651
+  ]
+  edge [
+    source 845
+    target 647
+  ]
+  edge [
+    source 845
+    target 673
+  ]
+  edge [
+    source 845
+    target 617
+  ]
+  edge [
+    source 845
+    target 665
+  ]
+  edge [
+    source 845
+    target 619
+  ]
+  edge [
+    source 845
+    target 519
+  ]
+  edge [
+    source 845
+    target 672
+  ]
+  edge [
+    source 845
+    target 684
+  ]
+  edge [
+    source 846
+    target 593
+  ]
+  edge [
+    source 846
+    target 619
+  ]
+  edge [
+    source 846
+    target 726
+  ]
+  edge [
+    source 846
+    target 635
+  ]
+  edge [
+    source 846
+    target 690
+  ]
+  edge [
+    source 846
+    target 478
+  ]
+  edge [
+    source 846
+    target 684
+  ]
+  edge [
+    source 846
+    target 845
+  ]
+  edge [
+    source 846
+    target 742
+  ]
+  edge [
+    source 846
+    target 643
+  ]
+  edge [
+    source 846
+    target 739
+  ]
+  edge [
+    source 846
+    target 685
+  ]
+  edge [
+    source 846
+    target 766
+  ]
+  edge [
+    source 846
+    target 836
   ]
 ]

@@ -1,4 +1,4 @@
-\begin{thebibliography}{46}
+\begin{thebibliography}{55}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -9,14 +9,6 @@
 Dmitry Bagaev et~al.
 \newblock {RxInfer.jl v4.0.0}: Real-time and adaptive bayesian inference, 2025.
 \newblock URL \url{https://github.com/ReactiveBayes/RxInfer.jl}.
-
-\bibitem[Blondel et~al.(2008)Blondel, Guillaume, Lambiotte, and
-  Lefebvre]{blondel2008louvain}
-Vincent~D Blondel, Jean-Loup Guillaume, Renaud Lambiotte, and Etienne Lefebvre.
-\newblock Fast unfolding of communities in large networks.
-\newblock \emph{Journal of Statistical Mechanics: Theory and Experiment},
-  2008\penalty0 (10):\penalty0 P10008, 2008.
-\newblock \doi{10.1088/1742-5468/2008/10/P10008}.
 
 \bibitem[Bruineberg et~al.(2022)Bruineberg, Dolega, Dewhurst, and
   Baltieri]{bruineberg2022emperor}
@@ -41,6 +33,12 @@ Andy Clark.
 \newblock \emph{Behavioral and Brain Sciences}, 36\penalty0 (3):\penalty0
   181--204, 2013.
 \newblock \doi{10.1017/S0140525X12000477}.
+
+\bibitem[Clauset et~al.(2004)Clauset, Newman, and Moore]{clauset2004finding}
+Aaron Clauset, Mark E.~J. Newman, and Cristopher Moore.
+\newblock Finding community structure in very large networks.
+\newblock \emph{Physical Review E}, 70\penalty0 (6):\penalty0 066111, 2004.
+\newblock \doi{10.1103/PhysRevE.70.066111}.
 
 \bibitem[Da~Costa et~al.(2020)Da~Costa, Parr, Sajid, Veselic, Neacsu, and
   Friston]{dacosta2020active}
@@ -101,6 +99,12 @@ Karl~J Friston, Thomas Parr, Yan Yufik, Noor Sajid, Cathy~J Price, and Emma
 \newblock \emph{Neuroscience \& Biobehavioral Reviews}, 118:\penalty0 42--64,
   2020.
 \newblock \doi{10.1016/j.neubiorev.2020.07.005}.
+
+\bibitem[Gregoretti(2023)]{gregoretti2023cppaif}
+Francesco Gregoretti.
+\newblock A {C++} implementation of active inference for {POMDPs}.
+\newblock \emph{Neurocomputing}, 562:\penalty0 126888, 2023.
+\newblock \doi{10.1016/j.neucom.2023.126888}.
 
 \bibitem[Groth et~al.(2010)Groth, Gibson, and Velterop]{groth2010anatomy}
 Paul Groth, Andrew Gibson, and Jan Velterop.
@@ -182,6 +186,13 @@ Virginia~Bleu Knight, RJ~Cordes, and Daniel Friedman.
 \newblock Active Inference Institute. Companion resources:
   \url{https://github.com/ActiveInferenceInstitute/Knowledge-Engineering}.
 
+\bibitem[{Knowledge Pixels}(2026)]{kuhn2026nanopubjs}
+{Knowledge Pixels}.
+\newblock nanopub-js: {JavaScript} library for nanopublications, 2026.
+\newblock URL \url{https://github.com/Nanopublication/nanopub-js}.
+\newblock Version 0.1.0; enables browser-based creation, signing, and querying
+  of nanopublications.
+
 \bibitem[Kuchling et~al.(2020)Kuchling, Friston, Georgiev, and
   Levin]{kuchling2020morphogenesis}
 Franz Kuchling, Karl Friston, Georgi Georgiev, and Michael Levin.
@@ -241,6 +252,12 @@ Linhao Li et~al.
 \newblock Unifying large language models and knowledge graphs: A roadmap.
 \newblock \emph{IEEE Transactions on Knowledge and Data Engineering}, 2024.
 
+\bibitem[Millidge(2020)]{millidge2020deep}
+Beren Millidge.
+\newblock Deep active inference as variational policy gradients.
+\newblock \emph{Journal of Mathematical Psychology}, 96:\penalty0 102348, 2020.
+\newblock \doi{10.1016/j.jmp.2020.102348}.
+
 \bibitem[Millidge(2024)]{millidge2024retrospective}
 Beren Millidge.
 \newblock A retrospective on active inference, July 2024.
@@ -256,6 +273,22 @@ Beren Millidge, Alexander Tschantz, and Christopher~L Buckley.
   probabilistic objectives for control.
 \newblock \emph{arXiv preprint arXiv:2103.06859}, 2021.
 
+\bibitem[Millidge et~al.(2022)Millidge, Tschantz, and
+  Buckley]{millidge2022predictive}
+Beren Millidge, Alexander Tschantz, and Christopher~L Buckley.
+\newblock Predictive coding approximates backprop along arbitrary computation
+  graphs.
+\newblock \emph{Neural Computation}, 34\penalty0 (6):\penalty0 1329--1368,
+  2022.
+\newblock \doi{10.1162/neco_a_01497}.
+
+\bibitem[Nazemi et~al.(2025)Nazemi, Bhatt, and Fountas]{nazemi2025energy}
+Morteza Nazemi, Sanket Bhatt, and Zafeirios Fountas.
+\newblock Active inference for energy control and planning under partial
+  observability.
+\newblock \emph{arXiv preprint arXiv:2503.07772}, 2025.
+\newblock \doi{10.48550/arXiv.2503.07772}.
+
 \bibitem[{Ollama Team}(2024)]{ollama2024}
 {Ollama Team}.
 \newblock Ollama: Run large language models locally, 2024.
@@ -268,6 +301,14 @@ Thomas Parr, Giovanni Pezzulo, and Karl~J Friston.
   Behavior}.
 \newblock MIT Press, 2022.
 \newblock ISBN 978-0-262-04535-4.
+
+\bibitem[Pazem et~al.(2024)Pazem, Hangl, and Piater]{pazem2024feps}
+Marius Pazem, Simon Hangl, and Justus Piater.
+\newblock Free energy projective simulation ({FEPS}): Active inference with
+  interpretable policy graphs.
+\newblock In \emph{Workshop on Bridging the Gap Between Practice and Theory in
+  Deep Learning, ICML 2024}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.05432}.
 
 \bibitem[Pezzulo et~al.(2015)Pezzulo, Rigoli, and Friston]{pezzulo2015active}
 Giovanni Pezzulo, Francesco Rigoli, and Karl Friston.
@@ -328,11 +369,34 @@ Ryan Smith, Karl~J Friston, and Christopher~J Whyte.
   2022.
 \newblock \doi{10.1016/j.jmp.2021.102632}.
 
+\bibitem[Sterling(1959)]{sterling1959publication}
+Theodore~D. Sterling.
+\newblock Publication decisions and their possible effects on inferences drawn
+  from tests of significance—or vice versa.
+\newblock \emph{Journal of the American Statistical Association}, 54\penalty0
+  (285):\penalty0 30--34, 1959.
+\newblock \doi{10.1080/01621459.1959.10501497}.
+
+\bibitem[Tschantz et~al.(2020)Tschantz, Seth, and Buckley]{tschantz2020action}
+Alexander Tschantz, Anil~K Seth, and Christopher~L Buckley.
+\newblock Learning action-oriented models through active inference.
+\newblock \emph{PLoS Computational Biology}, 16\penalty0 (4):\penalty0
+  e1007805, 2020.
+\newblock \doi{10.1371/journal.pcbi.1007805}.
+
 \bibitem[Wen(2025)]{wen2025missing}
 Bo~Wen.
 \newblock The missing reward: Active inference in the era of experience.
 \newblock \emph{arXiv preprint arXiv:2508.05619}, 2025.
 \newblock \doi{10.48550/arXiv.2508.05619}.
+
+\bibitem[Whyte et~al.(2025)Whyte, Smith, and Hohwy]{whyte2025metacognitive}
+Christopher~J Whyte, Ryan Smith, and Jakob Hohwy.
+\newblock How do inner screens enable imaginative experience? {A} metacognitive
+  active inference account.
+\newblock \emph{Neuroscience of Consciousness}, 2025\penalty0 (1):\penalty0
+  niaf009, 2025.
+\newblock \doi{10.1093/nc/niaf009}.
 
 \bibitem[Wong(2011)]{wong2011colorblind}
 Bang Wong.

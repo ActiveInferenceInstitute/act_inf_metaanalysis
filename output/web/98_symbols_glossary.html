@@ -312,6 +312,14 @@ Used</h2>
 <td>Free Energy Principle</td>
 </tr>
 <tr>
+<td>FEPS</td>
+<td>Free Energy Projective Simulation</td>
+</tr>
+<tr>
+<td>HITS</td>
+<td>Hyperlink-Induced Topic Search</td>
+</tr>
+<tr>
 <td>JSON</td>
 <td>JavaScript Object Notation</td>
 </tr>
@@ -374,6 +382,10 @@ Used</h2>
 <tr>
 <td>TriG</td>
 <td>Terse RDF Triple Language with Named Graphs</td>
+</tr>
+<tr>
+<td>URI</td>
+<td>Uniform Resource Identifier</td>
 </tr>
 <tr>
 <td>VAE</td>
@@ -486,7 +498,8 @@ ID &gt; OpenAlex ID &gt; title hash.</td>
 <td><strong>Expected Free Energy</strong></td>
 <td>A quantity combining epistemic value (information gain) and
 pragmatic value (goal achievement) that active inference agents minimize
-over policies.</td>
+over policies. Decomposes equivalently into risk + ambiguity or
+epistemic + instrumental terms .</td>
 </tr>
 <tr>
 <td><strong>Free Energy Principle</strong></td>
@@ -529,10 +542,11 @@ decomposed into complexity (KL divergence from prior) and accuracy
 (expected log-likelihood).</td>
 </tr>
 <tr>
-<td><strong>Louvain Algorithm</strong></td>
-<td>A greedy modularity-maximization algorithm for community detection
-in networks. Applied to the citation graph to identify clusters of
-densely interconnected papers.</td>
+<td><strong>Greedy Modularity Maximization</strong></td>
+<td>The Clauset-Newman-Moore greedy modularity-maximization algorithm
+for community detection in networks (implemented via NetworkX
+<code>greedy_modularity_communities</code>). Applied to the citation
+graph to identify clusters of densely interconnected papers.</td>
 </tr>
 <tr>
 <td><strong>PageRank</strong></td>

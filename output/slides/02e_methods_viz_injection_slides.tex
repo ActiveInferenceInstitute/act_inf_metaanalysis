@@ -1,0 +1,138 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\newif\ifbibliography
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% remove section numbering
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{section title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{subsection title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{\texorpdfstring{}{}}
+\date{}
+
+\begin{document}
+
+\section{\texorpdfstring{Stages 4--5: Visualization, Variable Injection,
+and Reproducibility
+\label{sec:methods_viz}}{Stages 4--5: Visualization, Variable Injection, and Reproducibility }}\label{stages-45-visualization-variable-injection-and-reproducibility}
+
+\begin{frame}{Stage 4: Visualization}
+\protect\phantomsection\label{stage-4-visualization}
+Stage 4 renders 16 publication-ready figures from the analysis outputs
+of Stages 2 and 3. All figures use the Wong (2011) colorblind-safe
+palette \citep{wong2011colorblind} and enforce a 16-point minimum font
+size for accessibility compliance. Figures span six categories: field
+summary and domain distribution (2 figures), growth and temporal
+dynamics (2 figures), citation network topology (2 figures), hypothesis
+evidence dashboard and timeline (2 figures), assertion composition (2
+figures), and text analytics---word cloud, PCA embeddings, term heatmap,
+dendrogram, topic-term bars, and co-occurrence matrix (6 figures). The
+figure generation script reads only JSON outputs and produces only PNG
+files, ensuring strict separation between analysis and visualization.
+\end{frame}
+
+\begin{frame}[fragile]{Stage 5: Manuscript Variable Injection}
+\protect\phantomsection\label{stage-5-manuscript-variable-injection}
+Stage 5 computes dynamic variables from all pipeline outputs and injects
+them into manuscript Markdown templates via \texttt{\{\{VAR\_NAME\}\}}
+placeholder substitution. Variables include corpus-level metrics (size,
+year range, CAGR), per-domain counts and percentages, citation network
+statistics (nodes, edges, density, components, resolution rate, mean
+in-degree), hypothesis scores, and figure counts. All formatting (comma
+thousand separators, escaping) is applied during variable computation,
+ensuring the manuscript templates remain human-readable while producing
+publication-ready output. Unrecognized placeholders are preserved with a
+warning logged, enabling incremental manuscript development ahead of
+full pipeline execution.
+\end{frame}
+
+\begin{frame}{Reproducibility and Test-Driven Validation}
+\protect\phantomsection\label{reproducibility-and-test-driven-validation}
+The pipeline is deterministic given fixed random seeds and API
+responses. Test-driven development enforces 90\% minimum code coverage
+on project modules and 60\% on shared infrastructure, with real data and
+computation (no mocking). The test suite validates boundary conditions
+for hypothesis scoring (all-support \(\to\) +1, all-contradict \(\to\)
+\(-1\), balanced \(\to\) 0), schema consistency, serialization
+round-trips, and end-to-end pipeline integrity. Source code,
+configuration, and outputs are available under CC-BY-4.0.
+\end{frame}
+
+\end{document}
