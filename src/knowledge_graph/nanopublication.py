@@ -33,8 +33,8 @@ NP_NS = "http://www.nanopub.org/nschema#"
 PROV_NS = "http://www.w3.org/ns/prov#"
 DC_NS = "http://purl.org/dc/terms/"
 XSD_NS = "http://www.w3.org/2001/XMLSchema#"
-AIF_NS = "http://activeinference.org/ontology/"
-AIF_NANOPUB_BASE = "http://activeinference.org/nanopub/"
+AIF_NS = "http://activeinference.institute/ontology/"
+AIF_NANOPUB_BASE = "http://activeinference.institute/nanopub/"
 DEFAULT_LICENSE = "https://creativecommons.org/publicdomain/zero/1.0/"
 
 

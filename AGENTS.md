@@ -24,7 +24,7 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 
 ### Knowledge Graph & Hypothesis Scoring
 
-- **RDF Schema**: Custom namespace `http://activeinference.org/ontology/` with 5 core triple patterns
+- **RDF Schema**: Custom namespace `http://activeinference.institute/ontology/` with 5 core triple patterns
 - **Nanopublications**: Structured assertions with provenance metadata (Assertion + Nanopublication dataclasses)
 - **8 Standard Hypotheses**: FEP universality, AIF optimality, Markov blanket realism, predictive coding, scalability, clinical utility, morphogenesis, language as active inference
 - **Scoring Formula**: Citation-weighted evidence score in [-1, 1] with log-dampened citation weights and bootstrap 95% CI

@@ -68,7 +68,7 @@ The **compound annual growth rate** (CAGR) over the full span $[y_0, y_T]$ is:
 \text{CAGR} = \left(\frac{n_{\text{cumulative}}(y_T)}{n_{\text{cumulative}}(y_0)}\right)^{1/(y_T - y_0)} - 1
 \end{equation}
 
-For the current corpus, CAGR $= 16.99\%$. The more recent growth phase (2010--2025) exhibits substantially higher annualized growth.
+For the current corpus, CAGR $= 16.99\%$. The more recent growth phase (2010--2026) exhibits substantially higher annualized growth.
 
 ## A.4 Advanced Visualization Methods \label{sec:appendix_viz}
 
@@ -96,12 +96,12 @@ Each nanopublication is serialized to RDF/TriG per the nanopublication standard 
 @prefix np: <http://www.nanopub.org/nschema#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dc: <http://purl.org/dc/terms/> .
-@prefix aif: <http://activeinference.org/ontology/> .
+@prefix aif: <http://activeinference.institute/ontology/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # HEAD GRAPH: links nanopub to its three component graphs
-<http://activeinference.org/nanopub/a1b2c3d4e5f6#head> {
-  <http://activeinference.org/nanopub/a1b2c3d4e5f6>
+<http://activeinference.institute/nanopub/a1b2c3d4e5f6#head> {
+  <http://activeinference.institute/nanopub/a1b2c3d4e5f6>
     a np:Nanopublication ;
     np:hasAssertion   <...#assertion> ;
     np:hasProvenance   <...#provenance> ;
@@ -109,7 +109,7 @@ Each nanopublication is serialized to RDF/TriG per the nanopublication standard 
 }
 
 # ASSERTION GRAPH: the core scientific claim
-<http://activeinference.org/nanopub/a1b2c3d4e5f6#assertion> {
+<http://activeinference.institute/nanopub/a1b2c3d4e5f6#assertion> {
   aif:paper/10.1038_nrn2787 aif:asserts aif:assertion/a1b2c3 .
   aif:assertion/a1b2c3
     aif:supports aif:hypothesis/fep_universality ;
@@ -120,17 +120,17 @@ Each nanopublication is serialized to RDF/TriG per the nanopublication standard 
 }
 
 # PROVENANCE GRAPH: extraction lineage
-<http://activeinference.org/nanopub/a1b2c3d4e5f6#provenance> {
+<http://activeinference.institute/nanopub/a1b2c3d4e5f6#provenance> {
   aif:assertion/a1b2c3
-    prov:wasGeneratedBy  <http://activeinference.org/nanopub/a1b2c3d4e5f6> ;
+    prov:wasGeneratedBy  <http://activeinference.institute/nanopub/a1b2c3d4e5f6> ;
     prov:generatedAtTime "2026-01-15T12:00:00+00:00"^^xsd:dateTime ;
     prov:wasAttributedTo "act_inf_metaanalysis/gemma3:4b"^^xsd:string ;
     prov:hadPrimarySource aif:paper/10.1038_nrn2787 .
 }
 
 # PUBLICATION INFO GRAPH: nanopublication metadata
-<http://activeinference.org/nanopub/a1b2c3d4e5f6#pubinfo> {
-  <http://activeinference.org/nanopub/a1b2c3d4e5f6>
+<http://activeinference.institute/nanopub/a1b2c3d4e5f6#pubinfo> {
+  <http://activeinference.institute/nanopub/a1b2c3d4e5f6>
     dc:created "2026-01-15T12:00:00+00:00"^^xsd:dateTime ;
     dc:creator "act_inf_metaanalysis/gemma3:4b"^^xsd:string ;
     dc:license <https://creativecommons.org/publicdomain/zero/1.0/> .
@@ -144,7 +144,7 @@ Each nanopublication is serialized to RDF/TriG per the nanopublication standard 
 | `np:` | `http://www.nanopub.org/nschema#` | Nanopub structural predicates |
 | `prov:` | `http://www.w3.org/ns/prov#` | PROV-O provenance model |
 | `dc:` | `http://purl.org/dc/terms/` | Dublin Core metadata |
-| `aif:` | `http://activeinference.org/ontology/` | Domain-specific predicates |
+| `aif:` | `http://activeinference.institute/ontology/` | Domain-specific predicates |
 | `xsd:` | `http://www.w3.org/2001/XMLSchema#` | XML Schema datatypes |
 
 ### Core Triple Patterns

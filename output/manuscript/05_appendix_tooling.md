@@ -32,7 +32,7 @@ Four general-purpose frameworks dominate the landscape, collectively covering di
 
 Scaling active inference beyond tabular POMDPs to high-dimensional observation spaces requires neural network function approximators. A growing body of deep active inference implementations explores this direction:
 
-The foundational deep AIF agent of Fountas et al. \citep{fountas2020deep} introduced Monte-Carlo tree search over learned latent spaces, achieving non-trivial Atari performance. Millidge's DeepActiveInference extended this to continuous control with backpropagation-based world models \citep{millidge2020deep}. Champion's Branching-Time Active Inference (BTAI\_3MF) and its deep variant (Deep\_BTAI\_3MF) implement tree-structured planning under the free energy objective, scaling active inference to partially observable environments with multi-step lookahead \citep{champion2021realizing}. Most recently, AXIOM \citep{heins2025axiom} achieves competitive Atari game performance using expanding object-centric world models, learning in minutes rather than hours—a landmark result for scalability.
+The foundational deep AIF agent of Fountas et al. \citep{fountas2020deep} introduced Monte-Carlo tree search over learned latent spaces, achieving non-trivial Atari performance. Millidge's DeepActiveInference extended this to continuous control with backpropagation-based world models \citep{millidge2020deep}. Champion's Branching-Time Active Inference (BTAI\_3MF) and its deep variant (Deep\_BTAI\_3MF) implement tree-structured planning under the free energy objective, scaling active inference to partially observable environments with multi-step lookahead \citep{champion2021realizing}. Most recently, AXIOM \citep{heins2025axiom} achieves competitive Gameworld 10k benchmark performance using expanding object-centric world models, learning in minutes rather than hours—a landmark result for scalability.
 
 ### Predictive Coding and Neural Generative Coding
 
@@ -81,7 +81,7 @@ DeepActiveInference & Python & Continuous deep AIF with backprop-based world mod
 BTAI\_3MF & Python & Branching-time AIF with multi-step tree planning & \cite{champion2021realizing} \\
 Deep\_BTAI\_3MF & Python & Deep neural variant of BTAI with learned state spaces & \cite{champion2021realizing} \\
 OO-BTAI\_3MF & Python & Object-oriented BTAI variant for structured environments & — \\
-AXIOM & Python & Object-centric world models; Atari in minutes, beats DreamerV3 & \cite{heins2025axiom} \\
+AXIOM & Python & Object-centric world models; Gameworld 10k in minutes, beats DreamerV3 & \cite{heins2025axiom} \\
 Deep-AIF-POMDPs & Python & Deep AIF for partially observable MDPs & — \\
 Homing-Pigeon & Python & Navigation agent using deep active inference & — \\
 active-inference (Voostrum) & Python & Continuous deep AIF with learned generative models & arXiv:2406.07726 \\
@@ -164,7 +164,7 @@ The engineering trade-offs among the three deployment options are straightforwar
 
 **Property graph databases** (e.g., Neo4j) prioritize traversal performance for path queries and community detection, at the expense of semantic web compatibility.
 
-The [Active Inference Ontology namespace](http://activeinference.org/ontology/) ensures integration with external ontologies and linked data resources.
+The [Active Inference Ontology namespace](http://activeinference.institute/ontology/) ensures integration with external ontologies and linked data resources.
 
 ## Multi-Level Quality Assurance
 

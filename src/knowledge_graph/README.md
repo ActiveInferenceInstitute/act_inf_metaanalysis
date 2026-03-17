@@ -4,7 +4,7 @@ Constructs and manages the RDF-compatible knowledge graph using the nanopublicat
 
 ## Components
 
-- **Schema (`schema.py`)**: Custom `http://activeinference.org/ontology/` definitions.
+- **Schema (`schema.py`)**: Custom `http://activeinference.institute/ontology/` definitions.
 - **Hypothesis Scoring (`hypothesis.py`)**: Contains the 8 core hypotheses and evaluates citation-weighted evidence.
 - **Nanopublication (`nanopublication.py`)**: Dataclasses and persistence for assertions.
 - **Graph Builder (`graph_builder.py`)**: Main `KnowledgeGraph` manager (rdflib + networkx).

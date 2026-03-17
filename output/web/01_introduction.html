@@ -191,14 +191,17 @@ bring about observations consistent with their preferred states,
 unifying perception, learning, and decision-making within a single
 variational framework . Since its initial formulation for sensorimotor
 control, AIF has been applied to navigation, visual foraging, language
-comprehension, social cognition, and multi-agent coordination.
-Importantly, the variational free energy minimization at the core of the
-FEP shares deep mathematical connections with the broader family of
-Energy-Based Models (EBMs) —including Helmholtz machines , Boltzmann
-machines , and variational autoencoders —all of which parameterize
-learning and inference through scalar energy functions and variational
-bounds. This convergence motivates the inclusion of EBM-adjacent
-literature in our search scope.</p>
+comprehension, social cognition, and multi-agent coordination. Bayesian
+mechanics has further strengthened the mathematical foundations of the
+FEP by grounding Markov blanket dynamics in the physics of belief-based
+systems, placing the principle on a footing commensurate with
+established physical theories. Importantly, the variational free energy
+minimization at the core of the FEP shares deep mathematical connections
+with the broader family of Energy-Based Models (EBMs) —including
+Helmholtz machines , Boltzmann machines , and variational autoencoders
+—all of which parameterize learning and inference through scalar energy
+functions and variational bounds. This convergence motivates the
+inclusion of EBM-adjacent literature in our search scope.</p>
 <h2 id="challenges-posed-by-rapid-literature-growth">Challenges Posed by
 Rapid Literature Growth</h2>
 <p>The active inference literature has grown at a compound annual rate
@@ -223,7 +226,12 @@ for clinical trial data with homogeneous outcome measures, making them
 less suited for the heterogeneous ontological and computational claims
 in this literature. The expansion of predictive processing and the
 emergence of Bayesian mechanics further broaden the scope of assertions
-that a comprehensive meta-analysis must reconcile.</p>
+that a comprehensive meta-analysis must reconcile. Critically, the
+falsifiability of the FEP itself remains contested : because free energy
+minimization can be reframed to accommodate any behavior post hoc,
+distinguishing genuine predictive commitment from tautological
+redescription requires exactly the hypothesis-specific,
+evidence-quantified framework we propose here.</p>
 <h2 id="related-work-and-prior-meta-analyses">Related Work and Prior
 Meta-Analyses</h2>
 <p>Several prior efforts have surveyed aspects of the Active Inference
@@ -307,20 +315,24 @@ what gaps remain?</li>
 <h2 id="scope-and-delimitations">Scope and Delimitations</h2>
 <p>This study focuses on the English-language peer-reviewed and preprint
 literature retrievable from arXiv, Semantic Scholar, and OpenAlex. Our
-search scope includes both the core Active Inference and Free Energy
-Principle literature and adjacent Energy-Based Model research where it
-intersects with variational inference or generative modeling—capturing
-the growing convergence between these traditions. We do not include book
-chapters or monographs not indexed by these sources, software
-documentation, or non-English publications. Domain classification uses
-keyword matching rather than expert annotation—a deliberate trade-off
-favoring reproducibility over precision, whose consequences we quantify
-in the . Hypothesis scoring relies on LLM-extracted assertions; the
-fidelity and limitations of this approach are examined in the . The
-hypothesis definitions and domain taxonomy are informed by, but not
-identical to, the Active Inference Ontology used by Knight et al. ;
-future alignment would enable direct comparison with that earlier
-analysis.</p>
+search scope begins at 2005—chosen to capture Energy-Based Model and
+variational Bayesian antecedents (Helmholtz machines, VAEs, early
+Bayesian brain formulations ) that share deep mathematical foundations
+with variational free energy minimization and predated the Free Energy
+Principle label introduced in 2006 . The scope includes both the core
+Active Inference and Free Energy Principle literature and adjacent
+Energy-Based Model research where it intersects with variational
+inference or generative modeling—capturing the growing convergence
+between these traditions. We do not include book chapters or monographs
+not indexed by these sources, software documentation, or non-English
+publications. Domain classification uses keyword matching rather than
+expert annotation—a deliberate trade-off favoring reproducibility over
+precision, whose consequences we quantify in the . Hypothesis scoring
+relies on LLM-extracted assertions; the fidelity and limitations of this
+approach are examined in the . The hypothesis definitions and domain
+taxonomy are informed by, but not identical to, the Active Inference
+Ontology used by Knight et al. ; future alignment would enable direct
+comparison with that earlier analysis.</p>
 <h2 id="principal-contributions">Principal Contributions</h2>
 <p>This work makes five contributions:</p>
 <ol type="1">
@@ -334,8 +346,12 @@ hypotheses with full provenance tracking.</p></li>
 growth, domain distribution (A/B/C taxonomy), citation topology, and
 latent topic structure of the Active Inference literature. The field’s
 computational maturity is underscored by recent benchmark results: AXIOM
-demonstrates AIF agents learning Atari games in minutes, while
-collective AIF has been empirically validated at scale .</p></li>
+demonstrates AIF agents learning Gameworld 10k in minutes using
+object-centric world models, while Friston et al.  introduce
+Renormalization Generative Models (RGMs) that achieve 99.8% MNIST
+accuracy with 90% less data, pointing toward scalable multi-agent
+architectures. Collective AIF has been empirically validated at scale
+.</p></li>
 <li><p><strong>An LLM-based hypothesis scoring dashboard</strong> that
 produces differentiated evidence profiles with temporal trend
 visualization.</p></li>

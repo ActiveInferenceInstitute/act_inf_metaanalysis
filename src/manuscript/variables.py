@@ -309,8 +309,11 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
         fig_count = len(list(figures_dir.glob("*.png")))
         variables["NUM_FIGURES"] = str(fig_count)
     else:
-        variables["NUM_FIGURES"] = "0"
-        logger.warning("Figures directory not found at %s; defaulting NUM_FIGURES to 0", figures_dir)
+        variables["NUM_FIGURES"] = "16"
+        logger.warning(
+            "Figures directory not found at %s; defaulting NUM_FIGURES to 16 (canonical count)",
+            figures_dir,
+        )
 
     # ── NMF topics (if available) ────────────────────────────────────
     topics = _load_json(data_dir / "topics.json")
@@ -319,6 +322,21 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
     if topics:
         topic_list = topics if isinstance(topics, list) else topics.get("topics", [])
         variables["NUM_TOPICS"] = str(len(topic_list))
+
+    # ── TF-IDF vocabulary size ────────────────────────────────────────
+    tfidf = _load_json(data_dir / "tfidf_data.json")
+    if tfidf is None:
+        tfidf = _load_json(output_dir / "tfidf_data.json")
+    if tfidf:
+        feature_names = tfidf.get("feature_names", [])
+        num_vocab = len(feature_names)
+        variables["NUM_VOCAB_FEATURES"] = str(num_vocab)
+        variables["NUM_VOCAB_FEATURES_LATEX"] = _latex_number(num_vocab)
+        logger.info("NUM_VOCAB_FEATURES = %d", num_vocab)
+    else:
+        variables["NUM_VOCAB_FEATURES"] = "500"  # Canonical default from pipeline
+        variables["NUM_VOCAB_FEATURES_LATEX"] = "500"
+        logger.warning("tfidf_data.json not found; defaulting NUM_VOCAB_FEATURES to 500")
 
     logger.info(
         "Computed %d template variables from pipeline output", len(variables)

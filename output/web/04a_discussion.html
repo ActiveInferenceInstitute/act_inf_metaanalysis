@@ -245,7 +245,12 @@ scores and field statistics published alongside the pipeline release.
 Community contributors can extend the framework by adding custom
 hypothesis definitions, alternative keyword taxonomies, or
 domain-specific extraction prompts—all configurable via the YAML
-configuration file without modifying source code.</p>
+configuration file without modifying source code. A complementary
+long-term trajectory is toward RAG-enabled access: integrating the
+nanopublication knowledge graph into a Retrieval-Augmented Generation
+architecture would enable natural-language querying of the evidence
+base, making quantitative literature synthesis accessible to researchers
+without programming expertise.</p>
 <h2 id="open-questions">Open Questions</h2>
 <p>This meta-analysis surfaces questions warranting dedicated
 investigation:</p>
@@ -268,6 +273,20 @@ scalability? How should cross-hypothesis evidence be handled?</li>
 <li><strong>Temporal dynamics:</strong> Do hypotheses follow predictable
 lifecycles (emergence → rapid support → contestation → resolution), and
 can these patterns inform research prioritization?</li>
+<li><strong>Falsifiability operationalization:</strong> H1 (FEP
+Universality) produces a predominantly neutral evidence
+profile—consistent with the falsifiability critique that the FEP can
+accommodate any behavior without generating distinctive predictions .
+Can hypothesis definitions be reformulated to require papers to generate
+and test a specific empirical prediction before contributing a
+supporting assertion, thereby distinguishing generative from merely
+descriptive invocations of the FEP?</li>
+<li><strong>Scalability gap:</strong> H5 (AIF Scalability) shows a
+strongly positive trend, yet head-to-head comparisons with deep RL
+remain limited to a handful of benchmarks. At what state-space
+dimensionality and reward density does the performance advantage of
+model-based AIF (via expected free energy exploration) erode relative to
+model-free RL?</li>
 <li><strong>EFE decomposition sensitivity:</strong> Variational message
 passing formulations connect EFE decomposition into risk, ambiguity,
 epistemic, and instrumental components to practical planning algorithms.

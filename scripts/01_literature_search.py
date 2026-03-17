@@ -62,7 +62,7 @@ def _load_config(config_path: Path) -> dict:
         return {}
     with open(config_path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f) or {}
-    search_cfg = data.get("search", {})
+    search_cfg = data.get("project_config", data).get("search", data.get("search", {}))
     return {
         "query": search_cfg.get("query"),
         "max_results": search_cfg.get("max_results"),
@@ -70,6 +70,7 @@ def _load_config(config_path: Path) -> dict:
         "clear_corpus": search_cfg.get("clear_corpus"),
         "arxiv_queries": search_cfg.get("arxiv_queries"),
         "relevance_keywords": search_cfg.get("relevance_keywords"),
+        "start_year": search_cfg.get("start_year"),
     }
 
 
@@ -126,6 +127,12 @@ def parse_args() -> argparse.Namespace:
         default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR"],
         help="Logging verbosity (default: INFO)",
+    )
+    parser.add_argument(
+        "--start-year",
+        type=int,
+        default=None,
+        help="Exclude papers published before this year (default: no filter)",
     )
     parser.add_argument(
         "--config",
@@ -213,6 +220,9 @@ def main() -> None:
             global ARXIV_QUERIES
             ARXIV_QUERIES = cfg["arxiv_queries"]
             logger.info("Config override: arxiv_queries = %d queries", len(ARXIV_QUERIES))
+        if cfg.get("start_year") is not None and args.start_year is None:
+            args.start_year = cfg["start_year"]
+            logger.info("Config override: start_year = %d", args.start_year)
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -310,6 +320,17 @@ def main() -> None:
             "Relevance filter: removed %d off-topic papers (%d → %d)",
             len(to_remove), pre_filter, len(corpus),
         )
+
+    # Year filter: drop papers published before start_year
+    if args.start_year is not None:
+        pre_year = len(corpus)
+        corpus = corpus.filter_by_year(start=args.start_year)
+        dropped = pre_year - len(corpus)
+        if dropped:
+            logger.info(
+                "Year filter: removed %d papers published before %d (%d → %d)",
+                dropped, args.start_year, pre_year, len(corpus),
+            )
 
     # Save corpus
     corpus.save(corpus_path)

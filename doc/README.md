@@ -1,5 +1,9 @@
 # Active Inference Meta-Analysis — Documentation
 
+**Paper:** *A Living Literature Review Architecture for Active Inference: Scalable Assertion Extraction, Nanopublications, and Citation-Weighted Hypothesis Scoring*
+
+**Standalone private repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+
 Project-level documentation for the `act_inf_metaanalysis` pipeline.
 
 > See [AGENTS.md](../AGENTS.md) for contributor and AI-agent conventions, and the [project README](../README.md) for setup and overview.

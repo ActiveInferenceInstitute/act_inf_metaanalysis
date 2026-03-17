@@ -176,23 +176,29 @@
 <body>
 <h1 id="abstract">Abstract</h1>
 <p>The Free Energy Principle (FEP) and Active Inference have expanded
-rapidly across neuroscience, robotics, biology, and formal mathematics.
-However, the field lacks systematic methods for tracking which of its
-central theoretical claims are well-supported, contested, or merely
-assumed. Building on the systematic literature analysis of Knight,
-Cordes, and Friedman —which pioneered manual annotation paired with
-ontology-based analysis at the scale of hundreds of papers—we present a
-computational meta-analysis framework that automates and scales this
-approach. Our pipeline retrieves literature from arXiv, Semantic
-Scholar, and OpenAlex, deduplicating records via a canonical identifier
-hierarchy. It classifies papers into a three-tier taxonomy spanning
-eight categories: A (Core Theory), B (Tools &amp; Translation), and C
-(Application Domains). To transcend keyword matching, an LLM-powered
-extraction system evaluates each abstract against eight core hypotheses,
-producing structured nanopublications with directionality, confidence
-scores, and natural-language reasoning. These nanopublications populate
-an RDF-compatible knowledge graph evaluated by a citation-weighted
-evidence scoring function.</p>
+rapidly across neuroscience, robotics, biology, and formal
+mathematics—supported by new theoretical foundations in Bayesian
+mechanics and path-integral formulations. However, the field faces a
+dual challenge: the sheer volume of publications makes systematic
+synthesis difficult, while the FEP’s theoretical generality has invited
+falsifiability critiques, since its core claim can be applied to any
+self-organizing system without clearly distinguishing itself from
+alternatives. Both challenges point to the same methodological gap: a
+lack of systematic, hypothesis-specific evidence profiling across the
+field’s core claims. Building on the systematic literature analysis of
+Knight, Cordes, and Friedman —which pioneered manual annotation paired
+with ontology-based analysis at the scale of hundreds of papers—we
+present a computational meta-analysis framework that automates and
+scales this approach. Our pipeline retrieves literature from arXiv,
+Semantic Scholar, and OpenAlex, deduplicating records via a canonical
+identifier hierarchy. It classifies papers into a three-tier taxonomy
+spanning eight categories: A (Core Theory), B (Tools &amp; Translation),
+and C (Application Domains). To transcend keyword matching, an
+LLM-powered extraction system evaluates each abstract against eight core
+hypotheses, producing structured nanopublications with directionality,
+confidence scores, and natural-language reasoning. These
+nanopublications populate an RDF-compatible knowledge graph evaluated by
+a citation-weighted evidence scoring function.</p>
 <p>Applied to a corpus of <span class="math inline">\(N = 849\)</span>
 papers (spanning 2005–2026), the framework details a field dominated by
 core theory (Domain A) but actively diversifying into tools development

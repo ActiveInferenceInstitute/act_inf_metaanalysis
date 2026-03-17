@@ -108,10 +108,14 @@ perception, learning, and decision-making within a single variational
 framework \citep{parr2022active, friston2017active}. Since its initial
 formulation for sensorimotor control, AIF has been applied to
 navigation, visual foraging, language comprehension, social cognition,
-and multi-agent coordination. Importantly, the variational free energy
-minimization at the core of the FEP shares deep mathematical connections
-with the broader family of Energy-Based Models (EBMs)
-\citep{lecun2006tutorial}---including Helmholtz machines
+and multi-agent coordination. Bayesian mechanics
+\citep{sakthivadivel2023bayesian} has further strengthened the
+mathematical foundations of the FEP by grounding Markov blanket dynamics
+in the physics of belief-based systems, placing the principle on a
+footing commensurate with established physical theories. Importantly,
+the variational free energy minimization at the core of the FEP shares
+deep mathematical connections with the broader family of Energy-Based
+Models (EBMs) \citep{lecun2006tutorial}---including Helmholtz machines
 \citep{dayan1995helmholtz}, Boltzmann machines
 \citep{hinton2002training}, and variational autoencoders
 \citep{kingma2014auto}---all of which parameterize learning and
@@ -147,6 +151,11 @@ in this literature. The expansion of predictive processing
 \citep{clark2013whatever, hohwy2013predictive} and the emergence of
 Bayesian mechanics \citep{sakthivadivel2023bayesian} further broaden the
 scope of assertions that a comprehensive meta-analysis must reconcile.
+Critically, the falsifiability of the FEP itself remains contested
+\citep{colombo2021free}: because free energy minimization can be
+reframed to accommodate any behavior post hoc, distinguishing genuine
+predictive commitment from tautological redescription requires exactly
+the hypothesis-specific, evidence-quantified framework we propose here.
 \end{frame}
 
 \begin{frame}{Related Work and Prior Meta-Analyses}
@@ -255,16 +264,23 @@ This meta-analysis addresses four primary research questions:
 \protect\phantomsection\label{scope-and-delimitations}
 This study focuses on the English-language peer-reviewed and preprint
 literature retrievable from arXiv, Semantic Scholar, and OpenAlex. Our
-search scope includes both the core Active Inference and Free Energy
-Principle literature and adjacent Energy-Based Model research where it
-intersects with variational inference or generative modeling---capturing
-the growing convergence between these traditions. We do not include book
-chapters or monographs not indexed by these sources, software
-documentation, or non-English publications. Domain classification uses
-keyword matching rather than expert annotation---a deliberate trade-off
-favoring reproducibility over precision, whose consequences we quantify
-in the \hyperref[sec:field_overview]{field overview}. Hypothesis scoring
-relies on LLM-extracted assertions; the fidelity and limitations of this
+search scope begins at 2005---chosen to capture Energy-Based Model and
+variational Bayesian antecedents (Helmholtz machines, VAEs, early
+Bayesian brain formulations
+\citep{dayan1995helmholtz, lecun2006tutorial}) that share deep
+mathematical foundations with variational free energy minimization and
+predated the Free Energy Principle label introduced in 2006
+\citep{friston2006free}. The scope includes both the core Active
+Inference and Free Energy Principle literature and adjacent Energy-Based
+Model research where it intersects with variational inference or
+generative modeling---capturing the growing convergence between these
+traditions. We do not include book chapters or monographs not indexed by
+these sources, software documentation, or non-English publications.
+Domain classification uses keyword matching rather than expert
+annotation---a deliberate trade-off favoring reproducibility over
+precision, whose consequences we quantify in the
+\hyperref[sec:field_overview]{field overview}. Hypothesis scoring relies
+on LLM-extracted assertions; the fidelity and limitations of this
 approach are examined in the
 \hyperref[sec:extraction_pipeline]{extraction pipeline section}. The
 hypothesis definitions and domain taxonomy are informed by, but not
@@ -291,9 +307,13 @@ This work makes five contributions:
   domain distribution (A/B/C taxonomy), citation topology, and latent
   topic structure of the Active Inference literature. The field's
   computational maturity is underscored by recent benchmark results:
-  AXIOM \citep{heins2025axiom} demonstrates AIF agents learning Atari
-  games in minutes, while collective AIF has been empirically validated
-  at scale \citep{heins2024collective}.
+  AXIOM \citep{heins2025axiom} demonstrates AIF agents learning
+  Gameworld 10k in minutes using object-centric world models, while
+  Friston et al.~\citep{friston2025active} introduce Renormalization
+  Generative Models (RGMs) that achieve 99.8\% MNIST accuracy with 90\%
+  less data, pointing toward scalable multi-agent architectures.
+  Collective AIF has been empirically validated at scale
+  \citep{heins2024collective}.
 \item
   \textbf{An LLM-based hypothesis scoring dashboard} that produces
   differentiated evidence profiles with temporal trend visualization.

@@ -235,16 +235,20 @@ magnitudes.</p>
 <p>Zero-shot extraction introduces two systematic biases:
 over-extraction (hallucinating claims the paper merely mentions) and
 direction inversion (misclassifying opposing evidence as supporting).
-The explicit “irrelevant” filtering predicate mitigates over-extraction,
-but no human-annotated <span
-class="math inline">\(\kappa\)</span>-agreement baseline currently
-bounds the residual error rate. Hypothesis-level evidence assessment is
-substantially more demanding than binary inclusion/exclusion screening,
-suggesting that our pipeline’s error rate on directional classification
-warrants careful calibration. Establishing a human-annotated baseline
-through a pilot annotation study (Future Direction 1, below) is a
-prerequisite for calibrating confidence scores and quantifying the gap
-between automated and expert-level extraction.</p>
+Recent benchmarking of modular LLM extraction architectures confirms
+that even state-of-the-art systems fall short of production-level
+precision—particularly on tasks requiring exhaustive retrieval and
+aggregation of directional claims from long documents . The explicit
+"irrelevant" filtering predicate mitigates over-extraction, but no
+human-annotated <span class="math inline">\(\kappa\)</span>-agreement
+baseline currently bounds the residual error rate. Hypothesis-level
+evidence assessment is substantially more demanding than binary
+inclusion/exclusion screening, suggesting that our pipeline’s error rate
+on directional classification warrants careful calibration. Establishing
+a human-annotated baseline through a pilot annotation study (Future
+Direction 1, below) is a prerequisite for calibrating confidence scores
+and quantifying the gap between automated and expert-level
+extraction.</p>
 <h2
 id="future-directions-beyond-tally-based-evidence-aggregation">Future
 Directions: Beyond Tally-Based Evidence Aggregation</h2>
@@ -324,11 +328,18 @@ downstream improvements.</p></li>
 connecting active inference to artificial reasoning and proposing AIF as
 a reward-free alternative for LLM-based agents , replacing static prompt
 templates with goal-directed, actor-critic LLM architectures could
-significantly improve confidence calibration. The convergence between
-AIF and deep learning demonstrated by AXIOM —which outperforms DreamerV3
-through principled active inference planning—suggests that the same
-object-centric, uncertainty-aware reasoning could enhance extraction
-quality when applied to scientific text comprehension.</p></li>
+significantly improve confidence calibration. The Renormalization
+Generative Model (RGM) architecture introduced by Friston et al. —which
+achieves 99.8% MNIST accuracy with 90% less training data through
+scale-free hierarchical generative modeling—demonstrates that principled
+AIF architectures can reach strong sample efficiency. Applied to
+literature extraction, analogous object-centric, uncertainty-aware
+reasoning could enhance extraction quality by treating each paper’s
+abstract as a structured observation to be parsed against hypothesis
+definitions with principled uncertainty quantification. The broader
+convergence between AIF and deep learning demonstrated by AXIOM —which
+outperforms DreamerV3 through principled active inference
+planning—further validates this trajectory.</p></li>
 <li><p><strong>Domain adaptation.</strong> The framework is
 domain-agnostic by design. Adaptation to foundation models, quantum
 computing, or synthetic biology requires only domain-specific hypothesis
@@ -354,12 +365,16 @@ integration of manual and artificial contributions” as key goals for the
 field.</p>
 <p>By demonstrating that LLM-driven assertion extraction can produce
 scalable, queryable representations of scientific evidence—processing
-<span class="math inline">\(N = 849\)</span> papers spanning nearly five
-decades (2005–2026), extracting structured assertions, and evaluating 8
-core hypotheses—this work provides a reusable architecture for realizing
-this vision. The citation network metrics (1,678 edges, 0.23% density,
-mean in-degree 2.0) characterize the field’s structure, which has grown
-at a 16.99% CAGR while diversifying across 5 application domains.</p>
+<span class="math inline">\(N = 849\)</span> papers spanning
+approximately two and a half decades (2005–2026), extracting structured
+assertions, and evaluating 8 core hypotheses—this work provides a
+reusable architecture for realizing this vision. The corpus window
+begins in 2005 to capture Energy-Based Model and variational Bayesian
+antecedents that predate the Free Energy Principle label itself; the
+formal FEP was introduced in 2006 and reached its core elaboration by
+2010 . The citation network metrics (1,678 edges, 0.23% density, mean
+in-degree 2.0) characterize the field’s structure, which has grown at a
+16.99% CAGR while diversifying across 5 application domains.</p>
 <p>The limitations of keyword-based retrieval across disjoint academic
 repositories mean that any retrieved corpus will contain both false
 positives and false negatives. There is no single threshold that
@@ -371,7 +386,13 @@ reference to custom literature bibliographies that can be iteratively
 curated for relevance by the community.</p>
 <p>The combination of multi-source retrieval, LLM-based extraction, and
 probabilistic knowledge graph construction provides a reusable template
-that advances each of these goals. The recent release of nanopub-js
+that advances each of these goals. A complementary pathway is emerging
+through Retrieval-Augmented Generation (RAG) architectures that ground
+LLMs directly in knowledge graphs, reducing hallucination and enabling
+real-time, context-aware reasoning over structured evidence .
+Integrating our nanopublication graph into such a RAG system would
+enable natural-language querying of the evidence base, further lowering
+the barrier for community engagement. The recent release of nanopub-js
 v0.1.0 —enabling browser-based creation, signing, and querying of
 nanopublications—lowers the barrier for community-contributed
 assertions, bringing the participatory evidence curation envisioned by

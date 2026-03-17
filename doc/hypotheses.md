@@ -1,6 +1,8 @@
 # Standard Hypotheses
 
-The meta-analysis tracks evidence for and against eight standard hypotheses drawn from the Active Inference literature. Each hypothesis represents a major claim that the field collectively evaluates through ongoing research.
+**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+
+The meta-analysis tracks evidence for and against eight standard hypotheses drawn from the Active Inference literature. Each hypothesis represents a major claim that the field collectively evaluates through ongoing research. Current extraction: **2,795 assertions** from 798 papers (N = 849 corpus), citation-weighted and scored per hypothesis.
 
 ## The Eight Hypotheses
 

@@ -81,11 +81,11 @@ Key Predicates
 \end{longtable}
 }
 
-The namespace \texttt{http://activeinference.org/ontology/} (prefix
-\texttt{aif:}) defines all domain predicates; the nanopublication schema
-(\texttt{http://www.nanopub.org/nschema\#}, prefix \texttt{np:})
-provides structural predicates; provenance uses PROV-O
-(\texttt{http://www.w3.org/ns/prov\#}); and Dublin Core
+The namespace \texttt{http://activeinference.institute/ontology/}
+(prefix \texttt{aif:}) defines all domain predicates; the
+nanopublication schema (\texttt{http://www.nanopub.org/nschema\#},
+prefix \texttt{np:}) provides structural predicates; provenance uses
+PROV-O (\texttt{http://www.w3.org/ns/prov\#}); and Dublin Core
 (\texttt{http://purl.org/dc/terms/}) provides publication metadata. The
 TriG output is suitable for publication to the decentralized
 nanopublication network and aligns with FAIR data principles:

@@ -1,6 +1,8 @@
 # API Reference
 
-Public API for the five packages in `src/`.
+**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+
+Public API for the five packages in `src/`. Current corpus: **N = 849 papers (2005–2026)**, 2,795 nanopublication assertions, 8 hypotheses, 16 figures.
 
 ## literature
 
@@ -185,7 +187,7 @@ RDF knowledge graph and hypothesis scoring.
 ### Schema (`knowledge_graph.schema`)
 
 ```python
-AIF_NAMESPACE: str = "http://activeinference.org/ontology/"
+AIF_NAMESPACE: str = "http://activeinference.institute/ontology/"
 ASSERTION_TYPES: dict[str, str]  # predicate name -> URI
 DEFAULT_HYPOTHESIS_CATEGORIES: dict[str, str]  # default 8 hypothesis URIs
 HYPOTHESIS_CATEGORIES: dict[str, str]  # active hypothesis_id -> URI (configurable)

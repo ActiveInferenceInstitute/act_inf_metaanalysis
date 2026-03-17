@@ -21,7 +21,7 @@ These topics are partially orthogonal to the domain taxonomy. Topic 0 (agent-env
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/topic_term_bars.png}
-\caption{Top 10 terms per NMF topic ($k = {{NUM_TOPICS}}$ topics, $500$ vocabulary features). Term weights reflect NMF component loadings; higher-weighted terms define each topic's semantic focus.}
+\caption{Top 10 terms per NMF topic ($k = {{NUM_TOPICS}}$ topics, ${{NUM_VOCAB_FEATURES}}$ vocabulary features). Term weights reflect NMF component loadings; higher-weighted terms define each topic's semantic focus.}
 \label{fig:topic_term_bars}
 \end{figure}
 
@@ -41,7 +41,7 @@ The word cloud (Figure \ref{fig:word_cloud}) reveals the conceptual core of the 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/pca_embeddings.png}
-\caption{PCA projection of TF-IDF document embeddings ($N = {{CORPUS_SIZE}}$ documents, $500$ features), colored by domain. Loading arrows indicate vocabulary terms contributing most to each principal component. Variance explained is annotated per axis.}
+\caption{PCA projection of TF-IDF document embeddings ($N = {{CORPUS_SIZE}}$ documents, ${{NUM_VOCAB_FEATURES}}$ features), colored by domain. Loading arrows indicate vocabulary terms contributing most to each principal component. Variance explained is annotated per axis.}
 \label{fig:pca_embeddings}
 \end{figure}
 

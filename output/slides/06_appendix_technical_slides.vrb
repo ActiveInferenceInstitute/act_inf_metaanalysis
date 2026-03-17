@@ -102,7 +102,7 @@ The \textbf{compound annual growth rate} (CAGR) over the full span
 \end{equation}
 
 For the current corpus, CAGR \(= 16.99\%\). The more recent growth phase
-(2010--2025) exhibits substantially higher annualized growth.
+(2010--2026) exhibits substantially higher annualized growth.
 \end{block}
 
 \begin{block}{A.4 Advanced Visualization Methods
@@ -162,12 +162,12 @@ for a single assertion:
 \NormalTok{@prefix np: \textless{}http://www.nanopub.org/nschema\#\textgreater{} .}
 \NormalTok{@prefix prov: \textless{}http://www.w3.org/ns/prov\#\textgreater{} .}
 \NormalTok{@prefix dc: \textless{}http://purl.org/dc/terms/\textgreater{} .}
-\NormalTok{@prefix aif: \textless{}http://activeinference.org/ontology/\textgreater{} .}
+\NormalTok{@prefix aif: \textless{}http://activeinference.institute/ontology/\textgreater{} .}
 \NormalTok{@prefix xsd: \textless{}http://www.w3.org/2001/XMLSchema\#\textgreater{} .}
 
 \NormalTok{\# HEAD GRAPH: links nanopub to its three component graphs}
-\NormalTok{\textless{}http://activeinference.org/nanopub/a1b2c3d4e5f6\#head\textgreater{} \{}
-\NormalTok{  \textless{}http://activeinference.org/nanopub/a1b2c3d4e5f6\textgreater{}}
+\NormalTok{\textless{}http://activeinference.institute/nanopub/a1b2c3d4e5f6\#head\textgreater{} \{}
+\NormalTok{  \textless{}http://activeinference.institute/nanopub/a1b2c3d4e5f6\textgreater{}}
 \NormalTok{    a np:Nanopublication ;}
 \NormalTok{    np:hasAssertion   \textless{}...\#assertion\textgreater{} ;}
 \NormalTok{    np:hasProvenance   \textless{}...\#provenance\textgreater{} ;}
@@ -175,7 +175,7 @@ for a single assertion:
 \NormalTok{\}}
 
 \NormalTok{\# ASSERTION GRAPH: the core scientific claim}
-\NormalTok{\textless{}http://activeinference.org/nanopub/a1b2c3d4e5f6\#assertion\textgreater{} \{}
+\NormalTok{\textless{}http://activeinference.institute/nanopub/a1b2c3d4e5f6\#assertion\textgreater{} \{}
 \NormalTok{  aif:paper/10.1038\_nrn2787 aif:asserts aif:assertion/a1b2c3 .}
 \NormalTok{  aif:assertion/a1b2c3}
 \NormalTok{    aif:supports aif:hypothesis/fep\_universality ;}
@@ -186,17 +186,17 @@ for a single assertion:
 \NormalTok{\}}
 
 \NormalTok{\# PROVENANCE GRAPH: extraction lineage}
-\NormalTok{\textless{}http://activeinference.org/nanopub/a1b2c3d4e5f6\#provenance\textgreater{} \{}
+\NormalTok{\textless{}http://activeinference.institute/nanopub/a1b2c3d4e5f6\#provenance\textgreater{} \{}
 \NormalTok{  aif:assertion/a1b2c3}
-\NormalTok{    prov:wasGeneratedBy  \textless{}http://activeinference.org/nanopub/a1b2c3d4e5f6\textgreater{} ;}
+\NormalTok{    prov:wasGeneratedBy  \textless{}http://activeinference.institute/nanopub/a1b2c3d4e5f6\textgreater{} ;}
 \NormalTok{    prov:generatedAtTime "2026{-}01{-}15T12:00:00+00:00"\^{}\^{}xsd:dateTime ;}
 \NormalTok{    prov:wasAttributedTo "act\_inf\_metaanalysis/gemma3:4b"\^{}\^{}xsd:string ;}
 \NormalTok{    prov:hadPrimarySource aif:paper/10.1038\_nrn2787 .}
 \NormalTok{\}}
 
 \NormalTok{\# PUBLICATION INFO GRAPH: nanopublication metadata}
-\NormalTok{\textless{}http://activeinference.org/nanopub/a1b2c3d4e5f6\#pubinfo\textgreater{} \{}
-\NormalTok{  \textless{}http://activeinference.org/nanopub/a1b2c3d4e5f6\textgreater{}}
+\NormalTok{\textless{}http://activeinference.institute/nanopub/a1b2c3d4e5f6\#pubinfo\textgreater{} \{}
+\NormalTok{  \textless{}http://activeinference.institute/nanopub/a1b2c3d4e5f6\textgreater{}}
 \NormalTok{    dc:created "2026{-}01{-}15T12:00:00+00:00"\^{}\^{}xsd:dateTime ;}
 \NormalTok{    dc:creator "act\_inf\_metaanalysis/gemma3:4b"\^{}\^{}xsd:string ;}
 \NormalTok{    dc:license \textless{}https://creativecommons.org/publicdomain/zero/1.0/\textgreater{} .}
@@ -227,7 +227,7 @@ structural predicates \\
 provenance model \\
 \texttt{dc:} & \texttt{http://purl.org/dc/terms/} & Dublin Core
 metadata \\
-\texttt{aif:} & \texttt{http://activeinference.org/ontology/} &
+\texttt{aif:} & \texttt{http://activeinference.institute/ontology/} &
 Domain-specific predicates \\
 \texttt{xsd:} & \texttt{http://www.w3.org/2001/XMLSchema\#} & XML Schema
 datatypes \\

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  11 MAR 2026 14:19
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:20
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1672,6 +1672,42 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.1503pt on input line 56.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `TU/lmss/m/sl' tried instead on input line 89.
+! Undefined control sequence.
+l.91 ...ique leveled by Colombo and Seri`es \citep
+                                                  {colombo2021free}: if the
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.104 statistical tools ("Pearl blankets") \citep
+                                                 {bruineberg2022emperor}. The
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.115 coding model \citep
+                         {rao1999predictive} and has maintained a high score
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.120 ...ry is particularly striking: AXIOM \citep
+                                                  {heins2025axiom}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 File: ../figures/evidence_timeline.png Graphic file (type bmp)
 <../figures/evidence_timeline.png>
 File: ../figures/assertion_breakdown.png Graphic file (type bmp)
@@ -1680,14 +1716,23 @@ File: ../figures/assertion_summary.png Graphic file (type bmp)
 <../figures/assertion_summary.png>
 
 LaTeX Warning: Hyper reference `sec:methods_kg' on page 1 undefined on input li
-ne 147.
+ne 161.
+
+! Undefined control sequence.
+l.172 ...t with the falsifiability critique \citep
+                                                  {colombo2021free}: a
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Hyper reference `sec:conclusion' on page 1 undefined on input li
-ne 160.
+ne 178.
 
 ! Undefined control sequence.
-l.170 confirmatory results (\citealt
+l.188 confirmatory results (\citealt
                                     {sterling1959publication}), meaning that
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1696,7 +1741,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 )
-Overfull \vbox (2639.51033pt too high) detected at line 299
+Overfull \vbox (2897.91045pt too high) detected at line 317
  []
 
 [1
@@ -1726,7 +1771,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  31089 strings out of 468168
  627526 string characters out of 5432816
- 1257053 words of memory out of 5000000
+ 1266053 words of memory out of 5000000
  59249 multiletter control sequences out of 15000+600000
  634158 words of font info for 90 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

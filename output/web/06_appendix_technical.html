@@ -273,7 +273,7 @@ span <span class="math inline">\([y_0, y_T]\)</span> is:</p>
 - y_0)} - 1
 \end{equation}\]</span></p>
 <p>For the current corpus, CAGR <span class="math inline">\(=
-16.99\%\)</span>. The more recent growth phase (2010–2025) exhibits
+16.99\%\)</span>. The more recent growth phase (2010–2026) exhibits
 substantially higher annualized growth.</p>
 <h2 id="a.4-advanced-visualization-methods">A.4 Advanced Visualization
 Methods </h2>
@@ -323,12 +323,12 @@ annotated example illustrates the structure for a single assertion:</p>
 <pre class="trig"><code>@prefix np: &lt;http://www.nanopub.org/nschema#&gt; .
 @prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
 @prefix dc: &lt;http://purl.org/dc/terms/&gt; .
-@prefix aif: &lt;http://activeinference.org/ontology/&gt; .
+@prefix aif: &lt;http://activeinference.institute/ontology/&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
 # HEAD GRAPH: links nanopub to its three component graphs
-&lt;http://activeinference.org/nanopub/a1b2c3d4e5f6#head&gt; {
-  &lt;http://activeinference.org/nanopub/a1b2c3d4e5f6&gt;
+&lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6#head&gt; {
+  &lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6&gt;
     a np:Nanopublication ;
     np:hasAssertion   &lt;...#assertion&gt; ;
     np:hasProvenance   &lt;...#provenance&gt; ;
@@ -336,7 +336,7 @@ annotated example illustrates the structure for a single assertion:</p>
 }
 
 # ASSERTION GRAPH: the core scientific claim
-&lt;http://activeinference.org/nanopub/a1b2c3d4e5f6#assertion&gt; {
+&lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6#assertion&gt; {
   aif:paper/10.1038_nrn2787 aif:asserts aif:assertion/a1b2c3 .
   aif:assertion/a1b2c3
     aif:supports aif:hypothesis/fep_universality ;
@@ -347,17 +347,17 @@ annotated example illustrates the structure for a single assertion:</p>
 }
 
 # PROVENANCE GRAPH: extraction lineage
-&lt;http://activeinference.org/nanopub/a1b2c3d4e5f6#provenance&gt; {
+&lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6#provenance&gt; {
   aif:assertion/a1b2c3
-    prov:wasGeneratedBy  &lt;http://activeinference.org/nanopub/a1b2c3d4e5f6&gt; ;
+    prov:wasGeneratedBy  &lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6&gt; ;
     prov:generatedAtTime &quot;2026-01-15T12:00:00+00:00&quot;^^xsd:dateTime ;
     prov:wasAttributedTo &quot;act_inf_metaanalysis/gemma3:4b&quot;^^xsd:string ;
     prov:hadPrimarySource aif:paper/10.1038_nrn2787 .
 }
 
 # PUBLICATION INFO GRAPH: nanopublication metadata
-&lt;http://activeinference.org/nanopub/a1b2c3d4e5f6#pubinfo&gt; {
-  &lt;http://activeinference.org/nanopub/a1b2c3d4e5f6&gt;
+&lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6#pubinfo&gt; {
+  &lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6&gt;
     dc:created &quot;2026-01-15T12:00:00+00:00&quot;^^xsd:dateTime ;
     dc:creator &quot;act_inf_metaanalysis/gemma3:4b&quot;^^xsd:string ;
     dc:license &lt;https://creativecommons.org/publicdomain/zero/1.0/&gt; .
@@ -394,7 +394,7 @@ annotated example illustrates the structure for a single assertion:</p>
 </tr>
 <tr>
 <td><code>aif:</code></td>
-<td><code>http://activeinference.org/ontology/</code></td>
+<td><code>http://activeinference.institute/ontology/</code></td>
 <td>Domain-specific predicates</td>
 </tr>
 <tr>

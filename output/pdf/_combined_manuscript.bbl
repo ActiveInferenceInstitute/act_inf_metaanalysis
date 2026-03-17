@@ -1,4 +1,4 @@
-\begin{thebibliography}{55}
+\begin{thebibliography}{59}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -40,6 +40,12 @@ Aaron Clauset, Mark E.~J. Newman, and Cristopher Moore.
 \newblock \emph{Physical Review E}, 70\penalty0 (6):\penalty0 066111, 2004.
 \newblock \doi{10.1103/PhysRevE.70.066111}.
 
+\bibitem[Colombo and Seri{\`e}s(2021)]{colombo2021free}
+Matteo Colombo and Peggy Seri{\`e}s.
+\newblock Free energy: a user's guide.
+\newblock \emph{Biology \& Philosophy}, 36\penalty0 (2):\penalty0 1--35, 2021.
+\newblock \doi{10.1007/s10539-021-09788-0}.
+
 \bibitem[Da~Costa et~al.(2020)Da~Costa, Parr, Sajid, Veselic, Neacsu, and
   Friston]{dacosta2020active}
 Lancelot Da~Costa, Thomas Parr, Noor Sajid, Sebastijan Veselic, Victorita
@@ -53,6 +59,14 @@ Peter Dayan, Geoffrey~E Hinton, Radford~M Neal, and Richard~S Zemel.
 \newblock The {Helmholtz} machine.
 \newblock \emph{Neural Computation}, 7\penalty0 (5):\penalty0 889--904, 1995.
 \newblock \doi{10.1162/neco.1995.7.5.889}.
+
+\bibitem[Fan et~al.(2024)Fan, Ding, Ning, Wang, Li, Yin, Chua, and
+  Li]{fan2024survey}
+Wenqi Fan, Yujuan Ding, Liangbo Ning, Shijie Wang, Hengyun Li, Dawei Yin,
+  Tat-Seng Chua, and Qing Li.
+\newblock A survey on {RAG} meeting {LLMs}: towards {Retrieval-Augmented} large
+  language model.
+\newblock \emph{arXiv preprint arXiv:2405.06211}, 2024.
 
 \bibitem[Fountas et~al.(2020)Fountas, Sajid, Mediano, and
   Friston]{fountas2020deep}
@@ -252,6 +266,12 @@ Linhao Li et~al.
 \newblock Unifying large language models and knowledge graphs: A roadmap.
 \newblock \emph{IEEE Transactions on Knowledge and Data Engineering}, 2024.
 
+\bibitem[Liang et~al.(2024)Liang, Zhang, Lin, et~al.]{liang2024survey}
+Tianyi Liang, Weicheng Zhang, Chao Lin, et~al.
+\newblock A survey of scientific information extraction with large language
+  models.
+\newblock \emph{arXiv preprint arXiv:2401.01512}, 2024.
+
 \bibitem[Millidge(2020)]{millidge2020deep}
 Beren Millidge.
 \newblock Deep active inference as variational policy gradients.
@@ -335,6 +355,13 @@ Maxwell~JD Ramstead, Paul~B Badcock, and Karl~J Friston.
 \newblock Answering {Schr\"odinger's} question: A free-energy formulation.
 \newblock \emph{Physics of Life Reviews}, 24:\penalty0 1--16, 2018.
 \newblock \doi{10.1016/j.plrev.2017.09.001}.
+
+\bibitem[Rao and Ballard(1999)]{rao1999predictive}
+Rajesh P~N Rao and Dana~H Ballard.
+\newblock Predictive coding in the visual cortex: a functional interpretation
+  of some extra-classical receptive-field effects.
+\newblock \emph{Nature Neuroscience}, 2\penalty0 (1):\penalty0 79--87, 1999.
+\newblock \doi{10.1038/4580}.
 
 \bibitem[{RDFLib Team}(2023)]{rdflib2023}
 {RDFLib Team}.

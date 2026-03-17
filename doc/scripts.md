@@ -48,13 +48,17 @@ search:
 
 ### arXiv Multi-Query Strategy
 
-The script runs **5 complementary arXiv queries** for comprehensive coverage:
+The script runs **9 complementary arXiv queries** for comprehensive coverage, including core Active Inference terms and EBM-adjacent research that shares deep mathematical foundations with variational free energy:
 
 1. `all:"active inference"`
 2. `all:"free energy principle"`
 3. `all:"predictive coding" AND all:"free energy"`
 4. `all:"expected free energy"`
 5. `all:"variational free energy" AND all:"inference"`
+6. `all:"energy-based model" AND all:"free energy"` *(EBM convergence)*
+7. `all:"Helmholtz machine" AND all:"inference"` *(variational Bayesian antecedents)*
+8. `all:"Boltzmann machine" AND all:"free energy"` *(EBM antecedents)*
+9. `all:"contrastive divergence" AND all:"generative model"` *(EBM training methods)*
 
 Results are merged and deduplicated via the `Corpus.add()` method (highest `metadata_completeness` wins).
 
@@ -287,3 +291,5 @@ python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 python scripts/04_generate_figures.py
 python scripts/05_inject_variables.py
 ```
+
+> **Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)

@@ -1,9 +1,9 @@
 # Active Inference Meta-Analysis Configuration
-# Probabilistic Knowledge Graphs Applied to Active Inference
+# A Living Literature Review Architecture for Active Inference
 
 paper:
-  title: "Probabilistic Knowledge Graphs Applied to Active Inference"
-  subtitle: "A Computational Meta-Analysis of the Active Inference Literature"
+  title: "A Living Literature Review Architecture for Active Inference: Scalable Assertion Extraction, Nanopublications, and Citation-Weighted Hypothesis Scoring"
+  subtitle: "A Computational Meta-Analysis of the Active Inference Literature (2000–2026)"
   version: "1.0"
   date: "" # Auto-generated
 
@@ -69,6 +69,7 @@ testing:
 # Access in scripts via: config.get('project_config', {}).get('search', {})
 project_config:
   search:
+    start_year: 2000  # Only include papers published 2000 onward (enforced in pipeline)
     query: '"active inference" "free energy principle" "energy-based model"'
     max_results: 1000
     resume: true

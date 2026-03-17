@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  11 MAR 2026 14:19
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:20
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1568,29 +1568,61 @@ Package caption Info: End \AtBeginDocument code.
 
 (/Users/4d/Documents/GitHub/template/projects/act_inf_metaanalysis/output/slide
 s/03a_results_field_overview_slides.nav)
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.8961pt on input line 271.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.64008pt on input line 271.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-71.
+! Undefined control sequence.
+\beamer@doifinframe ...ayesian antecedents \citep 
+                                                  {dayan1995helmholtz, lecun...
+l.277 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
+! Undefined control sequence.
+\beamer@doifinframe ...y Principle in 2006 \citep 
+                                                  {friston2006free} and its ...
+l.277 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\beamer@doifinframe ...nt full elaboration \citep 
+                                                  {friston2010free}. Our cor...
+l.277 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.8961pt on input line 277.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.64008pt on input line 277.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+77.
 (/usr/local/texlive/2026/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 11.28131pt on input line 271.
+(Font)              scaled to size 11.28131pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.89691pt on input line 271.
+(Font)              scaled to size 7.89691pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.64066pt on input line 271.
+(Font)              scaled to size 5.64066pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.27914pt on input line 271.
+(Font)              scaled to size 11.27914pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.8954pt on input line 271.
+(Font)              scaled to size 7.8954pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.63957pt on input line 271.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 271
+(Font)              scaled to size 5.63957pt on input line 277.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 277
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1599,7 +1631,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 271
+LaTeX Font Info:    Trying to load font information for U+msb on input line 277
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1611,66 +1643,66 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 File: ../figures/field_summary.png Graphic file (type bmp)
 <../figures/field_summary.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.30151pt on input line 271.
+(Font)              scaled to size 10.30151pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.21106pt on input line 271.
+(Font)              scaled to size 7.21106pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.15076pt on input line 271.
+(Font)              scaled to size 5.15076pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.30258pt on input line 271.
+(Font)              scaled to size 10.30258pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.2118pt on input line 271.
+(Font)              scaled to size 7.2118pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.15129pt on input line 271.
+(Font)              scaled to size 5.15129pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.3006pt on input line 271.
+(Font)              scaled to size 10.3006pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.21042pt on input line 271.
+(Font)              scaled to size 7.21042pt on input line 277.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.1503pt on input line 271.
+(Font)              scaled to size 5.1503pt on input line 277.
 
 
 LaTeX Warning: Hyper reference `sec:citation_network' on page 1 undefined on in
-put line 271.
+put line 277.
 
 File: ../figures/growth_curve.png Graphic file (type bmp)
 <../figures/growth_curve.png>
 
-Overfull \hbox (17.48349pt too wide) in alignment at lines 271--271
+Overfull \hbox (17.48349pt too wide) in alignment at lines 277--277
  [] [] [] [] 
  []
 
 
-Overfull \hbox (17.48349pt too wide) in alignment at lines 271--271
+Overfull \hbox (17.48349pt too wide) in alignment at lines 277--277
  [] [] [] [] 
  []
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 271.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 277.
 File: ../figures/subfield_distribution.png Graphic file (type bmp)
 <../figures/subfield_distribution.png>
 
 LaTeX Warning: Hyper reference `sec:subfield_analyses' on page 1 undefined on i
-nput line 271.
+nput line 277.
 
 
 LaTeX Warning: Hyper reference `sec:text_analytics' on page 1 undefined on inpu
-t line 271.
+t line 277.
 
 
-Overfull \hbox (25.08942pt too wide) in paragraph at lines 271--271
+Overfull \hbox (25.08942pt too wide) in paragraph at lines 277--277
 []\TU/lmss/m/n/10.95 Representative 
  []
 
 
-Overfull \hbox (21.37737pt too wide) in paragraph at lines 271--271
+Overfull \hbox (21.37737pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 Mathematical 
  []
 
 ! Undefined control sequence.
 \beamer@doifinframe ...for broader field & \citep 
                                                   {sakthivadivel2023bayesian...
-l.271 \end{frame}
+l.277 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1679,14 +1711,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (76.80624pt too wide) in paragraph at lines 271--271
+Overfull \hbox (76.80624pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 sakthivadivel2023bayesian|  
  []
 
 ! Undefined control sequence.
 \beamer@doifinframe ... FEP prose papers & \citep 
                                                   {friston2010free} \\ B & B...
-l.271 \end{frame}
+l.277 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1695,19 +1727,19 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (26.49101pt too wide) in paragraph at lines 271--271
+Overfull \hbox (26.49101pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 friston2010free|  
  []
 
 
-Overfull \hbox (1.85352pt too wide) in paragraph at lines 271--271
+Overfull \hbox (1.85352pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 Matching 
  []
 
 ! Undefined control sequence.
 \beamer@doifinframe ...hmark performance & \citep 
                                                   {fountas2020deep} \\ C & C...
-l.271 \end{frame}
+l.277 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1716,14 +1748,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (35.28386pt too wide) in paragraph at lines 271--271
+Overfull \hbox (35.28386pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 fountas2020deep|  
  []
 
 ! Undefined control sequence.
 \beamer@doifinframe ...ical neuroimaging & \citep 
                                                   {clark2013whatever} \\ C &...
-l.271 \end{frame}
+l.277 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1732,14 +1764,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (43.09122pt too wide) in paragraph at lines 271--271
+Overfull \hbox (43.09122pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 clark2013whatever|  
  []
 
 ! Undefined control sequence.
 \beamer@doifinframe ...embedded hardware & \citep 
                                                   {lanillos2021active} \\ C ...
-l.271 \end{frame}
+l.277 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1748,24 +1780,24 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (38.34985pt too wide) in paragraph at lines 271--271
+Overfull \hbox (38.34985pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 lanillos2021active|  
  []
 
 
-Overfull \hbox (1.84258pt too wide) in paragraph at lines 271--271
+Overfull \hbox (1.84258pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 Emerging|  
  []
 
 
-Overfull \hbox (26.23917pt too wide) in paragraph at lines 271--271
+Overfull \hbox (26.23917pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 Demonstrating 
  []
 
 ! Undefined control sequence.
 \beamer@doifinframe ...isting NLP models & \citep 
                                                   {friston2020generative} \\...
-l.271 \end{frame}
+l.277 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1774,24 +1806,24 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (56.02316pt too wide) in paragraph at lines 271--271
+Overfull \hbox (56.02316pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 friston2020generative|  
  []
 
 
-Overfull \hbox (1.84258pt too wide) in paragraph at lines 271--271
+Overfull \hbox (1.84258pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 Emerging|  
  []
 
 
-Overfull \hbox (9.78131pt too wide) in paragraph at lines 271--271
+Overfull \hbox (9.78131pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 Translating 
  []
 
 ! Undefined control sequence.
 \beamer@doifinframe ...clinical practice & \citep 
                                                   {smith2021computational} \...
-l.271 \end{frame}
+l.277 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1800,19 +1832,19 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (70.95895pt too wide) in paragraph at lines 271--271
+Overfull \hbox (70.95895pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 smith2021computational|  
  []
 
 
-Overfull \hbox (1.39362pt too wide) in paragraph at lines 271--271
+Overfull \hbox (1.39362pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 Empirical 
  []
 
 ! Undefined control sequence.
 \beamer@doifinframe ...retical proposals & \citep 
                                                   {kuchling2020morphogenesis...
-l.271 \end{frame}
+l.277 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1821,14 +1853,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (84.85449pt too wide) in paragraph at lines 271--271
+Overfull \hbox (84.85449pt too wide) in paragraph at lines 277--277
 []|\TU/lmss/m/n/10.95 kuchling2020morphogenesis|  
  []
 
 File: ../figures/subfield_timeline.png Graphic file (type bmp)
 <../figures/subfield_timeline.png>
 
-Overfull \vbox (2379.35072pt too high) detected at line 271
+Overfull \vbox (2460.95076pt too high) detected at line 277
  []
 
 [1
@@ -1858,7 +1890,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  31076 strings out of 468168
  626916 string characters out of 5432816
- 1252424 words of memory out of 5000000
+ 1258084 words of memory out of 5000000
  59241 multiletter control sequences out of 15000+600000
  634150 words of font info for 89 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

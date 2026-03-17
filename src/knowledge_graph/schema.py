@@ -19,7 +19,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Namespace URI for Active Inference ontology
-AIF_NAMESPACE: str = "http://activeinference.org/ontology/"
+AIF_NAMESPACE: str = "http://activeinference.institute/ontology/"
 
 # Assertion types (predicate URIs)
 ASSERTION_TYPES: dict[str, str] = {

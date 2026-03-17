@@ -849,23 +849,29 @@ Works</a></li>
 <h1 data-number="1" id="abstract"><span
 class="header-section-number">1</span> Abstract</h1>
 <p>The Free Energy Principle (FEP) and Active Inference have expanded
-rapidly across neuroscience, robotics, biology, and formal mathematics.
-However, the field lacks systematic methods for tracking which of its
-central theoretical claims are well-supported, contested, or merely
-assumed. Building on the systematic literature analysis of Knight,
-Cordes, and Friedman —which pioneered manual annotation paired with
-ontology-based analysis at the scale of hundreds of papers—we present a
-computational meta-analysis framework that automates and scales this
-approach. Our pipeline retrieves literature from arXiv, Semantic
-Scholar, and OpenAlex, deduplicating records via a canonical identifier
-hierarchy. It classifies papers into a three-tier taxonomy spanning
-eight categories: A (Core Theory), B (Tools &amp; Translation), and C
-(Application Domains). To transcend keyword matching, an LLM-powered
-extraction system evaluates each abstract against eight core hypotheses,
-producing structured nanopublications with directionality, confidence
-scores, and natural-language reasoning. These nanopublications populate
-an RDF-compatible knowledge graph evaluated by a citation-weighted
-evidence scoring function.</p>
+rapidly across neuroscience, robotics, biology, and formal
+mathematics—supported by new theoretical foundations in Bayesian
+mechanics and path-integral formulations. However, the field faces a
+dual challenge: the sheer volume of publications makes systematic
+synthesis difficult, while the FEP’s theoretical generality has invited
+falsifiability critiques, since its core claim can be applied to any
+self-organizing system without clearly distinguishing itself from
+alternatives. Both challenges point to the same methodological gap: a
+lack of systematic, hypothesis-specific evidence profiling across the
+field’s core claims. Building on the systematic literature analysis of
+Knight, Cordes, and Friedman —which pioneered manual annotation paired
+with ontology-based analysis at the scale of hundreds of papers—we
+present a computational meta-analysis framework that automates and
+scales this approach. Our pipeline retrieves literature from arXiv,
+Semantic Scholar, and OpenAlex, deduplicating records via a canonical
+identifier hierarchy. It classifies papers into a three-tier taxonomy
+spanning eight categories: A (Core Theory), B (Tools &amp; Translation),
+and C (Application Domains). To transcend keyword matching, an
+LLM-powered extraction system evaluates each abstract against eight core
+hypotheses, producing structured nanopublications with directionality,
+confidence scores, and natural-language reasoning. These
+nanopublications populate an RDF-compatible knowledge graph evaluated by
+a citation-weighted evidence scoring function.</p>
 <p>Applied to a corpus of <span class="math inline">\(N = 849\)</span>
 papers (spanning 2005–2026), the framework details a field dominated by
 core theory (Domain A) but actively diversifying into tools development
@@ -907,14 +913,17 @@ bring about observations consistent with their preferred states,
 unifying perception, learning, and decision-making within a single
 variational framework . Since its initial formulation for sensorimotor
 control, AIF has been applied to navigation, visual foraging, language
-comprehension, social cognition, and multi-agent coordination.
-Importantly, the variational free energy minimization at the core of the
-FEP shares deep mathematical connections with the broader family of
-Energy-Based Models (EBMs) —including Helmholtz machines , Boltzmann
-machines , and variational autoencoders —all of which parameterize
-learning and inference through scalar energy functions and variational
-bounds. This convergence motivates the inclusion of EBM-adjacent
-literature in our search scope.</p>
+comprehension, social cognition, and multi-agent coordination. Bayesian
+mechanics has further strengthened the mathematical foundations of the
+FEP by grounding Markov blanket dynamics in the physics of belief-based
+systems, placing the principle on a footing commensurate with
+established physical theories. Importantly, the variational free energy
+minimization at the core of the FEP shares deep mathematical connections
+with the broader family of Energy-Based Models (EBMs) —including
+Helmholtz machines , Boltzmann machines , and variational autoencoders
+—all of which parameterize learning and inference through scalar energy
+functions and variational bounds. This convergence motivates the
+inclusion of EBM-adjacent literature in our search scope.</p>
 <h2 data-number="2.2"
 id="challenges-posed-by-rapid-literature-growth"><span
 class="header-section-number">2.2</span> Challenges Posed by Rapid
@@ -941,7 +950,12 @@ for clinical trial data with homogeneous outcome measures, making them
 less suited for the heterogeneous ontological and computational claims
 in this literature. The expansion of predictive processing and the
 emergence of Bayesian mechanics further broaden the scope of assertions
-that a comprehensive meta-analysis must reconcile.</p>
+that a comprehensive meta-analysis must reconcile. Critically, the
+falsifiability of the FEP itself remains contested : because free energy
+minimization can be reframed to accommodate any behavior post hoc,
+distinguishing genuine predictive commitment from tautological
+redescription requires exactly the hypothesis-specific,
+evidence-quantified framework we propose here.</p>
 <h2 data-number="2.3" id="related-work-and-prior-meta-analyses"><span
 class="header-section-number">2.3</span> Related Work and Prior
 Meta-Analyses</h2>
@@ -1030,20 +1044,24 @@ what gaps remain?</li>
 class="header-section-number">2.7</span> Scope and Delimitations</h2>
 <p>This study focuses on the English-language peer-reviewed and preprint
 literature retrievable from arXiv, Semantic Scholar, and OpenAlex. Our
-search scope includes both the core Active Inference and Free Energy
-Principle literature and adjacent Energy-Based Model research where it
-intersects with variational inference or generative modeling—capturing
-the growing convergence between these traditions. We do not include book
-chapters or monographs not indexed by these sources, software
-documentation, or non-English publications. Domain classification uses
-keyword matching rather than expert annotation—a deliberate trade-off
-favoring reproducibility over precision, whose consequences we quantify
-in the . Hypothesis scoring relies on LLM-extracted assertions; the
-fidelity and limitations of this approach are examined in the . The
-hypothesis definitions and domain taxonomy are informed by, but not
-identical to, the Active Inference Ontology used by Knight et al. ;
-future alignment would enable direct comparison with that earlier
-analysis.</p>
+search scope begins at 2005—chosen to capture Energy-Based Model and
+variational Bayesian antecedents (Helmholtz machines, VAEs, early
+Bayesian brain formulations ) that share deep mathematical foundations
+with variational free energy minimization and predated the Free Energy
+Principle label introduced in 2006 . The scope includes both the core
+Active Inference and Free Energy Principle literature and adjacent
+Energy-Based Model research where it intersects with variational
+inference or generative modeling—capturing the growing convergence
+between these traditions. We do not include book chapters or monographs
+not indexed by these sources, software documentation, or non-English
+publications. Domain classification uses keyword matching rather than
+expert annotation—a deliberate trade-off favoring reproducibility over
+precision, whose consequences we quantify in the . Hypothesis scoring
+relies on LLM-extracted assertions; the fidelity and limitations of this
+approach are examined in the . The hypothesis definitions and domain
+taxonomy are informed by, but not identical to, the Active Inference
+Ontology used by Knight et al. ; future alignment would enable direct
+comparison with that earlier analysis.</p>
 <h2 data-number="2.8" id="principal-contributions"><span
 class="header-section-number">2.8</span> Principal Contributions</h2>
 <p>This work makes five contributions:</p>
@@ -1058,8 +1076,12 @@ hypotheses with full provenance tracking.</p></li>
 growth, domain distribution (A/B/C taxonomy), citation topology, and
 latent topic structure of the Active Inference literature. The field’s
 computational maturity is underscored by recent benchmark results: AXIOM
-demonstrates AIF agents learning Atari games in minutes, while
-collective AIF has been empirically validated at scale .</p></li>
+demonstrates AIF agents learning Gameworld 10k in minutes using
+object-centric world models, while Friston et al.  introduce
+Renormalization Generative Models (RGMs) that achieve 99.8% MNIST
+accuracy with 90% less data, pointing toward scalable multi-agent
+architectures. Collective AIF has been empirically validated at scale
+.</p></li>
 <li><p><strong>An LLM-based hypothesis scoring dashboard</strong> that
 produces differentiated evidence profiles with temporal trend
 visualization.</p></li>
@@ -1157,7 +1179,12 @@ id="stage-1-multi-source-literature-retrieval-and-deduplication"><span
 class="header-section-number">4</span> Stage 1: Multi-Source Literature
 Retrieval and Deduplication </h1>
 <p>We retrieve papers from three complementary academic databases to
-maximize coverage and enable cross-source deduplication:</p>
+maximize coverage and enable cross-source deduplication. The retrieval
+window begins at 2005, encompassing the period when Energy-Based Model
+and variational Bayesian research provided mathematical precursors to
+what Friston formalized as the Free Energy Principle in 2006 ; this
+inclusive start captures historical lineage and cross-disciplinary
+convergence that a later cutoff would exclude.</p>
 <p><strong>arXiv.</strong> We query the arXiv Atom API using
 phrase-matched searches including <code>all:"active inference"</code>,
 <code>all:"free energy principle"</code>,
@@ -1625,7 +1652,7 @@ Hypothesis), <code>aif:claim</code>, <code>aif:confidence</code>,
 </tr>
 </tbody>
 </table>
-<p>The namespace <code>http://activeinference.org/ontology/</code>
+<p>The namespace <code>http://activeinference.institute/ontology/</code>
 (prefix <code>aif:</code>) defines all domain predicates; the
 nanopublication schema (<code>http://www.nanopub.org/nschema#</code>,
 prefix <code>np:</code>) provides structural predicates; provenance uses
@@ -1905,15 +1932,23 @@ of the largest raw evidence bases (797 assertions), achieves a score of
 only <span class="math inline">\(+0.38\)</span>—the majority of
 assessments are neutral, indicating that researchers frequently
 <em>invoke</em> the FEP without explicitly testing its universality
-claim. AIF optimality (H2) exhibits the largest volume of contradicting
-evidence (15 assertions), suggesting that as the field has transitioned
-from theory to empirical application, absolute optimality claims have
-undergone increasingly stringent critical scrutiny. Markov blanket
-realism (H3) has the smallest evidence base (145 assertions) with a
-score of <span class="math inline">\(+0.22\)</span> and 4 contradicting
-assertions—empirically capturing the ongoing philosophical debate over
-whether Markov blankets denote real thermodynamic boundaries or
-instrumental statistical constructs.</p>
+claim. This finding dovetails with the falsifiability critique leveled
+by Colombo and Seri`es : if the FEP can be applied to any
+self-organizing system without generating testable predictions that
+distinguish it from alternative frameworks, neutral citations
+(invocations rather than tests) are exactly what one would expect to
+dominate the literature. AIF optimality (H2) exhibits the largest volume
+of contradicting evidence (15 assertions), suggesting that as the field
+has transitioned from theory to empirical application, absolute
+optimality claims have undergone increasingly stringent critical
+scrutiny. Markov blanket realism (H3) has the smallest evidence base
+(145 assertions) with a score of <span
+class="math inline">\(+0.22\)</span> and 4 contradicting
+assertions—empirically capturing the ongoing philosophical debate
+between those who treat Markov blankets as real thermodynamic boundaries
+("Friston blankets") and those who argue they are purely instrumental
+statistical tools ("Pearl blankets") . The contested score for H3
+directly reflects this unresolved ontological tension in the field.</p>
 <h2 data-number="9.2"
 id="temporal-dynamics-of-evidence-accumulation"><span
 class="header-section-number">9.2</span> Temporal Dynamics of Evidence
@@ -1921,12 +1956,18 @@ Accumulation</h2>
 <p>The cumulative evidence timeline (Figure <span
 class="math inline">\(\ref{fig:evidence_timeline}\)</span>) reveals
 three temporal patterns. First, <strong>early convergence</strong>: H4
-(predictive coding) reached positive territory in the late 1970s and has
-maintained a stable, high score since, reflecting the mature empirical
-base in cognitive neuroscience. Second, <strong>recent
+(predictive coding) reached positive territory in the late 1990s
+following the publication of Rao and Ballard’s foundational predictive
+coding model and has maintained a high score since, reflecting the
+mature empirical base in cognitive neuroscience. Second, <strong>recent
 acceleration</strong>: H5 (scalability) and H6 (clinical utility) show
 steep upward trends after 2017, tracking the emergence of deep active
-inference tools and computational psychiatry applications. Third,
+inference tools and computational psychiatry applications. The H5
+trajectory is particularly striking: AXIOM demonstrates that principled
+object-centric world models under the AIF framework can outperform
+state-of-the-art deep RL agents on standard benchmarks, directly
+addressing the scalability challenge that has historically been the
+strongest argument against AIF as a practical framework. Third,
 <strong>persistent contestation</strong>: H3 (Markov blanket realism)
 has maintained a lower score since 2018, with supporting papers
 partially offset by targeted critiques.</p>
@@ -1955,9 +1996,13 @@ probabilities. The assertion counts are also sensitive to corpus
 composition: H1’s large neutral tally (546) partially reflects the
 keyword classifier’s tendency to assign papers to the broad A2
 (philosophy) category, where FEP universality is implicitly invoked but
-rarely explicitly tested. More sophisticated approaches—including
-hierarchical Bayesian models, causal evidence graphs, and evidential
-diversity weighting—are discussed as future directions in the .</p>
+rarely explicitly tested. The dominant-neutral pattern for H1 is also
+consistent with the falsifiability critique : a principle elastic enough
+to accommodate any behavior without refutation will naturally accrue
+neutral rather than positive or negative assessments. More sophisticated
+approaches—including hierarchical Bayesian models, causal evidence
+graphs, and evidential diversity weighting—are discussed as future
+directions in the .</p>
 <h3 data-number="9.4.1"
 id="publication-bias-and-linguistic-asymmetry"><span
 class="header-section-number">9.4.1</span> Publication Bias and
@@ -1994,13 +2039,17 @@ id="field-overview-disciplinary-structure-and-growth-dynamics"><span
 class="header-section-number">10</span> Field Overview: Disciplinary
 Structure and Growth Dynamics </h1>
 <p>The Active Inference literature has undergone a phase transition.
-What originated in the late 2000s as a niche within theoretical
-neuroscience has expanded rapidly into a multi-disciplinary research
-program spanning three primary domains and eight tracked categories. Our
-corpus, extracted from arXiv, Semantic Scholar, and OpenAlex and
-deduplicated to <span class="math inline">\(N = 849\)</span> papers
-(2005–2026), captures the breadth, tempo, and internal architecture of
-this expansion (Figure <span
+What originated in the early 2000s—building on predictive coding and
+Bayesian brain foundations from the late 1990s—as a niche within
+theoretical neuroscience has expanded rapidly into a multi-disciplinary
+research program spanning three primary domains and eight tracked
+categories. The corpus start of 2005 was chosen to capture Energy-Based
+Model and variational Bayesian antecedents that preceded the formal
+introduction of the Free Energy Principle in 2006 and its subsequent
+full elaboration . Our corpus, extracted from arXiv, Semantic Scholar,
+and OpenAlex and deduplicated to <span class="math inline">\(N =
+849\)</span> papers (2005–2026), captures the breadth, tempo, and
+internal architecture of this expansion (Figure <span
 class="math inline">\(\ref{fig:field_summary}\)</span>).</p>
 <div class="figure"><img src="figures/field_summary.png" alt="figures/field_summary" style="max-width: 90%%; height: auto;"></div>
 <h2 data-number="10.1" id="corpus-level-summary"><span
@@ -2776,16 +2825,20 @@ class="header-section-number">14.2.4</span> LLM Extraction Fidelity</h3>
 <p>Zero-shot extraction introduces two systematic biases:
 over-extraction (hallucinating claims the paper merely mentions) and
 direction inversion (misclassifying opposing evidence as supporting).
-The explicit “irrelevant” filtering predicate mitigates over-extraction,
-but no human-annotated <span
-class="math inline">\(\kappa\)</span>-agreement baseline currently
-bounds the residual error rate. Hypothesis-level evidence assessment is
-substantially more demanding than binary inclusion/exclusion screening,
-suggesting that our pipeline’s error rate on directional classification
-warrants careful calibration. Establishing a human-annotated baseline
-through a pilot annotation study (Future Direction 1, below) is a
-prerequisite for calibrating confidence scores and quantifying the gap
-between automated and expert-level extraction.</p>
+Recent benchmarking of modular LLM extraction architectures confirms
+that even state-of-the-art systems fall short of production-level
+precision—particularly on tasks requiring exhaustive retrieval and
+aggregation of directional claims from long documents . The explicit
+"irrelevant" filtering predicate mitigates over-extraction, but no
+human-annotated <span class="math inline">\(\kappa\)</span>-agreement
+baseline currently bounds the residual error rate. Hypothesis-level
+evidence assessment is substantially more demanding than binary
+inclusion/exclusion screening, suggesting that our pipeline’s error rate
+on directional classification warrants careful calibration. Establishing
+a human-annotated baseline through a pilot annotation study (Future
+Direction 1, below) is a prerequisite for calibrating confidence scores
+and quantifying the gap between automated and expert-level
+extraction.</p>
 <h2 data-number="14.3"
 id="future-directions-beyond-tally-based-evidence-aggregation"><span
 class="header-section-number">14.3</span> Future Directions: Beyond
@@ -2872,11 +2925,18 @@ downstream improvements.</p></li>
 connecting active inference to artificial reasoning and proposing AIF as
 a reward-free alternative for LLM-based agents , replacing static prompt
 templates with goal-directed, actor-critic LLM architectures could
-significantly improve confidence calibration. The convergence between
-AIF and deep learning demonstrated by AXIOM —which outperforms DreamerV3
-through principled active inference planning—suggests that the same
-object-centric, uncertainty-aware reasoning could enhance extraction
-quality when applied to scientific text comprehension.</p></li>
+significantly improve confidence calibration. The Renormalization
+Generative Model (RGM) architecture introduced by Friston et al. —which
+achieves 99.8% MNIST accuracy with 90% less training data through
+scale-free hierarchical generative modeling—demonstrates that principled
+AIF architectures can reach strong sample efficiency. Applied to
+literature extraction, analogous object-centric, uncertainty-aware
+reasoning could enhance extraction quality by treating each paper’s
+abstract as a structured observation to be parsed against hypothesis
+definitions with principled uncertainty quantification. The broader
+convergence between AIF and deep learning demonstrated by AXIOM —which
+outperforms DreamerV3 through principled active inference
+planning—further validates this trajectory.</p></li>
 <li><p><strong>Domain adaptation.</strong> The framework is
 domain-agnostic by design. Adaptation to foundation models, quantum
 computing, or synthetic biology requires only domain-specific hypothesis
@@ -2903,12 +2963,16 @@ integration of manual and artificial contributions” as key goals for the
 field.</p>
 <p>By demonstrating that LLM-driven assertion extraction can produce
 scalable, queryable representations of scientific evidence—processing
-<span class="math inline">\(N = 849\)</span> papers spanning nearly five
-decades (2005–2026), extracting structured assertions, and evaluating 8
-core hypotheses—this work provides a reusable architecture for realizing
-this vision. The citation network metrics (1,678 edges, 0.23% density,
-mean in-degree 2.0) characterize the field’s structure, which has grown
-at a 16.99% CAGR while diversifying across 5 application domains.</p>
+<span class="math inline">\(N = 849\)</span> papers spanning
+approximately two and a half decades (2005–2026), extracting structured
+assertions, and evaluating 8 core hypotheses—this work provides a
+reusable architecture for realizing this vision. The corpus window
+begins in 2005 to capture Energy-Based Model and variational Bayesian
+antecedents that predate the Free Energy Principle label itself; the
+formal FEP was introduced in 2006 and reached its core elaboration by
+2010 . The citation network metrics (1,678 edges, 0.23% density, mean
+in-degree 2.0) characterize the field’s structure, which has grown at a
+16.99% CAGR while diversifying across 5 application domains.</p>
 <p>The limitations of keyword-based retrieval across disjoint academic
 repositories mean that any retrieved corpus will contain both false
 positives and false negatives. There is no single threshold that
@@ -2920,7 +2984,13 @@ reference to custom literature bibliographies that can be iteratively
 curated for relevance by the community.</p>
 <p>The combination of multi-source retrieval, LLM-based extraction, and
 probabilistic knowledge graph construction provides a reusable template
-that advances each of these goals. The recent release of nanopub-js
+that advances each of these goals. A complementary pathway is emerging
+through Retrieval-Augmented Generation (RAG) architectures that ground
+LLMs directly in knowledge graphs, reducing hallucination and enabling
+real-time, context-aware reasoning over structured evidence .
+Integrating our nanopublication graph into such a RAG system would
+enable natural-language querying of the evidence base, further lowering
+the barrier for community engagement. The recent release of nanopub-js
 v0.1.0 —enabling browser-based creation, signing, and querying of
 nanopublications—lowers the barrier for community-contributed
 assertions, bringing the participatory evidence curation envisioned by
@@ -3027,7 +3097,12 @@ scores and field statistics published alongside the pipeline release.
 Community contributors can extend the framework by adding custom
 hypothesis definitions, alternative keyword taxonomies, or
 domain-specific extraction prompts—all configurable via the YAML
-configuration file without modifying source code.</p>
+configuration file without modifying source code. A complementary
+long-term trajectory is toward RAG-enabled access: integrating the
+nanopublication knowledge graph into a Retrieval-Augmented Generation
+architecture would enable natural-language querying of the evidence
+base, making quantitative literature synthesis accessible to researchers
+without programming expertise.</p>
 <h2 data-number="15.5" id="open-questions"><span
 class="header-section-number">15.5</span> Open Questions</h2>
 <p>This meta-analysis surfaces questions warranting dedicated
@@ -3051,6 +3126,20 @@ scalability? How should cross-hypothesis evidence be handled?</li>
 <li><strong>Temporal dynamics:</strong> Do hypotheses follow predictable
 lifecycles (emergence → rapid support → contestation → resolution), and
 can these patterns inform research prioritization?</li>
+<li><strong>Falsifiability operationalization:</strong> H1 (FEP
+Universality) produces a predominantly neutral evidence
+profile—consistent with the falsifiability critique that the FEP can
+accommodate any behavior without generating distinctive predictions .
+Can hypothesis definitions be reformulated to require papers to generate
+and test a specific empirical prediction before contributing a
+supporting assertion, thereby distinguishing generative from merely
+descriptive invocations of the FEP?</li>
+<li><strong>Scalability gap:</strong> H5 (AIF Scalability) shows a
+strongly positive trend, yet head-to-head comparisons with deep RL
+remain limited to a handful of benchmarks. At what state-space
+dimensionality and reward density does the performance advantage of
+model-based AIF (via expected free energy exploration) erode relative to
+model-free RL?</li>
 <li><strong>EFE decomposition sensitivity:</strong> Variational message
 passing formulations connect EFE decomposition into risk, ambiguity,
 epistemic, and instrumental components to practical planning algorithms.
@@ -3163,9 +3252,9 @@ Champion’s Branching-Time Active Inference (BTAI_3MF) and its deep
 variant (Deep_BTAI_3MF) implement tree-structured planning under the
 free energy objective, scaling active inference to partially observable
 environments with multi-step lookahead . Most recently, AXIOM achieves
-competitive Atari game performance using expanding object-centric world
-models, learning in minutes rather than hours—a landmark result for
-scalability.</p>
+competitive Gameworld 10k benchmark performance using expanding
+object-centric world models, learning in minutes rather than hours—a
+landmark result for scalability.</p>
 <h3 data-number="16.2.3"
 id="predictive-coding-and-neural-generative-coding"><span
 class="header-section-number">16.2.3</span> Predictive Coding and Neural
@@ -3384,9 +3473,9 @@ cost is operational overhead and query latency.</p>
 <p><strong>Property graph databases</strong> (e.g., Neo4j) prioritize
 traversal performance for path queries and community detection, at the
 expense of semantic web compatibility.</p>
-<p>The <a href="http://activeinference.org/ontology/">Active Inference
-Ontology namespace</a> ensures integration with external ontologies and
-linked data resources.</p>
+<p>The <a href="http://activeinference.institute/ontology/">Active
+Inference Ontology namespace</a> ensures integration with external
+ontologies and linked data resources.</p>
 <h2 data-number="16.4" id="multi-level-quality-assurance"><span
 class="header-section-number">16.4</span> Multi-Level Quality
 Assurance</h2>
@@ -3582,7 +3671,7 @@ span <span class="math inline">\([y_0, y_T]\)</span> is:</p>
 - y_0)} - 1
 \end{equation}\]</span></p>
 <p>For the current corpus, CAGR <span class="math inline">\(=
-16.99\%\)</span>. The more recent growth phase (2010–2025) exhibits
+16.99\%\)</span>. The more recent growth phase (2010–2026) exhibits
 substantially higher annualized growth.</p>
 <h2 data-number="17.4" id="a.4-advanced-visualization-methods"><span
 class="header-section-number">17.4</span> A.4 Advanced Visualization
@@ -3640,12 +3729,12 @@ annotated example illustrates the structure for a single assertion:</p>
 <pre class="trig"><code>@prefix np: &lt;http://www.nanopub.org/nschema#&gt; .
 @prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
 @prefix dc: &lt;http://purl.org/dc/terms/&gt; .
-@prefix aif: &lt;http://activeinference.org/ontology/&gt; .
+@prefix aif: &lt;http://activeinference.institute/ontology/&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
 # HEAD GRAPH: links nanopub to its three component graphs
-&lt;http://activeinference.org/nanopub/a1b2c3d4e5f6#head&gt; {
-  &lt;http://activeinference.org/nanopub/a1b2c3d4e5f6&gt;
+&lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6#head&gt; {
+  &lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6&gt;
     a np:Nanopublication ;
     np:hasAssertion   &lt;...#assertion&gt; ;
     np:hasProvenance   &lt;...#provenance&gt; ;
@@ -3653,7 +3742,7 @@ annotated example illustrates the structure for a single assertion:</p>
 }
 
 # ASSERTION GRAPH: the core scientific claim
-&lt;http://activeinference.org/nanopub/a1b2c3d4e5f6#assertion&gt; {
+&lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6#assertion&gt; {
   aif:paper/10.1038_nrn2787 aif:asserts aif:assertion/a1b2c3 .
   aif:assertion/a1b2c3
     aif:supports aif:hypothesis/fep_universality ;
@@ -3664,17 +3753,17 @@ annotated example illustrates the structure for a single assertion:</p>
 }
 
 # PROVENANCE GRAPH: extraction lineage
-&lt;http://activeinference.org/nanopub/a1b2c3d4e5f6#provenance&gt; {
+&lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6#provenance&gt; {
   aif:assertion/a1b2c3
-    prov:wasGeneratedBy  &lt;http://activeinference.org/nanopub/a1b2c3d4e5f6&gt; ;
+    prov:wasGeneratedBy  &lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6&gt; ;
     prov:generatedAtTime &quot;2026-01-15T12:00:00+00:00&quot;^^xsd:dateTime ;
     prov:wasAttributedTo &quot;act_inf_metaanalysis/gemma3:4b&quot;^^xsd:string ;
     prov:hadPrimarySource aif:paper/10.1038_nrn2787 .
 }
 
 # PUBLICATION INFO GRAPH: nanopublication metadata
-&lt;http://activeinference.org/nanopub/a1b2c3d4e5f6#pubinfo&gt; {
-  &lt;http://activeinference.org/nanopub/a1b2c3d4e5f6&gt;
+&lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6#pubinfo&gt; {
+  &lt;http://activeinference.institute/nanopub/a1b2c3d4e5f6&gt;
     dc:created &quot;2026-01-15T12:00:00+00:00&quot;^^xsd:dateTime ;
     dc:creator &quot;act_inf_metaanalysis/gemma3:4b&quot;^^xsd:string ;
     dc:license &lt;https://creativecommons.org/publicdomain/zero/1.0/&gt; .
@@ -3712,7 +3801,7 @@ class="header-section-number">17.5.1</span> Namespace Definitions</h3>
 </tr>
 <tr>
 <td><code>aif:</code></td>
-<td><code>http://activeinference.org/ontology/</code></td>
+<td><code>http://activeinference.institute/ontology/</code></td>
 <td>Domain-specific predicates</td>
 </tr>
 <tr>

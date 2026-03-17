@@ -1,6 +1,6 @@
 # Stage 1: Multi-Source Literature Retrieval and Deduplication \label{sec:methods_retrieval}
 
-We retrieve papers from three complementary academic databases to maximize coverage and enable cross-source deduplication:
+We retrieve papers from three complementary academic databases to maximize coverage and enable cross-source deduplication. The retrieval window begins at 2005, encompassing the period when Energy-Based Model and variational Bayesian research \citep{dayan1995helmholtz, lecun2006tutorial} provided mathematical precursors to what Friston formalized as the Free Energy Principle in 2006 \citep{friston2006free}; this inclusive start captures historical lineage and cross-disciplinary convergence that a later cutoff would exclude.
 
 **arXiv.** We query the arXiv Atom API using phrase-matched searches including `all:"active inference"`, `all:"free energy principle"`, `all:"expected free energy"`, `all:"variational free energy" AND all:"inference"`, and targeted Energy-Based Model queries (`all:"energy-based model" AND all:"free energy"`, `all:"Helmholtz machine" AND all:"inference"`, `all:"Boltzmann machine" AND all:"free energy"`, `all:"contrastive divergence" AND all:"generative model"`). The `all:` prefix searches titles, abstracts, and full text; phrase matching reduces contamination from unrelated physics papers that mention "free energy" in thermodynamic contexts. The EBM-adjacent queries capture research at the intersection of energy-based generative modeling and variational inference—a growing convergence area \citep{lecun2006tutorial}.
 

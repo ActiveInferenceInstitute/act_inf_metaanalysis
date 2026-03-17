@@ -1,6 +1,8 @@
 # Output Data Formats
 
-Schema reference for all pipeline output artifacts. Each file is produced by one pipeline stage and consumed by downstream stages.
+**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+
+Schema reference for all pipeline output artifacts. Each file is produced by one pipeline stage and consumed by downstream stages. Current corpus: N = 849 papers, 2,795 assertions over 8 hypotheses, citation graph: 847 nodes / 1,678 edges.
 
 ---
 
