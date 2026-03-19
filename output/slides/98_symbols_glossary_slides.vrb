@@ -17,7 +17,8 @@ expected free energy to select actions, unifying perception, learning,
 and decision-making under the Free Energy Principle. \\
 \textbf{Assertion} & A directed, confidence-scored claim linking a paper
 to a hypothesis (supports, contradicts, or neutral). The basic unit of
-evidence in the knowledge graph. \\
+evidence in the knowledge graph, representing a machine-extracted
+classification rather than a definitive human judgment. \\
 \textbf{Canonical ID} & The unique identifier assigned to each paper
 during deduplication, following the priority scheme: DOI \textgreater{}
 arXiv ID \textgreater{} Semantic Scholar ID \textgreater{} OpenAlex ID

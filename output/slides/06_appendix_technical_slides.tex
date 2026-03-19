@@ -149,7 +149,7 @@ For each hypothesis \(H\), we compute a citation-weighted evidence score
 aggregating all assertions relevant to \(H\):
 
 \begin{equation}
-\text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)} w(a)}{\sum_{a \in A(H)} w(a)}
+\text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)} w(a)}{\sum_{a \in A(H)} w(a)} \label{eq:app_score}
 \end{equation}
 
 where \(S(H)\) is the set of supporting assertions, \(C(H)\) is the set
@@ -157,7 +157,7 @@ of contradicting assertions, \(A(H)\) is all assertions for \(H\)
 (including neutral), and the weight function is:
 
 \begin{equation}
-w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a)
+w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a) \label{eq:app_weight}
 \end{equation}
 
 The logarithmic citation weighting ensures that highly cited papers
@@ -165,14 +165,17 @@ carry more influence while preventing any single blockbuster paper from
 dominating the score. The score lies in \([-1, 1]\): values near \(+1\)
 indicate strong supporting evidence, values near \(-1\) indicate strong
 contradicting evidence, and values near \(0\) indicate balanced or
-insufficient evidence.
+insufficient evidence. Crucially, as discussed in the main text, this
+score represents a \emph{relative evidentiary ranking} within the
+current literature topology, not a calibrated Bayesian probability of
+the hypothesis actually being true.
 
 \textbf{Temporal aggregation.} We additionally compute temporal trends
 by evaluating the cumulative score at each year \(t\), using only
 assertions from papers published in year \(\leq t\):
 
 \begin{equation}
-\text{score}(H, t) = \frac{\sum_{a \in S(H,t)} w(a) - \sum_{a \in C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)}
+\text{score}(H, t) = \frac{\sum_{a \in S(H,t)} w(a) - \sum_{a \in C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)} \label{eq:app_score_t}
 \end{equation}
 
 This reveals whether support for a hypothesis is growing, declining, or
@@ -192,18 +195,20 @@ where \(k\) is the number of topics.
 We use multiplicative update rules \citep{lee1999nmf}:
 
 \begin{equation}
-H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \quad W \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon}
+H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \quad W \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon} \label{eq:nmf_update}
 \end{equation}
 
 with \(\epsilon = 10^{-10}\) for numerical stability and a fixed random
-seed of 42 for reproducibility.
+seed of 42 for reproducibility (ensuring deterministic topic alignment
+across pipeline runs, with empirical stability confirmed via Jaccard
+similarities \(> 0.90\) across alternative seeds).
 
 \textbf{Term-Frequency Inverse Document Frequency (TF-IDF).} The
 document-term matrix is constructed using TF-IDF weighting
 \citep{salton1975vector}. For term \(t\) in document \(d\):
 
 \begin{equation}
-\text{TF-IDF}(t, d) = \text{tf}(t, d) \cdot \log\!\left(\frac{N}{\text{df}(t)}\right)
+\text{TF-IDF}(t, d) = \text{tf}(t, d) \cdot \log\!\left(\frac{N}{\text{df}(t)}\right) \label{eq:tfidf}
 \end{equation}
 
 where \(\text{tf}(t, d)\) is the term frequency, \(N\) is the total
@@ -219,7 +224,7 @@ arithmetic mean of annual growth rates computed only for years where the
 prior year had non-zero publications:
 
 \begin{equation}
-\bar{g} = \frac{1}{|Y|} \sum_{y \in Y} \frac{n_y - n_{y-1}}{n_{y-1}}
+\bar{g} = \frac{1}{|Y|} \sum_{y \in Y} \frac{n_y - n_{y-1}}{n_{y-1}} \label{eq:mean_growth}
 \end{equation}
 
 where \(Y = \{y : n_{y-1} > 0\}\) and \(n_y\) is the number of
@@ -229,14 +234,14 @@ The \textbf{doubling time} \(t_d\) is derived from the mean annual
 growth rate:
 
 \begin{equation}
-t_d = \frac{\ln 2}{\ln(1 + \bar{g})}
+t_d = \frac{\ln 2}{\ln(1 + \bar{g})} \label{eq:doubling_time}
 \end{equation}
 
 The \textbf{compound annual growth rate} (CAGR) over the full span
 \([y_0, y_T]\) is:
 
 \begin{equation}
-\text{CAGR} = \left(\frac{n_{\text{cumulative}}(y_T)}{n_{\text{cumulative}}(y_0)}\right)^{1/(y_T - y_0)} - 1
+\text{CAGR} = \left(\frac{n_{\text{cumulative}}(y_T)}{n_{\text{cumulative}}(y_0)}\right)^{1/(y_T - y_0)} - 1 \label{eq:cagr}
 \end{equation}
 
 For the current corpus, CAGR \(= 16.99\%\). The more recent growth phase

@@ -95,13 +95,15 @@ Limitations, and Research Agenda
 
 \begin{frame}{Summary}
 \protect\phantomsection\label{summary}
-This work demonstrates that the infrastructure for computational
-meta-analysis of a rapidly growing scientific field is feasible with
-current technology. By combining multi-source retrieval (\(N = 849\)
-papers from three databases), LLM-based assertion extraction encoded as
-nanopublications, and citation-weighted hypothesis scoring, we produce a
-queryable, RDF-compatible knowledge graph that tracks the evolving
-evidence for eight core Active Inference claims.
+This work demonstrates a first-generation prototype infrastructure for
+computational meta-analysis of a rapidly growing scientific field. By
+combining multi-source retrieval (\(N = 849\) papers from three
+databases), LLM-based assertion extraction encoded as nanopublications,
+and citation-weighted hypothesis scoring, we produce a queryable,
+RDF-compatible knowledge graph that tracks the evolving evidence for
+eight core Active Inference claims. The system demonstrates the
+feasibility of automated living reviews, while clearly delineating the
+boundaries of current model capabilities.
 \end{frame}
 
 \begin{frame}{Constraints and Methodological Scope}
@@ -163,15 +165,19 @@ modular LLM extraction architectures confirms that even state-of-the-art
 systems fall short of production-level precision---particularly on tasks
 requiring exhaustive retrieval and aggregation of directional claims
 from long documents \citep{liang2024survey}. The explicit "irrelevant"
-filtering predicate mitigates over-extraction, but no human-annotated
-\(\kappa\)-agreement baseline currently bounds the residual error rate.
-Hypothesis-level evidence assessment is substantially more demanding
-than binary inclusion/exclusion screening, suggesting that our
+filtering predicate mitigates over-extraction, but the single largest
+threat to the validity of these results is the absence of a large-scale,
+human-annotated ground-truth baseline to firmly bound the residual error
+rate. We must distinguish between \emph{pipeline limitations} (our
+reliance on zero-shot LLM verification rather than human review) and
+\emph{field limitations} (ambiguous reporting standards in the papers
+themselves). Hypothesis-level evidence assessment is substantially more
+demanding than binary inclusion/exclusion screening, suggesting that our
 pipeline's error rate on directional classification warrants careful
-calibration. Establishing a human-annotated baseline through a pilot
-annotation study (Future Direction 1, below) is a prerequisite for
-calibrating confidence scores and quantifying the gap between automated
-and expert-level extraction.
+calibration. Establishing a formal \(\kappa\)-agreement baseline through
+a pilot annotation study (Future Direction 1, below) is a prerequisite
+for graduating this infrastructure from an exploratory tool to a
+definitive evidential ledger.
 \end{block}
 \end{frame}
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:20
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1492,30 +1492,30 @@ s/02c_methods_bibliometrics_slides.nav)
 (/Users/4d/Documents/GitHub/template/projects/act_inf_metaanalysis/output/slide
 s/02c_methods_bibliometrics_slides.vrb
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 22.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 25.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.8961pt on input line 34.
+(Font)              scaled to size 7.8961pt on input line 37.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.64008pt on input line 34.
+(Font)              scaled to size 5.64008pt on input line 37.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
-4.
+7.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 11.28131pt on input line 34.
+(Font)              scaled to size 11.28131pt on input line 37.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.89691pt on input line 34.
+(Font)              scaled to size 7.89691pt on input line 37.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.64066pt on input line 34.
+(Font)              scaled to size 5.64066pt on input line 37.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.27914pt on input line 34.
+(Font)              scaled to size 11.27914pt on input line 37.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.8954pt on input line 34.
+(Font)              scaled to size 7.8954pt on input line 37.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.63957pt on input line 34.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
+(Font)              scaled to size 5.63957pt on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
 
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1524,7 +1524,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
 
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1539,10 +1539,10 @@ ern Roman (RS)
 )
 
 LaTeX Warning: Hyper reference `sec:appendix_growth' on page 1 undefined on inp
-ut line 39.
+ut line 42.
 
 ! Undefined control sequence.
-l.46 inverse-document-frequency weighting \citep
+l.49 inverse-document-frequency weighting \citep
                                                 {salton1975vector}, with a
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1551,7 +1551,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.49 multiplicative update rules \citep
+l.52 multiplicative update rules \citep
                                        {lee1999nmf}. Mathematical details are
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1561,11 +1561,11 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Hyper reference `sec:appendix_nmf' on page 1 undefined on input 
-line 50.
+line 53.
 
 ! Undefined control sequence.
-l.58 HITS hub and authority scores \citep
-                                         {kleinberg1999authoritative}, degree
+l.66 \citep
+           {kleinberg1999authoritative}, degree distributions, network
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1573,8 +1573,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.60 ... via greedy modularity maximization \citep
-                                                  {clauset2004finding}.
+l.68 modularity maximization \citep
+                                   {clauset2004finding}.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1582,7 +1582,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 )
-Overfull \vbox (437.0938pt too high) detected at line 154
+Overfull \vbox (532.29384pt too high) detected at line 162
  []
 
 [1
@@ -1612,7 +1612,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  29396 strings out of 468168
  595882 string characters out of 5432816
- 1158907 words of memory out of 5000000
+ 1162907 words of memory out of 5000000
  57578 multiletter control sequences out of 15000+600000
  631264 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

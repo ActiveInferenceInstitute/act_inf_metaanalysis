@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:20
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1487,6 +1487,17 @@ Package microtype Info: Loading generic protrusion settings for font family
 (/Users/4d/Documents/GitHub/template/projects/act_inf_metaanalysis/output/slide
 s/00_abstract_slides.nav)
 ! Undefined control sequence.
+\beamer@doifinframe ...fiability critiques \citep 
+                                                  {colombo2021free} that onl...
+l.140 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
 \beamer@doifinframe ...ordes, and Friedman \citep 
                                                   {knight2022fep}---which pi...
 l.140 \end{frame}
@@ -1539,7 +1550,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `TU/lmss/m/sl' tried instead on input line 140.
 
-Overfull \vbox (381.5956pt too high) detected at line 140
+Overfull \vbox (401.9956pt too high) detected at line 140
  []
 
 [1

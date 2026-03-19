@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:20
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:28
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1571,30 +1571,30 @@ s/03d_results_citation_network_slides.nav)
 File: ../figures/citation_network.png Graphic file (type bmp)
 <../figures/citation_network.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.30151pt on input line 179.
+(Font)              scaled to size 10.30151pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.21106pt on input line 179.
+(Font)              scaled to size 7.21106pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.15076pt on input line 179.
+(Font)              scaled to size 5.15076pt on input line 185.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-79.
+85.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.30258pt on input line 179.
+(Font)              scaled to size 10.30258pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.2118pt on input line 179.
+(Font)              scaled to size 7.2118pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.15129pt on input line 179.
+(Font)              scaled to size 5.15129pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.3006pt on input line 179.
+(Font)              scaled to size 10.3006pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.21042pt on input line 179.
+(Font)              scaled to size 7.21042pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.1503pt on input line 179.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 179
+(Font)              scaled to size 5.1503pt on input line 185.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 185
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1603,7 +1603,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 179
+LaTeX Font Info:    Trying to load font information for U+msb on input line 185
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1615,7 +1615,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ! Undefined control sequence.
 <argument> ...k and HITS centrality scores \citep 
                                                   {kleinberg1999authoritativ...
-l.179 \end{frame}
+l.185 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1626,7 +1626,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...k and HITS centrality scores \citep 
                                                   {kleinberg1999authoritativ...
-l.179 \end{frame}
+l.185 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1635,25 +1635,25 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.8961pt on input line 179.
+(Font)              scaled to size 7.8961pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.64008pt on input line 179.
+(Font)              scaled to size 5.64008pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 11.28131pt on input line 179.
+(Font)              scaled to size 11.28131pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.89691pt on input line 179.
+(Font)              scaled to size 7.89691pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.64066pt on input line 179.
+(Font)              scaled to size 5.64066pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.27914pt on input line 179.
+(Font)              scaled to size 11.27914pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.8954pt on input line 179.
+(Font)              scaled to size 7.8954pt on input line 185.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.63957pt on input line 179.
+(Font)              scaled to size 5.63957pt on input line 185.
 ! Undefined control sequence.
 \beamer@doifinframe ...larity maximization \citep 
                                                   {clauset2004finding}. \par...
-l.179 \end{frame}
+l.185 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1666,7 +1666,7 @@ File: ../figures/degree_distribution.png Graphic file (type bmp)
 ! Undefined control sequence.
 \beamer@doifinframe ...s foundational work \citep 
                                                   {friston2010free} and the ...
-l.179 \end{frame}
+l.185 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1677,7 +1677,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...nd the AIF textbook \citep 
                                                   {parr2022active}, which se...
-l.179 \end{frame}
+l.185 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1686,7 +1686,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \vbox (864.174pt too high) detected at line 179
+Overfull \vbox (958.18437pt too high) detected at line 185
  []
 
 [1
@@ -1712,7 +1712,7 @@ L3 programming layer <2026-01-19>
 Here is how much of TeX's memory you used:
  31043 strings out of 468168
  626021 string characters out of 5432816
- 1192891 words of memory out of 5000000
+ 1194891 words of memory out of 5000000
  59212 multiletter control sequences out of 15000+600000
  634142 words of font info for 88 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

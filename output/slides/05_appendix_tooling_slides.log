@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:21
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:28
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1571,7 +1571,7 @@ s/05_appendix_tooling_slides.nav)
 ! Undefined control sequence.
 \beamer@doifinframe ...ed by Knight et al.~\citep 
                                                   {knight2022fep}, whose sys...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1582,7 +1582,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ... LLM through Ollama \citep 
                                                   {ollama2024}. Each paper's...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1591,15 +1591,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 537.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 544.
 
 LaTeX Warning: Hyper reference `sec:extraction_pipeline' on page 1 undefined on
- input line 537.
+ input line 544.
 
 ! Undefined control sequence.
 \beamer@doifinframe ...} The pymdp library \citep 
                                                   {heins2022pymdp} provides ...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1610,7 +1610,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ... 4.0.0 (early 2025) \citep 
                                                   {rxinfer2025} introduced p...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1621,7 +1621,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...er-only C++ library \citep 
                                                   {gregoretti2023cppaif} imp...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1632,7 +1632,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...ojective Simulation \citep 
                                                   {pazem2024feps} combines a...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1643,7 +1643,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...t of Fountas et al.~\citep 
                                                   {fountas2020deep} introduc...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1654,7 +1654,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...-based world models \citep 
                                                   {millidge2020deep}. Champi...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1665,7 +1665,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...ulti-step lookahead \citep 
                                                   {champion2021realizing}. M...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1676,7 +1676,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...ost recently, AXIOM \citep 
                                                   {heins2025axiom} achieves ...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1685,27 +1685,27 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.8961pt on input line 537.
+(Font)              scaled to size 7.8961pt on input line 544.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.64008pt on input line 537.
+(Font)              scaled to size 5.64008pt on input line 544.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
-37.
+44.
 (/usr/local/texlive/2026/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 11.28131pt on input line 537.
+(Font)              scaled to size 11.28131pt on input line 544.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.89691pt on input line 537.
+(Font)              scaled to size 7.89691pt on input line 544.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.64066pt on input line 537.
+(Font)              scaled to size 5.64066pt on input line 544.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.27914pt on input line 537.
+(Font)              scaled to size 11.27914pt on input line 544.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.8954pt on input line 537.
+(Font)              scaled to size 7.8954pt on input line 544.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.63957pt on input line 537.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 537
+(Font)              scaled to size 5.63957pt on input line 544.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 544
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1714,7 +1714,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 537
+LaTeX Font Info:    Trying to load font information for U+msb on input line 544
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1726,7 +1726,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ! Undefined control sequence.
 \beamer@doifinframe ...omputational graphs \citep 
                                                   {millidge2022predictive}, ...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1737,7 +1737,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...ronts. First, AXIOM \citep 
                                                   {heins2025axiom} outperfor...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1748,7 +1748,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...assing formulations \citep 
                                                   {champion2021realizing} co...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1759,7 +1759,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...ely, Friston et al.~\citep 
                                                   {friston2025active} introd...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1768,405 +1768,405 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (73.60725pt too wide) in alignment at lines 537--537
+Overfull \hbox (73.60725pt too wide) in alignment at lines 544--544
  [] [] [] [] 
  []
 
 
-Overfull \hbox (73.60725pt too wide) in alignment at lines 537--537
+Overfull \hbox (73.60725pt too wide) in alignment at lines 544--544
  [] [] [] [] 
  []
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 537.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 544.
 
-LaTeX Warning: Citation `heins2022pymdp' on page 1 undefined on input line 537.
+LaTeX Warning: Citation `heins2022pymdp' on page 1 undefined on input line 544.
 
 
 
 LaTeX Warning: Citation `friston2017active' on page 1 undefined on input line 5
-37.
+44.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Reactive message passing;
  []
 
 
-LaTeX Warning: Citation `rxinfer2025' on page 1 undefined on input line 537.
+LaTeX Warning: Citation `rxinfer2025' on page 1 undefined on input line 544.
 
 
-Underfull \hbox (badness 3179) in paragraph at lines 537--537
+Underfull \hbox (badness 3179) in paragraph at lines 544--544
 \TU/lmss/m/n/10 brary with multicore paral-
  []
 
 
 LaTeX Warning: Citation `gregoretti2023cppaif' on page 1 undefined on input lin
-e 537.
+e 544.
 
 
-Underfull \hbox (badness 1112) in paragraph at lines 537--537
+Underfull \hbox (badness 1112) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 EFE on interpretable policy
  []
 
 
-LaTeX Warning: Citation `pazem2024feps' on page 1 undefined on input line 537.
+LaTeX Warning: Citation `pazem2024feps' on page 1 undefined on input line 544.
 
 
-Underfull \hbox (badness 6268) in paragraph at lines 537--537
+Underfull \hbox (badness 6268) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Rust-native AIF framework
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 deep-active-inference-
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 537--537
+Underfull \hbox (badness 2134) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Monte-Carlo tree search in
  []
 
 
-LaTeX Warning: Citation `fountas2020deep' on page 1 undefined on input line 537
+LaTeX Warning: Citation `fountas2020deep' on page 1 undefined on input line 544
 .
 
 
-Underfull \hbox (badness 3250) in paragraph at lines 537--537
+Underfull \hbox (badness 3250) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Continuous deep AIF with
  []
 
 
-LaTeX Warning: Citation `millidge2020deep' on page 1 undefined on input line 53
-7.
+LaTeX Warning: Citation `millidge2020deep' on page 1 undefined on input line 54
+4.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Branching-time AIF with
  []
 
 
 LaTeX Warning: Citation `champion2021realizing' on page 1 undefined on input li
-ne 537.
+ne 544.
 
 
 LaTeX Warning: Citation `champion2021realizing' on page 1 undefined on input li
-ne 537.
+ne 544.
 
 
-Underfull \hbox (badness 1642) in paragraph at lines 537--537
+Underfull \hbox (badness 1642) in paragraph at lines 544--544
 \TU/lmss/m/n/10 Gameworld 10k in minutes,
  []
 
 
-LaTeX Warning: Citation `heins2025axiom' on page 1 undefined on input line 537.
+LaTeX Warning: Citation `heins2025axiom' on page 1 undefined on input line 544.
 
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 active-inference
  []
 
 
-Underfull \hbox (badness 3250) in paragraph at lines 537--537
+Underfull \hbox (badness 3250) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Continuous deep AIF with
  []
 
 
-Overfull \hbox (1.04813pt too wide) in paragraph at lines 537--537
+Overfull \hbox (1.04813pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 arXiv:2406.07726| 
  []
 
 
-Overfull \hbox (7.48541pt too wide) in paragraph at lines 537--537
+Overfull \hbox (7.48541pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Python/JAX| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Neurobiological simulation;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 \TU/lmss/m/n/10 predictive coding circuits,
  []
 
 
-Overfull \hbox (18.94128pt too wide) in paragraph at lines 537--537
+Overfull \hbox (18.94128pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 PredictiveCodingBackprop| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Predictive coding approxi-
  []
 
 
 LaTeX Warning: Citation `millidge2022predictive' on page 1 undefined on input l
-ine 537.
+ine 544.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Supervised-Predictive-
  []
 
 
-Overfull \hbox (7.83812pt too wide) in paragraph at lines 537--537
+Overfull \hbox (7.83812pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 bioRxiv:2021.02.16| 
  []
 
 
 LaTeX Warning: Citation `heins2024collective' on page 1 undefined on input line
- 537.
+ 544.
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 537--537
+Underfull \hbox (badness 1558) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Reward-basis function repre-
  []
 
 
-Overfull \hbox (7.83812pt too wide) in paragraph at lines 537--537
+Overfull \hbox (7.83812pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 bioRxiv:2022.04.14| 
  []
 
 
 LaTeX Warning: Citation `tschantz2020action' on page 1 undefined on input line 
-537.
+544.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 bayesian-mechanics-
  []
 
 
-Overfull \hbox (1.04813pt too wide) in paragraph at lines 537--537
+Overfull \hbox (1.04813pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 arXiv:2206.02629| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Variational-Capsule-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Active-Inference-
  []
 
 
-Overfull \hbox (6.45128pt too wide) in paragraph at lines 537--537
+Overfull \hbox (6.45128pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 adaptive_aif_agents_fl| 
  []
 
 
-Overfull \hbox (1.04813pt too wide) in paragraph at lines 537--537
+Overfull \hbox (1.04813pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 arXiv:2410.09099| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Game-theoretic AIF agent
  []
 
 
-Overfull \hbox (1.04813pt too wide) in paragraph at lines 537--537
+Overfull \hbox (1.04813pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 arXiv:2002.12636| 
  []
 
 
-Underfull \hbox (badness 2662) in paragraph at lines 537--537
+Underfull \hbox (badness 2662) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 EFE reformulated as varia-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Robust-FE-
  []
 
 
-Underfull \hbox (badness 3713) in paragraph at lines 537--537
+Underfull \hbox (badness 3713) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Robust decision-making via
  []
 
 
-Overfull \hbox (1.04813pt too wide) in paragraph at lines 537--537
+Overfull \hbox (1.04813pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 arXiv:2503.13223| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Active-Inference-from-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 julia4ta tutorials
  []
 
 
-LaTeX Warning: Citation `parr2022active' on page 1 undefined on input line 537.
+LaTeX Warning: Citation `parr2022active' on page 1 undefined on input line 544.
 
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--537
+Underfull \hbox (badness 10000) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10 Adaptive resonance theory
  []
 
 
-Overfull \hbox (73.60725pt too wide) in alignment at lines 537--537
+Overfull \hbox (73.60725pt too wide) in alignment at lines 544--544
  [] [] [] [] 
  []
 
 
-Overfull \hbox (0.65092pt too wide) in paragraph at lines 537--537
+Overfull \hbox (0.65092pt too wide) in paragraph at lines 544--544
 []\TU/lmss/m/n/10.95 Feature  
  []
 
 
-Overfull \hbox (7.74652pt too wide) in paragraph at lines 537--537
+Overfull \hbox (7.74652pt too wide) in paragraph at lines 544--544
 []\TU/lmss/m/n/10.95 RxInfer.jl  
  []
 
 
-Overfull \hbox (14.16321pt too wide) in paragraph at lines 537--537
+Overfull \hbox (14.16321pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/bx/n/10.95 Language|  
  []
 
 
-Overfull \hbox (10.35262pt too wide) in paragraph at lines 537--537
+Overfull \hbox (10.35262pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 MATLAB|  
  []
 
 
-Overfull \hbox (24.42336pt too wide) in paragraph at lines 537--537
+Overfull \hbox (24.42336pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Python/JAX|  
  []
 
 
-Overfull \hbox (0.53047pt too wide) in paragraph at lines 537--537
+Overfull \hbox (0.53047pt too wide) in paragraph at lines 544--544
 \TU/lmss/bx/n/10.95 Spaces|  
  []
 
 
-Overfull \hbox (3.37747pt too wide) in paragraph at lines 537--537
+Overfull \hbox (3.37747pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Discrete|  
  []
 
 
-Overfull \hbox (3.37747pt too wide) in paragraph at lines 537--537
+Overfull \hbox (3.37747pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Discrete 
  []
 
 
-Overfull \hbox (17.73291pt too wide) in paragraph at lines 537--537
+Overfull \hbox (17.73291pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Continuous 
  []
 
 
-Overfull \hbox (0.63997pt too wide) in paragraph at lines 537--537
+Overfull \hbox (0.63997pt too wide) in paragraph at lines 544--544
 \TU/lmss/m/n/10.95 graphs)|  
  []
 
 
-Overfull \hbox (3.37747pt too wide) in paragraph at lines 537--537
+Overfull \hbox (3.37747pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Discrete|  
  []
 
 
-Overfull \hbox (3.37747pt too wide) in paragraph at lines 537--537
+Overfull \hbox (3.37747pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Discrete|  
  []
 
 
-Overfull \hbox (17.73291pt too wide) in paragraph at lines 537--537
+Overfull \hbox (17.73291pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Continuous|  
  []
 
 
-Overfull \hbox (12.18126pt too wide) in paragraph at lines 537--537
+Overfull \hbox (12.18126pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/bx/n/10.95 Inference|  
  []
 
 
-Overfull \hbox (4.81192pt too wide) in paragraph at lines 537--537
+Overfull \hbox (4.81192pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Message 
  []
 
 
-Overfull \hbox (15.55386pt too wide) in paragraph at lines 537--537
+Overfull \hbox (15.55386pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Variational 
  []
 
 
-Overfull \hbox (4.92142pt too wide) in paragraph at lines 537--537
+Overfull \hbox (4.92142pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Reactive 
  []
 
 
-Overfull \hbox (11.60092pt too wide) in paragraph at lines 537--537
+Overfull \hbox (11.60092pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Predictive 
  []
 
 
-Overfull \hbox (6.95811pt too wide) in paragraph at lines 537--537
+Overfull \hbox (6.95811pt too wide) in paragraph at lines 544--544
 \TU/lmss/m/n/10.95 pretable)|  
  []
 
 
-Overfull \hbox (2.75331pt too wide) in paragraph at lines 537--537
+Overfull \hbox (2.75331pt too wide) in paragraph at lines 544--544
 \TU/lmss/m/n/10.95 (stream- 
  []
 
 
-Overfull \hbox (25.23366pt too wide) in paragraph at lines 537--537
+Overfull \hbox (25.23366pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/bx/n/10.95 Hierarchical|  
  []
 
 
-Overfull \hbox (2.85187pt too wide) in paragraph at lines 537--537
+Overfull \hbox (2.85187pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/bx/n/10.95 License|  
  []
 
 
-Overfull \hbox (5.40321pt too wide) in paragraph at lines 537--537
+Overfull \hbox (5.40321pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/bx/n/10.95 Primary 
  []
 
 
-Overfull \hbox (6.59677pt too wide) in paragraph at lines 537--537
+Overfull \hbox (6.59677pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Research 
  []
 
 
-Overfull \hbox (29.67937pt too wide) in paragraph at lines 537--537
+Overfull \hbox (29.67937pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Neuroimaging|  
  []
 
 
-Overfull \hbox (5.99452pt too wide) in paragraph at lines 537--537
+Overfull \hbox (5.99452pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Robotics 
  []
 
 
-Overfull \hbox (14.28366pt too wide) in paragraph at lines 537--537
+Overfull \hbox (14.28366pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Embedded 
  []
 
 
-Overfull \hbox (23.96347pt too wide) in paragraph at lines 537--537
+Overfull \hbox (23.96347pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 Interpretable 
  []
 
 
-Overfull \hbox (4.22061pt too wide) in paragraph at lines 537--537
+Overfull \hbox (4.22061pt too wide) in paragraph at lines 544--544
 []|\TU/lmss/m/n/10.95 NeuroAI 
  []
 
 ! Undefined control sequence.
 \beamer@doifinframe ... Helmholtz machines \citep 
                                                   {dayan1995helmholtz}, Bolt...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2177,7 +2177,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ... Boltzmann machines \citep 
                                                   {hinton2002training}, and ...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2188,7 +2188,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...tional autoencoders \citep 
                                                   {kingma2014auto}---suggest...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2199,7 +2199,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...nopublication model \citep 
                                                   {groth2010anatomy, kuhn201...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2209,16 +2209,16 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Hyper reference `sec:methods_kg' on page 1 undefined on input li
-ne 537.
+ne 544.
 
 
 LaTeX Warning: Hyper reference `sec:appendix_rdf' on page 1 undefined on input 
-line 537.
+line 544.
 
 ! Undefined control sequence.
 \beamer@doifinframe ...f nanopub-js v0.1.0 \citep 
                                                   {kuhn2026nanopubjs}---a Ja...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2229,7 +2229,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...on with Trusty URIs \citep 
                                                   {kuhn2014trusty} would pro...
-l.537 \end{frame}
+l.544 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2239,10 +2239,10 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Hyper reference `sec:hypothesis_results' on page 1 undefined on 
-input line 537.
+input line 544.
 
 
-Overfull \vbox (5009.03288pt too high) detected at line 537
+Overfull \vbox (5090.63292pt too high) detected at line 544
  []
 
 [1
@@ -2272,7 +2272,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  30978 strings out of 468168
  623821 string characters out of 5432816
- 1519709 words of memory out of 5000000
+ 1524355 words of memory out of 5000000
  59157 multiletter control sequences out of 15000+600000
  631264 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

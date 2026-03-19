@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:21
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:28
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1630,7 +1630,7 @@ File: mt-LatinModernRoman.cfg 2026/02/26 v1.2 microtype config. file: Latin Mod
 ern Roman (RS)
 )
 ! Undefined control sequence.
-l.54 We use multiplicative update rules \citep
+l.57 We use multiplicative update rules \citep
                                               {lee1999nmf}:
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1639,7 +1639,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.65 \citep
+l.70 \citep
            {salton1975vector}. For term \(t\) in document \(d\):
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1648,7 +1648,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.156 standard \citep
+l.161 standard \citep
                      {groth2010anatomy, kuhn2016decentralized}, producing four
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1657,42 +1657,42 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (83.79134pt too wide) in paragraph at lines 224--224
+Overfull \hbox (83.79134pt too wide) in paragraph at lines 229--229
 []|\TU/lmtt/m/n/10.95 http://www.nanopub.org/nschema#|  
  []
 
 
-Overfull \hbox (55.04759pt too wide) in paragraph at lines 226--226
+Overfull \hbox (55.04759pt too wide) in paragraph at lines 231--231
 []|\TU/lmtt/m/n/10.95 http://www.w3.org/ns/prov#|  
  []
 
 
-Overfull \hbox (49.29884pt too wide) in paragraph at lines 228--228
+Overfull \hbox (49.29884pt too wide) in paragraph at lines 233--233
 []|\TU/lmtt/m/n/10.95 http://purl.org/dc/terms/|  
  []
 
 
-Overfull \hbox (147.02757pt too wide) in paragraph at lines 230--230
+Overfull \hbox (147.02757pt too wide) in paragraph at lines 235--235
 []|\TU/lmtt/m/n/10.95 http://activeinference.institute/ontology/|  
  []
 
 
-Overfull \hbox (95.28885pt too wide) in paragraph at lines 232--232
+Overfull \hbox (95.28885pt too wide) in paragraph at lines 237--237
 []|\TU/lmtt/m/n/10.95 http://www.w3.org/2001/XMLSchema#|  
  []
 
 
-Overfull \hbox (52.96388pt too wide) in alignment at lines 244--248
+Overfull \hbox (52.96388pt too wide) in alignment at lines 249--253
  [] [] 
  []
 
 
-Overfull \hbox (52.96388pt too wide) in alignment at lines 248--260
+Overfull \hbox (52.96388pt too wide) in alignment at lines 253--265
  [] [] 
  []
 
 )
-Overfull \vbox (2225.15977pt too high) detected at line 402
+Overfull \vbox (2293.1598pt too high) detected at line 407
  []
 
 [1
@@ -1716,10 +1716,10 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 31520 strings out of 468168
- 634949 string characters out of 5432816
- 1262600 words of memory out of 5000000
- 59674 multiletter control sequences out of 15000+600000
+ 31528 strings out of 468168
+ 635062 string characters out of 5432816
+ 1265809 words of memory out of 5000000
+ 59682 multiletter control sequences out of 15000+600000
  631280 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  128i,12n,123p,1105b,811s stack positions out of 10000i,1000n,20000p,200000b,200000s

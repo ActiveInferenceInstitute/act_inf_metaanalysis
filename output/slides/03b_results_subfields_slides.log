@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:20
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:28
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1569,32 +1569,32 @@ Package caption Info: End \AtBeginDocument code.
 (/Users/4d/Documents/GitHub/template/projects/act_inf_metaanalysis/output/slide
 s/03b_results_subfields_slides.nav)
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 339.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 351.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.36182pt on input line 339.
+(Font)              scaled to size 12.36182pt on input line 351.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.24121pt on input line 339.
+(Font)              scaled to size 8.24121pt on input line 351.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.18091pt on input line 339.
+(Font)              scaled to size 6.18091pt on input line 351.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
-39.
+51.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.3631pt on input line 339.
+(Font)              scaled to size 12.3631pt on input line 351.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.24207pt on input line 339.
+(Font)              scaled to size 8.24207pt on input line 351.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.18155pt on input line 339.
+(Font)              scaled to size 6.18155pt on input line 351.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.36072pt on input line 339.
+(Font)              scaled to size 12.36072pt on input line 351.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.24048pt on input line 339.
+(Font)              scaled to size 8.24048pt on input line 351.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.18036pt on input line 339.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 339
+(Font)              scaled to size 6.18036pt on input line 351.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 351
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1603,7 +1603,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 339
+LaTeX Font Info:    Trying to load font information for U+msb on input line 351
 .
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1615,7 +1615,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ! Undefined control sequence.
 \beamer@doifinframe ...tistical constructs \citep 
                                                   {bruineberg2022emperor}. B...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1626,7 +1626,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ... Bayesian mechanics \citep 
                                                   {sakthivadivel2023bayesian...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1634,10 +1634,26 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.8961pt on input line 351.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.64008pt on input line 351.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 11.28131pt on input line 351.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.89691pt on input line 351.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.64066pt on input line 351.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 11.27914pt on input line 351.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.8954pt on input line 351.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.63957pt on input line 351.
 ! Undefined control sequence.
 \beamer@doifinframe ...assing formulations \citep 
                                                   {champion2021realizing} co...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1648,7 +1664,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...energy minimization \citep 
                                                   {friston2010free}, the tex...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1659,7 +1675,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...ezzulo, and Friston \citep 
                                                   {parr2022active}, and nume...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1670,7 +1686,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ... amortize inference \citep 
                                                   {fountas2020deep}, Monte C...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1681,7 +1697,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...search for planning \citep 
                                                   {champion2021realizing}, h...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1692,7 +1708,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...e Simulation (FEPS) \citep 
                                                   {pazem2024feps}, which exp...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1703,7 +1719,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...f the pymdp library \citep 
                                                   {heins2022pymdp} has lower...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1714,7 +1730,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...e RxInfer.jl v4.0.0 \citep 
                                                   {rxinfer2025} indicate a v...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1725,7 +1741,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...ts of the framework \citep 
                                                   {friston2010free, clark201...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1736,7 +1752,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...e prediction errors \citep 
                                                   {lanillos2021active}. Appl...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1747,7 +1763,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...inguistic structure \citep 
                                                   {friston2020generative}. A...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1758,7 +1774,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...oth directions: Wen \citep 
                                                   {wen2025missing} proposes ...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1769,7 +1785,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...hile Friston et al.~\citep 
                                                   {friston2025active} demons...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1780,7 +1796,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...ed sequential tasks \citep 
                                                   {millidge2024retrospective...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1791,7 +1807,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ..., or prior rigidity \citep 
                                                   {smith2021computational}. ...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1802,7 +1818,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...ition: Whyte et al.~\citep 
                                                   {whyte2025metacognitive} p...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1813,7 +1829,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...e energy functional \citep 
                                                   {kuchling2020morphogenesis...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1824,7 +1840,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...cales: Heins et al.~\citep 
                                                   {heins2024collective} demo...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1835,7 +1851,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...tems: Nazemi et al.~\citep 
                                                   {nazemi2025energy} apply a...
-l.339 \end{frame}
+l.351 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1845,40 +1861,24 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Hyper reference `sec:hypothesis_results' on page 1 undefined on 
-input line 339.
+input line 351.
 
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.8961pt on input line 339.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.64008pt on input line 339.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 11.28131pt on input line 339.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.89691pt on input line 339.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.64066pt on input line 339.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.27914pt on input line 339.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.8954pt on input line 339.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.63957pt on input line 339.
 
-Overfull \hbox (96.22377pt too wide) in alignment at lines 339--339
+Overfull \hbox (96.22377pt too wide) in alignment at lines 351--351
  [] [] [] [] [] 
  []
 
 
-Overfull \hbox (96.22377pt too wide) in alignment at lines 339--339
+Overfull \hbox (96.22377pt too wide) in alignment at lines 351--351
  [] [] [] [] [] 
  []
 
 
 LaTeX Warning: Hyper reference `sec:hypothesis_results' on page 1 undefined on 
-input line 339.
+input line 351.
 
 
-Overfull \vbox (2620.86295pt too high) detected at line 339
+Overfull \vbox (2807.00348pt too high) detected at line 351
  []
 
 [1
@@ -1908,7 +1908,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  31003 strings out of 468168
  624938 string characters out of 5432816
- 1318522 words of memory out of 5000000
+ 1329396 words of memory out of 5000000
  59174 multiletter control sequences out of 15000+600000
  634130 words of font info for 88 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

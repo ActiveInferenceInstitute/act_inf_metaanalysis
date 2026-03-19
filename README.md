@@ -1,5 +1,7 @@
 # 🧠 Active Inference Meta-Analysis
 
+**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis/actions)
 [![Test Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)
 [![Tests](https://img.shields.io/badge/tests-534%20passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)

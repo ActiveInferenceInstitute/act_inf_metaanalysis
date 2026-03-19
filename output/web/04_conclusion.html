@@ -179,14 +179,15 @@ id="conclusion-evidence-landscape-methodological-limitations-and-research-agenda
 Evidence Landscape, Methodological Limitations, and Research Agenda
 </h1>
 <h2 id="summary">Summary</h2>
-<p>This work demonstrates that the infrastructure for computational
-meta-analysis of a rapidly growing scientific field is feasible with
-current technology. By combining multi-source retrieval (<span
-class="math inline">\(N = 849\)</span> papers from three databases),
-LLM-based assertion extraction encoded as nanopublications, and
-citation-weighted hypothesis scoring, we produce a queryable,
-RDF-compatible knowledge graph that tracks the evolving evidence for
-eight core Active Inference claims.</p>
+<p>This work demonstrates a first-generation prototype infrastructure
+for computational meta-analysis of a rapidly growing scientific field.
+By combining multi-source retrieval (<span class="math inline">\(N =
+849\)</span> papers from three databases), LLM-based assertion
+extraction encoded as nanopublications, and citation-weighted hypothesis
+scoring, we produce a queryable, RDF-compatible knowledge graph that
+tracks the evolving evidence for eight core Active Inference claims. The
+system demonstrates the feasibility of automated living reviews, while
+clearly delineating the boundaries of current model capabilities.</p>
 <h2 id="constraints-and-methodological-scope">Constraints and
 Methodological Scope</h2>
 <p>Several conscious design constraints scope these findings.</p>
@@ -239,16 +240,20 @@ Recent benchmarking of modular LLM extraction architectures confirms
 that even state-of-the-art systems fall short of production-level
 precision—particularly on tasks requiring exhaustive retrieval and
 aggregation of directional claims from long documents . The explicit
-"irrelevant" filtering predicate mitigates over-extraction, but no
-human-annotated <span class="math inline">\(\kappa\)</span>-agreement
-baseline currently bounds the residual error rate. Hypothesis-level
-evidence assessment is substantially more demanding than binary
+"irrelevant" filtering predicate mitigates over-extraction, but the
+single largest threat to the validity of these results is the absence of
+a large-scale, human-annotated ground-truth baseline to firmly bound the
+residual error rate. We must distinguish between <em>pipeline
+limitations</em> (our reliance on zero-shot LLM verification rather than
+human review) and <em>field limitations</em> (ambiguous reporting
+standards in the papers themselves). Hypothesis-level evidence
+assessment is substantially more demanding than binary
 inclusion/exclusion screening, suggesting that our pipeline’s error rate
 on directional classification warrants careful calibration. Establishing
-a human-annotated baseline through a pilot annotation study (Future
-Direction 1, below) is a prerequisite for calibrating confidence scores
-and quantifying the gap between automated and expert-level
-extraction.</p>
+a formal <span class="math inline">\(\kappa\)</span>-agreement baseline
+through a pilot annotation study (Future Direction 1, below) is a
+prerequisite for graduating this infrastructure from an exploratory tool
+to a definitive evidential ledger.</p>
 <h2
 id="future-directions-beyond-tally-based-evidence-aggregation">Future
 Directions: Beyond Tally-Based Evidence Aggregation</h2>

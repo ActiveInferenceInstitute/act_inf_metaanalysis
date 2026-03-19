@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:20
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1644,7 +1644,16 @@ Overfull \hbox (1.6226pt too wide) in paragraph at lines 48--48
  []
 
 ! Undefined control sequence.
-l.229 \citep
+l.235 accuracy \citep
+                     {liang2024survey}, underscoring that our multi-tier
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.245 \citep
             {groth2010anatomy, kuhn2016decentralized}---a self-contained,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1654,14 +1663,14 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Hyper reference `sec:methods_kg' on page 1 undefined on input li
-ne 263.
+ne 279.
 
 
 LaTeX Warning: Hyper reference `sec:appendix_rdf' on page 1 undefined on input 
-line 264.
+line 280.
 
 )
-Overfull \vbox (2464.48474pt too high) detected at line 404
+Overfull \vbox (2695.68484pt too high) detected at line 420
  []
 
 [1
@@ -1691,7 +1700,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  31465 strings out of 468168
  632488 string characters out of 5432816
- 1260427 words of memory out of 5000000
+ 1267427 words of memory out of 5000000
  59636 multiletter control sequences out of 15000+600000
  631264 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

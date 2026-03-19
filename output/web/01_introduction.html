@@ -209,21 +209,25 @@ of 16.99% across 2005–2026, with annual output accelerating sharply
 after 2013. While early research concentrated on theoretical
 neuroscience, the field has since diversified across biology (C5),
 robotics (C2), computational psychiatry (C4), algorithm scaling (B), and
-formal mathematics (A1). This multi-disciplinary expansion creates three
-interrelated challenges. First, tracking which core theoretical
-claims—such as FEP universality or the physical realism of Markov
-blankets—are well-supported, contested, or merely assumed becomes
-increasingly difficult as the corpus grows. Second, because the
+formal mathematics (A1). With <span class="math inline">\(N =
+849\)</span> papers spanning 8 categories across 3 domains, no prior
+automated system tracks hypothesis-level evidence across the full
+corpus. This creates three interrelated challenges. First, the balance
+of evidence for core claims—such as FEP universality or the physical
+realism of Markov blankets—cannot be assessed without structured,
+hypothesis-specific extraction at corpus scale. Second, because the
 relationship between mathematical formalisms and empirical evidence is
 frequently implicit, systematic evidence synthesis demands substantial
-manual effort. Third, new entrants must navigate a literature weighted
-toward broad qualitative philosophy (A2), interspersed with specialized
-applied subfields.</p>
+manual effort: Knight et al.  required human annotators to manually code
+hundreds of papers. Third, new entrants must navigate a literature
+weighted toward broad qualitative philosophy (A2), interspersed with
+specialized applied subfields whose findings are difficult to locate
+without domain-specific search strategies.</p>
 <p>Traditional narrative reviews attempt to address these challenges but
 are static, subjective, and quickly outdated. Systematic reviews from
 evidence-based medicine offer rigorous aggregation but are structured
 for clinical trial data with homogeneous outcome measures, making them
-less suited for the heterogeneous ontological and computational claims
+poorly suited for the heterogeneous ontological and computational claims
 in this literature. The expansion of predictive processing and the
 emergence of Bayesian mechanics further broaden the scope of assertions
 that a comprehensive meta-analysis must reconcile. Critically, the
@@ -258,16 +262,22 @@ annotated papers. That study identified six development
 directions—including broader scope, richer annotation, and transferable
 approaches—and represents an important precursor to automated
 meta-analysis of this field.</p>
-<p>These works are primarily narrative reviews: they synthesize
-qualitative findings but do not strictly quantify the balance of
-evidence across the field’s central claims. The systematic analysis of
-Knight et al.  pioneered quantitative literature analysis for this field
-using manual annotation and ontology-based automated analysis. Our
-framework advances this line of work by (1) fully automating assertion
-extraction via LLM-based hypothesis scoring, (2) constructing a
-structured, RDF-compatible knowledge graph scored by citation-weighted
-evidence, and (3) tracking how evidence for core claims evolves over
-time through temporal trend analysis.</p>
+<p>These prior works differ from the present study along four
+dimensions. First, <strong>scale</strong>: narrative reviews cover tens
+to low hundreds of papers; our pipeline processes <span
+class="math inline">\(N = 849\)</span>. Second,
+<strong>structure</strong>: prior reviews produce prose summaries rather
+than machine-queryable knowledge graphs with typed relationships. Third,
+<strong>temporal tracking</strong>: no prior system computes how
+evidence for specific hypotheses evolves year over year. Fourth,
+<strong>automation</strong>: the systematic analysis of Knight et al. 
+pioneered quantitative literature analysis but relied on manual
+annotation, limiting update frequency. Our framework advances this line
+of work by (1) fully automating assertion extraction via LLM-based
+hypothesis scoring, (2) constructing a structured, RDF-compatible
+knowledge graph scored by citation-weighted evidence, and (3) tracking
+how evidence for core claims evolves over time through temporal trend
+analysis.</p>
 <h2 id="synergizing-knowledge-graphs-and-llms">Synergizing Knowledge
 Graphs and LLMs</h2>
 <p>Recent systematic literature initiatives underscore a powerful
@@ -300,17 +310,24 @@ direction and strength of published evidence.</p>
 <li><strong>RQ1 (Field Structure):</strong> What is the disciplinary
 structure and growth trajectory of the Active Inference literature, and
 how are papers distributed across the three domains—Core Theory (A),
-Tools &amp; Translation (B), and Application Domains (C)?</li>
+Tools &amp; Translation (B), and Application Domains (C)? We expect
+Domain A to dominate but anticipate measurable diversification into
+applied domains.</li>
 <li><strong>RQ2 (Growth Dynamics):</strong> What are the temporal growth
 dynamics of the field, and which subfields are experiencing the most
-rapid expansion?</li>
+rapid expansion? Prior reviews suggest accelerating growth post-2013; we
+quantify this trajectory and identify which application domains drive
+it.</li>
 <li><strong>RQ3 (Hypothesis Evidence):</strong> What is the current
 balance of evidence for and against the eight standard hypotheses, and
-how has this balance evolved over time? (See hypothesis dashboard and
-assertion figures in the .)</li>
+how has this balance evolved over time? We expect well-established
+hypotheses (H4 Predictive Coding) to show consensus while
+philosophically contested claims (H3 Markov Blanket Realism) show mixed
+evidence. (See hypothesis dashboard and assertion figures in the .)</li>
 <li><strong>RQ4 (Tooling Readiness):</strong> What is the state of
 software tooling and infrastructure for Active Inference research, and
-what gaps remain?</li>
+what gaps remain? We survey available implementations to identify
+whether the ecosystem is fragmented or converging.</li>
 </ol>
 <h2 id="scope-and-delimitations">Scope and Delimitations</h2>
 <p>This study focuses on the English-language peer-reviewed and preprint
@@ -325,11 +342,15 @@ Energy-Based Model research where it intersects with variational
 inference or generative modeling—capturing the growing convergence
 between these traditions. We do not include book chapters or monographs
 not indexed by these sources, software documentation, or non-English
-publications. Domain classification uses keyword matching rather than
-expert annotation—a deliberate trade-off favoring reproducibility over
-precision, whose consequences we quantify in the . Hypothesis scoring
-relies on LLM-extracted assertions; the fidelity and limitations of this
-approach are examined in the . The hypothesis definitions and domain
+publications. Domain classification uses keyword matching (65+
+indicators across 8 categories) rather than expert annotation—a
+deliberate trade-off favoring reproducibility over precision, whose
+consequences we quantify in the . Hypothesis scoring relies on
+LLM-extracted assertions operating on abstracts only; claims embedded in
+method sections, discussion paragraphs, or supplementary materials are
+not captured, and the fraction of relevant evidence residing in these
+sections is unknown. The fidelity and limitations of abstract-only
+extraction are examined in the . The hypothesis definitions and domain
 taxonomy are informed by, but not identical to, the Active Inference
 Ontology used by Knight et al. ; future alignment would enable direct
 comparison with that earlier analysis.</p>
@@ -344,14 +365,9 @@ encoding directed, confidence-scored assertions about eight core
 hypotheses with full provenance tracking.</p></li>
 <li><p><strong>A quantitative field overview</strong> characterizing the
 growth, domain distribution (A/B/C taxonomy), citation topology, and
-latent topic structure of the Active Inference literature. The field’s
-computational maturity is underscored by recent benchmark results: AXIOM
-demonstrates AIF agents learning Gameworld 10k in minutes using
-object-centric world models, while Friston et al.  introduce
-Renormalization Generative Models (RGMs) that achieve 99.8% MNIST
-accuracy with 90% less data, pointing toward scalable multi-agent
-architectures. Collective AIF has been empirically validated at scale
-.</p></li>
+latent topic structure of the Active Inference literature, with specific
+attention to how recent benchmark results () are reshaping the
+scalability and application landscape.</p></li>
 <li><p><strong>An LLM-based hypothesis scoring dashboard</strong> that
 produces differentiated evidence profiles with temporal trend
 visualization.</p></li>

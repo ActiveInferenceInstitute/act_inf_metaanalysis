@@ -6,13 +6,13 @@ Knight, Cordes, and Friedman \citep{knight2022fep} identified six development di
 
 ## Tactical and Strategic Priorities
 
-### Demand Rigorous Reporting Metadata
+### Adopt Rigorous Reporting Metadata
 
 Papers should systematically report DOIs, ORCIDs, and explicit hypothesis commitments. Submitted preprints should forward-link to their published versions to prevent fragmented citation subgraphs. Our extraction pipeline prioritizes the DOI as the canonical identifier; failing that, deduplication cascades to arXiv IDs, Semantic Scholar IDs, and OpenAlex IDs. Broad DOI adoption would resolve the cross-source mismatch problem, enabling higher-resolution evidence mapping.
 
-### Deploy Open Knowledge Graph Infrastructure
+### Explore Open Knowledge Graph Infrastructure
 
-We advocate the deployment of a federated nanopublication server architecture to house community-contributed assertions, enabling a continuously updated living literature review that incorporates new findings as they are published. The release of nanopub-js v0.1.0 \citep{kuhn2026nanopubjs} makes browser-based creation and querying of nanopublications practical, enabling researchers to contribute assertions directly from web interfaces without requiring command-line tools or Python environments. Integrating this pipeline with the Active Inference Institute's Knowledge-Engineering infrastructure \citep{knight2022fep} would provide the standardized semantic vocabulary necessary for rigorous cross-study comparison.
+We encourage the exploration of federated nanopublication server architectures to house community-contributed assertions. This would enable a continuously updated living literature review that incorporates new findings as they are published. The release of nanopub-js v0.1.0 \citep{kuhn2026nanopubjs} makes browser-based creation and querying of nanopublications practical, enabling researchers to contribute assertions directly from web interfaces. Integrating this approach with the Active Inference Institute's Knowledge-Engineering infrastructure \citep{knight2022fep} could provide the standardized semantic vocabulary necessary for rigorous cross-study comparison.
 
 ### Standardize the Ontological Lexicon
 
@@ -34,15 +34,9 @@ The pipeline is designed for continuous operation rather than one-time analysis.
 
 ## Open Questions
 
-This meta-analysis surfaces questions warranting dedicated investigation:
+This meta-analysis surfaces four critical, empirically testable questions warranting dedicated investigation:
 
-- **Classifier calibration:** What proportion of A1 papers would be reclassified under embedding-based or expert-annotated schemes?
-- **Scoring sensitivity:** How sensitive are hypothesis scores to the choice of weighting function? Would square-root or linear weights qualitatively change the evidence landscape?
-- **Model sensitivity:** How much do hypothesis scores vary across different LLM models? Are some hypotheses more robust to model choice than others?
-- **Domain boundaries:** Do domain boundaries stabilize as the field matures, or continue to shift? Is the 8-category (A/B/C) taxonomy optimal?
-- **Cross-hypothesis evidence:** When a neuroscience (C1) paper supports predictive coding, does this constitute evidence for scalability? How should cross-hypothesis evidence be handled?
-- **Temporal dynamics:** Do hypotheses follow predictable lifecycles (emergence → rapid support → contestation → resolution), and can these patterns inform research prioritization?
-- **Falsifiability operationalization:** H1 (FEP Universality) produces a predominantly neutral evidence profile—consistent with the falsifiability critique that the FEP can accommodate any behavior without generating distinctive predictions \citep{colombo2021free}. Can hypothesis definitions be reformulated to require papers to generate and test a specific empirical prediction before contributing a supporting assertion, thereby distinguishing generative from merely descriptive invocations of the FEP?
-- **Scalability gap:** H5 (AIF Scalability) shows a strongly positive trend, yet head-to-head comparisons with deep RL remain limited to a handful of benchmarks. At what state-space dimensionality and reward density does the performance advantage of model-based AIF (via expected free energy exploration) erode relative to model-free RL?
-- **EFE decomposition sensitivity:** Variational message passing formulations \citep{champion2021realizing} connect EFE decomposition into risk, ambiguity, epistemic, and instrumental components to practical planning algorithms. When the scoring formula is stratified by decomposition (e.g., risk-driven vs. epistemic-driven papers), do the resulting hypothesis scores differ? This would reveal whether the field's evidence base is driven primarily by curiosity-driven exploration or goal-directed application.
-- **Energy-Based Model convergence:** To what extent do the mathematical structures underlying variational free energy minimization in Active Inference and energy function optimization in Energy-Based Models (Helmholtz machines, Boltzmann machines, VAEs) converge? Are there transferable inference algorithms or architectural insights at this intersection?
+- **Classifier calibration:** What proportion of A1 (Formal Theory) papers would be reclassified under an embedding-based or expert-annotated scheme, and how does this affect our understanding of the field's theoretical core?
+- **Falsifiability and Explicit Testing:** H1 (FEP Universality) produces a predominantly neutral evidence profile, consistent with the critique that FEP accommodates any behavior without generating distinctive predictions \citep{colombo2021free}. Can hypothesis definitions (and author reporting standards) be reformulated to require formal demonstration of a specific, refutable empirical prediction before contributing a supporting assertion?
+- **The Scalability Gap:** H5 (AIF Scalability) shows a strong positive trend, yet head-to-head comparisons with deep RL remain concentrated on a specific subset of benchmarks. Beyond what state-space dimensionality and reward density does the performance advantage of model-based AIF (via expected free energy exploration) degrade relative to model-free architectures?
+- **Evidence Cross-Pollination:** To what extent do mathematical structures underlying variational free energy minimization and energy function optimization in Energy-Based Models (e.g., VAEs, contrastive divergence) converge? Identifying shared architectural insights at this intersection could accelerate both Active Inference tools and mainstream machine learning.

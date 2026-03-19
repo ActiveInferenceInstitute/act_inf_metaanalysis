@@ -12,4 +12,4 @@ This section describes the five-stage computational meta-analysis pipeline. Each
 | 4 | `04_generate_figures.py` | All Stage 2–3 JSONs | 16 publication-ready PNGs | \hyperref[sec:methods_viz]{Visualization} |
 | 5 | `05_inject_variables.py` | All output JSONs | Rendered manuscript Markdown | \hyperref[sec:methods_viz]{Injection} |
 
-Scripts act as thin orchestrators that import methods from tested library modules and handle file I/O. All computation resides in the `src/` packages; no analysis logic is embedded in scripts.
+Scripts act as thin orchestrators that import methods from tested library modules and handle file I/O. All computation resides in the `src/` packages; no analysis logic is embedded in scripts. End-to-end pipeline execution completes in under one hour on commodity hardware (excluding LLM extraction, which depends on model size and inference backend); all stochastic components use fixed random seeds for deterministic reproduction.

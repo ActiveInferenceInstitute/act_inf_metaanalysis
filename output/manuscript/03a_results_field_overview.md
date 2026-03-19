@@ -1,6 +1,6 @@
 # Field Overview: Disciplinary Structure and Growth Dynamics \label{sec:field_overview}
 
-The Active Inference literature has undergone a phase transition. What originated in the early 2000s—building on predictive coding and Bayesian brain foundations from the late 1990s—as a niche within theoretical neuroscience has expanded rapidly into a multi-disciplinary research program spanning three primary domains and eight tracked categories. The corpus start of 2005 was chosen to capture Energy-Based Model and variational Bayesian antecedents \citep{dayan1995helmholtz, lecun2006tutorial} that preceded the formal introduction of the Free Energy Principle in 2006 \citep{friston2006free} and its subsequent full elaboration \citep{friston2010free}. Our corpus, extracted from arXiv, Semantic Scholar, and OpenAlex and deduplicated to $N = 849$ papers (2005--2026), captures the breadth, tempo, and internal architecture of this expansion (Figure \ref{fig:field_summary}).
+Annual output in the Active Inference literature rose from {{YEAR_START_PUBS}} papers in 2005 to {{PEAK_YEAR_PUBS}} papers in 2025—a transition from a niche within theoretical neuroscience to a multi-disciplinary research program spanning three primary domains and eight tracked categories. The corpus start of 2005 was chosen to capture Energy-Based Model and variational Bayesian antecedents \citep{dayan1995helmholtz, lecun2006tutorial} that preceded the formal introduction of the Free Energy Principle in 2006 \citep{friston2006free} and its subsequent full elaboration \citep{friston2010free}. Our corpus, extracted from arXiv, Semantic Scholar, and OpenAlex and deduplicated to $N = 849$ papers (2005--2026), captures the breadth, tempo, and internal architecture of this expansion (Figure \ref{fig:field_summary}).
 
 \begin{figure}[htbp]
 \centering
@@ -56,16 +56,16 @@ Detailed characterizations of each domain—including historical context, growth
 
 ## Cross-Domain Comparison
 
-| Domain | Category | Papers | Growth Trend | Key Challenge | Representative Work |
-| --- | --- | --- | --- | --- | --- |
-| A | A1: Formal | 67 (7.9\%) | Growing | Mathematical accessibility for broader field | \citep{sakthivadivel2023bayesian} |
-| A | A2: Philosophy | 68 (8.0\%) | Stable | Residual catch-all; absorbs FEP prose papers | \citep{friston2010free} |
-| B | B: Tools | 182 (21.5\%) | Rapid | Matching deep RL benchmark performance | \citep{fountas2020deep} |
-| C | C1: Neuroscience | 158 (18.7\%) | Stable | Bridging theory and empirical neuroimaging | \citep{clark2013whatever} |
-| C | C2: Robotics | 136 (16.1\%) | Growing | Real-time feasibility on embedded hardware | \citep{lanillos2021active} |
-| C | C3: Language | 63 (7.4\%) | Emerging | Demonstrating gains over existing NLP models | \citep{friston2020generative} |
-| C | C4: Psychiatry | 36 (4.3\%) | Emerging | Translating models to clinical practice | \citep{smith2021computational} |
-| C | C5: Biology | 137 (16.2\%) | Rapid | Empirical validation of theoretical proposals | \citep{kuchling2020morphogenesis} |
+| Domain | Category | Papers | Growth Trend | Maturity | Key Challenge | Representative Work |
+| --- | --- | --- | --- | --- | --- | --- |
+| A | A1: Formal | 67 (7.9\%) | Growing | Mature | Mathematical accessibility for broader field | \citep{sakthivadivel2023bayesian} |
+| A | A2: Philosophy | 68 (8.0\%) | Stable | Mature | Residual catch-all; absorbs FEP prose papers | \citep{friston2010free} |
+| B | B: Tools | 182 (21.5\%) | Rapid | Growing | Matching deep RL benchmark performance | \citep{fountas2020deep} |
+| C | C1: Neuroscience | 158 (18.7\%) | Stable | Mature | Bridging theory and empirical neuroimaging | \citep{clark2013whatever} |
+| C | C2: Robotics | 136 (16.1\%) | Growing | Growing | Real-time feasibility on embedded hardware | \citep{lanillos2021active} |
+| C | C3: Language | 63 (7.4\%) | Emerging | Nascent | Demonstrating gains over existing NLP models | \citep{friston2020generative} |
+| C | C4: Psychiatry | 36 (4.3\%) | Emerging | Nascent | Translating models to clinical practice | \citep{smith2021computational} |
+| C | C5: Biology | 137 (16.2\%) | Rapid | Nascent | Empirical validation of theoretical proposals | \citep{kuchling2020morphogenesis} |
 
 Three structural features emerge from the cross-domain comparison (Figure \ref{fig:subfield_timeline}). First, no single legacy domain dominates: Domain B (Tools \& Translation) accounts for 21.5\% of the corpus, followed by C1 (Neuroscience) at 18.7\% and C2 (Robotics) at 16.1\%. Second, Domain A (Core Theory) aggregates 15.9\% collectively (A1 + A2), while the emergent application frontiers (C3–C5) exhibit accelerating growth. Third, A1's 67 papers understate its intellectual influence—the mathematical formalisms developed in A1 shape implementations across all domains.
 

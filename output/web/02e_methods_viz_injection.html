@@ -188,7 +188,8 @@ dashboard and timeline (2 figures), assertion composition (2 figures),
 and text analytics—word cloud, PCA embeddings, term heatmap, dendrogram,
 topic-term bars, and co-occurrence matrix (6 figures). The figure
 generation script reads only JSON outputs and produces only PNG files,
-ensuring strict separation between analysis and visualization.</p>
+enforcing a strict, unidirectional data flow that prevents visualization
+operations from inadvertently modifying analytical results.</p>
 <h2 id="stage-5-manuscript-variable-injection">Stage 5: Manuscript
 Variable Injection</h2>
 <p>Stage 5 computes dynamic variables from all pipeline outputs and

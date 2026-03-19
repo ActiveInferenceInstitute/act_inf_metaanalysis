@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:20
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1575,7 +1575,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ))
-Overfull \vbox (735.55284pt too high) detected at line 174
+Overfull \vbox (844.60474pt too high) detected at line 182
  []
 
 [1
@@ -1601,7 +1601,7 @@ L3 programming layer <2026-01-19>
 Here is how much of TeX's memory you used:
  29299 strings out of 468168
  592119 string characters out of 5432816
- 1165850 words of memory out of 5000000
+ 1169850 words of memory out of 5000000
  57500 multiletter control sequences out of 15000+600000
  631240 words of font info for 70 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

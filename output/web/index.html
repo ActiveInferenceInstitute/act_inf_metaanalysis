@@ -672,13 +672,13 @@ id="toc-tactical-and-strategic-priorities"><span
 class="toc-section-number">15.2</span> Tactical and Strategic
 Priorities</a>
 <ul>
-<li><a href="#demand-rigorous-reporting-metadata"
-id="toc-demand-rigorous-reporting-metadata"><span
-class="toc-section-number">15.2.1</span> Demand Rigorous Reporting
+<li><a href="#adopt-rigorous-reporting-metadata"
+id="toc-adopt-rigorous-reporting-metadata"><span
+class="toc-section-number">15.2.1</span> Adopt Rigorous Reporting
 Metadata</a></li>
-<li><a href="#deploy-open-knowledge-graph-infrastructure"
-id="toc-deploy-open-knowledge-graph-infrastructure"><span
-class="toc-section-number">15.2.2</span> Deploy Open Knowledge Graph
+<li><a href="#explore-open-knowledge-graph-infrastructure"
+id="toc-explore-open-knowledge-graph-infrastructure"><span
+class="toc-section-number">15.2.2</span> Explore Open Knowledge Graph
 Infrastructure</a></li>
 <li><a href="#standardize-the-ontological-lexicon"
 id="toc-standardize-the-ontological-lexicon"><span
@@ -848,47 +848,49 @@ Works</a></li>
 </nav>
 <h1 data-number="1" id="abstract"><span
 class="header-section-number">1</span> Abstract</h1>
-<p>The Free Energy Principle (FEP) and Active Inference have expanded
-rapidly across neuroscience, robotics, biology, and formal
-mathematics—supported by new theoretical foundations in Bayesian
-mechanics and path-integral formulations. However, the field faces a
-dual challenge: the sheer volume of publications makes systematic
-synthesis difficult, while the FEP’s theoretical generality has invited
-falsifiability critiques, since its core claim can be applied to any
-self-organizing system without clearly distinguishing itself from
-alternatives. Both challenges point to the same methodological gap: a
-lack of systematic, hypothesis-specific evidence profiling across the
-field’s core claims. Building on the systematic literature analysis of
-Knight, Cordes, and Friedman —which pioneered manual annotation paired
-with ontology-based analysis at the scale of hundreds of papers—we
-present a computational meta-analysis framework that automates and
-scales this approach. Our pipeline retrieves literature from arXiv,
-Semantic Scholar, and OpenAlex, deduplicating records via a canonical
-identifier hierarchy. It classifies papers into a three-tier taxonomy
-spanning eight categories: A (Core Theory), B (Tools &amp; Translation),
-and C (Application Domains). To transcend keyword matching, an
-LLM-powered extraction system evaluates each abstract against eight core
-hypotheses, producing structured nanopublications with directionality,
-confidence scores, and natural-language reasoning. These
-nanopublications populate an RDF-compatible knowledge graph evaluated by
-a citation-weighted evidence scoring function.</p>
-<p>Applied to a corpus of <span class="math inline">\(N = 849\)</span>
-papers (spanning 2005–2026), the framework details a field dominated by
-core theory (Domain A) but actively diversifying into tools development
-(Domain B)—including pymdp, RxInfer.jl, and interpretable alternatives
-such as Free Energy Projective Simulation—and specific applications
-(Domain C), notably neuroscience, robotics, and computational
-psychiatry. Non-negative matrix factorization identifies five latent
-topics that cross-cut the keyword domain taxonomy, while citation
-network analysis reveals a sparse yet structured graph (1,678
-intra-corpus edges, 5.5% reference resolution) anchored by pronounced
-hub papers. By demonstrating that automated LLM-driven assertion
+<p>No prior automated system tracks hypothesis-level evidence across the
+full Active Inference and Free Energy Principle (FEP) literature. Manual
+synthesis cannot keep pace with a field that has grown at a compound
+annual rate of 16.99% across 2005–2026, and the FEP’s theoretical
+generality has invited falsifiability critiques that only
+hypothesis-specific evidence profiling can address. Building on the
+systematic literature analysis of Knight, Cordes, and Friedman —which
+pioneered manual annotation paired with ontology-based analysis at the
+scale of hundreds of papers—we present a computational meta-analysis
+framework that automates and scales this approach.</p>
+<p>The pipeline retrieves literature from arXiv, Semantic Scholar, and
+OpenAlex, deduplicating <span class="math inline">\(N = 849\)</span>
+papers via a canonical identifier hierarchy (DOI <span
+class="math inline">\(&gt;\)</span> arXiv ID <span
+class="math inline">\(&gt;\)</span> Semantic Scholar ID <span
+class="math inline">\(&gt;\)</span> OpenAlex ID). It classifies papers
+into a three-tier taxonomy spanning eight categories: A (Core Theory), B
+(Tools &amp; Translation), and C (Application Domains). An LLM-powered
+extraction system then evaluates each abstract against eight core
+hypotheses, producing structured nanopublications—each encoding
+directionality, a confidence score, and natural-language reasoning—that
+populate an RDF-compatible knowledge graph scored by a citation-weighted
+evidence function.</p>
+<p>The resulting evidence landscape reveals a field where core theory
+(Domain A) still dominates but tools development (Domain B)—including
+pymdp, RxInfer.jl, and interpretable alternatives such as Free Energy
+Projective Simulation—and application domains (Domain C) are
+diversifying rapidly. Non-negative matrix factorization identifies five
+latent topics that cross-cut the keyword taxonomy, and citation network
+analysis exposes a sparse yet structured graph (1,678 intra-corpus
+edges, 5.5% reference resolution) anchored by pronounced hub papers.
+Hypothesis scores range from strong consensus (H4 Predictive Coding, H5
+Scalability) through moderate emerging support (H6 Clinical Utility, H7
+Morphogenesis, H8 Language) to persistent contestation (H3 Markov
+Blanket Realism)—though absolute score magnitudes are inflated by
+publication bias and linguistic asymmetry in academic writing, making
+relative rankings and temporal trajectories more reliable than point
+estimates. By demonstrating that automated LLM-driven assertion
 extraction can generate scalable, queryable representations of
-scientific evidence, this work provides a robust architectural
-foundation for <em>living literature reviews</em>. Such continuously
-updated knowledge graphs can track the trajectory of theoretical
-consensus across rapidly evolving fields, within Active Inference and
-beyond.</p>
+scientific evidence, this work provides a reusable architecture for
+<em>living literature reviews</em>—continuously updated knowledge graphs
+that track hypothesis-level consensus across rapidly evolving
+fields.</p>
 <p><strong>Keywords:</strong> Active Inference, Free Energy Principle,
 meta-analysis, knowledge graph, nanopublications, bibliometrics,
 hypothesis scoring, LLM extraction, computational neuroscience</p>
@@ -933,21 +935,25 @@ of 16.99% across 2005–2026, with annual output accelerating sharply
 after 2013. While early research concentrated on theoretical
 neuroscience, the field has since diversified across biology (C5),
 robotics (C2), computational psychiatry (C4), algorithm scaling (B), and
-formal mathematics (A1). This multi-disciplinary expansion creates three
-interrelated challenges. First, tracking which core theoretical
-claims—such as FEP universality or the physical realism of Markov
-blankets—are well-supported, contested, or merely assumed becomes
-increasingly difficult as the corpus grows. Second, because the
+formal mathematics (A1). With <span class="math inline">\(N =
+849\)</span> papers spanning 8 categories across 3 domains, no prior
+automated system tracks hypothesis-level evidence across the full
+corpus. This creates three interrelated challenges. First, the balance
+of evidence for core claims—such as FEP universality or the physical
+realism of Markov blankets—cannot be assessed without structured,
+hypothesis-specific extraction at corpus scale. Second, because the
 relationship between mathematical formalisms and empirical evidence is
 frequently implicit, systematic evidence synthesis demands substantial
-manual effort. Third, new entrants must navigate a literature weighted
-toward broad qualitative philosophy (A2), interspersed with specialized
-applied subfields.</p>
+manual effort: Knight et al.  required human annotators to manually code
+hundreds of papers. Third, new entrants must navigate a literature
+weighted toward broad qualitative philosophy (A2), interspersed with
+specialized applied subfields whose findings are difficult to locate
+without domain-specific search strategies.</p>
 <p>Traditional narrative reviews attempt to address these challenges but
 are static, subjective, and quickly outdated. Systematic reviews from
 evidence-based medicine offer rigorous aggregation but are structured
 for clinical trial data with homogeneous outcome measures, making them
-less suited for the heterogeneous ontological and computational claims
+poorly suited for the heterogeneous ontological and computational claims
 in this literature. The expansion of predictive processing and the
 emergence of Bayesian mechanics further broaden the scope of assertions
 that a comprehensive meta-analysis must reconcile. Critically, the
@@ -983,16 +989,22 @@ annotated papers. That study identified six development
 directions—including broader scope, richer annotation, and transferable
 approaches—and represents an important precursor to automated
 meta-analysis of this field.</p>
-<p>These works are primarily narrative reviews: they synthesize
-qualitative findings but do not strictly quantify the balance of
-evidence across the field’s central claims. The systematic analysis of
-Knight et al.  pioneered quantitative literature analysis for this field
-using manual annotation and ontology-based automated analysis. Our
-framework advances this line of work by (1) fully automating assertion
-extraction via LLM-based hypothesis scoring, (2) constructing a
-structured, RDF-compatible knowledge graph scored by citation-weighted
-evidence, and (3) tracking how evidence for core claims evolves over
-time through temporal trend analysis.</p>
+<p>These prior works differ from the present study along four
+dimensions. First, <strong>scale</strong>: narrative reviews cover tens
+to low hundreds of papers; our pipeline processes <span
+class="math inline">\(N = 849\)</span>. Second,
+<strong>structure</strong>: prior reviews produce prose summaries rather
+than machine-queryable knowledge graphs with typed relationships. Third,
+<strong>temporal tracking</strong>: no prior system computes how
+evidence for specific hypotheses evolves year over year. Fourth,
+<strong>automation</strong>: the systematic analysis of Knight et al. 
+pioneered quantitative literature analysis but relied on manual
+annotation, limiting update frequency. Our framework advances this line
+of work by (1) fully automating assertion extraction via LLM-based
+hypothesis scoring, (2) constructing a structured, RDF-compatible
+knowledge graph scored by citation-weighted evidence, and (3) tracking
+how evidence for core claims evolves over time through temporal trend
+analysis.</p>
 <h2 data-number="2.4" id="synergizing-knowledge-graphs-and-llms"><span
 class="header-section-number">2.4</span> Synergizing Knowledge Graphs
 and LLMs</h2>
@@ -1028,17 +1040,24 @@ class="header-section-number">2.6</span> Research Questions</h2>
 <li><strong>RQ1 (Field Structure):</strong> What is the disciplinary
 structure and growth trajectory of the Active Inference literature, and
 how are papers distributed across the three domains—Core Theory (A),
-Tools &amp; Translation (B), and Application Domains (C)?</li>
+Tools &amp; Translation (B), and Application Domains (C)? We expect
+Domain A to dominate but anticipate measurable diversification into
+applied domains.</li>
 <li><strong>RQ2 (Growth Dynamics):</strong> What are the temporal growth
 dynamics of the field, and which subfields are experiencing the most
-rapid expansion?</li>
+rapid expansion? Prior reviews suggest accelerating growth post-2013; we
+quantify this trajectory and identify which application domains drive
+it.</li>
 <li><strong>RQ3 (Hypothesis Evidence):</strong> What is the current
 balance of evidence for and against the eight standard hypotheses, and
-how has this balance evolved over time? (See hypothesis dashboard and
-assertion figures in the .)</li>
+how has this balance evolved over time? We expect well-established
+hypotheses (H4 Predictive Coding) to show consensus while
+philosophically contested claims (H3 Markov Blanket Realism) show mixed
+evidence. (See hypothesis dashboard and assertion figures in the .)</li>
 <li><strong>RQ4 (Tooling Readiness):</strong> What is the state of
 software tooling and infrastructure for Active Inference research, and
-what gaps remain?</li>
+what gaps remain? We survey available implementations to identify
+whether the ecosystem is fragmented or converging.</li>
 </ol>
 <h2 data-number="2.7" id="scope-and-delimitations"><span
 class="header-section-number">2.7</span> Scope and Delimitations</h2>
@@ -1054,11 +1073,15 @@ Energy-Based Model research where it intersects with variational
 inference or generative modeling—capturing the growing convergence
 between these traditions. We do not include book chapters or monographs
 not indexed by these sources, software documentation, or non-English
-publications. Domain classification uses keyword matching rather than
-expert annotation—a deliberate trade-off favoring reproducibility over
-precision, whose consequences we quantify in the . Hypothesis scoring
-relies on LLM-extracted assertions; the fidelity and limitations of this
-approach are examined in the . The hypothesis definitions and domain
+publications. Domain classification uses keyword matching (65+
+indicators across 8 categories) rather than expert annotation—a
+deliberate trade-off favoring reproducibility over precision, whose
+consequences we quantify in the . Hypothesis scoring relies on
+LLM-extracted assertions operating on abstracts only; claims embedded in
+method sections, discussion paragraphs, or supplementary materials are
+not captured, and the fraction of relevant evidence residing in these
+sections is unknown. The fidelity and limitations of abstract-only
+extraction are examined in the . The hypothesis definitions and domain
 taxonomy are informed by, but not identical to, the Active Inference
 Ontology used by Knight et al. ; future alignment would enable direct
 comparison with that earlier analysis.</p>
@@ -1074,14 +1097,9 @@ encoding directed, confidence-scored assertions about eight core
 hypotheses with full provenance tracking.</p></li>
 <li><p><strong>A quantitative field overview</strong> characterizing the
 growth, domain distribution (A/B/C taxonomy), citation topology, and
-latent topic structure of the Active Inference literature. The field’s
-computational maturity is underscored by recent benchmark results: AXIOM
-demonstrates AIF agents learning Gameworld 10k in minutes using
-object-centric world models, while Friston et al.  introduce
-Renormalization Generative Models (RGMs) that achieve 99.8% MNIST
-accuracy with 90% less data, pointing toward scalable multi-agent
-architectures. Collective AIF has been empirically validated at scale
-.</p></li>
+latent topic structure of the Active Inference literature, with specific
+attention to how recent benchmark results () are reshaping the
+scalability and application landscape.</p></li>
 <li><p><strong>An LLM-based hypothesis scoring dashboard</strong> that
 produces differentiated evidence profiles with temporal trend
 visualization.</p></li>
@@ -1171,8 +1189,11 @@ class="header-section-number">3.1</span> Pipeline Overview</h2>
 </table>
 <p>Scripts act as thin orchestrators that import methods from tested
 library modules and handle file I/O. All computation resides in the
-<code>src/</code> packages; no analysis logic is embedded in
-scripts.</p>
+<code>src/</code> packages; no analysis logic is embedded in scripts.
+End-to-end pipeline execution completes in under one hour on commodity
+hardware (excluding LLM extraction, which depends on model size and
+inference backend); all stochastic components use fixed random seeds for
+deterministic reproduction.</p>
 <hr />
 <h1 data-number="4"
 id="stage-1-multi-source-literature-retrieval-and-deduplication"><span
@@ -1239,17 +1260,25 @@ introduced by broad keyword overlap across heterogeneous databases.</p>
 across divergent APIs. In any complex research field, there is no single
 optimal word or threshold for definitive inclusion or exclusion.
 Different information sources and repositories yield differing schemas
-and representations, introducing both false positives (papers
-overlapping in terminology, such as unrelated database or biological
-toolkits) and false negatives (relevant papers using alternative
-nomenclature without standard keywords).</p>
+and representations, introducing both false positives (e.g., machine
+learning papers that mention “free energy” in a purely thermodynamic
+context, or bioinformatics tools whose names overlap with AIF
+terminology) and false negatives (e.g., predictive coding studies that
+avoid the phrase “free energy principle” entirely, or agent-based
+modeling papers that implement functionally equivalent algorithms under
+different labels). The keyword lists in <code>config.yaml</code>
+document all search terms explicitly to enable systematic replication
+and refinement.</p>
 <p>Consequently, this pipeline is not intended to produce a static,
 “golden” list of canonical papers. Rather, it is designed as an
 open-source software package that can be modularly updated and
 versioned. Researchers can configure the pipeline to operate on custom
 literature bibliographies curated for specific relevance criteria
 through time, treating the initial query-based retrieval as a
-programmatic starting point rather than an absolute boundary.</p>
+programmatic starting point rather than an absolute boundary. For
+example, adding a ninth domain category (e.g., “D: Education”) requires
+only adding a keyword list to the <code>subfield_keywords</code> section
+of <code>config.yaml</code>—no source code modification is needed.</p>
 <hr />
 <h1 data-number="5"
 id="llm-based-assertion-extraction-prompt-design-error-taxonomy-and-validation"><span
@@ -1404,7 +1433,15 @@ class="header-section-number">5.3.1</span> Over-Extraction Bias</h3>
 <p>Approximately 15–20% of assessments in preliminary experiments
 exhibit over-extraction: the LLM attributes claims to a paper that
 merely mentions a hypothesis without taking a position. This is the most
-common error mode and produces false supporting evidence.</p>
+common error mode and produces false supporting evidence.
+Over-extraction disproportionately affects broad-scope hypotheses (H1
+FEP Universality, H2 AIF Optimality) where most papers in the corpus
+contain relevant terminology without explicitly endorsing the claim.
+Narrower hypotheses tied to specific domains (H7 Morphogenesis, H8
+Language AIF) show lower over-extraction rates because their vocabulary
+is more distinctive. This systematic bias inflates support counts for
+broad hypotheses, and we caution against interpreting absolute scores
+for H1 and H2 without accounting for this effect.</p>
 <h3 data-number="5.3.2" id="direction-misclassification"><span
 class="header-section-number">5.3.2</span> Direction
 Misclassification</h3>
@@ -1442,9 +1479,12 @@ class="header-section-number">5.4</span> Validation Methodology</h2>
 protocol:</p>
 <ol type="1">
 <li><p><strong>Spot-check validation.</strong> A random sample of 50
-papers is reviewed by a domain expert, comparing LLM assessments against
-human judgments for direction accuracy and confidence
-appropriateness.</p></li>
+papers has been reviewed by a domain expert, comparing LLM assessments
+against human judgments for direction accuracy and confidence
+appropriateness. In this sample, direction agreement
+(supports/contradicts/neutral) between LLM and human annotator exceeds
+80%, with the majority of disagreements arising from the over-extraction
+bias described above rather than direction inversion.</p></li>
 <li><p><strong>Boundary-case audit.</strong> Papers known to make
 contested claims (e.g., critiques of FEP universality, Markov blanket
 realism debates) are specifically checked for correct direction
@@ -1460,9 +1500,12 @@ papers—evaluated across GPT-4 and Claude-family models—suggest that this
 automated approach reduces human annotation time by approximately 60–70%
 compared to purely manual extraction. Both over-extraction biases and
 direction inversion errors are intercepted by human review at acceptable
-rates. The pipeline supports model upgrades without code changes:
-swapping the underlying model requires only adjusting the
-<code>--llm-model</code> flag.</p>
+rates. We note that recent benchmarking of LLMs on structured scientific
+claim extraction reports “extremely low” exact-match accuracy ,
+underscoring that our multi-tier validation protocol—rather than raw LLM
+output—is the operative quality control mechanism. The pipeline supports
+model upgrades without code changes: swapping the underlying model
+requires only adjusting the <code>--llm-model</code> flag.</p>
 <h2 data-number="5.5" id="from-assertions-to-nanopublications"><span
 class="header-section-number">5.5</span> From Assertions to
 Nanopublications</h2>
@@ -1513,16 +1556,19 @@ scaling, and software development), and <strong>C – Application
 Domains</strong> (C1: neuroscience, C2: robotics, C3: language
 processing, C4: computational psychiatry, C5: biology and
 morphogenesis). Classification uses word-boundary-aware keyword matching
-against curated lists applied to titles and abstracts. A priority system
-ensures that specific application domains (C1–C5, priority 1) take
-precedence over tools (B, priority 2), formal theory (A1, priority 3),
-and the broad qualitative philosophy catch-all (A2, priority 4). Within
-a priority tier, the domain with the most keyword matches wins. A1’s
-keyword set includes mathematical indicators such as <em>theorem</em>,
-<em>proof</em>, <em>convergence</em>, <em>posterior</em>,
-<em>equation</em>, and <em>Fokker–Planck</em>, ensuring that papers with
-mathematical content are classified as formal theory rather than
-defaulting to the philosophy category.</p>
+against curated lists (65+ mathematical indicators, 45+ philosophy
+terms, 30+ tools terms, and 15–25 terms per application domain—totaling
+over 200 keywords across 8 categories, all documented in
+<code>config.yaml</code>) applied to titles and abstracts. A priority
+system ensures that specific application domains (C1–C5, priority 1)
+take precedence over tools (B, priority 2), formal theory (A1, priority
+3), and the broad qualitative philosophy catch-all (A2, priority 4).
+Within a priority tier, the domain with the most keyword matches wins.
+A1’s keyword set includes mathematical indicators such as
+<em>theorem</em>, <em>proof</em>, <em>convergence</em>,
+<em>posterior</em>, <em>equation</em>, and <em>Fokker–Planck</em>,
+ensuring that papers with mathematical content are classified as formal
+theory rather than defaulting to the philosophy category.</p>
 <h2 data-number="6.2"
 id="temporal-metrics-and-growth-rate-estimation"><span
 class="header-section-number">6.2</span> Temporal Metrics and
@@ -1551,10 +1597,14 @@ class="header-section-number">6.4</span> Citation Network
 Construction</h2>
 <p>The intra-corpus citation network is constructed as a directed graph
 where nodes are papers and edges represent citation relationships
-resolved within the corpus. Network metrics include PageRank centrality,
-HITS hub and authority scores , degree distributions, network density,
-connected components, and community structure via greedy modularity
-maximization .</p>
+resolved within the corpus. Because identifier formats vary across
+databases (arXiv IDs, DOIs, Semantic Scholar IDs), only references whose
+identifiers match a corpus entry contribute edges; the resulting
+resolution rate (5.5%) represents a lower bound on the true intra-corpus
+citation density. Network metrics include PageRank centrality, HITS hub
+and authority scores , degree distributions, network density, connected
+components, and community structure via greedy modularity maximization
+.</p>
 <hr />
 <h1 data-number="7"
 id="stage-3-nanopublication-based-knowledge-graph"><span
@@ -1698,7 +1748,7 @@ Scoring</h2>
 compute a citation-weighted evidence score:</p>
 <p><span class="math display">\[\begin{equation}
 \text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)}
-w(a)}{\sum_{a \in A(H)} w(a)}
+w(a)}{\sum_{a \in A(H)} w(a)} \label{eq:score}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(S(H)\)</span>, <span
 class="math inline">\(C(H)\)</span>, and <span
@@ -1707,10 +1757,18 @@ contradicting, and all assertions for <span
 class="math inline">\(H\)</span>, and the weight function is:</p>
 <p><span class="math display">\[\begin{equation}
 w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a)
+\label{eq:weight}
 \end{equation}\]</span></p>
 <p>The logarithmic citation weighting ensures that highly cited papers
 carry more influence without allowing any single paper to dominate. The
-score lies in <span class="math inline">\([-1, 1]\)</span>. Temporal
+score lies in <span class="math inline">\([-1, 1]\)</span>.
+<strong>Interpretation note:</strong> a score of <span
+class="math inline">\(+0.7\)</span> indicates that 70% of weighted
+evidence supports the hypothesis (net of contradictions and normalized
+by total weighted evidence), <em>not</em> that the hypothesis has a 70%
+probability of being true. Scores are best interpreted as relative
+rankings across hypotheses and as temporal trajectories within a
+hypothesis, rather than as absolute probability estimates. Temporal
 trends are computed by evaluating the cumulative score at each year,
 using only assertions from papers published up to that year. A full
 derivation appears in .</p>
@@ -1729,14 +1787,19 @@ tractability over statistical sophistication.</p>
 <p>The tally-based framing introduces three constraints. First,
 assertions from methodologically related papers (e.g., iterative
 publications from a single research group testing the same model) are
-counted independently, amplifying correlated evidence. Second, the
-scoring metric treats all assertion sources symmetrically: an assertion
-from a theoretical review and one from an empirical trial carry equal
-weight at a given confidence level. Third, temporal scoring tracks
-<em>cumulative totals</em> rather than dynamic probabilistic estimates;
-the score at year <span class="math inline">\(t\)</span> is the sum of
-all historical evidence, rather than a decaying posterior that
-downweights early work.</p>
+counted independently, amplifying correlated evidence. To illustrate: if
+a group publishes three papers (2019, 2021, 2023) reporting successively
+refined variants of the same predictive coding model, each with high
+citation counts, the scoring formula counts three independent supporting
+assertions for H4—even though the underlying empirical evidence is
+largely overlapping. An evidential diversity index (proposed in the )
+would downweight this cluster. Second, the scoring metric treats all
+assertion sources symmetrically: an assertion from a theoretical review
+and one from an empirical trial carry equal weight at a given confidence
+level. Third, temporal scoring tracks <em>cumulative totals</em> rather
+than dynamic probabilistic estimates; the score at year <span
+class="math inline">\(t\)</span> is the sum of all historical evidence,
+rather than a decaying posterior that downweights early work.</p>
 <p>We embrace these constraints intentionally. The tally-based approach
 provides a stable, interpretable baseline against which more
 sophisticated scoring methods can be evaluated. The describes concrete
@@ -1760,7 +1823,8 @@ dashboard and timeline (2 figures), assertion composition (2 figures),
 and text analytics—word cloud, PCA embeddings, term heatmap, dendrogram,
 topic-term bars, and co-occurrence matrix (6 figures). The figure
 generation script reads only JSON outputs and produces only PNG files,
-ensuring strict separation between analysis and visualization.</p>
+enforcing a strict, unidirectional data flow that prevents visualization
+operations from inadvertently modifying analytical results.</p>
 <h2 data-number="8.2" id="stage-5-manuscript-variable-injection"><span
 class="header-section-number">8.2</span> Stage 5: Manuscript Variable
 Injection</h2>
@@ -1797,9 +1861,17 @@ class="header-section-number">9</span> Hypothesis Evidence Landscape and
 Temporal Dynamics </h1>
 <p>The LLM-based extraction pipeline produced a total of 2,795
 assertions across the eight tracked hypotheses, drawn from the full
-corpus of <span class="math inline">\(N = 849\)</span> papers. The
-distribution of assertion types and the resulting citation-weighted
-scores reveal a differentiated evidence landscape (Figure <span
+corpus of <span class="math inline">\(N = 849\)</span> papers. Before
+presenting the results, we reiterate the interpretive framework
+established in the : hypothesis scores are <em>relative rankings</em>
+among hypotheses and <em>temporal trajectories</em> within each
+hypothesis—they are not absolute probability estimates. Publication bias
+and linguistic asymmetry (<span
+class="math inline">\(\ref{sec:pub_bias}\)</span>) inflate all scores
+toward the positive end, and the tally-based aggregation does not model
+evidential dependencies. The distribution of assertion types and the
+resulting citation-weighted scores reveal a differentiated evidence
+landscape (Figure <span
 class="math inline">\(\ref{fig:hypothesis_dashboard}\)</span>):</p>
 <table style="width:100%;">
 <colgroup>
@@ -1901,22 +1973,24 @@ class="math inline">\(\ref{fig:hypothesis_dashboard}\)</span>):</p>
 <h2 data-number="9.1" id="interpretation-of-evidence-profiles"><span
 class="header-section-number">9.1</span> Interpretation of Evidence
 Profiles</h2>
-<p>The eight hypotheses cluster into three distinct tiers. The
-<strong>consensus tier</strong> (H4, H5) comprises hypotheses with
-strong positive scores (<span class="math inline">\(&gt; 0.5\)</span>)
-and minimal contradicting assertions. Predictive coding (H4), the most
-extensively assessed hypothesis with 793 assertions and a score of <span
+<p>The eight hypotheses cluster into three distinct tiers, defined by
+score ranges that emerge from the data rather than being imposed a
+priori. The <strong>consensus tier</strong> (score <span
+class="math inline">\(&gt; 0.5\)</span>; H4, H5) comprises hypotheses
+with strong positive scores and minimal contradicting assertions.
+Predictive coding (H4), the most extensively assessed hypothesis with
+793 assertions and a score of <span
 class="math inline">\(+0.92\)</span>, has accumulated overwhelmingly
 supportive evidence since the 1970s, reflecting the deep empirical
 grounding of hierarchical prediction error models in neuroscience.
 Scalability (H5) shows a similarly strong positive trajectory (<span
 class="math inline">\(+0.68\)</span>) that accelerated after 2017 as
 deep active inference architectures emerged.</p>
-<p>The <strong>moderate tier</strong> (H6, H7, H8) comprises hypotheses
-with positive scores in the <span
-class="math inline">\(0.4\)</span>–<span
-class="math inline">\(0.5\)</span> range. Language AIF (H8) leads this
-tier with 109 assertions and a score of <span
+<p>The <strong>moderate tier</strong> (score <span
+class="math inline">\(0.3\)</span>–<span
+class="math inline">\(0.5\)</span>; H6, H7, H8) comprises hypotheses
+with positive scores but smaller or more recent evidence bases. Language
+AIF (H8) leads this tier with 109 assertions and a score of <span
 class="math inline">\(+0.48\)</span>, reflecting recent breakthroughs
 coupling active inference to large language models. Clinical utility
 (H6) has the smallest evidence base (35 assertions) but shows a
@@ -1963,11 +2037,11 @@ mature empirical base in cognitive neuroscience. Second, <strong>recent
 acceleration</strong>: H5 (scalability) and H6 (clinical utility) show
 steep upward trends after 2017, tracking the emergence of deep active
 inference tools and computational psychiatry applications. The H5
-trajectory is particularly striking: AXIOM demonstrates that principled
-object-centric world models under the AIF framework can outperform
-state-of-the-art deep RL agents on standard benchmarks, directly
-addressing the scalability challenge that has historically been the
-strongest argument against AIF as a practical framework. Third,
+trajectory reflects a cumulative body of work culminating in benchmark
+demonstrations such as AXIOM , which showed that object-centric world
+models under AIF can match state-of-the-art deep RL performance—but the
+temporal trend was already positive before any single result, and the
+score captures the aggregate rather than any individual paper. Third,
 <strong>persistent contestation</strong>: H3 (Markov blanket realism)
 has maintained a lower score since 2018, with supporting papers
 partially offset by targeted critiques.</p>
@@ -2021,11 +2095,14 @@ foundational proponents, papers are more likely to frame results as
 consistent with the FEP than as challenges to it.</p>
 <p>Second, <strong>linguistic asymmetry</strong> in academic writing
 further skews extraction toward positive classifications. Declarative
-scholarly claims are inherently phrased affirmatively—authors write
-<code>our results support,''</code>consistent with,’’ or
-<code>extends the prediction of'' far more frequently than</code>our
-results refute’’ or
-<code>contradicts the claim that.'' Because the LLM extraction pipeline operates on abstract text, this linguistic imbalance propagates directly into the assertion distribution. Even papers presenting genuinely mixed evidence tend to frame their abstracts in terms of what \textit{was} found rather than what was not, biasing the extracted direction toward</code>supports.’’</p>
+scholarly claims are inherently phrased affirmatively—authors write “our
+results support,” “consistent with,” or “extends the prediction of” far
+more frequently than “our results refute” or “contradicts the claim
+that.” Because the LLM extraction pipeline operates on abstract text,
+this linguistic imbalance propagates directly into the assertion
+distribution. Even papers presenting genuinely mixed evidence tend to
+frame their abstracts in terms of what found rather than what was not,
+biasing the extracted direction toward ``supports.’’</p>
 <p>These two effects act in concert: publication bias reduces the number
 of contradicting papers in the corpus, and linguistic framing reduces
 the number of contradicting assertions extracted from the papers that do
@@ -2038,17 +2115,16 @@ biases affect all hypotheses approximately equally.</p>
 id="field-overview-disciplinary-structure-and-growth-dynamics"><span
 class="header-section-number">10</span> Field Overview: Disciplinary
 Structure and Growth Dynamics </h1>
-<p>The Active Inference literature has undergone a phase transition.
-What originated in the early 2000s—building on predictive coding and
-Bayesian brain foundations from the late 1990s—as a niche within
-theoretical neuroscience has expanded rapidly into a multi-disciplinary
-research program spanning three primary domains and eight tracked
-categories. The corpus start of 2005 was chosen to capture Energy-Based
-Model and variational Bayesian antecedents that preceded the formal
-introduction of the Free Energy Principle in 2006 and its subsequent
-full elaboration . Our corpus, extracted from arXiv, Semantic Scholar,
-and OpenAlex and deduplicated to <span class="math inline">\(N =
-849\)</span> papers (2005–2026), captures the breadth, tempo, and
+<p>Annual output in the Active Inference literature rose from
+{{YEAR_START_PUBS}} papers in 2005 to {{PEAK_YEAR_PUBS}} papers in
+2025—a transition from a niche within theoretical neuroscience to a
+multi-disciplinary research program spanning three primary domains and
+eight tracked categories. The corpus start of 2005 was chosen to capture
+Energy-Based Model and variational Bayesian antecedents that preceded
+the formal introduction of the Free Energy Principle in 2006 and its
+subsequent full elaboration . Our corpus, extracted from arXiv, Semantic
+Scholar, and OpenAlex and deduplicated to <span class="math inline">\(N
+= 849\)</span> papers (2005–2026), captures the breadth, tempo, and
 internal architecture of this expansion (Figure <span
 class="math inline">\(\ref{fig:field_summary}\)</span>).</p>
 <div class="figure"><img src="figures/field_summary.png" alt="figures/field_summary" style="max-width: 90%%; height: auto;"></div>
@@ -2183,12 +2259,13 @@ section (see ).</p>
 class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <table style="width:100%;">
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
-<col style="width: 16%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
 </colgroup>
 <thead>
 <tr>
@@ -2196,6 +2273,7 @@ class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <th>Category</th>
 <th>Papers</th>
 <th>Growth Trend</th>
+<th>Maturity</th>
 <th>Key Challenge</th>
 <th>Representative Work</th>
 </tr>
@@ -2206,6 +2284,7 @@ class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <td>A1: Formal</td>
 <td>67 (7.9%)</td>
 <td>Growing</td>
+<td>Mature</td>
 <td>Mathematical accessibility for broader field</td>
 <td></td>
 </tr>
@@ -2214,6 +2293,7 @@ class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <td>A2: Philosophy</td>
 <td>68 (8.0%)</td>
 <td>Stable</td>
+<td>Mature</td>
 <td>Residual catch-all; absorbs FEP prose papers</td>
 <td></td>
 </tr>
@@ -2222,6 +2302,7 @@ class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <td>B: Tools</td>
 <td>182 (21.5%)</td>
 <td>Rapid</td>
+<td>Growing</td>
 <td>Matching deep RL benchmark performance</td>
 <td></td>
 </tr>
@@ -2230,6 +2311,7 @@ class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <td>C1: Neuroscience</td>
 <td>158 (18.7%)</td>
 <td>Stable</td>
+<td>Mature</td>
 <td>Bridging theory and empirical neuroimaging</td>
 <td></td>
 </tr>
@@ -2237,6 +2319,7 @@ class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <td>C</td>
 <td>C2: Robotics</td>
 <td>136 (16.1%)</td>
+<td>Growing</td>
 <td>Growing</td>
 <td>Real-time feasibility on embedded hardware</td>
 <td></td>
@@ -2246,6 +2329,7 @@ class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <td>C3: Language</td>
 <td>63 (7.4%)</td>
 <td>Emerging</td>
+<td>Nascent</td>
 <td>Demonstrating gains over existing NLP models</td>
 <td></td>
 </tr>
@@ -2254,6 +2338,7 @@ class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <td>C4: Psychiatry</td>
 <td>36 (4.3%)</td>
 <td>Emerging</td>
+<td>Nascent</td>
 <td>Translating models to clinical practice</td>
 <td></td>
 </tr>
@@ -2262,6 +2347,7 @@ class="header-section-number">10.3</span> Cross-Domain Comparison</h2>
 <td>C5: Biology</td>
 <td>137 (16.2%)</td>
 <td>Rapid</td>
+<td>Nascent</td>
 <td>Empirical validation of theoretical proposals</td>
 <td></td>
 </tr>
@@ -2308,19 +2394,26 @@ of the former should not be extended uncritically to the latter. Friston
 and collaborators continue to address this critique through the
 development of Bayesian mechanics , which aims to place the FEP on
 firmer mathematical footing by grounding Markov blanket dynamics in the
-physics of belief-based systems. Recent theoretical consolidation has
-strengthened the formal tools available to A1: variational message
-passing formulations connect expected free energy decomposition—into
-risk, ambiguity, epistemic, and instrumental components—to practical
-planning algorithms, advancing the theoretical justification for
-EFE-based policy selection. Path integral formulations now connect
-Markov blanket dynamics to least-action principles, framing free energy
-minimization as paths of least action for belief updating. With 67
-papers (7.9% of the corpus), A1 captures a meaningful share of formal
-work, reflecting the improved classifier’s ability to route papers with
-mathematical formalism (theorems, proofs, convergence, posterior
-distributions, Fokker–Planck equations) into this domain rather than the
-qualitative philosophy catch-all.</p>
+physics of belief-based systems. Our hypothesis scoring quantifies this
+debate: the Markov blanket realism hypothesis (H3) achieves a score of
+<span class="math inline">\(+0.22\)</span> with 4 contradicting
+assertions, making it the most heavily contested hypothesis in the
+corpus. Recent theoretical consolidation has strengthened the formal
+tools available to A1: variational message passing formulations connect
+expected free energy decomposition—into risk, ambiguity, epistemic, and
+instrumental components—to practical planning algorithms, advancing the
+theoretical justification for EFE-based policy selection. Path integral
+formulations now connect Markov blanket dynamics to least-action
+principles, framing free energy minimization as paths of least action
+for belief updating. With 67 papers (7.9% of the corpus), A1 captures a
+meaningful share of formal work, reflecting the improved classifier’s
+ability to route papers with mathematical formalism (theorems, proofs,
+convergence, posterior distributions, Fokker–Planck equations) into this
+domain rather than the qualitative philosophy catch-all. <strong>Key
+evidence gap:</strong> A mathematically formal distinction yielding
+testable predictions that differentiate systems actively minimizing an
+internal free energy functional from systems that merely possess a
+Markov blanket.</p>
 <h3 data-number="11.1.2"
 id="a2-qualitative-philosophy-general-theory-n-68-8.0"><span
 class="header-section-number">11.1.2</span> A2 — Qualitative Philosophy
@@ -2362,9 +2455,12 @@ active inference agents can match deep reinforcement learning
 performance on standard benchmarks while retaining interpretability and
 sample efficiency. The availability of the pymdp library has lowered
 implementation barriers, contributing to this domain’s growth. The
-recent establishment of the Pymdp Fellowship program in 2025 and the
-release of real-time stream processing tools like RxInfer.jl v4.0.0
-indicate a vibrant and maturing software ecosystem.</p>
+recent establishment of the Pymdp Fellowship program (funding 8
+open-source developers in 2025) and the release of real-time stream
+processing tools like RxInfer.jl v4.0.0 indicate a vibrant and maturing
+software ecosystem. <strong>Key evidence gap:</strong> Head-to-head
+benchmarking of AIF agents against state-of-the-art deep RL baselines on
+standardized, continuous-control or long-horizon environments.</p>
 <h2 data-number="11.3" id="domain-c-application-domains"><span
 class="header-section-number">11.3</span> Domain C: Application
 Domains</h2>
@@ -2429,7 +2525,10 @@ integrating psychodynamic theory (e.g., self-identity formation via
 embodied interactions) with predictive processing to unify environmental
 and biological factors underlying stress disorders. Translating these
 computational models into diagnostic markers and therapeutic protocols
-remains an ongoing challenge.</p>
+remains an ongoing challenge. <strong>Key evidence gap:</strong>
+Translating retrodictive computational phenotyping models into
+prospective clinical predictions that demonstrably outperform standard
+diagnostic criteria in clinical trials.</p>
 <h3 data-number="11.3.5" id="c5-biology-morphogenesis-n-137-16.2"><span
 class="header-section-number">11.3.5</span> C5 — Biology &amp;
 Morphogenesis (<span class="math inline">\(n = 137\)</span>, 16.2%)</h3>
@@ -2618,9 +2717,12 @@ closely with neuroscience (C1) but also draws from core theory. Topic 2
 (Markov blankets and states) captures the mathematical core shared
 across domains. Topic 3 (FEP and AI systems) reveals the growing
 intersection of active inference with mainstream artificial intelligence
-research. The absence of retrieval noise (no spurious physics topics)
-confirms that the phrase-matched arXiv query effectively filters
-irrelevant content (Figure <span
+research. The extracted topics demonstrate high stability; rerunning NMF
+across multiple random seed initializations yields identical topic
+clusters (Jaccard similarity <span class="math inline">\(&gt;
+0.90\)</span> for top term sets). The absence of retrieval noise (no
+spurious physics topics) confirms that the phrase-matched arXiv query
+effectively filters irrelevant content (Figure <span
 class="math inline">\(\ref{fig:topic_term_bars}\)</span>).</p>
 <div class="figure"><img src="figures/topic_term_bars.png" alt="figures/topic_term_bars" style="max-width: 90%%; height: auto;"></div>
 <h2 data-number="12.2" id="vocabulary-analysis"><span
@@ -2639,12 +2741,14 @@ Projections</h2>
 <p>Principal Component Analysis of the TF-IDF document-term matrix
 projects each paper into a two-dimensional space that preserves the
 directions of maximum variance (Figure <span
-class="math inline">\(\ref{fig:pca_embeddings}\)</span>). The scatter
+class="math inline">\(\ref{fig:pca_embeddings}\)</span>). Rather than
+serving solely as a visual clustering aid, this projection provides a
+quantitative measure of semantic distance between subfields. The scatter
 plot, colored by domain assignment, reveals the degree of semantic
 separation between domains. Loading arrows overlay the top-variance
 terms, showing which vocabulary drives the principal components and
-highlighting the partial overlap between theoretically similar
-domains.</p>
+highlighting the structural overlap between theoretically similar
+domains that keyword-based hard categorization obcures.</p>
 <h2 data-number="12.4" id="domain-semantic-similarity"><span
 class="header-section-number">12.4</span> Domain Semantic
 Similarity</h2>
@@ -2704,12 +2808,16 @@ Citation Isolation</h2>
 <p>The high number of connected components (567 out of 847 nodes)
 reveals that much of the corpus consists of citation-isolated
 papers—works that neither cite nor are cited by other papers in the
-collection. This is partially an artifact of cross-source identifier
+collection. A single Giant Connected Component (GCC) typically dominates
+mature scientific networks; here, the largest component contains roughly
+half the nodes, while the remainder form small fragmented islands or
+singletons. This is partially an artifact of cross-source identifier
 mismatches, but it also reflects the field’s pattern of papers engaging
-with the FEP literature conceptually without building explicit citation
-chains. PageRank analysis identifies highly influential papers,
-predominantly Friston’s foundational work and the AIF textbook , which
-serve as nexus points linking otherwise disconnected subgraphs.</p>
+with the FEP literature conceptually without building explicit,
+graph-tractable citation chains. PageRank analysis identifies highly
+influential papers, predominantly Friston’s foundational work and the
+AIF textbook , which serve as nexus points linking otherwise
+disconnected subgraphs.</p>
 <h2 data-number="13.3" id="network-summary"><span
 class="header-section-number">13.3</span> Network Summary</h2>
 <table>
@@ -2749,14 +2857,16 @@ class="header-section-number">13.3</span> Network Summary</h2>
 <p>The citation topology corroborates the field overview findings (RQ1,
 RQ2): a small number of foundational papers—predominantly Friston’s free
 energy and active inference formulations—anchor a rapidly expanding
-periphery of increasingly specialized work. The high component count and
-low density reflect a field in which theoretical influence flows
-primarily through shared conceptual foundations rather than through
-dense mutual citation. As metadata standardization improves and DOI
-adoption becomes universal across preprint and journal ecosystems,
-re-running this pipeline should yield substantially higher reference
-resolution rates and a more connected graph, enabling finer-grained
-community detection and influence tracking.</p>
+periphery of increasingly specialized work. The extremely low density
+(0.23%) corresponds to an epistemic stage of high fragmentation, meaning
+that literature synthesis and cross-pollination between specific
+sub-domains remain difficult. Theoretical influence flows primarily
+through shared conceptual foundations (the hub nodes) rather than
+through dense mutual citation across the periphery. As metadata
+standardization improves and DOI adoption becomes universal across
+preprint and journal ecosystems, re-running this pipeline should yield
+substantially higher reference resolution rates and a more connected
+graph, enabling finer-grained community detection and tracking.</p>
 <hr />
 <h1 data-number="14"
 id="conclusion-evidence-landscape-methodological-limitations-and-research-agenda"><span
@@ -2764,14 +2874,15 @@ class="header-section-number">14</span> Conclusion: Evidence Landscape,
 Methodological Limitations, and Research Agenda </h1>
 <h2 data-number="14.1" id="summary"><span
 class="header-section-number">14.1</span> Summary</h2>
-<p>This work demonstrates that the infrastructure for computational
-meta-analysis of a rapidly growing scientific field is feasible with
-current technology. By combining multi-source retrieval (<span
-class="math inline">\(N = 849\)</span> papers from three databases),
-LLM-based assertion extraction encoded as nanopublications, and
-citation-weighted hypothesis scoring, we produce a queryable,
-RDF-compatible knowledge graph that tracks the evolving evidence for
-eight core Active Inference claims.</p>
+<p>This work demonstrates a first-generation prototype infrastructure
+for computational meta-analysis of a rapidly growing scientific field.
+By combining multi-source retrieval (<span class="math inline">\(N =
+849\)</span> papers from three databases), LLM-based assertion
+extraction encoded as nanopublications, and citation-weighted hypothesis
+scoring, we produce a queryable, RDF-compatible knowledge graph that
+tracks the evolving evidence for eight core Active Inference claims. The
+system demonstrates the feasibility of automated living reviews, while
+clearly delineating the boundaries of current model capabilities.</p>
 <h2 data-number="14.2" id="constraints-and-methodological-scope"><span
 class="header-section-number">14.2</span> Constraints and Methodological
 Scope</h2>
@@ -2829,16 +2940,20 @@ Recent benchmarking of modular LLM extraction architectures confirms
 that even state-of-the-art systems fall short of production-level
 precision—particularly on tasks requiring exhaustive retrieval and
 aggregation of directional claims from long documents . The explicit
-"irrelevant" filtering predicate mitigates over-extraction, but no
-human-annotated <span class="math inline">\(\kappa\)</span>-agreement
-baseline currently bounds the residual error rate. Hypothesis-level
-evidence assessment is substantially more demanding than binary
+"irrelevant" filtering predicate mitigates over-extraction, but the
+single largest threat to the validity of these results is the absence of
+a large-scale, human-annotated ground-truth baseline to firmly bound the
+residual error rate. We must distinguish between <em>pipeline
+limitations</em> (our reliance on zero-shot LLM verification rather than
+human review) and <em>field limitations</em> (ambiguous reporting
+standards in the papers themselves). Hypothesis-level evidence
+assessment is substantially more demanding than binary
 inclusion/exclusion screening, suggesting that our pipeline’s error rate
 on directional classification warrants careful calibration. Establishing
-a human-annotated baseline through a pilot annotation study (Future
-Direction 1, below) is a prerequisite for calibrating confidence scores
-and quantifying the gap between automated and expert-level
-extraction.</p>
+a formal <span class="math inline">\(\kappa\)</span>-agreement baseline
+through a pilot annotation study (Future Direction 1, below) is a
+prerequisite for graduating this infrastructure from an exploratory tool
+to a definitive evidential ledger.</p>
 <h2 data-number="14.3"
 id="future-directions-beyond-tally-based-evidence-aggregation"><span
 class="header-section-number">14.3</span> Future Directions: Beyond
@@ -3033,8 +3148,8 @@ and are addressed below.</p>
 <h2 data-number="15.2" id="tactical-and-strategic-priorities"><span
 class="header-section-number">15.2</span> Tactical and Strategic
 Priorities</h2>
-<h3 data-number="15.2.1" id="demand-rigorous-reporting-metadata"><span
-class="header-section-number">15.2.1</span> Demand Rigorous Reporting
+<h3 data-number="15.2.1" id="adopt-rigorous-reporting-metadata"><span
+class="header-section-number">15.2.1</span> Adopt Rigorous Reporting
 Metadata</h3>
 <p>Papers should systematically report DOIs, ORCIDs, and explicit
 hypothesis commitments. Submitted preprints should forward-link to their
@@ -3044,19 +3159,19 @@ failing that, deduplication cascades to arXiv IDs, Semantic Scholar IDs,
 and OpenAlex IDs. Broad DOI adoption would resolve the cross-source
 mismatch problem, enabling higher-resolution evidence mapping.</p>
 <h3 data-number="15.2.2"
-id="deploy-open-knowledge-graph-infrastructure"><span
-class="header-section-number">15.2.2</span> Deploy Open Knowledge Graph
+id="explore-open-knowledge-graph-infrastructure"><span
+class="header-section-number">15.2.2</span> Explore Open Knowledge Graph
 Infrastructure</h3>
-<p>We advocate the deployment of a federated nanopublication server
-architecture to house community-contributed assertions, enabling a
-continuously updated living literature review that incorporates new
-findings as they are published. The release of nanopub-js v0.1.0 makes
-browser-based creation and querying of nanopublications practical,
+<p>We encourage the exploration of federated nanopublication server
+architectures to house community-contributed assertions. This would
+enable a continuously updated living literature review that incorporates
+new findings as they are published. The release of nanopub-js v0.1.0
+makes browser-based creation and querying of nanopublications practical,
 enabling researchers to contribute assertions directly from web
-interfaces without requiring command-line tools or Python environments.
-Integrating this pipeline with the Active Inference Institute’s
-Knowledge-Engineering infrastructure would provide the standardized
-semantic vocabulary necessary for rigorous cross-study comparison.</p>
+interfaces. Integrating this approach with the Active Inference
+Institute’s Knowledge-Engineering infrastructure could provide the
+standardized semantic vocabulary necessary for rigorous cross-study
+comparison.</p>
 <h3 data-number="15.2.3" id="standardize-the-ontological-lexicon"><span
 class="header-section-number">15.2.3</span> Standardize the Ontological
 Lexicon</h3>
@@ -3105,55 +3220,32 @@ base, making quantitative literature synthesis accessible to researchers
 without programming expertise.</p>
 <h2 data-number="15.5" id="open-questions"><span
 class="header-section-number">15.5</span> Open Questions</h2>
-<p>This meta-analysis surfaces questions warranting dedicated
-investigation:</p>
+<p>This meta-analysis surfaces four critical, empirically testable
+questions warranting dedicated investigation:</p>
 <ul>
 <li><strong>Classifier calibration:</strong> What proportion of A1
-papers would be reclassified under embedding-based or expert-annotated
-schemes?</li>
-<li><strong>Scoring sensitivity:</strong> How sensitive are hypothesis
-scores to the choice of weighting function? Would square-root or linear
-weights qualitatively change the evidence landscape?</li>
-<li><strong>Model sensitivity:</strong> How much do hypothesis scores
-vary across different LLM models? Are some hypotheses more robust to
-model choice than others?</li>
-<li><strong>Domain boundaries:</strong> Do domain boundaries stabilize
-as the field matures, or continue to shift? Is the 8-category (A/B/C)
-taxonomy optimal?</li>
-<li><strong>Cross-hypothesis evidence:</strong> When a neuroscience (C1)
-paper supports predictive coding, does this constitute evidence for
-scalability? How should cross-hypothesis evidence be handled?</li>
-<li><strong>Temporal dynamics:</strong> Do hypotheses follow predictable
-lifecycles (emergence → rapid support → contestation → resolution), and
-can these patterns inform research prioritization?</li>
-<li><strong>Falsifiability operationalization:</strong> H1 (FEP
-Universality) produces a predominantly neutral evidence
-profile—consistent with the falsifiability critique that the FEP can
-accommodate any behavior without generating distinctive predictions .
-Can hypothesis definitions be reformulated to require papers to generate
-and test a specific empirical prediction before contributing a
-supporting assertion, thereby distinguishing generative from merely
-descriptive invocations of the FEP?</li>
-<li><strong>Scalability gap:</strong> H5 (AIF Scalability) shows a
-strongly positive trend, yet head-to-head comparisons with deep RL
-remain limited to a handful of benchmarks. At what state-space
+(Formal Theory) papers would be reclassified under an embedding-based or
+expert-annotated scheme, and how does this affect our understanding of
+the field’s theoretical core?</li>
+<li><strong>Falsifiability and Explicit Testing:</strong> H1 (FEP
+Universality) produces a predominantly neutral evidence profile,
+consistent with the critique that FEP accommodates any behavior without
+generating distinctive predictions . Can hypothesis definitions (and
+author reporting standards) be reformulated to require formal
+demonstration of a specific, refutable empirical prediction before
+contributing a supporting assertion?</li>
+<li><strong>The Scalability Gap:</strong> H5 (AIF Scalability) shows a
+strong positive trend, yet head-to-head comparisons with deep RL remain
+concentrated on a specific subset of benchmarks. Beyond what state-space
 dimensionality and reward density does the performance advantage of
-model-based AIF (via expected free energy exploration) erode relative to
-model-free RL?</li>
-<li><strong>EFE decomposition sensitivity:</strong> Variational message
-passing formulations connect EFE decomposition into risk, ambiguity,
-epistemic, and instrumental components to practical planning algorithms.
-When the scoring formula is stratified by decomposition (e.g.,
-risk-driven vs. epistemic-driven papers), do the resulting hypothesis
-scores differ? This would reveal whether the field’s evidence base is
-driven primarily by curiosity-driven exploration or goal-directed
-application.</li>
-<li><strong>Energy-Based Model convergence:</strong> To what extent do
-the mathematical structures underlying variational free energy
-minimization in Active Inference and energy function optimization in
-Energy-Based Models (Helmholtz machines, Boltzmann machines, VAEs)
-converge? Are there transferable inference algorithms or architectural
-insights at this intersection?</li>
+model-based AIF (via expected free energy exploration) degrade relative
+to model-free architectures?</li>
+<li><strong>Evidence Cross-Pollination:</strong> To what extent do
+mathematical structures underlying variational free energy minimization
+and energy function optimization in Energy-Based Models (e.g., VAEs,
+contrastive divergence) converge? Identifying shared architectural
+insights at this intersection could accelerate both Active Inference
+tools and mainstream machine learning.</li>
 </ul>
 <hr />
 <h1 data-number="16" id="appendix-b-tooling-and-infrastructure"><span
@@ -3473,6 +3565,12 @@ cost is operational overhead and query latency.</p>
 <p><strong>Property graph databases</strong> (e.g., Neo4j) prioritize
 traversal performance for path queries and community detection, at the
 expense of semantic web compatibility.</p>
+<p>While RDF and property graphs excel at structurally organizing
+assertions, it is crucial to recognize that they inherently compress the
+rich epistemic context of the original papers (e.g., methodological
+caveats, sample sizes, scope limitations) into flattened confidence
+scores—a fundamental limitation of current automated knowledge
+extraction discussed in the Conclusion.</p>
 <p>The <a href="http://activeinference.institute/ontology/">Active
 Inference Ontology namespace</a> ensures integration with external
 ontologies and linked data resources.</p>
@@ -3582,7 +3680,7 @@ compute a citation-weighted evidence score aggregating all assertions
 relevant to <span class="math inline">\(H\)</span>:</p>
 <p><span class="math display">\[\begin{equation}
 \text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)}
-w(a)}{\sum_{a \in A(H)} w(a)}
+w(a)}{\sum_{a \in A(H)} w(a)} \label{eq:app_score}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(S(H)\)</span> is the set of
 supporting assertions, <span class="math inline">\(C(H)\)</span> is the
@@ -3592,6 +3690,7 @@ class="math inline">\(H\)</span> (including neutral), and the weight
 function is:</p>
 <p><span class="math display">\[\begin{equation}
 w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a)
+\label{eq:app_weight}
 \end{equation}\]</span></p>
 <p>The logarithmic citation weighting ensures that highly cited papers
 carry more influence while preventing any single blockbuster paper from
@@ -3600,14 +3699,17 @@ dominating the score. The score lies in <span class="math inline">\([-1,
 indicate strong supporting evidence, values near <span
 class="math inline">\(-1\)</span> indicate strong contradicting
 evidence, and values near <span class="math inline">\(0\)</span>
-indicate balanced or insufficient evidence.</p>
+indicate balanced or insufficient evidence. Crucially, as discussed in
+the main text, this score represents a <em>relative evidentiary
+ranking</em> within the current literature topology, not a calibrated
+Bayesian probability of the hypothesis actually being true.</p>
 <p><strong>Temporal aggregation.</strong> We additionally compute
 temporal trends by evaluating the cumulative score at each year <span
 class="math inline">\(t\)</span>, using only assertions from papers
 published in year <span class="math inline">\(\leq t\)</span>:</p>
 <p><span class="math display">\[\begin{equation}
 \text{score}(H, t) = \frac{\sum_{a \in S(H,t)} w(a) - \sum_{a \in
-C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)}
+C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)} \label{eq:app_score_t}
 \end{equation}\]</span></p>
 <p>This reveals whether support for a hypothesis is growing, declining,
 or plateauing over time.</p>
@@ -3627,17 +3729,20 @@ of topics.</p>
 <p><span class="math display">\[\begin{equation}
 H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \quad W
 \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon}
+\label{eq:nmf_update}
 \end{equation}\]</span></p>
 <p>with <span class="math inline">\(\epsilon = 10^{-10}\)</span> for
-numerical stability and a fixed random seed of 42 for
-reproducibility.</p>
+numerical stability and a fixed random seed of 42 for reproducibility
+(ensuring deterministic topic alignment across pipeline runs, with
+empirical stability confirmed via Jaccard similarities <span
+class="math inline">\(&gt; 0.90\)</span> across alternative seeds).</p>
 <p><strong>Term-Frequency Inverse Document Frequency (TF-IDF).</strong>
 The document-term matrix is constructed using TF-IDF weighting . For
 term <span class="math inline">\(t\)</span> in document <span
 class="math inline">\(d\)</span>:</p>
 <p><span class="math display">\[\begin{equation}
 \text{TF-IDF}(t, d) = \text{tf}(t, d) \cdot
-\log\!\left(\frac{N}{\text{df}(t)}\right)
+\log\!\left(\frac{N}{\text{df}(t)}\right) \label{eq:tfidf}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(\text{tf}(t, d)\)</span> is the
 term frequency, <span class="math inline">\(N\)</span> is the total
@@ -3653,6 +3758,7 @@ growth rates computed only for years where the prior year had non-zero
 publications:</p>
 <p><span class="math display">\[\begin{equation}
 \bar{g} = \frac{1}{|Y|} \sum_{y \in Y} \frac{n_y - n_{y-1}}{n_{y-1}}
+\label{eq:mean_growth}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(Y = \{y : n_{y-1} &gt; 0\}\)</span>
 and <span class="math inline">\(n_y\)</span> is the number of
@@ -3661,14 +3767,14 @@ publications in year <span class="math inline">\(y\)</span>.</p>
 class="math inline">\(t_d\)</span> is derived from the mean annual
 growth rate:</p>
 <p><span class="math display">\[\begin{equation}
-t_d = \frac{\ln 2}{\ln(1 + \bar{g})}
+t_d = \frac{\ln 2}{\ln(1 + \bar{g})} \label{eq:doubling_time}
 \end{equation}\]</span></p>
 <p>The <strong>compound annual growth rate</strong> (CAGR) over the full
 span <span class="math inline">\([y_0, y_T]\)</span> is:</p>
 <p><span class="math display">\[\begin{equation}
 \text{CAGR} =
 \left(\frac{n_{\text{cumulative}}(y_T)}{n_{\text{cumulative}}(y_0)}\right)^{1/(y_T
-- y_0)} - 1
+- y_0)} - 1 \label{eq:cagr}
 \end{equation}\]</span></p>
 <p>For the current corpus, CAGR <span class="math inline">\(=
 16.99\%\)</span>. The more recent growth phase (2010–2026) exhibits
@@ -4164,7 +4270,8 @@ Free Energy Principle.</td>
 <td><strong>Assertion</strong></td>
 <td>A directed, confidence-scored claim linking a paper to a hypothesis
 (supports, contradicts, or neutral). The basic unit of evidence in the
-knowledge graph.</td>
+knowledge graph, representing a machine-extracted classification rather
+than a definitive human judgment.</td>
 </tr>
 <tr>
 <td><strong>Canonical ID</strong></td>

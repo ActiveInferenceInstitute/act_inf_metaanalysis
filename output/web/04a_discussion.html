@@ -190,7 +190,7 @@ incremental re-execution as new literature appears. Directions 4 and
 and are addressed below.</p>
 <h2 id="tactical-and-strategic-priorities">Tactical and Strategic
 Priorities</h2>
-<h3 id="demand-rigorous-reporting-metadata">Demand Rigorous Reporting
+<h3 id="adopt-rigorous-reporting-metadata">Adopt Rigorous Reporting
 Metadata</h3>
 <p>Papers should systematically report DOIs, ORCIDs, and explicit
 hypothesis commitments. Submitted preprints should forward-link to their
@@ -199,18 +199,18 @@ extraction pipeline prioritizes the DOI as the canonical identifier;
 failing that, deduplication cascades to arXiv IDs, Semantic Scholar IDs,
 and OpenAlex IDs. Broad DOI adoption would resolve the cross-source
 mismatch problem, enabling higher-resolution evidence mapping.</p>
-<h3 id="deploy-open-knowledge-graph-infrastructure">Deploy Open
+<h3 id="explore-open-knowledge-graph-infrastructure">Explore Open
 Knowledge Graph Infrastructure</h3>
-<p>We advocate the deployment of a federated nanopublication server
-architecture to house community-contributed assertions, enabling a
-continuously updated living literature review that incorporates new
-findings as they are published. The release of nanopub-js v0.1.0 makes
-browser-based creation and querying of nanopublications practical,
+<p>We encourage the exploration of federated nanopublication server
+architectures to house community-contributed assertions. This would
+enable a continuously updated living literature review that incorporates
+new findings as they are published. The release of nanopub-js v0.1.0
+makes browser-based creation and querying of nanopublications practical,
 enabling researchers to contribute assertions directly from web
-interfaces without requiring command-line tools or Python environments.
-Integrating this pipeline with the Active Inference Institute’s
-Knowledge-Engineering infrastructure would provide the standardized
-semantic vocabulary necessary for rigorous cross-study comparison.</p>
+interfaces. Integrating this approach with the Active Inference
+Institute’s Knowledge-Engineering infrastructure could provide the
+standardized semantic vocabulary necessary for rigorous cross-study
+comparison.</p>
 <h3 id="standardize-the-ontological-lexicon">Standardize the Ontological
 Lexicon</h3>
 <p>Immediate future extraction cycles should align assertion predicates
@@ -252,55 +252,32 @@ architecture would enable natural-language querying of the evidence
 base, making quantitative literature synthesis accessible to researchers
 without programming expertise.</p>
 <h2 id="open-questions">Open Questions</h2>
-<p>This meta-analysis surfaces questions warranting dedicated
-investigation:</p>
+<p>This meta-analysis surfaces four critical, empirically testable
+questions warranting dedicated investigation:</p>
 <ul>
 <li><strong>Classifier calibration:</strong> What proportion of A1
-papers would be reclassified under embedding-based or expert-annotated
-schemes?</li>
-<li><strong>Scoring sensitivity:</strong> How sensitive are hypothesis
-scores to the choice of weighting function? Would square-root or linear
-weights qualitatively change the evidence landscape?</li>
-<li><strong>Model sensitivity:</strong> How much do hypothesis scores
-vary across different LLM models? Are some hypotheses more robust to
-model choice than others?</li>
-<li><strong>Domain boundaries:</strong> Do domain boundaries stabilize
-as the field matures, or continue to shift? Is the 8-category (A/B/C)
-taxonomy optimal?</li>
-<li><strong>Cross-hypothesis evidence:</strong> When a neuroscience (C1)
-paper supports predictive coding, does this constitute evidence for
-scalability? How should cross-hypothesis evidence be handled?</li>
-<li><strong>Temporal dynamics:</strong> Do hypotheses follow predictable
-lifecycles (emergence → rapid support → contestation → resolution), and
-can these patterns inform research prioritization?</li>
-<li><strong>Falsifiability operationalization:</strong> H1 (FEP
-Universality) produces a predominantly neutral evidence
-profile—consistent with the falsifiability critique that the FEP can
-accommodate any behavior without generating distinctive predictions .
-Can hypothesis definitions be reformulated to require papers to generate
-and test a specific empirical prediction before contributing a
-supporting assertion, thereby distinguishing generative from merely
-descriptive invocations of the FEP?</li>
-<li><strong>Scalability gap:</strong> H5 (AIF Scalability) shows a
-strongly positive trend, yet head-to-head comparisons with deep RL
-remain limited to a handful of benchmarks. At what state-space
+(Formal Theory) papers would be reclassified under an embedding-based or
+expert-annotated scheme, and how does this affect our understanding of
+the field’s theoretical core?</li>
+<li><strong>Falsifiability and Explicit Testing:</strong> H1 (FEP
+Universality) produces a predominantly neutral evidence profile,
+consistent with the critique that FEP accommodates any behavior without
+generating distinctive predictions . Can hypothesis definitions (and
+author reporting standards) be reformulated to require formal
+demonstration of a specific, refutable empirical prediction before
+contributing a supporting assertion?</li>
+<li><strong>The Scalability Gap:</strong> H5 (AIF Scalability) shows a
+strong positive trend, yet head-to-head comparisons with deep RL remain
+concentrated on a specific subset of benchmarks. Beyond what state-space
 dimensionality and reward density does the performance advantage of
-model-based AIF (via expected free energy exploration) erode relative to
-model-free RL?</li>
-<li><strong>EFE decomposition sensitivity:</strong> Variational message
-passing formulations connect EFE decomposition into risk, ambiguity,
-epistemic, and instrumental components to practical planning algorithms.
-When the scoring formula is stratified by decomposition (e.g.,
-risk-driven vs. epistemic-driven papers), do the resulting hypothesis
-scores differ? This would reveal whether the field’s evidence base is
-driven primarily by curiosity-driven exploration or goal-directed
-application.</li>
-<li><strong>Energy-Based Model convergence:</strong> To what extent do
-the mathematical structures underlying variational free energy
-minimization in Active Inference and energy function optimization in
-Energy-Based Models (Helmholtz machines, Boltzmann machines, VAEs)
-converge? Are there transferable inference algorithms or architectural
-insights at this intersection?</li>
+model-based AIF (via expected free energy exploration) degrade relative
+to model-free architectures?</li>
+<li><strong>Evidence Cross-Pollination:</strong> To what extent do
+mathematical structures underlying variational free energy minimization
+and energy function optimization in Energy-Based Models (e.g., VAEs,
+contrastive divergence) converge? Identifying shared architectural
+insights at this intersection could accelerate both Active Inference
+tools and mainstream machine learning.</li>
 </ul>
 </body>
 </html>

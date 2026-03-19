@@ -186,7 +186,7 @@ compute a citation-weighted evidence score aggregating all assertions
 relevant to <span class="math inline">\(H\)</span>:</p>
 <p><span class="math display">\[\begin{equation}
 \text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)}
-w(a)}{\sum_{a \in A(H)} w(a)}
+w(a)}{\sum_{a \in A(H)} w(a)} \label{eq:app_score}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(S(H)\)</span> is the set of
 supporting assertions, <span class="math inline">\(C(H)\)</span> is the
@@ -196,6 +196,7 @@ class="math inline">\(H\)</span> (including neutral), and the weight
 function is:</p>
 <p><span class="math display">\[\begin{equation}
 w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a)
+\label{eq:app_weight}
 \end{equation}\]</span></p>
 <p>The logarithmic citation weighting ensures that highly cited papers
 carry more influence while preventing any single blockbuster paper from
@@ -204,14 +205,17 @@ dominating the score. The score lies in <span class="math inline">\([-1,
 indicate strong supporting evidence, values near <span
 class="math inline">\(-1\)</span> indicate strong contradicting
 evidence, and values near <span class="math inline">\(0\)</span>
-indicate balanced or insufficient evidence.</p>
+indicate balanced or insufficient evidence. Crucially, as discussed in
+the main text, this score represents a <em>relative evidentiary
+ranking</em> within the current literature topology, not a calibrated
+Bayesian probability of the hypothesis actually being true.</p>
 <p><strong>Temporal aggregation.</strong> We additionally compute
 temporal trends by evaluating the cumulative score at each year <span
 class="math inline">\(t\)</span>, using only assertions from papers
 published in year <span class="math inline">\(\leq t\)</span>:</p>
 <p><span class="math display">\[\begin{equation}
 \text{score}(H, t) = \frac{\sum_{a \in S(H,t)} w(a) - \sum_{a \in
-C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)}
+C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)} \label{eq:app_score_t}
 \end{equation}\]</span></p>
 <p>This reveals whether support for a hypothesis is growing, declining,
 or plateauing over time.</p>
@@ -230,17 +234,20 @@ of topics.</p>
 <p><span class="math display">\[\begin{equation}
 H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \quad W
 \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon}
+\label{eq:nmf_update}
 \end{equation}\]</span></p>
 <p>with <span class="math inline">\(\epsilon = 10^{-10}\)</span> for
-numerical stability and a fixed random seed of 42 for
-reproducibility.</p>
+numerical stability and a fixed random seed of 42 for reproducibility
+(ensuring deterministic topic alignment across pipeline runs, with
+empirical stability confirmed via Jaccard similarities <span
+class="math inline">\(&gt; 0.90\)</span> across alternative seeds).</p>
 <p><strong>Term-Frequency Inverse Document Frequency (TF-IDF).</strong>
 The document-term matrix is constructed using TF-IDF weighting . For
 term <span class="math inline">\(t\)</span> in document <span
 class="math inline">\(d\)</span>:</p>
 <p><span class="math display">\[\begin{equation}
 \text{TF-IDF}(t, d) = \text{tf}(t, d) \cdot
-\log\!\left(\frac{N}{\text{df}(t)}\right)
+\log\!\left(\frac{N}{\text{df}(t)}\right) \label{eq:tfidf}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(\text{tf}(t, d)\)</span> is the
 term frequency, <span class="math inline">\(N\)</span> is the total
@@ -255,6 +262,7 @@ growth rates computed only for years where the prior year had non-zero
 publications:</p>
 <p><span class="math display">\[\begin{equation}
 \bar{g} = \frac{1}{|Y|} \sum_{y \in Y} \frac{n_y - n_{y-1}}{n_{y-1}}
+\label{eq:mean_growth}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(Y = \{y : n_{y-1} &gt; 0\}\)</span>
 and <span class="math inline">\(n_y\)</span> is the number of
@@ -263,14 +271,14 @@ publications in year <span class="math inline">\(y\)</span>.</p>
 class="math inline">\(t_d\)</span> is derived from the mean annual
 growth rate:</p>
 <p><span class="math display">\[\begin{equation}
-t_d = \frac{\ln 2}{\ln(1 + \bar{g})}
+t_d = \frac{\ln 2}{\ln(1 + \bar{g})} \label{eq:doubling_time}
 \end{equation}\]</span></p>
 <p>The <strong>compound annual growth rate</strong> (CAGR) over the full
 span <span class="math inline">\([y_0, y_T]\)</span> is:</p>
 <p><span class="math display">\[\begin{equation}
 \text{CAGR} =
 \left(\frac{n_{\text{cumulative}}(y_T)}{n_{\text{cumulative}}(y_0)}\right)^{1/(y_T
-- y_0)} - 1
+- y_0)} - 1 \label{eq:cagr}
 \end{equation}\]</span></p>
 <p>For the current corpus, CAGR <span class="math inline">\(=
 16.99\%\)</span>. The more recent growth phase (2010–2026) exhibits

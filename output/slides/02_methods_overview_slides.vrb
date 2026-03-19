@@ -51,4 +51,8 @@ manuscript Markdown & \hyperref[sec:methods_viz]{Injection} \\
 Scripts act as thin orchestrators that import methods from tested
 library modules and handle file I/O. All computation resides in the
 \texttt{src/} packages; no analysis logic is embedded in scripts.
+End-to-end pipeline execution completes in under one hour on commodity
+hardware (excluding LLM extraction, which depends on model size and
+inference backend); all stochastic components use fixed random seeds for
+deterministic reproduction.
 \end{block}

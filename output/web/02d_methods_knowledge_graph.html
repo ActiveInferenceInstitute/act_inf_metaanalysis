@@ -308,7 +308,7 @@ Hypothesis Scoring</h2>
 compute a citation-weighted evidence score:</p>
 <p><span class="math display">\[\begin{equation}
 \text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)}
-w(a)}{\sum_{a \in A(H)} w(a)}
+w(a)}{\sum_{a \in A(H)} w(a)} \label{eq:score}
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(S(H)\)</span>, <span
 class="math inline">\(C(H)\)</span>, and <span
@@ -317,10 +317,18 @@ contradicting, and all assertions for <span
 class="math inline">\(H\)</span>, and the weight function is:</p>
 <p><span class="math display">\[\begin{equation}
 w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a)
+\label{eq:weight}
 \end{equation}\]</span></p>
 <p>The logarithmic citation weighting ensures that highly cited papers
 carry more influence without allowing any single paper to dominate. The
-score lies in <span class="math inline">\([-1, 1]\)</span>. Temporal
+score lies in <span class="math inline">\([-1, 1]\)</span>.
+<strong>Interpretation note:</strong> a score of <span
+class="math inline">\(+0.7\)</span> indicates that 70% of weighted
+evidence supports the hypothesis (net of contradictions and normalized
+by total weighted evidence), <em>not</em> that the hypothesis has a 70%
+probability of being true. Scores are best interpreted as relative
+rankings across hypotheses and as temporal trajectories within a
+hypothesis, rather than as absolute probability estimates. Temporal
 trends are computed by evaluating the cumulative score at each year,
 using only assertions from papers published up to that year. A full
 derivation appears in .</p>
@@ -338,14 +346,19 @@ tractability over statistical sophistication.</p>
 <p>The tally-based framing introduces three constraints. First,
 assertions from methodologically related papers (e.g., iterative
 publications from a single research group testing the same model) are
-counted independently, amplifying correlated evidence. Second, the
-scoring metric treats all assertion sources symmetrically: an assertion
-from a theoretical review and one from an empirical trial carry equal
-weight at a given confidence level. Third, temporal scoring tracks
-<em>cumulative totals</em> rather than dynamic probabilistic estimates;
-the score at year <span class="math inline">\(t\)</span> is the sum of
-all historical evidence, rather than a decaying posterior that
-downweights early work.</p>
+counted independently, amplifying correlated evidence. To illustrate: if
+a group publishes three papers (2019, 2021, 2023) reporting successively
+refined variants of the same predictive coding model, each with high
+citation counts, the scoring formula counts three independent supporting
+assertions for H4—even though the underlying empirical evidence is
+largely overlapping. An evidential diversity index (proposed in the )
+would downweight this cluster. Second, the scoring metric treats all
+assertion sources symmetrically: an assertion from a theoretical review
+and one from an empirical trial carry equal weight at a given confidence
+level. Third, temporal scoring tracks <em>cumulative totals</em> rather
+than dynamic probabilistic estimates; the score at year <span
+class="math inline">\(t\)</span> is the sum of all historical evidence,
+rather than a decaying posterior that downweights early work.</p>
 <p>We embrace these constraints intentionally. The tally-based approach
 provides a stable, interpretable baseline against which more
 sophisticated scoring methods can be evaluated. The describes concrete

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  17 MAR 2026 15:21
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:28
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1319,185 +1319,185 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 \openout4 = `_combined_manuscript.toc'.
 
  [4] [5] [6] [7] [8]
-Overfull \hbox (32.53075pt too wide) in paragraph at lines 555--555
+Overfull \hbox (32.53075pt too wide) in paragraph at lines 568--568
 []|\TU/lmtt/m/n/10 01_literature_search.py|  
  []
 
 
-Overfull \hbox (58.78075pt too wide) in paragraph at lines 557--557
+Overfull \hbox (58.78075pt too wide) in paragraph at lines 570--570
 []|\TU/lmtt/m/n/10 02_meta_analysis_pipeline.py|  
  []
 
 
-Overfull \hbox (53.53075pt too wide) in paragraph at lines 560--560
+Overfull \hbox (53.53075pt too wide) in paragraph at lines 573--573
 []|\TU/lmtt/m/n/10 03_build_knowledge_graph.py|  
  []
 
 
-Overfull \hbox (28.67075pt too wide) in paragraph at lines 561--562
+Overfull \hbox (28.67075pt too wide) in paragraph at lines 574--575
 []|\TU/lmtt/m/n/10 nanopublications.jsonl\TU/lmr/m/n/10 , 
  []
 
 
-Overfull \hbox (23.42075pt too wide) in paragraph at lines 561--562
+Overfull \hbox (23.42075pt too wide) in paragraph at lines 574--575
 \TU/lmtt/m/n/10 nanopublications.trig\TU/lmr/m/n/10 , 
  []
 
 
-Overfull \hbox (27.28075pt too wide) in paragraph at lines 563--563
+Overfull \hbox (27.28075pt too wide) in paragraph at lines 576--576
 []|\TU/lmtt/m/n/10 04_generate_figures.py|  
  []
 
 
-Overfull \hbox (27.28075pt too wide) in paragraph at lines 565--565
+Overfull \hbox (27.28075pt too wide) in paragraph at lines 578--578
 []|\TU/lmtt/m/n/10 05_inject_variables.py|  
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 590--606
+Underfull \hbox (badness 10000) in paragraph at lines 607--623
 \TU/lmtt/m/n/10 all:"free energy principle"\TU/lmr/m/n/10 , \TU/lmtt/m/n/10 all
 :"expected free energy"\TU/lmr/m/n/10 , \TU/lmtt/m/n/10 all:"variational free e
 nergy" AND
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 590--606
+Underfull \hbox (badness 10000) in paragraph at lines 607--623
 \TU/lmtt/m/n/10 energy"\TU/lmr/m/n/10 , \TU/lmtt/m/n/10 all:"Helmholtz machine"
  AND all:"inference"\TU/lmr/m/n/10 , \TU/lmtt/m/n/10 all:"Boltzmann machine" AN
 D all:"free
  []
 
 [10] [11] [12]
-Underfull \hbox (badness 1496) in paragraph at lines 912--921
+Underfull \hbox (badness 1496) in paragraph at lines 953--962
 []\TU/lmr/m/n/10 Nanopublications are persisted \TU/lmr/bx/n/10 incrementally \
 TU/lmr/m/n/10 during extraction. Every 50 papers (configurable via
  []
 
 
-Overfull \hbox (41.76895pt too wide) in paragraph at lines 912--921
+Overfull \hbox (41.76895pt too wide) in paragraph at lines 953--962
 \TU/lmtt/m/n/10 --checkpoint-interval\TU/lmr/m/n/10 ), the pipeline atomically 
 appends newly extracted nanopublications to \TU/lmtt/m/n/10 nanopublications.js
 onl
  []
 
-[13] [14] [15] [16] [17]
-Overfull \hbox (0.1209pt too wide) in alignment at lines 1249--1267
+[13] [14] [15] [16] [17] [18] [19]
+Overfull \hbox (0.1209pt too wide) in alignment at lines 1320--1338
  [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (0.1209pt too wide) in alignment at lines 1267--1269
+Overfull \hbox (0.1209pt too wide) in alignment at lines 1338--1340
  [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (0.1209pt too wide) in alignment at lines 1269--1283
+Overfull \hbox (0.1209pt too wide) in alignment at lines 1340--1354
  [] [] [] [] [] [] [] 
  []
 
 File: ../figures/hypothesis_dashboard.png Graphic file (type bmp)
 <../figures/hypothesis_dashboard.png>
-[18]
+[20]
 File: ../figures/evidence_timeline.png Graphic file (type bmp)
 <../figures/evidence_timeline.png>
 File: ../figures/assertion_breakdown.png Graphic file (type bmp)
 <../figures/assertion_breakdown.png>
 File: ../figures/assertion_summary.png Graphic file (type bmp)
 <../figures/assertion_summary.png>
- [19] [20]
-Underfull \hbox (badness 1325) in paragraph at lines 1432--1440
-[]\TU/lmr/m/n/10 Second, \TU/lmr/bx/n/10 linguistic asymmetry \TU/lmr/m/n/10 in
- academic writing further skews extraction toward positive classifi-
- []
-
-
-Underfull \hbox (badness 1097) in paragraph at lines 1432--1440
-\TU/lmr/m/n/10 cations. Declarative scholarly claims are inherently phrased aff
-irmatively—authors write \TU/lmtt/m/n/10 our results
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1432--1440
-\TU/lmtt/m/n/10 text, this linguistic imbalance propagates directly into the as
-sertion distribution. Even
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1432--1440
-\TU/lmtt/m/n/10 papers presenting genuinely mixed evidence tend to frame their 
-abstracts in terms of what
- []
-
-[21]
+ [21] [22] [23] [24]
 File: ../figures/field_summary.png Graphic file (type bmp)
 <../figures/field_summary.png>
 File: ../figures/growth_curve.png Graphic file (type bmp)
 <../figures/growth_curve.png>
- [22]
+ [25]
 File: ../figures/subfield_distribution.png Graphic file (type bmp)
 <../figures/subfield_distribution.png>
+
+Overfull \hbox (4.77658pt too wide) in paragraph at lines 1666--1667
+[]\TU/lmr/m/n/10 Representative 
+ []
+
+
+Overfull \hbox (0.1209pt too wide) in alignment at lines 1651--1669
+ [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (0.1209pt too wide) in alignment at lines 1669--1671
+ [] [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (0.67657pt too wide) in paragraph at lines 1672--1673
+[]|\TU/lmr/m/n/10 Mathematical 
+ []
+
+
+Overfull \hbox (2.91658pt too wide) in paragraph at lines 1673--1674
+[]|\TU/lmr/m/n/10 [[][]Sakthivadivel[][], 
+ []
+
+
+Overfull \hbox (5.34657pt too wide) in paragraph at lines 1682--1683
+[]|\TU/lmr/m/n/10 Demonstrating 
+ []
+
+
+Overfull \hbox (0.1209pt too wide) in alignment at lines 1671--1688
+ [] [] [] [] [] [] [] 
+ []
+
 
 Overfull \vbox (267.17082pt too high) has occurred while \output is active []
 
 
-[23]
+[26]
 File: ../figures/subfield_timeline.png Graphic file (type bmp)
 <../figures/subfield_timeline.png>
- [24] [25] [26]
-ignored: Infinite glue shrinkage found in box being split [27] [28]
+ [27] [28] [29] [30] [31]
 File: ../figures/topic_term_bars.png Graphic file (type bmp)
 <../figures/topic_term_bars.png>
 File: ../figures/word_cloud.png Graphic file (type bmp)
 <../figures/word_cloud.png>
 File: ../figures/pca_embeddings.png Graphic file (type bmp)
 <../figures/pca_embeddings.png>
- [29] [30]
+ [32] [33]
 File: ../figures/term_heatmap.png Graphic file (type bmp)
 <../figures/term_heatmap.png>
 File: ../figures/dendrogram.png Graphic file (type bmp)
 <../figures/dendrogram.png>
 File: ../figures/cooccurrence_matrix.png Graphic file (type bmp)
 <../figures/cooccurrence_matrix.png>
- [31] [32]
+ [34] [35]
 File: ../figures/citation_network.png Graphic file (type bmp)
 <../figures/citation_network.png>
 File: ../figures/degree_distribution.png Graphic file (type bmp)
 <../figures/degree_distribution.png>
- [33] [34] [35]
+ [36] [37] [38]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.2199 
+l.2306 
        
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 2183--2199
+Underfull \hbox (badness 1237) in paragraph at lines 2286--2306
 \TU/lmr/m/n/10 Zero-shot extraction introduces two systematic biases: over-extr
 action (hallucinating claims the paper
  []
 
 
-Overfull \hbox (466.00258pt too wide) in paragraph at lines 2183--2199
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-[][][][][][][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-[] []
- []
-
-
-Overfull \hbox (290.2136pt too wide) in paragraph at lines 2183--2199
+Overfull \hbox (301.3436pt too wide) in paragraph at lines 2286--2306
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][] [][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][] []
+][][][][][][][][]$ 
  []
 
-[36]
+[39]
 
 ! LaTeX Error: Bad math environment delimiter.
 
@@ -1505,7 +1505,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.2222 \(
+l.2329 \(
          \theta_H \sim \mathcal{N}(\mu_{\text{field}}, \tau^2)\) pools
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1518,7 +1518,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.2281 \item
+l.2388 \item
             
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1526,254 +1526,254 @@ If that doesn't work, type  X <return>  to quit.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.2282   \textbf
+l.2389   \textbf
                 {Agentic LLM Extractors.} Drawing on recent work connecting
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-Overfull \hbox (144.72687pt too wide) in paragraph at lines 2277--2282
+Overfull \hbox (144.72687pt too wide) in paragraph at lines 2384--2389
 \TU/lmr/m/n/10 ments would establish inter-annotator agreement ($[][][][][][][]
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2277--2282
+Underfull \hbox (badness 10000) in paragraph at lines 2384--2389
 
  []
 
-[37] [38] [39] [40] [41] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 2739--2740
+[40] [41] [42] [43] [44] [45]
+Underfull \hbox (badness 10000) in paragraph at lines 2817--2818
 []|[][]\TU/lmr/m/n/9 Friston et al.[][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2740--2741
+Underfull \hbox (badness 10000) in paragraph at lines 2818--2819
 []|[][]\TU/lmr/m/n/9 Bagaev et al.[][]
  []
 
 
-Underfull \hbox (badness 4229) in paragraph at lines 2741--2741
+Underfull \hbox (badness 4229) in paragraph at lines 2819--2819
 \TU/lmr/m/n/9 brary with multicore paral-
  []
 
 
-Underfull \hbox (badness 1748) in paragraph at lines 2742--2742
+Underfull \hbox (badness 1748) in paragraph at lines 2820--2820
 []|\TU/lmr/m/n/9 EFE on interpretable policy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2742--2743
+Underfull \hbox (badness 10000) in paragraph at lines 2820--2821
 []|[][]\TU/lmr/m/n/9 Pazem et al.[][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2745--2745
+Underfull \hbox (badness 10000) in paragraph at lines 2823--2823
 []|\TU/lmr/m/n/9 Rust-native AIF framework
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2749--2749
+Underfull \hbox (badness 10000) in paragraph at lines 2827--2827
 []|\TU/lmr/m/n/9 deep-active-inference-
  []
 
 
-Underfull \hbox (badness 4832) in paragraph at lines 2749--2749
+Underfull \hbox (badness 4832) in paragraph at lines 2827--2827
 []|\TU/lmr/m/n/9 Monte-Carlo tree search in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2749--2750
+Underfull \hbox (badness 10000) in paragraph at lines 2827--2828
 []|[][]\TU/lmr/m/n/9 Fountas et al.[][]
  []
 
 
-Underfull \hbox (badness 5245) in paragraph at lines 2750--2750
+Underfull \hbox (badness 5245) in paragraph at lines 2828--2828
 []|\TU/lmr/m/n/9 Continuous deep AIF with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2751--2751
+Underfull \hbox (badness 10000) in paragraph at lines 2829--2829
 []|\TU/lmr/m/n/9 Branching-time AIF with
  []
 
 
-Underfull \hbox (badness 3343) in paragraph at lines 2754--2754
+Underfull \hbox (badness 3343) in paragraph at lines 2832--2832
 []|\TU/lmr/m/n/9 Object-centric world models;
  []
 
 
-Underfull \hbox (badness 3439) in paragraph at lines 2754--2754
+Underfull \hbox (badness 3439) in paragraph at lines 2832--2832
 \TU/lmr/m/n/9 Gameworld 10k in minutes,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2757--2757
+Underfull \hbox (badness 10000) in paragraph at lines 2835--2835
 []|\TU/lmr/m/n/9 active-inference
  []
 
 
-Underfull \hbox (badness 5245) in paragraph at lines 2757--2757
+Underfull \hbox (badness 5245) in paragraph at lines 2835--2835
 []|\TU/lmr/m/n/9 Continuous deep AIF with
  []
 
 
-Overfull \hbox (7.40442pt too wide) in paragraph at lines 2761--2761
+Overfull \hbox (7.40442pt too wide) in paragraph at lines 2839--2839
 []|\TU/lmr/m/n/9 Python/JAX| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2761--2761
+Underfull \hbox (badness 10000) in paragraph at lines 2839--2839
 []|\TU/lmr/m/n/9 Neurobiological simulation;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2761--2761
+Underfull \hbox (badness 10000) in paragraph at lines 2839--2839
 \TU/lmr/m/n/9 predictive coding circuits,
  []
 
 
-Overfull \hbox (17.17628pt too wide) in paragraph at lines 2763--2763
+Overfull \hbox (17.17628pt too wide) in paragraph at lines 2841--2841
 []|\TU/lmr/m/n/9 PredictiveCodingBackprop| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2763--2763
+Underfull \hbox (badness 10000) in paragraph at lines 2841--2841
 []|\TU/lmr/m/n/9 Predictive coding approxi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2763--2764
+Underfull \hbox (badness 10000) in paragraph at lines 2841--2842
 []|[][]\TU/lmr/m/n/9 Millidge et al.[][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2764--2764
+Underfull \hbox (badness 10000) in paragraph at lines 2842--2842
 []|\TU/lmr/m/n/9 Supervised-Predictive-
  []
 
 
-Overfull \hbox (5.07112pt too wide) in paragraph at lines 2771--2772
+Overfull \hbox (5.07112pt too wide) in paragraph at lines 2849--2850
 []|\TU/lmr/m/n/9 bioRxiv:2021.02.16| 
  []
 
 
-Underfull \hbox (badness 3690) in paragraph at lines 2773--2773
+Underfull \hbox (badness 3690) in paragraph at lines 2851--2851
 []|\TU/lmr/m/n/9 Reward-basis function repre-
  []
 
 
-Overfull \hbox (5.07112pt too wide) in paragraph at lines 2773--2774
+Overfull \hbox (5.07112pt too wide) in paragraph at lines 2851--2852
 []|\TU/lmr/m/n/9 bioRxiv:2022.04.14| 
  []
 
 
-Underfull \hbox (badness 5446) in paragraph at lines 2774--2775
+Underfull \hbox (badness 5446) in paragraph at lines 2852--2853
 []|[][]\TU/lmr/m/n/9 Tschantz et al.[][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2776--2776
+Underfull \hbox (badness 10000) in paragraph at lines 2854--2854
 []|\TU/lmr/m/n/9 bayesian-mechanics-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2783--2783
+Underfull \hbox (badness 10000) in paragraph at lines 2861--2861
 []|\TU/lmr/m/n/9 Variational-Capsule-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2784--2784
+Underfull \hbox (badness 10000) in paragraph at lines 2862--2862
 []|\TU/lmr/m/n/9 Active-Inference-
  []
 
 
-Underfull \hbox (badness 1735) in paragraph at lines 2784--2784
+Underfull \hbox (badness 1735) in paragraph at lines 2862--2862
 []|\TU/lmr/m/n/9 Successor representations un-
  []
 
 
-Overfull \hbox (4.85529pt too wide) in paragraph at lines 2788--2788
+Overfull \hbox (4.85529pt too wide) in paragraph at lines 2866--2866
 []|\TU/lmr/m/n/9 adaptive_aif_agents_fl| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2790--2790
+Underfull \hbox (badness 10000) in paragraph at lines 2868--2868
 []|\TU/lmr/m/n/9 Game-theoretic AIF agent
  []
 
 
-Underfull \hbox (badness 4328) in paragraph at lines 2794--2794
+Underfull \hbox (badness 4328) in paragraph at lines 2872--2872
 []|\TU/lmr/m/n/9 EFE reformulated as varia-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2795--2795
+Underfull \hbox (badness 10000) in paragraph at lines 2873--2873
 []|\TU/lmr/m/n/9 Robust-FE-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2795--2795
+Underfull \hbox (badness 10000) in paragraph at lines 2873--2873
 []|\TU/lmr/m/n/9 Robust decision-making via
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2799--2799
+Underfull \hbox (badness 10000) in paragraph at lines 2877--2877
 []|\TU/lmr/m/n/9 Active-Inference-from-
  []
 
 
-Underfull \hbox (badness 1824) in paragraph at lines 2800--2800
+Underfull \hbox (badness 1824) in paragraph at lines 2878--2878
 []|\TU/lmr/m/n/9 Computational social science
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2801--2801
+Underfull \hbox (badness 10000) in paragraph at lines 2879--2879
 []|\TU/lmr/m/n/9 julia4ta tutorials
  []
 
 
-Underfull \hbox (badness 1769) in paragraph at lines 2802--2802
+Underfull \hbox (badness 1769) in paragraph at lines 2880--2880
 []|\TU/lmr/m/n/9 ActInf Textbook Co-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2804--2804
+Underfull \hbox (badness 10000) in paragraph at lines 2882--2882
 []|\TU/lmr/m/n/9 Adaptive resonance theory
  []
 
-[43]
-ignored: Infinite glue shrinkage found in box being split [44]
-Overfull \hbox (0.1209pt too wide) in alignment at lines 2820--2838
+[46]
+ignored: Infinite glue shrinkage found in box being split [47]
+Overfull \hbox (0.1209pt too wide) in alignment at lines 2898--2916
  [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (0.1209pt too wide) in alignment at lines 2838--2840
+Overfull \hbox (0.1209pt too wide) in alignment at lines 2916--2918
  [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (1.18658pt too wide) in paragraph at lines 2852--2852
+Overfull \hbox (1.18658pt too wide) in paragraph at lines 2930--2930
 []|\TU/lmr/bx/n/10 Hierarchical|  
  []
 
 
-Overfull \hbox (1.26657pt too wide) in paragraph at lines 2855--2855
+Overfull \hbox (1.26657pt too wide) in paragraph at lines 2933--2933
 []|\TU/lmr/m/n/10 Neuroimaging|  
  []
 
 
-Overfull \hbox (0.1209pt too wide) in alignment at lines 2840--2858
+Overfull \hbox (0.1209pt too wide) in alignment at lines 2918--2936
  [] [] [] [] [] [] [] 
  []
 
-[45] [46]
+[48] [49]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.2941 
+l.3026 
        
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1781,7 +1781,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.2974 Assertion & Inter-annotator \(\kappa) &
+l.3059 Assertion & Inter-annotator \(\kappa) &
                                                \(\geq 0.6\) & Re-annotate \\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1789,36 +1789,36 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-[47] [48] [49]
-Overfull \hbox (7.73221pt too wide) in paragraph at lines 3214--3214
+[50] [51] [52]
+Overfull \hbox (7.73221pt too wide) in paragraph at lines 3304--3304
 []|\TU/lmtt/m/n/10 http://www.nanopub.org/nschema#|  
  []
 
 
-Overfull \hbox (65.48221pt too wide) in paragraph at lines 3220--3220
+Overfull \hbox (65.48221pt too wide) in paragraph at lines 3310--3310
 []|\TU/lmtt/m/n/10 http://activeinference.institute/ontology/|  
  []
 
 
-Overfull \hbox (18.23221pt too wide) in paragraph at lines 3222--3222
+Overfull \hbox (18.23221pt too wide) in paragraph at lines 3312--3312
 []|\TU/lmtt/m/n/10 http://www.w3.org/2001/XMLSchema#|  
  []
 
-[50] [51]
+[53] [54]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.3291 \(\kappa) &
+l.3381 \(\kappa) &
                    Cohen's kappa (inter-annotator agreement) \\
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-ignored: Infinite glue shrinkage found in box being split [52]
+ignored: Infinite glue shrinkage found in box being split [55]
 ignored: Infinite glue shrinkage fo
-und in box being split [53]
-ignored: Infinite glue shrinkage found in box being split [54
-] [55] (./_combined_manuscript.bbl [56] [57] [58]) [59]
+und in box being split [56]
+ignored: Infinite glue shrinkage found in box being split [57
+] [58] (./_combined_manuscript.bbl [59] [60] [61]) [62]
 (./_combined_manuscript.aux)
  ***********
 LaTeX2e <2025-11-01>
@@ -1826,12 +1826,12 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 26008 strings out of 468168
- 484948 string characters out of 5432816
- 1126022 words of memory out of 5000000
- 54393 multiletter control sequences out of 15000+600000
+ 26028 strings out of 468168
+ 485266 string characters out of 5432816
+ 1127703 words of memory out of 5000000
+ 54413 multiletter control sequences out of 15000+600000
  633124 words of font info for 93 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  90i,9n,114p,1017b,648s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on _combined_manuscript.pdf (59 pages).
+Output written on _combined_manuscript.pdf (62 pages).

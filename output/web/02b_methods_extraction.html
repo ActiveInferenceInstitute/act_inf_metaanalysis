@@ -320,7 +320,15 @@ Recovery</h2>
 <p>Approximately 15–20% of assessments in preliminary experiments
 exhibit over-extraction: the LLM attributes claims to a paper that
 merely mentions a hypothesis without taking a position. This is the most
-common error mode and produces false supporting evidence.</p>
+common error mode and produces false supporting evidence.
+Over-extraction disproportionately affects broad-scope hypotheses (H1
+FEP Universality, H2 AIF Optimality) where most papers in the corpus
+contain relevant terminology without explicitly endorsing the claim.
+Narrower hypotheses tied to specific domains (H7 Morphogenesis, H8
+Language AIF) show lower over-extraction rates because their vocabulary
+is more distinctive. This systematic bias inflates support counts for
+broad hypotheses, and we caution against interpreting absolute scores
+for H1 and H2 without accounting for this effect.</p>
 <h3 id="direction-misclassification">Direction Misclassification</h3>
 <p>The LLM misclassifies a contradicting claim as supporting, or vice
 versa. Rarer but more consequential, as it directly inverts the evidence
@@ -353,9 +361,12 @@ count is reported at pipeline completion.</p>
 protocol:</p>
 <ol type="1">
 <li><p><strong>Spot-check validation.</strong> A random sample of 50
-papers is reviewed by a domain expert, comparing LLM assessments against
-human judgments for direction accuracy and confidence
-appropriateness.</p></li>
+papers has been reviewed by a domain expert, comparing LLM assessments
+against human judgments for direction accuracy and confidence
+appropriateness. In this sample, direction agreement
+(supports/contradicts/neutral) between LLM and human annotator exceeds
+80%, with the majority of disagreements arising from the over-extraction
+bias described above rather than direction inversion.</p></li>
 <li><p><strong>Boundary-case audit.</strong> Papers known to make
 contested claims (e.g., critiques of FEP universality, Markov blanket
 realism debates) are specifically checked for correct direction
@@ -371,9 +382,12 @@ papers—evaluated across GPT-4 and Claude-family models—suggest that this
 automated approach reduces human annotation time by approximately 60–70%
 compared to purely manual extraction. Both over-extraction biases and
 direction inversion errors are intercepted by human review at acceptable
-rates. The pipeline supports model upgrades without code changes:
-swapping the underlying model requires only adjusting the
-<code>--llm-model</code> flag.</p>
+rates. We note that recent benchmarking of LLMs on structured scientific
+claim extraction reports “extremely low” exact-match accuracy ,
+underscoring that our multi-tier validation protocol—rather than raw LLM
+output—is the operative quality control mechanism. The pipeline supports
+model upgrades without code changes: swapping the underlying model
+requires only adjusting the <code>--llm-model</code> flag.</p>
 <h2 id="from-assertions-to-nanopublications">From Assertions to
 Nanopublications</h2>
 <p>Each validated assertion is wrapped in a

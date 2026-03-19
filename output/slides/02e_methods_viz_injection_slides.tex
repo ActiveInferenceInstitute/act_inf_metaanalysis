@@ -105,7 +105,9 @@ evidence dashboard and timeline (2 figures), assertion composition (2
 figures), and text analytics---word cloud, PCA embeddings, term heatmap,
 dendrogram, topic-term bars, and co-occurrence matrix (6 figures). The
 figure generation script reads only JSON outputs and produces only PNG
-files, ensuring strict separation between analysis and visualization.
+files, enforcing a strict, unidirectional data flow that prevents
+visualization operations from inadvertently modifying analytical
+results.
 \end{frame}
 
 \begin{frame}[fragile]{Stage 5: Manuscript Variable Injection}

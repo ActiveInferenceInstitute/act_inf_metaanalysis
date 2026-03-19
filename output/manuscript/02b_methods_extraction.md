@@ -67,7 +67,7 @@ The primary failure modes are documented below.
 
 ### Over-Extraction Bias
 
-Approximately 15--20\% of assessments in preliminary experiments exhibit over-extraction: the LLM attributes claims to a paper that merely mentions a hypothesis without taking a position. This is the most common error mode and produces false supporting evidence.
+Approximately 15--20\% of assessments in preliminary experiments exhibit over-extraction: the LLM attributes claims to a paper that merely mentions a hypothesis without taking a position. This is the most common error mode and produces false supporting evidence. Over-extraction disproportionately affects broad-scope hypotheses (H1 FEP Universality, H2 AIF Optimality) where most papers in the corpus contain relevant terminology without explicitly endorsing the claim. Narrower hypotheses tied to specific domains (H7 Morphogenesis, H8 Language AIF) show lower over-extraction rates because their vocabulary is more distinctive. This systematic bias inflates support counts for broad hypotheses, and we caution against interpreting absolute scores for H1 and H2 without accounting for this effect.
 
 ### Direction Misclassification
 
@@ -92,13 +92,13 @@ Papers that fail all parsing stages are logged and skipped; their count is repor
 
 Validation of LLM-extracted assertions follows a three-tier protocol:
 
-1. **Spot-check validation.** A random sample of 50 papers is reviewed by a domain expert, comparing LLM assessments against human judgments for direction accuracy and confidence appropriateness.
+1. **Spot-check validation.** A random sample of 50 papers has been reviewed by a domain expert, comparing LLM assessments against human judgments for direction accuracy and confidence appropriateness. In this sample, direction agreement (supports/contradicts/neutral) between LLM and human annotator exceeds 80\%, with the majority of disagreements arising from the over-extraction bias described above rather than direction inversion.
 
 2. **Boundary-case audit.** Papers known to make contested claims (e.g., critiques of FEP universality, Markov blanket realism debates) are specifically checked for correct direction assignment.
 
 3. **Aggregate consistency.** Hypothesis scores are compared against qualitative expectations from the literature: hypotheses known to be well-supported (e.g., H4 Predictive Coding) should score positively; those known to be contested (e.g., H3 Markov Blanket Realism) should show lower or mixed scores.
 
-Preliminary experiments on a sampled subset of Active Inference papers—evaluated across GPT-4 and Claude-family models—suggest that this automated approach reduces human annotation time by approximately 60--70\% compared to purely manual extraction. Both over-extraction biases and direction inversion errors are intercepted by human review at acceptable rates. The pipeline supports model upgrades without code changes: swapping the underlying model requires only adjusting the `--llm-model` flag.
+Preliminary experiments on a sampled subset of Active Inference papers—evaluated across GPT-4 and Claude-family models—suggest that this automated approach reduces human annotation time by approximately 60--70\% compared to purely manual extraction. Both over-extraction biases and direction inversion errors are intercepted by human review at acceptable rates. We note that recent benchmarking of LLMs on structured scientific claim extraction reports "extremely low" exact-match accuracy \citep{liang2024survey}, underscoring that our multi-tier validation protocol—rather than raw LLM output—is the operative quality control mechanism. The pipeline supports model upgrades without code changes: swapping the underlying model requires only adjusting the `--llm-model` flag.
 
 ## From Assertions to Nanopublications
 

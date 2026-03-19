@@ -3,12 +3,12 @@
     "pdf": {
       "exists": true,
       "file_count": 10,
-      "size_mb": "3.47",
-      "total_size_bytes": 3637423,
+      "size_mb": "3.52",
+      "total_size_bytes": 3688077,
       "largest_files": [
         {
           "name": "act_inf_metaanalysis_combined.pdf",
-          "size_mb": "2.95",
+          "size_mb": "2.99",
           "path": "pdf/act_inf_metaanalysis_combined.pdf"
         },
         {
@@ -37,12 +37,12 @@
     "web": {
       "exists": true,
       "file_count": 21,
-      "size_mb": "0.53",
-      "total_size_bytes": 560098,
+      "size_mb": "0.55",
+      "total_size_bytes": 580599,
       "largest_files": [
         {
           "name": "index.html",
-          "size_mb": "0.18",
+          "size_mb": "0.19",
           "path": "web/index.html"
         },
         {
@@ -63,18 +63,18 @@
     },
     "slides": {
       "exists": true,
-      "file_count": 142,
-      "size_mb": "4.78",
-      "total_size_bytes": 5012580,
+      "file_count": 141,
+      "size_mb": "4.82",
+      "total_size_bytes": 5051714,
       "largest_files": [
         {
           "name": "03c_results_text_analytics_slides.pdf",
-          "size_mb": "1.42",
+          "size_mb": "1.43",
           "path": "slides/03c_results_text_analytics_slides.pdf"
         },
         {
           "name": "03_results_hypothesis_slides.pdf",
-          "size_mb": "0.55",
+          "size_mb": "0.54",
           "path": "slides/03_results_hypothesis_slides.pdf"
         },
         {
@@ -86,7 +86,7 @@
       "extensions": {
         ".nav": 19,
         ".pdf": 19,
-        ".vrb": 9,
+        ".vrb": 8,
         ".snm": 19,
         ".tex": 19,
         ".aux": 19,
@@ -97,8 +97,8 @@
     "figures": {
       "exists": true,
       "file_count": 17,
-      "size_mb": "2.59",
-      "total_size_bytes": 2720599,
+      "size_mb": "2.62",
+      "total_size_bytes": 2747777,
       "largest_files": [
         {
           "name": "word_cloud.png",
@@ -125,7 +125,7 @@
       "exists": true,
       "file_count": 14,
       "size_mb": "12.77",
-      "total_size_bytes": 13387781,
+      "total_size_bytes": 13387778,
       "largest_files": [
         {
           "name": "nanopublications.trig",
@@ -154,7 +154,7 @@
       "exists": true,
       "file_count": 4,
       "size_mb": "0.01",
-      "total_size_bytes": 5610,
+      "total_size_bytes": 5653,
       "largest_files": [
         {
           "name": "validation_report.json",
@@ -210,8 +210,8 @@
       }
     }
   },
-  "total_files": 209,
-  "total_size_mb": 24.153483390808105,
+  "total_files": 208,
+  "total_size_mb": 24.28462028503418,
   "largest_files": [
     {
       "name": "nanopublications.trig",
@@ -227,7 +227,7 @@
     },
     {
       "name": "act_inf_metaanalysis_combined.pdf",
-      "size_mb": "2.95",
+      "size_mb": "2.99",
       "category": "pdf",
       "path": "pdf/act_inf_metaanalysis_combined.pdf"
     },
@@ -239,13 +239,13 @@
     },
     {
       "name": "03c_results_text_analytics_slides.pdf",
-      "size_mb": "1.42",
+      "size_mb": "1.43",
       "category": "slides",
       "path": "slides/03c_results_text_analytics_slides.pdf"
     },
     {
       "name": "03_results_hypothesis_slides.pdf",
-      "size_mb": "0.55",
+      "size_mb": "0.54",
       "category": "slides",
       "path": "slides/03_results_hypothesis_slides.pdf"
     },
@@ -276,12 +276,12 @@
   ],
   "missing_expected_files": [],
   "sizes_by_category": {
-    "pdf": 3.468916893005371,
-    "web": 0.5341510772705078,
-    "slides": 4.780368804931641,
-    "figures": 2.5945653915405273,
-    "data": 12.767582893371582,
-    "reports": 0.0053501129150390625,
+    "pdf": 3.5172243118286133,
+    "web": 0.5537023544311523,
+    "slides": 4.817689895629883,
+    "figures": 2.6204843521118164,
+    "data": 12.767580032348633,
+    "reports": 0.005391120910644531,
     "simulations": 0.0,
     "llm": 0.0,
     "logs": 0.0025482177734375
@@ -298,7 +298,7 @@
     ".bbl": 1,
     ".html": 20,
     ".nav": 19,
-    ".vrb": 9,
+    ".vrb": 8,
     ".snm": 19,
     ".png": 16,
     ".json": 13,

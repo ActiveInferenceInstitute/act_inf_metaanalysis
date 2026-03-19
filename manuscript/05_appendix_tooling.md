@@ -164,6 +164,8 @@ The engineering trade-offs among the three deployment options are straightforwar
 
 **Property graph databases** (e.g., Neo4j) prioritize traversal performance for path queries and community detection, at the expense of semantic web compatibility.
 
+While RDF and property graphs excel at structurally organizing assertions, it is crucial to recognize that they inherently compress the rich epistemic context of the original papers (e.g., methodological caveats, sample sizes, scope limitations) into flattened confidence scores—a fundamental limitation of current automated knowledge extraction discussed in the Conclusion.
+
 The [Active Inference Ontology namespace](http://activeinference.institute/ontology/) ensures integration with external ontologies and linked data resources.
 
 ## Multi-Level Quality Assurance

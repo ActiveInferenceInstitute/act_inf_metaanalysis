@@ -97,14 +97,22 @@
 
 \begin{document}
 
-\begin{frame}[fragile]{Hypothesis Evidence Landscape and Temporal
-Dynamics \label{sec:hypothesis_results}}
+\begin{frame}{Hypothesis Evidence Landscape and Temporal Dynamics
+\label{sec:hypothesis_results}}
 \protect\phantomsection\label{hypothesis-evidence-landscape-and-temporal-dynamics}
 The LLM-based extraction pipeline produced a total of 2,795 assertions
 across the eight tracked hypotheses, drawn from the full corpus of
-\(N = 849\) papers. The distribution of assertion types and the
-resulting citation-weighted scores reveal a differentiated evidence
-landscape (Figure \ref{fig:hypothesis_dashboard}):
+\(N = 849\) papers. Before presenting the results, we reiterate the
+interpretive framework established in the
+\hyperref[sec:methods_kg]{methodology}: hypothesis scores are
+\emph{relative rankings} among hypotheses and \emph{temporal
+trajectories} within each hypothesis---they are not absolute probability
+estimates. Publication bias and linguistic asymmetry
+(\S\ref{sec:pub_bias}) inflate all scores toward the positive end, and
+the tally-based aggregation does not model evidential dependencies. The
+distribution of assertion types and the resulting citation-weighted
+scores reveal a differentiated evidence landscape (Figure
+\ref{fig:hypothesis_dashboard}):
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -159,9 +167,10 @@ Contested \\
 
 \begin{block}{Interpretation of Evidence Profiles}
 \protect\phantomsection\label{interpretation-of-evidence-profiles}
-The eight hypotheses cluster into three distinct tiers. The
-\textbf{consensus tier} (H4, H5) comprises hypotheses with strong
-positive scores (\(> 0.5\)) and minimal contradicting assertions.
+The eight hypotheses cluster into three distinct tiers, defined by score
+ranges that emerge from the data rather than being imposed a priori. The
+\textbf{consensus tier} (score \(> 0.5\); H4, H5) comprises hypotheses
+with strong positive scores and minimal contradicting assertions.
 Predictive coding (H4), the most extensively assessed hypothesis with
 793 assertions and a score of \(+0.92\), has accumulated overwhelmingly
 supportive evidence since the 1970s, reflecting the deep empirical
@@ -170,16 +179,16 @@ Scalability (H5) shows a similarly strong positive trajectory
 (\(+0.68\)) that accelerated after 2017 as deep active inference
 architectures emerged.
 
-The \textbf{moderate tier} (H6, H7, H8) comprises hypotheses with
-positive scores in the \(0.4\)--\(0.5\) range. Language AIF (H8) leads
-this tier with 109 assertions and a score of \(+0.48\), reflecting
-recent breakthroughs coupling active inference to large language models.
-Clinical utility (H6) has the smallest evidence base (35 assertions) but
-shows a temporally increasing trend, consistent with the recent growth
-of computational psychiatry applications. Morphogenesis (H7) shows
-moderate support (\(+0.40\)), reflecting its status as an active
-research frontier where theoretical proposals outpace empirical
-validation.
+The \textbf{moderate tier} (score \(0.3\)--\(0.5\); H6, H7, H8)
+comprises hypotheses with positive scores but smaller or more recent
+evidence bases. Language AIF (H8) leads this tier with 109 assertions
+and a score of \(+0.48\), reflecting recent breakthroughs coupling
+active inference to large language models. Clinical utility (H6) has the
+smallest evidence base (35 assertions) but shows a temporally increasing
+trend, consistent with the recent growth of computational psychiatry
+applications. Morphogenesis (H7) shows moderate support (\(+0.40\)),
+reflecting its status as an active research frontier where theoretical
+proposals outpace empirical validation.
 
 The \textbf{diffuse or contested tier} (H1, H2, H3) is the most
 diagnostically informative for understanding the field's intellectual
@@ -217,14 +226,15 @@ since, reflecting the mature empirical base in cognitive neuroscience.
 Second, \textbf{recent acceleration}: H5 (scalability) and H6 (clinical
 utility) show steep upward trends after 2017, tracking the emergence of
 deep active inference tools and computational psychiatry applications.
-The H5 trajectory is particularly striking: AXIOM \citep{heins2025axiom}
-demonstrates that principled object-centric world models under the AIF
-framework can outperform state-of-the-art deep RL agents on standard
-benchmarks, directly addressing the scalability challenge that has
-historically been the strongest argument against AIF as a practical
-framework. Third, \textbf{persistent contestation}: H3 (Markov blanket
-realism) has maintained a lower score since 2018, with supporting papers
-partially offset by targeted critiques.
+The H5 trajectory reflects a cumulative body of work culminating in
+benchmark demonstrations such as AXIOM \citep{heins2025axiom}, which
+showed that object-centric world models under AIF can match
+state-of-the-art deep RL performance---but the temporal trend was
+already positive before any single result, and the score captures the
+aggregate rather than any individual paper. Third, \textbf{persistent
+contestation}: H3 (Markov blanket realism) has maintained a lower score
+since 2018, with supporting papers partially offset by targeted
+critiques.
 
 \begin{figure}[htbp]
 \centering
@@ -297,12 +307,14 @@ consistent with the FEP than as challenges to it.
 
 Second, \textbf{linguistic asymmetry} in academic writing further skews
 extraction toward positive classifications. Declarative scholarly claims
-are inherently phrased affirmatively---authors write
-\texttt{our\ results\ support,\textquotesingle{}\textquotesingle{}}consistent
-with,'\,' or
-\texttt{extends\ the\ prediction\ of\textquotesingle{}\textquotesingle{}\ far\ more\ frequently\ than}our
-results refute'\,' or
-\texttt{contradicts\ the\ claim\ that.\textquotesingle{}\textquotesingle{}\ Because\ the\ LLM\ extraction\ pipeline\ operates\ on\ abstract\ text,\ this\ linguistic\ imbalance\ propagates\ directly\ into\ the\ assertion\ distribution.\ Even\ papers\ presenting\ genuinely\ mixed\ evidence\ tend\ to\ frame\ their\ abstracts\ in\ terms\ of\ what\ \textbackslash{}textit\{was\}\ found\ rather\ than\ what\ was\ not,\ biasing\ the\ extracted\ direction\ toward}supports.'\,'
+are inherently phrased affirmatively---authors write ``our results
+support,'' ``consistent with,'' or ``extends the prediction of'' far
+more frequently than ``our results refute'' or ``contradicts the claim
+that.'' Because the LLM extraction pipeline operates on abstract text,
+this linguistic imbalance propagates directly into the assertion
+distribution. Even papers presenting genuinely mixed evidence tend to
+frame their abstracts in terms of what \textit{was} found rather than
+what was not, biasing the extracted direction toward ``supports.'\,'
 
 These two effects act in concert: publication bias reduces the number of
 contradicting papers in the corpus, and linguistic framing reduces the
