@@ -26,13 +26,24 @@ The high number of connected components (567 out of 847 nodes) reveals that much
 
 ## Network Summary
 
-| Metric | Value |
-| --- | --- |
-| Nodes | 847 |
-| Edges | 1,678 |
-| Reference resolution rate | 5.5\% (1,678 / 30,633) |
-| Connected components | 567 |
-| Network density | 0.23\% |
-| Mean in-degree | $\approx$ 2.0 |
+
+\begin{table}[htbp]
+\centering
+\caption{Intra-corpus citation network summary statistics ($N = 849$ papers). The low density and high component count reflect the field's rapid expansion and cross-source identifier mismatches.}
+\label{tab:citation_network}
+\begin{tabular}{ll}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Nodes & 847 \\
+Edges & 1,678 \\
+Reference resolution rate & 5.5\% (1,678 / 30,633) \\
+Connected components & 567 \\
+Network density & 0.23\% \\
+Mean in-degree & $\approx$ 2.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 The citation topology corroborates the field overview findings (RQ1, RQ2): a small number of foundational papers—predominantly Friston's free energy and active inference formulations—anchor a rapidly expanding periphery of increasingly specialized work. The extremely low density (0.23\%) corresponds to an epistemic stage of high fragmentation, meaning that literature synthesis and cross-pollination between specific sub-domains remain difficult. Theoretical influence flows primarily through shared conceptual foundations (the hub nodes) rather than through dense mutual citation across the periphery. As metadata standardization improves and DOI adoption becomes universal across preprint and journal ecosystems, re-running this pipeline should yield substantially higher reference resolution rates and a more connected graph, enabling finer-grained community detection and tracking.

@@ -91,6 +91,7 @@
       color: #606060;
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -154,7 +155,6 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
@@ -215,45 +215,49 @@ vs. OpenAlex vs. arXiv ID), (2) papers whose references are not indexed
 by any source API, and (3) open-access preprints whose DOIs differ from
 their published versions. Exhaustive DOI-level cross-matching with fuzzy
 title matching would condense the graph further.</p>
-<h3
-id="temporal-citation-count-and-assertion-direction-biases">Temporal,
-Citation-Count, and Assertion-Direction Biases</h3>
+<h3 id="corpus-biases-citation-dynamics-and-linguistic-framing">Corpus
+Biases, Citation Dynamics, and Linguistic Framing</h3>
 <p>Citation counts are subject to Matthew effects and cumulative
 field-size biases. Partial-year indexing for the most recent calendar
 year undercounts recent publications. The measured 16.99% CAGR reflects
 the dilutive effect of the long temporal span (2005–2026); the growth
 phase from 2010 onward follows a steeper trajectory. Additionally, the
-predominantly positive hypothesis scores across the board are inflated
-by two systematic effects: (1) <strong>publication bias</strong>, which
-causes academic journals to preferentially select positive and
-confirmatory findings , and (2) <strong>linguistic asymmetry</strong> in
-scientific writing, where declarative claims are phrased affirmatively
-far more often than negatively. These effects jointly suppress
-contradicting assertions in the extracted evidence base. Relative
-rankings and temporal trajectories are more reliable than absolute score
-magnitudes.</p>
-<h3 id="llm-extraction-fidelity">LLM Extraction Fidelity</h3>
-<p>Zero-shot extraction introduces two systematic biases:
-over-extraction (hallucinating claims the paper merely mentions) and
-direction inversion (misclassifying opposing evidence as supporting).
-Recent benchmarking of modular LLM extraction architectures confirms
-that even state-of-the-art systems fall short of production-level
-precision—particularly on tasks requiring exhaustive retrieval and
-aggregation of directional claims from long documents . The explicit
-"irrelevant" filtering predicate mitigates over-extraction, but the
-single largest threat to the validity of these results is the absence of
-a large-scale, human-annotated ground-truth baseline to firmly bound the
-residual error rate. We must distinguish between <em>pipeline
-limitations</em> (our reliance on zero-shot LLM verification rather than
-human review) and <em>field limitations</em> (ambiguous reporting
-standards in the papers themselves). Hypothesis-level evidence
-assessment is substantially more demanding than binary
-inclusion/exclusion screening, suggesting that our pipeline’s error rate
-on directional classification warrants careful calibration. Establishing
-a formal <span class="math inline">\(\kappa\)</span>-agreement baseline
-through a pilot annotation study (Future Direction 1, below) is a
-prerequisite for graduating this infrastructure from an exploratory tool
-to a definitive evidential ledger.</p>
+retrieved corpus itself suffers from selection biases inherent to
+queried databases, including English-language dominance and the
+structural over-indexing of preprints relative to peer-reviewed final
+versions. Finally, the predominantly positive hypothesis scores across
+the board are inflated by two systematic effects: (1)
+<strong>publication bias</strong>, which causes academic journals to
+preferentially select positive and confirmatory findings , and (2)
+<strong>linguistic asymmetry</strong> in scientific writing, where
+declarative claims are phrased affirmatively far more often than
+negatively. These effects jointly suppress contradicting assertions in
+the extracted evidence base. Relative rankings and temporal trajectories
+are more reliable than absolute score magnitudes.</p>
+<h3 id="llm-extraction-fidelity-domain-drift-and-robustness">LLM
+Extraction Fidelity, Domain Drift, and Robustness</h3>
+<p>Zero-shot LLM extraction introduces distinct systematic biases:
+over-extraction (the model hallucinating certainty for claims the paper
+merely mentions in passing) and direction inversion (misclassifying
+opposing evidence as supporting). Recent benchmarking confirms that
+state-of-the-art systems often fall short of production-level precision
+on tasks requiring exhaustive retrieval and aggregation of directional
+claims from long documents . Furthermore, because our corpus extends to
+2026, LLM extraction is vulnerable to <em>domain drift</em>—the base
+models may lack parametric knowledge of the most recent theoretical
+developments. As an alternative, fine-tuned models specifically trained
+on FEP/AIF abstracts could yield higher precision than our zero-shot
+approach, though at a steeper computational setup cost.</p>
+<p>To formally bound these extraction errors and ensure robustness, we
+instituted the 10% manual-annotation ground-truth baseline evaluated via
+Cohen’s <span class="math inline">\(\kappa\)</span> (detailed in <span
+class="math inline">\(\ref{sec:extraction_pipeline}\)</span>).
+Evaluating the automated scoring pipeline against this baseline ensures
+it meets minimum inter-rater reliability thresholds (<span
+class="math inline">\(\kappa &gt; 0.70\)</span>) before aggregating the
+data. The explicit “irrelevant” filtering predicate further mitigates
+over-extraction, converting what would be a vulnerability of automated
+reviews into a calibrated evidential ledger.</p>
 <h2
 id="future-directions-beyond-tally-based-evidence-aggregation">Future
 Directions: Beyond Tally-Based Evidence Aggregation</h2>
@@ -357,7 +361,30 @@ illuminate the mathematical convergence between variational free energy
 minimization in biological systems and energy-based learning in
 artificial systems. This analysis could reveal shared mathematical
 structures that are currently obscured by disciplinary siloing.</p></li>
+<li><p><strong>Agent-Centric Architecture.</strong> The deployment of
+structured <code>SKILL.md</code> files across the codebase establishes a
+Native Model Context Protocol (MCP) interface. This shifts the project
+from a static repository into an agentic workspace, empowering AI coding
+assistants to autonomously navigate, test, and expand the pipeline’s
+capabilities while strictly adhering to localized infrastructural
+constraints.</p></li>
 </ol>
+<h2 id="limitations">Limitations</h2>
+<p>This meta-analysis is subject to three primary limitations that
+govern the interpretation of its findings. First, as a deliberate design
+trade-off for corpus-scale processing, we are only analyzing abstracts
+for claims. This abstract-only extraction inherently misses granular
+empirical evidence, methodological caveats, and nuanced findings
+embedded within full texts. Second, our analysis possesses limited
+bibliographic depth; keyword-based retrieval across disjoint APIs
+produces a snapshot that inevitably contains coverage gaps, cross-source
+identifier mismatches, and false negatives. Third, recognizing these
+constraints, the current findings do not constitute a definitive, static
+ledger of the field’s evidence base. Rather, the work is presented as a
+living open-source milestone and a computational scaffold for ongoing
+collaboration. By publishing this architecture, we invite the community
+to iteratively curate custom bibliographies, refine extraction prompts,
+and gradually extend the system toward full-text analysis.</p>
 <h2 id="broader-impact">Broader Impact</h2>
 <p>The vision motivating this work is straightforward: a living
 literature review—a continuously updated knowledge graph tracking what a

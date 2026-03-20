@@ -74,14 +74,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{longtable,booktabs,array}
-\newcounter{none} % for unnumbered tables
-\usepackage{calc} % for calculating minipage widths
-\usepackage{caption}
-% Make caption package work with longtable
-\makeatletter
-\def\fnum@table{\tablename~\thetable}
-\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -100,14 +92,13 @@
 \begin{frame}{Field Overview: Disciplinary Structure and Growth Dynamics
 \label{sec:field_overview}}
 \protect\phantomsection\label{field-overview-disciplinary-structure-and-growth-dynamics}
-Annual output in the Active Inference literature rose from
-\{\{YEAR\_START\_PUBS\}\} papers in 2005 to \{\{PEAK\_YEAR\_PUBS\}\}
-papers in 2025---a transition from a niche within theoretical
-neuroscience to a multi-disciplinary research program spanning three
-primary domains and eight tracked categories. The corpus start of 2005
-was chosen to capture Energy-Based Model and variational Bayesian
-antecedents \citep{dayan1995helmholtz, lecun2006tutorial} that preceded
-the formal introduction of the Free Energy Principle in 2006
+Annual output in the Active Inference literature rose from 1 papers in
+2005 to 139 papers in 2025---a transition from a niche within
+theoretical neuroscience to a multi-disciplinary research program
+spanning three primary domains and eight tracked categories. The corpus
+start of 2005 was chosen to capture Energy-Based Model and variational
+Bayesian antecedents \citep{dayan1995helmholtz, lecun2006tutorial} that
+preceded the formal introduction of the Free Energy Principle in 2006
 \citep{friston2006free} and its subsequent full elaboration
 \citep{friston2010free}. Our corpus, extracted from arXiv, Semantic
 Scholar, and OpenAlex and deduplicated to \(N = 849\) papers
@@ -123,20 +114,22 @@ this expansion (Figure \ref{fig:field_summary}).
 
 \begin{block}{Corpus-Level Summary}
 \protect\phantomsection\label{corpus-level-summary}
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Metric & Value \\
-\midrule\noalign{}
-\endhead
+\begin{table}[htbp]
+\centering
+\caption{Corpus-level summary statistics for the Active Inference literature corpus ($N = 849$), spanning 2005--2026.}
+\label{tab:corpus_summary}
+\begin{tabular}{ll}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
 Total papers & 849 \\
 Year range & 2005--2026 \\
 Peak year & 2025 \\
 CAGR & 16.99\% \\
 Active domains & 8 of 8 tracked (A1--A2, B, C1--C5) \\
-\bottomrule\noalign{}
-\end{longtable}
-}
+\bottomrule
+\end{tabular}
+\end{table}
 
 The CAGR of 16.99\% reflects the corpus's long temporal span from 2005
 to 2026; the field's actual rapid growth phase began around 2013, with
@@ -160,23 +153,27 @@ metrics are detailed in the dedicated citation network analysis (see
 Keyword-based classification assigns each paper to one of eight
 categories across three domains:
 
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}llll@{}}
-\toprule\noalign{}
-Domain & Category & Papers & Percentage \\
-\midrule\noalign{}
-\endhead
-\textbf{A -- Core Theory} & A1: Formal Theory & 67 & 7.9\% \\
-& A2: Qualitative Philosophy & 68 & 8.0\% \\
-\textbf{B -- Tools} & B: Tools \& Translation & 182 & 21.5\% \\
-\textbf{C -- Applications} & C1: Neuroscience & 158 & 18.7\% \\
-& C2: Robotics & 136 & 16.1\% \\
-& C3: Language & 63 & 7.4\% \\
-& C4: Psychiatry & 36 & 4.3\% \\
-& C5: Biology & 137 & 16.2\% \\
-\bottomrule\noalign{}
-\end{longtable}
-}
+\begin{table}[htbp]
+\centering
+\caption{Domain distribution across three tiers and eight categories ($N = 849$ papers). Classification uses hierarchical keyword matching with priority-based routing to minimize over-assignment to catch-all categories.}
+\label{tab:domain_distribution}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Domain} & \textbf{Category} & \textbf{Papers} & \textbf{Percentage} \\
+\midrule
+A -- Core Theory & A1: Formal Theory & 67 & 7.9\% \\
+ & A2: Qualitative Philosophy & 68 & 8.0\% \\
+\midrule
+B -- Tools & B: Tools \& Translation & 182 & 21.5\% \\
+\midrule
+C -- Applications & C1: Neuroscience & 158 & 18.7\% \\
+ & C2: Robotics & 136 & 16.1\% \\
+ & C3: Language & 63 & 7.4\% \\
+ & C4: Psychiatry & 36 & 4.3\% \\
+ & C5: Biology & 137 & 16.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The concentration of papers in A2 (qualitative philosophy and general
 theory) reflects the broad scope of foundational FEP work (Figure
@@ -212,52 +209,25 @@ the text analytics section (see
 
 \begin{block}{Cross-Domain Comparison}
 \protect\phantomsection\label{cross-domain-comparison}
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Domain
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Category
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Papers
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Growth Trend
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Maturity
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Key Challenge
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Representative Work
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-A & A1: Formal & 67 (7.9\%) & Growing & Mature & Mathematical
-accessibility for broader field & \citep{sakthivadivel2023bayesian} \\
-A & A2: Philosophy & 68 (8.0\%) & Stable & Mature & Residual catch-all;
-absorbs FEP prose papers & \citep{friston2010free} \\
-B & B: Tools & 182 (21.5\%) & Rapid & Growing & Matching deep RL
-benchmark performance & \citep{fountas2020deep} \\
-C & C1: Neuroscience & 158 (18.7\%) & Stable & Mature & Bridging theory
-and empirical neuroimaging & \citep{clark2013whatever} \\
-C & C2: Robotics & 136 (16.1\%) & Growing & Growing & Real-time
-feasibility on embedded hardware & \citep{lanillos2021active} \\
-C & C3: Language & 63 (7.4\%) & Emerging & Nascent & Demonstrating gains
-over existing NLP models & \citep{friston2020generative} \\
-C & C4: Psychiatry & 36 (4.3\%) & Emerging & Nascent & Translating
-models to clinical practice & \citep{smith2021computational} \\
-C & C5: Biology & 137 (16.2\%) & Rapid & Nascent & Empirical validation
-of theoretical proposals & \citep{kuchling2020morphogenesis} \\
-\bottomrule\noalign{}
-\end{longtable}
-}
+\begin{table}[htbp]
+\centering
+\caption{Cross-domain comparison showing growth trajectories, maturity levels, key challenges, and representative publications for each of the eight tracked categories. Growth trends and maturity assessments are based on temporal publication patterns and evidence base depth.}
+\label{tab:cross_domain_comparison}
+\begin{tabular}{llcllll}
+\toprule
+\textbf{Domain} & \textbf{Category} & \textbf{Papers} & \textbf{Growth} & \textbf{Maturity} & \textbf{Key Challenge} & \textbf{Rep.\ Work} \\
+\midrule
+A & A1: Formal & 67 (7.9\%) & Growing & Mature & Math accessibility & \citep{sakthivadivel2023bayesian} \\
+A & A2: Philosophy & 68 (8.0\%) & Stable & Mature & Catch-all absorption & \citep{friston2010free} \\
+B & B: Tools & 182 (21.5\%) & Rapid & Growing & Deep RL benchmarks & \citep{fountas2020deep} \\
+C & C1: Neuroscience & 158 (18.7\%) & Stable & Mature & Theory--neuroimaging gap & \citep{clark2013whatever} \\
+C & C2: Robotics & 136 (16.1\%) & Growing & Growing & Embedded real-time & \citep{lanillos2021active} \\
+C & C3: Language & 63 (7.4\%) & Emerging & Nascent & NLP model comparison & \citep{friston2020generative} \\
+C & C4: Psychiatry & 36 (4.3\%) & Emerging & Nascent & Clinical translation & \citep{smith2021computational} \\
+C & C5: Biology & 137 (16.2\%) & Rapid & Nascent & Empirical validation & \citep{kuchling2020morphogenesis} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Three structural features emerge from the cross-domain comparison
 (Figure \ref{fig:subfield_timeline}). First, no single legacy domain

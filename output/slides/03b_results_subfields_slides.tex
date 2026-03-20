@@ -74,14 +74,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{longtable,booktabs,array}
-\newcounter{none} % for unnumbered tables
-\usepackage{calc} % for calculating minipage widths
-\usepackage{caption}
-% Make caption package work with longtable
-\makeatletter
-\def\fnum@table{\tablename~\thetable}
-\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -324,12 +316,14 @@ Each domain has a primary hypothesis linkage (see the detailed
 hypothesis evidence analysis in the
 \hyperref[sec:hypothesis_results]{hypothesis results}):
 
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}lllll@{}}
-\toprule\noalign{}
-Domain & Category & \(n\) & Primary Hypothesis & Evidence Direction \\
-\midrule\noalign{}
-\endhead
+\begin{table}[htbp]
+\centering
+\caption{Domain--hypothesis cross-reference linking each of the eight tracked categories to its primary hypothesis and the direction of the current evidence base. See the \hyperref[sec:hypothesis_results]{hypothesis results} for quantitative scores and temporal trends.}
+\label{tab:domain_hypothesis_crossref}
+\begin{tabular}{llcll}
+\toprule
+\textbf{Domain} & \textbf{Category} & $n$ & \textbf{Primary Hypothesis} & \textbf{Evidence Direction} \\
+\midrule
 A1 & Formal & 67 & H3 Markov Blanket Realism & Contested \\
 A2 & Philosophy & 68 & H1 FEP Universality & Strongly supporting \\
 B & Tools & 182 & H5 Scalability & Mixed \\
@@ -338,9 +332,9 @@ C2 & Robotics & 136 & H2 AIF Optimality, H5 Scalability & Mixed \\
 C3 & Language & 63 & H8 Language AIF & Emerging \\
 C4 & Psychiatry & 36 & H6 Clinical Utility & Supporting \\
 C5 & Biology & 137 & H7 Morphogenesis & Supporting \\
-\bottomrule\noalign{}
-\end{longtable}
-}
+\bottomrule
+\end{tabular}
+\end{table}
 
 The evidence directions summarized above are elaborated
 quantitatively---with citation-weighted scores, temporal trends, and

@@ -1,4 +1,4 @@
-# Appendix B: Tooling and Infrastructure \label{sec:tooling}
+# Appendix: Tooling and Infrastructure \label{sec:tooling}
 
 The practical utility of a computational meta-analysis depends on robust tooling at each pipeline stage: assertion extraction, modeling and simulation, knowledge graph infrastructure, and quality assurance.
 
@@ -23,6 +23,8 @@ Four general-purpose frameworks dominate the landscape, collectively covering di
 **SPM.** The SPM package (Wellcome Centre for Human Neuroimaging) includes MATLAB implementations of Dynamic Causal Modeling and variational Bayesian inference under the FEP. It remains the reference implementation for neuroimaging applications and houses the original Friston-group POMDP scripts.
 
 **RxInfer.jl.** RxInfer is a Julia package for reactive message-passing-based Bayesian inference, supporting real-time and streaming inference suitable for robotics and online learning. Version 4.0.0 (early 2025) \citep{rxinfer2025} introduced projected constraints and adaptive inference optimized for dynamic data streams and autonomous systems. The RxInfer ecosystem includes extensive tutorials covering Bayesian linear regression, hidden Markov models, Kalman filtering, Gaussian process regression, hierarchical Gaussian filters, nonlinear sensor fusion, and active inference mountain car control, available at the [official documentation](https://reactivebayes.github.io/RxInfer.jl/stable/) and the [Learnable Loop](https://learnableloop.com/) tutorial portal.
+
+**ActiveInference.jl.** In parallel to RxInfer's generalized message-passing focus, ActiveInference.jl provides a Julia-native, near drop-in conceptual analogue to Python's `pymdp` \citep{ActiveInferencejl}. It explicitly targets computational psychiatry and cognitive neuroscience workflows emphasizing standard discrete-state POMDP simulation, parameter estimation, and recovery. The library leverages Julia's array semantics—utilizing vectors of arrays to efficiently encode multimodal factorized models via the canonical $\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D}, \mathbf{E}$ components—to streamline tasks like generating synthetic behavioral data, fitting models to subject behavior, and probing internal beliefs via robust simulation loops (`infer_states!`, `infer_policies!`, `sample_action!`).
 
 **Cpp-AIF.** The Cpp-AIF header-only C++ library \citep{gregoretti2023cppaif} implements active inference for discrete POMDPs with multicore parallelization of the most demanding computational kernels—multidimensional inner products for expected free energy computation and state estimation. By abstracting the mathematical details behind a high-level API, Cpp-AIF targets embedded systems and performance-critical applications where Python overhead is prohibitive.
 
@@ -68,6 +70,7 @@ The following table catalogs the principal open-source Active Inference implemen
 pymdp & Python & Discrete POMDP active inference; factor graphs, hierarchical models & \cite{heins2022pymdp} \\
 SPM & MATLAB & DCM, variational Bayes; neuroimaging reference implementation & \cite{friston2017active} \\
 RxInfer.jl & Julia & Reactive message passing; real-time streaming Bayesian inference & \cite{rxinfer2025} \\
+ActiveInference.jl & Julia & Discrete POMDP AIF; parameter recovery for computational psychiatry & \cite{ActiveInferencejl} \\
 Cpp-AIF & C++ & Header-only POMDP AIF library with multicore parallelization & \cite{gregoretti2023cppaif} \\
 FEPS & Python & EFE on interpretable policy graphs; projective simulation & \cite{pazem2024feps} \\
 ActivPynference & Python & Discrete AIF with factor-graph message passing; educational focus & — \\
@@ -138,23 +141,34 @@ AdaptiveResonance.jl & Julia & Adaptive resonance theory models in Julia & — \
 
 ### Comparative Feature Matrix
 
-| Feature | pymdp | SPM | RxInfer.jl | Cpp-AIF | FEPS | ngc-learn |
-| --- | --- | --- | --- | --- | --- | --- |
-| **Language** | Python | MATLAB | Julia | C++ | Python | Python/JAX |
-| **State Spaces** | Discrete | Discrete + Continuous | Continuous (factor graphs) | Discrete | Discrete | Continuous |
-| **Inference** | Message passing | Variational Bayes | Reactive message passing | EFE + state estimation | EFE on policy graphs | Predictive coding |
-| **Deep AIF** | Partial | No | Via custom factors | No | No (interpretable) | Yes (neural circuits) |
-| **Real-time** | No | No | Yes (streaming) | Yes (multicore) | No | No |
-| **Hierarchical** | Yes | Yes (DCM) | Yes | Yes | No | Yes |
-| **GPU** | No | No | No | CPU (multicore) | No | Yes (JAX) |
-| **License** | MIT | GPL | MIT | MIT | MIT | BSD-3 |
-| **Primary Use** | Research prototyping | Neuroimaging | Robotics / online learning | Embedded systems | Interpretable RL | NeuroAI simulation |
+
+\begin{table}[htbp]
+\centering
+\caption{Comparative feature matrix of Active Inference software packages. Features span language, state space type, inference algorithm, hierarchical support, GPU acceleration, and primary use case.}
+\label{tab:aif_feature_matrix}
+\begin{tabular}{llllllll}
+\toprule
+\textbf{Feature} & \textbf{pymdp} & \textbf{SPM} & \textbf{RxInfer.jl} & \textbf{ActiveInference.jl} & \textbf{Cpp-AIF} & \textbf{FEPS} & \textbf{ngc-learn} \\
+\midrule
+Language & Python & MATLAB & Julia & Julia & C++ & Python & Python/JAX \\
+State Spaces & Discrete & Disc.+Cont. & Continuous & Discrete & Discrete & Discrete & Continuous \\
+Inference & Msg.\ passing & Var.\ Bayes & Reactive msg. & Msg.\ passing & EFE+state est. & EFE on graphs & Pred.\ coding \\
+Deep AIF & Partial & No & Custom factors & No & No & No & Yes \\
+Real-time & No & No & Yes & No & Yes & No & No \\
+Hierarchical & Yes & Yes (DCM) & Yes & No & Yes & No & Yes \\
+GPU & No & No & No & No & CPU (multi) & No & Yes (JAX) \\
+License & MIT & GPL & MIT & MIT & MIT & MIT & BSD-3 \\
+Primary Use & Prototyping & Neuroimaging & Robotics & Comp.\ psych. & Embedded & Interp.\ RL & NeuroAI \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 The complementary strengths across these packages reflect a fragmented but maturing ecosystem. The survey reveals several notable patterns: (1) Python dominates (~75\% of implementations), with Julia emerging as the preferred alternative for performance-critical applications; (2) discrete POMDP implementations outnumber continuous variants by approximately 3:1, reflecting pymdp's community influence; (3) deep active inference implementations are concentrated in a small number of research groups (Champion, Millidge, Fountas, Heins), suggesting high barriers to entry; (4) multi-agent and social AIF implementations remain sparse relative to single-agent tools; and (5) domain-specific applications (IoT, federated learning, smart buildings) represent the newest and fastest-growing category, aligning with the temporal growth patterns observed in the C-domain (applied) subfields. The variational free energy foundations shared by Active Inference and Energy-Based Models (EBMs)—including Helmholtz machines \citep{dayan1995helmholtz}, Boltzmann machines \citep{hinton2002training}, and variational autoencoders \citep{kingma2014auto}—suggest that interoperability with mainstream deep generative modeling frameworks (PyTorch, JAX) could bridge these parallel research programs.
 
 ## Knowledge Graph Infrastructure
 
-Our knowledge graph uses an RDF-compatible schema deployable on standard semantic web infrastructure. The nanopublication model \citep{groth2010anatomy, kuhn2016decentralized} provides a principled atomic unit of scientific evidence: each nanopublication packages a single assertion (e.g., "Paper X supports Hypothesis Y") with explicit provenance and publication metadata in four named RDF graphs (Head, Assertion, Provenance, Publication Info). This structure satisfies the FAIR data principles by design: nanopublications are **F**indable via URI-based identification, **A**ccessible through standard RDF protocols, **I**nteroperable via W3C-standard TriG serialization, and **R**eusable with explicit provenance and CC0 licensing. The full RDF schema and a TriG serialization example are presented in the \hyperref[sec:methods_kg]{methodology} and \hyperref[sec:appendix_rdf]{Appendix~A.5}.
+Our knowledge graph uses an RDF-compatible schema deployable on standard semantic web infrastructure. The nanopublication model \citep{groth2010anatomy, kuhn2016decentralized} provides a principled atomic unit of scientific evidence: each nanopublication packages a single assertion (e.g., "Paper X supports Hypothesis Y") with explicit provenance and publication metadata in four named RDF graphs (Head, Assertion, Provenance, Publication Info). This structure satisfies the FAIR data principles by design: nanopublications are **F**indable via URI-based identification, **A**ccessible through standard RDF protocols, **I**nteroperable via W3C-standard TriG serialization, and **R**eusable with explicit provenance and CC0 licensing. The full RDF schema and a TriG serialization example are presented in the \hyperref[sec:methods_kg]{methodology} and Appendix \ref{sec:appendix_rdf}.
 
 The engineering trade-offs among the three deployment options are straightforward:
 
@@ -190,14 +204,25 @@ Test-driven development enforces 90\% minimum code coverage on project modules a
 
 ### Quality Thresholds
 
-| Level | Metric | Threshold | On Failure |
-| --- | --- | --- | --- |
-| Assertion | Confidence | $\geq 0.5$ | Flag for review |
-| Assertion | Inter-annotator $\kappa$ | $\geq 0.6$ | Re-annotate |
-| Graph | Orphan node ratio | $= 0$ | Reject build |
-| Graph | Corpus coverage | $\geq 80\%$ | Warning |
-| Score | Boundary tests | All pass | Block release |
-| Pipeline | Code coverage | $\geq 90\%$ | Block merge |
-| Pipeline | Test pass rate | $100\%$ | Block release |
+
+\begin{table}[htbp]
+\centering
+\caption{Multi-level quality assurance thresholds enforced across the pipeline. Each level defines a metric, minimum threshold, and failure action. Pipeline-level thresholds (90\% coverage, 100\% pass rate) are enforced via CI gates.}
+\label{tab:quality_thresholds}
+\begin{tabular}{llll}
+\toprule
+\textbf{Level} & \textbf{Metric} & \textbf{Threshold} & \textbf{On Failure} \\
+\midrule
+Assertion & Confidence & $\geq 0.5$ & Flag for review \\
+Assertion & Inter-annotator $\kappa$ & $\geq 0.6$ & Re-annotate \\
+Graph & Orphan node ratio & $= 0$ & Reject build \\
+Graph & Corpus coverage & $\geq 80\%$ & Warning \\
+Score & Boundary tests & All pass & Block release \\
+Pipeline & Code coverage & $\geq 90\%$ & Block merge \\
+Pipeline & Test pass rate & $100\%$ & Block release \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 The hypothesis evidence results, temporal dynamics of evidence accumulation, and assertion analysis are presented in the dedicated hypothesis results section (see the \hyperref[sec:hypothesis_results]{hypothesis results section}).

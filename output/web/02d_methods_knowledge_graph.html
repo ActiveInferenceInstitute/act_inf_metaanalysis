@@ -91,6 +91,7 @@
       color: #606060;
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -154,7 +155,6 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
@@ -222,49 +222,6 @@ re-runs with improved models overwrite stale results.</p></li>
 href="https://nanopub.net/">nanopub.net</a>), producing four named
 graphs per nanopublication:</p></li>
 </ol>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th>Named Graph</th>
-<th>Content</th>
-<th>Key Predicates</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Head</strong></td>
-<td>Links the nanopub resource to its three component graphs</td>
-<td><code>np:hasAssertion</code>, <code>np:hasProvenance</code>,
-<code>np:hasPublicationInfo</code></td>
-</tr>
-<tr>
-<td><strong>Assertion</strong></td>
-<td>The core scientific claim</td>
-<td><code>aif:asserts</code> (Paper → Assertion),
-<code>aif:supports</code>/<code>aif:contradicts</code> (Assertion →
-Hypothesis), <code>aif:claim</code>, <code>aif:confidence</code>,
-<code>aif:citationCount</code></td>
-</tr>
-<tr>
-<td><strong>Provenance</strong></td>
-<td>How the assertion was generated</td>
-<td><code>prov:wasGeneratedBy</code>, <code>prov:generatedAtTime</code>,
-<code>prov:wasAttributedTo</code>,
-<code>prov:hadPrimarySource</code></td>
-</tr>
-<tr>
-<td><strong>Publication Info</strong></td>
-<td>Metadata about the nanopublication itself</td>
-<td><code>dc:created</code>, <code>dc:creator</code>,
-<code>dc:license</code></td>
-</tr>
-</tbody>
-</table>
 <p>The namespace <code>http://activeinference.institute/ontology/</code>
 (prefix <code>aif:</code>) defines all domain predicates; the
 nanopublication schema (<code>http://www.nanopub.org/nschema#</code>,
@@ -331,7 +288,8 @@ rankings across hypotheses and as temporal trajectories within a
 hypothesis, rather than as absolute probability estimates. Temporal
 trends are computed by evaluating the cumulative score at each year,
 using only assertions from papers published up to that year. A full
-derivation appears in .</p>
+derivation appears in Appendix <span
+class="math inline">\(\ref{sec:appendix_scoring}\)</span>.</p>
 <h2 id="tally-based-evidence-aggregation">Tally-Based Evidence
 Aggregation</h2>
 <p>We emphasize that this algorithmic scoring formula constitutes a

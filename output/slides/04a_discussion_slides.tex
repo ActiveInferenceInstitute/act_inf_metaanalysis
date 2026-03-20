@@ -168,7 +168,7 @@ theoretical work alone can achieve.
 \end{block}
 \end{frame}
 
-\begin{frame}{Living Review Maintenance}
+\begin{frame}[fragile]{Living Review Maintenance}
 \protect\phantomsection\label{living-review-maintenance}
 The pipeline is designed for continuous operation rather than one-time
 analysis. Incremental resume capabilities (checkpoint-based assertion
@@ -185,6 +185,22 @@ nanopublication knowledge graph into a Retrieval-Augmented Generation
 architecture \citep{fan2024survey} would enable natural-language
 querying of the evidence base, making quantitative literature synthesis
 accessible to researchers without programming expertise.
+
+\begin{block}{Agentic Workspaces and MCP Integration}
+\protect\phantomsection\label{agentic-workspaces-and-mcp-integration}
+Beyond traditional open-source maintenance, the repository is
+architected as an intrinsically agentic workspace. Every underlying
+source module (e.g., \texttt{src/knowledge\_graph/},
+\texttt{src/visualization/}) is governed by dedicated \texttt{SKILL.md}
+files serving as Model Context Protocol (MCP) prompt-boundaries. These
+explicitly define the ``rules of engagement'' for autonomous AI
+inference agents---such as enforcing the zero-mock testing philosophy
+via local HTTP proxies, handling specific LLM fallback parsing logic,
+and respecting headless rendering constraints. This design ensures that
+future AI orchestrators can natively interface with, scale, and refine
+the computational meta-analysis pipeline safely and deterministically
+without structural micromanagement.
+\end{block}
 \end{frame}
 
 \begin{frame}{Open Questions}

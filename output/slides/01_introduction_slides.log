@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:27
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  20 MAR 2026 15:30
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1662,11 +1662,14 @@ Overfull \vbox (252.26413pt too high) detected at line 163
 [3
 
 ]
+\openout4 = `01_introduction_slides.vrb'.
+
+
+(/Users/4d/Documents/GitHub/template/projects/act_inf_metaanalysis/output/slide
+s/01_introduction_slides.vrb
 ! Undefined control sequence.
-\beamer@doifinframe ...scape. Sajid et al.~\citep 
-                                                  {sajid2021active} compare ...
-l.211 \end{frame}
-                 
+l.4 landscape. Sajid et al.~\citep
+                                  {sajid2021active} compare active inference
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1674,10 +1677,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...ks; Da Costa et al.~\citep 
-                                                  {dacosta2020active} synthe...
-l.211 \end{frame}
-                 
+l.6 al.~\citep
+              {dacosta2020active} synthesize the discrete-state-space
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1685,10 +1686,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...on; Lanillos et al.~\citep 
-                                                  {lanillos2021active} surve...
-l.211 \end{frame}
-                 
+l.7 formulation; Lanillos et al.~\citep
+                                       {lanillos2021active} survey robotics
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1696,10 +1695,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...tions; Smith et al.~\citep 
-                                                  {smith2021computational} p...
-l.211 \end{frame}
-                 
+l.8 applications; Smith et al.~\citep
+                                     {smith2021computational} provide a
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1707,10 +1704,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...and Millidge et al.~\citep 
-                                                  {millidge2021understanding...
-l.211 \end{frame}
-                 
+l.10 al.~\citep
+               {millidge2021understanding} examine information-theoretic
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1718,10 +1713,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...or. Ramstead et al.~\citep 
-                                                  {ramstead2018answering} ex...
-l.211 \end{frame}
-                 
+l.12 al.~\citep
+               {ramstead2018answering} extend the FEP to questions of
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1729,10 +1722,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...hile Pezzulo et al.~\citep 
-                                                  {pezzulo2015active} connec...
-l.211 \end{frame}
-                 
+l.14 al.~\citep
+               {pezzulo2015active} connect active inference to homeostatic
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1740,10 +1731,19 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...egulation. Millidge \citep 
-                                                  {millidge2024retrospective...
-l.211 \end{frame}
-                 
+l.15 regulation. Millidge \citep
+                                {millidge2024retrospective} provides a
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 22.
+! Undefined control sequence.
+l.23 \citep
+           {namjoshi2026fundamentals}, provides a comprehensive,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1751,10 +1751,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...ordes, and Friedman \citep 
-                                                  {knight2022fep} conducted ...
-l.211 \end{frame}
-                 
+l.26 \texttt{aif-fep-db} repository \citep
+                                          {namjoshi2026aiffepdb}---an
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1762,18 +1760,25 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...is of Knight et al.~\citep 
-                                                  {knight2022fep} pioneered ...
-l.211 \end{frame}
-                 
+l.35 ... work, Knight, Cordes, and Friedman \citep
+                                                  {knight2022fep}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+! Undefined control sequence.
+l.54 analysis of Knight et al.~\citep
+                                     {knight2022fep} pioneered quantitative
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-Overfull \vbox (354.38463pt too high) detected at line 211
+)
+Overfull \vbox (537.98471pt too high) detected at line 225
  []
 
 [4
@@ -1782,7 +1787,7 @@ Overfull \vbox (354.38463pt too high) detected at line 211
 ! Undefined control sequence.
 \beamer@doifinframe ...ecture of the graph \citep 
                                                   {quevedo2025combining, li2...
-l.224 \end{frame}
+l.256 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1790,18 +1795,31 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 224.
 ! Undefined control sequence.
 \beamer@doifinframe ...h {nanopublication} \citep 
                                                   {groth2010anatomy}---a min...
-l.224 \end{frame}
+l.256 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\beamer@doifinframe ...esis, Baulin et al.~\citep 
+                                                  {baulin2025discovery} rece...
+l.256 \end{frame}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (157.1955pt too high) detected at line 256
+ []
 
 [5
 
@@ -1810,10 +1828,10 @@ and I'll forget about whatever was undefined.
 ]
 
 LaTeX Warning: Hyper reference `sec:hypothesis_results' on page 7 undefined on 
-input line 276.
+input line 308.
 
 
-Overfull \vbox (75.59546pt too high) detected at line 276
+Overfull \vbox (75.59546pt too high) detected at line 308
  []
 
 [7
@@ -1822,7 +1840,7 @@ Overfull \vbox (75.59546pt too high) detected at line 276
 ! Undefined control sequence.
 \beamer@doifinframe ... brain formulations \citep 
                                                   {dayan1995helmholtz, lecun...
-l.308 \end{frame}
+l.340 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1833,7 +1851,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ... introduced in 2006 \citep 
                                                   {friston2006free}. The sco...
-l.308 \end{frame}
+l.340 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1843,16 +1861,16 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Hyper reference `sec:field_overview' on page 8 undefined on inpu
-t line 308.
+t line 340.
 
 
 LaTeX Warning: Hyper reference `sec:extraction_pipeline' on page 8 undefined on
- input line 308.
+ input line 340.
 
 ! Undefined control sequence.
 \beamer@doifinframe ...ed by Knight et al.~\citep 
                                                   {knight2022fep}; future al...
-l.308 \end{frame}
+l.340 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1861,7 +1879,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \vbox (136.78453pt too high) detected at line 308
+Overfull \vbox (136.78453pt too high) detected at line 340
  []
 
 [8
@@ -1869,70 +1887,69 @@ Overfull \vbox (136.78453pt too high) detected at line 308
 ]
 
 LaTeX Warning: Hyper reference `sec:subfield_analyses' on page 9 undefined on i
-nput line 362.
+nput line 393.
 
 
 LaTeX Warning: Hyper reference `sec:methods' on page 9 undefined on input line 
-362.
+393.
 
 
 LaTeX Warning: Hyper reference `sec:methods_retrieval' on page 9 undefined on i
-nput line 362.
+nput line 393.
 
 
 LaTeX Warning: Hyper reference `sec:extraction_pipeline' on page 9 undefined on
- input line 362.
+ input line 393.
 
 
 LaTeX Warning: Hyper reference `sec:methods_bibliometrics' on page 9 undefined 
-on input line 362.
+on input line 393.
 
 
 LaTeX Warning: Hyper reference `sec:methods_kg' on page 9 undefined on input li
-ne 362.
+ne 393.
 
 
 LaTeX Warning: Hyper reference `sec:methods_viz' on page 9 undefined on input l
-ine 362.
+ine 393.
 
 
 LaTeX Warning: Hyper reference `sec:hypothesis_results' on page 9 undefined on 
-input line 362.
+input line 393.
 
 
 LaTeX Warning: Hyper reference `sec:field_overview' on page 9 undefined on inpu
-t line 362.
+t line 393.
 
 
 LaTeX Warning: Hyper reference `sec:subfield_analyses' on page 9 undefined on i
-nput line 362.
+nput line 393.
 
 
 LaTeX Warning: Hyper reference `sec:text_analytics' on page 9 undefined on inpu
-t line 362.
+t line 393.
 
 
 LaTeX Warning: Hyper reference `sec:citation_network' on page 9 undefined on in
-put line 362.
+put line 393.
 
 
 LaTeX Warning: Hyper reference `sec:conclusion' on page 9 undefined on input li
-ne 362.
+ne 393.
 
 
 LaTeX Warning: Hyper reference `sec:discussion' on page 9 undefined on input li
-ne 362.
+ne 393.
 
 
-LaTeX Warning: Hyper reference `sec:technical_appendix' on page 9 undefined on 
-input line 362.
+LaTeX Warning: Reference `sec:technical_appendix' on page 9 undefined on input 
+line 393.
 
 
-LaTeX Warning: Hyper reference `sec:tooling' on page 9 undefined on input line 
-362.
+LaTeX Warning: Reference `sec:tooling' on page 9 undefined on input line 393.
 
 
-Overfull \vbox (259.67734pt too high) detected at line 362
+Overfull \vbox (259.67734pt too high) detected at line 393
  []
 
 [9
@@ -1960,11 +1977,11 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 29357 strings out of 468168
- 593054 string characters out of 5432816
- 1150811 words of memory out of 5000000
- 57562 multiletter control sequences out of 15000+600000
- 631232 words of font info for 69 fonts, out of 8000000 for 9000
+ 29370 strings out of 468168
+ 593497 string characters out of 5432816
+ 1154811 words of memory out of 5000000
+ 57570 multiletter control sequences out of 15000+600000
+ 631240 words of font info for 70 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  128i,11n,123p,1099b,401s stack positions out of 10000i,1000n,20000p,200000b,200000s
 

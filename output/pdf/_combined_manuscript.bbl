@@ -1,4 +1,4 @@
-\begin{thebibliography}{59}
+\begin{thebibliography}{71}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -9,6 +9,24 @@
 Dmitry Bagaev et~al.
 \newblock {RxInfer.jl v4.0.0}: Real-time and adaptive bayesian inference, 2025.
 \newblock URL \url{https://github.com/ReactiveBayes/RxInfer.jl}.
+
+\bibitem[Baulin et~al.(2025)Baulin, Cook, Friedman, Lumiruusu, Pashea, Rahman,
+  and Waldeck]{baulin2025discovery}
+Vladimir Baulin, Austin Cook, Daniel Friedman, Janna Lumiruusu, Andrew Pashea,
+  Shagor Rahman, and Benedikt Waldeck.
+\newblock The discovery engine: A framework for {AI}-driven synthesis and
+  navigation of scientific knowledge landscapes.
+\newblock \emph{arXiv preprint arXiv:2505.17500}, 2025.
+\newblock \doi{10.48550/arXiv.2505.17500}.
+
+\bibitem[Bonney et~al.(2009)Bonney, Cooper, Dickinson, Kelling, Phillips,
+  Rosenberg, and Shirk]{bonney2009citizen}
+Rick Bonney, Caren~B. Cooper, Janis Dickinson, Steve Kelling, Tina Phillips,
+  Kenneth~V. Rosenberg, and Jennifer Shirk.
+\newblock Citizen science: A developing tool for expanding science knowledge
+  and scientific literacy.
+\newblock \emph{BioScience}, 59\penalty0 (11):\penalty0 977--984, 2009.
+\newblock \doi{10.1525/bio.2009.59.11.9}.
 
 \bibitem[Bruineberg et~al.(2022)Bruineberg, Dolega, Dewhurst, and
   Baltieri]{bruineberg2022emperor}
@@ -75,6 +93,22 @@ Zafeirios Fountas, Noor Sajid, Pedro~AM Mediano, and Karl Friston.
 \newblock In \emph{Advances in Neural Information Processing Systems},
   volume~33, pages 11662--11675, 2020.
 
+\bibitem[Friedman(2026{\natexlab{a}})]{Friedman2026TemplateReproducibleGenerative}
+Daniel~Ari Friedman.
+\newblock A template/ approach to reproducible generative research:
+  Architecture and ergonomics from configuration through publication.
+\newblock 2026{\natexlab{a}}.
+\newblock \doi{10.5281/zenodo.19139090}.
+\newblock URL \url{https://doi.org/10.5281/zenodo.19139090}.
+\newblock Active Inference Institute.
+
+\bibitem[Friedman(2026{\natexlab{b}})]{FriedmanTemplateSoftware}
+Daniel~Ari Friedman.
+\newblock docxology/template, 2026{\natexlab{b}}.
+\newblock URL \url{https://github.com/docxology/template}.
+\newblock Apache License 2.0. Infrastructure-as-Code system for reproducible
+  computational research.
+
 \bibitem[Friston(2010)]{friston2010free}
 Karl Friston.
 \newblock The free-energy principle: a unified brain theory?
@@ -126,6 +160,14 @@ Paul Groth, Andrew Gibson, and Jan Velterop.
 \newblock \emph{Information Services \& Use}, 30\penalty0 (1-2):\penalty0
   51--56, 2010.
 \newblock \doi{10.3233/ISU-2010-0613}.
+
+\bibitem[Hamburg(2022)]{hamburg2021desci}
+Sarah Hamburg.
+\newblock A guide to {DeSci}, the latest {Web3} movement.
+\newblock \emph{Future}, 2022.
+\newblock URL
+  \url{https://future.com/what-is-decentralized-science-aka-desci/}.
+\newblock Andreessen Horowitz (a16z) Research.
 
 \bibitem[Heins et~al.(2022)Heins, Millidge, Da~Costa, Mann, Friston, Catal,
   Lanillos, Sajid, and Tschantz]{heins2022pymdp}
@@ -272,6 +314,15 @@ Tianyi Liang, Weicheng Zhang, Chao Lin, et~al.
   models.
 \newblock \emph{arXiv preprint arXiv:2401.01512}, 2024.
 
+\bibitem[Lumiruusu et~al.(2025)Lumiruusu, Friedman, Rahman, Baulin, and
+  Pashea]{lumiruusu2025resnei}
+Janna Lumiruusu, Daniel Friedman, Shagor Rahman, Vladimir Baulin, and Andrew
+  Pashea.
+\newblock {ResNei}: Solution design document.
+\newblock Zenodo, 2025.
+\newblock URL \url{https://zenodo.org/records/16753709}.
+\newblock Version 2. Published 2025-08-08.
+
 \bibitem[Millidge(2020)]{millidge2020deep}
 Beren Millidge.
 \newblock Deep active inference as variational policy gradients.
@@ -302,12 +353,34 @@ Beren Millidge, Alexander Tschantz, and Christopher~L Buckley.
   2022.
 \newblock \doi{10.1162/neco_a_01497}.
 
+\bibitem[Namjoshi(2026{\natexlab{a}})]{namjoshi2026aiffepdb}
+Sanjeev~V Namjoshi.
+\newblock {aif-fep-db}: A database of publications related to active inference
+  and the free energy principle.
+\newblock \url{https://github.com/snamjoshi/aif-fep-db}, 2026{\natexlab{a}}.
+\newblock Accessed: 2026-03-20.
+
+\bibitem[Namjoshi(2026{\natexlab{b}})]{namjoshi2026fundamentals}
+Sanjeev~V Namjoshi.
+\newblock \emph{Fundamentals of Active Inference: Principles, Algorithms, and
+  Applications of the Free Energy Principle for Engineers}.
+\newblock MIT Press, 3 2026{\natexlab{b}}.
+\newblock ISBN 978-0-262-05095-1.
+
 \bibitem[Nazemi et~al.(2025)Nazemi, Bhatt, and Fountas]{nazemi2025energy}
 Morteza Nazemi, Sanket Bhatt, and Zafeirios Fountas.
 \newblock Active inference for energy control and planning under partial
   observability.
 \newblock \emph{arXiv preprint arXiv:2503.07772}, 2025.
 \newblock \doi{10.48550/arXiv.2503.07772}.
+
+\bibitem[Nehrer et~al.(2025)]{ActiveInferencejl}
+Samuel Nehrer et~al.
+\newblock Introducing {ActiveInference.jl}: A {Julia} library for simulation
+  and parameter estimation with active inference models.
+\newblock \emph{Entropy}, 27\penalty0 (1):\penalty0 62, 2025.
+\newblock \doi{10.3390/e27010062}.
+\newblock URL \url{https://www.mdpi.com/1099-4300/27/1/62}.
 
 \bibitem[{Ollama Team}(2024)]{ollama2024}
 {Ollama Team}.
@@ -369,6 +442,13 @@ Rajesh P~N Rao and Dana~H Ballard.
 \newblock URL \url{https://rdflib.readthedocs.io/}.
 \newblock Version 7.x.
 
+\bibitem[Rose and Meyer(2000)]{rose2000universal}
+David~H. Rose and Anne Meyer.
+\newblock Universal design for learning.
+\newblock \emph{Journal of Special Education Technology}, 15\penalty0
+  (1):\penalty0 67--70, 2000.
+\newblock \doi{10.1177/016264340001500108}.
+
 \bibitem[Sajid et~al.(2021)Sajid, Ball, Parr, and Friston]{sajid2021active}
 Noor Sajid, Philip~J Ball, Thomas Parr, and Karl~J Friston.
 \newblock Active inference: demystified and compared.
@@ -404,6 +484,13 @@ Theodore~D. Sterling.
   (285):\penalty0 30--34, 1959.
 \newblock \doi{10.1080/01621459.1959.10501497}.
 
+\bibitem[Sweller et~al.(2011)Sweller, Ayres, and Kalyuga]{sweller2011cognitive}
+John Sweller, Paul Ayres, and Slava Kalyuga.
+\newblock Cognitive load theory.
+\newblock \emph{Explorations in the Learning Sciences, Instructional Systems
+  and Performance Technologies}, 2011.
+\newblock \doi{10.1007/978-1-4419-8126-4}.
+
 \bibitem[Tschantz et~al.(2020)Tschantz, Seth, and Buckley]{tschantz2020action}
 Alexander Tschantz, Anil~K Seth, and Christopher~L Buckley.
 \newblock Learning action-oriented models through active inference.
@@ -424,6 +511,17 @@ Christopher~J Whyte, Ryan Smith, and Jakob Hohwy.
 \newblock \emph{Neuroscience of Consciousness}, 2025\penalty0 (1):\penalty0
   niaf009, 2025.
 \newblock \doi{10.1093/nc/niaf009}.
+
+\bibitem[Wilkinson et~al.(2016)Wilkinson, Dumontier, Aalbersberg, Appleton,
+  Axton, Baak, Blomberg, Boiten, da~Silva~Santos, Bourne,
+  et~al.]{wilkinson2016fair}
+Mark~D. Wilkinson, Michel Dumontier, IJsbrand~Jan Aalbersberg, Gabrielle
+  Appleton, Myles Axton, Arie Baak, Niklas Blomberg, Jan-Willem Boiten,
+  Luiz~Bonino da~Silva~Santos, Philip~E. Bourne, et~al.
+\newblock The {FAIR} guiding principles for scientific data management and
+  stewardship.
+\newblock \emph{Scientific Data}, 3:\penalty0 160018, 2016.
+\newblock \doi{10.1038/sdata.2016.18}.
 
 \bibitem[Wong(2011)]{wong2011colorblind}
 Bang Wong.

@@ -38,8 +38,7 @@ complementary metrics. The \textbf{mean year-over-year growth rate}
 non-zero prior-year publications. The \textbf{doubling time}
 \(t_d = \ln 2 / \ln(1 + \bar{g})\). The \textbf{compound annual growth
 rate} (CAGR) captures the annualized rate across the full temporal span.
-Mathematical details are provided in
-\hyperref[sec:appendix_growth]{Appendix~A.3}.
+Mathematical details are provided in Appendix \ref{sec:appendix_growth}.
 \end{block}
 
 \begin{block}{Text Analytics}
@@ -50,7 +49,7 @@ inverse-document-frequency weighting \citep{salton1975vector}, with a
 configurable vocabulary size (default: 1000 features). Non-negative
 matrix factorization (NMF) is applied to discover latent topics using
 multiplicative update rules \citep{lee1999nmf}. Mathematical details are
-provided in \hyperref[sec:appendix_nmf]{Appendix~A.2}.
+provided in Appendix \ref{sec:appendix_nmf}.
 \end{block}
 
 \begin{block}{Citation Network Construction}

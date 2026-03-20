@@ -11,13 +11,24 @@ Annual output in the Active Inference literature rose from {{YEAR_START_PUBS}} p
 
 ## Corpus-Level Summary
 
-| Metric | Value |
-| --- | --- |
-| Total papers | {{CORPUS_SIZE}} |
-| Year range | {{YEAR_START}}--{{YEAR_END}} |
-| Peak year | {{PEAK_YEAR}} |
-| CAGR | {{CAGR_PCT}}\% |
-| Active domains | 8 of 8 tracked (A1–A2, B, C1–C5) |
+
+\begin{table}[htbp]
+\centering
+\caption{Corpus-level summary statistics for the Active Inference literature corpus ($N = {{CORPUS_SIZE}}$), spanning {{YEAR_START}}--{{YEAR_END}}.}
+\label{tab:corpus_summary}
+\begin{tabular}{ll}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total papers & {{CORPUS_SIZE}} \\
+Year range & {{YEAR_START}}--{{YEAR_END}} \\
+Peak year & {{PEAK_YEAR}} \\
+CAGR & {{CAGR_PCT}}\% \\
+Active domains & 8 of 8 tracked (A1--A2, B, C1--C5) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 The CAGR of {{CAGR_PCT}}\% reflects the corpus's long temporal span from {{YEAR_START}} to {{YEAR_END}}; the field's actual rapid growth phase began around 2013, with annual output accelerating substantially (Figure \ref{fig:growth_curve}). The fact that sustained high output persists into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{the citation network analysis}).
 
@@ -32,16 +43,29 @@ The CAGR of {{CAGR_PCT}}\% reflects the corpus's long temporal span from {{YEAR_
 
 Keyword-based classification assigns each paper to one of eight categories across three domains:
 
-| Domain | Category | Papers | Percentage |
-| --- | --- | --- | --- |
-| **A – Core Theory** | A1: Formal Theory | {{A1_COUNT}} | {{A1_PCT}}\% |
-| | A2: Qualitative Philosophy | {{A2_COUNT}} | {{A2_PCT}}\% |
-| **B – Tools** | B: Tools \& Translation | {{B_COUNT}} | {{B_PCT}}\% |
-| **C – Applications** | C1: Neuroscience | {{C1_COUNT}} | {{C1_PCT}}\% |
-| | C2: Robotics | {{C2_COUNT}} | {{C2_PCT}}\% |
-| | C3: Language | {{C3_COUNT}} | {{C3_PCT}}\% |
-| | C4: Psychiatry | {{C4_COUNT}} | {{C4_PCT}}\% |
-| | C5: Biology | {{C5_COUNT}} | {{C5_PCT}}\% |
+
+\begin{table}[htbp]
+\centering
+\caption{Domain distribution across three tiers and eight categories ($N = {{CORPUS_SIZE}}$ papers). Classification uses hierarchical keyword matching with priority-based routing to minimize over-assignment to catch-all categories.}
+\label{tab:domain_distribution}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Domain} & \textbf{Category} & \textbf{Papers} & \textbf{Percentage} \\
+\midrule
+A -- Core Theory & A1: Formal Theory & {{A1_COUNT}} & {{A1_PCT}}\% \\
+ & A2: Qualitative Philosophy & {{A2_COUNT}} & {{A2_PCT}}\% \\
+\midrule
+B -- Tools & B: Tools \& Translation & {{B_COUNT}} & {{B_PCT}}\% \\
+\midrule
+C -- Applications & C1: Neuroscience & {{C1_COUNT}} & {{C1_PCT}}\% \\
+ & C2: Robotics & {{C2_COUNT}} & {{C2_PCT}}\% \\
+ & C3: Language & {{C3_COUNT}} & {{C3_PCT}}\% \\
+ & C4: Psychiatry & {{C4_COUNT}} & {{C4_PCT}}\% \\
+ & C5: Biology & {{C5_COUNT}} & {{C5_PCT}}\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 The concentration of papers in A2 (qualitative philosophy and general theory) reflects the broad scope of foundational FEP work (Figure \ref{fig:subfield_distribution}). The priority-based classifier mitigates over-assignment by routing papers with mathematical indicators (theorems, proofs, equations, statistical formalism) to A1 before falling back to A2, and by preferring specific application domains (C1–C5) and tools (B) over both core-theory categories. Papers that discuss FEP/AIF conceptually without mathematical formalism or domain-specific vocabulary are correctly assigned to A2. This figure should be read as a *ceiling* on theoretical generality rather than a literal measure of research focus—embedding-based classification would likely redistribute some fraction into more specific categories. That all eight categories are populated, including computational psychiatry (C4) and formal theory (A1), indicates diversification beyond the field's neuroscience origins.
 
@@ -56,16 +80,27 @@ Detailed characterizations of each domain—including historical context, growth
 
 ## Cross-Domain Comparison
 
-| Domain | Category | Papers | Growth Trend | Maturity | Key Challenge | Representative Work |
-| --- | --- | --- | --- | --- | --- | --- |
-| A | A1: Formal | {{A1_COUNT}} ({{A1_PCT}}\%) | Growing | Mature | Mathematical accessibility for broader field | \citep{sakthivadivel2023bayesian} |
-| A | A2: Philosophy | {{A2_COUNT}} ({{A2_PCT}}\%) | Stable | Mature | Residual catch-all; absorbs FEP prose papers | \citep{friston2010free} |
-| B | B: Tools | {{B_COUNT}} ({{B_PCT}}\%) | Rapid | Growing | Matching deep RL benchmark performance | \citep{fountas2020deep} |
-| C | C1: Neuroscience | {{C1_COUNT}} ({{C1_PCT}}\%) | Stable | Mature | Bridging theory and empirical neuroimaging | \citep{clark2013whatever} |
-| C | C2: Robotics | {{C2_COUNT}} ({{C2_PCT}}\%) | Growing | Growing | Real-time feasibility on embedded hardware | \citep{lanillos2021active} |
-| C | C3: Language | {{C3_COUNT}} ({{C3_PCT}}\%) | Emerging | Nascent | Demonstrating gains over existing NLP models | \citep{friston2020generative} |
-| C | C4: Psychiatry | {{C4_COUNT}} ({{C4_PCT}}\%) | Emerging | Nascent | Translating models to clinical practice | \citep{smith2021computational} |
-| C | C5: Biology | {{C5_COUNT}} ({{C5_PCT}}\%) | Rapid | Nascent | Empirical validation of theoretical proposals | \citep{kuchling2020morphogenesis} |
+
+\begin{table}[htbp]
+\centering
+\caption{Cross-domain comparison showing growth trajectories, maturity levels, key challenges, and representative publications for each of the eight tracked categories. Growth trends and maturity assessments are based on temporal publication patterns and evidence base depth.}
+\label{tab:cross_domain_comparison}
+\begin{tabular}{llcllll}
+\toprule
+\textbf{Domain} & \textbf{Category} & \textbf{Papers} & \textbf{Growth} & \textbf{Maturity} & \textbf{Key Challenge} & \textbf{Rep.\ Work} \\
+\midrule
+A & A1: Formal & {{A1_COUNT}} ({{A1_PCT}}\%) & Growing & Mature & Math accessibility & \citep{sakthivadivel2023bayesian} \\
+A & A2: Philosophy & {{A2_COUNT}} ({{A2_PCT}}\%) & Stable & Mature & Catch-all absorption & \citep{friston2010free} \\
+B & B: Tools & {{B_COUNT}} ({{B_PCT}}\%) & Rapid & Growing & Deep RL benchmarks & \citep{fountas2020deep} \\
+C & C1: Neuroscience & {{C1_COUNT}} ({{C1_PCT}}\%) & Stable & Mature & Theory--neuroimaging gap & \citep{clark2013whatever} \\
+C & C2: Robotics & {{C2_COUNT}} ({{C2_PCT}}\%) & Growing & Growing & Embedded real-time & \citep{lanillos2021active} \\
+C & C3: Language & {{C3_COUNT}} ({{C3_PCT}}\%) & Emerging & Nascent & NLP model comparison & \citep{friston2020generative} \\
+C & C4: Psychiatry & {{C4_COUNT}} ({{C4_PCT}}\%) & Emerging & Nascent & Clinical translation & \citep{smith2021computational} \\
+C & C5: Biology & {{C5_COUNT}} ({{C5_PCT}}\%) & Rapid & Nascent & Empirical validation & \citep{kuchling2020morphogenesis} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 Three structural features emerge from the cross-domain comparison (Figure \ref{fig:subfield_timeline}). First, no single legacy domain dominates: Domain B (Tools \& Translation) accounts for {{B_PCT}}\% of the corpus, followed by C1 (Neuroscience) at {{C1_PCT}}\% and C2 (Robotics) at {{C2_PCT}}\%. Second, Domain A (Core Theory) aggregates {{A_PCT}}\% collectively (A1 + A2), while the emergent application frontiers (C3–C5) exhibit accelerating growth. Third, A1's {{A1_COUNT}} papers understate its intellectual influence—the mathematical formalisms developed in A1 shape implementations across all domains.
 

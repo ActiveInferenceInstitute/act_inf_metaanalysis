@@ -50,36 +50,21 @@ The pipeline serializes nanopublications in two complementary formats:
   graphs per nanopublication:
 \end{enumerate}
 
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Named Graph
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Content
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Key Predicates
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\textbf{Head} & Links the nanopub resource to its three component graphs
-& \texttt{np:hasAssertion}, \texttt{np:hasProvenance},
-\texttt{np:hasPublicationInfo} \\
-\textbf{Assertion} & The core scientific claim & \texttt{aif:asserts}
-(Paper → Assertion), \texttt{aif:supports}/\texttt{aif:contradicts}
-(Assertion → Hypothesis), \texttt{aif:claim}, \texttt{aif:confidence},
-\texttt{aif:citationCount} \\
-\textbf{Provenance} & How the assertion was generated &
-\texttt{prov:wasGeneratedBy}, \texttt{prov:generatedAtTime},
-\texttt{prov:wasAttributedTo}, \texttt{prov:hadPrimarySource} \\
-\textbf{Publication Info} & Metadata about the nanopublication itself &
-\texttt{dc:created}, \texttt{dc:creator}, \texttt{dc:license} \\
-\bottomrule\noalign{}
-\end{longtable}
-}
+\begin{table}[htbp]
+\centering
+\caption{RDF/TriG nanopublication structure. Each nanopublication contains four named graphs encoding the assertion, its provenance, and publication metadata per the nanopublication standard (\texttt{nanopub.net}).}
+\label{tab:nanopub_schema}
+\begin{tabular}{lll}
+\toprule
+\textbf{Named Graph} & \textbf{Content} & \textbf{Key Predicates} \\
+\midrule
+Head & Links the nanopub resource to its three component graphs & \texttt{np:hasAssertion}, \texttt{np:hasProvenance}, \texttt{np:hasPublicationInfo} \\
+Assertion & The core scientific claim & \texttt{aif:asserts}, \texttt{aif:supports}/\texttt{aif:contradicts}, \texttt{aif:claim}, \texttt{aif:confidence}, \texttt{aif:citationCount} \\
+Provenance & How the assertion was generated & \texttt{prov:wasGeneratedBy}, \texttt{prov:generatedAtTime}, \texttt{prov:wasAttributedTo}, \texttt{prov:hadPrimarySource} \\
+Publication Info & Metadata about the nanopublication itself & \texttt{dc:created}, \texttt{dc:creator}, \texttt{dc:license} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The namespace \texttt{http://activeinference.institute/ontology/}
 (prefix \texttt{aif:}) defines all domain predicates; the
@@ -151,8 +136,8 @@ being true. Scores are best interpreted as relative rankings across
 hypotheses and as temporal trajectories within a hypothesis, rather than
 as absolute probability estimates. Temporal trends are computed by
 evaluating the cumulative score at each year, using only assertions from
-papers published up to that year. A full derivation appears in
-\hyperref[sec:appendix_scoring]{Appendix~A.1}.
+papers published up to that year. A full derivation appears in Appendix
+\ref{sec:appendix_scoring}.
 \end{block}
 
 \begin{block}{Tally-Based Evidence Aggregation}

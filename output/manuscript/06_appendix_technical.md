@@ -1,8 +1,8 @@
-# Appendix A: Mathematical and Algorithmic Details \label{sec:technical_appendix}
+# Appendix: Mathematical and Algorithmic Details \label{sec:technical_appendix}
 
 _This appendix collects the formal mathematical definitions, derivations, and algorithmic specifications referenced from the main methodology section._
 
-## A.1 Citation-Weighted Hypothesis Scoring Formula \label{sec:appendix_scoring}
+## Citation-Weighted Hypothesis Scoring Formula \label{sec:appendix_scoring}
 
 For each hypothesis $H$, we compute a citation-weighted evidence score aggregating all assertions relevant to $H$:
 
@@ -26,7 +26,7 @@ The logarithmic citation weighting ensures that highly cited papers carry more i
 
 This reveals whether support for a hypothesis is growing, declining, or plateauing over time.
 
-## A.2 Non-negative Matrix Factorization (NMF) for Topic Modeling \label{sec:appendix_nmf}
+## Non-negative Matrix Factorization (NMF) for Topic Modeling \label{sec:appendix_nmf}
 
 We apply NMF to the TF-IDF matrix of the corpus to discover latent topics. Given the document-term matrix $V \in \mathbb{R}^{n \times m}_{\geq 0}$, NMF finds factor matrices $W \in \mathbb{R}^{n \times k}_{\geq 0}$ and $H \in \mathbb{R}^{k \times m}_{\geq 0}$ such that $V \approx WH$, where $k$ is the number of topics.
 
@@ -46,7 +46,7 @@ with $\epsilon = 10^{-10}$ for numerical stability and a fixed random seed of 42
 
 where $\text{tf}(t, d)$ is the term frequency, $N$ is the total number of documents, and $\text{df}(t)$ is the document frequency of term $t$.
 
-## A.3 Field Growth-Rate Estimation \label{sec:appendix_growth}
+## Field Growth-Rate Estimation \label{sec:appendix_growth}
 
 The **mean year-over-year growth rate** $\bar{g}$ is the arithmetic mean of annual growth rates computed only for years where the prior year had non-zero publications:
 
@@ -70,7 +70,7 @@ The **compound annual growth rate** (CAGR) over the full span $[y_0, y_T]$ is:
 
 For the current corpus, CAGR $= 16.99\%$. The more recent growth phase (2010--2026) exhibits substantially higher annualized growth.
 
-## A.4 Advanced Visualization Methods \label{sec:appendix_viz}
+## Advanced Visualization Methods \label{sec:appendix_viz}
 
 ### PCA of TF-IDF Embeddings
 
@@ -88,7 +88,7 @@ For each domain $s$ and term $t$, we compute the mean TF-IDF weight $\bar{w}_{s,
 
 The co-occurrence matrix $C \in \mathbb{R}^{k \times k}$ counts the number of documents in which two terms appear together. For top-$k$ terms by document frequency, $C_{ij} = |\{d : t_i \in d \land t_j \in d\}|$. The matrix is normalized to $[0, 1]$ by dividing by the maximum entry and visualized as a symmetric heatmap.
 
-## A.5 Nanopublication RDF Schema \label{sec:appendix_rdf}
+## Nanopublication RDF Schema \label{sec:appendix_rdf}
 
 Each nanopublication is serialized to RDF/TriG per the nanopublication standard \citep{groth2010anatomy, kuhn2016decentralized}, producing four named graphs. The following annotated example illustrates the structure for a single assertion:
 
@@ -139,22 +139,44 @@ Each nanopublication is serialized to RDF/TriG per the nanopublication standard 
 
 ### Namespace Definitions
 
-| Prefix | URI | Purpose |
-| --- | --- | --- |
-| `np:` | `http://www.nanopub.org/nschema#` | Nanopub structural predicates |
-| `prov:` | `http://www.w3.org/ns/prov#` | PROV-O provenance model |
-| `dc:` | `http://purl.org/dc/terms/` | Dublin Core metadata |
-| `aif:` | `http://activeinference.institute/ontology/` | Domain-specific predicates |
-| `xsd:` | `http://www.w3.org/2001/XMLSchema#` | XML Schema datatypes |
+
+\begin{table}[htbp]
+\centering
+\caption{RDF namespace definitions used in the knowledge graph and nanopublication serialization. Each prefix maps to a W3C or domain-specific URI.}
+\label{tab:namespace_definitions}
+\begin{tabular}{lll}
+\toprule
+\textbf{Prefix} & \textbf{URI} & \textbf{Purpose} \\
+\midrule
+\texttt{np:} & \texttt{http://www.nanopub.org/nschema\#} & Nanopub structural predicates \\
+\texttt{prov:} & \texttt{http://www.w3.org/ns/prov\#} & PROV-O provenance model \\
+\texttt{dc:} & \texttt{http://purl.org/dc/terms/} & Dublin Core metadata \\
+\texttt{aif:} & \texttt{http://activeinference.institute/ontology/} & Domain-specific predicates \\
+\texttt{xsd:} & \texttt{http://www.w3.org/2001/XMLSchema\#} & XML Schema datatypes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 ### Core Triple Patterns
 
 The knowledge graph encodes five fundamental relationships:
 
-| Triple Pattern | Meaning |
-| --- | --- |
-| `Paper  --aif:asserts-->      Assertion` | A paper makes a claim |
-| `Paper  --aif:cites-->        Paper` | Intra-corpus citation link |
-| `Paper  --aif:belongsTo-->    Subfield` | Domain classification |
-| `Assertion --aif:supports-->  Hypothesis` | Supporting evidence |
-| `Assertion --aif:contradicts--> Hypothesis` | Contradicting evidence |
+
+\begin{table}[htbp]
+\centering
+\caption{Core RDF triple patterns encoding the five fundamental relationships in the knowledge graph. Each pattern links paper, assertion, hypothesis, or subfield nodes.}
+\label{tab:core_triple_patterns}
+\begin{tabular}{ll}
+\toprule
+\textbf{Triple Pattern} & \textbf{Meaning} \\
+\midrule
+\texttt{Paper --aif:asserts--> Assertion} & A paper makes a claim \\
+\texttt{Paper --aif:cites--> Paper} & Intra-corpus citation link \\
+\texttt{Paper --aif:belongsTo--> Subfield} & Domain classification \\
+\texttt{Assertion --aif:supports--> Hypothesis} & Supporting evidence \\
+\texttt{Assertion --aif:contradicts--> Hypothesis} & Contradicting evidence \\
+\bottomrule
+\end{tabular}
+\end{table}
+

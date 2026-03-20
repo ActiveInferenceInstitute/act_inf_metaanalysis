@@ -3,11 +3,12 @@
 \beamer@slide {constraints-and-methodological-scope}{3}
 \beamer@slide {keyword-classifier-resolution}{3}
 \beamer@slide {citation-network-coverage-gaps}{3}
-\beamer@slide {temporal-citation-count-and-assertion-direction-biases}{3}
-\beamer@slide {llm-extraction-fidelity}{3}
+\beamer@slide {corpus-biases-citation-dynamics-and-linguistic-framing}{3}
+\beamer@slide {llm-extraction-fidelity-domain-drift-and-robustness}{3}
 \beamer@slide {future-directions-beyond-tally-based-evidence-aggregation}{4}
 \beamer@slide {hierarchical-bayesian-hypothesis-scoring}{4}
 \beamer@slide {causal-evidence-graphs}{4}
 \beamer@slide {evidential-diversity-and-source-weighting}{4}
 \beamer@slide {additional-directions}{4}
-\beamer@slide {broader-impact}{5}
+\beamer@slide {limitations}{5}
+\beamer@slide {broader-impact}{6}

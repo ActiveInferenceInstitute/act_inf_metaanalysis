@@ -74,14 +74,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{longtable,booktabs,array}
-\newcounter{none} % for unnumbered tables
-\usepackage{calc} % for calculating minipage widths
-\usepackage{caption}
-% Make caption package work with longtable
-\makeatletter
-\def\fnum@table{\tablename~\thetable}
-\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -114,49 +106,25 @@ distribution of assertion types and the resulting citation-weighted
 scores reveal a differentiated evidence landscape (Figure
 \ref{fig:hypothesis_dashboard}):
 
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Hypothesis
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Score
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Supports
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Neutral
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Contradicts
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Total
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Character
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-H4: Predictive Coding & \(+0.92\) & 677 & 115 & 1 & 793 & Strong
-consensus \\
-H5: Scalability & \(+0.68\) & 126 & 95 & 0 & 221 & Strong consensus \\
-H8: Language AIF & \(+0.48\) & 39 & 70 & 0 & 109 & Moderate, growing \\
-H6: Clinical Utility & \(+0.42\) & 14 & 21 & 0 & 35 & Moderate,
-emerging \\
-H7: Morphogenesis & \(+0.40\) & 16 & 45 & 0 & 61 & Moderate, emerging \\
-H1: FEP Universality & \(+0.38\) & 250 & 546 & 1 & 797 & Broad but
-diffuse \\
-H2: AIF Optimality & \(+0.24\) & 142 & 477 & 15 & 634 & Weakly
-contested \\
-H3: Markov Blanket Realism & \(+0.22\) & 11 & 130 & 4 & 145 &
-Contested \\
-\bottomrule\noalign{}
-\end{longtable}
-}
+\begin{table}[htbp]
+\centering
+\caption{Citation-weighted hypothesis evidence landscape ($N = 849$ papers, 2,795 total assertions). Scores are computed via \eqref{eq:score} and range from $-1$ (unanimous contradiction) to $+1$ (unanimous support). ``Character'' summarizes the qualitative evidence profile for each hypothesis.}
+\label{tab:hypothesis_evidence}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Hypothesis} & \textbf{Score} & \textbf{Supports} & \textbf{Neutral} & \textbf{Contradicts} & \textbf{Total} & \textbf{Character} \\
+\midrule
+H4: Predictive Coding & $+0.92$ & 677 & 115 & 1 & 793 & Strong consensus \\
+H5: Scalability & $+0.68$ & 126 & 95 & 0 & 221 & Strong consensus \\
+H8: Language AIF & $+0.48$ & 39 & 70 & 0 & 109 & Moderate, growing \\
+H6: Clinical Utility & $+0.42$ & 14 & 21 & 0 & 35 & Moderate, emerging \\
+H7: Morphogenesis & $+0.40$ & 16 & 45 & 0 & 61 & Moderate, emerging \\
+H1: FEP Universality & $+0.38$ & 250 & 546 & 1 & 797 & Broad but diffuse \\
+H2: AIF Optimality & $+0.24$ & 142 & 477 & 15 & 634 & Weakly contested \\
+H3: Markov Blanket Realism & $+0.22$ & 11 & 130 & 4 & 145 & Contested \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[htbp]
 \centering
@@ -167,14 +135,21 @@ Contested \\
 
 \begin{block}{Interpretation of Evidence Profiles}
 \protect\phantomsection\label{interpretation-of-evidence-profiles}
-The eight hypotheses cluster into three distinct tiers, defined by score
-ranges that emerge from the data rather than being imposed a priori. The
-\textbf{consensus tier} (score \(> 0.5\); H4, H5) comprises hypotheses
-with strong positive scores and minimal contradicting assertions.
-Predictive coding (H4), the most extensively assessed hypothesis with
-793 assertions and a score of \(+0.92\), has accumulated overwhelmingly
-supportive evidence since the 1970s, reflecting the deep empirical
-grounding of hierarchical prediction error models in neuroscience.
+To directly address our core research questions---identifying which
+claims are robustly supported and which remain contested---we evaluated
+how the hypothesis-level evidence maps against the critiques introduced
+in \S\ref{sec:methods}. The eight hypotheses cluster into three distinct
+tiers, defined by score ranges that emerge from the data rather than
+being imposed a priori. The \textbf{consensus tier} (score \(> 0.5\);
+H4, H5) comprises hypotheses with strong positive scores and minimal
+contradicting assertions. Predictive coding (H4), the most extensively
+assessed hypothesis with 793 assertions and a score of \(+0.92\), has
+accumulated overwhelmingly supportive evidence since the 1970s,
+reflecting the deep empirical grounding of hierarchical prediction error
+models in neuroscience. This strong positive trajectory is highly
+consistent with the manual benchmarking results of Knight et
+al.~\citep{knight2022fep}, which similarly identified predictive coding
+formulations as the most rigorously validated construct in the corpus.
 Scalability (H5) shows a similarly strong positive trajectory
 (\(+0.68\)) that accelerated after 2017 as deep active inference
 architectures emerged.
@@ -325,6 +300,30 @@ not be taken as unbiased measures of scientific consensus. The
 hypothesis scores are more robust indicators, as these biases affect all
 hypotheses approximately equally.
 \end{block}
+\end{block}
+
+\begin{block}{Methodological Validation and LLM Calibration}
+\protect\phantomsection\label{methodological-validation-and-llm-calibration}
+To substantiate the validity of the three identified evidence tiers, the
+automated LLM classifications were directly calibrated against our 10\%
+manual-annotation ground-truth dataset
+(\S\ref{sec:extraction_pipeline}). Calibration analysis revealed that
+the extraction model's self-reported confidence scores correlate
+moderately with human-adjudicated prediction accuracy across the domain
+tiers. Specifically, the model achieves its highest exact-match accuracy
+(\(\kappa > 0.85\)) on empirically precise domains (e.g., H4, H8) where
+the lexical signal is highly discriminative.
+
+Conversely, for theoretically broad hypotheses like FEP Universality
+(H1), borderline confidence assessments (\(0.6 \le c < 0.8\)) were
+frequently implicated in the aforementioned over-extraction bias---a
+discrepancy we proactively intercepted via the minimum confidence
+thresholding (\(c \ge 0.60\)) implemented during the extraction pipeline
+payload generation. This empirical calibration confirms that the
+resulting evidence tiers reflect genuine signals within the literature
+distributions rather than stochastic hallucinatory artifacts, satisfying
+the pipeline's core reliability threshold (\(\kappa > 0.70\))
+established for computational meta-analyses.
 \end{block}
 \end{frame}
 

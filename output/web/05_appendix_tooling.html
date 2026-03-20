@@ -91,6 +91,7 @@
       color: #606060;
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -154,7 +155,6 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
@@ -174,7 +174,7 @@
   type="text/javascript"></script>
 </head>
 <body>
-<h1 id="appendix-b-tooling-and-infrastructure">Appendix B: Tooling and
+<h1 id="appendix-tooling-and-infrastructure">Appendix: Tooling and
 Infrastructure </h1>
 <p>The practical utility of a computational meta-analysis depends on
 robust tooling at each pipeline stage: assertion extraction, modeling
@@ -236,6 +236,20 @@ active inference mountain car control, available at the <a
 href="https://reactivebayes.github.io/RxInfer.jl/stable/">official
 documentation</a> and the <a href="https://learnableloop.com/">Learnable
 Loop</a> tutorial portal.</p>
+<p><strong>ActiveInference.jl.</strong> In parallel to RxInfer’s
+generalized message-passing focus, ActiveInference.jl provides a
+Julia-native, near drop-in conceptual analogue to Python’s
+<code>pymdp</code> . It explicitly targets computational psychiatry and
+cognitive neuroscience workflows emphasizing standard discrete-state
+POMDP simulation, parameter estimation, and recovery. The library
+leverages Julia’s array semantics—utilizing vectors of arrays to
+efficiently encode multimodal factorized models via the canonical <span
+class="math inline">\(\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D},
+\mathbf{E}\)</span> components—to streamline tasks like generating
+synthetic behavioral data, fitting models to subject behavior, and
+probing internal beliefs via robust simulation loops
+(<code>infer_states!</code>, <code>infer_policies!</code>,
+<code>sample_action!</code>).</p>
 <p><strong>Cpp-AIF.</strong> The Cpp-AIF header-only C++ library
 implements active inference for discrete POMDPs with multicore
 parallelization of the most demanding computational
@@ -318,111 +332,6 @@ navigational resource for researchers seeking existing implementations
 relevant to specific hypotheses (H1–H8) or application domains
 (A1–C5).</p>
 <h3 id="comparative-feature-matrix">Comparative Feature Matrix</h3>
-<table style="width:100%;">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-</colgroup>
-<thead>
-<tr>
-<th>Feature</th>
-<th>pymdp</th>
-<th>SPM</th>
-<th>RxInfer.jl</th>
-<th>Cpp-AIF</th>
-<th>FEPS</th>
-<th>ngc-learn</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Language</strong></td>
-<td>Python</td>
-<td>MATLAB</td>
-<td>Julia</td>
-<td>C++</td>
-<td>Python</td>
-<td>Python/JAX</td>
-</tr>
-<tr>
-<td><strong>State Spaces</strong></td>
-<td>Discrete</td>
-<td>Discrete + Continuous</td>
-<td>Continuous (factor graphs)</td>
-<td>Discrete</td>
-<td>Discrete</td>
-<td>Continuous</td>
-</tr>
-<tr>
-<td><strong>Inference</strong></td>
-<td>Message passing</td>
-<td>Variational Bayes</td>
-<td>Reactive message passing</td>
-<td>EFE + state estimation</td>
-<td>EFE on policy graphs</td>
-<td>Predictive coding</td>
-</tr>
-<tr>
-<td><strong>Deep AIF</strong></td>
-<td>Partial</td>
-<td>No</td>
-<td>Via custom factors</td>
-<td>No</td>
-<td>No (interpretable)</td>
-<td>Yes (neural circuits)</td>
-</tr>
-<tr>
-<td><strong>Real-time</strong></td>
-<td>No</td>
-<td>No</td>
-<td>Yes (streaming)</td>
-<td>Yes (multicore)</td>
-<td>No</td>
-<td>No</td>
-</tr>
-<tr>
-<td><strong>Hierarchical</strong></td>
-<td>Yes</td>
-<td>Yes (DCM)</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>GPU</strong></td>
-<td>No</td>
-<td>No</td>
-<td>No</td>
-<td>CPU (multicore)</td>
-<td>No</td>
-<td>Yes (JAX)</td>
-</tr>
-<tr>
-<td><strong>License</strong></td>
-<td>MIT</td>
-<td>GPL</td>
-<td>MIT</td>
-<td>MIT</td>
-<td>MIT</td>
-<td>BSD-3</td>
-</tr>
-<tr>
-<td><strong>Primary Use</strong></td>
-<td>Research prototyping</td>
-<td>Neuroimaging</td>
-<td>Robotics / online learning</td>
-<td>Embedded systems</td>
-<td>Interpretable RL</td>
-<td>NeuroAI simulation</td>
-</tr>
-</tbody>
-</table>
 <p>The complementary strengths across these packages reflect a
 fragmented but maturing ecosystem. The survey reveals several notable
 patterns: (1) Python dominates (~75% of implementations), with Julia
@@ -455,7 +364,8 @@ satisfies the FAIR data principles by design: nanopublications are
 <strong>I</strong>nteroperable via W3C-standard TriG serialization, and
 <strong>R</strong>eusable with explicit provenance and CC0 licensing.
 The full RDF schema and a TriG serialization example are presented in
-the and .</p>
+the and Appendix <span
+class="math inline">\(\ref{sec:appendix_rdf}\)</span>.</p>
 <p>The engineering trade-offs among the three deployment options are
 straightforward:</p>
 <p><strong>Nanopublication servers</strong> provide decentralized,
@@ -509,60 +419,6 @@ citation weighting.</p>
 modules and 60% on shared infrastructure, with real data and computation
 (no mocking).</p>
 <h3 id="quality-thresholds">Quality Thresholds</h3>
-<table>
-<thead>
-<tr>
-<th>Level</th>
-<th>Metric</th>
-<th>Threshold</th>
-<th>On Failure</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Assertion</td>
-<td>Confidence</td>
-<td><span class="math inline">\(\geq 0.5\)</span></td>
-<td>Flag for review</td>
-</tr>
-<tr>
-<td>Assertion</td>
-<td>Inter-annotator <span class="math inline">\(\kappa\)</span></td>
-<td><span class="math inline">\(\geq 0.6\)</span></td>
-<td>Re-annotate</td>
-</tr>
-<tr>
-<td>Graph</td>
-<td>Orphan node ratio</td>
-<td><span class="math inline">\(= 0\)</span></td>
-<td>Reject build</td>
-</tr>
-<tr>
-<td>Graph</td>
-<td>Corpus coverage</td>
-<td><span class="math inline">\(\geq 80\%\)</span></td>
-<td>Warning</td>
-</tr>
-<tr>
-<td>Score</td>
-<td>Boundary tests</td>
-<td>All pass</td>
-<td>Block release</td>
-</tr>
-<tr>
-<td>Pipeline</td>
-<td>Code coverage</td>
-<td><span class="math inline">\(\geq 90\%\)</span></td>
-<td>Block merge</td>
-</tr>
-<tr>
-<td>Pipeline</td>
-<td>Test pass rate</td>
-<td><span class="math inline">\(100\%\)</span></td>
-<td>Block release</td>
-</tr>
-</tbody>
-</table>
 <p>The hypothesis evidence results, temporal dynamics of evidence
 accumulation, and assertion analysis are presented in the dedicated
 hypothesis results section (see the ).</p>

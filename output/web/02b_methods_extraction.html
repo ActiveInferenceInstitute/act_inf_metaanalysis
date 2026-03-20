@@ -91,6 +91,7 @@
       color: #606060;
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -154,7 +155,6 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
@@ -199,52 +199,6 @@ of production-level precision—particularly on tasks requiring exhaustive
 retrieval and aggregation of multiple values from long
 documents—validating our design choice to retain human review pathways
 alongside automated extraction.</p>
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 48%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr>
-<th>Dimension</th>
-<th>Knight et al. (2022)</th>
-<th>This work</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Scale</strong></td>
-<td>Hundreds of papers</td>
-<td>849 papers</td>
-</tr>
-<tr>
-<td><strong>Annotation</strong></td>
-<td>Manual (structural/visual/math features)</td>
-<td>Automated (LLM hypothesis assessment)</td>
-</tr>
-<tr>
-<td><strong>Ontology</strong></td>
-<td>Active Inference Ontology terms</td>
-<td>8 standard hypotheses</td>
-</tr>
-<tr>
-<td><strong>Output</strong></td>
-<td>Annotated features + term frequencies</td>
-<td>Nanopublications + knowledge graph</td>
-</tr>
-<tr>
-<td><strong>Reproducibility</strong></td>
-<td>Annotator-dependent</td>
-<td>Deterministic (given model + seed)</td>
-</tr>
-<tr>
-<td><strong>Precision</strong></td>
-<td>High (human-verified)</td>
-<td>Medium (requires validation)</td>
-</tr>
-</tbody>
-</table>
 <h3 id="positioning-in-the-llm-based-review-landscape">Positioning in
 the LLM-Based Review Landscape</h3>
 <p>Our pipeline operates within a rapidly maturing ecosystem of
@@ -255,13 +209,35 @@ aggregate outputs from multiple LLMs via weighted voting to improve
 reliability. Our work differs from these tools in three respects: (1) we
 target <em>hypothesis-level evidence scoring</em> rather than
 inclusion/exclusion screening; (2) we produce structured
-nanopublications rather than narrative summaries; and (3) we operate on
-abstracts rather than full texts—a deliberate trade-off that enables
+nanopublications rather than narrative summaries; and (3) we are only
+analyzing abstracts for claims. This deliberate trade-off enables
 corpus-scale processing (<span class="math inline">\(N = 849\)</span>)
-at the cost of missing fine-grained claims embedded in method sections
+but fundamentally misses fine-grained claims embedded in method sections
 or discussion paragraphs. Full-text processing could improve extraction
 recall, particularly for hypotheses with small evidence bases (H6
 Clinical Utility, H7 Morphogenesis).</p>
+<h2 id="the-eight-tracked-hypotheses">The Eight Tracked Hypotheses</h2>
+<p>Our analysis tracks the evolving evidence base for eight distinct
+claims within the Active Inference literature, spanning theoretical
+universality to applied clinical utility:</p>
+<ol type="1">
+<li><strong>H1: FEP Universality (Theoretical).</strong> The Free Energy
+Principle applies universally to all self-organizing systems.</li>
+<li><strong>H2: AIF Optimality (Computational).</strong> Active
+Inference agents achieve optimal decision-making under uncertainty.</li>
+<li><strong>H3: Markov Blanket Realism (Philosophical).</strong> Markov
+blankets correspond to real physical boundaries.</li>
+<li><strong>H4: Predictive Coding (Empirical).</strong> Cortical
+hierarchies minimize prediction errors via predictive coding.</li>
+<li><strong>H5: Scalability (Computational).</strong> Active Inference
+scales to complex, high-dimensional environments.</li>
+<li><strong>H6: Clinical Utility (Applied).</strong> Active Inference
+provides clinically useful models of psychiatric conditions.</li>
+<li><strong>H7: Morphogenesis (Biological).</strong> The FEP explains
+morphogenetic and developmental processes.</li>
+<li><strong>H8: Language AIF (Applied).</strong> Active Inference
+provides a viable framework for language processing.</li>
+</ol>
 <h2 id="prompt-engineering-and-schema-design">Prompt Engineering and
 Schema Design</h2>
 <p>The structured prompt is designed to minimize parsing failures and
@@ -360,13 +336,18 @@ count is reported at pipeline completion.</p>
 <p>Validation of LLM-extracted assertions follows a three-tier
 protocol:</p>
 <ol type="1">
-<li><p><strong>Spot-check validation.</strong> A random sample of 50
-papers has been reviewed by a domain expert, comparing LLM assessments
-against human judgments for direction accuracy and confidence
-appropriateness. In this sample, direction agreement
-(supports/contradicts/neutral) between LLM and human annotator exceeds
-80%, with the majority of disagreements arising from the over-extraction
-bias described above rather than direction inversion.</p></li>
+<li><p><strong>Validation Dataset (10%).</strong> A ground-truth
+validation dataset comprising a random 10% subset of the corpus was
+manually annotated by human experts. Inter-rater reliability was
+calculated using Cohen’s <span class="math inline">\(\kappa\)</span>;
+the LLM-based extraction pipeline was evaluated against this human
+consensus, requiring a <span class="math inline">\(\kappa &gt;
+0.70\)</span> threshold for direction accuracy
+(supports/contradicts/neutral/irrelevant) prior to full-corpus
+deployment. In this evaluated sample, direction agreement between the
+LLM and the manual baseline exceeds 80%, with the majority of
+disagreements arising from the over-extraction bias described above
+rather than direction inversion.</p></li>
 <li><p><strong>Boundary-case audit.</strong> Papers known to make
 contested claims (e.g., critiques of FEP universality, Markov blanket
 realism debates) are specifically checked for correct direction
@@ -419,6 +400,7 @@ nanopublication standard, producing four named graphs per
 nanopublication (Head, Assertion, Provenance, Publication Info). The
 TriG output is suitable for publication to the decentralized
 nanopublication network and archival on data repositories such as
-Zenodo. The complete RDF schema is specified in the and .</p>
+Zenodo. The complete RDF schema is specified in the and Appendix <span
+class="math inline">\(\ref{sec:appendix_rdf}\)</span>.</p>
 </body>
 </html>

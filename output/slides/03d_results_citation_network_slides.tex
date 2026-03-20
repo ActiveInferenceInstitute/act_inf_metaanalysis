@@ -74,14 +74,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{longtable,booktabs,array}
-\newcounter{none} % for unnumbered tables
-\usepackage{calc} % for calculating minipage widths
-\usepackage{caption}
-% Make caption package work with longtable
-\makeatletter
-\def\fnum@table{\tablename~\thetable}
-\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -151,21 +143,23 @@ which serve as nexus points linking otherwise disconnected subgraphs.
 
 \begin{block}{Network Summary}
 \protect\phantomsection\label{network-summary}
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Metric & Value \\
-\midrule\noalign{}
-\endhead
+\begin{table}[htbp]
+\centering
+\caption{Intra-corpus citation network summary statistics ($N = 849$ papers). The low density and high component count reflect the field's rapid expansion and cross-source identifier mismatches.}
+\label{tab:citation_network}
+\begin{tabular}{ll}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
 Nodes & 847 \\
 Edges & 1,678 \\
 Reference resolution rate & 5.5\% (1,678 / 30,633) \\
 Connected components & 567 \\
 Network density & 0.23\% \\
-Mean in-degree & \(\approx\) 2.0 \\
-\bottomrule\noalign{}
-\end{longtable}
-}
+Mean in-degree & $\approx$ 2.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The citation topology corroborates the field overview findings (RQ1,
 RQ2): a small number of foundational papers---predominantly Friston's

@@ -91,6 +91,7 @@
       color: #606060;
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -154,7 +155,6 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
@@ -188,52 +188,6 @@ across the keyword-based domain taxonomy presented in the .</p>
 Structure</h2>
 <p>Non-negative matrix factorization (NMF) applied to the TF-IDF matrix
 identifies five latent topics:</p>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th>Topic</th>
-<th>Top Terms</th>
-<th>Interpretation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>learning, agent, model, agents, active, environments, aif,
-inference, environment, based</td>
-<td>Agent-environment modeling and robotic applications</td>
-</tr>
-<tr>
-<td>1</td>
-<td>inference, active, energy, free, variational, control, bayesian,
-expected, optimal, principle</td>
-<td>Active inference agents and decision-making</td>
-</tr>
-<tr>
-<td>2</td>
-<td>states, internal, external, systems, markov, system, dynamics,
-information, beliefs, self</td>
-<td>Markov blankets and internal/external states</td>
-</tr>
-<tr>
-<td>3</td>
-<td>fep, systems, ai, principle, energy, free, theory, networks,
-modeling, language</td>
-<td>Free energy principle and AI systems</td>
-</tr>
-<tr>
-<td>4</td>
-<td>predictive, brain, cognitive, prediction, perception, processing,
-sensory, models, coding, model</td>
-<td>Predictive coding and cognitive neuroscience</td>
-</tr>
-</tbody>
-</table>
 <h3 id="topicdomain-overlap">Topic–Domain Overlap</h3>
 <p>These topics are partially orthogonal to the domain taxonomy. Topic 0
 (agent-environment modeling) spans tools (B), robotics (C2), and core

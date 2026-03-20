@@ -3,22 +3,22 @@
     "pdf": {
       "exists": true,
       "file_count": 10,
-      "size_mb": "3.52",
-      "total_size_bytes": 3688077,
+      "size_mb": "3.60",
+      "total_size_bytes": 3774899,
       "largest_files": [
         {
           "name": "act_inf_metaanalysis_combined.pdf",
-          "size_mb": "2.99",
+          "size_mb": "3.00",
           "path": "pdf/act_inf_metaanalysis_combined.pdf"
         },
         {
           "name": "_combined_manuscript.tex",
-          "size_mb": "0.17",
+          "size_mb": "0.19",
           "path": "pdf/_combined_manuscript.tex"
         },
         {
           "name": "_combined_manuscript.md",
-          "size_mb": "0.14",
+          "size_mb": "0.17",
           "path": "pdf/_combined_manuscript.md"
         }
       ],
@@ -36,9 +36,9 @@
     },
     "web": {
       "exists": true,
-      "file_count": 21,
-      "size_mb": "0.55",
-      "total_size_bytes": 580599,
+      "file_count": 22,
+      "size_mb": "0.57",
+      "total_size_bytes": 599730,
       "largest_files": [
         {
           "name": "index.html",
@@ -47,25 +47,25 @@
         },
         {
           "name": "_combined_manuscript.md",
-          "size_mb": "0.14",
+          "size_mb": "0.17",
           "path": "web/_combined_manuscript.md"
         },
         {
-          "name": "05_appendix_tooling.html",
+          "name": "04_conclusion.html",
           "size_mb": "0.02",
-          "path": "web/05_appendix_tooling.html"
+          "path": "web/04_conclusion.html"
         }
       ],
       "extensions": {
-        ".html": 20,
+        ".html": 21,
         ".md": 1
       }
     },
     "slides": {
       "exists": true,
-      "file_count": 141,
-      "size_mb": "4.82",
-      "total_size_bytes": 5051714,
+      "file_count": 151,
+      "size_mb": "5.10",
+      "total_size_bytes": 5342884,
       "largest_files": [
         {
           "name": "03c_results_text_analytics_slides.pdf",
@@ -74,7 +74,7 @@
         },
         {
           "name": "03_results_hypothesis_slides.pdf",
-          "size_mb": "0.54",
+          "size_mb": "0.55",
           "path": "slides/03_results_hypothesis_slides.pdf"
         },
         {
@@ -84,25 +84,25 @@
         }
       ],
       "extensions": {
-        ".nav": 19,
-        ".pdf": 19,
-        ".vrb": 8,
-        ".snm": 19,
-        ".tex": 19,
-        ".aux": 19,
-        ".log": 19,
-        ".toc": 19
+        ".nav": 20,
+        ".pdf": 20,
+        ".vrb": 11,
+        ".snm": 20,
+        ".tex": 20,
+        ".aux": 20,
+        ".log": 20,
+        ".toc": 20
       }
     },
     "figures": {
       "exists": true,
       "file_count": 17,
-      "size_mb": "2.62",
-      "total_size_bytes": 2747777,
+      "size_mb": "2.61",
+      "total_size_bytes": 2739456,
       "largest_files": [
         {
           "name": "word_cloud.png",
-          "size_mb": "0.47",
+          "size_mb": "0.48",
           "path": "figures/word_cloud.png"
         },
         {
@@ -154,17 +154,17 @@
       "exists": true,
       "file_count": 4,
       "size_mb": "0.01",
-      "total_size_bytes": 5653,
+      "total_size_bytes": 12202,
       "largest_files": [
+        {
+          "name": "test_results.json",
+          "size_mb": "0.01",
+          "path": "reports/test_results.json"
+        },
         {
           "name": "validation_report.json",
           "size_mb": "0.00",
           "path": "reports/validation_report.json"
-        },
-        {
-          "name": "test_results.json",
-          "size_mb": "0.00",
-          "path": "reports/test_results.json"
         },
         {
           "name": "test_results.md",
@@ -197,7 +197,7 @@
       "exists": true,
       "file_count": 1,
       "size_mb": "0.00",
-      "total_size_bytes": 2672,
+      "total_size_bytes": 2675,
       "largest_files": [
         {
           "name": "pipeline.log",
@@ -210,8 +210,8 @@
       }
     }
   },
-  "total_files": 208,
-  "total_size_mb": 24.28462028503418,
+  "total_files": 219,
+  "total_size_mb": 24.661659240722656,
   "largest_files": [
     {
       "name": "nanopublications.trig",
@@ -227,7 +227,7 @@
     },
     {
       "name": "act_inf_metaanalysis_combined.pdf",
-      "size_mb": "2.99",
+      "size_mb": "3.00",
       "category": "pdf",
       "path": "pdf/act_inf_metaanalysis_combined.pdf"
     },
@@ -245,7 +245,7 @@
     },
     {
       "name": "03_results_hypothesis_slides.pdf",
-      "size_mb": "0.54",
+      "size_mb": "0.55",
       "category": "slides",
       "path": "slides/03_results_hypothesis_slides.pdf"
     },
@@ -257,7 +257,7 @@
     },
     {
       "name": "word_cloud.png",
-      "size_mb": "0.47",
+      "size_mb": "0.48",
       "category": "figures",
       "path": "figures/word_cloud.png"
     },
@@ -276,30 +276,30 @@
   ],
   "missing_expected_files": [],
   "sizes_by_category": {
-    "pdf": 3.5172243118286133,
-    "web": 0.5537023544311523,
-    "slides": 4.817689895629883,
-    "figures": 2.6204843521118164,
+    "pdf": 3.6000242233276367,
+    "web": 0.5719470977783203,
+    "slides": 5.095371246337891,
+    "figures": 2.612548828125,
     "data": 12.767580032348633,
-    "reports": 0.005391120910644531,
+    "reports": 0.011636734008789062,
     "simulations": 0.0,
     "llm": 0.0,
-    "logs": 0.0025482177734375
+    "logs": 0.0025510787963867188
   },
   "file_counts_by_type": {
     ".md": 4,
-    ".log": 22,
-    ".aux": 20,
+    ".log": 23,
+    ".aux": 21,
     ".blg": 1,
     ".bib": 1,
-    ".pdf": 20,
-    ".tex": 20,
-    ".toc": 20,
+    ".pdf": 21,
+    ".tex": 21,
+    ".toc": 21,
     ".bbl": 1,
-    ".html": 20,
-    ".nav": 19,
-    ".vrb": 8,
-    ".snm": 19,
+    ".html": 21,
+    ".nav": 20,
+    ".vrb": 11,
+    ".snm": 20,
     ".png": 16,
     ".json": 13,
     ".gml": 1,

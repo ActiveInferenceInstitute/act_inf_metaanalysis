@@ -8,11 +8,11 @@ Each paper is classified into one of eight categories organized across three dom
 
 ## Temporal Metrics and Growth-Rate Estimation
 
-We compute temporal publication metrics including year-by-year counts with gap-filling, cumulative totals, 3-year smoothed moving averages, and peak year identification. Field dynamics are estimated via two complementary metrics. The **mean year-over-year growth rate** $\bar{g}$ is the arithmetic mean of annual growth rates for years with non-zero prior-year publications. The **doubling time** $t_d = \ln 2 / \ln(1 + \bar{g})$. The **compound annual growth rate** (CAGR) captures the annualized rate across the full temporal span. Mathematical details are provided in \hyperref[sec:appendix_growth]{Appendix~A.3}.
+We compute temporal publication metrics including year-by-year counts with gap-filling, cumulative totals, 3-year smoothed moving averages, and peak year identification. Field dynamics are estimated via two complementary metrics. The **mean year-over-year growth rate** $\bar{g}$ is the arithmetic mean of annual growth rates for years with non-zero prior-year publications. The **doubling time** $t_d = \ln 2 / \ln(1 + \bar{g})$. The **compound annual growth rate** (CAGR) captures the annualized rate across the full temporal span. Mathematical details are provided in Appendix \ref{sec:appendix_growth}.
 
 ## Text Analytics
 
-The TF-IDF matrix is constructed manually using tokenization with stopword removal and L2-normalized term-frequency inverse-document-frequency weighting \citep{salton1975vector}, with a configurable vocabulary size (default: 1000 features). Non-negative matrix factorization (NMF) is applied to discover latent topics using multiplicative update rules \citep{lee1999nmf}. Mathematical details are provided in \hyperref[sec:appendix_nmf]{Appendix~A.2}.
+The TF-IDF matrix is constructed manually using tokenization with stopword removal and L2-normalized term-frequency inverse-document-frequency weighting \citep{salton1975vector}, with a configurable vocabulary size (default: 1000 features). Non-negative matrix factorization (NMF) is applied to discover latent topics using multiplicative update rules \citep{lee1999nmf}. Mathematical details are provided in Appendix \ref{sec:appendix_nmf}.
 
 ## Citation Network Construction
 

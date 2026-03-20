@@ -16,12 +16,23 @@ The pipeline serializes nanopublications in two complementary formats:
 
 2. **RDF/TriG** per the nanopublication standard ([nanopub.net](https://nanopub.net/)), producing four named graphs per nanopublication:
 
-| Named Graph | Content | Key Predicates |
-| --- | --- | --- |
-| **Head** | Links the nanopub resource to its three component graphs | `np:hasAssertion`, `np:hasProvenance`, `np:hasPublicationInfo` |
-| **Assertion** | The core scientific claim | `aif:asserts` (Paper → Assertion), `aif:supports`/`aif:contradicts` (Assertion → Hypothesis), `aif:claim`, `aif:confidence`, `aif:citationCount` |
-| **Provenance** | How the assertion was generated | `prov:wasGeneratedBy`, `prov:generatedAtTime`, `prov:wasAttributedTo`, `prov:hadPrimarySource` |
-| **Publication Info** | Metadata about the nanopublication itself | `dc:created`, `dc:creator`, `dc:license` |
+
+\begin{table}[htbp]
+\centering
+\caption{RDF/TriG nanopublication structure. Each nanopublication contains four named graphs encoding the assertion, its provenance, and publication metadata per the nanopublication standard (\texttt{nanopub.net}).}
+\label{tab:nanopub_schema}
+\begin{tabular}{lll}
+\toprule
+\textbf{Named Graph} & \textbf{Content} & \textbf{Key Predicates} \\
+\midrule
+Head & Links the nanopub resource to its three component graphs & \texttt{np:hasAssertion}, \texttt{np:hasProvenance}, \texttt{np:hasPublicationInfo} \\
+Assertion & The core scientific claim & \texttt{aif:asserts}, \texttt{aif:supports}/\texttt{aif:contradicts}, \texttt{aif:claim}, \texttt{aif:confidence}, \texttt{aif:citationCount} \\
+Provenance & How the assertion was generated & \texttt{prov:wasGeneratedBy}, \texttt{prov:generatedAtTime}, \texttt{prov:wasAttributedTo}, \texttt{prov:hadPrimarySource} \\
+Publication Info & Metadata about the nanopublication itself & \texttt{dc:created}, \texttt{dc:creator}, \texttt{dc:license} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 The namespace `http://activeinference.institute/ontology/` (prefix `aif:`) defines all domain predicates; the nanopublication schema (`http://www.nanopub.org/nschema#`, prefix `np:`) provides structural predicates; provenance uses PROV-O (`http://www.w3.org/ns/prov#`); and Dublin Core (`http://purl.org/dc/terms/`) provides publication metadata. The TriG output is suitable for publication to the decentralized nanopublication network and aligns with FAIR data principles: **F**indable via URI-based identification, **A**ccessible via standard RDF protocols, **I**nteroperable through W3C-standard serialization, and **R**eusable with explicit provenance and CC0 licensing.
 
@@ -51,7 +62,7 @@ where $S(H)$, $C(H)$, and $A(H)$ are the sets of supporting, contradicting, and 
 w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a) \label{eq:weight}
 \end{equation}
 
-The logarithmic citation weighting ensures that highly cited papers carry more influence without allowing any single paper to dominate. The score lies in $[-1, 1]$. **Interpretation note:** a score of $+0.7$ indicates that 70\% of weighted evidence supports the hypothesis (net of contradictions and normalized by total weighted evidence), *not* that the hypothesis has a 70\% probability of being true. Scores are best interpreted as relative rankings across hypotheses and as temporal trajectories within a hypothesis, rather than as absolute probability estimates. Temporal trends are computed by evaluating the cumulative score at each year, using only assertions from papers published up to that year. A full derivation appears in \hyperref[sec:appendix_scoring]{Appendix~A.1}.
+The logarithmic citation weighting ensures that highly cited papers carry more influence without allowing any single paper to dominate. The score lies in $[-1, 1]$. **Interpretation note:** a score of $+0.7$ indicates that 70\% of weighted evidence supports the hypothesis (net of contradictions and normalized by total weighted evidence), *not* that the hypothesis has a 70\% probability of being true. Scores are best interpreted as relative rankings across hypotheses and as temporal trajectories within a hypothesis, rather than as absolute probability estimates. Temporal trends are computed by evaluating the cumulative score at each year, using only assertions from papers published up to that year. A full derivation appears in Appendix \ref{sec:appendix_scoring}.
 
 ## Tally-Based Evidence Aggregation
 

@@ -6,7 +6,7 @@
 
 Project-level documentation for the `act_inf_metaanalysis` pipeline.
 
-> See [AGENTS.md](../AGENTS.md) for contributor and AI-agent conventions, and the [project README](../README.md) for setup and overview.
+> See [AGENTS.md](AGENTS.md) for doc-hub architectural conventions, [../AGENTS.md](../AGENTS.md) for project-wide contributor properties, and the [project README](../README.md) for setup and overview.
 
 ---
 

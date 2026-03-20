@@ -91,6 +91,7 @@
       color: #606060;
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -154,7 +155,6 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
@@ -251,6 +251,20 @@ nanopublication knowledge graph into a Retrieval-Augmented Generation
 architecture would enable natural-language querying of the evidence
 base, making quantitative literature synthesis accessible to researchers
 without programming expertise.</p>
+<h3 id="agentic-workspaces-and-mcp-integration">Agentic Workspaces and
+MCP Integration</h3>
+<p>Beyond traditional open-source maintenance, the repository is
+architected as an intrinsically agentic workspace. Every underlying
+source module (e.g., <code>src/knowledge_graph/</code>,
+<code>src/visualization/</code>) is governed by dedicated
+<code>SKILL.md</code> files serving as Model Context Protocol (MCP)
+prompt-boundaries. These explicitly define the “rules of engagement” for
+autonomous AI inference agents—such as enforcing the zero-mock testing
+philosophy via local HTTP proxies, handling specific LLM fallback
+parsing logic, and respecting headless rendering constraints. This
+design ensures that future AI orchestrators can natively interface with,
+scale, and refine the computational meta-analysis pipeline safely and
+deterministically without structural micromanagement.</p>
 <h2 id="open-questions">Open Questions</h2>
 <p>This meta-analysis surfaces four critical, empirically testable
 questions warranting dedicated investigation:</p>

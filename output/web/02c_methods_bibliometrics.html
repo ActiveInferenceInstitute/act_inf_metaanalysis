@@ -91,6 +91,7 @@
       color: #606060;
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -154,7 +155,6 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
@@ -213,14 +213,16 @@ prior-year publications. The <strong>doubling time</strong> <span
 class="math inline">\(t_d = \ln 2 / \ln(1 + \bar{g})\)</span>. The
 <strong>compound annual growth rate</strong> (CAGR) captures the
 annualized rate across the full temporal span. Mathematical details are
-provided in .</p>
+provided in Appendix <span
+class="math inline">\(\ref{sec:appendix_growth}\)</span>.</p>
 <h2 id="text-analytics">Text Analytics</h2>
 <p>The TF-IDF matrix is constructed manually using tokenization with
 stopword removal and L2-normalized term-frequency
 inverse-document-frequency weighting , with a configurable vocabulary
 size (default: 1000 features). Non-negative matrix factorization (NMF)
 is applied to discover latent topics using multiplicative update rules .
-Mathematical details are provided in .</p>
+Mathematical details are provided in Appendix <span
+class="math inline">\(\ref{sec:appendix_nmf}\)</span>.</p>
 <h2 id="citation-network-construction">Citation Network
 Construction</h2>
 <p>The intra-corpus citation network is constructed as a directed graph

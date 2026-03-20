@@ -6,13 +6,24 @@ This section examines the latent semantic structure of the Active Inference corp
 
 Non-negative matrix factorization (NMF) applied to the TF-IDF matrix identifies five latent topics:
 
-| Topic | Top Terms | Interpretation |
-| --- | --- | --- |
-| 0 | learning, agent, model, agents, active, environments, aif, inference, environment, based | Agent-environment modeling and robotic applications |
-| 1 | inference, active, energy, free, variational, control, bayesian, expected, optimal, principle | Active inference agents and decision-making |
-| 2 | states, internal, external, systems, markov, system, dynamics, information, beliefs, self | Markov blankets and internal/external states |
-| 3 | fep, systems, ai, principle, energy, free, theory, networks, modeling, language | Free energy principle and AI systems |
-| 4 | predictive, brain, cognitive, prediction, perception, processing, sensory, models, coding, model | Predictive coding and cognitive neuroscience |
+
+\begin{table}[htbp]
+\centering
+\caption{Non-negative matrix factorization (NMF) topic decomposition of the corpus TF-IDF matrix ($k = 5$ topics). Top terms are ranked by NMF component weight; interpretations reflect dominant thematic content.}
+\label{tab:nmf_topics}
+\begin{tabular}{clp{6cm}}
+\toprule
+\textbf{Topic} & \textbf{Top Terms} & \textbf{Interpretation} \\
+\midrule
+0 & learning, agent, model, agents, active, environments, aif, inference, environment, based & Agent-environment modeling and robotic applications \\
+1 & inference, active, energy, free, variational, control, bayesian, expected, optimal, principle & Active inference agents and decision-making \\
+2 & states, internal, external, systems, markov, system, dynamics, information, beliefs, self & Markov blankets and internal/external states \\
+3 & fep, systems, ai, principle, energy, free, theory, networks, modeling, language & Free energy principle and AI systems \\
+4 & predictive, brain, cognitive, prediction, perception, processing, sensory, models, coding, model & Predictive coding and cognitive neuroscience \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 ### Topic–Domain Overlap
 

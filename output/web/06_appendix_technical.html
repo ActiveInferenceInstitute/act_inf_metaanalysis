@@ -91,6 +91,7 @@
       color: #606060;
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -154,7 +155,6 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
@@ -174,13 +174,13 @@
   type="text/javascript"></script>
 </head>
 <body>
-<h1 id="appendix-a-mathematical-and-algorithmic-details">Appendix A:
+<h1 id="appendix-mathematical-and-algorithmic-details">Appendix:
 Mathematical and Algorithmic Details </h1>
 <p><em>This appendix collects the formal mathematical definitions,
 derivations, and algorithmic specifications referenced from the main
 methodology section.</em></p>
-<h2 id="a.1-citation-weighted-hypothesis-scoring-formula">A.1
-Citation-Weighted Hypothesis Scoring Formula </h2>
+<h2 id="citation-weighted-hypothesis-scoring-formula">Citation-Weighted
+Hypothesis Scoring Formula </h2>
 <p>For each hypothesis <span class="math inline">\(H\)</span>, we
 compute a citation-weighted evidence score aggregating all assertions
 relevant to <span class="math inline">\(H\)</span>:</p>
@@ -220,8 +220,8 @@ C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)} \label{eq:app_score_t}
 <p>This reveals whether support for a hypothesis is growing, declining,
 or plateauing over time.</p>
 <h2
-id="a.2-non-negative-matrix-factorization-nmf-for-topic-modeling">A.2
-Non-negative Matrix Factorization (NMF) for Topic Modeling </h2>
+id="non-negative-matrix-factorization-nmf-for-topic-modeling">Non-negative
+Matrix Factorization (NMF) for Topic Modeling </h2>
 <p>We apply NMF to the TF-IDF matrix of the corpus to discover latent
 topics. Given the document-term matrix <span class="math inline">\(V \in
 \mathbb{R}^{n \times m}_{\geq 0}\)</span>, NMF finds factor matrices
@@ -254,8 +254,7 @@ term frequency, <span class="math inline">\(N\)</span> is the total
 number of documents, and <span
 class="math inline">\(\text{df}(t)\)</span> is the document frequency of
 term <span class="math inline">\(t\)</span>.</p>
-<h2 id="a.3-field-growth-rate-estimation">A.3 Field Growth-Rate
-Estimation </h2>
+<h2 id="field-growth-rate-estimation">Field Growth-Rate Estimation </h2>
 <p>The <strong>mean year-over-year growth rate</strong> <span
 class="math inline">\(\bar{g}\)</span> is the arithmetic mean of annual
 growth rates computed only for years where the prior year had non-zero
@@ -283,8 +282,8 @@ span <span class="math inline">\([y_0, y_T]\)</span> is:</p>
 <p>For the current corpus, CAGR <span class="math inline">\(=
 16.99\%\)</span>. The more recent growth phase (2010–2026) exhibits
 substantially higher annualized growth.</p>
-<h2 id="a.4-advanced-visualization-methods">A.4 Advanced Visualization
-Methods </h2>
+<h2 id="advanced-visualization-methods">Advanced Visualization Methods
+</h2>
 <h3 id="pca-of-tf-idf-embeddings">PCA of TF-IDF Embeddings</h3>
 <p>Principal Component Analysis (PCA) is applied to the TF-IDF matrix
 <span class="math inline">\(V\)</span> to project each document into a
@@ -323,8 +322,7 @@ class="math inline">\(C_{ij} = |\{d : t_i \in d \land t_j \in
 d\}|\)</span>. The matrix is normalized to <span
 class="math inline">\([0, 1]\)</span> by dividing by the maximum entry
 and visualized as a symmetric heatmap.</p>
-<h2 id="a.5-nanopublication-rdf-schema">A.5 Nanopublication RDF Schema
-</h2>
+<h2 id="nanopublication-rdf-schema">Nanopublication RDF Schema </h2>
 <p>Each nanopublication is serialized to RDF/TriG per the
 nanopublication standard , producing four named graphs. The following
 annotated example illustrates the structure for a single assertion:</p>
@@ -371,78 +369,8 @@ annotated example illustrates the structure for a single assertion:</p>
     dc:license &lt;https://creativecommons.org/publicdomain/zero/1.0/&gt; .
 }</code></pre>
 <h3 id="namespace-definitions">Namespace Definitions</h3>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th>Prefix</th>
-<th>URI</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>np:</code></td>
-<td><code>http://www.nanopub.org/nschema#</code></td>
-<td>Nanopub structural predicates</td>
-</tr>
-<tr>
-<td><code>prov:</code></td>
-<td><code>http://www.w3.org/ns/prov#</code></td>
-<td>PROV-O provenance model</td>
-</tr>
-<tr>
-<td><code>dc:</code></td>
-<td><code>http://purl.org/dc/terms/</code></td>
-<td>Dublin Core metadata</td>
-</tr>
-<tr>
-<td><code>aif:</code></td>
-<td><code>http://activeinference.institute/ontology/</code></td>
-<td>Domain-specific predicates</td>
-</tr>
-<tr>
-<td><code>xsd:</code></td>
-<td><code>http://www.w3.org/2001/XMLSchema#</code></td>
-<td>XML Schema datatypes</td>
-</tr>
-</tbody>
-</table>
+
 <h3 id="core-triple-patterns">Core Triple Patterns</h3>
 <p>The knowledge graph encodes five fundamental relationships:</p>
-<table>
-<thead>
-<tr>
-<th>Triple Pattern</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Paper  --aif:asserts--&gt;      Assertion</code></td>
-<td>A paper makes a claim</td>
-</tr>
-<tr>
-<td><code>Paper  --aif:cites--&gt;        Paper</code></td>
-<td>Intra-corpus citation link</td>
-</tr>
-<tr>
-<td><code>Paper  --aif:belongsTo--&gt;    Subfield</code></td>
-<td>Domain classification</td>
-</tr>
-<tr>
-<td><code>Assertion --aif:supports--&gt;  Hypothesis</code></td>
-<td>Supporting evidence</td>
-</tr>
-<tr>
-<td><code>Assertion --aif:contradicts--&gt; Hypothesis</code></td>
-<td>Contradicting evidence</td>
-</tr>
-</tbody>
-</table>
 </body>
 </html>

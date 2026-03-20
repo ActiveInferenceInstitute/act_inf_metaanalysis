@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:27
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  20 MAR 2026 15:30
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1538,11 +1538,11 @@ File: mt-LatinModernRoman.cfg 2026/02/26 v1.2 microtype config. file: Latin Mod
 ern Roman (RS)
 )
 
-LaTeX Warning: Hyper reference `sec:appendix_growth' on page 1 undefined on inp
-ut line 42.
+LaTeX Warning: Reference `sec:appendix_growth' on page 1 undefined on input lin
+e 41.
 
 ! Undefined control sequence.
-l.49 inverse-document-frequency weighting \citep
+l.48 inverse-document-frequency weighting \citep
                                                 {salton1975vector}, with a
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1551,7 +1551,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.52 multiplicative update rules \citep
+l.51 multiplicative update rules \citep
                                        {lee1999nmf}. Mathematical details are
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1560,11 +1560,11 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Hyper reference `sec:appendix_nmf' on page 1 undefined on input 
-line 53.
+LaTeX Warning: Reference `sec:appendix_nmf' on page 1 undefined on input line 5
+2.
 
 ! Undefined control sequence.
-l.66 \citep
+l.65 \citep
            {kleinberg1999authoritative}, degree distributions, network
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1573,7 +1573,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.68 modularity maximization \citep
+l.67 modularity maximization \citep
                                    {clauset2004finding}.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1582,7 +1582,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 )
-Overfull \vbox (532.29384pt too high) detected at line 162
+Overfull \vbox (532.29384pt too high) detected at line 161
  []
 
 [1

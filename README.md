@@ -156,5 +156,8 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 - **[Architecture Guide](doc/architecture.md)** — In-depth overview of the data pipeline and module definitions.
 - **[Data Formats](doc/data_formats.md)** — Schema definitions for Corpus mapping, RDF serializations, and outputs.
 - **[Project Agents](AGENTS.md)** — Operational metadata and configuration requirements for this distinct subproject.
+- **[Documentation Hub](doc/README.md)** — Project-level quick start and advanced pipeline flags.
+
+*Note: The project applies an automated documentation parity standard constraint. Every underlying module inside `src/` and `tests/` features dedicated component-level `README.md` and `AGENTS.md` files mapping code functionality tightly to logic constraints.*
 
 *This project was developed within the Docxology research infrastructure.*

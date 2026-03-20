@@ -77,6 +77,7 @@ class LLMConfig:
     nanopub_path: str | None = None
     checkpoint_interval: int = 50
     max_papers: int | None = None
+    min_confidence: float = 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -298,6 +299,18 @@ def assess_paper_hypotheses(
                     )
                     continue
                 if direction == "irrelevant":
+                    continue
+
+                confidence = float(item.get("confidence", 0.0))
+                # Clamp confidence
+                confidence = max(0.0, min(1.0, confidence))
+
+                # Enforce minimum confidence threshold to handle hallucinated certainty
+                if confidence < config.min_confidence:
+                    logger.debug(
+                        "Skipping %s due to low confidence (%.2f < %.2f)",
+                        hyp_id, confidence, config.min_confidence
+                    )
                     continue
 
                 direction_counts[direction] = direction_counts.get(direction, 0) + 1

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:27
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  20 MAR 2026 15:30
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1123,92 +1123,12 @@ Package: fancyvrb 2025/07/28 4.6 verbatim text (tvz,hv)
 \FV@StepNumber=\count387
 \FV@OutFile=\write5
 )
-(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
-\LTleft=\skip71
-\LTright=\skip72
-\LTpre=\skip73
-\LTpost=\skip74
-\LTchunksize=\count388
-\LTcapwidth=\dimen310
-\LT@head=\box82
-\LT@firsthead=\box83
-\LT@foot=\box84
-\LT@lastfoot=\box85
-\LT@gbox=\box86
-\LT@cols=\count389
-\LT@rows=\count390
-\c@LT@tables=\count391
-\c@LT@chunks=\count392
-\LT@p@ftn=\toks48
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen311
-\lightrulewidth=\dimen312
-\cmidrulewidth=\dimen313
-\belowrulesep=\dimen314
-\belowbottomsep=\dimen315
-\aboverulesep=\dimen316
-\abovetopsep=\dimen317
-\cmidrulesep=\dimen318
-\cmidrulekern=\dimen319
-\defaultaddspace=\dimen320
-\@cmidla=\count393
-\@cmidlb=\count394
-\@aboverulesep=\dimen321
-\@belowrulesep=\dimen322
-\@thisruleclass=\count395
-\@lastruleclass=\count396
-\@thisrulewidth=\dimen323
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/array.sty
-Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
-\col@sep=\dimen324
-\ar@mcellbox=\box87
-\extrarowheight=\dimen325
-\NC@list=\toks49
-\extratabsurround=\skip75
-\backup@length=\skip76
-\ar@cellbox=\box88
-)
-\c@none=\count397
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen326
-\captionmargin=\dimen327
-\caption@leftmargin=\dimen328
-\caption@rightmargin=\dimen329
-\caption@width=\dimen330
-\caption@indent=\dimen331
-\caption@parindent=\dimen332
-\caption@hangindent=\dimen333
-Package caption Info: beamer document class detected.
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption-beamer.sto
-File: caption-beamer.sto 2022/01/06 v2.0c Adaption of the caption package to th
-e beamer document classes (AR)
-))
-\c@caption@flags=\count398
-\c@continuedfloat=\count399
-Package caption Info: hyperref package is loaded.
-Package caption Info: Hyperref support is turned off
-(caption)             because hyperref has stopped early.
-Package caption Info: longtable package is loaded.
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
-))
 (/usr/local/texlive/2026/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
 File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
-\BKM@id=\count400
+\BKM@id=\count388
 ))
 (/usr/local/texlive/2026/texmf-dist/tex/latex/xurl/xurl.sty
 Package: xurl 2022/01/09 v 0.10 modify URL breaks
@@ -1217,26 +1137,26 @@ Package: xurl 2022/01/09 v 0.10 modify URL breaks
 s/02b_methods_extraction_slides.aux)
 \openout1 = `02b_methods_extraction_slides.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 136.
-LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1272,7 +1192,7 @@ LaTeX Font Info:    ... okay on input line 136.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 136.
+Package hyperref Info: Link coloring OFF on input line 128.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/translator/translator-basic-dicti
 onary-English.dict
@@ -1299,19 +1219,19 @@ tionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 136.
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 128.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 136.
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 128.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 136.
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 128.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 136.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 128.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 136.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 128.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 136.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 128.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 136.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 128.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 1.03015890977869.
@@ -1342,7 +1262,7 @@ allCapsFont={},Script=Math,BoldFont={latinmodern-math.otf}].
 =math;language=dflt;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 11.28015pt on input line 136.
+(Font)              scaled to size 11.28015pt on input line 128.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 1.03015890977869.
@@ -1385,18 +1305,18 @@ dern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
 =math;language=dflt;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 11.28015pt on input line 136.
+(Font)              scaled to size 11.28015pt on input line 128.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 136.
+(Font)              `operators' in the math version `normal' on input line 128.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
- line 136.
+ line 128.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 136.
+(Font)              `operators' in the math version `bold' on input line 128.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
-t line 136.
+t line 128.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 1.03015890977869.
@@ -1470,15 +1390,15 @@ nmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
 t=math;language=dflt;"
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 136.
+(Font)              `symbols' in the math version `normal' on input line 128.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
 (Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
-t line 136.
+t line 128.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 136.
+(Font)              `symbols' in the math version `bold' on input line 128.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
-t line 136.
+t line 128.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 1.03015890977869.
@@ -1547,23 +1467,23 @@ t=math;language=dflt;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 (Font)              `largesymbols' in the math version `normal' on input line 1
-36.
+28.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
-t line 136.
+t line 128.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 136
+(Font)              `largesymbols' in the math version `bold' on input line 128
 .
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
-t line 136.
-LaTeX Info: Redefining \microtypecontext on input line 136.
-Package microtype Info: Applying patch `item' on input line 136.
-Package microtype Info: Applying patch `toc' on input line 136.
-Package microtype Info: Applying patch `eqnum' on input line 136.
-Package microtype Info: Applying patch `footnote' on input line 136.
-Package microtype Info: Applying patch `verbatim' on input line 136.
-LaTeX Info: Redefining \microtypesetup on input line 136.
+t line 128.
+LaTeX Info: Redefining \microtypecontext on input line 128.
+Package microtype Info: Applying patch `item' on input line 128.
+Package microtype Info: Applying patch `toc' on input line 128.
+Package microtype Info: Applying patch `eqnum' on input line 128.
+Package microtype Info: Applying patch `footnote' on input line 128.
+Package microtype Info: Applying patch `verbatim' on input line 128.
+LaTeX Info: Redefining \microtypesetup on input line 128.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1573,8 +1493,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
 
 (/Users/4d/Documents/GitHub/template/projects/act_inf_metaanalysis/output/slide
 s/02b_methods_extraction_slides.nav)
@@ -1634,17 +1552,44 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Overfull \hbox (5.9369pt too wide) in paragraph at lines 47--48
-[]|\TU/lmss/m/n/10.95 Nanopublications 
- []
+! Undefined control sequence.
+l.31 \toprule
+             
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \midrule 
+                         
+l.33 \midrule
+             
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bottomrule 
+                            
+l.40 \bottomrule
+                
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (1.6226pt too wide) in paragraph at lines 48--48
-[]|\TU/lmss/bx/n/10.95 Reproducibility|  
+Overfull \hbox (175.02112pt too wide) in paragraph at lines 30--42
+ [] 
  []
 
 ! Undefined control sequence.
-l.235 accuracy \citep
+l.261 accuracy \citep
                      {liang2024survey}, underscoring that our multi-tier
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1653,7 +1598,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.245 \citep
+l.271 \citep
             {groth2010anatomy, kuhn2016decentralized}---a self-contained,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1663,14 +1608,14 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Hyper reference `sec:methods_kg' on page 1 undefined on input li
-ne 279.
+ne 305.
 
 
-LaTeX Warning: Hyper reference `sec:appendix_rdf' on page 1 undefined on input 
-line 280.
+LaTeX Warning: Reference `sec:appendix_rdf' on page 1 undefined on input line 3
+06.
 
 )
-Overfull \vbox (2695.68484pt too high) detected at line 420
+Overfull \vbox (2918.60826pt too high) detected at line 438
  []
 
 [1
@@ -1698,11 +1643,11 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 31465 strings out of 468168
- 632488 string characters out of 5432816
- 1267427 words of memory out of 5000000
- 59636 multiletter control sequences out of 15000+600000
- 631264 words of font info for 73 fonts, out of 8000000 for 9000
+ 29846 strings out of 468168
+ 601952 string characters out of 5432816
+ 1246912 words of memory out of 5000000
+ 58038 multiletter control sequences out of 15000+600000
+ 631272 words of font info for 74 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  128i,11n,123p,1106b,750s stack positions out of 10000i,1000n,20000p,200000b,200000s
 

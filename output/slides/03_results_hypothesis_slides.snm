@@ -1,5 +1,6 @@
 \beamer@slide {sec:hypothesis_results}{1}
 \beamer@slide {hypothesis-evidence-landscape-and-temporal-dynamics}{1}
+\beamer@slide {tab:hypothesis_evidence}{1}
 \beamer@slide {fig:hypothesis_dashboard}{1}
 \beamer@slide {interpretation-of-evidence-profiles}{1}
 \beamer@slide {temporal-dynamics-of-evidence-accumulation}{1}
@@ -10,3 +11,4 @@
 \beamer@slide {limitations-of-the-current-scoring-approach}{1}
 \beamer@slide {sec:pub_bias}{1}
 \beamer@slide {publication-bias-and-linguistic-asymmetry}{1}
+\beamer@slide {methodological-validation-and-llm-calibration}{1}

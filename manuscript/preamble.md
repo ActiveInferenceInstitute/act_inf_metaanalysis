@@ -10,7 +10,7 @@ This file contains LaTeX packages and commands that are automatically included i
 \usepackage{amsthm}
 
 % Document layout
-\usepackage[margin=2.2cm]{geometry}
+\usepackage[margin=1.8cm]{geometry}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage[section]{placeins}  % Constrain floats to their section

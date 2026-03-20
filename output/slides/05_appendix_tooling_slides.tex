@@ -74,14 +74,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{longtable,booktabs,array}
-\newcounter{none} % for unnumbered tables
-\usepackage{calc} % for calculating minipage widths
-\usepackage{caption}
-% Make caption package work with longtable
-\makeatletter
-\def\fnum@table{\tablename~\thetable}
-\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -97,9 +89,9 @@
 
 \begin{document}
 
-\begin{frame}{Appendix B: Tooling and Infrastructure
+\begin{frame}[fragile]{Appendix: Tooling and Infrastructure
 \label{sec:tooling}}
-\protect\phantomsection\label{appendix-b-tooling-and-infrastructure}
+\protect\phantomsection\label{appendix-tooling-and-infrastructure}
 The practical utility of a computational meta-analysis depends on robust
 tooling at each pipeline stage: assertion extraction, modeling and
 simulation, knowledge graph infrastructure, and quality assurance.
@@ -169,6 +161,20 @@ sensor fusion, and active inference mountain car control, available at
 the \href{https://reactivebayes.github.io/RxInfer.jl/stable/}{official
 documentation} and the \href{https://learnableloop.com/}{Learnable Loop}
 tutorial portal.
+
+\textbf{ActiveInference.jl.} In parallel to RxInfer's generalized
+message-passing focus, ActiveInference.jl provides a Julia-native, near
+drop-in conceptual analogue to Python's \texttt{pymdp}
+\citep{ActiveInferencejl}. It explicitly targets computational
+psychiatry and cognitive neuroscience workflows emphasizing standard
+discrete-state POMDP simulation, parameter estimation, and recovery. The
+library leverages Julia's array semantics---utilizing vectors of arrays
+to efficiently encode multimodal factorized models via the canonical
+\(\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D}, \mathbf{E}\)
+components---to streamline tasks like generating synthetic behavioral
+data, fitting models to subject behavior, and probing internal beliefs
+via robust simulation loops (\texttt{infer\_states!},
+\texttt{infer\_policies!}, \texttt{sample\_action!}).
 
 \textbf{Cpp-AIF.} The Cpp-AIF header-only C++ library
 \citep{gregoretti2023cppaif} implements active inference for discrete
@@ -286,6 +292,7 @@ relevant to specific hypotheses (H1--H8) or application domains
 pymdp & Python & Discrete POMDP active inference; factor graphs, hierarchical models & \cite{heins2022pymdp} \\
 SPM & MATLAB & DCM, variational Bayes; neuroimaging reference implementation & \cite{friston2017active} \\
 RxInfer.jl & Julia & Reactive message passing; real-time streaming Bayesian inference & \cite{rxinfer2025} \\
+ActiveInference.jl & Julia & Discrete POMDP AIF; parameter recovery for computational psychiatry & \cite{ActiveInferencejl} \\
 Cpp-AIF & C++ & Header-only POMDP AIF library with multicore parallelization & \cite{gregoretti2023cppaif} \\
 FEPS & Python & EFE on interpretable policy graphs; projective simulation & \cite{pazem2024feps} \\
 ActivPynference & Python & Discrete AIF with factor-graph message passing; educational focus & — \\
@@ -357,53 +364,26 @@ AdaptiveResonance.jl & Julia & Adaptive resonance theory models in Julia & — \
 
 \begin{block}{Comparative Feature Matrix}
 \protect\phantomsection\label{comparative-feature-matrix}
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Feature
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-pymdp
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-SPM
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-RxInfer.jl
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Cpp-AIF
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-FEPS
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-ngc-learn
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\textbf{Language} & Python & MATLAB & Julia & C++ & Python &
-Python/JAX \\
-\textbf{State Spaces} & Discrete & Discrete + Continuous & Continuous
-(factor graphs) & Discrete & Discrete & Continuous \\
-\textbf{Inference} & Message passing & Variational Bayes & Reactive
-message passing & EFE + state estimation & EFE on policy graphs &
-Predictive coding \\
-\textbf{Deep AIF} & Partial & No & Via custom factors & No & No
-(interpretable) & Yes (neural circuits) \\
-\textbf{Real-time} & No & No & Yes (streaming) & Yes (multicore) & No &
-No \\
-\textbf{Hierarchical} & Yes & Yes (DCM) & Yes & Yes & No & Yes \\
-\textbf{GPU} & No & No & No & CPU (multicore) & No & Yes (JAX) \\
-\textbf{License} & MIT & GPL & MIT & MIT & MIT & BSD-3 \\
-\textbf{Primary Use} & Research prototyping & Neuroimaging & Robotics /
-online learning & Embedded systems & Interpretable RL & NeuroAI
-simulation \\
-\bottomrule\noalign{}
-\end{longtable}
-}
+\begin{table}[htbp]
+\centering
+\caption{Comparative feature matrix of Active Inference software packages. Features span language, state space type, inference algorithm, hierarchical support, GPU acceleration, and primary use case.}
+\label{tab:aif_feature_matrix}
+\begin{tabular}{llllllll}
+\toprule
+\textbf{Feature} & \textbf{pymdp} & \textbf{SPM} & \textbf{RxInfer.jl} & \textbf{ActiveInference.jl} & \textbf{Cpp-AIF} & \textbf{FEPS} & \textbf{ngc-learn} \\
+\midrule
+Language & Python & MATLAB & Julia & Julia & C++ & Python & Python/JAX \\
+State Spaces & Discrete & Disc.+Cont. & Continuous & Discrete & Discrete & Discrete & Continuous \\
+Inference & Msg.\ passing & Var.\ Bayes & Reactive msg. & Msg.\ passing & EFE+state est. & EFE on graphs & Pred.\ coding \\
+Deep AIF & Partial & No & Custom factors & No & No & No & Yes \\
+Real-time & No & No & Yes & No & Yes & No & No \\
+Hierarchical & Yes & Yes (DCM) & Yes & No & Yes & No & Yes \\
+GPU & No & No & No & No & CPU (multi) & No & Yes (JAX) \\
+License & MIT & GPL & MIT & MIT & MIT & MIT & BSD-3 \\
+Primary Use & Prototyping & Neuroimaging & Robotics & Comp.\ psych. & Embedded & Interp.\ RL & NeuroAI \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The complementary strengths across these packages reflect a fragmented
 but maturing ecosystem. The survey reveals several notable patterns: (1)
@@ -442,8 +422,8 @@ via URI-based identification, \textbf{A}ccessible through standard RDF
 protocols, \textbf{I}nteroperable via W3C-standard TriG serialization,
 and \textbf{R}eusable with explicit provenance and CC0 licensing. The
 full RDF schema and a TriG serialization example are presented in the
-\hyperref[sec:methods_kg]{methodology} and
-\hyperref[sec:appendix_rdf]{Appendix~A.5}.
+\hyperref[sec:methods_kg]{methodology} and Appendix
+\ref{sec:appendix_rdf}.
 
 The engineering trade-offs among the three deployment options are
 straightforward:
@@ -518,22 +498,24 @@ computation (no mocking).
 
 \begin{block}{Quality Thresholds}
 \protect\phantomsection\label{quality-thresholds}
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}llll@{}}
-\toprule\noalign{}
-Level & Metric & Threshold & On Failure \\
-\midrule\noalign{}
-\endhead
-Assertion & Confidence & \(\geq 0.5\) & Flag for review \\
-Assertion & Inter-annotator \(\kappa\) & \(\geq 0.6\) & Re-annotate \\
-Graph & Orphan node ratio & \(= 0\) & Reject build \\
-Graph & Corpus coverage & \(\geq 80\%\) & Warning \\
+\begin{table}[htbp]
+\centering
+\caption{Multi-level quality assurance thresholds enforced across the pipeline. Each level defines a metric, minimum threshold, and failure action. Pipeline-level thresholds (90\% coverage, 100\% pass rate) are enforced via CI gates.}
+\label{tab:quality_thresholds}
+\begin{tabular}{llll}
+\toprule
+\textbf{Level} & \textbf{Metric} & \textbf{Threshold} & \textbf{On Failure} \\
+\midrule
+Assertion & Confidence & $\geq 0.5$ & Flag for review \\
+Assertion & Inter-annotator $\kappa$ & $\geq 0.6$ & Re-annotate \\
+Graph & Orphan node ratio & $= 0$ & Reject build \\
+Graph & Corpus coverage & $\geq 80\%$ & Warning \\
 Score & Boundary tests & All pass & Block release \\
-Pipeline & Code coverage & \(\geq 90\%\) & Block merge \\
-Pipeline & Test pass rate & \(100\%\) & Block release \\
-\bottomrule\noalign{}
-\end{longtable}
-}
+Pipeline & Code coverage & $\geq 90\%$ & Block merge \\
+Pipeline & Test pass rate & $100\%$ & Block release \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The hypothesis evidence results, temporal dynamics of evidence
 accumulation, and assertion analysis are presented in the dedicated

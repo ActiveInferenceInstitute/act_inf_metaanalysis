@@ -124,12 +124,20 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
     if temporal:
         variables["YEAR_START"] = str(temporal.get("first_year", ""))
         variables["YEAR_END"] = str(temporal.get("last_year", ""))
+        variables["YEAR_START_PUBS"] = str(
+            temporal.get("year_counts", {}).get(
+                str(temporal.get("first_year", "")), ""
+            )
+        )
         variables["PEAK_YEAR"] = str(temporal.get("peak_year", ""))
-        variables["PEAK_YEAR_COUNT"] = str(
+        
+        peak_year_val = str(
             temporal.get("year_counts", {}).get(
                 str(temporal.get("peak_year", "")), ""
             )
         )
+        variables["PEAK_YEAR_COUNT"] = peak_year_val
+        variables["PEAK_YEAR_PUBS"] = peak_year_val
 
         cagr = temporal.get("cagr", 0)
         variables["CAGR_PCT"] = f"{cagr * 100:.2f}" if cagr < 1 else f"{cagr:.2f}"

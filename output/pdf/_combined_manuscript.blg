@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99e (TeX Live 2026)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: _combined_manuscript.aux
 The style file: plainnat.bst
-Illegal, another \bibstyle command---line 759 of file _combined_manuscript.aux
+Illegal, another \bibstyle command---line 784 of file _combined_manuscript.aux
  : \bibstyle
  :          {plainnat}
 I'm skipping whatever remains of this command
@@ -13,45 +13,48 @@ Warning--entry type for "ollama2024" isn't style-file defined
 --line 445 of file references.bib
 Warning--entry type for "kuhn2026nanopubjs" isn't style-file defined
 --line 626 of file references.bib
-You've used 59 entries,
+Warning--entry type for "FriedmanTemplateSoftware" isn't style-file defined
+--line 826 of file references.bib
+Warning--empty journal in Friedman2026TemplateReproducibleGenerative
+You've used 71 entries,
             2773 wiz_defined-function locations,
-            976 strings with 16737 characters,
-and the built_in function-call counts, 29350 in all, are:
-= -- 2594
-> -- 1940
-< -- 28
-+ -- 659
-- -- 600
-* -- 2513
-:= -- 4643
-add.period$ -- 228
-call.type$ -- 59
-change.case$ -- 370
-chr.to.int$ -- 59
-cite$ -- 118
-duplicate$ -- 1220
-empty$ -- 2216
-format.name$ -- 672
-if$ -- 6053
-int.to.chr$ -- 1
+            1051 strings with 19631 characters,
+and the built_in function-call counts, 34984 in all, are:
+= -- 3083
+> -- 2342
+< -- 35
++ -- 799
+- -- 726
+* -- 2979
+:= -- 5563
+add.period$ -- 281
+call.type$ -- 71
+change.case$ -- 445
+chr.to.int$ -- 69
+cite$ -- 143
+duplicate$ -- 1446
+empty$ -- 2620
+format.name$ -- 813
+if$ -- 7202
+int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 55
-newline$ -- 352
-num.names$ -- 236
-pop$ -- 690
+missing$ -- 65
+newline$ -- 429
+num.names$ -- 284
+pop$ -- 840
 preamble$ -- 1
-purify$ -- 313
+purify$ -- 377
 quote$ -- 0
-skip$ -- 963
+skip$ -- 1142
 stack$ -- 0
-substring$ -- 934
-swap$ -- 96
+substring$ -- 1026
+swap$ -- 112
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 639
-warning$ -- 0
-while$ -- 240
+type$ -- 766
+warning$ -- 1
+while$ -- 282
 width$ -- 0
-write$ -- 853
+write$ -- 1034
 (There was 1 error message)

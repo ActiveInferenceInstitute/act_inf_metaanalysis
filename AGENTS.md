@@ -164,3 +164,5 @@ projects/act_inf_metaanalysis/
 
 - [Root AGENTS.md](../../AGENTS.md) --- Template documentation
 - [doc/](doc/) --- Architecture, API reference, and hypothesis documentation
+
+*Note: Every directory and subdirectory within `src/` and `tests/` contains localized `AGENTS.md` and `README.md` pairs mapping immediate context.*

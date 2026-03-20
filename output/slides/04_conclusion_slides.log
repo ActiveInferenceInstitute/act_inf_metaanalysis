@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  19 MAR 2026 09:28
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.1)  20 MAR 2026 15:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1533,7 +1533,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ! Undefined control sequence.
 \beamer@doifinframe ...nfirmatory findings \citep 
                                                   {sterling1959publication},...
-l.182 \end{frame}
+l.188 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1543,8 +1543,8 @@ and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
 \beamer@doifinframe ...from long documents \citep 
-                                                  {liang2024survey}. The exp...
-l.182 \end{frame}
+                                                  {liang2024survey}. Further...
+l.188 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1553,17 +1553,26 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 182.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 188.
 
-Overfull \vbox (645.61789pt too high) detected at line 182
+LaTeX Warning: Reference `sec:extraction_pipeline' on page 3 undefined on input
+ line 188.
+
+
+Overfull \vbox (700.14992pt too high) detected at line 188
  []
 
 [3
 
 ]
+\openout4 = `04_conclusion_slides.vrb'.
+
+
+(/Users/4d/Documents/GitHub/template/projects/act_inf_metaanalysis/output/slide
+s/04_conclusion_slides.vrb
 
 LaTeX Warning: Hyper reference `sec:methods_kg' on page 4 undefined on input li
-ne 303.
+ne 4.
 
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-LatinModernRoman.cfg
@@ -1571,10 +1580,8 @@ File: mt-LatinModernRoman.cfg 2026/02/26 v1.2 microtype config. file: Latin Mod
 ern Roman (RS)
 )
 ! Undefined control sequence.
-\beamer@doifinframe ...rtificial reasoning \citep 
-                                                  {friston2025active} and pr...
-l.303 \end{frame}
-                 
+l.83 ...e inference to artificial reasoning \citep
+                                                  {friston2025active} and
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1582,10 +1589,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...or LLM-based agents \citep 
-                                                  {wen2025missing}, replacin...
-l.303 \end{frame}
-                 
+l.85   \citep
+             {wen2025missing}, replacing static prompt templates with
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1593,10 +1598,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...d by Friston et al.~\citep 
-                                                  {friston2025active}---whic...
-l.303 \end{frame}
-                 
+l.89   al.~\citep
+                 {friston2025active}---which achieves 99.8\% MNIST accuracy
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1604,10 +1607,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...monstrated by AXIOM \citep 
-                                                  {heins2025axiom}---which o...
-l.303 \end{frame}
-                 
+l.98   \citep
+             {heins2025axiom}---which outperforms DreamerV3 through
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1615,10 +1616,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...el research program \citep 
-                                                  {lecun2006tutorial}---incl...
-l.303 \end{frame}
-                 
+l.109   research program \citep
+                               {lecun2006tutorial}---including Helmholtz
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1626,10 +1625,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ... Helmholtz machines \citep 
-                                                  {dayan1995helmholtz}, cont...
-l.303 \end{frame}
-                 
+l.110   machines \citep
+                       {dayan1995helmholtz}, contrastive divergence training
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1637,10 +1634,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...divergence training \citep 
-                                                  {hinton2002training}, and ...
-l.303 \end{frame}
-                 
+l.111   \citep
+              {hinton2002training}, and variational autoencoders
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1648,27 +1643,27 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-\beamer@doifinframe ...tional autoencoders \citep 
-                                                  {kingma2014auto}---would i...
-l.303 \end{frame}
-                 
+l.112   \citep
+              {kingma2014auto}---would illuminate the mathematical convergence
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-
-Overfull \vbox (1205.30214pt too high) detected at line 303
+)
+Overfull \vbox (1300.50218pt too high) detected at line 317
  []
 
 [4
+
+] [5
 
 ]
 ! Undefined control sequence.
 \beamer@doifinframe ...ed by Knight et al.~\citep 
                                                   {knight2022fep}, who ident...
-l.372 \end{frame}
+l.405 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1679,7 +1674,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ... introduced in 2006 \citep 
                                                   {friston2006free} and reac...
-l.372 \end{frame}
+l.405 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1690,7 +1685,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...elaboration by 2010 \citep 
                                                   {friston2010free}. The cit...
-l.372 \end{frame}
+l.405 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1701,7 +1696,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...structured evidence \citep 
                                                   {fan2024survey}. Integrati...
-l.372 \end{frame}
+l.405 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1712,7 +1707,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 \beamer@doifinframe ...f nanopub-js v0.1.0 \citep 
                                                   {kuhn2026nanopubjs}---enab...
-l.372 \end{frame}
+l.405 \end{frame}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1721,14 +1716,14 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Hyper reference `sec:discussion' on page 5 undefined on input li
-ne 372.
+LaTeX Warning: Hyper reference `sec:discussion' on page 6 undefined on input li
+ne 405.
 
 
-Overfull \vbox (619.5957pt too high) detected at line 372
+Overfull \vbox (619.5957pt too high) detected at line 405
  []
 
-[5
+[6
 
 ]
 \tf@nav=\write5
@@ -1753,13 +1748,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 29476 strings out of 468168
- 597522 string characters out of 5432816
- 1202582 words of memory out of 5000000
- 57659 multiletter control sequences out of 15000+600000
+ 29486 strings out of 468168
+ 597913 string characters out of 5432816
+ 1179333 words of memory out of 5000000
+ 57666 multiletter control sequences out of 15000+600000
  631280 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 128i,11n,123p,1097b,676s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,11n,123p,1097b,702s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/4d/Documents/GitHub/template/projects/act_inf_metaanal
-ysis/output/slides/04_conclusion_slides.pdf (5 pages).
+ysis/output/slides/04_conclusion_slides.pdf (6 pages).

@@ -91,6 +91,7 @@
       color: #606060;
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -154,7 +155,6 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
@@ -251,6 +251,17 @@ practitioner’s retrospective confirming that AIF’s strongest
 demonstrated results arise from novel discrete generative models, while
 scalability relative to deep reinforcement learning remains the field’s
 central open challenge.</p>
+<p>Parallel to these synthesis efforts, Sanjeev V. Namjoshi’s 2026
+textbook, <em>Fundamentals of Active Inference</em> , provides a
+comprehensive, computationally explicit foundation for the field
+designed for engineers. In conjunction with this text, Namjoshi
+developed the <code>aif-fep-db</code> repository —an open-source,
+dynamically updated database of scraped and tagged publications covering
+active inference, the free energy principle, and predictive processing.
+While <code>aif-fep-db</code> curates and categorizes the literature to
+facilitate reproducible systematic reviews and interactive Dash-based
+exploration, it functions primarily as a modular bibliographic
+foundation rather than an automated hypothesis evaluation engine.</p>
 <p>Closest to our work, Knight, Cordes, and Friedman conducted a
 systematic literature analysis of publications using the terms “Free
 Energy Principle” or “Active Inference,” with an emphasis on works by
@@ -288,6 +299,23 @@ graph . We adopt the <em>nanopublication</em> —a minimal,
 machine-readable unit of scientific evidence comprising a core assertion
 bound to explicit provenance metadata—as the fundamental serialization
 format for this extracted knowledge.</p>
+<p>Broadening this synthesis, Baulin et al.  recently proposed the
+<em>Discovery Engine</em>, a comprehensive framework designed to
+overcome the limitations of the document-centric publishing paradigm by
+transforming unstructured scientific literature into a machine-operable
+“world model.” Their approach uses systematic, self-consistent LLM
+distillation to extract typed “knowledge artifacts” from publications,
+which are sequentially assembled into a hierarchical Conceptual Nexus
+Model (CNM) graph and encoded as a high-dimensional Conceptual Nexus
+Tensor. By explicitly modeling experimental variables, causal relations,
+and evidential contradictions within a FAIR-aligned representation, this
+architecture enables AI agents to mathematically navigate the knowledge
+landscape, trace provenance, and generate novel hypotheses through
+operations akin to tensor factorization and Vector Symbolic
+Architectures (VSA). This shift from static digital libraries to a
+computable, relation-rich evidence graph deeply parallels our objective
+of translating unstructured Active Inference literature into a
+quantifiable assertion tracking system.</p>
 <h2 id="this-study-approach-and-overview">This Study: Approach and
 Overview</h2>
 <p>This paper presents a computational meta-analysis of the Active
@@ -382,7 +410,10 @@ automated evidence synthesis—with separate treatments of , , , the , and
 . presents quantitative scoring results (RQ3), followed by with
 domain-level analysis (RQ1, RQ2), , , and . addresses limitations and
 future directions; the provides community recommendations and open
-questions. collects mathematical and algorithmic details; surveys the
-tooling landscape (RQ4).</p>
+questions. Appendix <span
+class="math inline">\(\ref{sec:technical_appendix}\)</span> collects
+mathematical and algorithmic details; Appendix <span
+class="math inline">\(\ref{sec:tooling}\)</span> surveys the tooling
+landscape (RQ4).</p>
 </body>
 </html>

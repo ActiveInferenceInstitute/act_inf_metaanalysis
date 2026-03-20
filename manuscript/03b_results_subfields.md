@@ -50,15 +50,26 @@ In direct response to **RQ1** (How is the Active Inference field structured?), t
 
 Each domain has a primary hypothesis linkage (see the detailed hypothesis evidence analysis in the \hyperref[sec:hypothesis_results]{hypothesis results}):
 
-| Domain | Category | $n$ | Primary Hypothesis | Evidence Direction |
-| --- | --- | --- | --- | --- |
-| A1 | Formal | {{A1_COUNT}} | H3 Markov Blanket Realism | Contested |
-| A2 | Philosophy | {{A2_COUNT}} | H1 FEP Universality | Strongly supporting |
-| B | Tools | {{B_COUNT}} | H5 Scalability | Mixed |
-| C1 | Neuroscience | {{C1_COUNT}} | H4 Predictive Coding | Supporting |
-| C2 | Robotics | {{C2_COUNT}} | H2 AIF Optimality, H5 Scalability | Mixed |
-| C3 | Language | {{C3_COUNT}} | H8 Language AIF | Emerging |
-| C4 | Psychiatry | {{C4_COUNT}} | H6 Clinical Utility | Supporting |
-| C5 | Biology | {{C5_COUNT}} | H7 Morphogenesis | Supporting |
+
+\begin{table}[htbp]
+\centering
+\caption{Domain--hypothesis cross-reference linking each of the eight tracked categories to its primary hypothesis and the direction of the current evidence base. See the \hyperref[sec:hypothesis_results]{hypothesis results} for quantitative scores and temporal trends.}
+\label{tab:domain_hypothesis_crossref}
+\begin{tabular}{llcll}
+\toprule
+\textbf{Domain} & \textbf{Category} & $n$ & \textbf{Primary Hypothesis} & \textbf{Evidence Direction} \\
+\midrule
+A1 & Formal & {{A1_COUNT}} & H3 Markov Blanket Realism & Contested \\
+A2 & Philosophy & {{A2_COUNT}} & H1 FEP Universality & Strongly supporting \\
+B & Tools & {{B_COUNT}} & H5 Scalability & Mixed \\
+C1 & Neuroscience & {{C1_COUNT}} & H4 Predictive Coding & Supporting \\
+C2 & Robotics & {{C2_COUNT}} & H2 AIF Optimality, H5 Scalability & Mixed \\
+C3 & Language & {{C3_COUNT}} & H8 Language AIF & Emerging \\
+C4 & Psychiatry & {{C4_COUNT}} & H6 Clinical Utility & Supporting \\
+C5 & Biology & {{C5_COUNT}} & H7 Morphogenesis & Supporting \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 The evidence directions summarized above are elaborated quantitatively—with citation-weighted scores, temporal trends, and three-tier evidence profiling—in the \hyperref[sec:hypothesis_results]{hypothesis results section}.
