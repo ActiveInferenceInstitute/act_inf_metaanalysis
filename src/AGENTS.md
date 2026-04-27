@@ -1,18 +1,50 @@
-# Source Code Architecture
+# Source Code — Agent Directives
 
-**This is an active module** in the `projects/act_inf_metaanalysis/src/` directory.
+**Active module root** at `projects/act_inf_metaanalysis/src/`.
 
-## Overview
+## Core Rules (Apply to All Subpackages)
 
-The `src/` directory contains all domain logic, classes, and functions required to execute the Active Inference computational meta-analysis. It adheres to the thin orchestrator pattern, ensuring that no business logic resides in the `scripts/` directory.
+1. **Thin orchestrator pattern**: No analysis logic in `scripts/`. All computation lives in `src/`.
+   Scripts import from `src/` and handle only file I/O, argument parsing, and logging.
 
-## Implementation Details
+2. **No mock policy**: All 553 tests use real data, real files, real computations.
+   - HTTP: use `pytest-httpserver`
+   - Files: use `tmp_path` fixture
+   - Never `unittest.mock.patch`, `MagicMock`, or `monkeypatch` for mocking logic
 
-All code within `src/` is tested extensively (534 tests, 94.9% coverage) with zero mocks.
+3. **Determinism**: All stochastic operations use `seed=42`. Never remove seeds.
 
-- It uses standard Python dataclasses for data modeling.
-- All visualization code is segregated inside `visualization/`.
-- All LLM interactions are decoupled from the core RDF model in `knowledge_graph/`.
-- Uses deterministic RNG seeds (seed=42) to guarantee reproducible outputs.
+4. **PYTHONPATH requirement**: When running scripts manually, set:
+   ```
+   PYTHONPATH=/path/to/template:/path/to/act_inf_metaanalysis/src
+   ```
+   The first entry enables infrastructure imports; the second enables `from literature.models import Paper`.
 
-Please refer to the specific `AGENTS.md` and `README.md` inside each subpackage for detailed capabilities.
+5. **Coverage gates**: `tests/` targets 90%+ coverage. A pipeline run fails if coverage drops below this.
+
+## Dependency Graph (No Circular Imports)
+
+```
+manuscript ──────────────────────────────────── (reads output JSONs only)
+visualization ──────────────────────────────── (reads analysis data, no src imports)
+knowledge_graph ──→ literature.models
+analysis ──────────→ literature.models
+literature ─────────────────────────────────── (no src/ dependencies)
+```
+
+Do not introduce imports that create cycles in this graph.
+
+## Adding a New Module
+
+1. Place in the appropriate subpackage directory.
+2. Export from the subpackage's `__init__.py` if needed by other modules.
+3. Write tests in `tests/<subpackage>/test_<module>.py`.
+4. Import in the relevant `scripts/` file as the only orchestration point.
+5. Update the subpackage `README.md` and `AGENTS.md`.
+
+## Current Test Count
+
+553 tests, 9 warnings (all `rdflib` deprecation notices unrelated to project code).
+Run: `PYTHONPATH=... .venv/bin/python -m pytest tests/ -q`
+
+See each subpackage's `AGENTS.md` for module-specific constraints.

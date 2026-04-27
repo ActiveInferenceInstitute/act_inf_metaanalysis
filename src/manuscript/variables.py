@@ -18,7 +18,14 @@ import re
 from pathlib import Path
 from typing import Optional
 
-from infrastructure.core.logging_utils import get_logger
+try:
+    from infrastructure.core.logging.utils import get_logger
+except ImportError:
+    import logging as _logging
+
+    def get_logger(name: str):  # type: ignore[misc]
+        return _logging.getLogger(name)
+
 
 logger = get_logger(__name__)
 
@@ -140,11 +147,11 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
         variables["PEAK_YEAR_PUBS"] = peak_year_val
 
         cagr = temporal.get("cagr", 0)
-        variables["CAGR_PCT"] = f"{cagr * 100:.2f}" if cagr < 1 else f"{cagr:.2f}"
+        variables["CAGR_PCT"] = f"{cagr * 100:.2f}"
 
         mean_growth = temporal.get("mean_growth_rate", 0)
         variables["MEAN_YOY_GROWTH_PCT"] = (
-            f"{mean_growth * 100:.1f}" if mean_growth < 1 else f"{mean_growth:.1f}"
+            f"{mean_growth * 100:.1f}"
         )
 
         doubling = temporal.get("doubling_time", 0)
@@ -275,6 +282,18 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
                 variables[f"{hid}_CONTRADICT"] = str(con)
                 variables[f"{hid}_NEUTRAL"] = str(neu)
                 variables[f"{hid}_TOTAL"] = str(total)
+
+        # Overall assertion direction percentages
+        type_counts = assertion.get("type_counts", {})
+        total_sup = type_counts.get("supports", 0)
+        total_con = type_counts.get("contradicts", 0)
+        total_sc = total_sup + total_con
+        if total_sc > 0:
+            variables["ASSERTION_SUPPORT_PCT"] = f"{(total_sup/total_sc*100):.1f}"
+            variables["ASSERTION_CONTRADICT_PCT"] = f"{(total_con/total_sc*100):.1f}"
+        else:
+            variables["ASSERTION_SUPPORT_PCT"] = "0.0"
+            variables["ASSERTION_CONTRADICT_PCT"] = "0.0"
     else:
         logger.info("assertion_summary.json not found; assertion variables skipped")
 
@@ -372,6 +391,7 @@ def inject_variables(
     missing_vars = []
 
     def replacer(match: re.Match) -> str:
+        """Replace a matched placeholder with its corresponding variable value."""
         nonlocal replaced_count
         var_name = match.group(1)
         if var_name in variables:

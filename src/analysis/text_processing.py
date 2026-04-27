@@ -110,8 +110,19 @@ def build_tfidf_matrix(
         for token in unique_tokens:
             df[token] = df.get(token, 0) + 1
 
-    # Select top features by document frequency, breaking ties alphabetically
-    sorted_terms = sorted(df.keys(), key=lambda t: (-df[t], t))
+    # Select features by document frequency, but cap ultra-common terms
+    # when the corpus is large enough for the cutoff to be meaningful.
+    # Terms appearing in > 95% of documents (when n_docs >= 20) carry
+    # negligible discriminative signal and act as corpus-level stopwords.
+    if n_docs >= 20:
+        df_upper = max(1, int(0.95 * n_docs))
+        filtered_terms = [t for t in df if df[t] < df_upper]
+        empty_docs = sum(1 for t in doc_tokens if not t)
+        if empty_docs:
+            logger.warning("build_tfidf_matrix: %d empty documents (after stopword removal)", empty_docs)
+    else:
+        filtered_terms = list(df.keys())
+    sorted_terms = sorted(filtered_terms, key=lambda t: (-df[t], t))
     vocabulary = sorted_terms[:max_features]
     vocab_index = {term: idx for idx, term in enumerate(vocabulary)}
     n_features = len(vocabulary)

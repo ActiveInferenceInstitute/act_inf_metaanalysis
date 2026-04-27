@@ -27,6 +27,7 @@ $\text{CAGR}$ & Compound annual growth rate \\
 $t_d$ & Publication doubling time \\
 $\bar{g}$ & Mean annual year-over-year growth rate \\
 $\kappa$ & Cohen's kappa (inter-annotator agreement) \\
+$df(t)$ & Document frequency of term $t$ (number of documents containing $t$; used in TF-IDF weighting) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -144,7 +145,7 @@ Named Graph & An RDF graph identified by a URI, enabling multiple graphs to coex
 Nanopublication & A minimal, self-contained unit of publishable knowledge consisting of an assertion, provenance metadata, and publication context. \\
 PageRank & A centrality metric originally designed for web page ranking. In citation networks, PageRank identifies highly influential papers that serve as hubs connecting otherwise disconnected subgraphs. \\
 Precision & The inverse variance of a probability distribution; in active inference, precision weighting determines the influence of prediction errors at different levels of a hierarchy. \\
-Progressive Parsing & The pipeline's multi-stage JSON recovery strategy for handling malformed LLM output: direct parse $\to$ strip code fences $\to$ extract first JSON array $\to$ individual element recovery. \\
+Progressive Parsing & The pipeline's three-stage JSON recovery strategy for handling malformed LLM output: (1) direct parse, (2) strip Markdown code fences and retry, (3) extract first \texttt{[\ldots]} substring. Papers that fail all three stages are logged and skipped. \\
 TriG & A TriG (Terse RDF Triple Language) serialization format that extends Turtle with named graph support, used to encode nanopublications as RDF datasets. \\
 Trusty URI & A URI that contains a cryptographic hash of its content, providing verifiable immutability and content-addressable identification for nanopublications. \\
 Variational Free Energy & An upper bound on surprise (negative log-evidence) that can be decomposed into complexity (KL divergence from prior) and accuracy (expected log-likelihood). \\

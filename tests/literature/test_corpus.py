@@ -503,3 +503,50 @@ class TestCorpusFilterBySubfield:
         filtered = c.filter_by_subfield("C2_robotics")
         assert len(c) == 2
         assert len(filtered) == 1
+
+
+# ---------------------------------------------------------------------------
+# Corpus remove
+# ---------------------------------------------------------------------------
+
+
+class TestCorpusRemove:
+    """Tests for Corpus.remove() method."""
+
+    def test_remove_existing(self):
+        """Removing an existing paper returns True and decreases length."""
+        c = Corpus([make_friston_2010(), make_friston_2017()])
+        cid = make_friston_2010().canonical_id
+        assert c.remove(cid) is True
+        assert len(c) == 1
+        assert cid not in c
+
+    def test_remove_nonexistent(self):
+        """Removing a nonexistent paper returns False and length unchanged."""
+        c = Corpus([make_friston_2010()])
+        assert c.remove("doi:10.9999/nonexistent") is False
+        assert len(c) == 1
+
+    def test_remove_from_empty_corpus(self):
+        """Removing from empty corpus returns False."""
+        c = Corpus()
+        assert c.remove("doi:10.1234/test") is False
+
+    def test_remove_all(self):
+        """Removing all papers leaves empty corpus."""
+        p1 = make_friston_2010()
+        p2 = make_friston_2017()
+        c = Corpus([p1, p2])
+        c.remove(p1.canonical_id)
+        c.remove(p2.canonical_id)
+        assert len(c) == 0
+        assert c.papers == []
+
+    def test_remove_then_add_back(self):
+        """Can add a paper back after removing it."""
+        p = make_friston_2010()
+        c = Corpus([p])
+        c.remove(p.canonical_id)
+        assert len(c) == 0
+        c.add(p)
+        assert len(c) == 1

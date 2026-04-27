@@ -60,8 +60,8 @@ exclude_lines = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/docxology/act_inf_metaanalysis"
-Documentation = "https://github.com/docxology/act_inf_metaanalysis/tree/main/doc"
+Homepage = "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
+Documentation = "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis/tree/main/doc"
 
 [tool.uv]
 # Inherits workspace settings from root pyproject.toml

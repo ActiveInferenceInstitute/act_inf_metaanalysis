@@ -45,9 +45,18 @@ def plot_growth_curve(
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    if not year_counts:
+        fig, ax = plt.subplots(figsize=VIZ_CONFIG["figure_size"], dpi=VIZ_CONFIG["dpi"])
+        ax.text(0.5, 0.5, "No temporal data available", ha="center", va="center",
+                fontsize=VIZ_CONFIG["font_size"])
+        ax.set_axis_off()
+        fig.savefig(output_path, dpi=VIZ_CONFIG["dpi"], bbox_inches="tight")
+        plt.close(fig)
+        return output_path
+
     years = sorted(year_counts.keys())
     annual = [year_counts[y] for y in years]
-    cumul = [cumulative[y] for y in years]
+    cumul = [cumulative.get(y, 0) for y in years]
 
     fig, ax1 = plt.subplots(figsize=VIZ_CONFIG["figure_size"], dpi=VIZ_CONFIG["dpi"])
 
@@ -91,7 +100,7 @@ def plot_growth_curve(
             f"Peak: {peak_year}\n({peak_count} papers)",
             xy=(peak_year, peak_count),
             xytext=(peak_year - 5, peak_count * 1.15),
-            fontsize=VIZ_CONFIG["font_size"] - 2,
+            fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
             fontweight="bold",
             arrowprops=dict(arrowstyle="->", color=bar_color, lw=1.5),
             ha="center",
@@ -101,7 +110,7 @@ def plot_growth_curve(
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
     ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left",
-               fontsize=VIZ_CONFIG["font_size"] - 2)
+               fontsize=max(VIZ_CONFIG["font_size"] - 2, 16))
 
     # CAGR and total N annotation
     total_n = sum(annual)
@@ -113,7 +122,7 @@ def plot_growth_curve(
             0.98, 0.55,
             f"N = {total_n:,}\nCAGR = {cagr:.1f}%\nSpan: {years[0]}–{years[-1]}",
             transform=ax1.transAxes, ha="right", va="top",
-            fontsize=VIZ_CONFIG["font_size"] - 2,
+            fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
             bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="gray", alpha=0.85),
         )
 
@@ -128,7 +137,7 @@ def plot_growth_curve(
             ax1.text(
                 median_year + 0.3, max(annual) * 0.5,
                 f"Median: {median_year}",
-                fontsize=VIZ_CONFIG["font_size"] - 3,
+                fontsize=max(VIZ_CONFIG["font_size"] - 3, 16),
                 color="gray", rotation=90, va="center",
             )
 
@@ -209,7 +218,7 @@ def plot_subfield_timeline(
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
     )
-    ax.legend(loc="upper left", fontsize=VIZ_CONFIG["font_size"] - 2,
+    ax.legend(loc="upper left", fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
               ncol=2, framealpha=0.9)
     ax.grid(axis="y", alpha=VIZ_CONFIG["grid_alpha"])
 
@@ -218,7 +227,7 @@ def plot_subfield_timeline(
     ax.text(
         0.98, 0.95, f"N = {total_n:,}",
         transform=ax.transAxes, ha="right", va="top",
-        fontsize=VIZ_CONFIG["font_size"] - 1, fontweight="bold",
+        fontsize=max(VIZ_CONFIG["font_size"] - 1, 16), fontweight="bold",
         bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray", alpha=0.8),
     )
 

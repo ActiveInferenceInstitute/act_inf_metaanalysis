@@ -66,7 +66,7 @@ def plot_word_cloud(
         height=800,
         max_words=max_words,
         background_color="white",
-        colormap="viridis",
+        colormap="cividis",
         prefer_horizontal=0.7,
         min_font_size=16,
     ).generate_from_frequencies(word_weights)
@@ -156,7 +156,7 @@ def plot_pca_embeddings(
             ax.annotate(
                 feature_names[idx],
                 xy=(dx, dy),
-                fontsize=VIZ_CONFIG["font_size"] - 3,
+                fontsize=max(VIZ_CONFIG["font_size"] - 3, 16),
                 alpha=0.7,
                 ha="center",
                 arrowprops=dict(arrowstyle="<-", color="gray", lw=0.8),
@@ -175,9 +175,9 @@ def plot_pca_embeddings(
     ax.text(
         0.5, 1.01, f"Total variance explained: {total_var:.1f}%",
         transform=ax.transAxes, ha="center",
-        fontsize=VIZ_CONFIG["font_size"] - 2, color="gray",
+        fontsize=max(VIZ_CONFIG["font_size"] - 2, 16), color="gray",
     )
-    ax.legend(fontsize=VIZ_CONFIG["font_size"] - 2, loc="best",
+    ax.legend(fontsize=max(VIZ_CONFIG["font_size"] - 2, 16), loc="best",
               framealpha=0.9, ncol=2)
     ax.grid(alpha=VIZ_CONFIG["grid_alpha"])
 
@@ -235,9 +235,12 @@ def plot_term_heatmap(
         if mask.any():
             means[i] = tfidf_matrix[mask].mean(axis=0)
 
-    # Select top n_terms by overall mean TF-IDF
-    global_mean = means.mean(axis=0)
-    top_idx = np.argsort(global_mean)[::-1][:n_terms]
+    # Select top n_terms by between-subfield variance, not global mean.
+    # Variance across subfield centroids identifies discriminative terms
+    # that differentiate domains; global-mean selection instead favours
+    # ubiquitous terms (e.g. "inference") that appear everywhere equally.
+    between_group_variance = means.var(axis=0)
+    top_idx = np.argsort(between_group_variance)[::-1][:n_terms]
     heatmap_data = means[:, top_idx]
     term_labels = [feature_names[j] for j in top_idx]
 
@@ -245,11 +248,11 @@ def plot_term_heatmap(
 
     ax.set_xticks(range(len(term_labels)))
     ax.set_xticklabels(term_labels, rotation=45, ha="right",
-                       fontsize=VIZ_CONFIG["font_size"] - 2)
+                       fontsize=max(VIZ_CONFIG["font_size"] - 2, 16))
     ax.set_yticks(range(len(unique_labels)))
     ax.set_yticklabels(
         [_format_subfield_label(l) for l in unique_labels],
-        fontsize=VIZ_CONFIG["font_size"] - 1,
+        fontsize=max(VIZ_CONFIG["font_size"] - 1, 16),
     )
     ax.set_title(
         "Term × Subfield Heatmap (Mean TF-IDF)",
@@ -338,7 +341,7 @@ def plot_dendrogram(
     ax.text(
         0.98, 0.96, f"Cophenetic r = {coph_corr:.2f}",
         transform=ax.transAxes, ha="right", va="top",
-        fontsize=VIZ_CONFIG["font_size"] - 2,
+        fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
         bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
     )
 
@@ -408,7 +411,7 @@ def plot_topic_term_bars(
         color = palette[idx % len(palette)]
         ax.barh(range(len(words)), weights, color=color, edgecolor="white", linewidth=0.3)
         ax.set_yticks(range(len(words)))
-        ax.set_yticklabels(words, fontsize=VIZ_CONFIG["font_size"] - 2)
+        ax.set_yticklabels(words, fontsize=max(VIZ_CONFIG["font_size"] - 2, 16))
         ax.set_title(f"Topic {topic.get('topic_id', idx)}",
                      fontsize=VIZ_CONFIG["font_size"], fontweight="bold")
         ax.grid(axis="x", alpha=VIZ_CONFIG["grid_alpha"])

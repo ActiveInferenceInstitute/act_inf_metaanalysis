@@ -1,4 +1,4 @@
-# 🤖 AGENTS.md — `scripts/` Directory
+# AGENTS.md — `scripts/` Directory
 
 ## Purpose
 
@@ -39,7 +39,7 @@ Multi-source literature search orchestrator.
 **APIs queried:** arXiv (5 FEP/AIF query strings), Semantic Scholar, OpenAlex.
 
 **Key flags:**
-- `--resume` (default: `True`) — load existing `corpus.jsonl` before fetching
+- `--resume` / `--no-resume` — load existing `corpus.jsonl` before fetching (default: resume on)
 - `--clear-corpus` — delete existing corpus and start fresh
 - `--skip-arxiv` / `--skip-s2` / `--skip-openalex` — skip individual sources
 - `--max-results N` — cap per-source results (default: 1000)

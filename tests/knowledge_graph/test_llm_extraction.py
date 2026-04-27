@@ -1,8 +1,8 @@
 """Tests for knowledge_graph.llm_extraction module.
 
 Tests prompt construction, JSON response parsing, assertion building,
-error handling, and batch extraction using pytest-httpserver to mock
-the Ollama API endpoint with real HTTP responses.
+error handling, and batch extraction using pytest-httpserver to serve
+the Ollama API shape over real HTTP.
 """
 
 from __future__ import annotations

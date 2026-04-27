@@ -348,7 +348,8 @@ class TestComputeVariables:
         assert variables["FEP_UNIVERSALITY_SCORE"] == "+0.75"
 
     def test_cagr_large_value(self, tmp_path):
-        """CAGR_PCT formatting when CAGR >= 1."""
+        """CAGR_PCT always formatted as a percentage (multiplied by 100).
+        cagr=1.5 means 150% annual growth, displayed as '150.00'."""
         (tmp_path / "corpus.jsonl").write_text("")
         temporal = {
             "year_counts": {"2020": 10},
@@ -361,8 +362,8 @@ class TestComputeVariables:
         }
         (tmp_path / "temporal_analysis.json").write_text(json.dumps(temporal))
         variables = compute_variables(tmp_path)
-        assert variables["CAGR_PCT"] == "1.50"
-        assert variables["MEAN_YOY_GROWTH_PCT"] == "1.5"
+        assert variables["CAGR_PCT"] == "150.00"
+        assert variables["MEAN_YOY_GROWTH_PCT"] == "150.0"
 
     def test_doubling_time_zero(self, tmp_path):
         """DOUBLING_TIME empty string when zero."""
@@ -392,6 +393,38 @@ class TestComputeVariables:
         variables = compute_variables(tmp_path)
         assert variables["A1_COUNT"] == "0"
         assert variables["A_PCT"] == "0.0"
+
+    def test_assertion_pct_computed(self, tmp_path):
+        """ASSERTION_SUPPORT_PCT and ASSERTION_CONTRADICT_PCT computed from type_counts."""
+        (tmp_path / "corpus.jsonl").write_text("")
+        assertion = {
+            "total_assertions": 40,
+            "type_counts": {"supports": 20, "contradicts": 5, "neutral": 15},
+        }
+        (tmp_path / "assertion_summary.json").write_text(json.dumps(assertion))
+        variables = compute_variables(tmp_path)
+        # (20/(20+5))*100 = 80.0%; (5/(20+5))*100 = 20.0%
+        assert variables["ASSERTION_SUPPORT_PCT"] == "80.0"
+        assert variables["ASSERTION_CONTRADICT_PCT"] == "20.0"
+
+    def test_assertion_pct_zero_when_no_support_or_contradict(self, tmp_path):
+        """Assertion percentages are 0.0 when supports=0 and contradicts=0."""
+        (tmp_path / "corpus.jsonl").write_text("")
+        assertion = {
+            "total_assertions": 15,
+            "type_counts": {"supports": 0, "contradicts": 0, "neutral": 15},
+        }
+        (tmp_path / "assertion_summary.json").write_text(json.dumps(assertion))
+        variables = compute_variables(tmp_path)
+        assert variables["ASSERTION_SUPPORT_PCT"] == "0.0"
+        assert variables["ASSERTION_CONTRADICT_PCT"] == "0.0"
+
+    def test_assertion_pct_not_produced_when_missing(self, tmp_path):
+        """ASSERTION_*_PCT keys absent when assertion_summary.json is missing."""
+        (tmp_path / "corpus.jsonl").write_text("")
+        variables = compute_variables(tmp_path)
+        assert "ASSERTION_SUPPORT_PCT" not in variables
+        assert "ASSERTION_CONTRADICT_PCT" not in variables
 
 
 # ── inject_variables ────────────────────────────────────────────────────
@@ -439,3 +472,67 @@ class TestInjectVariables:
         variables = {"CORPUS_SIZE_LATEX": "1,834"}
         result = inject_variables(content, variables, filename="abstract.md")
         assert result == "$N = 1,834$ papers"
+
+
+# ── H1–H8 alias mapping ──────────────────────────────────────────────────
+
+
+class TestHypothesisAliasMapping:
+    """Test that H1-H8 short aliases are correctly created from full IDs."""
+
+    def test_h1_alias_created(self, tmp_path):
+        """H1_SCORE should be created from FEP_UNIVERSALITY_SCORE."""
+        (tmp_path / "corpus.jsonl").write_text("")
+        scores = {"FEP_UNIVERSALITY": 0.82}
+        (tmp_path / "hypothesis_scores.json").write_text(json.dumps(scores))
+        variables = compute_variables(tmp_path)
+        assert variables.get("H1_SCORE") == "+0.82"
+        assert variables.get("FEP_UNIVERSALITY_SCORE") == "+0.82"
+
+    def test_h3_alias_created(self, tmp_path):
+        """H3_SCORE should map from MARKOV_BLANKET_REALISM_SCORE."""
+        (tmp_path / "corpus.jsonl").write_text("")
+        scores = {"MARKOV_BLANKET_REALISM": -0.15}
+        (tmp_path / "hypothesis_scores.json").write_text(json.dumps(scores))
+        variables = compute_variables(tmp_path)
+        assert variables.get("H3_SCORE") == "-0.15"
+
+    def test_assertion_aliases(self, tmp_path):
+        """H1_SUPPORT etc. created from full assertion summary keys."""
+        (tmp_path / "corpus.jsonl").write_text("")
+        assertion = {
+            "total_assertions": 10,
+            "per_hypothesis": {
+                "FEP_UNIVERSALITY": {"supports": 5, "contradicts": 2, "neutral": 3},
+            },
+        }
+        (tmp_path / "assertion_summary.json").write_text(json.dumps(assertion))
+        variables = compute_variables(tmp_path)
+        assert variables.get("H1_SUPPORT") == "5"
+        assert variables.get("H1_CONTRADICT") == "2"
+        assert variables.get("H1_NEUTRAL") == "3"
+        assert variables.get("H1_TOTAL") == "10"
+
+    def test_tfidf_default(self, tmp_path):
+        """NUM_VOCAB_FEATURES defaults to 500 when tfidf_data.json missing."""
+        (tmp_path / "corpus.jsonl").write_text("")
+        variables = compute_variables(tmp_path)
+        assert variables["NUM_VOCAB_FEATURES"] == "500"
+
+    def test_tfidf_from_data(self, tmp_path):
+        """NUM_VOCAB_FEATURES computed from tfidf_data.json feature_names."""
+        (tmp_path / "corpus.jsonl").write_text("")
+        tfidf = {"feature_names": ["word1", "word2", "word3"]}
+        (tmp_path / "tfidf_data.json").write_text(json.dumps(tfidf))
+        variables = compute_variables(tmp_path)
+        assert variables["NUM_VOCAB_FEATURES"] == "3"
+        assert variables["NUM_VOCAB_FEATURES_LATEX"] == "3"
+
+    def test_data_subdir_fallback(self, tmp_path):
+        """Variables are loaded from data/ subdirectory when present."""
+        data_dir = tmp_path / "data"
+        data_dir.mkdir()
+        # Put corpus in data/
+        (data_dir / "corpus.jsonl").write_text('{"title":"A"}\n{"title":"B"}\n')
+        variables = compute_variables(tmp_path)
+        assert variables["CORPUS_SIZE"] == "2"

@@ -1,8 +1,27 @@
 # Standard Hypotheses
 
-**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
 The meta-analysis tracks evidence for and against eight standard hypotheses drawn from the Active Inference literature. Each hypothesis represents a major claim that the field collectively evaluates through ongoing research. Current extraction: **2,795 assertions** from 798 papers (N = 849 corpus), citation-weighted and scored per hypothesis.
+
+## Identifier Cross-Reference
+
+The eight hypotheses have three identifier forms used across different layers of the system:
+
+| config.yaml key | Code identifier | RDF URI | Short name |
+| --- | --- | --- | --- |
+| `H1` | `FEP_UNIVERSALITY` | `http://activeinference.institute/ontology/H1_FEP_UNIVERSALITY` | FEP Universality |
+| `H2` | `AIF_OPTIMALITY` | `http://activeinference.institute/ontology/H2_AIF_OPTIMALITY` | AIF Optimality |
+| `H3` | `MARKOV_BLANKET_REALISM` | `http://activeinference.institute/ontology/H3_MARKOV_BLANKET_REALISM` | Markov Blanket Realism |
+| `H4` | `PREDICTIVE_CODING` | `http://activeinference.institute/ontology/H4_PREDICTIVE_CODING` | Predictive Coding |
+| `H5` | `SCALABILITY` | `http://activeinference.institute/ontology/H5_SCALABILITY` | Scalability |
+| `H6` | `CLINICAL_UTILITY` | `http://activeinference.institute/ontology/H6_CLINICAL_UTILITY` | Clinical Utility |
+| `H7` | `MORPHOGENESIS` | `http://activeinference.institute/ontology/H7_MORPHOGENESIS` | Morphogenesis |
+| `H8` | `LANGUAGE_AIF` | `http://activeinference.institute/ontology/H8_LANGUAGE_AIF` | Language AIF |
+
+- **config.yaml key** (H1–H8): used in `manuscript/config.yaml` `hypothesis_definitions` section and in manuscript text
+- **Code identifier**: used in `src/knowledge_graph/hypothesis.py` (`STANDARD_HYPOTHESES`), `src/knowledge_graph/schema.py` (`DEFAULT_HYPOTHESIS_CATEGORIES`), and LLM prompt output
+- **RDF URI**: used in `nanopublications.trig` RDF export and semantic web queries
 
 ## The Eight Hypotheses
 
@@ -72,7 +91,7 @@ where:
 ### Score Range
 
 | Score | Interpretation |
-|-------|---------------|
+| --- | --- |
 | +0.7 to +1.0 | Strong supporting evidence |
 | +0.3 to +0.7 | Moderate supporting evidence |
 | -0.3 to +0.3 | Balanced, insufficient, or contested evidence |
@@ -85,7 +104,7 @@ where:
 
 **Confidence weighting** allows assertions with higher extraction confidence to contribute more to the score. Assertions with confidence below 0.5 are flagged for human review.
 
-**Neutral assertions** appear in the denominator but not the numerator, acting as a dampening factor. A hypothesis with many neutral assertions and few directional ones will have a score closer to zero, reflecting evidential ambiguity rather than absence.
+**Neutral assertions** appear in the denominator but not the numerator, acting as a dampening factor. A hypothesis with many neutral assertions and few directional ones will have a score closer to zero, reflecting evidential ambiguity rather than absence. In practice, a "neutral" assertion signifies that the NLP model successfully extracted an assertion related to the domain space, but mathematically determined it neither provided supporting momentum nor explicit denouncement. This serves to penalize highly-debated or poorly-formed hypotheses.
 
 ## Temporal Trends
 
@@ -129,6 +148,18 @@ for year, cumulative_score in trend.items():
 ```
 
 > **Note:** Hypotheses can be customized via the `hypothesis_definitions` section in `manuscript/config.yaml`. If no config is provided, the 8 standard hypotheses are used as defaults.
+>
+> **How to Add a Custom Hypothesis:**
+> You do NOT need to edit Python source code to introduce a novel hypothesis into the Knowledge Graph pipeline. Simply open `manuscript/config.yaml` and append an entry matching the following schema:
+>
+> ```yaml
+> hypothesis_definitions:
+>   - id: MY_NEW_HYPOTHESIS
+>     name: "An explicit theory"
+>     description: "A highly specific, refutable string that the LLM will grade the paper against."
+> ```
+>
+> Restart `03_build_knowledge_graph.py` with `--clear-assertions` to force a complete re-evaluation.
 
 ---
 
@@ -172,7 +203,7 @@ These steps ensure that confidence scores behave as calibrated weights rather th
 ## Failure Modes and Mitigations
 
 | Failure Mode | Description | Mitigation |
-|-------------|-------------|------------|
+| --- | --- | --- |
 | Empty abstract | Paper has no abstract text | Skipped with debug log |
 | Malformed JSON | LLM returns non-parseable output | Retry up to `max_retries` (default: 3) with exponential backoff |
 | Hallucinated hypothesis ID | LLM invents a hypothesis ID | Validated against the known set; unknown IDs skipped |

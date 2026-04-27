@@ -13,16 +13,19 @@ triple patterns of the Active Inference meta-analysis:
 
 from __future__ import annotations
 
+import logging
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 import networkx as nx
 
 from literature.models import Paper
 from knowledge_graph.nanopublication import Assertion
+import knowledge_graph.schema as _schema
 from knowledge_graph.schema import (
     AIF_NAMESPACE,
     ASSERTION_TYPES,
-    HYPOTHESIS_CATEGORIES,
     SUBFIELD_URIS,
 )
 
@@ -144,8 +147,13 @@ class KnowledgeGraph:
         elif assertion.assertion_type == "contradicts":
             rel_pred = ASSERTION_TYPES["contradicts"]
 
-        if assertion.hypothesis_id in HYPOTHESIS_CATEGORIES:
-            h_uri = HYPOTHESIS_CATEGORIES[assertion.hypothesis_id]
+        if assertion.hypothesis_id in _schema.HYPOTHESIS_CATEGORIES:
+            h_uri = _schema.HYPOTHESIS_CATEGORIES[assertion.hypothesis_id]
+        else:
+            logger.warning(
+                "Unknown hypothesis_id %r — no hypothesis link created for assertion %s",
+                assertion.hypothesis_id, assertion.assertion_id,
+            )
 
         if self._use_rdflib:
             self._rdf_graph.add((URIRef(p_uri), URIRef(asserts_pred), URIRef(a_uri)))

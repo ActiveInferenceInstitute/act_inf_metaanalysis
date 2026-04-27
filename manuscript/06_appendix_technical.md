@@ -38,13 +38,13 @@ H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \quad W \leftarrow W \odo
 
 with $\epsilon = 10^{-10}$ for numerical stability and a fixed random seed of 42 for reproducibility (ensuring deterministic topic alignment across pipeline runs, with empirical stability confirmed via Jaccard similarities $> 0.90$ across alternative seeds).
 
-**Term-Frequency Inverse Document Frequency (TF-IDF).** The document-term matrix is constructed using TF-IDF weighting \citep{salton1975vector}. For term $t$ in document $d$:
+**Term-Frequency Inverse Document Frequency (TF-IDF).** The document-term matrix is constructed using a smoothed TF-IDF weighting \citep{salton1975vector}. For term $t$ in document $d$:
 
 \begin{equation}
-\text{TF-IDF}(t, d) = \text{tf}(t, d) \cdot \log\!\left(\frac{N}{\text{df}(t)}\right) \label{eq:tfidf}
+\text{TF-IDF}(t, d) = \text{tf}(t, d) \cdot \left[\log\!\left(\frac{N}{\text{df}(t) + 1}\right) + 1\right] \label{eq:tfidf}
 \end{equation}
 
-where $\text{tf}(t, d)$ is the term frequency, $N$ is the total number of documents, and $\text{df}(t)$ is the document frequency of term $t$.
+where $\text{tf}(t, d) = \text{count}(t,d) / |d|$ is the normalized term frequency, $N$ is the total number of documents, and $\text{df}(t)$ is the document frequency of term $t$. The $+1$ additive smoothing in the denominator prevents division by zero and reduces the weight of extremely rare terms; the outer $+1$ ensures strictly positive IDF values. The document vectors are L2-normalized before NMF factorization.
 
 ## Field Growth-Rate Estimation \label{sec:appendix_growth}
 

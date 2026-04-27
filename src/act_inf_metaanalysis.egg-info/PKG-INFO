@@ -3,8 +3,8 @@ Name: act_inf_metaanalysis
 Version: 0.1.0
 Summary: Computational literature meta-analysis of the Active Inference field using probabilistic knowledge graphs
 Author-email: Joel Dietz <joel@dietz.com>, Daniel Friedman <daniel@activeinference.institute>
-Project-URL: Homepage, https://github.com/docxology/act_inf_metaanalysis
-Project-URL: Documentation, https://github.com/docxology/act_inf_metaanalysis/tree/main/doc
+Project-URL: Homepage, https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis
+Project-URL: Documentation, https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis/tree/main/doc
 Requires-Python: >=3.10
 Requires-Dist: numpy>=1.24.0
 Requires-Dist: scipy>=1.10.0

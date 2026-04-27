@@ -6,10 +6,10 @@ subfield URIs are well-formed and contain the expected entries.
 
 from __future__ import annotations
 
+import knowledge_graph.schema as schema
 from knowledge_graph.schema import (
     AIF_NAMESPACE,
     ASSERTION_TYPES,
-    HYPOTHESIS_CATEGORIES,
     SUBFIELD_URIS,
 )
 
@@ -57,8 +57,8 @@ class TestHypothesisCategories:
     """Validate the eight standard hypothesis category URIs."""
 
     def test_has_eight_entries(self) -> None:
-        """HYPOTHESIS_CATEGORIES must contain exactly 8 entries."""
-        assert len(HYPOTHESIS_CATEGORIES) == 8
+        """schema.HYPOTHESIS_CATEGORIES must contain exactly 8 entries."""
+        assert len(schema.HYPOTHESIS_CATEGORIES) == 8
 
     def test_expected_keys(self) -> None:
         """All eight hypothesis keys must be present."""
@@ -72,17 +72,17 @@ class TestHypothesisCategories:
             "MORPHOGENESIS",
             "LANGUAGE_AIF",
         }
-        assert set(HYPOTHESIS_CATEGORIES.keys()) == expected
+        assert set(schema.HYPOTHESIS_CATEGORIES.keys()) == expected
 
     def test_values_are_well_formed_uris(self) -> None:
         """Each hypothesis URI must start with the base namespace."""
-        for key, uri in HYPOTHESIS_CATEGORIES.items():
+        for key, uri in schema.HYPOTHESIS_CATEGORIES.items():
             assert uri.startswith(AIF_NAMESPACE), f"{key}: {uri}"
             assert "/hypothesis/" in uri, f"{key} URI missing /hypothesis/ segment"
 
     def test_values_are_unique(self) -> None:
         """No two hypotheses should share the same URI."""
-        uris = list(HYPOTHESIS_CATEGORIES.values())
+        uris = list(schema.HYPOTHESIS_CATEGORIES.values())
         assert len(uris) == len(set(uris))
 
 

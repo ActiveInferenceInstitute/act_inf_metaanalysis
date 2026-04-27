@@ -1,14 +1,62 @@
-# Analysis Module Architecture
+# Analysis Module — Agent Directives
 
-**This is an active module** in the `projects/act_inf_metaanalysis/src/analysis/` directory.
+**Active module** at `projects/act_inf_metaanalysis/src/analysis/`.
 
 ## Overview
 
-This module is responsible for analyzing the deduplicated paper corpus. It computes all necessary metrics (bibliometrics, network topology, temporal rates) required for the manuscript results.
+Five deterministic analysis modules computing all bibliometric, temporal, and semantic metrics
+required for the manuscript. No scripts-level logic belongs here — all computation lives in these
+modules and is imported by `scripts/02_meta_analysis_pipeline.py`.
 
-## Key Capabilities
+## Invariants Agents Must Preserve
 
-- **Topic Extraction**: Extracts configurable number of latent topics using Non-negative Matrix Factorization (NMF).
-- **Network Metrics**: Uses greedy modularity community detection and computing centrality measures (PageRank, in-degree) on the citation graph.
-- **Taxonomy Mapping**: Employs an exact and boundary-aware keyword matching hierarchy to map unstructured papers to the formal 8-domain taxonomy.
-- **Growth Modeling**: Computes accurate compound annual growth rate (CAGR) and doubling times ($t_d$).
+- **Determinism**: All stochastic operations (`topic_modeling.py`) use fixed `seed=42`.
+  Never remove or parameterize away the seed.
+- **No mock policy**: Tests in `tests/analysis/` use real data arrays, not mocks.
+  Do not introduce `unittest.mock` or `monkeypatch` replacements.
+- **Pre-compiled patterns**: `subfield_classifier._PATTERN_CACHE` is built once at module
+  import and rebuilt on `configure_subfields()`. Never call `re.compile()` inside
+  `classify_paper()` — it destroys performance at corpus scale.
+- **Directed graph metrics**: `citation_network.compute_network_metrics()` computes `avg_in_degree`
+  and `avg_out_degree` separately using `graph.in_degree()` / `graph.out_degree()`. Do not
+  simplify to `num_edges / num_nodes` — that is only correct for undirected graphs.
+- **CAGR as fraction**: `temporal_analysis.estimate_growth_rate()` returns `cagr` as a decimal
+  fraction (e.g. `0.17` for 17%). `variables.py` multiplies by 100 for display. Never output
+  CAGR already multiplied — it would double-inflate the percentage.
+
+## Key Algorithms
+
+### Subfield classification priority
+```
+C1–C5 (priority 1) > B (priority 2) > A1 (priority 3) > A2 (priority 4, catch-all)
+```
+Within a tier, highest keyword-match count wins.
+
+### TF-IDF formula
+```
+TF-IDF(t, d) = (count(t,d)/|d|) × (log(N/(df(t)+1)) + 1)
+```
+Rows are L2-normalized. The outer `+1` guarantees strictly positive IDF for any term.
+
+### NMF convergence
+Early stopping when `|prev_error - error| / prev_error < 1e-4` (checked every 10 iterations).
+The default `max_iter=200` is an upper bound, not the typical stopping point.
+
+## Adding a New Analysis Module
+
+1. Add `src/analysis/new_module.py` with pure functions (no side effects, no file I/O).
+2. Import from `scripts/02_meta_analysis_pipeline.py`; handle I/O there.
+3. Write tests in `tests/analysis/test_new_module.py` using real numerical data.
+4. Export from `src/analysis/__init__.py` if needed by other modules.
+5. Update this file and `README.md`.
+
+## Known Limitations
+
+- **Subfield classifier**: Papers using non-canonical vocabulary may default to A2 (catch-all).
+  Consider an embedding-based classifier for large future corpora.
+- **Temporal CAGR**: Uses single-year endpoint counts; an incomplete current year (e.g. April 2026)
+  will undercount that year's publications and deflate CAGR.
+- **Citation resolution**: Only ~5% of references resolve to corpus papers because API identifier
+  formats (DOI, arXiv, S2 ID) rarely match exactly. Cross-format fuzzy matching would improve this.
+- **NMF initialization**: Random initialization means topics are locally optimal, not globally.
+  Jaccard stability > 0.90 across alternative seeds has been verified empirically.

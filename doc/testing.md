@@ -1,10 +1,43 @@
 # Testing Guide
 
-**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
 ## Overview
 
-The project maintains **534 tests** across **25 test files**, covering all source modules with ≥90% branch coverage. Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles.
+The project maintains **553 tests** across **25 test files**, achieving **95.48% branch coverage**. Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles.
+
+### Zero-Mock Practicality
+
+We NEVER use `unittest.mock` to mock `requests.get` or `aiohttp.ClientSession`. Instead, we spin up lightweight, real HTTP servers using `pytest-httpserver`.
+
+**Compliant Test Example (`tests/api/test_semantic_scholar.py`):**
+
+```python
+def test_s2_search_success(httpserver):
+    # 1. Instruct the local server to serve a specific JSON response
+    httpserver.expect_request("/graph/v1/paper/search").respond_with_json({
+        "total": 1,
+        "data": [{"paperId": "123", "title": "Test Paper"}]
+    })
+
+    # 2. Inject the local server URI into the client
+    client = SemanticScholarClient(base_url=httpserver.url_for("/"))
+
+    # 3. Execute real networking logic against the local port
+    results = client.search("test query")
+    assert results[0].raw_id == "123"
+```
+
+## Testing LLM Logic Locally
+
+The `knowledge_graph` module relies heavily on Ollama model outputs. Testing LLM parsing logic without triggering heavy GPU inference or hanging CI pipelines is critical.
+
+To test the LLM extraction loop (`tests/knowledge_graph/test_extraction.py`):
+1. **Stub the Ollama API**: Use `pytest-httpserver` to intercept `POST /api/generate` and return a hardcoded JSON string representing a mock assertion.
+2. **Test the Parser**: The test validates that the `extract_assertions()` Python logic correctly parses your hardcoded JSON into the `Assertion` Pydantic models.
+3. **Never mock the LLM wrapper**: Always instantiate the real `LLMConfig(base_url=httpserver.url_for("/"))` so the real `aiohttp` or `requests` machinery is executed.
+
+---
 
 ## Running Tests
 
@@ -56,6 +89,7 @@ Key points:
 | `literature/test_semantic_scholar.py` | `semantic_scholar.py` | ~22 | JSON parsing, 429 rate-limit retry with backoff, pagination, `get_paper_details`, `get_citations` |
 | `literature/test_openalex_client.py` | `openalex_client.py` | ~15 | Inverted-index abstract reconstruction, cursor pagination, `get_work_by_doi` |
 | `test_query.py` | Query utilities | ~8 | Search query construction and validation |
+| `testing.md` | Test architecture | ~16 | Test architecture, 568 tests across 26 files, coverage configuration |
 
 ### Analysis Package
 

@@ -10,9 +10,9 @@ from pathlib import Path
 
 import pytest
 
+import analysis.subfield_classifier as subfield_classifier
 from analysis.subfield_classifier import (
     DEFAULT_SUBFIELDS,
-    SUBFIELDS,
     _get_default_field,
     classify_corpus,
     classify_paper,
@@ -30,25 +30,25 @@ def _paper(title: str, abstract: str = "") -> Paper:
     return Paper(title=title, abstract=abstract)
 
 
-# ── SUBFIELDS constant ───────────────────────────────────────────────
+# ── subfield_classifier.SUBFIELDS constant ───────────────────────────────────────────────
 
 
 class TestSubfieldsConstant:
-    """Tests for the SUBFIELDS dictionary."""
+    """Tests for the subfield_classifier.SUBFIELDS dictionary."""
 
     def test_has_eight_domains(self):
         """Exactly 8 domains defined."""
-        assert len(SUBFIELDS) == 8
+        assert len(subfield_classifier.SUBFIELDS) == 8
 
     def test_each_domain_has_keywords(self):
         """Each domain has a non-empty keywords list."""
-        for name, info in SUBFIELDS.items():
+        for name, info in subfield_classifier.SUBFIELDS.items():
             assert "keywords" in info, f"{name} missing keywords"
             assert len(info["keywords"]) > 0, f"{name} has empty keywords"
 
     def test_each_domain_has_description(self):
         """Each domain has a description string."""
-        for name, info in SUBFIELDS.items():
+        for name, info in subfield_classifier.SUBFIELDS.items():
             assert "description" in info, f"{name} missing description"
             assert isinstance(info["description"], str)
 
@@ -64,18 +64,18 @@ class TestSubfieldsConstant:
             "C4_psychiatry",
             "C5_biology",
         }
-        assert set(SUBFIELDS.keys()) == expected
+        assert set(subfield_classifier.SUBFIELDS.keys()) == expected
 
     def test_each_domain_has_priority(self):
         """Each domain has a priority integer."""
-        for name, info in SUBFIELDS.items():
+        for name, info in subfield_classifier.SUBFIELDS.items():
             assert "priority" in info, f"{name} missing priority"
             assert isinstance(info["priority"], int)
 
     def test_a2_has_lowest_priority(self):
         """A2_philosophy should have the lowest (highest number) priority."""
-        a2_priority = SUBFIELDS["A2_philosophy"]["priority"]
-        for name, info in SUBFIELDS.items():
+        a2_priority = subfield_classifier.SUBFIELDS["A2_philosophy"]["priority"]
+        for name, info in subfield_classifier.SUBFIELDS.items():
             if name != "A2_philosophy":
                 assert info["priority"] <= a2_priority, (
                     f"{name} has priority {info['priority']} >= A2's {a2_priority}"
@@ -85,8 +85,8 @@ class TestSubfieldsConstant:
         """C1-C5 should have priority 1 (highest specificity)."""
         for name in ["C1_neuroscience", "C2_robotics", "C3_language",
                       "C4_psychiatry", "C5_biology"]:
-            assert SUBFIELDS[name]["priority"] == 1, (
-                f"{name} should have priority 1, got {SUBFIELDS[name]['priority']}"
+            assert subfield_classifier.SUBFIELDS[name]["priority"] == 1, (
+                f"{name} should have priority 1, got {subfield_classifier.SUBFIELDS[name]['priority']}"
             )
 
 
@@ -252,7 +252,7 @@ class TestClassifyCorpus:
         """Output dict has all 8 domain keys."""
         papers = [_paper("Some paper")]
         result = classify_corpus(papers)
-        assert set(result.keys()) == set(SUBFIELDS.keys())
+        assert set(result.keys()) == set(subfield_classifier.SUBFIELDS.keys())
 
     def test_papers_distributed_correctly(self):
         """Papers are assigned to the correct domain lists."""
@@ -283,7 +283,7 @@ class TestClassifyCorpus:
     def test_empty_corpus(self):
         """Empty input produces empty lists for all domains."""
         result = classify_corpus([])
-        for name in SUBFIELDS:
+        for name in subfield_classifier.SUBFIELDS:
             assert result[name] == []
 
     def test_all_same_domain(self):
@@ -293,7 +293,7 @@ class TestClassifyCorpus:
         ]
         result = classify_corpus(papers)
         assert len(result["C2_robotics"]) == 5
-        for name in SUBFIELDS:
+        for name in subfield_classifier.SUBFIELDS:
             if name != "C2_robotics":
                 assert len(result[name]) == 0
 
@@ -356,6 +356,23 @@ class TestLoadSubfieldsFromConfig:
         result = load_subfields_from_config(config)
         assert result == dict(DEFAULT_SUBFIELDS)
 
+    def test_project_config_nested_keywords_loaded(self, tmp_path: Path):
+        """subfield_keywords nested under project_config is loaded correctly."""
+        config = tmp_path / "config.yaml"
+        config.write_text(textwrap.dedent("""\
+            project_config:
+              subfield_keywords:
+                C1_neuro:
+                  - brain
+                  - cortex
+                B_tools:
+                  - deep learning
+        """))
+        result = load_subfields_from_config(config)
+        assert "C1_neuro" in result
+        assert "B_tools" in result
+        assert result["C1_neuro"]["keywords"] == ["brain", "cortex"]
+
 
 # ── configure_subfields ──────────────────────────────────────────────
 
@@ -364,7 +381,7 @@ class TestConfigureSubfields:
     """Tests for configure_subfields."""
 
     def test_with_config_path(self, tmp_path: Path):
-        """configure_subfields loads from config and sets module SUBFIELDS."""
+        """configure_subfields loads from config and sets module subfield_classifier.SUBFIELDS."""
         config = tmp_path / "config.yaml"
         config.write_text(textwrap.dedent("""\
             subfield_keywords:
@@ -392,7 +409,7 @@ class TestGetDefaultField:
         """Default field is the philosophy/catch-all domain."""
         result = _get_default_field()
         # Should be a domain with 'free energy principle' or 'active inference'
-        assert result in SUBFIELDS
-        keywords = [k.lower() for k in SUBFIELDS[result]["keywords"]]
+        assert result in subfield_classifier.SUBFIELDS
+        keywords = [k.lower() for k in subfield_classifier.SUBFIELDS[result]["keywords"]]
         assert "free energy principle" in keywords or "active inference" in keywords
 

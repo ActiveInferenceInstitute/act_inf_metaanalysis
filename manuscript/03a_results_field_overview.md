@@ -1,15 +1,15 @@
-# Field Overview: Disciplinary Structure and Growth Dynamics \label{sec:field_overview}
+## Field Overview: Disciplinary Structure and Growth Dynamics \label{sec:field_overview}
 
-Annual output in the Active Inference literature rose from {{YEAR_START_PUBS}} papers in {{YEAR_START}} to {{PEAK_YEAR_PUBS}} papers in {{PEAK_YEAR}}—a transition from a niche within theoretical neuroscience to a multi-disciplinary research program spanning three primary domains and eight tracked categories. The corpus start of {{YEAR_START}} was chosen to capture Energy-Based Model and variational Bayesian antecedents \citep{dayan1995helmholtz, lecun2006tutorial} that preceded the formal introduction of the Free Energy Principle in 2006 \citep{friston2006free} and its subsequent full elaboration \citep{friston2010free}. Our corpus, extracted from arXiv, Semantic Scholar, and OpenAlex and deduplicated to $N = {{CORPUS_SIZE}}$ papers ({{YEAR_START}}--{{YEAR_END}}), captures the breadth, tempo, and internal architecture of this expansion (Figure \ref{fig:field_summary}).
+Annual output in the Active Inference literature rose from {{YEAR_START_PUBS}} papers in {{YEAR_START}}, reaching a peak of {{PEAK_YEAR_PUBS}} papers in {{PEAK_YEAR}}—a transition from a niche within theoretical neuroscience to a multi-disciplinary research program spanning three primary domains and eight tracked categories. The corpus start of {{YEAR_START}} was chosen to capture Energy-Based Model and variational Bayesian antecedents \citep{dayan1995helmholtz, lecun2006tutorial} that preceded the formal introduction of the Free Energy Principle in 2006 \citep{friston2006free} and its subsequent full elaboration \citep{friston2010free}. Our corpus, extracted from arXiv, Semantic Scholar, and OpenAlex and deduplicated to $N = {{CORPUS_SIZE}}$ papers ({{YEAR_START}}--{{YEAR_END}}), captures the breadth, tempo, and internal architecture of this expansion (Figure \ref{fig:field_summary}).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/field_summary.png}
-\caption{Publication counts by domain ($N = {{CORPUS_SIZE}}$). Domain A (Core Theory) dominates, with Domains B (Tools) and C (Applications) forming growing tiers.}
+\caption{Publication counts by domain ($N = {{CORPUS_SIZE}}$). Application domains (C1--C5) collectively account for the largest share of the corpus; Domain A2 (qualitative philosophy) is the largest single category, reflecting the FEP's broad theoretical reach.}
 \label{fig:field_summary}
 \end{figure}
 
-## Corpus-Level Summary
+### Corpus-Level Summary
 
 
 \begin{table}[htbp]
@@ -30,7 +30,7 @@ Active domains & 8 of 8 tracked (A1--A2, B, C1--C5) \\
 \end{table}
 
 
-The CAGR of {{CAGR_PCT}}\% reflects the corpus's long temporal span from {{YEAR_START}} to {{YEAR_END}}; the field's actual rapid growth phase began around 2013, with annual output accelerating substantially (Figure \ref{fig:growth_curve}). The fact that sustained high output persists into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{the citation network analysis}).
+The CAGR of {{CAGR_PCT}}\% (measured as the annualised growth rate of yearly publication volume between endpoint years {{YEAR_START}} and {{YEAR_END}}) reflects sustained field expansion; the actual rapid growth phase began around 2013, with annual output accelerating substantially (Figure \ref{fig:growth_curve}). Sustained high output persisting into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{the citation network analysis}).
 
 \begin{figure}[htbp]
 \centering
@@ -39,7 +39,7 @@ The CAGR of {{CAGR_PCT}}\% reflects the corpus's long temporal span from {{YEAR_
 \label{fig:growth_curve}
 \end{figure}
 
-## Domain Distribution
+### Domain Distribution
 
 Keyword-based classification assigns each paper to one of eight categories across three domains:
 
@@ -78,7 +78,7 @@ The concentration of papers in A2 (qualitative philosophy and general theory) re
 
 Detailed characterizations of each domain—including historical context, growth trends, and open problems—are provided in the supplementary domain analyses (see \hyperref[sec:subfield_analyses]{the domain analyses}). Latent topic structure, vocabulary analysis, and document embeddings are presented in the text analytics section (see \hyperref[sec:text_analytics]{the text analytics section}).
 
-## Cross-Domain Comparison
+### Cross-Domain Comparison
 
 
 \begin{table}[htbp]
@@ -107,6 +107,6 @@ Three structural features emerge from the cross-domain comparison (Figure \ref{f
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/subfield_timeline.png}
-\caption{Stacked area chart of publications by domain, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$). Domain A (Core Theory) dominates throughout; application domains C1--C5 show accelerating diversification from 2015 onward.}
+\caption{Stacked area chart of publications by domain, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$). A2 (qualitative philosophy) provides a large baseline; application domains C1--C5 show accelerating diversification from 2015 onward.}
 \label{fig:subfield_timeline}
 \end{figure}

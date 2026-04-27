@@ -1,17 +1,17 @@
-# Citation Network Topology \label{sec:citation_network}
+## Citation Network Topology \label{sec:citation_network}
 
 The intra-corpus citation network provides a structural view of how Active Inference research is organized, identifying influential hub papers, community structure, and patterns of citation isolation (Figure \ref{fig:citation_network}).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/citation_network.png}
-\caption{Intra-corpus citation network ($N = {{CORPUS_SIZE}}$ nodes, {{CITATION_EDGES}} edges). Node size reflects PageRank and HITS centrality scores \citep{kleinberg1999authoritative}; highly cited foundational papers serve as nexus points connecting sub-domains.}
+\caption{Intra-corpus citation network ($N = {{CORPUS_SIZE}}$ nodes, {{CITATION_EDGES}} edges). Node size reflects in-degree (number of intra-corpus citations received); highly cited foundational papers serve as nexus points connecting sub-domains.}
 \label{fig:citation_network}
 \end{figure}
 
-## Network Density and Degree Distribution
+### Network Density and Degree Distribution
 
-The intra-corpus citation network contains {{CITATION_NODES}} nodes and {{CITATION_EDGES}} edges, with a density of {{CITATION_DENSITY_PCT}}\% and {{CITATION_COMPONENTS}} connected components. The average in-degree of $\approx {{MEAN_IN_DEGREE}}$ indicates that most papers receive few intra-corpus citations, consistent with the field's rapid expansion: the majority of recent papers have not yet accumulated citations within the corpus (Figure \ref{fig:degree_distribution}). Only {{CITATION_RESOLUTION_PCT}}\% of all references ({{CITATION_EDGES}} of {{CITATION_TOTAL_REFS}}) resolve to other papers within the corpus, reflecting cross-source identifier mismatches and the field's engagement with a broad external literature base. Community detection identifies clusters via greedy modularity maximization \citep{clauset2004finding}.
+The intra-corpus citation network contains {{CITATION_NODES}} nodes and {{CITATION_EDGES}} edges, with a density of {{CITATION_DENSITY_PCT}}\% and {{CITATION_COMPONENTS}} connected components. The average in-degree of $\approx {{MEAN_IN_DEGREE}}$ indicates that most papers receive few intra-corpus citations, consistent with the field's rapid expansion: the majority of recent papers have not yet accumulated citations within the corpus (Figure \ref{fig:degree_distribution}). Only {{CITATION_RESOLUTION_PCT}}\% of all identified references ({{CITATION_EDGES}} intra-corpus matches out of {{CITATION_TOTAL_REFS}} total reference entries) resolve to other papers within the corpus, reflecting cross-source identifier mismatches and the field's engagement with a broad external literature base. Community detection identifies clusters via greedy modularity maximization \citep{clauset2004finding}.
 
 \begin{figure}[htbp]
 \centering
@@ -20,11 +20,11 @@ The intra-corpus citation network contains {{CITATION_NODES}} nodes and {{CITATI
 \label{fig:degree_distribution}
 \end{figure}
 
-## Connected Components and Citation Isolation
+### Connected Components and Citation Isolation
 
-The high number of connected components ({{CITATION_COMPONENTS}} out of {{CITATION_NODES}} nodes) reveals that much of the corpus consists of citation-isolated papers—works that neither cite nor are cited by other papers in the collection. A single Giant Connected Component (GCC) typically dominates mature scientific networks; here, the largest component contains roughly half the nodes, while the remainder form small fragmented islands or singletons. This is partially an artifact of cross-source identifier mismatches, but it also reflects the field's pattern of papers engaging with the FEP literature conceptually without building explicit, graph-tractable citation chains. PageRank analysis identifies highly influential papers, predominantly Friston's foundational work \citep{friston2010free} and the AIF textbook \citep{parr2022active}, which serve as nexus points linking otherwise disconnected subgraphs.
+The high number of connected components ({{CITATION_COMPONENTS}} out of {{CITATION_NODES}} nodes) reveals that much of the corpus consists of citation-isolated papers—works that neither cite nor are cited by other papers in the collection. A single Giant Connected Component (GCC) typically dominates mature scientific networks; here, with {{CITATION_COMPONENTS}} components across {{CITATION_NODES}} nodes, the GCC contains a minority of nodes while the remainder form singletons or small clusters of two to three papers. This is partially an artifact of cross-source identifier mismatches, but it also reflects the field's pattern of papers engaging with the FEP literature conceptually without building explicit, graph-tractable citation chains. PageRank analysis identifies highly influential papers, predominantly Friston's foundational work \citep{friston2010free} and the AIF textbook \citep{parr2022active}, which serve as nexus points linking otherwise disconnected subgraphs.
 
-## Network Summary
+### Network Summary
 
 
 \begin{table}[htbp]

@@ -79,11 +79,17 @@ def compute_network_metrics(
     density = nx.density(graph)
 
     if num_nodes > 0:
-        avg_in_degree = num_edges / num_nodes
-        avg_out_degree = num_edges / num_nodes
+        in_degrees = [d for _, d in graph.in_degree()]
+        out_degrees = [d for _, d in graph.out_degree()]
+        avg_in_degree = sum(in_degrees) / num_nodes
+        avg_out_degree = sum(out_degrees) / num_nodes
+        max_in_degree = max(in_degrees) if in_degrees else 0
+        max_out_degree = max(out_degrees) if out_degrees else 0
     else:
         avg_in_degree = 0.0
         avg_out_degree = 0.0
+        max_in_degree = 0
+        max_out_degree = 0
 
     # PageRank and HITS
     if num_nodes > 0:
@@ -100,7 +106,7 @@ def compute_network_metrics(
             hubs = {node: score for node, score in sorted_hubs[:10]}
             authorities = {node: score for node, score in sorted_auth[:10]}
         except Exception as e:
-            logger.debug("HITS centrality failed to converge: %s", e)
+            logger.warning("HITS centrality failed (graph may be too sparse): %s", e)
             hubs, authorities = {}, {}
     else:
         pagerank = {}
@@ -118,6 +124,8 @@ def compute_network_metrics(
         "density": density,
         "avg_in_degree": avg_in_degree,
         "avg_out_degree": avg_out_degree,
+        "max_in_degree": max_in_degree,
+        "max_out_degree": max_out_degree,
         "pagerank": pagerank,
         "hubs": hubs,
         "authorities": authorities,

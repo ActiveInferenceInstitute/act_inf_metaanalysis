@@ -1,6 +1,6 @@
 # Architecture
 
-**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
 ## Data Flow
 
@@ -51,7 +51,14 @@ Stage 4: Visualization
 Stage 5: Manuscript Injection
 ─────────────────────────
   Analysis JSONs ──▶ Template Variables ──▶ Rendered Manuscript (output/manuscript/)
+
+Stage 6: Full-Text Assessment (Experimental)
+────────────────────────────────────────────
+  Full-text PDFs ──▶ Extended assertions ──▶ Augmented nanopublications.jsonl
+  (run independently via scripts/06_fulltext_assessment.py; not in standard pipeline)
 ```
+
+> **Stage 6** is an auxiliary, opt-in script. It enriches the knowledge graph with claim-evidence pairs extracted from full-text PDFs rather than abstracts alone. It is not part of the standard 5-stage pipeline and requires downloaded PDFs in `output/data/pdfs/`. Current status: experimental — full-text extraction accuracy has not been formally evaluated.
 
 ## Key Design Decisions
 
@@ -220,6 +227,33 @@ The extraction layer resumes automatically by default. The system:
 This means a multi-hour LLM extraction run can be interrupted and resumed without losing progress. Use `--clear-assertions` to discard existing nanopubs and start fresh.
 
 ---
+
+## Error Handling and Resilience
+
+The pipeline implements strict fault-tolerance patterns:
+
+### Stage 1: API Rate Limiting
+
+- **arXiv**: The Atom API explicitly requires a 3-second delay between requests. The `arxiv_client` enforces this synchronously.
+- **Semantic Scholar**: The S2 Graph API frequently throws `429 Too Many Requests`. The client employs exponential backoff logic, retrying up to 5 times.
+- **Circuit Breakers**: If an API completely fails, the script captures the Exception, logs an error, and continues to the next provider, merging whatever it successfully fetched.
+
+### Stage 3: LLM Timeouts and Faults
+
+- **Timeouts**: The Ollama inference loop applies a strict `timeout_seconds` bounding limit. If a model hangs, the request dies, and the model restarts the prompt.
+- **JSON Validation**: Malformed LLM JSON strings (or hallucinated Markdown fences) are intercepted. The payload drops, and the loop retries the generation.
+
+---
+
+## Zero-Mock Application Architecture
+
+In accordance with repo-level standards, this pipeline relies on a **Zero-Mock** testing paradigm.
+We never use `unittest.mock` to fake database connections or HTTP responses.
+
+To achieve this, the architecture utilizes **Dependency Injected Base URLs**:
+Every client (`arxiv_client`, `semantic_scholar`, `llm_extraction`) accepts an optional `base_url` parameter. In production, these default to the real providers (e.g., `https://api.semanticscholar.org/`). In testing, `pytest` spawns a local `pytest-httpserver` bound to a local TCP socket, and that localhost URI is injected into horizontal client constructions.
+
+*Result:* The Python logic (HTTP parsing, rate-limiting, error handling) is exercised via real networking calls against local surrogate endpoints.
 
 ## Configuration Hierarchy
 

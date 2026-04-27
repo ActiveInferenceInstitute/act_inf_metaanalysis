@@ -25,7 +25,7 @@ from typing import Optional
 
 from literature.models import Paper
 from knowledge_graph.nanopublication import Assertion
-from knowledge_graph.schema import HYPOTHESIS_CATEGORIES, configure_hypothesis_categories
+from knowledge_graph.schema import configure_hypothesis_categories
 
 logger = logging.getLogger(__name__)
 
@@ -119,7 +119,10 @@ def load_hypotheses_from_config(config_path: Path) -> list[Hypothesis]:
         logger.warning("Cannot read config %s: %s", config_path, exc)
         return list(STANDARD_HYPOTHESES)
 
-    hyp_defs = data.get("hypothesis_definitions", {})
+    project_cfg = data.get("project_config", {})
+    hyp_defs = data.get("hypothesis_definitions", {}) or project_cfg.get(
+        "hypothesis_definitions", {}
+    )
     if not hyp_defs:
         logger.debug("No hypothesis_definitions in config; using defaults")
         return list(STANDARD_HYPOTHESES)
@@ -189,12 +192,13 @@ def _weight(citation_count: int, confidence: float) -> float:
 
     Args:
         citation_count: Number of citations for the source paper.
+            Must be non-negative; negative values are clamped to 0.
         confidence: Confidence level of the assertion in [0.0, 1.0].
 
     Returns:
-        ``log(1 + citation_count) * confidence``
+        ``log(1 + max(0, citation_count)) * confidence``
     """
-    return math.log(1 + citation_count) * confidence
+    return math.log(1 + max(0, citation_count)) * confidence
 
 
 def score_hypothesis(assertions: list[Assertion], hypothesis_id: str) -> float:

@@ -24,7 +24,8 @@ Queries arXiv, Semantic Scholar, and OpenAlex, then merges results into a dedupl
 | `--skip-arxiv` | flag | — | Skip arXiv search |
 | `--skip-s2` | flag | — | Skip Semantic Scholar search |
 | `--skip-openalex` | flag | — | Skip OpenAlex search |
-| `--resume` | flag | `True` | Load existing corpus before searching (merge) |
+| `--resume` | flag | on (default) | Load existing corpus before searching (merge) |
+| `--no-resume` | flag | — | Ignore existing `corpus.jsonl`; start empty |
 | `--clear-corpus` | flag | — | Delete existing corpus before searching |
 | `--log-level` | choice | `INFO` | `DEBUG` / `INFO` / `WARNING` / `ERROR` |
 | `--config` | `str` | — | Path to YAML config (overrides `--query`, `--max-results`, `--resume`, `--clear-corpus`) |
@@ -46,21 +47,13 @@ search:
     - "predictive coding"
 ```
 
-### arXiv Multi-Query Strategy
+### arXiv multi-query strategy
 
-The script runs **9 complementary arXiv queries** for comprehensive coverage, including core Active Inference terms and EBM-adjacent research that shares deep mathematical foundations with variational free energy:
+Without `--config`, the script uses the **five** default queries baked into `01_literature_search.py` (core AIF / FEP / predictive-coding / EFE / variational phrasing).
 
-1. `all:"active inference"`
-2. `all:"free energy principle"`
-3. `all:"predictive coding" AND all:"free energy"`
-4. `all:"expected free energy"`
-5. `all:"variational free energy" AND all:"inference"`
-6. `all:"energy-based model" AND all:"free energy"` *(EBM convergence)*
-7. `all:"Helmholtz machine" AND all:"inference"` *(variational Bayesian antecedents)*
-8. `all:"Boltzmann machine" AND all:"free energy"` *(EBM antecedents)*
-9. `all:"contrastive divergence" AND all:"generative model"` *(EBM training methods)*
+With `--config manuscript/config.yaml`, `project_config.search.arxiv_queries` replaces that list — the bundled config currently defines **nine** queries, adding EBM-, Helmholtz-, Boltzmann-, and contrastive-divergence–adjacent search strings for broader coverage.
 
-Results are merged and deduplicated via the `Corpus.add()` method (highest `metadata_completeness` wins).
+Results are merged and deduplicated via `Corpus.add()` (highest `metadata_completeness` wins).
 
 ### Outputs
 
@@ -292,4 +285,29 @@ python scripts/04_generate_figures.py
 python scripts/05_inject_variables.py
 ```
 
-> **Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+---
+
+## Troubleshooting Guide
+
+| Issue | Root Cause | Solution |
+| --- | --- | --- |
+| **arXiv 403 Forbidden** | Bypassed the 3-second delay rate limit | Ensure you are not running `01_literature_search.py` in multiple terminals simultaneously. |
+| **S2 HTTP 429** | Semantic Scholar hard limits (e.g., 100 requests / 5 minutes) | The script will auto-retry with exponential backoff. Do not kill the script; let it sleep and recover. |
+| **Ollama Connection Refused** | Local LLM server is not running | Run `ollama serve` in a background terminal before starting `03_build_knowledge_graph.py`. |
+| **JSONDecodeError in Stage 3** | The LLM generated malformed JSON | Decrease `temperature` in config (e.g., `0.05`), or increase `max_retries`. |
+| **Empty `output/figures/`** | `matplotlib` lacks the backend | The scripts automatically force `MPLBACKEND=Agg` (headless). If rendering still fails, ensure `pip install matplotlib` completed. |
+
+---
+
+## Steganographic Hardening
+
+While the standard `./run.sh` pipeline produces `output/pdf/{name}_combined.pdf`, the system is also capable of producing a cryptographically hardened, steganographic version of the final manuscript via `secure_run.sh`.
+
+```bash
+# Execute the full pipeline, then harden the PDF output
+./secure_run.sh --pipeline
+```
+
+This enforces diagonal watermark overlays, invisible hash layers, and injects a cryptographic manifest that can be verified to prove the document was not tampered with post-generation. See `infrastructure/steganography/` for the cryptographic backend constraints.
+
+> **Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)

@@ -17,6 +17,30 @@ if SRC not in sys.path:
     sys.path.insert(0, SRC)
 
 
+# --- Required dependency verification ---
+# These packages are listed in pyproject.toml [project.dependencies] and must be present
+# for the full test suite to run. Fail fast with a clear message if missing.
+REQUIRED_DEPENDENCIES = [
+    ("rdflib", "rdflib>=7.0.0"),
+    ("wordcloud", "wordcloud>=1.9.0"),
+    ("sklearn", "scikit-learn>=1.3.0"),  # imported as sklearn
+]
+missing_required = []
+for module_name, pkg_spec in REQUIRED_DEPENDENCIES:
+    try:
+        __import__(module_name)
+    except ImportError:
+        missing_required.append(pkg_spec)
+
+if missing_required:
+    raise ImportError(
+        f"Required dependencies not installed for the full test suite: {', '.join(missing_required)}. "
+        "Run: uv sync --extra dev (in the project directory)."
+    )
+# --- End required dependency check ---
+
+
+
 @pytest.fixture
 def sample_papers():
     """Return a list of sample Paper objects for testing."""

@@ -34,7 +34,7 @@ from analysis.citation_network import (
     resolve_citations,
 )
 from analysis.temporal_analysis import compute_temporal_metrics, estimate_growth_rate
-from analysis.subfield_classifier import classify_corpus, SUBFIELDS
+from analysis.subfield_classifier import classify_corpus
 from analysis.topic_modeling import fit_nmf_topics, get_document_topics
 
 
@@ -286,6 +286,9 @@ def main() -> None:
         "num_edges": metrics["num_edges"],
         "density": metrics["density"],
         "avg_in_degree": metrics["avg_in_degree"],
+        "avg_out_degree": metrics["avg_out_degree"],
+        "max_in_degree": metrics["max_in_degree"],
+        "max_out_degree": metrics["max_out_degree"],
         "connected_components": metrics["connected_components"],
         "num_communities": len(set(communities.values())) if communities else 0,
         "total_references": total_refs,

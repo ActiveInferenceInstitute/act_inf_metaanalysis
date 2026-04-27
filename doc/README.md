@@ -2,11 +2,34 @@
 
 **Paper:** *A Living Literature Review Architecture for Active Inference: Scalable Assertion Extraction, Nanopublications, and Citation-Weighted Hypothesis Scoring*
 
-**Standalone private repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Package / upstream reference:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+
+**Template monorepo path:** `projects/act_inf_metaanalysis/` (pipeline discovery: [`docs/_generated/active_projects.md`](../../../docs/_generated/active_projects.md)).
 
 Project-level documentation for the `act_inf_metaanalysis` pipeline.
 
 > See [AGENTS.md](AGENTS.md) for doc-hub architectural conventions, [../AGENTS.md](../AGENTS.md) for project-wide contributor properties, and the [project README](../README.md) for setup and overview.
+
+---
+
+## Central Philosophy: Reproducible Generative Research
+
+This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. By structuring the literature review as a deterministic 5-stage pipeline, this platform ensures:
+
+1. **Verifiable Provenance**: Every paper, classification, and assertion is strictly mapped from public APIs (arXiv, Semantic Scholar) through atomic JSONL intermediate states into the final visual output.
+2. **Robust Extensibility**: New papers incrementally stream into the corpus, and new LLM models can instantly backfill metadata assessments via checkpointed resumes.
+3. **Artifact Duality**: Project documentation adheres to strict constraints, requiring human-readable `README.md` and semantic subagent parameters in `AGENTS.md` for every single module.
+
+---
+
+## Onboarding Path for Researchers
+
+If you are joining the Active Inference Institute to extend this pipeline, you should consume the documentation hub in the following order:
+
+1. **[architecture.md](architecture.md)** — Understand the 5-stage data flow and why we enforce a "Thin Orchestrator" scripting pattern.
+2. **[data_formats.md](data_formats.md)** — Internalize the schemas (especially JSONL/TriG) that form the nervous system between modules.
+3. **[scripts.md](scripts.md)** — Learn how to execute, pause, configure, and troubleshoot the pipeline from the command line.
+4. **[hypotheses.md](hypotheses.md)** — Understand the theoretical domain bounds and the mathematical formulation of our citation-weighted scoring logic.
 
 ---
 
@@ -101,6 +124,23 @@ The pipeline reads settings from `manuscript/config.yaml`. CLI flags override co
 | `hypothesis_scores.json` | 3 | JSON | Citation-weighted scores per hypothesis `[-1, 1]` |
 | `hypothesis_trends.json` | 3 | JSON | Year-by-year cumulative hypothesis scores |
 | `assertion_summary.json` | 3 | JSON | Total assertions, type counts, per-hypothesis breakdown |
+| `nanopublications.trig` | 3 | RDF/TriG | Nanopub.net-compliant RDF export (four named graphs per nanopub) |
+| `figures/*.png` | 4 | PNG | 16 publication-quality visualizations (300 DPI, ≥16pt fonts) |
+| `manuscript/*.md` | 5 | Markdown | Rendered sections with `{{VAR}}` placeholders replaced |
+
+---
+
+## Manuscript Navigation
+
+| Section file | Key figures generated | Key `{{VAR}}` injected | Source script |
+| --- | --- | --- | --- |
+| `00_abstract.md` | — | `CORPUS_SIZE`, `CAGR_PCT`, `YEAR_START`, `YEAR_END`, `CITATION_EDGES`, `CITATION_RESOLUTION_PCT` | Stage 5 |
+| `03a_results_field_overview.md` | `field_summary.png`, `subfield_distribution.png`, `growth_curve.png`, `subfield_timeline.png` | `A1_COUNT`…`C5_PCT`, `PEAK_YEAR`, `CAGR_PCT` | Stage 2 + 5 |
+| `03_results_hypothesis.md` | `hypothesis_dashboard.png`, `evidence_timeline.png`, `assertion_type_breakdown.png`, `assertion_summary.png` | `H1_SCORE`…`H8_SCORE`, `TOTAL_ASSERTIONS` | Stage 3 + 5 |
+| `03c_results_text_analytics.md` | `word_cloud.png`, `pca_embeddings.png`, `term_heatmap.png`, `dendrogram.png`, `topic_term_bars.png`, `cooccurrence_matrix.png` | `NUM_TOPICS`, `NUM_VOCAB_FEATURES` | Stage 2 + 5 |
+| `03d_results_citation_network.md` | `citation_network.png`, `degree_distribution.png` | `CITATION_NODES`, `CITATION_EDGES`, `CITATION_DENSITY_PCT` | Stage 2 + 5 |
+
+Variable injection is handled by `src/manuscript/variables.py`, invoked by `scripts/05_inject_variables.py`. See `manuscript/README.md` for the full variable-to-source mapping.
 
 ---
 
@@ -122,8 +162,8 @@ The pipeline reads settings from `manuscript/config.yaml`. CLI flags override co
 | --- | --- |
 | [architecture.md](architecture.md) | Pipeline design, module dependency graph, data flow |
 | [scripts.md](scripts.md) | Per-script CLI reference with all flags, YAML keys, and examples |
-| [api_reference.md](api_reference.md) | Module-level API documentation (all 5 packages, 22 modules) |
+| [api_reference.md](api_reference.md) | Module-level API documentation (all 5 packages, 24 modules) |
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [testing.md](testing.md) | Test architecture, 534 tests across 25 files, coverage configuration |
+| [testing.md](testing.md) | Test architecture, 553 tests across 25 files, coverage configuration |

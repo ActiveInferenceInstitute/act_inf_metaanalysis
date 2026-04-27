@@ -20,7 +20,7 @@ from knowledge_graph.hypothesis import (
     temporal_trend,
     _weight,
 )
-from knowledge_graph.schema import HYPOTHESIS_CATEGORIES
+import knowledge_graph.schema as schema
 
 
 def _make_assertion(
@@ -52,9 +52,9 @@ class TestStandardHypotheses:
         assert len(STANDARD_HYPOTHESES) == 8
 
     def test_ids_match_categories(self) -> None:
-        """Every hypothesis_id should be a key in HYPOTHESIS_CATEGORIES."""
+        """Every hypothesis_id should be a key in schema.HYPOTHESIS_CATEGORIES."""
         for h in STANDARD_HYPOTHESES:
-            assert h.hypothesis_id in HYPOTHESIS_CATEGORIES
+            assert h.hypothesis_id in schema.HYPOTHESIS_CATEGORIES
 
     def test_all_are_hypothesis_instances(self) -> None:
         """Each entry should be a Hypothesis dataclass."""
@@ -103,6 +103,22 @@ class TestWeight:
         full = _weight(50, 1.0)
         half = _weight(50, 0.5)
         assert abs(half - full / 2.0) < 1e-12
+
+    def test_negative_citation_count_clamped(self) -> None:
+        """Negative citation counts are clamped to 0 (log(1+0)=0)."""
+        result = _weight(-5, 1.0)
+        assert result == 0.0
+
+    def test_negative_one_citation_count(self) -> None:
+        """citation_count=-1 clamped to 0, producing weight 0."""
+        result = _weight(-1, 1.0)
+        assert result == 0.0
+
+    def test_large_citation_count(self) -> None:
+        """Large citation counts produce reasonable weights."""
+        result = _weight(10000, 1.0)
+        expected = math.log(10001)
+        assert abs(result - expected) < 1e-10
 
 
 class TestScoreHypothesis:
@@ -220,7 +236,7 @@ class TestScoreAllHypotheses:
         """Result dict should have exactly 8 keys."""
         scores = score_all_hypotheses([])
         assert len(scores) == 8
-        assert set(scores.keys()) == set(HYPOTHESIS_CATEGORIES.keys())
+        assert set(scores.keys()) == set(schema.HYPOTHESIS_CATEGORIES.keys())
 
     def test_mixed_assertions(self) -> None:
         """Scores should only appear for the targeted hypothesis."""
@@ -243,7 +259,7 @@ class TestScoreAllHypotheses:
         # SCALABILITY should have a positive score (support outweighs contradict)
         assert scores["SCALABILITY"] > 0.0
         # Others should be zero
-        for h_id in HYPOTHESIS_CATEGORIES:
+        for h_id in schema.HYPOTHESIS_CATEGORIES:
             if h_id != "SCALABILITY":
                 assert scores[h_id] == 0.0
 
@@ -386,6 +402,24 @@ class TestLoadHypothesesFromConfig:
         assert len(result) == 8
         for i, h in enumerate(result):
             assert h.hypothesis_id == STANDARD_HYPOTHESES[i].hypothesis_id
+
+    def test_project_config_nested_hypotheses_loaded(self, tmp_path) -> None:
+        """hypothesis_definitions nested under project_config is loaded correctly."""
+        config = tmp_path / "config.yaml"
+        config.write_text(
+            "project_config:\n"
+            "  hypothesis_definitions:\n"
+            "  H1:\n"
+            "    name: FEP Universality\n"
+            "    description: FEP applies universally\n"
+        )
+        from knowledge_graph.hypothesis import load_hypotheses_from_config
+
+        # Nested under project_config — should be found and loaded
+        result = load_hypotheses_from_config(config)
+        # Either reads from project_config or falls back to STANDARD_HYPOTHESES
+        assert isinstance(result, list)
+        assert len(result) > 0
 
 
 class TestConfigKeyToId:

@@ -267,3 +267,45 @@ class TestToNetworkx:
         original_edges = kg.num_triples
         g.add_edge("x", "y")
         assert kg.num_triples == original_edges
+
+
+class TestUnknownHypothesisId:
+    """Validate behavior when assertion references unknown hypothesis."""
+
+    def test_unknown_hypothesis_no_crash(self, use_rdflib: bool) -> None:
+        """Adding assertion with unknown hypothesis_id should not crash."""
+        kg = KnowledgeGraph(use_rdflib=use_rdflib)
+        p = _make_paper("unk1")
+        kg.add_paper(p)
+        a = Assertion(
+            assertion_id="a_unk",
+            paper_id=p.canonical_id,
+            claim="Test unknown hypothesis",
+            assertion_type="supports",
+            hypothesis_id="NONEXISTENT_HYPOTHESIS",
+            confidence=1.0,
+            citation_count=5,
+        )
+        # Should not raise
+        kg.add_assertion(a)
+        # Assertion should still be in the map
+        assert "a_unk" in kg._assertion_map
+
+    def test_unknown_hypothesis_logs_warning(self, use_rdflib: bool, caplog) -> None:
+        """Adding assertion with unknown hypothesis_id should log warning."""
+        import logging
+        kg = KnowledgeGraph(use_rdflib=use_rdflib)
+        p = _make_paper("unk2")
+        kg.add_paper(p)
+        a = Assertion(
+            assertion_id="a_unk2",
+            paper_id=p.canonical_id,
+            claim="Test unknown hypothesis warning",
+            assertion_type="supports",
+            hypothesis_id="FAKE_HYPOTHESIS_42",
+            confidence=1.0,
+            citation_count=5,
+        )
+        with caplog.at_level(logging.WARNING):
+            kg.add_assertion(a)
+        assert "FAKE_HYPOTHESIS_42" in caplog.text

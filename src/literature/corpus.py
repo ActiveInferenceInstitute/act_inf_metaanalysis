@@ -100,6 +100,20 @@ class Corpus:
         """Return True if a paper with *canonical_id* is in the corpus."""
         return canonical_id in self._papers
 
+    def remove(self, canonical_id: str) -> bool:
+        """Remove a paper by its canonical ID.
+
+        Args:
+            canonical_id: The canonical identifier of the paper to remove.
+
+        Returns:
+            True if a paper was removed, False if not found.
+        """
+        if canonical_id in self._papers:
+            del self._papers[canonical_id]
+            return True
+        return False
+
     def filter_by_year(
         self, start: Optional[int] = None, end: Optional[int] = None
     ) -> Corpus:
@@ -113,6 +127,8 @@ class Corpus:
             New Corpus containing only papers within the year range.
             Papers with year=None are excluded.
         """
+        if start is not None and end is not None and start > end:
+            raise ValueError(f"filter_by_year: start={start} > end={end}")
         filtered: list[Paper] = []
         for paper in self._papers.values():
             if paper.year is None:

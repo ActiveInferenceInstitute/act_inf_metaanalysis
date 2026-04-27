@@ -36,7 +36,7 @@ from knowledge_graph.nanopublication import (
     deserialize_nanopubs,
     get_processed_paper_ids,
 )
-from knowledge_graph.hypothesis import HYPOTHESES
+import knowledge_graph.hypothesis as _hypothesis_module
 from literature.models import Paper
 
 logger = logging.getLogger(__name__)
@@ -139,7 +139,7 @@ def _hypothesis_dicts() -> list[dict[str, str]]:
             "name": h.name,
             "description": h.description,
         }
-        for h in HYPOTHESES
+        for h in _hypothesis_module.HYPOTHESES
     ]
 
 
@@ -284,7 +284,6 @@ def assess_paper_hypotheses(
             for i, item in enumerate(assessments):
                 hyp_id = item.get("hypothesis_id", "")
                 direction = item.get("direction", "irrelevant")
-                confidence = float(item.get("confidence", 0.0))
                 reasoning = item.get("reasoning", "")
 
                 # Validate
@@ -301,9 +300,8 @@ def assess_paper_hypotheses(
                 if direction == "irrelevant":
                     continue
 
-                confidence = float(item.get("confidence", 0.0))
-                # Clamp confidence
-                confidence = max(0.0, min(1.0, confidence))
+                # Clamp confidence to [0.0, 1.0]
+                confidence = max(0.0, min(1.0, float(item.get("confidence", 0.0))))
 
                 # Enforce minimum confidence threshold to handle hallucinated certainty
                 if confidence < config.min_confidence:
@@ -314,9 +312,6 @@ def assess_paper_hypotheses(
                     continue
 
                 direction_counts[direction] = direction_counts.get(direction, 0) + 1
-
-                # Clamp confidence
-                confidence = max(0.0, min(1.0, confidence))
 
                 assertions.append(
                     Assertion(
@@ -431,7 +426,8 @@ def extract_assertions_llm(
         logger.info("📄 Fresh run — nanopubs will be saved to: %s", nanopub_path)
 
     # --- Process new papers ---
-    success_count = len(processed_ids)
+    resumed_count = len(processed_ids)
+    success_count = 0
     fail_count = 0
     new_count = 0
     buffer: list[Nanopublication] = []  # unflushed nanopubs
@@ -466,10 +462,10 @@ def extract_assertions_llm(
             new_count += 1
         except RuntimeError as exc:
             logger.error(
-                "  ✗ Skipping %s: %s",
+                "  ✗ Failed %s (will retry on resume): %s",
                 paper.canonical_id[:40], exc,
             )
-            processed_ids.add(paper.canonical_id)  # Don't retry on resume
+            # Do NOT add to processed_ids — transient errors should be retried next run
             fail_count += 1
             new_count += 1
 
@@ -483,10 +479,11 @@ def extract_assertions_llm(
             )
             eta_min = (remaining_papers / rate / 60) if rate > 0 else 0
             logger.info(
-                "── Progress: %d/%d papers | %d assertions | "
+                "── Progress: %d/%d papers (%d resumed) | %d assertions | "
                 "%.2f papers/s | elapsed %.0fs | ETA ~%.0fm | "
                 "%d failures | model=%s",
-                success_count, len(papers_with_abstract),
+                success_count + resumed_count, len(papers_with_abstract),
+                resumed_count,
                 len(prior_assertions) + len(new_assertions),
                 rate, elapsed, eta_min,
                 fail_count, config.model,
@@ -498,7 +495,7 @@ def extract_assertions_llm(
             logger.info(
                 "💾 Checkpoint flushed: %d new nanopubs → %s "
                 "(total on disk: %d papers processed)",
-                len(buffer), nanopub_path, success_count,
+                len(buffer), nanopub_path, success_count + resumed_count,
             )
             buffer.clear()
 
@@ -508,7 +505,7 @@ def extract_assertions_llm(
         logger.info(
             "💾 Final flush: %d nanopubs → %s "
             "(total on disk: %d papers processed)",
-            len(buffer), nanopub_path, success_count,
+            len(buffer), nanopub_path, success_count + resumed_count,
         )
         buffer.clear()
 

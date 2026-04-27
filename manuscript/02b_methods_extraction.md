@@ -1,8 +1,8 @@
-# LLM-Based Assertion Extraction: Prompt Design, Error Taxonomy, and Validation \label{sec:extraction_pipeline}
+## LLM-Based Assertion Extraction: Prompt Design, Error Taxonomy, and Validation \label{sec:extraction_pipeline}
 
 _This supplementary section documents the implementation specifics of the LLM-based assertion extraction pipeline._
 
-## Relationship to Prior Approaches
+### Relationship to Prior Approaches
 
 The closest prior effort is the systematic literature analysis of Knight, Cordes, and Friedman \citep{knight2022fep}, which used human annotators to manually code structural, visual, and mathematical features of FEP and Active Inference publications. Their work operated at the scale of hundreds of annotated papers and employed terms from the Active Inference Institute's Active Inference Ontology for automated text analysis. Our pipeline replaces the manual coding step with LLM-based assertion extraction, enabling scalable processing of the full corpus ($N = {{CORPUS_SIZE}}$ papers) at the cost of exchanging human-verified precision for machine-generated assessments that require post-hoc validation. This trade-off is characteristic of the broader LLM-based scientific extraction landscape: recent benchmarking confirms that even state-of-the-art modular extraction architectures fall short of production-level precision---particularly on tasks requiring exhaustive retrieval and aggregation of multiple values from long documents---validating our design choice to retain human review pathways alongside automated extraction.
 
@@ -26,11 +26,11 @@ Precision & High (human-verified) & Medium (requires validation) \\
 \end{table}
 
 
-### Positioning in the LLM-Based Review Landscape
+#### Positioning in the LLM-Based Review Landscape
 
 Our pipeline operates within a rapidly maturing ecosystem of LLM-powered literature analysis tools. Multi-agent architectures such as LitLLM decompose the review process into specialized sub-agents (planner, identifier, extractor, compiler), while ensemble approaches aggregate outputs from multiple LLMs via weighted voting to improve reliability. Our work differs from these tools in three respects: (1) we target _hypothesis-level evidence scoring_ rather than inclusion/exclusion screening; (2) we produce structured nanopublications rather than narrative summaries; and (3) we are only analyzing abstracts for claims. This deliberate trade-off enables corpus-scale processing ($N = {{CORPUS_SIZE}}$) but fundamentally misses fine-grained claims embedded in method sections or discussion paragraphs. Full-text processing could improve extraction recall, particularly for hypotheses with small evidence bases (H6 Clinical Utility, H7 Morphogenesis).
 
-## The Eight Tracked Hypotheses
+### The Eight Tracked Hypotheses
 
 Our analysis tracks the evolving evidence base for eight distinct claims within the Active Inference literature, spanning theoretical universality to applied clinical utility:
 
@@ -43,7 +43,7 @@ Our analysis tracks the evolving evidence base for eight distinct claims within 
 7. **H7: Morphogenesis (Biological).** The FEP explains morphogenetic and developmental processes.
 8. **H8: Language AIF (Applied).** Active Inference provides a viable framework for language processing.
 
-## Prompt Engineering and Schema Design
+### Prompt Engineering and Schema Design
 
 The structured prompt is designed to minimize parsing failures and maximize assessment quality:
 
@@ -55,7 +55,7 @@ The structured prompt is designed to minimize parsing failures and maximize asse
 
 4. **Irrelevant filtering.** An explicit "irrelevant" direction allows the LLM to mark hypotheses that a paper does not address, avoiding forced spurious assessments.
 
-### Prompt Template
+#### Prompt Template
 
 The extraction prompt follows a two-part structure (system + user):
 
@@ -85,46 +85,45 @@ For each hypothesis, return:
 
 The extraction module (`src/knowledge_graph/llm_extraction.py`) includes configurable retry logic with exponential backoff, JSON parsing with handling of markdown code fences and extraneous text, confidence clamping, and validation against the hypothesis ID set. The default model is `gemma3:4b` on a local Ollama instance, configurable via `--llm-model` and `--llm-url` flags.
 
-## Failure Modes and Error Recovery
+### Failure Modes and Error Recovery
 
 The primary failure modes are documented below.
 
-### Over-Extraction Bias
+#### Over-Extraction Bias
 
 Approximately 15--20\% of assessments in preliminary experiments exhibit over-extraction: the LLM attributes claims to a paper that merely mentions a hypothesis without taking a position. This is the most common error mode and produces false supporting evidence. Over-extraction disproportionately affects broad-scope hypotheses (H1 FEP Universality, H2 AIF Optimality) where most papers in the corpus contain relevant terminology without explicitly endorsing the claim. Narrower hypotheses tied to specific domains (H7 Morphogenesis, H8 Language AIF) show lower over-extraction rates because their vocabulary is more distinctive. This systematic bias inflates support counts for broad hypotheses, and we caution against interpreting absolute scores for H1 and H2 without accounting for this effect.
 
-### Direction Misclassification
+#### Direction Misclassification
 
 The LLM misclassifies a contradicting claim as supporting, or vice versa. Rarer but more consequential, as it directly inverts the evidence signal. Most common for papers that discuss limitations while ultimately endorsing a hypothesis.
 
-### Confidence Calibration Constraints
+#### Confidence Calibration Constraints
 
 The model occasionally assigns high confidence to assessments where the underlying evidence is ambiguous. Reliable confidence calibration remains an open problem for zero-shot LLM applications, motivating the multi-tiered validation protocols described below.
 
-### Progressive JSON Parsing Recovery
+#### Progressive JSON Parsing Recovery
 
 To mitigate formatting inconsistencies, the module implements a progressive parsing pipeline to recover malformed LLM outputs:
 
 1. **Direct parse**: Attempt `json.loads()` on the raw response.
 2. **Strip code fences**: Remove Markdown `` ```json ... ``` `` wrappers and retry.
 3. **Extract JSON array**: Scan for the first `[...]` substring in the response text.
-4. **Individual recovery**: If a valid array contains malformed elements, parse each element independently.
 
 Papers that fail all parsing stages are logged and skipped; their count is reported at pipeline completion.
 
-## Validation Methodology
+### Validation Methodology
 
 Validation of LLM-extracted assertions follows a three-tier protocol:
 
-1. **Validation Dataset (10\%).** A ground-truth validation dataset comprising a random 10\% subset of the corpus was manually annotated by human experts. Inter-rater reliability was calculated using Cohen's $\kappa$; the LLM-based extraction pipeline was evaluated against this human consensus, requiring a $\kappa > 0.70$ threshold for direction accuracy (supports/contradicts/neutral/irrelevant) prior to full-corpus deployment. In this evaluated sample, direction agreement between the LLM and the manual baseline exceeds 80\%, with the majority of disagreements arising from the over-extraction bias described above rather than direction inversion.
+1. **Validation Dataset (10%, not yet created).** A ground-truth validation protocol is specified in which a random 10% subset of the corpus will be manually annotated by human experts. Inter-rater reliability will be calculated using Cohen's $\kappa$; the LLM-based extraction pipeline will be evaluated against this human consensus, targeting a $\kappa > 0.70$ threshold for direction accuracy (supports/contradicts/neutral/irrelevant). The formal 10% manual annotation dataset has not yet been created; its development is a prioritized next step for this living review architecture.
 
-2. **Boundary-case audit.** Papers known to make contested claims (e.g., critiques of FEP universality, Markov blanket realism debates) are specifically checked for correct direction assignment.
+2. **Boundary-case audit (conceptual design).** Papers known to make contested claims (e.g., critiques of FEP universality, Markov blanket realism debates) would be specifically checked for correct direction assignment. This tier remains a conceptual design and has not been executed.
 
-3. **Aggregate consistency.** Hypothesis scores are compared against qualitative expectations from the literature: hypotheses known to be well-supported (e.g., H4 Predictive Coding) should score positively; those known to be contested (e.g., H3 Markov Blanket Realism) should show lower or mixed scores.
+3. **Aggregate consistency (conceptual design).** Hypothesis scores would be compared against qualitative expectations from the literature: hypotheses known to be well-supported (e.g., H4 Predictive Coding) should score positively; those known to be contested (e.g., H3 Markov Blanket Realism) should show lower or mixed scores. This tier also remains a conceptual design and has not been executed.
 
-Preliminary experiments on a sampled subset of Active Inference papers—evaluated across GPT-4 and Claude-family models—suggest that this automated approach reduces human annotation time by approximately 60--70\% compared to purely manual extraction. Both over-extraction biases and direction inversion errors are intercepted by human review at acceptable rates. We note that recent benchmarking of LLMs on structured scientific claim extraction reports "extremely low" exact-match accuracy \citep{liang2024survey}, underscoring that our multi-tier validation protocol—rather than raw LLM output—is the operative quality control mechanism. The pipeline supports model upgrades without code changes: swapping the underlying model requires only adjusting the `--llm-model` flag.
+The current extraction pipeline operates without human-validated ground truth; all reported assertions are machine-generated and unaudited.
 
-## From Assertions to Nanopublications
+### From Assertions to Nanopublications
 
 Each validated assertion is wrapped in a **nanopublication** \citep{groth2010anatomy, kuhn2016decentralized}—a self-contained, machine-readable knowledge unit packaging the assertion with explicit provenance metadata. The wrapping process assigns:
 

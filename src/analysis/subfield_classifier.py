@@ -292,6 +292,29 @@ DEFAULT_SUBFIELDS: dict[str, dict] = {
 # Module-level active subfields (overridden by configure_subfields)
 SUBFIELDS: dict[str, dict] = dict(DEFAULT_SUBFIELDS)
 
+# Pre-compiled regex cache: rebuilt whenever SUBFIELDS changes.
+# Maps field_name -> list of compiled patterns (one per keyword).
+_PATTERN_CACHE: dict[str, list] = {}
+
+
+def _build_pattern_cache() -> None:
+    """Pre-compile word-boundary regex for every keyword in SUBFIELDS.
+
+    Called automatically when SUBFIELDS is updated so that classify_paper()
+    never recompiles patterns at query time.
+    """
+    global _PATTERN_CACHE
+    _PATTERN_CACHE = {
+        field: [
+            re.compile(r'\b' + re.escape(kw.lower()) + r'\b')
+            for kw in info.get("keywords", [])
+        ]
+        for field, info in SUBFIELDS.items()
+    }
+
+
+_build_pattern_cache()
+
 
 def load_subfields_from_config(config_path: Path) -> dict[str, dict]:
     """Load subfield keyword definitions from a YAML config file.
@@ -319,7 +342,10 @@ def load_subfields_from_config(config_path: Path) -> dict[str, dict]:
         logger.warning("Cannot read config %s: %s; using defaults", config_path, exc)
         return dict(DEFAULT_SUBFIELDS)
 
-    subfield_kw = data.get("subfield_keywords")
+    # Support both top-level and project_config-nested placement
+    subfield_kw = data.get("subfield_keywords") or data.get("project_config", {}).get(
+        "subfield_keywords"
+    )
     if not subfield_kw or not isinstance(subfield_kw, dict):
         logger.info("No subfield_keywords in config; using defaults")
         return dict(DEFAULT_SUBFIELDS)
@@ -378,6 +404,7 @@ def configure_subfields(config_path: Optional[Path] = None) -> dict[str, dict]:
         SUBFIELDS = load_subfields_from_config(config_path)
     else:
         SUBFIELDS = dict(DEFAULT_SUBFIELDS)
+    _build_pattern_cache()
     return SUBFIELDS
 
 
@@ -422,14 +449,11 @@ def classify_paper(paper: Paper) -> str:
 
     default_field = _get_default_field()
 
-    # Score every field
+    # Score every field using pre-compiled patterns
     scores: list[tuple[int, int, str]] = []  # (priority, -count, name)
     for field_name, field_info in SUBFIELDS.items():
-        count = 0
-        for keyword in field_info["keywords"]:
-            pattern = r'\b' + re.escape(keyword.lower()) + r'\b'
-            if re.search(pattern, text):
-                count += 1
+        patterns = _PATTERN_CACHE.get(field_name, [])
+        count = sum(1 for p in patterns if p.search(text))
         if count > 0:
             priority = field_info.get("priority", 4)
             scores.append((priority, -count, field_name))

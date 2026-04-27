@@ -16,13 +16,14 @@ import shutil
 import sys
 from pathlib import Path
 
-# Add project root to path
+# Add project root, src/, and repo root to path
 project_root = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(project_root / "src"))   # manuscript.variables
 sys.path.insert(0, str(project_root))
-sys.path.insert(0, str(project_root.parent.parent))
+sys.path.insert(0, str(project_root.parent.parent))  # infrastructure
 
-from infrastructure.core.logging_utils import get_logger, log_operation
-from src.manuscript.variables import compute_variables, inject_variables
+from infrastructure.core.logging.utils import get_logger, log_operation
+from manuscript.variables import compute_variables, inject_variables
 
 logger = get_logger(__name__)
 
@@ -44,9 +45,12 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    # Resolve paths
+    # Resolve paths — detect whether the project lives under projects/
+    # or projects_in_progress/ so the script works in either location.
     repo_root = Path(__file__).resolve().parent.parent.parent.parent
     project_dir = repo_root / "projects" / args.project
+    if not project_dir.exists():
+        project_dir = repo_root / "projects_in_progress" / args.project
     manuscript_dir = project_dir / "manuscript"
     output_dir = project_dir / "output"
     rendered_dir = output_dir / "manuscript"

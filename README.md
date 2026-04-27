@@ -1,10 +1,10 @@
 # 🧠 Active Inference Meta-Analysis
 
-**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis/actions)
-[![Test Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)
-[![Tests](https://img.shields.io/badge/tests-534%20passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis/actions)
+[![Coverage gate](https://img.shields.io/badge/coverage-gate%2090%25-brightgreen)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+[![Tests](https://img.shields.io/badge/tests-pytest-blue)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 [![Python 3.12](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -78,27 +78,42 @@ graph TD
 
 ## 🚀 Quick Start
 
-Ensure you have your environment set up and dependencies installed (we use `uv` for python dependency tracking). Because this project adheres to a standalone **Graduated Pattern**, all scripts and tests are executed locally relative to the project root.
+Use `uv` for dependencies. In the **template monorepo**, this project lives at `projects/act_inf_metaanalysis/` and is listed for pipeline discovery in [`docs/_generated/active_projects.md`](../../docs/_generated/active_projects.md).
 
-### Running Tests 🧪
+### Running tests
 
-The repository is built applying strictly test-driven methodologies with zero-mock pure functions where possible.
+Use `uv` for dependency management. From **within the project directory** (ensures correct venv context):
 
 ```bash
-# Full test suite with coverage
-uv run pytest tests/ --cov=src --cov-fail-under=90 -v
-
-# Single test file specifically
-uv run pytest tests/test_hypothesis.py -v
+cd projects/act_inf_metaanalysis
+uv sync --extra dev  # First time only: install dependencies
+uv run pytest --cov=src --cov-fail-under=90 -v
 ```
 
-### Running the Orchestration Scripts ⚙️
-
-The core logic is thin-orchestrated via the `scripts/` directory:
+From the **repository root**, pass the project path explicitly:
 
 ```bash
-# 1. Literature search (multi-source, resumable)
-python3 scripts/01_literature_search.py --resume --log-level INFO
+uv run pytest projects/act_inf_metaanalysis/tests/ --cov=projects/act_inf_metaanalysis/src --cov-fail-under=90
+```
+
+**Important:** The full test suite requires `rdflib`, `wordcloud`, and `scikit-learn` to be installed.
+If any of these are missing, pytest will abort with a clear error listing the missing packages.
+
+Example single module:
+
+```bash
+cd projects/act_inf_metaanalysis
+uv run pytest tests/knowledge_graph/test_hypothesis.py -v
+```
+
+### Running the orchestration scripts
+
+Thin orchestrators live under `scripts/`:
+
+```bash
+cd projects/act_inf_metaanalysis
+# 1. Literature search (multi-source; default merges into existing corpus — use --no-resume to ignore it)
+python3 scripts/01_literature_search.py --log-level INFO
 
 # 2. Meta-analysis processing
 python3 scripts/02_meta_analysis_pipeline.py --log-level DEBUG
@@ -115,16 +130,12 @@ python3 scripts/04_generate_figures.py --dpi 300
 ## 🏗️ Directory Structure
 
 ```text
-act_inf_metaanalysis/
-├── src/                        # 🧠 Core scientific library (45+ public APIs)
-│   ├── literature/             # Multi-source retrieval and corpus management
-│   ├── analysis/               # Temporal, TF-IDF, Topic Modeling, Citation graphs
-│   ├── knowledge_graph/        # RDF structures, Nanopublication logic, Hypothesis scoring
-│   └── visualization/          # 16 standard figure generators, VIZ_CONFIG aesthetic defaults
-├── tests/                      # 🧪 534 rigorous tests achieving ≥90% project coverage
-├── scripts/                    # ⚙️ Execution orchestrators 
-├── manuscript/                 # 📝 Markdown manuscript sections, References, and config
-└── doc/                        # 📚 Advanced API documentation, Architecture specs, Data formats
+projects/act_inf_metaanalysis/
+├── src/                        # Core library (literature, analysis, knowledge_graph, visualization)
+├── tests/                      # Pytest suite; 90% coverage gate in pyproject.toml
+├── scripts/                    # Numbered orchestrators (01–06)
+├── manuscript/                 # Markdown sections, config.yaml, references.bib
+└── doc/                        # Architecture, API, data formats, scripts
 ```
 
 ---
@@ -161,3 +172,22 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 *Note: The project applies an automated documentation parity standard constraint. Every underlying module inside `src/` and `tests/` features dedicated component-level `README.md` and `AGENTS.md` files mapping code functionality tightly to logic constraints.*
 
 *This project was developed within the Docxology research infrastructure.*
+
+## 📋 Changelog
+
+All notable changes to this project will be documented in this section.
+
+### v2.0 (2026-04)
+
+**Correction**
+- Removed false claims about completed manual validation from manuscript and documentation.
+
+**Fixes**
+- Implemented `ASSERTION_SUPPORT_PCT` and `ASSERTION_CONTRADICT_PCT` variables for accurate evidence composition reporting.
+- Fixed test dependencies and raised coverage to ≥90% across all source modules.
+
+**Maintenance**
+- Updated documentation to reflect v2 pipeline changes.
+- Updated references and bibliography entries.
+
+---

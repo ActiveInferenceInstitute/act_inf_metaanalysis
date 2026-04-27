@@ -112,6 +112,12 @@ def estimate_growth_rate(year_counts: dict[int, int]) -> dict:
         if prev_count > 0:
             rate = (curr_count - prev_count) / prev_count
             annual_growth_rates[curr_year] = rate
+        elif curr_count > 0:
+            # Zero-to-non-zero: field emergence; log but exclude from mean
+            logger.debug(
+                "Year %d had 0 prior-year papers → %d (emergence year, excluded from mean growth)",
+                curr_year, curr_count,
+            )
 
     # Mean growth rate
     if annual_growth_rates:
@@ -127,7 +133,10 @@ def estimate_growth_rate(year_counts: dict[int, int]) -> dict:
     else:
         doubling_time = None
 
-    # CAGR: (end/start)^(1/years) - 1
+    # CAGR: (end_year_count / start_year_count)^(1/years) - 1
+    # Standard bibliometric measure: annualised growth rate of yearly
+    # publication volume between the first and last observed years.
+    # Measures field *activity* growth, not cumulative corpus size growth.
     first_year = sorted_years[0]
     last_year = sorted_years[-1]
     n_years = last_year - first_year

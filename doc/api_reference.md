@@ -1,6 +1,6 @@
 # API Reference
 
-**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
 Public API for the five packages in `src/`. Current corpus: **N = 849 papers (2005–2026)**, 2,795 nanopublication assertions, 8 hypotheses, 16 figures.
 
@@ -111,6 +111,21 @@ class Corpus:
     def load(cls, path: Path) -> Corpus
 ```
 
+**Usage Example:**
+
+```python
+from literature.corpus import Corpus
+from literature.arxiv_client import search_arxiv
+
+# Create a fresh corpus, run a small query, and add papers
+corpus = Corpus()
+new_papers = search_arxiv(query="active inference", max_results=10)
+for p in new_papers:
+    corpus.add(p)
+
+print(f"Corpus contains {len(corpus)} unique papers.")
+```
+
 ## analysis
 
 Bibliometric and text analysis.
@@ -141,9 +156,18 @@ def compute_network_metrics(
     hits_max_iter: int = 200,
     hits_tol: float = 1e-06,
 ) -> dict
-    # Returns: num_nodes, num_edges, density, avg_in_degree, avg_out_degree,
-    #          pagerank, hubs, authorities, connected_components
+    # Returns: 
+    #   num_nodes: Total nodes
+    #   num_edges: Total edges
+    #   density: Network density
+    #   avg_in_degree: Average inbound citations 
+    #   avg_out_degree: Average outbound references
+    #   pagerank: Dict mapping top-5 paper_id -> score
+    #   hubs: Dict mapping top-5 paper_id -> score (often review papers)
+    #   authorities: Dict mapping top-5 paper_id -> score (often foundational methods)
+    #   connected_components: Number of weakly connected components
 def detect_communities(graph: nx.DiGraph) -> dict[str, int]  # node_id -> community_id
+
 def build_reference_index(papers: list[Paper]) -> dict[str, str]  # raw_id -> canonical_id
 def resolve_citations(papers: list[Paper], ref_index: dict[str, str], logger: logging.Logger) -> list[Citation]
 ```
@@ -152,10 +176,20 @@ def resolve_citations(papers: list[Paper], ref_index: dict[str, str], logger: lo
 
 ```python
 def compute_temporal_metrics(papers: list[Paper]) -> dict
-    # Returns: year_counts, smoothed_annual, cumulative, first_year, last_year, total_papers, peak_year
+    # Returns: 
+    #   year_counts: Dict[str, int]
+    #   smoothed_annual: Dict[str, float] (3-year moving avg)
+    #   cumulative: Dict[str, int]
+    #   first_year/last_year: Int bounds
+    #   total_papers: Total valid
+    #   peak_year: Int of highest volume year
 
 def estimate_growth_rate(year_counts: dict[int, int]) -> dict
-    # Returns: annual_growth_rates, mean_growth_rate, doubling_time, cagr
+    # Returns: 
+    #   annual_growth_rates: Dict[int, float]
+    #   mean_growth_rate: float
+    #   doubling_time: float (in years, null if growth <= 0)
+    #   cagr: float (Compound Annual Growth Rate)
 ```
 
 ### Topic Modeling (`analysis.topic_modeling`)
@@ -326,6 +360,29 @@ def extract_assertions(
     llm_config: LLMConfig | None = None,
 ) -> list[Assertion]
     # Dispatches to extract_assertions_llm() with provided config
+```
+
+**Usage Example:**
+
+```python
+from knowledge_graph.llm_extraction import LLMConfig
+from knowledge_graph.extraction import extract_assertions
+from literature.corpus import Corpus
+from pathlib import Path
+
+corpus = Corpus.load(Path("output/data/corpus.jsonl"))
+
+# Configure Ollama integration (resumes automatically if nanopub_path exists)
+config = LLMConfig(
+    base_url="http://localhost:11434",
+    model="gemma3:4b", 
+    nanopub_path="output/nanopublications.jsonl",
+    checkpoint_interval=10
+)
+
+# Extracts assertions only for papers not already present in the nanopub_path
+assertions = extract_assertions(corpus.papers, llm_config=config)
+print(f"Extracted {len(assertions)} total assertions.")
 ```
 
 ## visualization

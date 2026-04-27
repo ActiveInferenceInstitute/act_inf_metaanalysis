@@ -28,7 +28,7 @@ sys.path.insert(0, str(SRC))
 
 from literature.corpus import Corpus
 from literature.models import Paper
-from knowledge_graph.schema import HYPOTHESIS_CATEGORIES
+import knowledge_graph.schema as _schema
 from knowledge_graph.nanopublication import (
     Assertion,
     deserialize_nanopubs,
@@ -39,7 +39,6 @@ from knowledge_graph.extraction import extract_assertions
 from knowledge_graph.llm_extraction import LLMConfig
 from knowledge_graph.hypothesis import (
     STANDARD_HYPOTHESES,
-    HYPOTHESES,
     score_all_hypotheses,
     temporal_trend,
     configure_hypotheses,
@@ -61,11 +60,20 @@ def _load_kg_config(config_path: Path) -> dict:
         return {}
     with open(config_path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f) or {}
-    kg_cfg = data.get("knowledge_graph", {})
+    project_cfg = data.get("project_config", {})
+    kg_cfg = data.get("knowledge_graph", {}) or project_cfg.get("knowledge_graph", {})
+    llm_cfg = data.get("llm_extraction", {}) or project_cfg.get("llm_extraction", {})
     return {
         "checkpoint_interval": kg_cfg.get("checkpoint_interval"),
         "clear_assertions": kg_cfg.get("clear_assertions"),
         "max_papers": kg_cfg.get("max_papers"),
+        "llm_model": llm_cfg.get("model"),
+        "llm_url": llm_cfg.get("base_url"),
+        "llm_temperature": llm_cfg.get("temperature"),
+        "llm_max_tokens": llm_cfg.get("max_tokens"),
+        "llm_timeout": llm_cfg.get("timeout_seconds"),
+        "llm_max_retries": llm_cfg.get("max_retries"),
+        "llm_min_confidence": llm_cfg.get("min_confidence"),
     }
 
 def parse_args() -> argparse.Namespace:
@@ -131,12 +139,18 @@ def parse_args() -> argparse.Namespace:
 
 def _run_llm_extraction(papers, args, nanopub_path, logger):
     """Run LLM-based assertion extraction (requires Ollama)."""
+    cfg = _load_kg_config(ROOT / "manuscript" / "config.yaml")
     llm_config = LLMConfig(
         base_url=args.llm_url,
         model=args.llm_model,
         nanopub_path=str(nanopub_path),
         checkpoint_interval=args.checkpoint_interval,
         max_papers=args.max_papers,
+        temperature=cfg.get("llm_temperature") or 0.1,
+        max_tokens=cfg.get("llm_max_tokens") or 2048,
+        timeout_seconds=cfg.get("llm_timeout") or 120,
+        max_retries=cfg.get("llm_max_retries") or 3,
+        min_confidence=cfg.get("llm_min_confidence") or 0.0,
     )
     logger.info(
         "Extracting assertions via LLM (model=%s, checkpoint_interval=%d)...",
@@ -171,6 +185,10 @@ def main() -> None:
         if cfg.get("max_papers") is not None and args.max_papers is None:
             args.max_papers = cfg["max_papers"]
             logger.info("Config override: max_papers = %d", args.max_papers)
+        for key in ("llm_model", "llm_url"):
+            if cfg.get(key) is not None:
+                setattr(args, key.replace("llm_", "llm_"), cfg[key])
+                logger.info("Config override: %s = %s", key, cfg[key])
 
     # Configure hypotheses from config (or use defaults)
     configure_hypotheses(config_path if config_path.exists() else None)
@@ -267,7 +285,7 @@ def main() -> None:
     # Temporal trends
     logger.info("--- Temporal Trends ---")
     yearly_scores = {}
-    for hyp_id in HYPOTHESIS_CATEGORIES:
+    for hyp_id in _schema.HYPOTHESIS_CATEGORIES:
         trend = temporal_trend(assertions, hyp_id, papers)
         if trend:
             yearly_scores[hyp_id] = {str(k): v for k, v in trend.items()}

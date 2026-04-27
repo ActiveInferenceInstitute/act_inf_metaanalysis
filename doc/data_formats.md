@@ -1,6 +1,6 @@
 # Output Data Formats
 
-**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
 Schema reference for all pipeline output artifacts. Each file is produced by one pipeline stage and consumed by downstream stages. Current corpus: N = 849 papers, 2,795 assertions over 8 hypotheses, citation graph: 847 nodes / 1,678 edges.
 
@@ -112,9 +112,9 @@ Array of topic objects from NMF decomposition:
 | `connected_components` | int | Number of weakly connected components |
 | `num_communities` | int | Number of detected communities (greedy modularity) |
 | `total_references` | int | Total reference count across all papers |
-| `top_pagerank` | object | `{paper_id: score}` for top-5 papers by PageRank |
-| `top_hubs` | object | `{paper_id: score}` for top-5 hub papers (HITS) |
-| `top_authorities` | object | `{paper_id: score}` for top-5 authority papers (HITS) |
+| `top_pagerank` | object | `{paper_id: score}` for top-5 papers by PageRank (global reach) |
+| `top_hubs` | object | `{paper_id: score}` for top-5 hub papers (HITS) - typically Review papers |
+| `top_authorities` | object | `{paper_id: score}` for top-5 authority papers (HITS) - typically Foundational methods |
 
 ### `citation_graph.gml`
 
@@ -151,6 +151,33 @@ One JSON object per line, each wrapping an assertion with provenance:
 ### `nanopublications.trig`
 
 RDF TriG serialization of all nanopublications, compliant with the nanopub.net specification. Contains four named graphs per nanopublication (Head, Assertion, Provenance, Publication Info). This format enables interoperability with semantic web tools and SPARQL endpoints.
+
+**Example TriG structure for a single assertion:**
+
+```trig
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix prv: <http://purl.org/net/provenance/ns#> .
+@prefix aif: <http://activeinference.institute/ontology/> .
+
+<http://activeinference.institute/nanopub/a3f91b> {
+    <http://activeinference.institute/nanopub/a3f91b> a np:Nanopublication ;
+        np:hasAssertion <http://activeinference.institute/nanopub/a3f91b#assertion> ;
+        np:hasProvenance <http://activeinference.institute/nanopub/a3f91b#provenance> ;
+        np:hasPublicationInfo <http://activeinference.institute/nanopub/a3f91b#pubinfo> .
+}
+
+<http://activeinference.institute/nanopub/a3f91b#assertion> {
+    <http://activeinference.institute/paper/10.1038/s41586-024> aif:supports aif:FEP_UNIVERSALITY .
+}
+
+<http://activeinference.institute/nanopub/a3f91b#provenance> {
+    <http://activeinference.institute/nanopub/a3f91b#assertion> prv:wasGeneratedBy "gemma3:4b-orchestrator" .
+}
+
+<http://activeinference.institute/nanopub/a3f91b#pubinfo> {
+    <http://activeinference.institute/nanopub/a3f91b> dc:created "2026-04-07T14:00:00Z"^^xsd:dateTime .
+}
+```
 
 ### `hypothesis_scores.json`
 

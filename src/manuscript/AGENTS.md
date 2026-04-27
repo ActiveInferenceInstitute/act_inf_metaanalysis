@@ -1,15 +1,52 @@
-# Manuscript Module Architecture
+# Manuscript Template Engine — Agent Directives
 
-**This is an active module** in the `projects/act_inf_metaanalysis/src/manuscript/` directory.
+**Active module** at `projects/act_inf_metaanalysis/src/manuscript/`.
 
 ## Overview
 
-The `src/manuscript/` core library dynamically maps metrics, string evaluations, and quantitative pipeline outputs directly into a series of static Markdown files within `projects/act_inf_metaanalysis/manuscript/`. This ensures the final drafted documents never fall out of sync with the underlying codebase constraints or generated data.
+Single module (`variables.py`) that reads all pipeline output JSONs and produces a complete
+`dict[str, str]` of template variables. Called by `scripts/05_inject_variables.py`.
 
-## Mechanics
+## Invariants Agents Must Preserve
 
-- Calculates variables directly from the raw outputs serialized in `projects/act_inf_metaanalysis/output/`.
-- Interfaces with the configurations present in `manuscript/config.yaml`.
-- Executes variable substitutions employing custom tag parsing across pre-written natural language templates.
+- **Always multiply by 100 for percentages**: `CAGR_PCT` = `cagr * 100`. The raw `cagr` from
+  `temporal_analysis.json` is a decimal fraction (e.g., 0.1699 for 16.99%). Never output
+  the fraction directly as CAGR_PCT — it would render as "0.17%" in the manuscript.
+- **H1–H8 aliases are order-dependent**: The mapping H1 → `FEP_UNIVERSALITY`, ..., H8 →
+  `LANGUAGE_AIF` must match the order of `STANDARD_HYPOTHESES` in `hypothesis.py`. If the
+  hypothesis list order changes, update both files together.
+- **Infrastructure fallback**: The try/except import of `get_logger` is intentional. Do not
+  remove it — the module must work both inside the template monorepo and standalone.
+- **Silent fallback values**: When a JSON file is missing, `compute_variables` returns an
+  empty string for that variable rather than raising. This means a missing file produces
+  blank text in the manuscript rather than a hard failure. Always check that all expected
+  JSON files exist in `output/data/` before running Stage 5.
+- **LaTeX number formatting**: `_latex_number(n)` formats positive integers with `{,}` thousand
+  separators for LaTeX (e.g., `2{,}795`). Negative numbers and floats are not handled — keep
+  all counts non-negative.
 
-See `README.md` for human-readable integration tips.
+## Adding a New Template Variable
+
+1. Add a computation in `compute_variables()` reading from an existing JSON output file.
+2. Store as a string: `variables["MY_VAR"] = f"{value}"`.
+3. Place `{{MY_VAR}}` in the appropriate `manuscript/*.md` file.
+4. Add a test in `tests/test_variables.py` verifying the value with a synthetic JSON file.
+5. Update `README.md` variable table.
+
+## Running Injection Manually
+
+```bash
+PYTHONPATH=/path/to/template:/path/to/act_inf_metaanalysis/src \
+  python scripts/05_inject_variables.py
+```
+
+Output: `output/manuscript/*.md` — rendered copies of all manuscript files with all `{{VAR}}`
+replaced. Only `VAR_NAME` in `02e_methods_viz_injection.md` is intentionally left unresolved
+(it is a syntax documentation example, not a real variable).
+
+## Known Limitations
+
+- **JSONL line counting**: `_count_jsonl_lines()` counts non-empty lines, not valid JSON objects.
+  A malformed JSONL line counts as valid. For strict validation, use `deserialize_nanopubs()`.
+- **Reference deduplication**: `_count_total_references()` sums per-paper reference lists
+  without cross-paper deduplication. The total represents raw reference entries, not unique cited works.

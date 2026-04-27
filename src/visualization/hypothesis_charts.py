@@ -45,6 +45,15 @@ def plot_hypothesis_dashboard(
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    if not scores:
+        fig, ax = plt.subplots(figsize=VIZ_CONFIG["figure_size"], dpi=VIZ_CONFIG["dpi"])
+        ax.text(0.5, 0.5, "No hypothesis scores available", ha="center", va="center",
+                fontsize=VIZ_CONFIG["font_size"])
+        ax.set_axis_off()
+        fig.savefig(output_path, dpi=VIZ_CONFIG["dpi"], bbox_inches="tight")
+        plt.close(fig)
+        return output_path
+
     # Sort hypotheses by score so the highest is at the top of the chart
     sorted_pairs = sorted(scores.items(), key=lambda x: x[1])
     hypotheses = [p[0] for p in sorted_pairs]
@@ -62,7 +71,7 @@ def plot_hypothesis_dashboard(
     ax.set_yticks(list(y_positions))
     ax.set_yticklabels(
         [_format_hypothesis_label(h) for h in hypotheses],
-        fontsize=VIZ_CONFIG["font_size"] - 1,
+        fontsize=max(VIZ_CONFIG["font_size"] - 1, 16),
     )
 
     # Add score labels
@@ -72,7 +81,7 @@ def plot_hypothesis_dashboard(
         ax.text(
             val + offset, i, f"{val:+.2f}",
             va="center", ha=ha,
-            fontsize=VIZ_CONFIG["font_size"] - 2,
+            fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
             fontweight="bold",
         )
 
@@ -91,7 +100,7 @@ def plot_hypothesis_dashboard(
     ax.text(
         0.5, 1.0, f"N = {n_hypotheses} hypotheses",
         transform=ax.transAxes, ha="center", va="bottom",
-        fontsize=VIZ_CONFIG["font_size"] - 2, color="gray",
+        fontsize=max(VIZ_CONFIG["font_size"] - 2, 16), color="gray",
     )
     ax.grid(axis="x", alpha=VIZ_CONFIG["grid_alpha"])
     ax.invert_yaxis()
@@ -157,7 +166,7 @@ def plot_evidence_timeline(
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
     )
-    ax.legend(loc="best", fontsize=VIZ_CONFIG["font_size"] - 2,
+    ax.legend(loc="best", fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
               framealpha=0.9)
     ax.grid(alpha=VIZ_CONFIG["grid_alpha"])
 
@@ -215,7 +224,7 @@ def plot_assertion_type_breakdown(
     ax.set_yticks(list(y_pos))
     ax.set_yticklabels(
         [_format_hypothesis_label(h) for h in hypotheses],
-        fontsize=VIZ_CONFIG["font_size"] - 2,
+        fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
     )
 
     ax.set_xlabel("Number of Assertions", fontsize=VIZ_CONFIG["font_size"])
@@ -224,7 +233,7 @@ def plot_assertion_type_breakdown(
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
     )
-    ax.legend(loc="lower right", fontsize=VIZ_CONFIG["font_size"] - 2,
+    ax.legend(loc="lower right", fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
               framealpha=0.9)
     ax.grid(axis="x", alpha=VIZ_CONFIG["grid_alpha"])
     ax.invert_yaxis()
@@ -238,7 +247,7 @@ def plot_assertion_type_breakdown(
         ax.text(
             total + max(1, max(supports) + max(contradicts) + max(neutrals)) * 0.01,
             i, f"{total} ({pct:.0f}% support)", va="center",
-            fontsize=VIZ_CONFIG["font_size"] - 2, fontweight="bold",
+            fontsize=max(VIZ_CONFIG["font_size"] - 2, 16), fontweight="bold",
         )
 
     plt.tight_layout()
@@ -288,9 +297,9 @@ def plot_assertion_summary(
             autopct="%1.1f%%", startangle=140, pctdistance=0.85,
         )
         for text in texts:
-            text.set_fontsize(VIZ_CONFIG["font_size"] - 2)
+            text.set_fontsize(max(VIZ_CONFIG["font_size"] - 2, 16))
         for autotext in autotexts:
-            autotext.set_fontsize(VIZ_CONFIG["font_size"] - 3)
+            autotext.set_fontsize(max(VIZ_CONFIG["font_size"] - 3, 16))
         ax1.set_title(
             f"Assertion Types (N={total_assertions:,})",
             fontsize=VIZ_CONFIG["title_size"],
@@ -318,13 +327,13 @@ def plot_assertion_summary(
                 bar.get_width() + max(counts) * 0.01,
                 bar.get_y() + bar.get_height() / 2,
                 str(count), va="center",
-                fontsize=VIZ_CONFIG["font_size"] - 2,
+                fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
             )
 
         ax2.set_yticks(list(y_pos))
         ax2.set_yticklabels(
             [_format_hypothesis_label(h) for h in hyps],
-            fontsize=VIZ_CONFIG["font_size"] - 2,
+            fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
         )
         ax2.set_xlabel("Assertions", fontsize=VIZ_CONFIG["font_size"])
         ax2.set_title(

@@ -4,23 +4,26 @@
 paper:
   title: "A Literature Review Architecture for Active Inference: Scalable Assertion Extraction, Nanopublications, and Citation-Weighted Hypothesis Scoring"
   subtitle: "A Computational Meta-Analysis of the Active Inference Literature (2000–2026)"
-  version: "1.0"
+  version: "2.0"
   date: "" # Auto-generated
 
 authors:
   - name: "Daniel Friedman"
     orcid: "0000-0001-6232-9096"
     email: "daniel@activeinference.institute"
-    affiliation: "Active Inference Institute"
+    affiliations:
+      - "Active Inference Institute"
     corresponding: true
   - name: "Joel Dietz"
     orcid: "0000-0002-9456-2691"
-    email: "joel@dietz.com"
-    affiliation: "Independent Researcher"
+    email: "jdietz@mit.edu"
+    affiliations:
+      - "Massachusetts Institute of Technology (MIT)"
+      - "California Institute for Machine Consciousness (CIMC)"
 
 publication:
-  doi: ""
-  journal: ""
+  doi: "10.5281/zenodo.19461934"
+  journal: "Active Inference Journal"
   volume: ""
   pages: ""
   year: "2026"
@@ -47,7 +50,8 @@ keywords:
 metadata:
   license: "CC-BY-4.0"
   language: "en"
-  repository: "https://github.com/ActiveInferenceInstitute/literature_meta_analysis/"
+  # Canonical package URL (pyproject [project.urls]); monorepo path: projects/act_inf_metaanalysis/
+  repository: "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
 
 llm:
   reviews:

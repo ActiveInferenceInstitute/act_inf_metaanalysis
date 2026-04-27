@@ -5,8 +5,9 @@ Thin orchestrator that coordinates literature retrieval from multiple
 academic APIs (arXiv, Semantic Scholar, OpenAlex), merges results into
 a deduplicated corpus, and persists to JSONL format.
 
-Supports --resume to load an existing corpus before fetching (skipping
-already-downloaded papers via deduplication), --log-level for verbosity
+Supports --resume / --no-resume to control loading an existing corpus
+before fetching (skipping already-downloaded papers via deduplication
+when resuming), --log-level for verbosity
 control, and --config to load settings from a YAML configuration file.
 
 Uses multiple arXiv query strings for comprehensive FEP/AIF coverage,
@@ -111,12 +112,20 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Skip OpenAlex search",
     )
-    parser.add_argument(
+    resume_grp = parser.add_mutually_exclusive_group()
+    resume_grp.add_argument(
         "--resume",
+        dest="resume",
         action="store_true",
-        default=True,
-        help="Load existing corpus.jsonl before searching (default: True)",
+        help="Load existing corpus.jsonl before searching (default)",
     )
+    resume_grp.add_argument(
+        "--no-resume",
+        dest="resume",
+        action="store_false",
+        help="Start from an empty corpus; ignore existing corpus.jsonl",
+    )
+    parser.set_defaults(resume=True)
     parser.add_argument(
         "--clear-corpus",
         action="store_true",
@@ -309,12 +318,12 @@ def main() -> None:
             logger.info("Config override: relevance_keywords = %d keywords", len(_CORE_KEYWORDS))
     pre_filter = len(corpus)
     to_remove = []
-    for cid, p in corpus._papers.items():
+    for p in corpus.papers:
         text = (p.title + " " + p.abstract).lower()
         if not any(kw in text for kw in _CORE_KEYWORDS):
-            to_remove.append(cid)
+            to_remove.append(p.canonical_id)
     for cid in to_remove:
-        del corpus._papers[cid]
+        corpus.remove(cid)
     if to_remove:
         logger.info(
             "Relevance filter: removed %d off-topic papers (%d → %d)",

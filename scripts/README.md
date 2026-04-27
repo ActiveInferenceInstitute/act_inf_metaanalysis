@@ -8,8 +8,8 @@ Project-specific orchestrator scripts for the Active Inference literature meta-a
 # From the project root (projects/act_inf_metaanalysis/)
 cd /path/to/template/projects/act_inf_metaanalysis
 
-# 1. Retrieve literature corpus
-python scripts/01_literature_search.py --resume
+# 1. Retrieve literature corpus (default: merge into existing corpus.jsonl; use --no-resume to ignore it)
+python scripts/01_literature_search.py
 
 # 2. Run quantitative analyses
 python scripts/02_meta_analysis_pipeline.py

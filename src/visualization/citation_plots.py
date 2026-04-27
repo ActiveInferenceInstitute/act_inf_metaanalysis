@@ -109,7 +109,7 @@ def plot_citation_network(
             short_label = str(node)[:25]
             ax.annotate(
                 short_label, (x, y),
-                fontsize=max(VIZ_CONFIG["font_size"] - 4, 12),
+                fontsize=max(VIZ_CONFIG["font_size"] - 4, 16),
                 fontweight="bold", alpha=0.85,
                 ha="center", va="bottom",
                 xytext=(0, 6), textcoords="offset points",
@@ -200,7 +200,7 @@ def plot_degree_distribution(
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
     )
-    ax.legend(fontsize=VIZ_CONFIG["font_size"] - 2, framealpha=0.9)
+    ax.legend(fontsize=max(VIZ_CONFIG["font_size"] - 2, 16), framealpha=0.9)
     ax.grid(axis="y", alpha=VIZ_CONFIG["grid_alpha"])
 
     plt.tight_layout()

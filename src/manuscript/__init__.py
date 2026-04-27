@@ -4,6 +4,6 @@ Provides template variable computation from pipeline output data
 for auto-injecting real values into manuscript files.
 """
 
-from src.manuscript.variables import compute_variables, inject_variables
+from manuscript.variables import compute_variables, inject_variables
 
 __all__ = ["compute_variables", "inject_variables"]
