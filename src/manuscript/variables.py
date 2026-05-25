@@ -24,6 +24,7 @@ except ImportError:
     import logging as _logging
 
     def get_logger(name: str):  # type: ignore[misc]
+        """Fallback logger factory used when the infrastructure package is unavailable."""
         return _logging.getLogger(name)
 
 
@@ -65,11 +66,11 @@ def _count_jsonl_lines(path: Path) -> int:
     return count
 
 
-def _load_json(path: Path) -> Optional[dict]:
-    """Load a JSON file, returning None if missing."""
+def _load_json(path: Path) -> dict:
+    """Load a JSON file, returning error sentinel if missing."""
     if not path.exists():
         logger.warning("Variable source file not found: %s", path)
-        return None
+        return {"_error": f"file_not_found: {path}"}
     with open(path, encoding="utf-8") as f:
         return json.load(f)
 
@@ -126,9 +127,9 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
 
     # ── Temporal analysis ────────────────────────────────────────────
     temporal = _load_json(data_dir / "temporal_analysis.json")
-    if temporal is None:
+    if temporal.get("_error") is not None:
         temporal = _load_json(output_dir / "temporal_analysis.json")
-    if temporal:
+    if temporal and "_error" not in temporal:
         variables["YEAR_START"] = str(temporal.get("first_year", ""))
         variables["YEAR_END"] = str(temporal.get("last_year", ""))
         variables["YEAR_START_PUBS"] = str(
@@ -161,9 +162,9 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
 
     # ── Citation network ─────────────────────────────────────────────
     citation = _load_json(data_dir / "citation_network.json")
-    if citation is None:
+    if citation.get("_error") is not None:
         citation = _load_json(output_dir / "citation_network.json")
-    if citation:
+    if citation and "_error" not in citation:
         edges = citation.get("num_edges", 0)
         nodes = citation.get("num_nodes", corpus_size)
         components = citation.get("connected_components", 0)
@@ -214,9 +215,9 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
 
     # ── Subfield classification ──────────────────────────────────────
     subfield = _load_json(data_dir / "subfield_classification.json")
-    if subfield is None:
+    if subfield.get("_error") is not None:
         subfield = _load_json(output_dir / "subfield_classification.json")
-    if subfield:
+    if subfield and "_error" not in subfield:
         # Pipeline saves flat dict: {"A1_formal": 75, "A2_philosophy": 73, ...}
         counts = subfield
         total = sum(counts.values()) if isinstance(counts, dict) else corpus_size
@@ -263,9 +264,9 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
 
     # ── Assertion summary (if available) ─────────────────────────────
     assertion = _load_json(data_dir / "assertion_summary.json")
-    if assertion is None:
+    if assertion.get("_error") is not None:
         assertion = _load_json(output_dir / "assertion_summary.json")
-    if assertion:
+    if assertion and "_error" not in assertion:
         total_assertions = assertion.get("total_assertions", 0)
         variables["TOTAL_ASSERTIONS"] = _latex_number(total_assertions)
         variables["TOTAL_ASSERTIONS_RAW"] = str(total_assertions)
@@ -299,9 +300,9 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
 
     # ── Hypothesis scores (if available) ─────────────────────────────
     scores = _load_json(data_dir / "hypothesis_scores.json")
-    if scores is None:
+    if scores.get("_error") is not None:
         scores = _load_json(output_dir / "hypothesis_scores.json")
-    if scores:
+    if scores and "_error" not in scores:
         for hid, score_val in scores.items():
             if isinstance(score_val, (int, float)):
                 variables[f"{hid}_SCORE"] = f"{score_val:+.2f}"
@@ -344,17 +345,17 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
 
     # ── NMF topics (if available) ────────────────────────────────────
     topics = _load_json(data_dir / "topics.json")
-    if topics is None:
+    if isinstance(topics, dict) and topics.get("_error") is not None:
         topics = _load_json(output_dir / "topics.json")
-    if topics:
+    if topics and "_error" not in topics:
         topic_list = topics if isinstance(topics, list) else topics.get("topics", [])
         variables["NUM_TOPICS"] = str(len(topic_list))
 
     # ── TF-IDF vocabulary size ────────────────────────────────────────
     tfidf = _load_json(data_dir / "tfidf_data.json")
-    if tfidf is None:
+    if tfidf.get("_error") is not None:
         tfidf = _load_json(output_dir / "tfidf_data.json")
-    if tfidf:
+    if tfidf and "_error" not in tfidf:
         feature_names = tfidf.get("feature_names", [])
         num_vocab = len(feature_names)
         variables["NUM_VOCAB_FEATURES"] = str(num_vocab)
@@ -375,6 +376,7 @@ def inject_variables(
     content: str,
     variables: dict[str, str],
     filename: str = "<unknown>",
+    lenient: bool = False,
 ) -> str:
     """Replace {{VAR_NAME}} placeholders in content with variable values.
 
@@ -382,10 +384,14 @@ def inject_variables(
         content: Manuscript markdown content with {{VAR}} placeholders.
         variables: Dictionary of variable name -> formatted value.
         filename: Source filename for logging.
+        lenient: If True, warn and leave unresolved placeholders as-is.
+                If False (default), raise RuntimeError on any unresolved variable.
 
     Returns:
         Content with all recognized placeholders replaced.
-        Unrecognized placeholders are left as-is with a warning logged.
+
+    Raises:
+        RuntimeError: If lenient=False and unresolved variables remain.
     """
     replaced_count = 0
     missing_vars = []
@@ -407,11 +413,18 @@ def inject_variables(
         logger.info(
             "Injected %d variables into %s", replaced_count, filename
         )
+
     if missing_vars:
-        logger.warning(
-            "Unresolved variables in %s: %s",
-            filename,
-            ", ".join(sorted(set(missing_vars))),
-        )
+        unique_missing = sorted(set(missing_vars))
+        if lenient:
+            logger.warning(
+                "Unresolved variables in %s: %s",
+                filename,
+                ", ".join(unique_missing),
+            )
+        else:
+            raise RuntimeError(
+                f"Unresolved variables in {filename}: {', '.join(unique_missing)}"
+            )
 
     return result

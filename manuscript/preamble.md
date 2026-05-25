@@ -33,9 +33,9 @@ This file contains LaTeX packages and commands that are automatically included i
 % Cross-references and citations (hyperref loaded by other packages with [unicode]; set options only)
 \hypersetup{colorlinks=true,linkcolor=red,citecolor=red,urlcolor=red}
 \usepackage[capitalise,noabbrev]{cleveref}
-% NOTE: natbib is loaded here for direct LaTeX compilation (pdflatex+bibtex).
-% If using Pandoc with --citeproc, remove this line to avoid conflicts.
-\usepackage{natbib}
+% NOTE: natbib is auto-injected by Pandoc via --natbib (which also writes
+% \bibliographystyle{plainnat}). Do not re-declare \usepackage{natbib} here
+% or LaTeX will error with "Option clash for package natbib".
 
 % Figure caption formatting
 \usepackage{caption}

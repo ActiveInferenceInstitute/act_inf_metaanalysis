@@ -2,9 +2,9 @@
 # A Living Literature Review Architecture for Active Inference
 
 paper:
-  title: "A Literature Review Architecture for Active Inference: Scalable Assertion Extraction, Nanopublications, and Citation-Weighted Hypothesis Scoring"
-  subtitle: "A Computational Meta-Analysis of the Active Inference Literature (2000–2026)"
-  version: "2.0"
+  title: "A Living Meta-Analysis Architecture for Active Inference"
+  subtitle: "Assertion Extraction, Nanopublications, and Hypothesis Scoring"
+  version: "2.0.1"
   date: "" # Auto-generated
 
 authors:
@@ -50,7 +50,7 @@ keywords:
 metadata:
   license: "CC-BY-4.0"
   language: "en"
-  # Canonical package URL (pyproject [project.urls]); monorepo path: projects/act_inf_metaanalysis/
+  # Canonical package URL (pyproject [project.urls]); monorepo path: projects_archive/act_inf_metaanalysis/
   repository: "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
 
 llm:

@@ -4,7 +4,7 @@
 
 **Package / upstream reference:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
-**Template monorepo path:** `projects/act_inf_metaanalysis/` (pipeline discovery: [`docs/_generated/active_projects.md`](../../../docs/_generated/active_projects.md)).
+**Template monorepo path:** `projects_archive/act_inf_metaanalysis/` (archived; not pipeline-discovered).
 
 Project-level documentation for the `act_inf_metaanalysis` pipeline.
 
@@ -36,7 +36,7 @@ If you are joining the Active Inference Institute to extend this pipeline, you s
 ## Quick Start
 
 ```bash
-# From the project root (projects/act_inf_metaanalysis/)
+# From the project root (projects_archive/act_inf_metaanalysis/)
 python scripts/01_literature_search.py --config manuscript/config.yaml
 python scripts/02_meta_analysis_pipeline.py
 python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
@@ -136,7 +136,7 @@ The pipeline reads settings from `manuscript/config.yaml`. CLI flags override co
 | --- | --- | --- | --- |
 | `00_abstract.md` | — | `CORPUS_SIZE`, `CAGR_PCT`, `YEAR_START`, `YEAR_END`, `CITATION_EDGES`, `CITATION_RESOLUTION_PCT` | Stage 5 |
 | `03a_results_field_overview.md` | `field_summary.png`, `subfield_distribution.png`, `growth_curve.png`, `subfield_timeline.png` | `A1_COUNT`…`C5_PCT`, `PEAK_YEAR`, `CAGR_PCT` | Stage 2 + 5 |
-| `03_results_hypothesis.md` | `hypothesis_dashboard.png`, `evidence_timeline.png`, `assertion_type_breakdown.png`, `assertion_summary.png` | `H1_SCORE`…`H8_SCORE`, `TOTAL_ASSERTIONS` | Stage 3 + 5 |
+| `03_results_hypothesis.md` | `hypothesis_dashboard.png`, `evidence_timeline.png`, `assertion_breakdown.png`, `assertion_summary.png` | `H1_SCORE`…`H8_SCORE`, `TOTAL_ASSERTIONS` | Stage 3 + 5 |
 | `03c_results_text_analytics.md` | `word_cloud.png`, `pca_embeddings.png`, `term_heatmap.png`, `dendrogram.png`, `topic_term_bars.png`, `cooccurrence_matrix.png` | `NUM_TOPICS`, `NUM_VOCAB_FEATURES` | Stage 2 + 5 |
 | `03d_results_citation_network.md` | `citation_network.png`, `degree_distribution.png` | `CITATION_NODES`, `CITATION_EDGES`, `CITATION_DENSITY_PCT` | Stage 2 + 5 |
 
@@ -166,4 +166,5 @@ Variable injection is handled by `src/manuscript/variables.py`, invoked by `scri
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [testing.md](testing.md) | Test architecture, 553 tests across 25 files, coverage configuration |
+| [testing.md](testing.md) | Test architecture, 568 tests across 30 files, coverage configuration |
+| [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |

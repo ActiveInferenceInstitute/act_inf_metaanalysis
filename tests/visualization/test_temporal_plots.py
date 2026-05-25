@@ -15,6 +15,10 @@ class TestTemporalPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_growth_curve_single_year(self, tmp_path: Path) -> None:
         output = tmp_path / "single_year.png"
@@ -22,6 +26,10 @@ class TestTemporalPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_subfield_timeline_creates_file(self, tmp_path: Path) -> None:
         subfield_data = {
@@ -34,6 +42,10 @@ class TestTemporalPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_subfield_timeline_empty(self, tmp_path: Path) -> None:
         output = tmp_path / "empty_timeline.png"
@@ -41,6 +53,10 @@ class TestTemporalPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check (empty plot still produces valid image)
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_subfield_timeline_all_eight(self, tmp_path: Path) -> None:
         subfield_data = {
@@ -58,3 +74,7 @@ class TestTemporalPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0

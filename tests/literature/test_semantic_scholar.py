@@ -6,7 +6,6 @@ Tests search, get_paper_details, and get_citations functions.
 
 import json
 import re
-from unittest.mock import patch
 
 import pytest
 import requests
@@ -145,6 +144,7 @@ class TestSearchSemanticScholar:
             query="active inference",
             max_results=10,
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert len(papers) == 2
@@ -172,6 +172,7 @@ class TestSearchSemanticScholar:
         papers = search_semantic_scholar(
             query="active inference",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert len(papers[0].authors) == 2
@@ -185,6 +186,7 @@ class TestSearchSemanticScholar:
         papers = search_semantic_scholar(
             query="active inference",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert "s2:def456" in papers[0].references
@@ -198,6 +200,7 @@ class TestSearchSemanticScholar:
         papers = search_semantic_scholar(
             query="nonexistent topic xyz",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert papers == []
@@ -209,21 +212,22 @@ class TestSearchSemanticScholar:
         papers = search_semantic_scholar(
             query="active inference",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert papers[0].canonical_id == "doi:10.1162/NECO_a_00912"
 
     def test_search_http_error(self, httpserver: HTTPServer):
-        """HTTP error is caught and returns empty or partial results."""
+        """HTTP error after retries is swallowed and returns empty list."""
         httpserver.expect_request("/paper/search").respond_with_data(
             "Rate limited", status=429
         )
 
-        with patch("time.sleep"):
-            papers = search_semantic_scholar(
-                query="test",
-                base_url=httpserver.url_for(""),
-            )
+        papers = search_semantic_scholar(
+            query="test",
+            base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
+        )
         assert papers == []
 
     def test_search_with_session(self, httpserver: HTTPServer):
@@ -235,6 +239,7 @@ class TestSearchSemanticScholar:
             query="test",
             base_url=httpserver.url_for(""),
             session=session,
+            delay_override=lambda _: None,
         )
         session.close()
 
@@ -273,6 +278,7 @@ class TestSearchSemanticScholar:
         papers = search_semantic_scholar(
             query="test",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert len(papers) == 1
@@ -300,6 +306,7 @@ class TestSearchSemanticScholar:
         papers = search_semantic_scholar(
             query="test",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert len(papers) == 1
@@ -506,6 +513,7 @@ class TestS2PaginationAndRetry:
             query="test",
             max_results=150,
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
         assert len(papers) == 150
         assert papers[0].title == "Paper 0"
@@ -519,10 +527,10 @@ class TestS2PaginationAndRetry:
             {"total": 1, "data": [{"paperId": "id_1", "title": "Success"}]}
         )
 
-        with patch("time.sleep"):
-            papers = search_semantic_scholar(
-                query="test",
-                base_url=httpserver.url_for(""),
-            )
+        papers = search_semantic_scholar(
+            query="test",
+            base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
+        )
         assert len(papers) == 1
         assert papers[0].title == "Success"

@@ -33,7 +33,7 @@ Source directory for the paper: all `.md` sections, `config.yaml`, `preamble.md`
 
 ## Variable Injection System
 
-Manuscript source files use `{{VAR_NAME}}` placeholders. Stage 5 (`scripts/05_inject_variables.py`) computes values from pipeline outputs and writes rendered files to `output/manuscript/`.
+Manuscript source files use double-brace placeholders of the form `{{<NAME>}}` where `<NAME>` is the variable identifier (the actual placeholders use plain double braces with no angle brackets — angle brackets are shown here only to keep this documentation example from being substituted). Stage 5 (`scripts/05_inject_variables.py`) computes values from pipeline outputs and writes rendered files to `output/manuscript/`.
 
 **Injection sources:**
 - `corpus.jsonl` → `{{CORPUS_SIZE}}`, `{{YEAR_START}}`, `{{YEAR_END}}`

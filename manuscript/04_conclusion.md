@@ -4,13 +4,15 @@
 
 This work demonstrates a first-generation prototype infrastructure for computational meta-analysis of a rapidly growing scientific field. By combining multi-source retrieval ($N = {{CORPUS_SIZE}}$ papers from three databases), LLM-based assertion extraction encoded as nanopublications, and citation-weighted hypothesis scoring, we produce a queryable, RDF-compatible knowledge graph that tracks the evolving evidence for eight core Active Inference claims. The system demonstrates the feasibility of automated living reviews, while clearly delineating the boundaries of current model capabilities.
 
+All assertions and hypothesis scores in this work are machine-generated without human validation. While the pipeline is designed for rigor, these results should be treated as preliminary evidence requiring manual review before scientific acceptance.
+
 ## Constraints and Methodological Scope
 
 Several conscious design constraints scope these findings.
 
 ### Keyword Classifier Resolution
 
-The keyword-based classifier operates over 65+ mathematical indicators distributed across 8 domain categories, using a deterministic priority system that routes papers to specific application domains (C1–C5) before testing tools (B), formal theory (A1), and the qualitative philosophy catch-all (A2). Word-boundary-aware matching reduces partial-match false positives, but keyword-based methods cannot capture semantic nuance: papers using novel terminology or discussing cross-domain topics without standard vocabulary risk misclassification. Residual A2 concentration should be interpreted as a ceiling on broad theoretical generality rather than a literal measure of philosophical focus. An embedding-based classifier trained on a labeled subset would provide a quantitative upper bound on the fraction of A2 papers that merit redistribution.
+The keyword-based classifier operates over 200+ keyword indicators distributed across 8 domain categories (74 mathematical indicators in A1 alone), using a deterministic priority system that routes papers to specific application domains (C1–C5) before testing tools (B), formal theory (A1), and the qualitative philosophy catch-all (A2). Word-boundary-aware matching reduces partial-match false positives, but keyword-based methods cannot capture semantic nuance: papers using novel terminology or discussing cross-domain topics without standard vocabulary risk misclassification. Residual A2 concentration should be interpreted as a ceiling on broad theoretical generality rather than a literal measure of philosophical focus. An embedding-based classifier trained on a labeled subset would provide a quantitative upper bound on the fraction of A2 papers that merit redistribution.
 
 ### Citation Network Coverage Gaps
 
@@ -76,7 +78,7 @@ The current validation is primarily structural: do scripts run, do outputs exist
 \toprule
 \textbf{Dimension} & \textbf{Protocol} & \textbf{Current} & \textbf{Target} \\
 \midrule
-Extraction direction accuracy & Cohen's $\kappa$ (human vs. LLM stance) & not measured & $\kappa > 0.80$ \\\\
+Extraction direction accuracy & Cohen's $\kappa$ (human vs. LLM stance) & not measured & $\kappa > 0.80$ \\
 Evidence-quote fidelity & Verbatim substring match rate & not measured & $\geq 90\%$ \\
 Corpus recall & Precision/recall vs. 100-paper gold set & not measured & recall $\geq 0.85$ \\
 Outcome grounding rate & Fraction of supporting assertions citing an outcome indicator & not measured & $\geq 30\%$ \\

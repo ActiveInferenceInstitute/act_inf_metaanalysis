@@ -1,1 +1,0 @@
-\beamer@sectionintoc {1}{Stages 4--5: Visualization, Variable Injection, and Reproducibility }{1}{0}{1}

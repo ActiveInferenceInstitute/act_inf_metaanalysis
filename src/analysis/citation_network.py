@@ -106,8 +106,9 @@ def compute_network_metrics(
             hubs = {node: score for node, score in sorted_hubs[:10]}
             authorities = {node: score for node, score in sorted_auth[:10]}
         except Exception as e:
-            logger.warning("HITS centrality failed (graph may be too sparse): %s", e)
-            hubs, authorities = {}, {}
+            logger.error("HITS algorithm failed: %s", e)
+            hubs = {}
+            authorities = {}
     else:
         pagerank = {}
         hubs, authorities = {}, {}

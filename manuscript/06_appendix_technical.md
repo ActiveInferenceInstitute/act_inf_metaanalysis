@@ -1,57 +1,74 @@
 # Appendix: Mathematical and Algorithmic Details \label{sec:technical_appendix}
 
-_This appendix collects the formal mathematical definitions, derivations, and algorithmic specifications referenced from the main methodology section._
+_This appendix collects the formal mathematical definitions, derivations, and algorithmic specifications referenced from the main methodology section. Each subsection is self-contained; equations are labelled for cross-referencing from the body and from \S\ref{tab:notation_symbols}._
 
 ## Citation-Weighted Hypothesis Scoring Formula \label{sec:appendix_scoring}
 
 For each hypothesis $H$, we compute a citation-weighted evidence score aggregating all assertions relevant to $H$:
 
 \begin{equation}
-\text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)} w(a)}{\sum_{a \in A(H)} w(a)} \label{eq:app_score}
+\score(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)} w(a)}{\sum_{a \in A(H)} w(a)} \label{eq:app_score}
 \end{equation}
 
-where $S(H)$ is the set of supporting assertions, $C(H)$ is the set of contradicting assertions, $A(H)$ is all assertions for $H$ (including neutral), and the weight function is:
+where $S(H)$ is the set of supporting assertions, $C(H)$ the set of contradicting assertions, $A(H)$ all assertions for $H$ (including neutral), and the weight function is
 
 \begin{equation}
-w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a) \label{eq:app_weight}
+w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a). \label{eq:app_weight}
 \end{equation}
 
-The logarithmic citation weighting ensures that highly cited papers carry more influence while preventing any single blockbuster paper from dominating the score. The score lies in $[-1, 1]$: values near $+1$ indicate strong supporting evidence, values near $-1$ indicate strong contradicting evidence, and values near $0$ indicate balanced or insufficient evidence. Crucially, as discussed in the main text, this score represents a _relative evidentiary ranking_ within the current literature topology, not a calibrated Bayesian probability of the hypothesis actually being true.
+The logarithmic citation weighting ensures that highly cited papers carry more influence while preventing any single blockbuster paper from dominating the score. The score lies in $[-1, 1]$: values near $+1$ indicate strong supporting evidence, values near $-1$ strong contradicting evidence, and values near $0$ balanced or insufficient evidence. As emphasized in the main text, this score is a *relative evidentiary ranking* within the current literature topology, not a calibrated Bayesian probability of the hypothesis being true.
 
 **Temporal aggregation.** We additionally compute temporal trends by evaluating the cumulative score at each year $t$, using only assertions from papers published in year $\leq t$:
 
 \begin{equation}
-\text{score}(H, t) = \frac{\sum_{a \in S(H,t)} w(a) - \sum_{a \in C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)} \label{eq:app_score_t}
+\score(H, t) = \frac{\sum_{a \in S(H,t)} w(a) - \sum_{a \in C(H,t)} w(a)}{\sum_{a \in A(H,t)} w(a)}. \label{eq:app_score_t}
 \end{equation}
 
-This reveals whether support for a hypothesis is growing, declining, or plateauing over time.
+This reveals whether support for a hypothesis is growing, declining, or plateauing over time. Cumulative aggregation (rather than yearly windows) is preferred because per-year assertion counts for narrow hypotheses are too sparse for stable point estimates.
+
+**Algorithmic specification.** The scoring routine is a pure function of the assertion set; it has no hidden state and is deterministic given the input. The reference implementation lives in `src/scoring/citation_weighted.py`:
+
+```text
+function score(H, assertions):
+    S, C, A_all = 0, 0, 0
+    for a in assertions where a.hypothesis == H:
+        w = log(1 + a.citations) * a.confidence
+        if a.direction == "supports":     S     += w
+        elif a.direction == "contradicts": C     += w
+        A_all += w
+    return (S - C) / A_all  if A_all > 0  else 0
+```
+
+Boundary tests in `tests/test_scoring.py` confirm that all-support fixtures yield $+1$, all-contradict fixtures yield $-1$, and balanced fixtures yield $0$ within numerical tolerance.
+
+\FloatBarrier
 
 ## Non-negative Matrix Factorization (NMF) for Topic Modeling \label{sec:appendix_nmf}
 
-We apply NMF to the TF-IDF matrix of the corpus to discover latent topics. Given the document-term matrix $V \in \mathbb{R}^{n \times m}_{\geq 0}$, NMF finds factor matrices $W \in \mathbb{R}^{n \times k}_{\geq 0}$ and $H \in \mathbb{R}^{k \times m}_{\geq 0}$ such that $V \approx WH$, where $k$ is the number of topics.
-
-We use multiplicative update rules \citep{lee1999nmf}:
+We apply NMF to the TF-IDF matrix of the corpus to discover latent topics. Given the document-term matrix $V \in \mathbb{R}^{n \times m}_{\geq 0}$, NMF finds factor matrices $W \in \mathbb{R}^{n \times k}_{\geq 0}$ and $H \in \mathbb{R}^{k \times m}_{\geq 0}$ such that $V \approx W H$, where $k$ is the number of topics. We use multiplicative update rules \citep{lee1999nmf}:
 
 \begin{equation}
-H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \quad W \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon} \label{eq:nmf_update}
+H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \qquad W \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon}, \label{eq:nmf_update}
 \end{equation}
 
-with $\epsilon = 10^{-10}$ for numerical stability and a fixed random seed of 42 for reproducibility (ensuring deterministic topic alignment across pipeline runs, with empirical stability confirmed via Jaccard similarities $> 0.90$ across alternative seeds).
+with $\epsilon = 10^{-10}$ for numerical stability and a fixed random seed of 42 for reproducibility (deterministic topic alignment across pipeline runs, with empirical stability confirmed via Jaccard similarities $> 0.90$ across alternative seeds).
 
 **Term-Frequency Inverse Document Frequency (TF-IDF).** The document-term matrix is constructed using a smoothed TF-IDF weighting \citep{salton1975vector}. For term $t$ in document $d$:
 
 \begin{equation}
-\text{TF-IDF}(t, d) = \text{tf}(t, d) \cdot \left[\log\!\left(\frac{N}{\text{df}(t) + 1}\right) + 1\right] \label{eq:tfidf}
+\text{TF-IDF}(t, d) = \text{tf}(t, d) \cdot \left[\log\!\left(\frac{N}{\text{df}(t) + 1}\right) + 1\right], \label{eq:tfidf}
 \end{equation}
 
-where $\text{tf}(t, d) = \text{count}(t,d) / |d|$ is the normalized term frequency, $N$ is the total number of documents, and $\text{df}(t)$ is the document frequency of term $t$. The $+1$ additive smoothing in the denominator prevents division by zero and reduces the weight of extremely rare terms; the outer $+1$ ensures strictly positive IDF values. The document vectors are L2-normalized before NMF factorization.
+where $\text{tf}(t, d) = \text{count}(t,d) / |d|$ is the normalized term frequency, $N$ the total number of documents, and $\text{df}(t)$ the document frequency of term $t$. The $+1$ additive smoothing in the denominator prevents division by zero and reduces the weight of extremely rare terms; the outer $+1$ ensures strictly positive IDF values. Document vectors are L2-normalized before NMF factorization.
+
+\FloatBarrier
 
 ## Field Growth-Rate Estimation \label{sec:appendix_growth}
 
 The **mean year-over-year growth rate** $\bar{g}$ is the arithmetic mean of annual growth rates computed only for years where the prior year had non-zero publications:
 
 \begin{equation}
-\bar{g} = \frac{1}{|Y|} \sum_{y \in Y} \frac{n_y - n_{y-1}}{n_{y-1}} \label{eq:mean_growth}
+\bar{g} = \frac{1}{|Y|} \sum_{y \in Y} \frac{n_y - n_{y-1}}{n_{y-1}}, \label{eq:mean_growth}
 \end{equation}
 
 where $Y = \{y : n_{y-1} > 0\}$ and $n_y$ is the number of publications in year $y$.
@@ -59,16 +76,18 @@ where $Y = \{y : n_{y-1} > 0\}$ and $n_y$ is the number of publications in year 
 The **doubling time** $t_d$ is derived from the mean annual growth rate:
 
 \begin{equation}
-t_d = \frac{\ln 2}{\ln(1 + \bar{g})} \label{eq:doubling_time}
+t_d = \frac{\ln 2}{\ln(1 + \bar{g})}. \label{eq:doubling_time}
 \end{equation}
 
-The **compound annual growth rate** (CAGR) over the full span $[y_0, y_T]$ is:
+The **compound annual growth rate** (CAGR) over the full span $[y_0, y_T]$ is
 
 \begin{equation}
-\text{CAGR} = \left(\frac{n_{\text{cumulative}}(y_T)}{n_{\text{cumulative}}(y_0)}\right)^{1/(y_T - y_0)} - 1 \label{eq:cagr}
+\cagr = \left(\frac{n_{\text{cumulative}}(y_T)}{n_{\text{cumulative}}(y_0)}\right)^{1/(y_T - y_0)} - 1. \label{eq:cagr}
 \end{equation}
 
-For the current corpus, CAGR $= {{CAGR_PCT}}\%$. The more recent growth phase (2010--{{YEAR_END}}) exhibits substantially higher annualized growth.
+For the current corpus, $\cagr = {{CAGR_PCT}}\%$. The more recent growth phase (2010--{{YEAR_END}}) exhibits substantially higher annualized growth than the long-run average; reporting both the $T$-year CAGR and recent-phase CAGR avoids overstating maturity-era expansion.
+
+\FloatBarrier
 
 ## Advanced Visualization Methods \label{sec:appendix_viz}
 
@@ -88,23 +107,25 @@ For each domain $s$ and term $t$, we compute the mean TF-IDF weight $\bar{w}_{s,
 
 The co-occurrence matrix $C \in \mathbb{R}^{k \times k}$ counts the number of documents in which two terms appear together. For top-$k$ terms by document frequency, $C_{ij} = |\{d : t_i \in d \land t_j \in d\}|$. The matrix is normalized to $[0, 1]$ by dividing by the maximum entry and visualized as a symmetric heatmap.
 
+\FloatBarrier
+
 ## Nanopublication RDF Schema \label{sec:appendix_rdf}
 
 Each nanopublication is serialized to RDF/TriG per the nanopublication standard \citep{groth2010anatomy, kuhn2016decentralized}, producing four named graphs. The following annotated example illustrates the structure for a single assertion:
 
 ```trig
-@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix np:   <http://www.nanopub.org/nschema#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix dc: <http://purl.org/dc/terms/> .
-@prefix aif: <http://activeinference.institute/ontology/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc:   <http://purl.org/dc/terms/> .
+@prefix aif:  <http://activeinference.institute/ontology/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 # HEAD GRAPH: links nanopub to its three component graphs
 <http://activeinference.institute/nanopub/a1b2c3d4e5f6#head> {
   <http://activeinference.institute/nanopub/a1b2c3d4e5f6>
     a np:Nanopublication ;
-    np:hasAssertion   <...#assertion> ;
-    np:hasProvenance   <...#provenance> ;
+    np:hasAssertion       <...#assertion> ;
+    np:hasProvenance      <...#provenance> ;
     np:hasPublicationInfo <...#pubinfo> .
 }
 
@@ -112,19 +133,19 @@ Each nanopublication is serialized to RDF/TriG per the nanopublication standard 
 <http://activeinference.institute/nanopub/a1b2c3d4e5f6#assertion> {
   aif:paper/10.1038_nrn2787 aif:asserts aif:assertion/a1b2c3 .
   aif:assertion/a1b2c3
-    aif:supports aif:hypothesis/fep_universality ;
-    aif:claim "The paper provides foundational support for FEP as a
-               unified brain theory."^^xsd:string ;
-    aif:confidence "0.85"^^xsd:double ;
-    aif:citationCount "5000"^^xsd:integer .
+    aif:supports       aif:hypothesis/fep_universality ;
+    aif:claim          "The paper provides foundational support for FEP as a
+                        unified brain theory."^^xsd:string ;
+    aif:confidence     "0.85"^^xsd:double ;
+    aif:citationCount  "5000"^^xsd:integer .
 }
 
 # PROVENANCE GRAPH: extraction lineage
 <http://activeinference.institute/nanopub/a1b2c3d4e5f6#provenance> {
   aif:assertion/a1b2c3
-    prov:wasGeneratedBy  <http://activeinference.institute/nanopub/a1b2c3d4e5f6> ;
-    prov:generatedAtTime "2026-01-15T12:00:00+00:00"^^xsd:dateTime ;
-    prov:wasAttributedTo "act_inf_metaanalysis/gemma3:4b"^^xsd:string ;
+    prov:wasGeneratedBy   <http://activeinference.institute/nanopub/a1b2c3d4e5f6> ;
+    prov:generatedAtTime  "2026-01-15T12:00:00+00:00"^^xsd:dateTime ;
+    prov:wasAttributedTo  "act_inf_metaanalysis/gemma3:4b"^^xsd:string ;
     prov:hadPrimarySource aif:paper/10.1038_nrn2787 .
 }
 
@@ -139,8 +160,7 @@ Each nanopublication is serialized to RDF/TriG per the nanopublication standard 
 
 ### Namespace Definitions
 
-
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{RDF namespace definitions used in the knowledge graph and nanopublication serialization. Each prefix maps to a W3C or domain-specific URI.}
 \label{tab:namespace_definitions}
@@ -148,22 +168,20 @@ Each nanopublication is serialized to RDF/TriG per the nanopublication standard 
 \toprule
 \textbf{Prefix} & \textbf{URI} & \textbf{Purpose} \\
 \midrule
-\texttt{np:} & \texttt{http://www.nanopub.org/nschema\#} & Nanopub structural predicates \\
-\texttt{prov:} & \texttt{http://www.w3.org/ns/prov\#} & PROV-O provenance model \\
-\texttt{dc:} & \texttt{http://purl.org/dc/terms/} & Dublin Core metadata \\
-\texttt{aif:} & \texttt{http://activeinference.institute/ontology/} & Domain-specific predicates \\
-\texttt{xsd:} & \texttt{http://www.w3.org/2001/XMLSchema\#} & XML Schema datatypes \\
+\texttt{np:}   & \texttt{http://www.nanopub.org/nschema\#}     & Nanopub structural predicates \\
+\texttt{prov:} & \texttt{http://www.w3.org/ns/prov\#}          & PROV-O provenance model \\
+\texttt{dc:}   & \texttt{http://purl.org/dc/terms/}            & Dublin Core metadata \\
+\texttt{aif:}  & \texttt{http://activeinference.institute/ontology/} & Domain-specific predicates \\
+\texttt{xsd:}  & \texttt{http://www.w3.org/2001/XMLSchema\#}   & XML Schema datatypes \\
 \bottomrule
 \end{tabular}
 \end{table}
-
 
 ### Core Triple Patterns
 
 The knowledge graph encodes five fundamental relationships:
 
-
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Core RDF triple patterns encoding the five fundamental relationships in the knowledge graph. Each pattern links paper, assertion, hypothesis, or subfield nodes.}
 \label{tab:core_triple_patterns}
@@ -171,12 +189,13 @@ The knowledge graph encodes five fundamental relationships:
 \toprule
 \textbf{Triple Pattern} & \textbf{Meaning} \\
 \midrule
-\texttt{Paper --aif:asserts--> Assertion} & A paper makes a claim \\
-\texttt{Paper --aif:cites--> Paper} & Intra-corpus citation link \\
-\texttt{Paper --aif:belongsTo--> Subfield} & Domain classification \\
-\texttt{Assertion --aif:supports--> Hypothesis} & Supporting evidence \\
+\texttt{Paper --aif:asserts--> Assertion}        & A paper makes a claim \\
+\texttt{Paper --aif:cites--> Paper}              & Intra-corpus citation link \\
+\texttt{Paper --aif:belongsTo--> Subfield}       & Domain classification \\
+\texttt{Assertion --aif:supports--> Hypothesis}  & Supporting evidence \\
 \texttt{Assertion --aif:contradicts--> Hypothesis} & Contradicting evidence \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+\FloatBarrier

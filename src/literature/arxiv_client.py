@@ -16,7 +16,7 @@ import random
 import time
 import xml.etree.ElementTree as ET
 from datetime import date
-from typing import Optional
+from typing import Optional, Callable
 
 import requests
 
@@ -154,6 +154,7 @@ def _fetch_page(
     base_url: str,
     session: requests.Session,
     rate_limit_seconds: float,
+    delay_override: Optional[Callable[[float], None]] = None,
 ) -> list[Paper]:
     """Fetch a single page of results from the arXiv API with retry.
 
@@ -164,6 +165,7 @@ def _fetch_page(
         base_url: API endpoint URL.
         session: requests.Session for connection reuse.
         rate_limit_seconds: Seconds to sleep before making the request.
+        delay_override: Optional sleep function (test injection).
 
     Returns:
         List of Paper objects from the page.
@@ -171,6 +173,7 @@ def _fetch_page(
     Raises:
         requests.HTTPError: If all retries are exhausted.
     """
+    sleep_fn = delay_override or time.sleep
     params = {
         "search_query": query,
         "start": start,
@@ -181,7 +184,7 @@ def _fetch_page(
 
     for attempt in range(MAX_RETRIES):
         if rate_limit_seconds > 0:
-            time.sleep(rate_limit_seconds)
+            sleep_fn(rate_limit_seconds)
 
         try:
             response = session.get(base_url, params=params, timeout=30)
@@ -194,7 +197,7 @@ def _fetch_page(
                 attempt + 1, MAX_RETRIES, e, wait,
             )
             if attempt < MAX_RETRIES - 1:
-                time.sleep(wait)
+                sleep_fn(wait)
             else:
                 raise
 
@@ -207,6 +210,7 @@ def search_arxiv(
     base_url: str = ARXIV_API_URL,
     session: Optional[requests.Session] = None,
     rate_limit_seconds: float = DEFAULT_RATE_LIMIT_SECONDS,
+    delay_override: Optional[Callable[[float], None]] = None,
 ) -> list[Paper]:
     """Search the arXiv API for papers matching a query.
 
@@ -245,6 +249,7 @@ def search_arxiv(
 
             page_papers = _fetch_page(
                 query, start, page_size, base_url, http, rate_limit_seconds,
+                delay_override=delay_override,
             )
 
             if not page_papers:

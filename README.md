@@ -1,4 +1,6 @@
-# 🧠 Active Inference Meta-Analysis
+# Active Inference Meta-Analysis
+
+> **Archive status:** This tree lives under `projects_archive/act_inf_metaanalysis/` in the template monorepo. It is preserved for inspection and standalone runs; it is not executed by `./run.sh` unless promoted to `projects/`.
 
 **Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
@@ -78,14 +80,14 @@ graph TD
 
 ## 🚀 Quick Start
 
-Use `uv` for dependencies. In the **template monorepo**, this project lives at `projects/act_inf_metaanalysis/` and is listed for pipeline discovery in [`docs/_generated/active_projects.md`](../../docs/_generated/active_projects.md).
+Use `uv` for dependencies. In the **template monorepo**, this project lives at `projects_archive/act_inf_metaanalysis/` and is **not** discovered by `./run.sh` (archive-only).
 
 ### Running tests
 
 Use `uv` for dependency management. From **within the project directory** (ensures correct venv context):
 
 ```bash
-cd projects/act_inf_metaanalysis
+cd projects_archive/act_inf_metaanalysis
 uv sync --extra dev  # First time only: install dependencies
 uv run pytest --cov=src --cov-fail-under=90 -v
 ```
@@ -93,7 +95,7 @@ uv run pytest --cov=src --cov-fail-under=90 -v
 From the **repository root**, pass the project path explicitly:
 
 ```bash
-uv run pytest projects/act_inf_metaanalysis/tests/ --cov=projects/act_inf_metaanalysis/src --cov-fail-under=90
+uv run pytest projects_archive/act_inf_metaanalysis/tests/ --cov=projects_archive/act_inf_metaanalysis/src --cov-fail-under=90
 ```
 
 **Important:** The full test suite requires `rdflib`, `wordcloud`, and `scikit-learn` to be installed.
@@ -102,7 +104,7 @@ If any of these are missing, pytest will abort with a clear error listing the mi
 Example single module:
 
 ```bash
-cd projects/act_inf_metaanalysis
+cd projects_archive/act_inf_metaanalysis
 uv run pytest tests/knowledge_graph/test_hypothesis.py -v
 ```
 
@@ -111,7 +113,7 @@ uv run pytest tests/knowledge_graph/test_hypothesis.py -v
 Thin orchestrators live under `scripts/`:
 
 ```bash
-cd projects/act_inf_metaanalysis
+cd projects_archive/act_inf_metaanalysis
 # 1. Literature search (multi-source; default merges into existing corpus — use --no-resume to ignore it)
 python3 scripts/01_literature_search.py --log-level INFO
 
@@ -123,6 +125,12 @@ python3 scripts/03_build_knowledge_graph.py
 
 # 4. Render all manuscript figures
 python3 scripts/04_generate_figures.py --dpi 300
+
+# 5. Inject computed variables into manuscript markdown
+python3 scripts/05_inject_variables.py
+
+# 6. Audit full-text availability across the corpus
+python3 scripts/06_fulltext_assessment.py
 ```
 
 ---
@@ -130,7 +138,7 @@ python3 scripts/04_generate_figures.py --dpi 300
 ## 🏗️ Directory Structure
 
 ```text
-projects/act_inf_metaanalysis/
+projects_archive/act_inf_metaanalysis/
 ├── src/                        # Core library (literature, analysis, knowledge_graph, visualization)
 ├── tests/                      # Pytest suite; 90% coverage gate in pyproject.toml
 ├── scripts/                    # Numbered orchestrators (01–06)

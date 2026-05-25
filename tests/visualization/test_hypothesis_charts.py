@@ -28,6 +28,14 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
+        # Additional check for non-blank figure using matplotlib
+        import matplotlib.image as mpimg
+        img_arr = mpimg.imread(output)
+        assert img_arr.mean() > 0.01, "Figure appears blank"
 
     def test_plot_hypothesis_dashboard_small_data(self, tmp_path: Path) -> None:
         output = tmp_path / "small_dashboard.png"
@@ -38,6 +46,14 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
+        # Additional check for non-blank figure using matplotlib
+        import matplotlib.image as mpimg
+        img_arr = mpimg.imread(output)
+        assert img_arr.mean() > 0.01, "Figure appears blank"
 
     def test_plot_hypothesis_dashboard_all_positive(self, tmp_path: Path) -> None:
         output = tmp_path / "positive_dash.png"
@@ -48,6 +64,14 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
+        # Additional check for non-blank figure using matplotlib
+        import matplotlib.image as mpimg
+        img_arr = mpimg.imread(output)
+        assert img_arr.mean() > 0.01, "Figure appears blank"
 
     def test_plot_hypothesis_dashboard_all_negative(self, tmp_path: Path) -> None:
         output = tmp_path / "negative_dash.png"
@@ -58,6 +82,14 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
+        # Additional check for non-blank figure using matplotlib
+        import matplotlib.image as mpimg
+        img_arr = mpimg.imread(output)
+        assert img_arr.mean() > 0.01, "Figure appears blank"
 
     def test_plot_evidence_timeline_creates_file(self, tmp_path: Path) -> None:
         yearly = {
@@ -69,6 +101,10 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_evidence_timeline_empty(self, tmp_path: Path) -> None:
         output = tmp_path / "empty_timeline.png"
@@ -76,6 +112,10 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check (empty plot still produces valid image)
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_evidence_timeline_single_hypothesis(self, tmp_path: Path) -> None:
         yearly = {
@@ -86,6 +126,10 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_assertion_type_breakdown_creates_file(self, tmp_path: Path) -> None:
         assertion_counts = {
@@ -98,6 +142,10 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_assertion_type_breakdown_single_hypothesis(self, tmp_path: Path) -> None:
         assertion_counts = {
@@ -108,6 +156,10 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_assertion_summary_creates_file(self, tmp_path: Path) -> None:
         output = tmp_path / "assertion_summary.png"
@@ -129,6 +181,10 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_assertion_summary_minimal(self, tmp_path: Path) -> None:
         output = tmp_path / "minimal_summary.png"
@@ -141,3 +197,7 @@ class TestHypothesisCharts:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0

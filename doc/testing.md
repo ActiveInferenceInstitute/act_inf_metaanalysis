@@ -4,7 +4,7 @@
 
 ## Overview
 
-The project maintains **553 tests** across **25 test files**, achieving **95.48% branch coverage**. Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles.
+The project maintains **568 tests** across **30 test files** (parameterized cases inflate the runtime count further), achieving **>90% line+branch coverage** on `src/` — above the 90% CI gate (measured: **91.64%**). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --co -q | tail -1` for the exact current count.
 
 ### Zero-Mock Practicality
 
@@ -89,7 +89,6 @@ Key points:
 | `literature/test_semantic_scholar.py` | `semantic_scholar.py` | ~22 | JSON parsing, 429 rate-limit retry with backoff, pagination, `get_paper_details`, `get_citations` |
 | `literature/test_openalex_client.py` | `openalex_client.py` | ~15 | Inverted-index abstract reconstruction, cursor pagination, `get_work_by_doi` |
 | `test_query.py` | Query utilities | ~8 | Search query construction and validation |
-| `testing.md` | Test architecture | ~16 | Test architecture, 568 tests across 26 files, coverage configuration |
 
 ### Analysis Package
 

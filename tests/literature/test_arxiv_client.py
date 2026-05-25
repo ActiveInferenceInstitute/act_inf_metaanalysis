@@ -7,7 +7,6 @@ and search_arxiv (HTTP integration).
 
 import xml.etree.ElementTree as ET
 import re
-from unittest.mock import patch
 
 import pytest
 from pytest_httpserver import HTTPServer
@@ -325,6 +324,7 @@ class TestSearchArxiv:
             max_results=10,
             base_url=httpserver.url_for("/api/query"),
             rate_limit_seconds=0,
+            delay_override=lambda _: None,
         )
 
         assert len(papers) == 1
@@ -341,6 +341,7 @@ class TestSearchArxiv:
             max_results=10,
             base_url=httpserver.url_for("/api/query"),
             rate_limit_seconds=0,
+            delay_override=lambda _: None,
         )
 
         assert papers == []
@@ -356,6 +357,7 @@ class TestSearchArxiv:
             max_results=50,
             base_url=httpserver.url_for("/api/query"),
             rate_limit_seconds=0,
+            delay_override=lambda _: None,
         )
 
         assert len(papers) == 2
@@ -367,12 +369,12 @@ class TestSearchArxiv:
         )
 
         with pytest.raises(Exception):
-            with patch("time.sleep"):
-                search_arxiv(
-                    query="test",
-                    base_url=httpserver.url_for("/api/query"),
-                    rate_limit_seconds=0,
-                )
+            search_arxiv(
+                query="test",
+                base_url=httpserver.url_for("/api/query"),
+                rate_limit_seconds=0,
+                delay_override=lambda _: None,
+            )
 
     def test_search_with_custom_session(self, httpserver: HTTPServer):
         """search_arxiv works with a provided session object."""
@@ -388,6 +390,7 @@ class TestSearchArxiv:
             base_url=httpserver.url_for("/api/query"),
             session=session,
             rate_limit_seconds=0,
+            delay_override=lambda _: None,
         )
         session.close()
 
@@ -449,6 +452,7 @@ class TestArxivPaginationAndRetry:
             max_results=150,
             base_url=httpserver.url_for("/api/query"),
             rate_limit_seconds=0,
+            delay_override=lambda _: None,
         )
         assert len(papers) == 150
         assert papers[0].title == "Paper 0"
@@ -465,12 +469,11 @@ class TestArxivPaginationAndRetry:
             valid_xml, content_type="application/atom+xml"
         )
 
-        with patch("time.sleep"):
-            papers = search_arxiv(
-                query="test",
-                base_url=httpserver.url_for("/api/query"),
-                rate_limit_seconds=0,
-            )
+        papers = search_arxiv(
+            query="test",
+            base_url=httpserver.url_for("/api/query"),
+            rate_limit_seconds=0,
+            delay_override=lambda _: None,
+        )
         assert len(papers) == 1
         assert papers[0].title == "Success"
-

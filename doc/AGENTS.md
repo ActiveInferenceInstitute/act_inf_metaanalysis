@@ -1,6 +1,6 @@
 # Documentation Hub Architecture
 
-**This is an active module** in the `projects/act_inf_metaanalysis/doc/` directory.
+**Archived documentation hub** for `projects_archive/act_inf_metaanalysis/doc/`.
 
 ## Overview
 
@@ -13,7 +13,7 @@ This directory (`doc/`) serves as the comprehensive, long-form technical documen
 - `data_formats.md`: Strict JSONL, TriG, and Schema definitions governing Corpus storage and nanopublication validation.
 - `hypotheses.md`: Domain theory constraints mapping the 8 core hypotheses to active inference literature.
 - `scripts.md`: Detailed configuration and CLI flag mapping.
-- `testing.md`: Explains the strict 553-test zero-mock execution environment and philosophy.
+- `testing.md`: Explains the strict zero-mock execution environment and testing philosophy (568 tests across 30 files; see `testing.md` for refresh commands).
 - `visualization_guide.md`: Parameters for the 16 publication-ready generators.
 - `README.md`: Central index mapping the entire 5-stage pipeline and acting as the entrypoint.
 

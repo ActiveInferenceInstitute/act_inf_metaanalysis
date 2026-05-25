@@ -15,7 +15,7 @@ from __future__ import annotations
 import logging
 import random
 import time
-from typing import Optional
+from typing import Optional, Callable
 
 import requests
 
@@ -97,6 +97,7 @@ def _request_with_retry(
     url: str,
     params: dict,
     max_retries: int = MAX_RETRIES,
+    delay_override: Optional[Callable[[float], None]] = None,
 ) -> requests.Response:
     """Make an HTTP GET request with retry on 429 rate-limit errors.
 
@@ -107,6 +108,7 @@ def _request_with_retry(
         url: URL to request.
         params: Query parameters.
         max_retries: Maximum number of retry attempts.
+        delay_override: Optional sleep function (test injection).
 
     Returns:
         Successful response object.
@@ -114,6 +116,7 @@ def _request_with_retry(
     Raises:
         requests.HTTPError: If all retries are exhausted or a non-429 error occurs.
     """
+    sleep_fn = delay_override or time.sleep
     response = None
     for attempt in range(max_retries + 1):
         response = http.get(url, params=params, timeout=30)
@@ -125,7 +128,7 @@ def _request_with_retry(
                 "S2 rate-limited (429), retry %d/%d after %.1fs",
                 attempt + 1, max_retries, wait,
             )
-            time.sleep(wait)
+            sleep_fn(wait)
             continue
         response.raise_for_status()
         return response
@@ -142,6 +145,7 @@ def search_semantic_scholar(
     max_results: int = 100,
     base_url: str = S2_API_URL,
     session: Optional[requests.Session] = None,
+    delay_override: Optional[Callable[[float], None]] = None,
 ) -> list[Paper]:
     """Search Semantic Scholar for papers matching a query.
 
@@ -185,7 +189,9 @@ def search_semantic_scholar(
             )
 
             try:
-                response = _request_with_retry(http, f"{base_url}/paper/search", params)
+                response = _request_with_retry(
+                    http, f"{base_url}/paper/search", params, delay_override=delay_override,
+                )
                 result = response.json()
             except requests.HTTPError as e:
                 logger.warning("S2 search stopped early due to HTTP error (rate limit): %s", e)

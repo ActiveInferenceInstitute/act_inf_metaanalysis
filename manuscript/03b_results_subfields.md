@@ -55,7 +55,7 @@ Each domain has a primary hypothesis linkage (see the detailed hypothesis eviden
 
 \begin{table}[htbp]
 \centering
-\caption{Domain--hypothesis cross-reference linking each of the eight tracked categories to its primary hypothesis and the direction of the current evidence base. See the \hyperref[sec:hypothesis_results]{hypothesis results} for quantitative scores and temporal trends.}
+\caption[Domain--hypothesis cross-reference]{Domain--hypothesis cross-reference linking each of the eight tracked categories to its primary hypothesis and the direction of the current evidence base. See the \hyperref[sec:hypothesis_results]{hypothesis results} for quantitative scores and temporal trends. Table values are regenerated automatically from \texttt{hypothesis\_scores.json}; the most recent verified pipeline run is dated 2026-04-28.}
 \label{tab:domain_hypothesis_crossref}
 \begin{tabular}{llcll}
 \toprule

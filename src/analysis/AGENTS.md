@@ -1,6 +1,6 @@
 # Analysis Module — Agent Directives
 
-**Active module** at `projects/act_inf_metaanalysis/src/analysis/`.
+**Archived module** at `projects_archive/act_inf_metaanalysis/src/analysis/`.
 
 ## Overview
 

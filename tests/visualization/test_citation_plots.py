@@ -32,6 +32,14 @@ class TestCitationPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
+        # Additional check for non-blank figure using matplotlib
+        import matplotlib.image as mpimg
+        img_arr = mpimg.imread(output)
+        assert img_arr.mean() > 0.01, "Figure appears blank"
 
     def test_plot_citation_network_with_communities(self, tmp_path: Path) -> None:
         graph = _make_small_graph()
@@ -42,6 +50,14 @@ class TestCitationPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
+        # Additional check for non-blank figure using matplotlib
+        import matplotlib.image as mpimg
+        img_arr = mpimg.imread(output)
+        assert img_arr.mean() > 0.01, "Figure appears blank"
 
     def test_plot_citation_network_empty_graph(self, tmp_path: Path) -> None:
         graph = nx.DiGraph()
@@ -50,6 +66,14 @@ class TestCitationPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
+        # Additional check for non-blank figure using matplotlib
+        import matplotlib.image as mpimg
+        img_arr = mpimg.imread(output)
+        assert img_arr.mean() > 0.01, "Figure appears blank"
 
     def test_plot_citation_network_max_nodes(self, tmp_path: Path) -> None:
         graph = _make_small_graph()
@@ -58,6 +82,14 @@ class TestCitationPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
+        # Additional check for non-blank figure using matplotlib
+        import matplotlib.image as mpimg
+        img_arr = mpimg.imread(output)
+        assert img_arr.mean() > 0.01, "Figure appears blank"
 
     def test_plot_degree_distribution_creates_file(self, tmp_path: Path) -> None:
         graph = _make_small_graph()
@@ -66,6 +98,10 @@ class TestCitationPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_degree_distribution_empty_graph(self, tmp_path: Path) -> None:
         graph = nx.DiGraph()
@@ -74,3 +110,7 @@ class TestCitationPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0

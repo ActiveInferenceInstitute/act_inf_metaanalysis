@@ -2,7 +2,7 @@
 
 **Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
-Public API for the five packages in `src/`. Current corpus: **N = 849 papers (2005–2026)**, 2,795 nanopublication assertions, 8 hypotheses, 16 figures.
+Public API for the five packages in `src/`. The pipeline tracks **8 hypotheses** and renders **16 figures**; corpus size and assertion counts evolve with each run (see the latest `output/data/temporal_analysis.json` and `output/data/assertion_summary.json` for current numbers).
 
 ## literature
 
@@ -37,6 +37,9 @@ class Paper:
     citation_count: int = 0
     references: list[str] = field(default_factory=list)
     publication_date: Optional[date] = None
+    pdf_url: Optional[str] = None             # Direct PDF URL when known (arXiv, OA repos)
+    is_open_access: Optional[bool] = None     # OA flag from OpenAlex/S2 best_oa_location
+    full_text_source: Optional[str] = None    # Provenance label, e.g. "arxiv", "openalex"
 
     @property
     def canonical_id(self) -> str  # Priority: doi > arxiv_id > s2_id > openalex_id > title hash
@@ -505,7 +508,7 @@ Variable computation and dynamic manuscript management.
 ```python
 def compute_variables(output_dir: Path) -> dict[str, str]:
     # Reads pipeline JSON outputs and returns a dictionary of template variables
-    # (e.g., "CORPUS_SIZE" -> "1{,}204") ready for LaTeX injection.
+    # (e.g., "CORPUS_SIZE" -> the current corpus count formatted for LaTeX) ready for injection.
 
 def inject_variables(
     content: str,

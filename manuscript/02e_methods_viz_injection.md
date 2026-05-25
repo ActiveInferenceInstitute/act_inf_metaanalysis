@@ -6,7 +6,7 @@ Stage 4 renders {{NUM_FIGURES}} publication-ready figures from the analysis outp
 
 ### Stage 5: Manuscript Variable Injection
 
-Stage 5 computes dynamic variables from all pipeline outputs and injects them into manuscript Markdown templates via `{{VAR_NAME}}` placeholder substitution. Variables include corpus-level metrics (size, year range, CAGR), per-domain counts and percentages, citation network statistics (nodes, edges, density, components, resolution rate, mean in-degree), hypothesis scores, and figure counts. All formatting (comma thousand separators, escaping) is applied during variable computation, ensuring the manuscript templates remain human-readable while producing publication-ready output. Unrecognized placeholders are preserved with a warning logged, enabling incremental manuscript development ahead of full pipeline execution.
+Stage 5 computes dynamic variables from all pipeline outputs and injects them into manuscript Markdown templates via double-brace placeholder substitution of the form `{<>}` wrapping a variable name (e.g. the literal token spelled `{{<CORPUS_SIZE>}}` becomes the rendered corpus count). Variables include corpus-level metrics (size, year range, CAGR), per-domain counts and percentages, citation network statistics (nodes, edges, density, components, resolution rate, mean in-degree), hypothesis scores, and figure counts. All formatting (comma thousand separators, escaping) is applied during variable computation, ensuring the manuscript templates remain human-readable while producing publication-ready output. Unrecognized placeholders are preserved with a warning logged, enabling incremental manuscript development ahead of full pipeline execution.
 
 ### Reproducibility and Test-Driven Validation
 

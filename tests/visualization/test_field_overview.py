@@ -27,6 +27,10 @@ class TestFieldOverview:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_field_summary_returns_path(self, tmp_path: Path) -> None:
         output = tmp_path / "sub" / "field_summary.png"
@@ -37,6 +41,10 @@ class TestFieldOverview:
         )
         assert result == output
         assert output.exists()
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_subfield_distribution_creates_file(self, tmp_path: Path) -> None:
         output = tmp_path / "subfield_dist.png"
@@ -47,6 +55,10 @@ class TestFieldOverview:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_subfield_distribution_empty_data(self, tmp_path: Path) -> None:
         output = tmp_path / "empty_dist.png"
@@ -57,3 +69,7 @@ class TestFieldOverview:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check (empty plot still produces valid image)
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0

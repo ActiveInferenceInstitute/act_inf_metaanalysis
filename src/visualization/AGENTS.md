@@ -1,6 +1,6 @@
 # Visualization Module — Agent Directives
 
-**Active module** at `projects/act_inf_metaanalysis/src/visualization/`.
+**Archived module** at `projects_archive/act_inf_metaanalysis/src/visualization/`.
 
 ## Overview
 

@@ -144,7 +144,9 @@ def estimate_growth_rate(year_counts: dict[int, int]) -> dict:
     start_count = year_counts[first_year]
     end_count = year_counts[last_year]
 
-    if n_years > 0 and start_count > 0 and end_count > 0:
+    if start_count == 0:
+        cagr = float('inf') if end_count > 0 else 0.0
+    elif n_years > 0 and end_count > 0:
         cagr = (end_count / start_count) ** (1 / n_years) - 1
     else:
         cagr = 0.0
@@ -155,3 +157,26 @@ def estimate_growth_rate(year_counts: dict[int, int]) -> dict:
         "doubling_time": doubling_time,
         "cagr": cagr,
     }
+
+
+def compute_subfield_timeline(
+    classified: dict[str, list[Paper]],
+) -> dict[str, dict[str, int]]:
+    """Build per-subfield publication counts keyed by year string.
+
+    Args:
+        classified: Mapping of subfield name to papers in that subfield.
+
+    Returns:
+        ``{subfield: {year_str: count}}`` omitting subfields with no dated papers.
+    """
+    timeline: dict[str, dict[str, int]] = {}
+    for subfield, papers in classified.items():
+        year_counts: dict[str, int] = {}
+        for paper in papers:
+            if paper.year is not None:
+                year_key = str(paper.year)
+                year_counts[year_key] = year_counts.get(year_key, 0) + 1
+        if year_counts:
+            timeline[subfield] = year_counts
+    return timeline

@@ -131,7 +131,11 @@ class TestLoadJson:
     """Test JSON file loader."""
 
     def test_missing_file(self, tmp_path):
-        assert _load_json(tmp_path / "missing.json") is None
+        missing = tmp_path / "missing.json"
+        result = _load_json(missing)
+        assert isinstance(result, dict)
+        assert "_error" in result
+        assert "file_not_found" in result["_error"]
 
     def test_valid_json(self, tmp_path):
         p = tmp_path / "data.json"
@@ -448,7 +452,7 @@ class TestInjectVariables:
     def test_unresolved_variable_kept(self):
         content = "Size: {{CORPUS_SIZE}}, Unknown: {{UNKNOWN_VAR}}"
         variables = {"CORPUS_SIZE": "42"}
-        result = inject_variables(content, variables)
+        result = inject_variables(content, variables, lenient=True)
         assert "42" in result
         assert "{{UNKNOWN_VAR}}" in result
 

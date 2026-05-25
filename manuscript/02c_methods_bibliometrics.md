@@ -12,7 +12,7 @@ We compute temporal publication metrics including year-by-year counts with gap-f
 
 ### Text Analytics
 
-We construct the TF-IDF matrix using tokenization with stopword removal and L2-normalized smoothed term-frequency inverse-document-frequency weighting \citep{salton1975vector}, with a configurable vocabulary size (default: 500 features). We apply non-negative matrix factorization (NMF) to discover latent topics using multiplicative update rules \citep{lee1999nmf}. Mathematical details are provided in Appendix \ref{sec:appendix_nmf}.
+We construct the TF-IDF matrix using tokenization with stopword removal and L2-normalized smoothed term-frequency inverse-document-frequency weighting \citep{salton1975vector}, with a configurable vocabulary size (default: 500 features). We apply non-negative matrix factorization (NMF) to discover latent topics using multiplicative update rules \citep{lee1999nmf}. Topic count $k=5$ was selected via expert-driven assessment. Mathematical details are provided in Appendix \ref{sec:appendix_nmf}.
 
 ### Citation Network Construction
 

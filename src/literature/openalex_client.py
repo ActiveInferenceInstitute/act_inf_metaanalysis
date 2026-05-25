@@ -15,7 +15,7 @@ from __future__ import annotations
 import logging
 import random
 import time
-from typing import Optional
+from typing import Optional, Callable
 
 import requests
 
@@ -176,6 +176,7 @@ def _request_with_retry(
     url: str,
     params: dict,
     max_retries: int = MAX_RETRIES,
+    delay_override: Optional[Callable[[float], None]] = None,
 ) -> requests.Response:
     """Make an HTTP GET request with retry on HTTP errors.
 
@@ -186,6 +187,7 @@ def _request_with_retry(
         url: URL to request.
         params: Query parameters.
         max_retries: Maximum number of retry attempts.
+        delay_override: Optional sleep function (test injection).
 
     Returns:
         Successful response object.
@@ -193,6 +195,7 @@ def _request_with_retry(
     Raises:
         requests.HTTPError: If all retries are exhausted.
     """
+    sleep_fn = delay_override or time.sleep
     response = None
     for attempt in range(max_retries + 1):
         response = http.get(url, params=params, timeout=30)
@@ -202,7 +205,7 @@ def _request_with_retry(
                 "OpenAlex HTTP %d (attempt %d/%d) — retrying in %.1fs",
                 response.status_code, attempt + 1, max_retries, wait,
             )
-            time.sleep(wait)
+            sleep_fn(wait)
             continue
         response.raise_for_status()
         return response
@@ -219,6 +222,7 @@ def search_openalex(
     max_results: int = 100,
     base_url: str = OPENALEX_API_URL,
     session: Optional[requests.Session] = None,
+    delay_override: Optional[Callable[[float], None]] = None,
 ) -> list[Paper]:
     """Search OpenAlex for works matching a query.
 
@@ -260,7 +264,9 @@ def search_openalex(
             )
 
             try:
-                response = _request_with_retry(http, f"{base_url}/works", params)
+                response = _request_with_retry(
+                    http, f"{base_url}/works", params, delay_override=delay_override,
+                )
                 result = response.json()
             except requests.HTTPError as e:
                 logger.warning("OpenAlex search stopped early due to HTTP error (rate limit): %s", e)

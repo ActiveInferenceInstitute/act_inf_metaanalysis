@@ -1,6 +1,6 @@
 # Knowledge Graph Module — Agent Directives
 
-**Active module** at `projects/act_inf_metaanalysis/src/knowledge_graph/`.
+**Archived module** at `projects_archive/act_inf_metaanalysis/src/knowledge_graph/`.
 
 ## Overview
 

@@ -38,6 +38,10 @@ class TestAdvancedPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_word_cloud_empty(self, tmp_path: Path) -> None:
         output = tmp_path / "empty_wc.png"
@@ -45,6 +49,10 @@ class TestAdvancedPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check (empty word cloud still produces valid image)
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     # -- PCA embeddings ---
     def test_plot_pca_embeddings_creates_file(self, tmp_path: Path) -> None:
@@ -54,6 +62,10 @@ class TestAdvancedPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_pca_embeddings_insufficient_data(self, tmp_path: Path) -> None:
         matrix = np.array([[1.0]])
@@ -61,6 +73,10 @@ class TestAdvancedPlots:
         result = plot_pca_embeddings(matrix, ["A2_philosophy"], ["term_0"], output)
         assert result == output
         assert output.exists()
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     # -- term heatmap ---
     def test_plot_term_heatmap_creates_file(self, tmp_path: Path) -> None:
@@ -70,12 +86,20 @@ class TestAdvancedPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_term_heatmap_empty(self, tmp_path: Path) -> None:
         output = tmp_path / "empty_hm.png"
         result = plot_term_heatmap(np.array([]), [], [], output)
         assert result == output
         assert output.exists()
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     # -- dendrogram ---
     def test_plot_dendrogram_creates_file(self, tmp_path: Path) -> None:
@@ -85,6 +109,10 @@ class TestAdvancedPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_dendrogram_single_label(self, tmp_path: Path) -> None:
         matrix = np.random.rand(5, 10)
@@ -92,6 +120,10 @@ class TestAdvancedPlots:
         result = plot_dendrogram(matrix, ["A2_philosophy"] * 5, output)
         assert result == output
         assert output.exists()
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     # -- topic-term bars ---
     def test_plot_topic_term_bars_creates_file(self, tmp_path: Path) -> None:
@@ -106,12 +138,20 @@ class TestAdvancedPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_topic_term_bars_empty(self, tmp_path: Path) -> None:
         output = tmp_path / "empty_topics.png"
         result = plot_topic_term_bars([], output)
         assert result == output
         assert output.exists()
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_topic_term_bars_single(self, tmp_path: Path) -> None:
         topics = [{"topic_id": 0, "top_words": ["x", "y"], "weights": [1.0, 0.5]}]
@@ -119,6 +159,10 @@ class TestAdvancedPlots:
         result = plot_topic_term_bars(topics, output)
         assert result == output
         assert output.exists()
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     # -- co-occurrence matrix ---
     def test_plot_cooccurrence_matrix_creates_file(self, tmp_path: Path) -> None:
@@ -133,9 +177,17 @@ class TestAdvancedPlots:
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
+        # Content validation: PIL check
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0
 
     def test_plot_cooccurrence_matrix_empty(self, tmp_path: Path) -> None:
         output = tmp_path / "empty_cooc.png"
         result = plot_cooccurrence_matrix([], output)
         assert result == output
         assert output.exists()
+        # Content validation: PIL check (empty cooc still produces valid image)
+        from PIL import Image
+        img = Image.open(output)
+        assert img.width > 0 and img.height > 0

@@ -2,7 +2,7 @@
 
 **Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
-Schema reference for all pipeline output artifacts. Each file is produced by one pipeline stage and consumed by downstream stages. Current corpus: N = 849 papers, 2,795 assertions over 8 hypotheses, citation graph: 847 nodes / 1,678 edges.
+Schema reference for all pipeline output artifacts. Each file is produced by one pipeline stage and consumed by downstream stages. The corpus size, assertion counts, and citation-graph statistics evolve with each pipeline run; consult the latest `output/data/*.json` summaries or the rendered manuscript (which injects values from `temporal_analysis.json`, `citation_network.json`, and `assertion_summary.json`) for current numbers. The schemas documented below are stable across runs.
 
 ---
 
@@ -26,6 +26,9 @@ One JSON object per line, each representing a deduplicated paper. Fields corresp
 | `citation_count` | int | yes | Number of citations (0 if unknown) |
 | `references` | array | yes | List of reference ID strings |
 | `publication_date` | string or null | no | ISO-8601 date (e.g. `"2023-06-15"`) |
+| `pdf_url` | string or null | no | Direct PDF URL when known (e.g. arXiv, OA repos) |
+| `is_open_access` | bool or null | no | OA flag from OpenAlex/S2 |
+| `full_text_source` | string or null | no | Provenance label (`"arxiv"`, `"openalex"`, …) |
 
 **Canonical ID priority** (for deduplication): DOI > arXiv ID > S2 ID > OpenAlex ID > title hash.
 
@@ -155,9 +158,11 @@ RDF TriG serialization of all nanopublications, compliant with the nanopub.net s
 **Example TriG structure for a single assertion:**
 
 ```trig
-@prefix np: <http://www.nanopub.org/nschema#> .
-@prefix prv: <http://purl.org/net/provenance/ns#> .
-@prefix aif: <http://activeinference.institute/ontology/> .
+@prefix np:   <http://www.nanopub.org/nschema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dc:   <http://purl.org/dc/terms/> .
+@prefix aif:  <http://activeinference.institute/ontology/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 <http://activeinference.institute/nanopub/a3f91b> {
     <http://activeinference.institute/nanopub/a3f91b> a np:Nanopublication ;
@@ -171,7 +176,7 @@ RDF TriG serialization of all nanopublications, compliant with the nanopub.net s
 }
 
 <http://activeinference.institute/nanopub/a3f91b#provenance> {
-    <http://activeinference.institute/nanopub/a3f91b#assertion> prv:wasGeneratedBy "gemma3:4b-orchestrator" .
+    <http://activeinference.institute/nanopub/a3f91b#assertion> prov:wasGeneratedBy "gemma3:4b-orchestrator" .
 }
 
 <http://activeinference.institute/nanopub/a3f91b#pubinfo> {
@@ -183,16 +188,18 @@ RDF TriG serialization of all nanopublications, compliant with the nanopub.net s
 
 ```json
 {
-  "FEP_UNIVERSALITY": 0.82,
-  "AIF_OPTIMALITY": 1.0,
-  "MARKOV_BLANKET_REALISM": 0.45,
-  "PREDICTIVE_CODING": 1.0,
-  "SCALABILITY": 0.7,
-  "CLINICAL_UTILITY": 0.33,
-  "MORPHOGENESIS": -0.1,
-  "LANGUAGE_AIF": 0.0
+  "FEP_UNIVERSALITY":         "<float in [-1, 1]>",
+  "AIF_OPTIMALITY":           "<float in [-1, 1]>",
+  "MARKOV_BLANKET_REALISM":   "<float in [-1, 1]>",
+  "PREDICTIVE_CODING":        "<float in [-1, 1]>",
+  "SCALABILITY":              "<float in [-1, 1]>",
+  "CLINICAL_UTILITY":         "<float in [-1, 1]>",
+  "MORPHOGENESIS":            "<float in [-1, 1]>",
+  "LANGUAGE_AIF":             "<float in [-1, 1]>"
 }
 ```
+
+The schema (key set + value range) is stable across runs; consult the rendered manuscript or the live `output/data/hypothesis_scores.json` for current per-hypothesis values.
 
 Each value is a float in `[-1, 1]` computed via the citation-weighted scoring formula: `score(H) = (Σ_support(w) − Σ_contradict(w)) / Σ_all(w)` where `w = log(1 + citations) × confidence`.
 

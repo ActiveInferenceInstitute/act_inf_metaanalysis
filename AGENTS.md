@@ -1,10 +1,10 @@
 # Active Inference Meta-Analysis
 
-**This is an active project** in the `projects/` directory, discovered and executed by infrastructure discovery functions.
+**Archived project** under [`projects_archive/act_inf_metaanalysis/`](../../projects_archive/act_inf_metaanalysis/). It is **not** discovered by template pipeline discovery (`projects/` only). To run locally, execute scripts from this directory or promote the tree back to `projects/`.
 
 ## Overview
 
-A computational meta-analysis of the Active Inference and Free Energy Principle literature. The project retrieves papers from three academic databases, extracts structured assertions using a nanopublication framework, constructs a probabilistic knowledge graph, scores eight standard hypotheses with citation-weighted evidence, and generates publication-ready visualizations. The pipeline is fully tested (534 tests, ≥90% coverage) with zero mocks, following the template's thin orchestrator and test-driven development patterns.
+A computational meta-analysis of the Active Inference and Free Energy Principle literature. The project retrieves papers from three academic databases, extracts structured assertions using a nanopublication framework, constructs a probabilistic knowledge graph, scores eight standard hypotheses with citation-weighted evidence, and generates publication-ready visualizations. The pipeline is covered by a pytest suite with a **90% minimum** line-coverage gate in `pyproject.toml`, following the template's thin orchestrator and test-driven development patterns.
 
 ## Key Features & Capabilities
 
@@ -40,7 +40,7 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 ### Infrastructure Integration
 
 - **Thin Orchestrators**: 6 scripts that import from `src/` for all computation
-- **≥90% Test Coverage**: 534 tests using real data, pytest-httpserver for API testing, no mocks
+- **≥90% Test Coverage** (gate in `pyproject.toml`): extensive pytest suite using real data and pytest-httpserver for API testing
 - **Deterministic Results**: Fixed RNG seeds (seed=42) for reproducibility
 - **Structured Logging**: All scripts use Python `logging` module with configurable `--log-level`
 - **Resumable Downloads**: `--resume` flag loads existing corpus before fetching, skipping papers already downloaded
@@ -49,7 +49,7 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 ## Directory Structure
 
 ```text
-projects/act_inf_metaanalysis/
+projects_archive/act_inf_metaanalysis/
 ├── src/                        # Core library (45+ public APIs, 5 packages)
 │   ├── __init__.py
 │   ├── literature/             # Multi-source retrieval and corpus management
@@ -83,7 +83,7 @@ projects/act_inf_metaanalysis/
 │       ├── temporal_plots.py   # Growth curve + subfield timeline
 │       ├── hypothesis_charts.py# Hypothesis dashboard + evidence timeline
 │       └── advanced_plots.py   # Word cloud, PCA, heatmap, dendrogram, topics, co-occurrence
-├── tests/                      # 534 tests, zero mocks
+├── tests/                      # Pytest suite (see `pyproject.toml` coverage gate)
 │   ├── __init__.py
 │   ├── conftest.py             # Path setup, MPLBACKEND=Agg, shared fixtures
 │   ├── analysis/

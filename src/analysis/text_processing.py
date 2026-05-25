@@ -68,6 +68,11 @@ def remove_stopwords(
     return [t for t in tokens if t not in stop]
 
 
+def tokenize_documents(documents: list[str]) -> list[list[str]]:
+    """Tokenize and de-stopword a list of document strings."""
+    return [remove_stopwords(tokenize(doc)) for doc in documents]
+
+
 def build_tfidf_matrix(
     documents: list[str], max_features: int = 1000
 ) -> tuple[np.ndarray, list[str]]:

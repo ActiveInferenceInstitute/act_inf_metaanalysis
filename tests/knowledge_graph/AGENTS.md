@@ -1,6 +1,6 @@
 # Knowledge Graph Tests Architecture
 
-**This is an active module** in the `projects/act_inf_metaanalysis/tests/knowledge_graph/` directory.
+**Archived test module** in the `projects_archive/act_inf_metaanalysis/tests/knowledge_graph/` directory.
 
 ## Overview
 

@@ -5,7 +5,7 @@ The meta-analysis pipeline is composed of five numbered scripts, each a **thin o
 Run scripts from the project root:
 
 ```bash
-cd projects/act_inf_metaanalysis
+cd projects_archive/act_inf_metaanalysis
 ```
 
 ---
@@ -275,6 +275,48 @@ python scripts/05_inject_variables.py --dry-run
 
 ---
 
+## Stage 6 — Full-Text Availability Assessment (`06_fulltext_assessment.py`)
+
+Audits the corpus for full-text availability and produces a JSON report
+covering PDF URLs, open-access flags, and per-source breakdowns. This stage
+is read-only: it does not modify the corpus, but feeds the manuscript's
+methodology and discussion sections about full-text coverage.
+
+**Inputs:**
+- `output/data/corpus.jsonl` (Stage 1 product)
+
+**Outputs:**
+- Console summary (totals, OA fraction, PDF coverage, source distribution)
+- `output/data/fulltext_assessment.json`
+
+**CLI flags:**
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--corpus` | `output/data/corpus.jsonl` | Path to the corpus JSONL file |
+| `--output-dir` | `output/data` | Directory to write the assessment JSON |
+| `--log-level` | `INFO` | Logging verbosity (`DEBUG`/`INFO`/`WARNING`/`ERROR`) |
+
+**Usage:**
+
+```bash
+# Default — uses canonical corpus path
+python scripts/06_fulltext_assessment.py
+
+# Custom corpus + output directory
+python scripts/06_fulltext_assessment.py \
+  --corpus output/data/corpus.jsonl \
+  --output-dir output/data
+```
+
+The emitted `fulltext_assessment.json` contains keys such as `total_papers`,
+`papers_with_pdf_url`, `open_access_count`, and `source_breakdown` (a
+`Counter` of `full_text_source` labels). It is consumed by the manuscript
+variable injector (Stage 5) and by the appendix sections that report on
+data accessibility.
+
+---
+
 ## Full Pipeline
 
 ```bash
@@ -283,6 +325,7 @@ python scripts/02_meta_analysis_pipeline.py
 python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 python scripts/04_generate_figures.py
 python scripts/05_inject_variables.py
+python scripts/06_fulltext_assessment.py
 ```
 
 ---

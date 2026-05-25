@@ -1,6 +1,6 @@
 # Source Code — Agent Directives
 
-**Active module root** at `projects/act_inf_metaanalysis/src/`.
+**Archived module root** at `projects_archive/act_inf_metaanalysis/src/`.
 
 ## Core Rules (Apply to All Subpackages)
 

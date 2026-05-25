@@ -6,7 +6,6 @@ Tests search_openalex, get_work_by_doi, and _reconstruct_abstract.
 
 import json
 import re
-from unittest.mock import patch
 
 import pytest
 import requests
@@ -234,6 +233,7 @@ class TestSearchOpenalex:
             query="free energy principle",
             max_results=10,
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert len(papers) == 2
@@ -246,6 +246,7 @@ class TestSearchOpenalex:
         papers = search_openalex(
             query="free energy principle",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         p = papers[0]
@@ -266,6 +267,7 @@ class TestSearchOpenalex:
         papers = search_openalex(
             query="free energy principle",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert len(papers[0].authors) == 1
@@ -280,6 +282,7 @@ class TestSearchOpenalex:
         papers = search_openalex(
             query="free energy principle",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert "free energy principle provides" in papers[0].abstract.lower()
@@ -291,6 +294,7 @@ class TestSearchOpenalex:
         papers = search_openalex(
             query="active inference",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert papers[1].abstract == ""
@@ -302,6 +306,7 @@ class TestSearchOpenalex:
         papers = search_openalex(
             query="active inference",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert papers[1].venue is None
@@ -315,21 +320,22 @@ class TestSearchOpenalex:
         papers = search_openalex(
             query="nonexistent topic xyz",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         assert papers == []
 
     def test_search_http_error(self, httpserver: HTTPServer):
-        """HTTP error is caught and returns empty or partial results."""
+        """HTTP error after retries is swallowed and returns empty list."""
         httpserver.expect_request("/works").respond_with_data(
             "Service Unavailable", status=503
         )
 
-        with patch("time.sleep"):
-            papers = search_openalex(
-                query="test",
-                base_url=httpserver.url_for(""),
-            )
+        papers = search_openalex(
+            query="test",
+            base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
+        )
         assert papers == []
 
     def test_search_with_session(self, httpserver: HTTPServer):
@@ -341,6 +347,7 @@ class TestSearchOpenalex:
             query="test",
             base_url=httpserver.url_for(""),
             session=session,
+            delay_override=lambda _: None,
         )
         session.close()
 
@@ -353,6 +360,7 @@ class TestSearchOpenalex:
         papers = search_openalex(
             query="test",
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
 
         p = papers[1]
@@ -489,24 +497,25 @@ class TestOpenAlexPaginationAndRetry:
             query="test",
             max_results=250,
             base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
         assert len(papers) == 250
         assert papers[0].title == "Work 0"
         assert papers[249].title == "Work 249"
 
     def test_retry_on_error(self, httpserver: HTTPServer):
-        """search retries on 429/500/503 (up to 1 time)."""
+        """search retries on 429/500/503 (up to 1 time) and recovers."""
         # Fail once then succeed
         httpserver.expect_ordered_request("/works").respond_with_data("Error", status=503)
         httpserver.expect_ordered_request("/works").respond_with_json(
             {"meta": {}, "results": [{"id": "W1", "title": "Success"}]}
         )
 
-        with patch("time.sleep"):
-            papers = search_openalex(
-                query="test",
-                base_url=httpserver.url_for(""),
-            )
+        papers = search_openalex(
+            query="test",
+            base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
+        )
         assert len(papers) == 1
         assert papers[0].title == "Success"
 
@@ -542,6 +551,7 @@ class TestOpenAlexOAParsing:
         httpserver.expect_request("/works").respond_with_json(response)
         papers = search_openalex(
             query="test", base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
         assert papers[0].pdf_url == "https://arxiv.org/pdf/2301.00001.pdf"
 
@@ -568,6 +578,7 @@ class TestOpenAlexOAParsing:
         httpserver.expect_request("/works").respond_with_json(response)
         papers = search_openalex(
             query="test", base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
         assert papers[0].pdf_url == "https://journal.org/paper.pdf"
         assert papers[0].full_text_source == "publisher"
@@ -595,6 +606,7 @@ class TestOpenAlexOAParsing:
         httpserver.expect_request("/works").respond_with_json(response)
         papers = search_openalex(
             query="test", base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
         assert papers[0].full_text_source == "openalex"
 
@@ -621,6 +633,7 @@ class TestOpenAlexOAParsing:
         httpserver.expect_request("/works").respond_with_json(response)
         papers = search_openalex(
             query="test", base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
         assert papers[0].references == ["openalex:W1111", "openalex:W2222"]
 
@@ -647,6 +660,6 @@ class TestOpenAlexOAParsing:
         httpserver.expect_request("/works").respond_with_json(response)
         papers = search_openalex(
             query="test", base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
         )
         assert papers[0].venue == "Frontiers in Neuroscience"
-

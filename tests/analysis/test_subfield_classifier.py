@@ -96,150 +96,106 @@ class TestSubfieldsConstant:
 class TestClassifyPaper:
     """Tests for classify_paper."""
 
-    def test_philosophy_domain(self):
-        """Paper about FEP conceptually (no math) maps to A2_philosophy."""
-        paper = _paper(
-            title="The Free Energy Principle and Consciousness",
-            abstract="We discuss the phenomenology of predictive processing and bayesian brain hypothesis from an enactivism perspective",
-        )
-        assert classify_paper(paper) == "A2_philosophy"
-
-    def test_formal_theory_with_equations(self):
-        """Paper with mathematical formalism maps to A1_formal."""
-        paper = _paper(
-            title="A Variational Free Energy Formulation",
-            abstract="We derive a theorem proving convergence of the variational bound via KL divergence optimization on a manifold",
-        )
-        assert classify_paper(paper) == "A1_formal"
-
-    def test_formal_theory_with_bayesian_math(self):
-        """Paper with Bayesian inference formalism maps to A1_formal."""
-        paper = _paper(
-            title="Active Inference as Posterior Optimization",
-            abstract="We present a derivation showing the posterior distribution under the generative model with Laplace approximation and message passing",
-        )
-        assert classify_paper(paper) == "A1_formal"
-
-    def test_robotics_domain(self):
-        """Paper about robot navigation maps to C2_robotics."""
-        paper = _paper(
-            title="Robot Navigation Using Active Inference",
-            abstract="We present a robot that uses sensorimotor control for navigation and manipulation",
-        )
-        assert classify_paper(paper) == "C2_robotics"
-
-    def test_neuroscience_domain(self):
-        """Paper about cortical processing maps to C1_neuroscience."""
-        paper = _paper(
-            title="Cortical Predictive Processing in the Brain",
-            abstract="Using fMRI and EEG we study neural synaptic dopamine mechanisms in hippocampal circuits",
-        )
-        assert classify_paper(paper) == "C1_neuroscience"
-
-    def test_psychiatry_domain(self):
-        """Paper about schizophrenia maps to C4_psychiatry."""
-        paper = _paper(
-            title="Computational Psychiatry of Schizophrenia",
-            abstract="We model psychosis and depression through clinical autism assessments",
-        )
-        assert classify_paper(paper) == "C4_psychiatry"
-
-    def test_formal_theory_domain(self):
-        """Paper about Markov blankets with stochastic math maps to A1_formal."""
-        paper = _paper(
-            title="Markov Blanket Formalism",
-            abstract="Information geometry and path integral formulation with stochastic langevin dynamics",
-        )
-        assert classify_paper(paper) == "A1_formal"
-
-    def test_biology_domain(self):
-        """Paper about morphogenesis maps to C5_biology."""
-        paper = _paper(
-            title="Morphogenesis and the Free Energy Principle",
-            abstract="Cell organism evolution and autopoiesis in biological systems and life",
-        )
-        assert classify_paper(paper) == "C5_biology"
-
-    def test_language_domain(self):
-        """Paper about language processing maps to C3_language."""
-        paper = _paper(
-            title="Language Processing Under Active Inference",
-            abstract="Linguistic speech and semantic reading for communication and natural language understanding",
-        )
-        assert classify_paper(paper) == "C3_language"
-
-    def test_tools_domain(self):
-        """Paper about deep active inference maps to B_tools."""
-        paper = _paper(
-            title="Deep Active Inference for Scalable Planning",
-            abstract="Amortized planning with monte carlo tree search and reinforcement learning benchmarks",
-        )
-        assert classify_paper(paper) == "B_tools"
-
-    def test_no_keywords_defaults_to_philosophy(self):
-        """Paper with no matching keywords defaults to A2_philosophy."""
-        paper = _paper(
-            title="Unrelated Topic About Cooking",
-            abstract="How to make pasta with tomato sauce and basil",
-        )
-        assert classify_paper(paper) == "A2_philosophy"
-
-    def test_case_insensitive(self):
-        """Matching is case-insensitive."""
-        paper = _paper(
-            title="ROBOT NAVIGATION USING EMBODIED MOTOR CONTROL",
-            abstract="SENSORIMOTOR MANIPULATION",
-        )
-        assert classify_paper(paper) == "C2_robotics"
-
-    def test_specific_domain_wins_over_general(self):
-        """When C-domain keywords and A1/A2 keywords both match, C wins."""
-        # Has both neuroscience and formal theory keywords
-        paper = _paper(
-            title="Neural Cortical Free Energy Principle Formulation",
-            abstract="We derive a theorem for cortical prediction error in hippocampal fMRI data",
-        )
-        assert classify_paper(paper) == "C1_neuroscience"
-
-    def test_a1_wins_over_a2(self):
-        """Formal theory (A1) wins over philosophy (A2) when both match."""
-        paper = _paper(
-            title="Free Energy Principle as Variational Inference",
-            abstract="We present a theorem showing convergence of the posterior under the generative model",
-        )
-        assert classify_paper(paper) == "A1_formal"
-
-    def test_abstract_contributes_to_match(self):
-        """Keywords in abstract count toward matching."""
-        paper = _paper(
-            title="A New Framework",
-            abstract="This paper presents a robot navigation system with motor control",
-        )
-        assert classify_paper(paper) == "C2_robotics"
-
-    def test_tools_wins_over_formal_theory(self):
-        """Tools (B, priority 2) wins over formal theory (A1, priority 3)."""
-        paper = _paper(
-            title="Scalable Deep Active Inference for Planning",
-            abstract="We benchmark our amortized algorithm with monte carlo tree search against reinforcement learning",
-        )
-        assert classify_paper(paper) == "B_tools"
-
-    def test_pure_fep_paper_goes_to_a1_if_math_present(self):
-        """FEP paper WITH mathematical formalism → A1 (math wins over catch-all)."""
-        paper = _paper(
-            title="The Free Energy Principle: A Mathematical Derivation",
-            abstract="We present a proof of convergence for the variational bound with equation for the posterior",
-        )
-        assert classify_paper(paper) == "A1_formal"
-
-    def test_pure_fep_paper_goes_to_a2_if_no_math(self):
-        """FEP paper WITHOUT mathematical formalism → A2 (catch-all)."""
-        paper = _paper(
-            title="Understanding Active Inference",
-            abstract="A review of the free energy principle and its implications for generative model approaches",
-        )
-        assert classify_paper(paper) == "A2_philosophy"
+    @pytest.mark.parametrize(
+        "title,abstract,expected",
+        [
+            # philosophy domain - conceptual FEP
+            ("The Free Energy Principle and Consciousness",
+             "We discuss the phenomenology of predictive processing and bayesian brain hypothesis from an enactivism perspective",
+             "A2_philosophy"),
+            # formal theory - equations
+            ("A Variational Free Energy Formulation",
+             "We derive a theorem proving convergence of the variational bound via KL divergence optimization on a manifold",
+             "A1_formal"),
+            # formal theory - Bayesian math
+            ("Active Inference as Posterior Optimization",
+             "We present a derivation showing the posterior distribution under the generative model with Laplace approximation and message passing",
+             "A1_formal"),
+            # robotics
+            ("Robot Navigation Using Active Inference",
+             "We present a robot that uses sensorimotor control for navigation and manipulation",
+             "C2_robotics"),
+            # neuroscience
+            ("Cortical Predictive Processing in the Brain",
+             "Using fMRI and EEG we study neural synaptic dopamine mechanisms in hippocampal circuits",
+             "C1_neuroscience"),
+            # psychiatry
+            ("Computational Psychiatry of Schizophrenia",
+             "We model psychosis and depression through clinical autism assessments",
+             "C4_psychiatry"),
+            # formal theory - stochastic math
+            ("Markov Blanket Formalism",
+             "Information geometry and path integral formulation with stochastic langevin dynamics",
+             "A1_formal"),
+            # biology
+            ("Morphogenesis and the Free Energy Principle",
+             "Cell organism evolution and autopoiesis in biological systems and life",
+             "C5_biology"),
+            # language
+            ("Language Processing Under Active Inference",
+             "Linguistic speech and semantic reading for communication and natural language understanding",
+             "C3_language"),
+            # tools
+            ("Deep Active Inference for Scalable Planning",
+             "Amortized planning with monte carlo tree search and reinforcement learning benchmarks",
+             "B_tools"),
+            # no keywords -> defaults to philosophy
+            ("Unrelated Topic About Cooking",
+             "How to make pasta with tomato sauce and basil",
+             "A2_philosophy"),
+            # case insensitive
+            ("ROBOT NAVIGATION USING EMBODIED MOTOR CONTROL",
+             "SENSORIMOTOR MANIPULATION",
+             "C2_robotics"),
+            # C domain wins over A (neuroscience+formal)
+            ("Neural Cortical Free Energy Principle Formulation",
+             "We derive a theorem for cortical prediction error in hippocampal fMRI data",
+             "C1_neuroscience"),
+            # A1 wins over A2
+            ("Free Energy Principle as Variational Inference",
+             "We present a theorem showing convergence of the posterior under the generative model",
+             "A1_formal"),
+            # abstract contributes
+            ("A New Framework",
+             "This paper presents a robot navigation system with motor control",
+             "C2_robotics"),
+            # B wins over A1
+            ("Scalable Deep Active Inference for Planning",
+             "We benchmark our amortized algorithm with monte carlo tree search against reinforcement learning",
+             "B_tools"),
+            # FEP with math -> A1
+            ("The Free Energy Principle: A Mathematical Derivation",
+             "We present a proof of convergence for the variational bound with equation for the posterior",
+             "A1_formal"),
+            # FEP without math -> A2
+            ("Understanding Active Inference",
+             "A review of the free energy principle and its implications for generative model approaches",
+             "A2_philosophy"),
+        ],
+        ids=[
+            "philosophy_FEP_concept",
+            "formal_equations",
+            "formal_bayesian_math",
+            "robotics_navigation",
+            "neuroscience_cortical",
+            "psychiatry_schizophrenia",
+            "formal_markov_blanket",
+            "biology_morphogenesis",
+            "language_processing",
+            "tools_deep_planning",
+            "philosophy_cooking_default",
+            "robotics_case_insensitive",
+            "neuroscience_C_wins_over_A",
+            "formal_A1_wins_over_A2",
+            "robotics_abstract_contributes",
+            "tools_B_wins_over_A1",
+            "formal_FEP_with_math",
+            "philosophy_FEP_no_math",
+        ]
+    )
+    def test_subfield_classification_param(self, title: str, abstract: str, expected: str) -> None:
+        paper = _paper(title, abstract)
+        assert classify_paper(paper) == expected
 
 
 # ── classify_corpus ──────────────────────────────────────────────────

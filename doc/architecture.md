@@ -10,7 +10,7 @@ The pipeline operates in five stages, each producing intermediate artifacts cons
 Stage 1: Literature Search
 ──────────────────────────
   arXiv Atom API ──┐  (9 queries: 5 core AIF + 4 EBM-adjacent)
-  Semantic Scholar ─┼──▶ Corpus (JSONL)  N=849 papers (2005–2026)
+  Semantic Scholar ─┼──▶ Corpus (JSONL)  N papers (2005–present); see latest output/data/temporal_analysis.json
   OpenAlex API ────┘      │
       dedup via canonical ID priority
       (DOI > arXiv > S2 > OpenAlex > title hash)
@@ -300,7 +300,7 @@ Config affects:
 | --- | --- | --- |
 | Literature Search | 5–15 min | API rate limits (arXiv 3s delay, S2 100 req/5min) |
 | Meta-Analysis | < 10s | TF-IDF / NMF computation scales with corpus size |
-| Knowledge Graph (LLM) | 1–3 hours (N≈849) | Sequential LLM inference (~0.1 papers/s with gemma3:4b) |
+| Knowledge Graph (LLM) | 1–3 hours (corpus on the order of 10^3 papers) | Sequential LLM inference (~0.1 papers/s with gemma3:4b) |
 | Visualization | < 30s | Figure rendering, Matplotlib I/O |
 
 The LLM extraction stage dominates total runtime. Checkpointing every 50 papers ensures that interruptions cost at most ~8 minutes of re-work.

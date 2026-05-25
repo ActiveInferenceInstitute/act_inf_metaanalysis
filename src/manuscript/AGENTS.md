@@ -1,6 +1,6 @@
 # Manuscript Template Engine — Agent Directives
 
-**Active module** at `projects/act_inf_metaanalysis/src/manuscript/`.
+**Archived module** at `projects_archive/act_inf_metaanalysis/src/manuscript/`.
 
 ## Overview
 
