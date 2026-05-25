@@ -44,7 +44,7 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 - **Deterministic Results**: Fixed RNG seeds (seed=42) for reproducibility
 - **Structured Logging**: All scripts use Python `logging` module with configurable `--log-level`
 - **Resumable Downloads**: `--resume` flag loads existing corpus before fetching, skipping papers already downloaded
-- **Pipeline Compatible**: Discoverable by `infrastructure.project.discovery`, runs via `execute_pipeline.py`
+- **Standalone / archived**: Not discovered by template `./run.sh` while under `projects_archive/`; run scripts directly or promote to `projects/` for pipeline integration
 
 ## Directory Structure
 
@@ -58,31 +58,35 @@ projects_archive/act_inf_metaanalysis/
 │   │   ├── arxiv_client.py     # arXiv Atom API search + parsing
 │   │   ├── semantic_scholar.py # Semantic Scholar Graph API client
 │   │   ├── openalex_client.py  # OpenAlex API client
-│   │   └── corpus.py           # Unified corpus: dedup, merge, persist
+│   │   ├── corpus.py           # Unified corpus: dedup, merge, persist
+│   │   ├── search_runner.py    # Stage-01 orchestration
+│   │   └── fulltext_assessment.py
+│   ├── config_loader.py        # YAML project_config (search, kg)
 │   ├── analysis/               # Bibliometric and text analysis
-│   │   ├── __init__.py
+│   │   ├── pipeline_runner.py  # Stage-02 orchestration (imported by script 02)
 │   │   ├── text_processing.py  # Tokenization, stopwords, TF-IDF matrix
 │   │   ├── citation_network.py # networkx DiGraph, PageRank, communities
 │   │   ├── topic_modeling.py   # NMF topic extraction from TF-IDF
-│   │   ├── temporal_analysis.py# Publication trends, growth rates
-│   │   └── subfield_classifier.py # 8-subfield keyword classification
+│   │   ├── temporal_analysis.py# Publication trends, growth rates, subfield timeline
+│   │   ├── subfield_defaults.py# Default keyword map (8 domains)
+│   │   ├── subfield_registry.py# Config load + compiled pattern cache
+│   │   └── subfield_classifier.py # classify_paper / classify_corpus API
 │   ├── knowledge_graph/        # RDF knowledge graph and hypothesis scoring
-│   │   ├── __init__.py
+│   │   ├── kg_runner.py        # Stage-03 orchestration
+│   │   ├── llm_config.py       # LLMConfig dataclass
+│   │   ├── llm_client.py       # Ollama HTTP client
+│   │   ├── llm_prompts.py      # Prompt templates + JSON recovery
+│   │   ├── llm_extraction.py   # Batch assess + nanopub persistence
 │   │   ├── schema.py           # RDF namespaces, assertion types
-│   │   ├── nanopublication.py  # Assertion + Nanopub dataclasses + persistence
+│   │   ├── nanopublication.py  # Assertion + Nanopub dataclasses
 │   │   ├── hypothesis.py       # 8 hypotheses, citation-weighted scoring
 │   │   ├── graph_builder.py    # KnowledgeGraph (rdflib + networkx fallback)
 │   │   ├── query.py            # Graph query helpers
-│   │   ├── extraction.py       # Assertion extraction dispatcher
-│   │   └── llm_extraction.py   # LLM-based extraction with incremental persistence
+│   │   └── extraction.py       # Assertion extraction dispatcher
 │   └── visualization/          # Publication-ready figures
-│       ├── __init__.py
-│       ├── style.py            # VIZ_CONFIG colorblind-safe palette
-│       ├── field_overview.py   # Field summary + subfield distribution
-│       ├── citation_plots.py   # Citation network + degree distribution
-│       ├── temporal_plots.py   # Growth curve + subfield timeline
-│       ├── hypothesis_charts.py# Hypothesis dashboard + evidence timeline
-│       └── advanced_plots.py   # Word cloud, PCA, heatmap, dendrogram, topics, co-occurrence
+│       ├── figure_runner.py    # Stage-04 orchestration
+│       ├── advanced/           # Word cloud, PCA, heatmap, dendrogram, topics
+│       └── advanced_plots.py   # Re-export shim
 ├── tests/                      # Pytest suite (see `pyproject.toml` coverage gate)
 │   ├── __init__.py
 │   ├── conftest.py             # Path setup, MPLBACKEND=Agg, shared fixtures
@@ -93,10 +97,16 @@ projects_archive/act_inf_metaanalysis/
 │   │   ├── test_text_processing.py
 │   │   └── test_topic_modeling.py
 │   ├── knowledge_graph/
+│   │   ├── llm_extraction_fixtures.py
+│   │   ├── test_llm_prompt_parse.py
+│   │   ├── test_llm_assess_paper.py
+│   │   ├── test_llm_batch.py
+│   │   ├── test_llm_config.py
+│   │   ├── test_llm_nanopub_resume.py
+│   │   ├── test_llm_max_papers.py
 │   │   ├── test_extraction.py
 │   │   ├── test_graph_builder.py
 │   │   ├── test_hypothesis.py
-│   │   ├── test_llm_extraction.py
 │   │   ├── test_nanopublication.py
 │   │   ├── test_query.py
 │   │   └── test_schema.py
@@ -115,7 +125,9 @@ projects_archive/act_inf_metaanalysis/
 │   │   └── test_temporal_plots.py
 │   ├── test_scripts.py         # Integration tests for script entry points
 │   └── test_variables.py       # Manuscript variable computation tests
-├── scripts/                    # Thin orchestrators
+├── scripts/                    # Thin orchestrators (≤91 lines each)
+│   ├── _bootstrap.py
+│   ├── _io.py
 │   ├── 01_literature_search.py
 │   ├── 02_meta_analysis_pipeline.py
 │   ├── 03_build_knowledge_graph.py
@@ -153,7 +165,8 @@ projects_archive/act_inf_metaanalysis/
 │   ├── data_formats.md
 │   ├── scripts.md
 │   ├── testing.md
-│   └── visualization_guide.md
+│   ├── visualization_guide.md
+│   └── CODE_QUALITY_AUDIT.md
 ├── output/                     # Disposable, regenerated
 ├── pyproject.toml
 ├── README.md

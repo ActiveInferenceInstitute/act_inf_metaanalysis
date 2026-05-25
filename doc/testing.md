@@ -4,7 +4,7 @@
 
 ## Overview
 
-The project maintains **568 tests** across **30 test files** (parameterized cases inflate the runtime count further), achieving **>90% line+branch coverage** on `src/` — above the 90% CI gate (measured: **91.64%**). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --co -q | tail -1` for the exact current count.
+The project maintains **615 tests** across **39 test files** (parameterized cases inflate the runtime count further), achieving **>90% line+branch coverage** on `src/` — above the 90% CI gate (measured: **96.09%**). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --co -q | tail -1` for the exact current count.
 
 ### Zero-Mock Practicality
 
@@ -88,7 +88,9 @@ Key points:
 | `literature/test_arxiv_client.py` | `arxiv_client.py` | ~18 | XML parsing, pagination, rate limiting, retry on HTTP errors (via `pytest-httpserver`) |
 | `literature/test_semantic_scholar.py` | `semantic_scholar.py` | ~22 | JSON parsing, 429 rate-limit retry with backoff, pagination, `get_paper_details`, `get_citations` |
 | `literature/test_openalex_client.py` | `openalex_client.py` | ~15 | Inverted-index abstract reconstruction, cursor pagination, `get_work_by_doi` |
-| `test_query.py` | Query utilities | ~8 | Search query construction and validation |
+| `literature/test_search_runner.py` | `search_runner.py` | 10 | Relevance filter, resume/clear corpus, YAML config merge, duplicate counting |
+| `literature/test_search_runner_httpserver.py` | `search_runner.py` + API clients | 3 | End-to-end search via injectable `*_base_url` (arXiv, S2, OpenAlex) |
+| `literature/test_fulltext_assessment.py` | `fulltext_assessment.py` | 2 | PDF URL coverage and domain breakdown |
 
 ### Analysis Package
 
@@ -98,6 +100,8 @@ Key points:
 | `analysis/test_citation_network.py` | `citation_network.py` | ~18 | Graph construction, PageRank, community detection, `build_reference_index`, `resolve_citations` |
 | `analysis/test_temporal_analysis.py` | `temporal_analysis.py` | ~20 | Year counts, cumulative growth, CAGR, doubling time, gap-year fill, empty input handling |
 | `analysis/test_subfield_classifier.py` | `subfield_classifier.py` | ~30 | Priority-based classification (C→B→A1→A2), word-boundary matching, domain keyword coverage, `classify_corpus` |
+| `analysis/test_subfield_registry.py` | `subfield_registry.py`, `subfield_defaults.py` | 4 | YAML keyword load, pattern cache rebuild, invalid entry fallback |
+| `analysis/test_pipeline_runner.py` | `pipeline_runner.py` | 1 | Stage-02 artifact bundle from sample corpus |
 | `analysis/test_topic_modeling.py` | `topic_modeling.py` | ~20 | NMF convergence, topic extraction, `get_document_topics` row normalization, edge cases |
 
 ### Knowledge Graph Package
@@ -107,7 +111,12 @@ Key points:
 | `knowledge_graph/test_schema.py` | `schema.py` | ~15 | Namespace URIs, assertion types, hypothesis categories, domain URIs |
 | `knowledge_graph/test_nanopublication.py` | `nanopublication.py` | ~20 | Create/serialize/deserialize nanopubs, merge dedup (new-wins), `append_nanopubs` atomicity |
 | `knowledge_graph/test_hypothesis.py` | `hypothesis.py` | ~18 | Citation-weighted scoring formula, `score_all_hypotheses`, `temporal_trend`, edge cases |
-| `knowledge_graph/test_llm_extraction.py` | `llm_extraction.py` | ~15 | Prompt construction, JSON response parsing (fences, trailing commas), `assess_paper_hypotheses` |
+| `knowledge_graph/test_llm_prompt_parse.py` | `llm_prompts`, `llm_client` | 9 | Prompt construction, JSON parsing |
+| `knowledge_graph/test_llm_assess_paper.py` | `llm_extraction` | 6 | Single-paper httpserver assessment |
+| `knowledge_graph/test_llm_batch.py` | `llm_extraction`, `extraction` | 4 | Batch extraction, unified entry point |
+| `knowledge_graph/test_llm_config.py` | `llm_config` | 2 | LLMConfig defaults |
+| `knowledge_graph/test_llm_nanopub_resume.py` | `llm_extraction` | 5 | Nanopub checkpoint resume |
+| `knowledge_graph/test_llm_max_papers.py` | `llm_extraction` | 5 | max_papers cap |
 | `knowledge_graph/test_extraction.py` | `extraction.py` | ~8 | End-to-end assertion extraction coordination |
 | `knowledge_graph/test_graph_builder.py` | `graph_builder.py` | ~8 | KnowledgeGraph construction and query |
 | `knowledge_graph/test_query.py` | `query.py` | ~8 | Graph query helpers |
@@ -121,8 +130,10 @@ Key points:
 | `visualization/test_temporal_plots.py` | `temporal_plots.py` | ~8 | Growth curve and subfield timeline plots |
 | `visualization/test_hypothesis_charts.py` | `hypothesis_charts.py` | ~8 | Hypothesis dashboard and evidence timeline |
 | `visualization/test_advanced_plots.py` | `advanced_plots.py` | ~10 | Word cloud, PCA, heatmap, dendrogram, topics, co-occurrence |
+| `visualization/test_figure_runner.py` | `figure_runner.py` | 4 | Minimal/full fixtures, citation network without GML, empty inputs |
 | `visualization/test_style.py` | `style.py` | ~5 | VIZ_CONFIG palette and font size enforcement |
-| `test_scripts.py` | All 5 pipeline scripts | ~7 | `--help` parsing, argument defaults, module importability |
+| `test_config_loader.py` | `config_loader.py` | 4 | Search/KG YAML loading and defaults |
+| `test_scripts.py` | All 6 pipeline scripts | ~8 | `--help` parsing, argument defaults, module importability |
 | `test_variables.py` | `manuscript/variables.py` | ~36 | LaTeX formatting, JSONL counting, compute_variables with full/partial/empty output, inject_variables |
 
 ## Testing Patterns

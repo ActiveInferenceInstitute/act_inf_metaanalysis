@@ -30,8 +30,9 @@ from literature.models import Paper
 
 
 def _count_paper_references(paper: Paper) -> int:
-    if hasattr(paper, "references") and isinstance(paper.references, list):
-        return len(paper.references)
+    refs = getattr(paper, "references", None)
+    if isinstance(refs, list) and refs:
+        return len(refs)
     return len(getattr(paper, "referenced_works", []) or [])
 
 

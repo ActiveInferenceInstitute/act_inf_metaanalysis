@@ -8,12 +8,14 @@ Project-specific **thin orchestrator scripts** for the Active Inference meta-ana
 
 ```
 scripts/
-├── 01_literature_search.py       # Corpus retrieval (arXiv, S2, OpenAlex)
-├── 02_meta_analysis_pipeline.py  # Text processing, NMF, citation network
-├── 03_build_knowledge_graph.py   # LLM assertion extraction, hypothesis scoring
-├── 04_generate_figures.py        # 16 publication-quality figures
-├── 05_inject_variables.py        # {{VAR}} → computed values in manuscript
-├── 06_fulltext_assessment.py     # OA / PDF availability report
+├── _bootstrap.py                 # PYTHONPATH + optional infrastructure root
+├── _io.py                        # Shared JSON load/write helpers
+├── 01_literature_search.py       # → literature/search_runner.py
+├── 02_meta_analysis_pipeline.py  # → analysis/pipeline_runner.py
+├── 03_build_knowledge_graph.py   # → knowledge_graph/kg_runner.py
+├── 04_generate_figures.py        # → visualization/figure_runner.py
+├── 05_inject_variables.py        # → manuscript/variables.py
+├── 06_fulltext_assessment.py     # → literature/fulltext_assessment.py
 └── __pycache__/                  # Python bytecode cache (gitignored)
 ```
 
@@ -36,7 +38,7 @@ Scripts **must** run in numbered order because each stage depends on the outputs
 
 Multi-source literature search orchestrator.
 
-**APIs queried:** arXiv (5 FEP/AIF query strings), Semantic Scholar, OpenAlex.
+**APIs queried:** arXiv (default query list in `src/config.py` → `DEFAULT_ARXIV_QUERIES`), Semantic Scholar, OpenAlex. Override via `project_config.search.arxiv_queries` in `manuscript/config.yaml`.
 
 **Key flags:**
 - `--resume` / `--no-resume` — load existing `corpus.jsonl` before fetching (default: resume on)

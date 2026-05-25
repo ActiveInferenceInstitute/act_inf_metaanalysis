@@ -5,7 +5,11 @@
 ## Overview
 
 Three API clients (arXiv, Semantic Scholar, OpenAlex) plus corpus management and data models.
-Used exclusively by `scripts/01_literature_search.py`. The corpus JSONL is the single input
+Orchestration lives in `literature/search_runner.py` (called from `scripts/01_literature_search.py`).
+`run_literature_search(..., arxiv_base_url=..., semantic_scholar_base_url=..., openalex_base_url=...)`
+accepts injectable API roots for `pytest-httpserver` integration tests without changing production defaults.
+Full-text reporting: `literature/fulltext_assessment.py` (`scripts/06_fulltext_assessment.py`).
+The corpus JSONL is the single input
 to all downstream pipeline stages.
 
 ## Invariants Agents Must Preserve
@@ -33,7 +37,7 @@ to all downstream pipeline stages.
    - Rate limiting (check provider's terms of service)
    - Retry on 429/5xx
 2. Add a `pytest-httpserver` test in `tests/literature/test_new_source_client.py`.
-3. Import and call from `scripts/01_literature_search.py`.
+3. Wire the client from `literature/search_runner.py` (not directly in the script).
 4. Update this file and `README.md`.
 
 ## Rate Limits and API Policies

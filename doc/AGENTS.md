@@ -13,7 +13,7 @@ This directory (`doc/`) serves as the comprehensive, long-form technical documen
 - `data_formats.md`: Strict JSONL, TriG, and Schema definitions governing Corpus storage and nanopublication validation.
 - `hypotheses.md`: Domain theory constraints mapping the 8 core hypotheses to active inference literature.
 - `scripts.md`: Detailed configuration and CLI flag mapping.
-- `testing.md`: Explains the strict zero-mock execution environment and testing philosophy (568 tests across 30 files; see `testing.md` for refresh commands).
+- `testing.md`: Explains the strict zero-mock execution environment and testing philosophy (615 tests across 39 files; see `testing.md` for refresh commands).
 - `visualization_guide.md`: Parameters for the 16 publication-ready generators.
 - `README.md`: Central index mapping the entire 5-stage pipeline and acting as the entrypoint.
 

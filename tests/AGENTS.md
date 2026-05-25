@@ -4,7 +4,7 @@
 
 ## Overview
 
-This directory houses the comprehensive test suite for the Active Inference Meta-Analysis project. The suite enforces the **Zero-Mock Testing Philosophy**, relying on actual data transformations, HTTP test servers, and localized fixture generation rather than object mocking. This ensures structural integration integrity across the 45+ public APIs.
+This directory houses the comprehensive test suite for the Active Inference Meta-Analysis project (**615 tests** in **39 files**, **96.09%** `src/` coverage as of 2026-05-25). The suite enforces the **Zero-Mock Testing Philosophy**, relying on actual data transformations, HTTP test servers, and localized fixture generation rather than object mocking.
 
 ## Architecture
 
@@ -14,9 +14,10 @@ This directory houses the comprehensive test suite for the Active Inference Meta
 
 ## Coverage Goals
 
-- Current coverage strictly maintains $\geq 90\%$ instruction line execution (currently at ~94.9%).
+- Current coverage strictly maintains ≥90% instruction line execution (measured **96.09%** on `src/`).
 - All new features implemented in `src/` MUST be accompanied by equivalent tests in the corresponding `tests/` subdirectory.
 
 ## Sub-Modules
 
-Please refer to the specific `AGENTS.md` files within `analysis/`, `knowledge_graph/`, `literature/`, and `visualization/` for detailed testing criteria mapped to corresponding core modules.
+- **`test_config_loader.py`** (root): YAML load paths, manuscript default path, ImportError fallback when PyYAML is unavailable.
+- **`test_variables.py`**, **`test_scripts.py`**: Manuscript variable injection and script entry-point integration.

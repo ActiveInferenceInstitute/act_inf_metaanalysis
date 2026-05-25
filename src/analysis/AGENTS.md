@@ -4,8 +4,9 @@
 
 ## Overview
 
-Five deterministic analysis modules computing all bibliometric, temporal, and semantic metrics
-required for the manuscript. No scripts-level logic belongs here — all computation lives in these
+Five deterministic analysis modules (plus subfield keyword/registry helpers) computing all bibliometric, temporal, and semantic metrics
+required for the manuscript. Orchestration: `analysis/pipeline_runner.py`
+(`scripts/02_meta_analysis_pipeline.py`). No scripts-level logic belongs here — all computation lives in these
 modules and is imported by `scripts/02_meta_analysis_pipeline.py`.
 
 ## Invariants Agents Must Preserve
@@ -14,9 +15,8 @@ modules and is imported by `scripts/02_meta_analysis_pipeline.py`.
   Never remove or parameterize away the seed.
 - **No mock policy**: Tests in `tests/analysis/` use real data arrays, not mocks.
   Do not introduce `unittest.mock` or `monkeypatch` replacements.
-- **Pre-compiled patterns**: `subfield_classifier._PATTERN_CACHE` is built once at module
-  import and rebuilt on `configure_subfields()`. Never call `re.compile()` inside
-  `classify_paper()` — it destroys performance at corpus scale.
+- **Pre-compiled patterns**: `subfield_registry.get_pattern_cache()` is built at import and
+  rebuilt on `configure_subfields()`. Never call `re.compile()` inside `classify_paper()`.
 - **Directed graph metrics**: `citation_network.compute_network_metrics()` computes `avg_in_degree`
   and `avg_out_degree` separately using `graph.in_degree()` / `graph.out_degree()`. Do not
   simplify to `num_edges / num_nodes` — that is only correct for undirected graphs.

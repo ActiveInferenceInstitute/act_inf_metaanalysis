@@ -71,8 +71,88 @@ def apply_relevance_filter(
         )
 
 
-def run_literature_search(args: argparse.Namespace, *, project_root: Path) -> Path:
-    """Execute literature search; return path to saved corpus JSONL."""
+def _fast_delay() -> Callable[[float], None]:
+    return lambda _seconds: None
+
+
+def _arxiv_search_fn(
+    base_url: str | None,
+    *,
+    fast: bool,
+) -> Callable[..., list[Paper]]:
+    from literature.arxiv_client import ARXIV_API_URL, DEFAULT_RATE_LIMIT_SECONDS, search_arxiv
+
+    url = base_url or ARXIV_API_URL
+    delay = _fast_delay() if fast else None
+    rate_limit = 0.0 if fast else DEFAULT_RATE_LIMIT_SECONDS
+
+    def _search(query: str, max_results: int = 100) -> list[Paper]:
+        return search_arxiv(
+            query,
+            max_results=max_results,
+            base_url=url,
+            rate_limit_seconds=rate_limit,
+            delay_override=delay,
+        )
+
+    return _search
+
+
+def _semantic_scholar_search_fn(
+    base_url: str | None,
+    *,
+    fast: bool,
+) -> Callable[..., list[Paper]]:
+    from literature.semantic_scholar import S2_API_URL, search_semantic_scholar
+
+    url = base_url or S2_API_URL
+    delay = _fast_delay() if fast else None
+
+    def _search(query: str, max_results: int = 100) -> list[Paper]:
+        return search_semantic_scholar(
+            query,
+            max_results=max_results,
+            base_url=url,
+            delay_override=delay,
+        )
+
+    return _search
+
+
+def _openalex_search_fn(
+    base_url: str | None,
+    *,
+    fast: bool,
+) -> Callable[..., list[Paper]]:
+    from literature.openalex_client import OPENALEX_API_URL, search_openalex
+
+    url = base_url or OPENALEX_API_URL
+    delay = _fast_delay() if fast else None
+
+    def _search(query: str, max_results: int = 100) -> list[Paper]:
+        return search_openalex(
+            query,
+            max_results=max_results,
+            base_url=url,
+            delay_override=delay,
+        )
+
+    return _search
+
+
+def run_literature_search(
+    args: argparse.Namespace,
+    *,
+    project_root: Path,
+    arxiv_base_url: str | None = None,
+    semantic_scholar_base_url: str | None = None,
+    openalex_base_url: str | None = None,
+) -> Path:
+    """Execute literature search; return path to saved corpus JSONL.
+
+    Optional ``*_base_url`` kwargs wire pytest-httpserver endpoints into API
+    clients without changing production defaults.
+    """
     logger = logging.getLogger("literature_search")
     config_path = Path(args.config) if args.config else project_root / "manuscript" / "config.yaml"
     if config_path.exists():
@@ -122,15 +202,19 @@ def run_literature_search(args: argparse.Namespace, *, project_root: Path) -> Pa
     sources_searched: list[str] = []
     pipeline_start = time.monotonic()
 
-    if not args.skip_arxiv:
-        from literature.arxiv_client import search_arxiv
+    fast_api = any(
+        url is not None
+        for url in (arxiv_base_url, semantic_scholar_base_url, openalex_base_url)
+    )
 
+    if not args.skip_arxiv:
+        arxiv_search = _arxiv_search_fn(arxiv_base_url, fast=fast_api)
         arxiv_total_before = len(corpus)
         for i, arxiv_query in enumerate(arxiv_queries, 1):
             logger.info("arXiv query %d/%d: %s", i, len(arxiv_queries), arxiv_query)
             result = search_source(
                 f"arXiv[{i}]",
-                search_arxiv,
+                arxiv_search,
                 arxiv_query,
                 args.max_results,
                 corpus,
@@ -145,11 +229,10 @@ def run_literature_search(args: argparse.Namespace, *, project_root: Path) -> Pa
         )
 
     if not args.skip_s2:
-        from literature.semantic_scholar import search_semantic_scholar
-
+        s2_search = _semantic_scholar_search_fn(semantic_scholar_base_url, fast=fast_api)
         result = search_source(
             "Semantic Scholar",
-            search_semantic_scholar,
+            s2_search,
             args.query,
             args.max_results,
             corpus,
@@ -159,11 +242,10 @@ def run_literature_search(args: argparse.Namespace, *, project_root: Path) -> Pa
             sources_searched.append(result)
 
     if not args.skip_openalex:
-        from literature.openalex_client import search_openalex
-
+        openalex_search = _openalex_search_fn(openalex_base_url, fast=fast_api)
         result = search_source(
             "OpenAlex",
-            search_openalex,
+            openalex_search,
             args.query,
             args.max_results,
             corpus,

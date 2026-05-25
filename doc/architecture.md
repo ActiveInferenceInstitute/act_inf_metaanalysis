@@ -80,7 +80,7 @@ Papers from different sources are deduplicated by assigning a canonical ID using
 
 ### Thin Orchestrator Pattern
 
-All computation lives in `src/`. The five scripts in `scripts/` handle only I/O, orchestration, and path management. No business logic in scripts.
+All computation lives in `src/`. The six scripts in `scripts/` (01–06) handle only I/O, orchestration, and path management; stage bodies live in `src/*_runner.py` modules. No business logic in scripts.
 
 ---
 

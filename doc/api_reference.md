@@ -129,6 +129,33 @@ for p in new_papers:
 print(f"Corpus contains {len(corpus)} unique papers.")
 ```
 
+### Literature search orchestration (`literature.search_runner`)
+
+```python
+def search_source(
+    source_name: str,
+    search_fn: Callable[..., list[Paper]],
+    query: str,
+    max_results: int,
+    corpus: Corpus,
+    logger: logging.Logger,
+) -> str | None
+
+def apply_relevance_filter(corpus: Corpus, keywords: list[str], logger: logging.Logger) -> None
+
+def run_literature_search(
+    args: argparse.Namespace,
+    *,
+    project_root: Path,
+    arxiv_base_url: str | None = None,
+    semantic_scholar_base_url: str | None = None,
+    openalex_base_url: str | None = None,
+) -> Path
+```
+
+`run_literature_search` is invoked by `scripts/01_literature_search.py`. Optional `*_base_url` kwargs wire
+`pytest-httpserver` endpoints into API clients for integration tests.
+
 ## analysis
 
 Bibliometric and text analysis.
@@ -141,13 +168,16 @@ def remove_stopwords(tokens: list[str], extra_stopwords: set[str] | None = None)
 def build_tfidf_matrix(documents: list[str], max_features: int = 1000) -> tuple[np.ndarray, list[str]]
 ```
 
-### Domain Classifier (`analysis.subfield_classifier`)
+### Domain Classifier (`analysis.subfield_classifier`, `subfield_registry`, `subfield_defaults`)
+
+Keyword data and compiled regex cache live in `subfield_defaults` / `subfield_registry`; import the public API from `subfield_classifier`.
 
 ```python
 SUBFIELDS: dict[str, dict]  # 8 domain entries with 'keywords', 'description', and 'priority'
 
 def classify_paper(paper: Paper) -> str  # Priority-aware; returns domain name (e.g. "A1_formal")
 def classify_corpus(papers: list[Paper], config_path: Optional[Path] = None) -> dict[str, list[Paper]]
+def configure_subfields(config_path: Optional[Path] = None) -> None
 ```
 
 ### Citation Network (`analysis.citation_network`)

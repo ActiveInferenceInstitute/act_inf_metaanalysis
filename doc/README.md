@@ -166,5 +166,5 @@ Variable injection is handled by `src/manuscript/variables.py`, invoked by `scri
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [testing.md](testing.md) | Test architecture, 568 tests across 30 files, coverage configuration |
+| [testing.md](testing.md) | Test architecture, 615 tests across 39 files, coverage configuration |
 | [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |

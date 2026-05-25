@@ -4,8 +4,8 @@
 
 ## Overview
 
-The core evidence synthesis layer. Agents interact with this module primarily through
-`scripts/03_build_knowledge_graph.py`. The LLM extraction sub-system is the most expensive
+The core evidence synthesis layer. Orchestration: `knowledge_graph/kg_runner.py`
+(`scripts/03_build_knowledge_graph.py`). The LLM extraction sub-system is the most expensive
 operation in the pipeline — use incremental mode (the default) whenever possible.
 
 ## Invariants Agents Must Preserve

@@ -14,8 +14,8 @@ Test suite for verifying the probabilistic evidence scoring, nanopublication str
 # General run
 uv run pytest tests/knowledge_graph/ -v
 
-# Target LLM JSON recovery exactly
-uv run pytest tests/knowledge_graph/test_llm_extraction.py -v
+# Target LLM extraction suite (six modules + shared fixtures)
+uv run pytest tests/knowledge_graph/test_llm_*.py -v
 ```
 
 See **[AGENTS.md](AGENTS.md)** for detailed module logic verification protocols and data-mocking guidelines.

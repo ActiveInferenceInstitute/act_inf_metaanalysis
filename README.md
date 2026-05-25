@@ -135,6 +135,14 @@ python3 scripts/06_fulltext_assessment.py
 
 ---
 
+## Archive layout
+
+In the template monorepo, this tree is symlinked at `projects_archive/act_inf_metaanalysis/` (typically pointing at the private `projects/archive/` checkout). It is **not** discovered by `./run.sh` unless promoted to `projects/`.
+
+A nested `.git/` directory may be present from standalone repository history; the template monorepo uses the symlink as the working copy. Do not commit pre-populated `output/` when re-promoting.
+
+---
+
 ## 🏗️ Directory Structure
 
 ```text

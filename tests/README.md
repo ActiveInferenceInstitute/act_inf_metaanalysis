@@ -1,6 +1,6 @@
 # Test Suite (`tests/`)
 
-The rigorous testing infrastructure for the Active Inference Meta-Analysis pipeline. The codebase strictly avoids mocking, instead relying on realistic data payloads and local HTTP servers to guarantee end-to-end integration coherency representing 553 unit and integration tests.
+The rigorous testing infrastructure for the Active Inference Meta-Analysis pipeline. The codebase strictly avoids mocking, instead relying on realistic data payloads and local HTTP servers to guarantee end-to-end integration coherency across **615** unit and integration tests in **39** files.
 
 ## 🚀 Quick Start
 

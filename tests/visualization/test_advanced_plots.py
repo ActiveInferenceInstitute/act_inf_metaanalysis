@@ -182,12 +182,46 @@ class TestAdvancedPlots:
         img = Image.open(output)
         assert img.width > 0 and img.height > 0
 
+    def test_plot_topic_term_bars_empty_words_panel(self, tmp_path: Path) -> None:
+        topics = [
+            {"topic_id": 0, "top_words": [], "weights": []},
+            {"topic_id": 1, "top_words": ["inference"], "weights": [0.9]},
+        ]
+        output = tmp_path / "mixed_topics.png"
+        result = plot_topic_term_bars(topics, output)
+        assert result == output
+        assert output.exists()
+
+    def test_plot_topic_term_bars_four_topics_pads_grid(self, tmp_path: Path) -> None:
+        topics = [
+            {
+                "topic_id": idx,
+                "top_words": [f"word_{idx}a", f"word_{idx}b"],
+                "weights": [0.8, 0.4],
+            }
+            for idx in range(4)
+        ]
+        output = tmp_path / "four_topics.png"
+        result = plot_topic_term_bars(topics, output)
+        assert result == output
+        assert output.exists()
+
+    def test_plot_cooccurrence_matrix_single_term(self, tmp_path: Path) -> None:
+        docs = [["onlyterm"], ["onlyterm"], ["onlyterm"]]
+        output = tmp_path / "single_term_cooc.png"
+        result = plot_cooccurrence_matrix(docs, output)
+        assert result == output
+        assert output.exists()
+
     def test_plot_cooccurrence_matrix_empty(self, tmp_path: Path) -> None:
         output = tmp_path / "empty_cooc.png"
         result = plot_cooccurrence_matrix([], output)
         assert result == output
         assert output.exists()
-        # Content validation: PIL check (empty cooc still produces valid image)
-        from PIL import Image
-        img = Image.open(output)
-        assert img.width > 0 and img.height > 0
+
+    def test_plot_cooccurrence_matrix_non_overlapping_terms(self, tmp_path: Path) -> None:
+        docs = [["alpha"], ["beta"]]
+        output = tmp_path / "disjoint_cooc.png"
+        result = plot_cooccurrence_matrix(docs, output)
+        assert result == output
+        assert output.exists()

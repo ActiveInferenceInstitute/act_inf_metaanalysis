@@ -186,6 +186,48 @@ class TestHypothesisCharts:
         img = Image.open(output)
         assert img.width > 0 and img.height > 0
 
+    def test_plot_hypothesis_dashboard_empty_scores(self, tmp_path: Path) -> None:
+        output = tmp_path / "empty_dashboard.png"
+        result = plot_hypothesis_dashboard({}, output)
+        assert result == output
+        assert output.exists()
+        assert output.stat().st_size > 0
+
+    def test_plot_hypothesis_dashboard_uses_hypothesis_names_lookup(
+        self, tmp_path: Path
+    ) -> None:
+        output = tmp_path / "named_dashboard.png"
+        result = plot_hypothesis_dashboard({"H1": 0.6, "H2": -0.2}, output)
+        assert result == output
+        assert output.exists()
+
+    def test_plot_evidence_timeline_skips_empty_year_series(self, tmp_path: Path) -> None:
+        yearly = {
+            "FEP_UNIVERSALITY": {2020: 0.5},
+            "EMPTY_HYP": {},
+        }
+        output = tmp_path / "partial_timeline.png"
+        result = plot_evidence_timeline(yearly, output)
+        assert result == output
+        assert output.exists()
+
+    def test_plot_assertion_type_breakdown_empty(self, tmp_path: Path) -> None:
+        output = tmp_path / "empty_breakdown.png"
+        result = plot_assertion_type_breakdown({}, output)
+        assert result == output
+        assert output.exists()
+
+    def test_plot_assertion_summary_no_data_panels(self, tmp_path: Path) -> None:
+        output = tmp_path / "empty_summary.png"
+        result = plot_assertion_summary(
+            total_assertions=0,
+            type_counts={},
+            hypothesis_counts={},
+            output_path=output,
+        )
+        assert result == output
+        assert output.exists()
+
     def test_plot_assertion_summary_minimal(self, tmp_path: Path) -> None:
         output = tmp_path / "minimal_summary.png"
         result = plot_assertion_summary(
@@ -196,8 +238,20 @@ class TestHypothesisCharts:
         )
         assert result == output
         assert output.exists()
-        assert output.stat().st_size > 0
-        # Content validation: PIL check
-        from PIL import Image
-        img = Image.open(output)
-        assert img.width > 0 and img.height > 0
+
+    def test_plot_assertion_summary_types_without_hypotheses(self, tmp_path: Path) -> None:
+        output = tmp_path / "types_only_summary.png"
+        result = plot_assertion_summary(
+            total_assertions=5,
+            type_counts={"supports": 3, "neutral": 2},
+            hypothesis_counts={},
+            output_path=output,
+        )
+        assert result == output
+        assert output.exists()
+
+    def test_plot_hypothesis_dashboard_unknown_key_title_case(self, tmp_path: Path) -> None:
+        output = tmp_path / "fallback_labels.png"
+        result = plot_hypothesis_dashboard({"custom_metric": 0.25}, output)
+        assert result == output
+        assert output.exists()

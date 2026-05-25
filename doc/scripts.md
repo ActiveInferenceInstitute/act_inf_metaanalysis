@@ -1,6 +1,6 @@
 # Pipeline Scripts Reference
 
-The meta-analysis pipeline is composed of five numbered scripts, each a **thin orchestrator** that handles only I/O and coordination — all computation is imported from `src/` modules.
+The meta-analysis pipeline is composed of **six** numbered scripts, each a **thin orchestrator** that handles only I/O and coordination — all computation is imported from `src/` modules (runners under `src/literature/`, `src/analysis/`, `src/knowledge_graph/`, `src/visualization/`).
 
 Run scripts from the project root:
 
@@ -10,7 +10,7 @@ cd projects_archive/act_inf_metaanalysis
 
 ---
 
-## Stage 1 — Literature Search (`01_literature_search.py`)
+## Stage 1 — Literature Search (`01_literature_search.py` → `literature/search_runner.py`)
 
 Queries arXiv, Semantic Scholar, and OpenAlex, then merges results into a deduplicated `corpus.jsonl`.
 
@@ -49,7 +49,7 @@ search:
 
 ### arXiv multi-query strategy
 
-Without `--config`, the script uses the **five** default queries baked into `01_literature_search.py` (core AIF / FEP / predictive-coding / EFE / variational phrasing).
+Without `--config`, the script uses default queries from [`src/config.py`](../src/config.py) (`DEFAULT_ARXIV_QUERIES` — core AIF / FEP / predictive-coding / EFE / variational phrasing).
 
 With `--config manuscript/config.yaml`, `project_config.search.arxiv_queries` replaces that list — the bundled config currently defines **nine** queries, adding EBM-, Helmholtz-, Boltzmann-, and contrastive-divergence–adjacent search strings for broader coverage.
 

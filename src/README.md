@@ -2,7 +2,7 @@
 
 Core library for the Active Inference Meta-Analysis project. All business logic and computation
 lives here; `scripts/` are thin orchestrators that import these modules and handle I/O.
-24 Python modules across 5 subpackages, 553 tests, no mocks.
+40 Python modules across 5 subpackages (+ `config.py`, `config_loader.py`), 615 tests, no mocks.
 
 ## Subpackages
 
@@ -42,7 +42,7 @@ Stage 5 (scripts/05_inject_variables.py)
 ```bash
 # From project root
 PYTHONPATH=/path/to/template .venv/bin/python -m pytest tests/ -q
-# 553 tests, no mocks, deterministic
+# 615 tests, no mocks, deterministic
 ```
 
 See each subpackage's `README.md` and `AGENTS.md` for module-level details.

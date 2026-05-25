@@ -246,3 +246,12 @@ class TestBuildTfidfMatrix:
         # After normalization, the proportional relationship holds
         assert matrix[0, inference_idx] > matrix[0, brain_idx]
         assert matrix[1, brain_idx] > matrix[1, inference_idx]
+
+    def test_filters_ultra_common_terms_in_large_corpus(self):
+        """Terms in >95% of documents are dropped when n_docs >= 20."""
+        filler = "inference energy model predictive coding variational"
+        docs = [f"{filler} uniquetoken{idx}" for idx in range(24)]
+        matrix, features = build_tfidf_matrix(docs, max_features=50)
+        assert matrix.shape[0] == 24
+        assert "inference" not in features
+        assert any(name.startswith("uniquetoken") for name in features)

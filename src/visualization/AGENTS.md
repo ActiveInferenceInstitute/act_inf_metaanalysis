@@ -4,7 +4,8 @@
 
 ## Overview
 
-Six plotting modules generating the 16 publication-ready PNG figures. All figures are fully
+Six plotting modules generating the 16 publication-ready PNG figures. Orchestration:
+`visualization/figure_runner.py` (`scripts/04_generate_figures.py`). All figures are fully
 decoupled from computation: they consume pre-serialized JSON outputs from Stage 2/3 and write
 static PNG files. No analysis logic belongs here.
 

@@ -5,13 +5,11 @@ All computation resides here; scripts in `scripts/` are thin orchestrators that 
 
 ## Components
 
-### `subfield_classifier.py`
+### Subfield classification (`subfield_classifier.py`, `subfield_defaults.py`, `subfield_registry.py`)
+
 Classifies papers into one of 8 Active Inference domains using priority-weighted word-boundary
-keyword matching. Domains: A1 (formal theory), A2 (philosophy), B (tools), C1–C5 (neuroscience,
-robotics, language, psychiatry, biology). Keywords are config-driven via `manuscript/config.yaml`;
-defaults cover 200+ terms. A priority system ensures specific application domains win over general
-ones. Pre-compiled regex patterns (`_PATTERN_CACHE`) are rebuilt on every `configure_subfields()`
-call so classification is fast at corpus scale.
+keyword matching. Keyword data lives in `subfield_defaults.py`; config loading and the compiled
+pattern cache live in `subfield_registry.py`; `subfield_classifier.py` exposes the public API.
 
 Key functions:
 - `classify_paper(paper) -> str` — classify one paper
