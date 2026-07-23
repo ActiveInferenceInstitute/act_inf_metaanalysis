@@ -10,7 +10,7 @@ from analysis.validation_labeling import (
     apply_primary_rule_protocol,
     apply_secondary_rule_protocol,
 )
-from analysis.validation_metrics import compute_validation_metrics
+from analysis.validation_metrics import classify_error, compute_validation_metrics
 from knowledge_graph.hypothesis_weights import WeightPolicy, score_hypothesis_with_policy
 from knowledge_graph.nanopublication import Assertion
 from knowledge_graph.provenance import ExtractionProvenance, summarize_provenance
@@ -157,6 +157,42 @@ def test_validation_metrics_quote_fidelity_na_when_no_quotes():
     metrics = compute_validation_metrics(rows)
     assert metrics["quote_fidelity_rate"] is None
     assert metrics["quote_fidelity_status"] == "not_applicable_no_evidence_quotes"
+
+
+def test_classify_error_detects_each_known_bad_case():
+    """Proof-of-detection: classify_error must fire on each planted defect shape,
+    not just return "none" on well-formed rows (BUILD-time detection proof, not
+    deferred until an auditor demands it)."""
+    base = {
+        "ref_triage": "supports",
+        "pipeline_triage": "supports",
+        "evidence_quote": "free energy",
+        "abstract_excerpt": "This paper discusses free energy.",
+        "evidence_status": "mentions",
+        "evidence_type": "theoretical",
+        "ref_evidence_status": "mentions",
+        "ref_evidence_type": "theoretical",
+    }
+
+    over_extraction = {**base, "ref_triage": "irrelevant", "pipeline_triage": "supports"}
+    assert classify_error(over_extraction) == "over_extraction"
+
+    direction_inversion = {**base, "ref_triage": "supports", "pipeline_triage": "contradicts"}
+    assert classify_error(direction_inversion) == "direction_inversion"
+
+    quote_mismatch = {**base, "evidence_quote": "not in the abstract"}
+    assert classify_error(quote_mismatch) == "quote_mismatch"
+
+    triage_mismatch = {**base, "ref_triage": "supports", "pipeline_triage": "neutral"}
+    assert classify_error(triage_mismatch) == "triage_mismatch"
+
+    evidence_status_error = {**base, "evidence_status": "explicit_claim"}
+    assert classify_error(evidence_status_error) == "evidence_status_error"
+
+    evidence_type_error = {**base, "evidence_type": "empirical"}
+    assert classify_error(evidence_type_error) == "evidence_type_error"
+
+    assert classify_error(base) == "none"
 
 
 def test_provenance_summary():

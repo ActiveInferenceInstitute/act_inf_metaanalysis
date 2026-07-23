@@ -33,7 +33,7 @@ $\epsilon$ & Numerical-stability constant ($10^{-10}$) \\
 $\text{CAGR}$ & Compound annual growth rate (Eq.~\ref{eq:cagr}) \\
 $t_d$ & Publication doubling time in years (Eq.~\ref{eq:doubling_time}) \\
 $\bar{g}$ & Mean year-over-year growth rate (Eq.~\ref{eq:mean_growth}) \\
-$\kappa$ & Cohen's kappa, inter-annotator agreement \\
+$\kappa$ & Cohen's kappa, agreement coefficient (used here for rule-based reference vs.\ pipeline direction agreement, not human annotation) \\
 $\text{tf}(t,d)$ & Normalized term frequency of $t$ in document $d$ \\
 $\text{df}(t)$ & Document frequency of term $t$ across the corpus \\
 $\F$ & Variational free energy \\

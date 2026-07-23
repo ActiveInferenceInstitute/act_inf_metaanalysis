@@ -199,7 +199,7 @@ Quality assurance operates at four levels: assertion-level confidence and review
 
 ### Assertion-Level Validation
 
-Assertions below a configurable confidence threshold (default 0.6) are flagged for review. Inter-annotator agreement ($\kappa$) is computed when multiple annotators assess the same paper. The threshold is chosen to balance recall against the prompt-engineering cost of pushing the LLM to over-commit; lowering it inflates noisy neutral assertions, raising it discards weakly supported but legitimate claims.
+Assertions below a configurable confidence threshold (default 0.6) are flagged for review. The threshold is chosen to balance recall against the prompt-engineering cost of pushing the LLM to over-commit; lowering it inflates noisy neutral assertions, raising it discards weakly supported but legitimate claims. There is no live per-assertion multi-annotator mechanism; instead, an offline stratified sample is checked against a deterministic rule-based reference (see the extraction-agreement study in the main methods section)---a reproducibility floor, not human inter-annotator agreement.
 
 ### Graph-Level Consistency Checks
 
@@ -224,7 +224,7 @@ Test-driven development enforces 90\% minimum code coverage on project modules a
 \textbf{Level} & \textbf{Metric} & \textbf{Threshold} & \textbf{On Failure} \\
 \midrule
 Assertion & Confidence $c$ & $\geq 0.6$ & Flag for review \\
-Assertion & Inter-annotator $\kappa$ & $\geq 0.70$ & Re-annotate \\
+Assertion & Rule-reference $\kappa$ (offline sample) & Reported, not gated & Report only \\
 Graph & Orphan-node ratio & $= 0$ & Reject build \\
 Graph & Corpus coverage & $\geq 80\%$ & Warning \\
 Score & Boundary tests (all-support / all-contradict / balanced) & All pass & Block release \\
