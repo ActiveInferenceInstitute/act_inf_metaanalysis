@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import csv
-import json
 import random
 from collections import defaultdict
 from dataclasses import dataclass
