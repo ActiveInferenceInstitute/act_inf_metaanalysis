@@ -30,7 +30,7 @@ operation in the pipeline — use incremental mode (the default) whenever possib
 # Incremental (default) — skips already-processed papers
 python scripts/03_build_knowledge_graph.py
 
-# Full re-extraction (WARNING: overwrites all 2795 existing assertions)
+# Full re-extraction (WARNING: overwrites existing assertions in nanopublications.jsonl)
 python scripts/03_build_knowledge_graph.py --clear-assertions
 
 # Score-only mode — reload from existing nanopubs, no LLM calls

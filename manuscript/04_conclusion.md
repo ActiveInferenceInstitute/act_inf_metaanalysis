@@ -2,9 +2,9 @@
 
 ## Summary
 
-This work demonstrates a first-generation prototype infrastructure for computational meta-analysis of a rapidly growing scientific field. By combining multi-source retrieval ($N = {{CORPUS_SIZE}}$ papers from three databases), LLM-based assertion extraction encoded as nanopublications, and citation-weighted hypothesis scoring, we produce a queryable, RDF-compatible knowledge graph that tracks the evolving evidence for eight core Active Inference claims. The system demonstrates the feasibility of automated living reviews, while clearly delineating the boundaries of current model capabilities.
+This work demonstrates a first-generation prototype infrastructure for citation-weighted evidence mapping and hypothesis triage across a rapidly growing scientific field. By combining multi-source retrieval ($N = {{CORPUS_SIZE}}$ papers from three databases, inclusion from {{INCLUSION_YEAR_START}} onward), LLM-based assertion extraction encoded as provenance-bearing nanopublications, and citation-weighted triage scoring, we produce a queryable, RDF-compatible knowledge graph that maps the evolving evidence landscape for eight core Active Inference claims. The system demonstrates the feasibility of automated living reviews, while clearly delineating the boundaries of current model capabilities.
 
-All assertions and hypothesis scores in this work are machine-generated without human validation. While the pipeline is designed for rigor, these results should be treated as preliminary evidence requiring manual review before scientific acceptance.
+All assertions and hypothesis scores are machine-generated; outputs report evidence mapping and triage unless validation metrics exceed pre-declared thresholds. A stratified rule-based reference-annotator agreement study ($n = {{VAL_N}}$) yields inter-rule $\kappa = {{VAL_KAPPA}}$ and pipeline precision {{VAL_PRECISION}}, recall {{VAL_RECALL}} against a deterministic keyword-rule reference; direction agreement between that reference and the pipeline is only $\kappa = {{VAL_KAPPA_PIPELINE}}$. These are reproducibility signals, not accuracy against human labels—the pre-declared human gold-standard baseline below has not yet been collected.
 
 ## Constraints and Methodological Scope
 
@@ -78,10 +78,10 @@ The current validation is primarily structural: do scripts run, do outputs exist
 \toprule
 \textbf{Dimension} & \textbf{Protocol} & \textbf{Current} & \textbf{Target} \\
 \midrule
-Extraction direction accuracy & Cohen's $\kappa$ (human vs. LLM stance) & not measured & $\kappa > 0.80$ \\
-Evidence-quote fidelity & Verbatim substring match rate & not measured & $\geq 90\%$ \\
-Corpus recall & Precision/recall vs. 100-paper gold set & not measured & recall $\geq 0.85$ \\
-Outcome grounding rate & Fraction of supporting assertions citing an outcome indicator & not measured & $\geq 30\%$ \\
+Extraction direction accuracy & Cohen's $\kappa$ (rule reference vs.\ LLM stance) & $\kappa = {{VAL_KAPPA_PIPELINE}}$ & $\kappa > 0.80$ \\
+Evidence-quote fidelity & Verbatim substring match rate & {{VAL_QUOTE_FIDELITY}} (no quotes stored) & $\geq 90\%$ \\
+Corpus recall & Precision/recall vs.\ rule reference & $P = {{VAL_PRECISION}}$, $R = {{VAL_RECALL}}$ & recall $\geq 0.85$ \\
+Outcome grounding rate & Fraction of supporting assertions citing an outcome indicator & pending & $\geq 30\%$ \\
 \bottomrule
 \end{tabular}
 \end{table}

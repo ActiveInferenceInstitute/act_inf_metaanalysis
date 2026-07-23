@@ -10,7 +10,7 @@ The pipeline operates in five stages, each producing intermediate artifacts cons
 Stage 1: Literature Search
 ──────────────────────────
   arXiv Atom API ──┐  (9 queries: 5 core AIF + 4 EBM-adjacent)
-  Semantic Scholar ─┼──▶ Corpus (JSONL)  N papers (2005–present); see latest output/data/temporal_analysis.json
+  Semantic Scholar ─┼──▶ Corpus (JSONL)  N={{CORPUS_SIZE}} ({{INCLUSION_PERIOD}})
   OpenAlex API ────┘      │
       dedup via canonical ID priority
       (DOI > arXiv > S2 > OpenAlex > title hash)

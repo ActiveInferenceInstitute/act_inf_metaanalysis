@@ -114,6 +114,30 @@ class Corpus:
             return True
         return False
 
+    def drop_before_year(self, start_year: int) -> int:
+        """Remove papers published before *start_year* (in-place).
+
+        Papers with ``year=None`` are kept (unknown date).
+
+        Returns:
+            Number of papers removed.
+        """
+        to_remove = [
+            cid
+            for cid, paper in self._papers.items()
+            if paper.year is not None and paper.year < start_year
+        ]
+        for cid in to_remove:
+            del self._papers[cid]
+        if to_remove:
+            logger.info(
+                "Dropped %d papers published before %d (%d remain)",
+                len(to_remove),
+                start_year,
+                len(self._papers),
+            )
+        return len(to_remove)
+
     def filter_by_year(
         self, start: Optional[int] = None, end: Optional[int] = None
     ) -> Corpus:
@@ -175,11 +199,12 @@ class Corpus:
         logger.info("Saved %d papers to %s", len(self._papers), path)
 
     @classmethod
-    def load(cls, path: Path) -> Corpus:
+    def load(cls, path: Path, *, min_year: Optional[int] = None) -> Corpus:
         """Load corpus from a JSONL file.
 
         Args:
             path: File path to read JSONL data from.
+            min_year: When set, drop papers with ``year < min_year`` after load.
 
         Returns:
             Corpus instance populated with papers from the file.
@@ -194,5 +219,8 @@ class Corpus:
                 if line:
                     data = json.loads(line)
                     papers.append(Paper.from_dict(data))
-        logger.info("Loaded %d papers from %s", len(papers), path)
-        return cls(papers)
+        corpus = cls(papers)
+        if min_year is not None:
+            corpus.drop_before_year(min_year)
+        logger.info("Loaded %d papers from %s", len(corpus), path)
+        return corpus

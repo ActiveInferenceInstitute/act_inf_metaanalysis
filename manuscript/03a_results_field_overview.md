@@ -30,12 +30,12 @@ Active domains & 8 of 8 tracked (A1--A2, B, C1--C5) \\
 \end{table}
 
 
-The CAGR of {{CAGR_PCT}}\% (measured as the annualised growth rate of yearly publication volume between endpoint years {{YEAR_START}} and {{YEAR_END}}) reflects sustained field expansion; the actual rapid growth phase began around 2013, with annual output accelerating substantially (Figure \ref{fig:growth_curve}). Sustained high output persisting into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{the citation network analysis}).
+The CAGR of {{CAGR_PCT}}\% (measured as the annualised growth rate of yearly publication volume between endpoint years {{YEAR_START}} and {{YEAR_END}}) reflects sustained field expansion; annual output accelerated markedly in the late 2010s—from roughly 2018 onward (Figure \ref{fig:growth_curve}). Sustained high output persisting into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{the citation network analysis}).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/growth_curve.png}
-\caption{Annual (bars) and cumulative (line) publication counts, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$, CAGR = {{CAGR_PCT}}\%). The inflection around 2013 marks the onset of rapid growth. Moving average trendline (dashed), peak year, and median year annotated.}
+\caption{Annual (bars) and cumulative (line) publication counts, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$, CAGR = {{CAGR_PCT}}\%). Annual output accelerates from the late 2010s (around 2018) to the {{PEAK_YEAR}} peak. Moving average trendline (dashed), peak year, and median year annotated.}
 \label{fig:growth_curve}
 \end{figure}
 

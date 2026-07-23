@@ -42,24 +42,36 @@ DEFAULT_LICENSE = "https://creativecommons.org/publicdomain/zero/1.0/"
 class Assertion:
     """A claim extracted from a paper about an Active Inference concept.
 
+    Three separable layers:
+    - **Source claim** (``source_claim_text``, ``evidence_quote``): what the paper states.
+    - **Evidence supply** (``evidence_status``, ``evidence_type``): whether evidence is supplied.
+    - **Hypothesis triage** (``assertion_type``): pipeline stance toward a hypothesis.
+
     Attributes:
         assertion_id: Unique identifier for this assertion.
         paper_id: Canonical ID of the source paper.
-        claim: The assertion text.
-        assertion_type: One of ``"supports"``, ``"contradicts"``, ``"neutral"``.
-        hypothesis_id: Which hypothesis this relates to (key from
-            ``HYPOTHESIS_CATEGORIES``).
+        claim: LLM reasoning / audit text (justification for the triage).
+        assertion_type: Triage direction: ``supports``, ``contradicts``, ``neutral``.
+        hypothesis_id: Which hypothesis this relates to.
         confidence: Confidence level in the range ``[0.0, 1.0]``.
         citation_count: Citations of the source paper (used for scoring weight).
+        source_claim_text: Explicit claim attributed to the source paper.
+        evidence_quote: Verbatim excerpt from abstract supporting the claim.
+        evidence_status: ``explicit_claim``, ``mentions``, or ``no_evidence``.
+        evidence_type: ``theoretical``, ``empirical``, or ``none``.
     """
 
     assertion_id: str
     paper_id: str
     claim: str
-    assertion_type: str  # "supports", "contradicts", "neutral"
-    hypothesis_id: str  # key from HYPOTHESIS_CATEGORIES
+    assertion_type: str  # hypothesis triage: supports/contradicts/neutral
+    hypothesis_id: str
     confidence: float = 1.0
     citation_count: int = 0
+    source_claim_text: str = ""
+    evidence_quote: str = ""
+    evidence_status: str = "mentions"
+    evidence_type: str = "none"
 
 
 @dataclass
@@ -69,17 +81,23 @@ class Nanopublication:
     Attributes:
         nanopub_id: Unique identifier for this nanopublication.
         assertion: The core assertion being published.
-        attribution: Who created this nanopublication.
+        attribution: Attribution string (pipeline version + prompt version).
         created_date: ISO-format timestamp of creation.
+        provenance: Structured extraction lineage metadata.
     """
 
     nanopub_id: str
     assertion: Assertion
     attribution: str = ""
     created_date: str = ""
+    provenance: dict[str, str] | None = None
 
 
-def create_nanopub(assertion: Assertion, attribution: str = "") -> Nanopublication:
+def create_nanopub(
+    assertion: Assertion,
+    attribution: str = "",
+    provenance: dict[str, str] | None = None,
+) -> Nanopublication:
     """Create a new nanopublication wrapping the given assertion.
 
     Generates a unique nanopub_id and sets created_date to the current
@@ -88,6 +106,7 @@ def create_nanopub(assertion: Assertion, attribution: str = "") -> Nanopublicati
     Args:
         assertion: The assertion to wrap.
         attribution: Optional attribution string (e.g. author or pipeline name).
+        provenance: Structured extraction lineage metadata.
 
     Returns:
         A fully populated Nanopublication instance.
@@ -97,6 +116,7 @@ def create_nanopub(assertion: Assertion, attribution: str = "") -> Nanopublicati
         assertion=assertion,
         attribution=attribution,
         created_date=datetime.now(timezone.utc).isoformat(),
+        provenance=provenance,
     )
 
 
@@ -109,7 +129,7 @@ def nanopub_to_dict(nanopub: Nanopublication) -> dict:
     Returns:
         Dictionary suitable for JSON serialization.
     """
-    return {
+    payload = {
         "nanopub_id": nanopub.nanopub_id,
         "assertion": {
             "assertion_id": nanopub.assertion.assertion_id,
@@ -119,10 +139,17 @@ def nanopub_to_dict(nanopub: Nanopublication) -> dict:
             "hypothesis_id": nanopub.assertion.hypothesis_id,
             "confidence": nanopub.assertion.confidence,
             "citation_count": nanopub.assertion.citation_count,
+            "source_claim_text": nanopub.assertion.source_claim_text,
+            "evidence_quote": nanopub.assertion.evidence_quote,
+            "evidence_status": nanopub.assertion.evidence_status,
+            "evidence_type": nanopub.assertion.evidence_type,
         },
         "attribution": nanopub.attribution,
         "created_date": nanopub.created_date,
     }
+    if nanopub.provenance:
+        payload["provenance"] = nanopub.provenance
+    return payload
 
 
 def nanopub_from_dict(data: dict) -> Nanopublication:
@@ -143,12 +170,17 @@ def nanopub_from_dict(data: dict) -> Nanopublication:
         hypothesis_id=a["hypothesis_id"],
         confidence=a.get("confidence", 1.0),
         citation_count=a.get("citation_count", 0),
+        source_claim_text=a.get("source_claim_text", ""),
+        evidence_quote=a.get("evidence_quote", ""),
+        evidence_status=a.get("evidence_status", "mentions"),
+        evidence_type=a.get("evidence_type", "none"),
     )
     return Nanopublication(
         nanopub_id=data["nanopub_id"],
         assertion=assertion,
         attribution=data.get("attribution", ""),
         created_date=data.get("created_date", ""),
+        provenance=data.get("provenance"),
     )
 
 
@@ -338,6 +370,20 @@ def nanopub_to_rdf(
     else:
         assn_g.add((assertion_uri, aif_ns["neutral"], hypothesis_uri))
     assn_g.add((assertion_uri, aif_ns["claim"], Literal(a.claim, datatype=xsd_ns.string)))
+    if a.source_claim_text:
+        assn_g.add(
+            (assertion_uri, aif_ns["sourceClaim"], Literal(a.source_claim_text, datatype=xsd_ns.string))
+        )
+    if a.evidence_quote:
+        assn_g.add(
+            (assertion_uri, aif_ns["evidenceQuote"], Literal(a.evidence_quote, datatype=xsd_ns.string))
+        )
+    assn_g.add(
+        (assertion_uri, aif_ns["evidenceStatus"], Literal(a.evidence_status, datatype=xsd_ns.string))
+    )
+    assn_g.add(
+        (assertion_uri, aif_ns["evidenceType"], Literal(a.evidence_type, datatype=xsd_ns.string))
+    )
     assn_g.add((assertion_uri, aif_ns["confidence"], Literal(a.confidence, datatype=xsd_ns.double)))
     assn_g.add((assertion_uri, aif_ns["citationCount"], Literal(a.citation_count, datatype=xsd_ns.integer)))
 
@@ -349,6 +395,16 @@ def nanopub_to_rdf(
     if nanopub.attribution:
         prov_g.add((assertion_uri, prov_ns.wasAttributedTo, Literal(nanopub.attribution, datatype=xsd_ns.string)))
     prov_g.add((assertion_uri, prov_ns.hadPrimarySource, paper_uri))
+    if nanopub.provenance:
+        for key, value in nanopub.provenance.items():
+            if value:
+                prov_g.add(
+                    (
+                        assertion_uri,
+                        aif_ns[f"prov_{key}"],
+                        Literal(str(value), datatype=xsd_ns.string),
+                    )
+                )
 
     # Publication info graph: metadata about the nanopublication
     pub_g = ds.graph(pubinfo_graph_uri)

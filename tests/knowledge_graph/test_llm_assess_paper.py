@@ -44,7 +44,8 @@ class TestAssessPaperHypotheses:
         )
 
         paper = make_paper()
-        assertions = assess_paper_hypotheses(paper, config)
+        pairs = assess_paper_hypotheses(paper, config)
+        assertions = [a for a, _ in pairs]
 
         # "irrelevant" entries are excluded → 3 should remain
         assert len(assertions) == 3
@@ -83,7 +84,8 @@ class TestAssessPaperHypotheses:
             max_retries=1,
         )
 
-        assertions = assess_paper_hypotheses(make_paper(), config)
+        pairs = assess_paper_hypotheses(make_paper(), config)
+        assertions = [a for a, _ in pairs]
         assert len(assertions) == 1
         assert assertions[0].hypothesis_id == "AIF_OPTIMALITY"
 
@@ -102,7 +104,8 @@ class TestAssessPaperHypotheses:
             max_retries=1,
         )
 
-        assertions = assess_paper_hypotheses(make_paper(), config)
+        pairs = assess_paper_hypotheses(make_paper(), config)
+        assertions = [a for a, _ in pairs]
         assert len(assertions) == 0
 
     def test_retries_on_parse_failure(self, httpserver: HTTPServer):
@@ -127,7 +130,8 @@ class TestAssessPaperHypotheses:
             retry_delay=0.01,  # fast for tests
         )
 
-        assertions = assess_paper_hypotheses(make_paper(), config)
+        pairs = assess_paper_hypotheses(make_paper(), config)
+        assertions = [a for a, _ in pairs]
         assert len(assertions) == 3  # 3 non-irrelevant
 
     def test_all_retries_exhausted_raises_runtime_error(self, httpserver: HTTPServer):
@@ -162,7 +166,8 @@ class TestAssessPaperHypotheses:
             max_retries=1,
         )
 
-        assertions = assess_paper_hypotheses(make_paper(), config)
+        pairs = assess_paper_hypotheses(make_paper(), config)
+        assertions = [a for a, _ in pairs]
         assert assertions[0].confidence == 1.0
         assert assertions[1].confidence == 0.0
 

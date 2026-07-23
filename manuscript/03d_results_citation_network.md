@@ -5,7 +5,7 @@ The intra-corpus citation network provides a structural view of how Active Infer
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/citation_network.png}
-\caption{Intra-corpus citation network ($N = {{CORPUS_SIZE}}$ nodes, {{CITATION_EDGES}} edges). Node size reflects in-degree (number of intra-corpus citations received); highly cited foundational papers serve as nexus points connecting sub-domains.}
+\caption{Intra-corpus citation network ({{CITATION_NODES}} nodes, {{CITATION_EDGES}} edges). Node size reflects in-degree (number of intra-corpus citations received); highly cited foundational papers serve as nexus points connecting sub-domains.}
 \label{fig:citation_network}
 \end{figure}
 
@@ -29,7 +29,7 @@ The high number of connected components ({{CITATION_COMPONENTS}} out of {{CITATI
 
 \begin{table}[htbp]
 \centering
-\caption{Intra-corpus citation network summary statistics ($N = {{CORPUS_SIZE}}$ papers). The low density and high component count reflect the field's rapid expansion and cross-source identifier mismatches.}
+\caption{Intra-corpus citation network summary statistics ($N = {{CORPUS_SIZE}}$ papers, {{CITATION_NODES}} nodes). The low density and high component count reflect the field's rapid expansion and cross-source identifier mismatches.}
 \label{tab:citation_network}
 \begin{tabular}{ll}
 \toprule

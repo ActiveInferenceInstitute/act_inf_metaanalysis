@@ -18,12 +18,12 @@ Scoring Formula:
 from __future__ import annotations
 
 import logging
-import math
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
 from literature.models import Paper
+from knowledge_graph.hypothesis_weights import WeightPolicy, assertion_weight
 from knowledge_graph.nanopublication import Assertion
 from knowledge_graph.schema import configure_hypothesis_categories
 
@@ -188,17 +188,19 @@ def configure_hypotheses(config_path: Optional[Path] = None) -> list[Hypothesis]
     return HYPOTHESES
 
 def _weight(citation_count: int, confidence: float) -> float:
-    """Compute the citation-weighted contribution of a single assertion.
-
-    Args:
-        citation_count: Number of citations for the source paper.
-            Must be non-negative; negative values are clamped to 0.
-        confidence: Confidence level of the assertion in [0.0, 1.0].
-
-    Returns:
-        ``log(1 + max(0, citation_count)) * confidence``
-    """
-    return math.log(1 + max(0, citation_count)) * confidence
+    """Compute the citation-weighted contribution of a single assertion."""
+    return assertion_weight(
+        Assertion(
+            assertion_id="",
+            paper_id="",
+            claim="",
+            assertion_type="neutral",
+            hypothesis_id="",
+            confidence=confidence,
+            citation_count=citation_count,
+        ),
+        WeightPolicy.LOG_CITATION,
+    )
 
 
 def score_hypothesis(assertions: list[Assertion], hypothesis_id: str) -> float:

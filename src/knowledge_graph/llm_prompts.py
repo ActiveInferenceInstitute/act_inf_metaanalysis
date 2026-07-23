@@ -3,23 +3,26 @@
 from __future__ import annotations
 
 import knowledge_graph.hypothesis as _hypothesis_module
+from knowledge_graph.provenance import PROMPT_VERSION
 from literature.models import Paper
 
 _SYSTEM_PROMPT = """\
 You are a scientific literature analyst specialising in Active Inference \
 and the Free Energy Principle. You will receive a paper's title and \
-abstract, together with a list of research hypotheses. For each \
-hypothesis, assess whether the paper provides evidence that supports, \
-contradicts, or is neutral toward the hypothesis, or whether the paper \
-is irrelevant to it.
+abstract, together with a list of research hypotheses.
+
+For each hypothesis, return THREE separable layers:
+1. **source_claim_text** — what the paper explicitly states (one sentence).
+2. **evidence supply** — ``evidence_status`` (explicit_claim | mentions | no_evidence) \
+and ``evidence_type`` (theoretical | empirical | none).
+3. **hypothesis triage** — ``direction`` (supports | contradicts | neutral | irrelevant) \
+reflecting whether the paper's claim bears on the hypothesis.
 
 Return ONLY a JSON array (no markdown fences, no commentary). Each \
-element must be an object with exactly these keys:
+element must include:
 
-  "hypothesis_id"  – the ID string provided
-  "direction"      – one of "supports", "contradicts", "neutral", "irrelevant"
-  "confidence"     – a float in [0.0, 1.0] reflecting how strong the evidence is
-  "reasoning"      – one sentence justifying the assessment
+  "hypothesis_id", "direction", "confidence", "reasoning",
+  "source_claim_text", "evidence_quote", "evidence_status", "evidence_type"
 """
 
 
@@ -43,3 +46,8 @@ def hypothesis_dicts() -> list[dict[str, str]]:
         {"id": h.hypothesis_id, "name": h.name, "description": h.description}
         for h in _hypothesis_module.HYPOTHESES
     ]
+
+
+def prompt_version() -> str:
+    """Return the active prompt schema version."""
+    return PROMPT_VERSION

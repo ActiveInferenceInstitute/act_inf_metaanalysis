@@ -246,9 +246,11 @@ Reads pipeline output data, computes template variables, and injects them into m
 
 | Variable | Source | Example Value |
 | --- | --- | --- |
-| `CORPUS_SIZE` | `corpus.jsonl` line count | `775` |
-| `CORPUS_SIZE_LATEX` | Same, LaTeX-formatted | `775` |
-| `YEAR_START`, `YEAR_END` | `temporal_analysis.json` | `2010`, `2024` |
+| `CORPUS_SIZE` | `corpus.jsonl` line count (post-2000) | from latest run |
+| `CORPUS_SIZE_LATEX` | Same, LaTeX-formatted | from latest run |
+| `INCLUSION_YEAR_START` | `config.yaml` search.start_year | `2000` |
+| `INCLUSION_PERIOD` | `{INCLUSION_YEAR_START}–{YEAR_END}` | e.g. `2000–2026` |
+| `YEAR_START`, `YEAR_END` | `temporal_analysis.json` empirical span | from latest run |
 | `CAGR_PCT` | `temporal_analysis.json` | `26.00` |
 | `CITATION_EDGES` | `citation_network.json` | `1{,}834` |
 | `A1_COUNT`, `A1_PCT` | `subfield_classification.json` | `75`, `9.7` |

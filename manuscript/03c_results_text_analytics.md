@@ -60,7 +60,7 @@ Principal Component Analysis of the TF-IDF document-term matrix projects each pa
 
 ### Domain Semantic Similarity
 
-To further interrogate the latent semantic structure of the subfields, we extract the top characterizing terms for each domain and compute a hierarchical clustering of domain centroids. The heatmap (Figure \ref{fig:term_heatmap}) reveals distinctive vocabulary patterns beyond mere keyword-level classification, while the dendrogram (Figure \ref{fig:dendrogram}) confirms the tight semantic proximity between Core Theory subfields (A1, A2) and the methodological alignment of Tooling (B) with Robotics (C2).
+To further interrogate the latent semantic structure of the subfields, we extract the top characterizing terms for each domain and compute a hierarchical clustering of domain centroids. The heatmap (Figure \ref{fig:term_heatmap}) reveals distinctive vocabulary patterns beyond mere keyword-level classification, while the dendrogram (Figure \ref{fig:dendrogram}) confirms the tight semantic proximity between Core Theory subfields (A1, A2) and the close pairing of Tooling (B) with Biology (C5).
 
 \begin{figure}[htbp]
 \centering
@@ -72,7 +72,7 @@ To further interrogate the latent semantic structure of the subfields, we extrac
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/dendrogram.png}
-\caption{Hierarchical clustering of domain centroids (Ward linkage on mean TF-IDF vectors, 8 domains). Cophenetic correlation annotated on figure. A1 (formal theory) and A2 (philosophy) cluster closely, as do C2 (robotics) and B (tools).}
+\caption{Hierarchical clustering of domain centroids (Ward linkage on mean TF-IDF vectors, 8 domains). Cophenetic correlation annotated on figure. A1 (formal theory) and A2 (philosophy) cluster closely, as do B (tools) and C5 (biology); C4 (psychiatry) groups with the core-theory pair rather than with the other application domains.}
 \label{fig:dendrogram}
 \end{figure}
 

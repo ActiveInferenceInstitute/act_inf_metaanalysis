@@ -21,6 +21,8 @@ from knowledge_graph.nanopublication import (
     get_processed_paper_ids,
     serialize_nanopubs_to_trig,
 )
+from knowledge_graph.provenance import write_provenance_summary
+from knowledge_graph.sensitivity import write_sensitivity_analysis
 from literature.corpus import Corpus
 
 
@@ -55,8 +57,11 @@ def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path
         logger.info("Auto-loaded config: %s", config_path)
     if kg_cfg.get("checkpoint_interval") is not None:
         args.checkpoint_interval = kg_cfg["checkpoint_interval"]
-    if kg_cfg.get("clear_assertions") is not None:
-        args.clear_assertions = kg_cfg["clear_assertions"]
+    # Config may REQUEST a clear, but must never silently override an explicit
+    # CLI --clear-assertions. CLI True always wins; config True also enables it.
+    args.clear_assertions = bool(args.clear_assertions) or bool(
+        kg_cfg.get("clear_assertions", False)
+    )
     if kg_cfg.get("max_papers") is not None and args.max_papers is None:
         args.max_papers = kg_cfg["max_papers"]
     if kg_cfg.get("llm_model"):
@@ -143,3 +148,14 @@ def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path
             indent=2,
         )
     print(str(summary_path))
+
+    sensitivity_path = data_dir / "hypothesis_sensitivity.json"
+    write_sensitivity_analysis(
+        assertions, papers, sensitivity_path,
+        config_path if config_path.exists() else None,
+    )
+    print(str(sensitivity_path))
+
+    provenance_report = output_dir / "reports" / "extraction_provenance_summary.json"
+    write_provenance_summary(nanopub_path, provenance_report)
+    print(str(provenance_report))

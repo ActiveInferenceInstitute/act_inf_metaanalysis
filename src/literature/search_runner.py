@@ -186,7 +186,8 @@ def run_literature_search(
         logger.info("Cleared existing corpus: %s", corpus_path)
 
     if args.resume and corpus_path.exists():
-        corpus = Corpus.load(corpus_path)
+        min_year = args.start_year
+        corpus = Corpus.load(corpus_path, min_year=min_year)
         logger.info("Resumed existing corpus with %d papers from %s", len(corpus), corpus_path)
         if len(corpus) > 0 and not args.clear_corpus:
             logger.info(
@@ -258,8 +259,7 @@ def run_literature_search(
 
     if args.start_year is not None:
         pre_year = len(corpus)
-        corpus = corpus.filter_by_year(start=args.start_year)
-        dropped = pre_year - len(corpus)
+        dropped = corpus.drop_before_year(args.start_year)
         if dropped:
             logger.info(
                 "Year filter: removed %d papers published before %d (%d → %d)",

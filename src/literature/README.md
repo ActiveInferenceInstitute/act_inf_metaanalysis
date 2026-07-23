@@ -70,6 +70,7 @@ the source-of-record ID so deduplication decisions can be audited.
 ## Output
 
 `output/data/corpus.jsonl` — one JSON object per line, each representing a `Paper`.
-Current corpus: 849 papers from arXiv, Semantic Scholar, and OpenAlex (2005–2026).
+Corpus size and inclusion period are injected at render time via `{{CORPUS_SIZE}}` and
+`{{INCLUSION_PERIOD}}` from `src/manuscript/variables.py` (never hard-code N or years here).
 
 See [AGENTS.md](AGENTS.md) for agent constraints and extension guidance.

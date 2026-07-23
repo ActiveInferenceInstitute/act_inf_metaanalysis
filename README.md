@@ -10,7 +10,7 @@
 [![Python 3.12](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> A computational meta-analysis of the **Active Inference** and **Free Energy Principle (FEP)** literature. This project employs multi-source retrieval, LLM-based assertion extraction (Nanopublications), probabilistic knowledge graphs, and citation-weighted hypothesis scoring to map the structural and thematic trajectory of the field.
+> A computational meta-analysis of the **Active Inference** and **Free Energy Principle (FEP)** literature. Multi-source retrieval, LLM-based assertion extraction (nanopublications), citation-weighted hypothesis triage, and a rule-based reference-annotator agreement check map the field's evidence landscape—scores indicate evidence mapping, not scientific confirmation.
 
 ---
 
@@ -20,7 +20,7 @@ This repository houses the entire data pipeline, source code, and manuscript gen
 
 - ✅ **Automated Literature Mining:** Interrogates arXiv, Semantic Scholar, and OpenAlex.
 - ✅ **Knowledge Graph Construction:** Serializes LLM-extracted assertions into RDF-compatible semantic triads.
-- ✅ **Hypothesis Scoring:** Evaluates the temporal evidence for 8 core structural claims in the literature.
+- ✅ **Hypothesis Triage:** Citation-weighted evidence mapping for 8 core structural claims (not confirmation).
 - ✅ **Advanced Visualization:** Generates publication-ready growth curves, PCA embeddings, term heatmaps, and citation networks using a colorblind-safe palette.
 
 ---

@@ -16,7 +16,7 @@ where $S(H)$ is the set of supporting assertions, $C(H)$ the set of contradictin
 w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a). \label{eq:app_weight}
 \end{equation}
 
-The logarithmic citation weighting ensures that highly cited papers carry more influence while preventing any single blockbuster paper from dominating the score. The score lies in $[-1, 1]$: values near $+1$ indicate strong supporting evidence, values near $-1$ strong contradicting evidence, and values near $0$ balanced or insufficient evidence. As emphasized in the main text, this score is a *relative evidentiary ranking* within the current literature topology, not a calibrated Bayesian probability of the hypothesis being true.
+The logarithmic citation weighting assigns higher weight to papers that have accumulated more citations within the retrieved corpus window. This measures **published attention and visibility** in the literature graph—not truth, popularity on social media, field size alone, or citation-network centrality (PageRank is not used). We report sensitivity analyses under uniform weighting, confidence-only, raw citation (popularity stress test), age discount, and field-normalized cohort weighting; rank-stability Spearman $\rho = {{SENSITIVITY_SPEARMAN}}$ versus the default policy. The score lies in $[-1, 1]$: values indicate citation-weighted evidence mapping and hypothesis triage within the corpus, not calibrated confirmation of scientific truth.
 
 **Temporal aggregation.** We additionally compute temporal trends by evaluating the cumulative score at each year $t$, using only assertions from papers published in year $\leq t$:
 
@@ -26,7 +26,7 @@ The logarithmic citation weighting ensures that highly cited papers carry more i
 
 This reveals whether support for a hypothesis is growing, declining, or plateauing over time. Cumulative aggregation (rather than yearly windows) is preferred because per-year assertion counts for narrow hypotheses are too sparse for stable point estimates.
 
-**Algorithmic specification.** The scoring routine is a pure function of the assertion set; it has no hidden state and is deterministic given the input. The reference implementation lives in `src/scoring/citation_weighted.py`:
+**Algorithmic specification.** The scoring routine is a pure function of the assertion set; it has no hidden state and is deterministic given the input. The reference implementation lives in `src/knowledge_graph/hypothesis.py` with weight policies in `src/knowledge_graph/hypothesis_weights.py`:
 
 ```text
 function score(H, assertions):

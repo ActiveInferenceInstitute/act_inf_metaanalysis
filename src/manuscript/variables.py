@@ -98,7 +98,24 @@ def _count_total_references(corpus_path: Path) -> int:
     return total
 
 
-def compute_variables(output_dir: Path) -> dict[str, str]:
+def _load_inclusion_year_start(project_root: Path | None = None) -> int:
+    """Read ``project_config.search.start_year`` from manuscript config."""
+    if project_root is None:
+        project_root = Path(__file__).resolve().parent.parent.parent
+    config_path = project_root / "manuscript" / "config.yaml"
+    if not config_path.exists():
+        return 2000
+    try:
+        import yaml
+    except ImportError:
+        return 2000
+    with open(config_path, encoding="utf-8") as handle:
+        data = yaml.safe_load(handle) or {}
+    search_cfg = data.get("project_config", {}).get("search", {})
+    return int(search_cfg.get("start_year", 2000))
+
+
+def compute_variables(output_dir: Path, project_root: Path | None = None) -> dict[str, str]:
     """Read all pipeline output JSONs and compute template variables.
 
     Args:
@@ -114,6 +131,11 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
     """
     variables: dict[str, str] = {}
     data_dir = output_dir / "data"
+    if project_root is None:
+        project_root = output_dir.parent
+
+    inclusion_start = _load_inclusion_year_start(project_root)
+    variables["INCLUSION_YEAR_START"] = str(inclusion_start)
 
     # ── Corpus size ──────────────────────────────────────────────────
     corpus_path = data_dir / "corpus.jsonl"
@@ -132,6 +154,11 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
     if temporal and "_error" not in temporal:
         variables["YEAR_START"] = str(temporal.get("first_year", ""))
         variables["YEAR_END"] = str(temporal.get("last_year", ""))
+        year_end = variables["YEAR_END"]
+        if year_end:
+            variables["INCLUSION_PERIOD"] = f"{inclusion_start}–{year_end}"
+        else:
+            variables["INCLUSION_PERIOD"] = str(inclusion_start)
         variables["YEAR_START_PUBS"] = str(
             temporal.get("year_counts", {}).get(
                 str(temporal.get("first_year", "")), ""
@@ -159,6 +186,7 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
         variables["DOUBLING_TIME"] = f"{doubling:.1f}" if doubling else ""
     else:
         logger.warning("temporal_analysis.json not found; temporal variables empty")
+        variables["INCLUSION_PERIOD"] = str(inclusion_start)
 
     # ── Citation network ─────────────────────────────────────────────
     citation = _load_json(data_dir / "citation_network.json")
@@ -366,6 +394,58 @@ def compute_variables(output_dir: Path) -> dict[str, str]:
         variables["NUM_VOCAB_FEATURES_LATEX"] = "500"
         logger.warning("tfidf_data.json not found; defaulting NUM_VOCAB_FEATURES to 500")
 
+    # ── Rule-based reference-annotator agreement metrics ───────────────
+    # NOTE: these compare the LLM pipeline against a deterministic keyword-rule
+    # reference, NOT human annotators. Variable names/prose say "reference".
+    validation = _load_json(data_dir / "validation_metrics.json")
+    if validation.get("_error") is not None:
+        validation = _load_json(output_dir / "reports" / "validation_metrics.json")
+    if validation and "_error" not in validation:
+        variables["VAL_N"] = str(validation.get("sample_size", 0))
+        kappa = validation.get("kappa_interrule")
+        if kappa is not None:
+            variables["VAL_KAPPA"] = f"{kappa:.3f}"
+        kappa_pipeline = validation.get("kappa_reference_pipeline")
+        if kappa_pipeline is not None:
+            variables["VAL_KAPPA_PIPELINE"] = f"{kappa_pipeline:.3f}"
+        for metric in ("precision", "recall", "f1"):
+            val = validation.get(metric)
+            if val is not None:
+                variables[f"VAL_{metric.upper()}"] = f"{val:.3f}"
+        quote_fidelity = validation.get("quote_fidelity_rate")
+        if quote_fidelity is not None:
+            variables["VAL_QUOTE_FIDELITY"] = f"{quote_fidelity:.3f}"
+        else:
+            # No verbatim quotes stored in the current abstract-only corpus:
+            # report N/A rather than a spurious 0.0 that reads as "0% faithful".
+            variables["VAL_QUOTE_FIDELITY"] = "n/a"
+        taxonomy = validation.get("error_taxonomy_rates", {})
+        for err_key, rate in taxonomy.items():
+            safe = err_key.upper().replace(" ", "_")
+            variables[f"VAL_ERR_{safe}"] = f"{rate:.3f}"
+
+    # ── Hypothesis scoring sensitivity ───────────────────────────────
+    sensitivity = _load_json(data_dir / "hypothesis_sensitivity.json")
+    if sensitivity.get("_error") is not None:
+        sensitivity = _load_json(output_dir / "data" / "hypothesis_sensitivity.json")
+    if sensitivity and "_error" not in sensitivity:
+        spearman = sensitivity.get("rank_stability_spearman")
+        if spearman is not None:
+            variables["SENSITIVITY_SPEARMAN"] = f"{spearman:.3f}"
+        rank_changes = sensitivity.get("rank_change_count")
+        if rank_changes is not None:
+            variables["SENSITIVITY_RANK_FLIPS"] = str(rank_changes)
+
+    # ── Extraction provenance (model / prompt version) ───────────────
+    provenance = _load_json(output_dir / "reports" / "extraction_provenance_summary.json")
+    if provenance and "_error" not in provenance:
+        models = provenance.get("unique_models", {})
+        if isinstance(models, dict) and models:
+            variables["PROV_MODEL"] = max(models, key=models.get)
+        prompts = provenance.get("prompt_versions", {})
+        if isinstance(prompts, dict) and prompts:
+            variables["PROV_PROMPT_VERSION"] = max(prompts, key=prompts.get)
+
     logger.info(
         "Computed %d template variables from pipeline output", len(variables)
     )
@@ -428,3 +508,39 @@ def inject_variables(
             )
 
     return result
+
+
+def write_zenodo_metadata(
+    variables: dict[str, str],
+    output_path: Path,
+    *,
+    doi: str = "10.5281/zenodo.19461934",
+    version: str = "2.0.2",
+) -> Path:
+    """Write Zenodo deposit metadata from injected template variables."""
+    period = variables.get("INCLUSION_PERIOD", "")
+    title = (
+        f"A Living Meta-Analysis Architecture for Active Inference ({period})"
+        if period
+        else "A Living Meta-Analysis Architecture for Active Inference"
+    )
+    description = (
+        f"Corpus N={variables.get('CORPUS_SIZE', '?')}; "
+        f"inclusion from {variables.get('INCLUSION_YEAR_START', '?')}; "
+        f"rule-based reference agreement n={variables.get('VAL_N', '?')}, "
+        f"inter-rule κ={variables.get('VAL_KAPPA', '?')}, "
+        f"pipeline-vs-reference precision={variables.get('VAL_PRECISION', '?')}, "
+        f"recall={variables.get('VAL_RECALL', '?')}. "
+        "Reference labels are deterministic keyword rules, not human annotation. "
+        "Hypothesis scores report citation-weighted evidence mapping and triage, "
+        "not scientific confirmation."
+    )
+    payload = {
+        "title": title,
+        "description": description,
+        "version": version,
+        "doi": doi,
+    }
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    return output_path

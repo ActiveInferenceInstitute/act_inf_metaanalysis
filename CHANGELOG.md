@@ -1,5 +1,39 @@
 # CHANGELOG.md
 
+## v2.0.4 — 2026-07-23
+
+### Completed the v2.0.3 honest-reframe work (in-flight test/artifact gaps)
+- **`analysis.validation_sample` had zero test coverage** (0.00%, 73/73 statements uncovered) despite being the module the validation-study runner depends on. Added `tests/analysis/test_validation_sample.py` (6 tests: year-bin boundaries, stratified-sample stratum coverage, fixed-seed determinism, empty-corpus edge case, CSV round-trip). Project coverage rose 93.01% → 94.96% (626 → 632 tests passing).
+- **`output/reports/extraction_provenance_summary.json` was stale**, still showing the pre-v2.0.3 legacy schema (`total: 1490`, `legacy_attribution: {pipeline_v1: 1490}`, zero structured provenance) even though the clean three-layer re-extraction had already populated real provenance blocks on all 793 current nanopublications. Because the report's schema didn't match what `manuscript.variables` reads (`unique_models` / `prompt_versions`), `{{PROV_MODEL}}` / `{{PROV_PROMPT_VERSION}}` in `02b_methods_extraction.md` were unresolved and variable injection raised `RuntimeError`. Regenerated the report via the existing `provenance.write_provenance_summary` (no LLM call needed — pure aggregation over the already-re-extracted nanopub file): now reports `gemma3:4b` / `v2.0.0-three-layer` across all 793 records; injection succeeds cleanly (348 variables across 18 files).
+- **Verified idempotency**: `scripts/07_run_validation_study.py` and `scripts/05_inject_variables.py` each produce byte-identical output across two consecutive runs against the same pipeline data (seed=42 stratified sampling; deterministic rule protocols).
+- **`data/validation/annotation_schema.md` was a missed call-site of the v2.0.3 reframe**: still titled "Dual-Annotator Validation Schema" and documenting the old fabricated design (`labels_human.csv` / `labels_assistant.csv`, `human_triage` / `assistant_triage` columns, "Human gold labels"). Rewrote it to document the actual current schema (`labels_rule_reference.csv`, `ref_*` / `secondary_*` columns, both deterministic rule protocols) and state plainly this is not a human study.
+- Removed 4 residual unused imports (`dataclasses.field` in `provenance.py`; `compute_sensitivity_analysis` / `inject_variables` in `test_quality_remediation.py`) flagged by `ruff check` on the touched files; `mypy` clean on all validation/provenance/sensitivity modules.
+- Full suite: 632 passed, 94.96% coverage, single final run at a stable tree (no partial re-runs).
+
+## v2.0.3 — 2026-07-22
+
+### Clean three-layer re-extraction (structured provenance end-to-end)
+- **Re-ran LLM assertion extraction over the full corpus with the three-layer prompt.** Every nanopublication now carries populated source-claim text, a verbatim evidence quote, evidence status/type, and a **structured provenance block** (model ID, prompt version, processing date, run ID). All prior data was cleared before re-extraction; there is no mixed-schema data remaining.
+- Fixed a config-precedence bug in `kg_runner`: an explicit `--clear-assertions` CLI flag is no longer silently overridden by `config.yaml`'s `clear_assertions: false`.
+- `extraction_provenance_summary.json` now reports real model/prompt/run coverage and the processing-date range; the vacuous `unknown` aggregation is gone.
+- `quote_fidelity_rate` is measured against real evidence quotes; when a sample contains no quotes it reports `null` + `quote_fidelity_status` rather than a misleading `0.0`.
+
+### Honest extraction-agreement study (no fabricated human validation)
+- **Reframed the extraction validation as a rule-based reference-annotator agreement study, not a human validation.** The "annotator" labels are produced by deterministic keyword rules (`apply_primary_rule_protocol` / `apply_secondary_rule_protocol`), never by humans. Renamed metric keys (`kappa_interrule`, `kappa_reference_pipeline`, `confusion_reference_vs_pipeline`) and CSV columns (`ref_*` / `secondary_*`); the runner writes one `labels_rule_reference.csv` instead of two identical files that falsely implied independent annotators.
+- Resolved the prior internal contradiction: abstract, methods, results, and conclusion no longer claim validation "against primary human labels"; all consistently describe the rule reference as a reproducibility floor and state that human gold-standard annotation is future work.
+- Sensitivity `sign_flip_count` (structurally always 0 for [0,1] scores) replaced with a real `rank_change_count`.
+- New tests pin these invariants; full suite green.
+
+## v2.0.2 — 2026-07-22
+
+### Quality remediation
+- Enforced post-2000 corpus filter at load/save; removed two 1977 contaminants (`CORPUS_SIZE` = 817 aligned with citation/subfield counts)
+- Three-layer extraction model: source claim, evidence supply, hypothesis triage
+- Structured extraction provenance on every nanopublication; summary report under `output/reports/`
+- Six weight-policy sensitivity analysis with `hypothesis_sensitivity.json`
+- Stratified rule-based reference-annotator agreement study (`n=200`); metrics injected as `VAL_*` template variables (reframed honestly in v2.0.3 — the reference is deterministic keyword rules, not human annotation)
+- Manuscript language tempered to evidence-mapping / triage; Zenodo metadata generated from injectors
+
 ## v2.0.1 — 2026-04-29
 
 ### Summary

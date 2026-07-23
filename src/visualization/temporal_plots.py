@@ -112,10 +112,13 @@ def plot_growth_curve(
     ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left",
                fontsize=max(VIZ_CONFIG["font_size"] - 2, 16))
 
-    # CAGR and total N annotation
+    # CAGR and total N annotation. Use the annualised growth of yearly
+    # publication VOLUME (first vs last year), matching the canonical
+    # ``cagr`` in temporal_analysis.json and the {{CAGR_PCT}} manuscript
+    # variable — NOT a cumulative-total ratio (which inflates the figure).
     total_n = sum(annual)
     if len(years) >= 2:
-        ratio = cumul[-1] / max(cumul[0], 1)
+        ratio = annual[-1] / max(annual[0], 1)
         span = years[-1] - years[0]
         cagr = (ratio ** (1.0 / span) - 1) * 100 if span > 0 else 0
         ax1.text(

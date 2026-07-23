@@ -113,23 +113,32 @@ Papers that fail all parsing stages are logged and skipped; their count is repor
 
 ### Validation Methodology
 
-Validation of LLM-extracted assertions follows a three-tier protocol:
+To calibrate the pipeline in the absence of a human-annotated gold set, we run a **rule-based reference-annotator agreement study** on a stratified sample ($n = {{VAL_N}}$ assertions; hypothesis $\times$ triage direction $\times$ year bin). Two *deterministic keyword-and-negation rule protocols*—not human annotators—label each sampled abstract; their mutual agreement (Cohen's $\kappa = {{VAL_KAPPA}}$) measures how stable the rule reference itself is, and the primary rule protocol serves as an independent, fully reproducible reference against which LLM pipeline triage is compared: precision {{VAL_PRECISION}}, recall {{VAL_RECALL}}, F1 {{VAL_F1}} (positive class "supports"). These figures are a reproducibility floor, not an accuracy against ground truth: the rule reference and the LLM diverge sharply (direction-agreement $\kappa = {{VAL_KAPPA_PIPELINE}}$), which is itself the finding—absolute triage labels are unreliable and only relative rankings should be trusted. Both protocols emit three separable layers: source claim text, evidence supply (status and type), and hypothesis triage direction. A human gold-standard annotation remains future work (see the conclusion's "Human spot-check coverage").
 
-1. **Validation Dataset (10%, not yet created).** A ground-truth validation protocol is specified in which a random 10% subset of the corpus will be manually annotated by human experts. Inter-rater reliability will be calculated using Cohen's $\kappa$; the LLM-based extraction pipeline will be evaluated against this human consensus, targeting a $\kappa > 0.70$ threshold for direction accuracy (supports/contradicts/neutral/irrelevant). The formal 10% manual annotation dataset has not yet been created; its development is a prioritized next step for this living review architecture.
+\begin{table}[htbp]
+\centering
+\caption{Pipeline-versus-rule-reference agreement metrics (stratified sample). The reference labels are produced by deterministic keyword rules, not human annotators; values are a reproducibility floor, not accuracy against ground truth.}
+\label{tab:validation_metrics}
+\begin{tabular}{ll}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Sample size & {{VAL_N}} \\
+Inter-rule $\kappa$ (reference stability) & {{VAL_KAPPA}} \\
+Reference--pipeline direction $\kappa$ & {{VAL_KAPPA_PIPELINE}} \\
+Pipeline precision vs.\ reference (supports) & {{VAL_PRECISION}} \\
+Pipeline recall vs.\ reference (supports) & {{VAL_RECALL}} \\
+Pipeline F1 vs.\ reference (supports) & {{VAL_F1}} \\
+Over-extraction rate & {{VAL_ERR_OVER_EXTRACTION}} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-2. **Boundary-case audit (conceptual design).** Papers known to make contested claims (e.g., critiques of FEP universality, Markov blanket realism debates) would be specifically checked for correct direction assignment. This tier remains a conceptual design and has not been executed.
-
-3. **Aggregate consistency (conceptual design).** Hypothesis scores would be compared against qualitative expectations from the literature: hypotheses known to be well-supported (e.g., H4 Predictive Coding) should score positively; those known to be contested (e.g., H3 Markov Blanket Realism) should show lower or mixed scores. This tier also remains a conceptual design and has not been executed.
-
-The current extraction pipeline operates without human-validated ground truth; all reported assertions are machine-generated and unaudited.
+Error taxonomy rates (over-extraction, direction inversion, triage mismatch) are reported in `output/reports/validation_metrics.json`; the dominant mode is over-extraction ({{VAL_ERR_OVER_EXTRACTION}} of sampled rows), where the LLM assigns a hypothesis label the keyword reference treats as irrelevant. Sensitivity analysis across six citation-weight policies yields rank-stability Spearman $\rho = {{SENSITIVITY_SPEARMAN}}$ versus the default log-citation weighting, with {{SENSITIVITY_RANK_FLIPS}} hypothesis rank-position changes across all alternative policies.
 
 ### From Assertions to Nanopublications
 
-Each validated assertion is wrapped in a **nanopublication** \citep{groth2010anatomy, kuhn2016decentralized}—a self-contained, machine-readable knowledge unit packaging the assertion with explicit provenance metadata. The wrapping process assigns:
-
-- A **unique identifier** (`nanopub:<uuid12>`) for graph-level deduplication.
-- An **attribution string** recording the pipeline name and LLM model version.
-- A **UTC timestamp** in ISO 8601 format, establishing temporal provenance.
+Each assertion is wrapped in a **nanopublication** \citep{groth2010anatomy, kuhn2016decentralized} that carries a structured provenance block—paper ID, source passage, model ID (`{{PROV_MODEL}}`), prompt version (`{{PROV_PROMPT_VERSION}}`), processing date, pipeline version, and run ID. Every assertion in the corpus is produced by the three-layer extractor and carries this block; the aggregate model, prompt-version, and processing-date coverage is reported in `output/reports/extraction_provenance_summary.json`.
 
 Nanopublications are persisted **incrementally** during extraction. Every 50 papers (configurable via `--checkpoint-interval`), the pipeline atomically appends newly extracted nanopublications to `nanopublications.jsonl` using a temporary-file-plus-rename strategy that prevents corruption on interruption. Deduplication operates on the composite key $(paper\_id, hypothesis\_id)$: when a paper is re-processed with an improved model, the newer assertion overwrites the stale entry. This merge-on-add design enables iterative model refinement without costly full-corpus re-extraction.
 
