@@ -125,7 +125,7 @@ projects_archive/act_inf_metaanalysis/
 │   │   └── test_temporal_plots.py
 │   ├── test_scripts.py         # Integration tests for script entry points
 │   └── test_variables.py       # Manuscript variable computation tests
-├── scripts/                    # Thin orchestrators (≤91 lines each)
+├── scripts/                    # Thin orchestrators (I/O + sequencing only; logic in src/)
 │   ├── _bootstrap.py
 │   ├── _io.py
 │   ├── 01_literature_search.py
@@ -133,7 +133,8 @@ projects_archive/act_inf_metaanalysis/
 │   ├── 03_build_knowledge_graph.py
 │   ├── 04_generate_figures.py
 │   ├── 05_inject_variables.py
-│   └── 06_fulltext_assessment.py
+│   ├── 06_fulltext_assessment.py   # auxiliary QA (full-text availability)
+│   └── 07_run_validation_study.py  # auxiliary QA (rule-based reference-annotator agreement)
 ├── manuscript/                 # 20 sections + references
 │   ├── config.yaml
 │   ├── preamble.md

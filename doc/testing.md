@@ -4,7 +4,7 @@
 
 ## Overview
 
-The project maintains **615 tests** across **39 test files** (parameterized cases inflate the runtime count further), achieving **>90% line+branch coverage** on `src/` — above the 90% CI gate (measured: **96.09%**). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --co -q | tail -1` for the exact current count.
+The project maintains **632 tests** across **41 test files** (632 passed, 1 skipped; parameterized cases inflate the runtime count further), achieving coverage on `src/` above the 90% CI gate (measured: **95.05%**, verified 2026-07-23). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --co -q | tail -1` for the exact current count.
 
 ### Zero-Mock Practicality
 

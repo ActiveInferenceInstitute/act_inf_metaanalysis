@@ -131,7 +131,14 @@ python3 scripts/05_inject_variables.py
 
 # 6. Audit full-text availability across the corpus
 python3 scripts/06_fulltext_assessment.py
+
+# 7. (Validation / QA — optional) Rule-based reference-annotator agreement study.
+#    Deterministic reproducibility floor, NOT a human validation. Not part of the
+#    core content-generation chain; run after 03 has produced nanopublications.
+python3 scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
 ```
+
+Steps 1–5 are the core content-generation chain; steps 6 (full-text assessment) and 7 (validation study) are auxiliary QA tools run independently. See [`scripts/AGENTS.md`](scripts/AGENTS.md) for each script's full flag reference.
 
 ---
 
@@ -149,7 +156,7 @@ A nested `.git/` directory may be present from standalone repository history; th
 projects_archive/act_inf_metaanalysis/
 ├── src/                        # Core library (literature, analysis, knowledge_graph, visualization)
 ├── tests/                      # Pytest suite; 90% coverage gate in pyproject.toml
-├── scripts/                    # Numbered orchestrators (01–06)
+├── scripts/                    # Numbered orchestrators (01–07)
 ├── manuscript/                 # Markdown sections, config.yaml, references.bib
 └── doc/                        # Architecture, API, data formats, scripts
 ```
@@ -191,19 +198,10 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 
 ## 📋 Changelog
 
-All notable changes to this project will be documented in this section.
+The canonical, continuously updated changelog lives in **[CHANGELOG.md](CHANGELOG.md)** — treat it as the single source of truth. (An earlier copy was duplicated here and drifted several releases behind; this section is intentionally kept to a short pointer to avoid that recurring.)
 
-### v2.0 (2026-04)
+**Current release: v2.0.4 (2026-07-23)** — completes the v2.0.1–v2.0.3 *honest validation reframe*: the extraction-validation study is a deterministic **rule-based reference-annotator agreement check** (a reproducibility floor), **not** a human validation; structured extraction provenance now runs end-to-end; and test coverage was closed on the validation modules.
 
-**Correction**
-- Removed false claims about completed manual validation from manuscript and documentation.
-
-**Fixes**
-- Implemented `ASSERTION_SUPPORT_PCT` and `ASSERTION_CONTRADICT_PCT` variables for accurate evidence composition reporting.
-- Fixed test dependencies and raised coverage to ≥90% across all source modules.
-
-**Maintenance**
-- Updated documentation to reflect v2 pipeline changes.
-- Updated references and bibliography entries.
+See **[CHANGELOG.md](CHANGELOG.md)** for the full per-release history (v2.0.0 → v2.0.4).
 
 ---

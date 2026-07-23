@@ -4,6 +4,8 @@
 **Scope:** `projects_archive/act_inf_metaanalysis/` (archived; not template pipeline–discovered)  
 **Rubric:** template thermo-nuclear maintainability review (1k-line rule, script gates, thin orchestrators, zero-mock tests)
 
+> **Addendum (2026-07-23):** This audit is a historical snapshot dated **2026-05-24**; every metric below (615 tests / 96.09% coverage, script line counts, etc.) reflects the codebase at that time and is preserved unchanged as the record. The project has since undergone the v2.0.1–v2.0.4 *honest validation reframe* — the extraction-validation study is now a deterministic **rule-based reference-annotator agreement** check (a reproducibility floor, not a human validation), structured extraction provenance runs end-to-end, and a seventh script (`07_run_validation_study.py`) was added. Current verified gates as of 2026-07-23: **632 passed, 1 skipped, 95.05% coverage** (fail_under=90). See [../CHANGELOG.md](../CHANGELOG.md) (v2.0.1 → v2.0.4) for exactly what has changed since this audit.
+
 ## Executive verdict
 
 **Conditional pass → remediated (W1–W3 complete).** Structural debt from script bloat, orchestrator logic leakage, thin LLM tests, and documentation drift has been addressed; verification gates pass at **615 tests / 96.09% coverage** (2026-05-24 follow-up).

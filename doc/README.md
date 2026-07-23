@@ -14,7 +14,7 @@ Project-level documentation for the `act_inf_metaanalysis` pipeline.
 
 ## Central Philosophy: Reproducible Generative Research
 
-This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. By structuring the literature review as a deterministic 5-stage pipeline, this platform ensures:
+This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **7 numbered scripts**: a deterministic **5-stage core pipeline** (`01`–`05`) plus **two auxiliary QA scripts** (`06` full-text assessment, `07` rule-based reference-annotator validation study) run independently. By structuring the literature review this way, this platform ensures:
 
 1. **Verifiable Provenance**: Every paper, classification, and assertion is strictly mapped from public APIs (arXiv, Semantic Scholar) through atomic JSONL intermediate states into the final visual output.
 2. **Robust Extensibility**: New papers incrementally stream into the corpus, and new LLM models can instantly backfill metadata assessments via checkpointed resumes.
@@ -26,7 +26,7 @@ This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Rese
 
 If you are joining the Active Inference Institute to extend this pipeline, you should consume the documentation hub in the following order:
 
-1. **[architecture.md](architecture.md)** — Understand the 5-stage data flow and why we enforce a "Thin Orchestrator" scripting pattern.
+1. **[architecture.md](architecture.md)** — Understand the 5-stage core data flow (plus the two auxiliary QA scripts) and why we enforce a "Thin Orchestrator" scripting pattern.
 2. **[data_formats.md](data_formats.md)** — Internalize the schemas (especially JSONL/TriG) that form the nervous system between modules.
 3. **[scripts.md](scripts.md)** — Learn how to execute, pause, configure, and troubleshoot the pipeline from the command line.
 4. **[hypotheses.md](hypotheses.md)** — Understand the theoretical domain bounds and the mathematical formulation of our citation-weighted scoring logic.
@@ -37,11 +37,17 @@ If you are joining the Active Inference Institute to extend this pipeline, you s
 
 ```bash
 # From the project root (projects_archive/act_inf_metaanalysis/)
+
+# Core content-generation chain (run in order):
 python scripts/01_literature_search.py --config manuscript/config.yaml
 python scripts/02_meta_analysis_pipeline.py
 python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 python scripts/04_generate_figures.py
 python scripts/05_inject_variables.py
+
+# Auxiliary QA scripts (optional; run independently after the core chain):
+python scripts/06_fulltext_assessment.py
+python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
 ```
 
 ---
@@ -65,6 +71,10 @@ flowchart LR
     subgraph "Stage 5"
         S5["05_inject_variables.py"]
     end
+    subgraph "Auxiliary QA (run independently)"
+        S6["06_fulltext_assessment.py"]
+        S7["07_run_validation_study.py"]
+    end
 
     APIs["arXiv / S2 / OpenAlex"] --> S1
     S1 -->|corpus.jsonl| S2
@@ -74,6 +84,10 @@ flowchart LR
     S4 -->|16 PNG figures| Figs["output/figures/"]
     S2 & S3 -->|analysis JSONs| S5
     S5 -->|rendered .md| MS["output/manuscript/"]
+    S1 -->|corpus.jsonl| S6
+    S6 -->|fulltext_assessment.json| Data["output/data/"]
+    S1 & S3 -->|corpus + nanopublications| S7
+    S7 -->|sample.csv, labels_rule_reference.csv, validation_metrics.json| Val["output/validation/, output/reports/"]
 ```
 
 | Stage | Script | Key Inputs | Key Outputs |
@@ -82,7 +96,11 @@ flowchart LR
 | 2. Meta-Analysis | `02_meta_analysis_pipeline.py` | `corpus.jsonl` | `subfield_classification.json`, `temporal_analysis.json`, `tfidf_data.json`, `topics.json`, `citation_network.json`, `citation_graph.gml`, `subfield_timeline.json` |
 | 3. Knowledge Graph | `03_build_knowledge_graph.py` | `corpus.jsonl`, Ollama LLM | `nanopublications.jsonl`, `nanopublications.trig`, `hypothesis_scores.json`, `hypothesis_trends.json`, `assertion_summary.json` |
 | 4. Visualization | `04_generate_figures.py` | All Stage 2+3 outputs | 16 PNG figures in `output/figures/` |
-| 5. Variable Injection | `05_inject_variables.py` | All Stage 2+3 outputs | Rendered manuscript in `output/manuscript/` |
+| 5. Variable Injection | `05_inject_variables.py` | All Stage 2+3 outputs | Rendered manuscript in `output/manuscript/`, `output/reports/zenodo_deposit_metadata.json` |
+| 6. Full-Text Assessment *(auxiliary QA)* | `06_fulltext_assessment.py` | `corpus.jsonl` | `output/data/fulltext_assessment.json` |
+| 7. Validation Study *(auxiliary QA)* | `07_run_validation_study.py` | `corpus.jsonl`, `nanopublications.jsonl` | `output/validation/sample.csv`, `output/validation/labels_rule_reference.csv`, `output/reports/validation_metrics.json` |
+
+*Stages 6 and 7 are auxiliary QA tools run independently of the 5-stage core chain. Stage 7 is a deterministic **rule-based reference-annotator agreement** study (a reproducibility floor), **not** a human validation.*
 
 ---
 
@@ -166,5 +184,5 @@ Variable injection is handled by `src/manuscript/variables.py`, invoked by `scri
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [testing.md](testing.md) | Test architecture, 615 tests across 39 files, coverage configuration |
+| [testing.md](testing.md) | Test architecture, 632 tests across 41 files, coverage configuration |
 | [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |

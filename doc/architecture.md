@@ -4,7 +4,7 @@
 
 ## Data Flow
 
-The pipeline operates in five stages, each producing intermediate artifacts consumed by subsequent stages.
+The pipeline operates in five core stages, each producing intermediate artifacts consumed by subsequent stages. Two additional auxiliary scripts — Stage 6 (full-text assessment) and Stage 7 (validation study) — run independently of the core chain.
 
 ```text
 Stage 1: Literature Search
@@ -56,9 +56,18 @@ Stage 6: Full-Text Assessment (Experimental)
 ────────────────────────────────────────────
   Full-text PDFs ──▶ Extended assertions ──▶ Augmented nanopublications.jsonl
   (run independently via scripts/06_fulltext_assessment.py; not in standard pipeline)
+
+Stage 7: Validation Study (Auxiliary QA)
+────────────────────────────────────────
+  corpus.jsonl + nanopublications.jsonl ──▶ stratified sample ──▶ rule-based reference labels
+    ──▶ agreement metrics (output/validation/, output/reports/validation_metrics.json)
+  (run independently via scripts/07_run_validation_study.py; deterministic rule-based
+   reference-annotator agreement — a reproducibility floor, NOT a human validation)
 ```
 
 > **Stage 6** is an auxiliary, opt-in script. It enriches the knowledge graph with claim-evidence pairs extracted from full-text PDFs rather than abstracts alone. It is not part of the standard 5-stage pipeline and requires downloaded PDFs in `output/data/pdfs/`. Current status: experimental — full-text extraction accuracy has not been formally evaluated.
+
+> **Stage 7** is an auxiliary QA script. It draws a stratified sample of extractions and scores agreement between the LLM pipeline and a deterministic keyword-rule reference (`analysis.validation_labeling`). The reference labels are **rule-generated, not human** — the metrics are a reproducibility floor, not a human validation. Flags: `--sample-fraction`, `--min-size`, `--no-auto-labels`, `--output-dir`. It is not part of the standard 5-stage pipeline.
 
 ## Key Design Decisions
 
@@ -80,7 +89,7 @@ Papers from different sources are deduplicated by assigning a canonical ID using
 
 ### Thin Orchestrator Pattern
 
-All computation lives in `src/`. The six scripts in `scripts/` (01–06) handle only I/O, orchestration, and path management; stage bodies live in `src/*_runner.py` modules. No business logic in scripts.
+All computation lives in `src/`. The seven scripts in `scripts/` (01–07) handle only I/O, orchestration, and path management; stage bodies live in `src/*_runner.py` and related modules. No business logic in scripts.
 
 ---
 
@@ -94,6 +103,8 @@ flowchart TD
         S3["03_build_knowledge_graph"]
         S4["04_generate_figures"]
         S5["05_inject_variables"]
+        S6["06_fulltext_assessment (aux QA)"]
+        S7["07_run_validation_study (aux QA)"]
     end
 
     subgraph literature["literature/"]
@@ -102,6 +113,13 @@ flowchart TD
         arxiv[arxiv_client.py]
         s2[semantic_scholar.py]
         openalex[openalex_client.py]
+        fulltext[fulltext_assessment.py]
+    end
+
+    subgraph validation["analysis/ (validation)"]
+        val_sample[validation_sample.py]
+        val_labeling[validation_labeling.py]
+        val_metrics[validation_metrics.py]
     end
 
     subgraph analysis["analysis/"]
@@ -138,8 +156,11 @@ flowchart TD
     S3 --> corpus & extraction & hypothesis & schema
     S4 --> field_ov & citation_pl & temporal_pl & hyp_charts & adv_plots
     S5 --> vars_mod
+    S6 --> corpus & fulltext
+    S7 --> val_sample & val_labeling & val_metrics
 
     vars_mod --> corpus
+    fulltext --> corpus & models
     corpus --> models
     arxiv --> models
     s2 --> models
