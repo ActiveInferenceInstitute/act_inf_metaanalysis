@@ -1,0 +1,128 @@
+schema_version: "1.0"
+survey_date: "2026-07-25"
+purpose: "Source registry for the publication-facing Active Inference tooling inventory."
+inclusion_rule:
+  - "Retain a tool only when a paper, preprint identifier, or official project source is recorded."
+  - "Do not infer adoption, maintenance, license, or comparative performance from citation counts."
+  - "Treat version, license, activity, and access status as fields requiring a dated source check."
+published_source_keys:
+  - pymdp
+  - spm
+  - rxinfer
+  - activeinference_jl
+  - cpp_aif
+  - feps
+  - deep_active_inference_mc
+  - deep_active_inference
+  - btai_3mf
+  - axiom
+  - active_inference_voostrum
+  - predictive_coding_backprop
+  - ants
+  - action_oriented
+  - bayesian_mechanics_sdes
+  - deep_btai_3mf
+  - adaptive_aif_agents_fl
+  - rl_inference
+  - robust_fe_minimization
+retained_tools:
+  - id: pymdp
+    display_name: pymdp
+    evidence: heins2022pymdp
+    evidence_type: bibliography
+  - id: spm
+    display_name: SPM
+    evidence: friston2017active
+    evidence_type: bibliography
+  - id: rxinfer
+    display_name: RxInfer.jl
+    evidence: rxinfer2025
+    evidence_type: bibliography
+  - id: activeinference_jl
+    display_name: ActiveInference.jl
+    evidence: ActiveInferencejl
+    evidence_type: bibliography
+  - id: cpp_aif
+    display_name: Cpp-AIF
+    evidence: gregoretti2023cppaif
+    evidence_type: bibliography
+  - id: feps
+    display_name: FEPS
+    evidence: pazem2024feps
+    evidence_type: bibliography
+  - id: deep_active_inference_mc
+    display_name: deep-active-inference-mc
+    evidence: fountas2020deep
+    evidence_type: bibliography
+  - id: deep_active_inference
+    display_name: DeepActiveInference
+    evidence: millidge2020deep
+    evidence_type: bibliography
+  - id: btai_3mf
+    display_name: BTAI_3MF
+    evidence: champion2021realizing
+    evidence_type: bibliography
+  - id: deep_btai_3mf
+    display_name: Deep_BTAI_3MF
+    evidence: champion2021realizing
+    evidence_type: bibliography
+  - id: axiom
+    display_name: AXIOM
+    evidence: heins2025axiom
+    evidence_type: bibliography
+  - id: active_inference_voostrum
+    display_name: active-inference (Voostrum)
+    evidence: arXiv:2406.07726
+    evidence_type: preprint_identifier
+  - id: predictive_coding_backprop
+    display_name: PredictiveCodingBackprop
+    evidence: millidge2022predictive
+    evidence_type: bibliography
+  - id: ants
+    display_name: ants
+    evidence: heins2024collective
+    evidence_type: bibliography
+  - id: action_oriented
+    display_name: action-oriented
+    evidence: tschantz2020action
+    evidence_type: bibliography
+  - id: bayesian_mechanics_sdes
+    display_name: bayesian-mechanics-sdes
+    evidence: arXiv:2206.02629
+    evidence_type: preprint_identifier
+  - id: adaptive_aif_agents_fl
+    display_name: adaptive_aif_agents_fl
+    evidence: arXiv:2410.09099
+    evidence_type: preprint_identifier
+  - id: rl_inference
+    display_name: rl-inference
+    evidence: arXiv:2002.12636
+    evidence_type: preprint_identifier
+  - id: robust_fe_minimization
+    display_name: Robust-FE-Minimization
+    evidence: arXiv:2503.13223
+    evidence_type: preprint_identifier
+excluded_candidates:
+  - name: ActivPynference
+    reason: "No traceable primary source in the current bibliography."
+  - name: pypc
+    reason: "No traceable primary source in the current bibliography."
+  - name: ActiveInferAnts
+    reason: "No traceable primary source in the current bibliography."
+  - name: ngc-learn
+    reason: "Candidate retained for later review; no traceable primary source in this snapshot."
+  - name: ANGC
+    reason: "Conference-year label was not sufficient as a traceable source."
+  - name: Biofirm
+    reason: "No traceable primary source in the current bibliography."
+  - name: smartville
+    reason: "Venue/year label was not sufficient as a traceable source."
+  - name: EFE-GLean
+    reason: "Venue/year label was not sufficient as a traceable source."
+  - name: tutorials_and_unlinked_demos
+    reason: "Unresolved candidate group; not included in publication counts."
+verification_status:
+  current_snapshot: "source identifiers are traceable; dated repository/license/activity probes are recorded separately and flagged when incomplete"
+  last_external_probe: "2026-07-25"
+  report: "output/reports/tooling_verification.json"
+  last_full_external_check: null

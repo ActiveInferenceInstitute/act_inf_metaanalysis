@@ -11,8 +11,9 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
+from config import PROMPT_VERSION as CONFIG_PROMPT_VERSION
 
-PROMPT_VERSION = "v2.0.0-three-layer"
+PROMPT_VERSION = CONFIG_PROMPT_VERSION
 
 
 @dataclass
@@ -78,6 +79,7 @@ def summarize_provenance(records: list[dict[str, Any]]) -> dict[str, Any]:
 
     models: dict[str, int] = {}
     prompts: dict[str, int] = {}
+    pipelines: dict[str, int] = {}
     run_ids: set[str] = set()
     processing_dates: list[str] = []
     with_provenance = 0
@@ -93,6 +95,9 @@ def summarize_provenance(records: list[dict[str, Any]]) -> dict[str, Any]:
         prompts[prov.get("prompt_version", "unknown")] = (
             prompts.get(prov.get("prompt_version", "unknown"), 0) + 1
         )
+        pipelines[prov.get("pipeline_version", "unknown")] = (
+            pipelines.get(prov.get("pipeline_version", "unknown"), 0) + 1
+        )
         if prov.get("run_id"):
             run_ids.add(prov["run_id"])
         if prov.get("processing_date"):
@@ -105,6 +110,13 @@ def summarize_provenance(records: list[dict[str, Any]]) -> dict[str, Any]:
         "missing_provenance": total - with_provenance,
         "unique_models": models,
         "prompt_versions": prompts,
+        "pipeline_versions": pipelines,
+        "consistent_provenance": (
+            with_provenance == total
+            and len(models) == 1
+            and len(prompts) == 1
+            and len(pipelines) == 1
+        ),
         "unique_run_ids": len(run_ids),
         "processing_date_range": (
             [min(processing_dates), max(processing_dates)] if processing_dates else []

@@ -322,3 +322,33 @@ def temporal_trend(
         trend[target_year] = score_hypothesis(cumulative, hypothesis_id)
 
     return trend
+
+
+def temporal_trend_with_counts(
+    assertions: list[Assertion],
+    hypothesis_id: str,
+    papers: list[Paper],
+) -> dict[int, dict[str, float | int]]:
+    """Return cumulative scores together with the evidence count per year."""
+    paper_year = {
+        paper.canonical_id: paper.year
+        for paper in papers
+        if paper.year is not None
+    }
+    relevant = [
+        (paper_year[assertion.paper_id], assertion)
+        for assertion in assertions
+        if assertion.hypothesis_id == hypothesis_id
+        and assertion.paper_id in paper_year
+    ]
+    if not relevant:
+        return {}
+
+    trend: dict[int, dict[str, float | int]] = {}
+    for target_year in sorted({year for year, _ in relevant}):
+        cumulative = [assertion for year, assertion in relevant if year <= target_year]
+        trend[target_year] = {
+            "score": score_hypothesis(cumulative, hypothesis_id),
+            "assertion_count": len(cumulative),
+        }
+    return trend

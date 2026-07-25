@@ -2,7 +2,7 @@
 
 **Paper:** *A Living Literature Review Architecture for Active Inference: Scalable Assertion Extraction, Nanopublications, and Citation-Weighted Hypothesis Scoring*
 
-**Package / upstream reference:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+**Package / upstream reference:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
 
 **Template monorepo path:** `projects_archive/act_inf_metaanalysis/` (archived; not pipeline-discovered).
 
@@ -10,11 +10,15 @@ Project-level documentation for the `act_inf_metaanalysis` pipeline.
 
 > See [AGENTS.md](AGENTS.md) for doc-hub architectural conventions, [../AGENTS.md](../AGENTS.md) for project-wide contributor properties, and the [project README](../README.md) for setup and overview.
 
+The authoritative forward backlog is the [project-level TODO](../TODO.md). It
+contains only scoped minor and medium work; each item has dependencies and an
+acceptance gate.
+
 ---
 
 ## Central Philosophy: Reproducible Generative Research
 
-This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **7 numbered scripts**: a deterministic **5-stage core pipeline** (`01`–`05`) plus **two auxiliary QA scripts** (`06` full-text assessment, `07` rule-based reference-annotator validation study) run independently. By structuring the literature review this way, this platform ensures:
+This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **12 numbered scripts** plus the canonical manuscript hydrator: retrieval, analysis, extraction, figures, hydration, full-text QA, deterministic validation, cross-artifact validation, manifest closure, release preflight, review-queue preparation, and safe snapshot inventory. By structuring the literature review this way, this platform ensures:
 
 1. **Verifiable Provenance**: Every paper, classification, and assertion is strictly mapped from public APIs (arXiv, Semantic Scholar) through atomic JSONL intermediate states into the final visual output.
 2. **Robust Extensibility**: New papers incrementally stream into the corpus, and new LLM models can instantly backfill metadata assessments via checkpointed resumes.
@@ -30,6 +34,8 @@ If you are joining the Active Inference Institute to extend this pipeline, you s
 2. **[data_formats.md](data_formats.md)** — Internalize the schemas (especially JSONL/TriG) that form the nervous system between modules.
 3. **[scripts.md](scripts.md)** — Learn how to execute, pause, configure, and troubleshoot the pipeline from the command line.
 4. **[hypotheses.md](hypotheses.md)** — Understand the theoretical domain bounds and the mathematical formulation of our citation-weighted scoring logic.
+5. **[ai_meta_analysis_playbook.md](ai_meta_analysis_playbook.md)** — Follow the complete reproducible operating procedure and recovery paths.
+6. **[../TODO.md](../TODO.md)** — Review the forward minor/medium backlog and acceptance gates.
 
 ---
 
@@ -43,11 +49,18 @@ python scripts/01_literature_search.py --config manuscript/config.yaml
 python scripts/02_meta_analysis_pipeline.py
 python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 python scripts/04_generate_figures.py
-python scripts/05_inject_variables.py
+python scripts/z_generate_manuscript_variables.py --project .
 
-# Auxiliary QA scripts (optional; run independently after the core chain):
+# QA and closure scripts (run after the content chain):
 python scripts/06_fulltext_assessment.py
 python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
+python scripts/08_validate_artifacts.py
+python scripts/09_write_pipeline_manifest.py
+python scripts/10_release_preflight.py
+python scripts/11_prepare_evidence_pilots.py
+python scripts/12_snapshot_output.py
+python scripts/13_verify_tooling_inventory.py
+python scripts/14_verify_release_package.py
 ```
 
 ---
@@ -69,11 +82,18 @@ flowchart LR
         S4["04_generate_figures.py"]
     end
     subgraph "Stage 5"
-        S5["05_inject_variables.py"]
+        S5["z_generate_manuscript_variables.py"]
     end
-    subgraph "Auxiliary QA (run independently)"
+    subgraph "QA and closure"
         S6["06_fulltext_assessment.py"]
         S7["07_run_validation_study.py"]
+        S8["08_validate_artifacts.py"]
+        S9["09_write_pipeline_manifest.py"]
+        S10["10_release_preflight.py"]
+        S11["11_prepare_evidence_pilots.py"]
+        S12["12_snapshot_output.py"]
+        S13["13_verify_tooling_inventory.py"]
+        S14["14_verify_release_package.py"]
     end
 
     APIs["arXiv / S2 / OpenAlex"] --> S1
@@ -88,6 +108,14 @@ flowchart LR
     S6 -->|fulltext_assessment.json| Data["output/data/"]
     S1 & S3 -->|corpus + nanopublications| S7
     S7 -->|sample.csv, labels_rule_reference.csv, validation_metrics.json| Val["output/validation/, output/reports/"]
+    S8 & S9 --> S10
+    S10 -->|release_preflight.json, RDF package| Rel["output/release/, output/reports/"]
+    S7 --> S11
+    S11 -->|review queues and protocols| Pilot["output/validation/"]
+    S12 -->|inventory and optional snapshot copy| Snap["output/reports/ and output/snapshots/"]
+    S13 -->|dated source/license/activity report| Tool["output/reports/tooling_verification.json"]
+    S10 --> S14
+    S14 -->|hash/count verification| Rel
 ```
 
 | Stage | Script | Key Inputs | Key Outputs |
@@ -96,11 +124,18 @@ flowchart LR
 | 2. Meta-Analysis | `02_meta_analysis_pipeline.py` | `corpus.jsonl` | `subfield_classification.json`, `temporal_analysis.json`, `tfidf_data.json`, `topics.json`, `citation_network.json`, `citation_graph.gml`, `subfield_timeline.json` |
 | 3. Knowledge Graph | `03_build_knowledge_graph.py` | `corpus.jsonl`, Ollama LLM | `nanopublications.jsonl`, `nanopublications.trig`, `hypothesis_scores.json`, `hypothesis_trends.json`, `assertion_summary.json` |
 | 4. Visualization | `04_generate_figures.py` | All Stage 2+3 outputs | 16 PNG figures in `output/figures/` |
-| 5. Variable Injection | `05_inject_variables.py` | All Stage 2+3 outputs | Rendered manuscript in `output/manuscript/`, `output/reports/zenodo_deposit_metadata.json` |
-| 6. Full-Text Assessment *(auxiliary QA)* | `06_fulltext_assessment.py` | `corpus.jsonl` | `output/data/fulltext_assessment.json` |
-| 7. Validation Study *(auxiliary QA)* | `07_run_validation_study.py` | `corpus.jsonl`, `nanopublications.jsonl` | `output/validation/sample.csv`, `output/validation/labels_rule_reference.csv`, `output/reports/validation_metrics.json` |
+| 5. Variable Hydration | `z_generate_manuscript_variables.py` | All Stage 2+3 outputs | Rendered manuscript in `output/manuscript/`, `output/data/manuscript_variables.json` |
+| 6. Full-Text Assessment | `06_fulltext_assessment.py` | `corpus.jsonl` | `output/data/fulltext_assessment.json` |
+| 7. Validation Study | `07_run_validation_study.py` | `corpus.jsonl`, `nanopublications.jsonl` | `output/validation/sample.csv`, `output/validation/labels_rule_reference.csv`, `output/reports/validation_metrics.json` |
+| 8. Artifact Contract | `08_validate_artifacts.py` | All current artifacts | `output/reports/artifact_contract.json` |
+| 9. Pipeline Manifest | `09_write_pipeline_manifest.py` | Inputs, outputs, versions, gates | `output/reports/pipeline_manifest.json` |
+| 10. Release Preflight | `10_release_preflight.py` | Current artifacts, render outputs, tests, tooling gate | `output/reports/release_preflight.json`, `output/release/` |
+| 11. Evidence Pilots | `11_prepare_evidence_pilots.py` | Corpus, validation sample | Review queues, protocols, pilot manifest |
+| 12. Snapshot Inventory | `12_snapshot_output.py` | Current output tree | Inventory and optional non-overwriting snapshot |
+| 13. Tooling Verification | `13_verify_tooling_inventory.py` | Retained tooling registry, public sources | `output/reports/tooling_verification.json` |
+| 14. Release Package Verification | `14_verify_release_package.py` | Staged nanopublication package | `output/reports/release_package_verification.json` |
 
-*Stages 6 and 7 are auxiliary QA tools run independently of the 5-stage core chain. Stage 7 is a deterministic **rule-based reference-annotator agreement** study (a reproducibility floor), **not** a human validation.*
+*Stage 7 is a deterministic **rule-based reference-annotator agreement** study (a reproducibility floor), **not** a human validation. Stages 8 and 9 close the cross-artifact and provenance gates before template rendering.*
 
 ---
 
@@ -118,7 +153,7 @@ The pipeline reads settings from `manuscript/config.yaml`. CLI flags override co
 | `search` | `clear_corpus` | `false` | Delete corpus before searching |
 | `search` | `arxiv_queries` | (5 default queries) | Override arXiv multi-query list |
 | `search` | `relevance_keywords` | (10 default keywords) | Override relevance filter keyword list |
-| `knowledge_graph` | `checkpoint_interval` | `50` | Flush nanopubs every N papers |
+| `knowledge_graph` | `checkpoint_interval` | `25` | Flush nanopubs every N papers |
 | `knowledge_graph` | `clear_assertions` | `false` | Delete nanopubs and restart |
 | `knowledge_graph` | `max_papers` | `null` | Limit papers for LLM (null = all) |
 | `hypothesis_definitions` | `H1`..`H8` | (8 standard) | Custom hypothesis names and descriptions |
@@ -158,7 +193,7 @@ The pipeline reads settings from `manuscript/config.yaml`. CLI flags override co
 | `03c_results_text_analytics.md` | `word_cloud.png`, `pca_embeddings.png`, `term_heatmap.png`, `dendrogram.png`, `topic_term_bars.png`, `cooccurrence_matrix.png` | `NUM_TOPICS`, `NUM_VOCAB_FEATURES` | Stage 2 + 5 |
 | `03d_results_citation_network.md` | `citation_network.png`, `degree_distribution.png` | `CITATION_NODES`, `CITATION_EDGES`, `CITATION_DENSITY_PCT` | Stage 2 + 5 |
 
-Variable injection is handled by `src/manuscript/variables.py`, invoked by `scripts/05_inject_variables.py`. See `manuscript/README.md` for the full variable-to-source mapping.
+Variable hydration is handled by `src/manuscript/variables.py`, invoked by `scripts/z_generate_manuscript_variables.py`; `05_inject_variables.py` is a compatible wrapper. See `manuscript/README.md` for the full variable-to-source mapping.
 
 ---
 
@@ -184,5 +219,5 @@ Variable injection is handled by `src/manuscript/variables.py`, invoked by `scri
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [testing.md](testing.md) | Test architecture, 632 tests across 41 files, coverage configuration |
+| [testing.md](testing.md) | Test architecture, latest 650-pass gate, and coverage configuration |
 | [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from types import SimpleNamespace
 
 from analysis.temporal_analysis import compute_subfield_timeline
 from analysis.text_processing import tokenize_documents
@@ -31,8 +30,8 @@ def test_count_paper_references_prefers_references_list() -> None:
     assert _count_paper_references(paper) == 3
 
 
-def test_count_paper_references_falls_back_to_referenced_works() -> None:
+def test_count_paper_references_empty_when_no_references() -> None:
     from analysis.pipeline_runner import _count_paper_references
 
-    paper = SimpleNamespace(references=[], referenced_works=["w1", "w2"])
-    assert _count_paper_references(paper) == 2
+    paper = Paper(title="t", abstract="a", authors=[])
+    assert _count_paper_references(paper) == 0

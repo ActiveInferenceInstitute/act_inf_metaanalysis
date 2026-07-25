@@ -57,12 +57,15 @@ def parse_llm_response(raw: str) -> list[dict[str, Any]]:
     if start == -1 or end == -1 or end <= start:
         raise ValueError(f"No JSON array found in LLM response: {text[:200]}")
 
-    json_str = text[start : end + 1]
+    json_str = _repair_directional_quote_delimiters(text[start : end + 1])
     max_attempts = 2
     last_error: Exception | None = None
     for attempt in range(1, max_attempts + 1):
         try:
-            result = json.loads(json_str)
+            # Small local models occasionally emit literal newlines or tabs
+            # inside quoted evidence fields. ``strict=False`` accepts those
+            # control characters while retaining JSON structure validation.
+            result = json.loads(json_str, strict=False)
             break
         except json.JSONDecodeError as exc:
             logger.debug("LLM raw response: %s", raw)
@@ -70,6 +73,13 @@ def parse_llm_response(raw: str) -> list[dict[str, Any]]:
             if attempt < max_attempts:
                 time.sleep(2 * (2 ** (attempt - 1)))
             else:
+                recovered = _recover_json_objects(json_str)
+                if recovered:
+                    logger.warning(
+                        "Recovered %d complete JSON object(s) from malformed LLM array",
+                        len(recovered),
+                    )
+                    return recovered
                 raise ValueError(
                     f"Failed to parse JSON from LLM response after {max_attempts} attempts: {exc}"
                 ) from exc
@@ -79,3 +89,66 @@ def parse_llm_response(raw: str) -> list[dict[str, Any]]:
     if not isinstance(result, list):
         raise ValueError(f"Expected JSON array, got {type(result).__name__}")
     return result
+
+
+def _repair_directional_quote_delimiters(text: str) -> str:
+    """Repair directional quotes used as JSON string delimiters by small LLMs.
+
+    Models sometimes emit a JSON string with a Unicode closing quotation mark,
+    for example ``"evidence_quote": "claim”,``.  The directional mark is
+    valid Unicode text but not a JSON delimiter, so strict parsing rejects the
+    complete response.  Only a directional mark adjacent to a JSON delimiter
+    is rewritten; quotation marks occurring inside ordinary string content are
+    retained as evidence text.
+    """
+    repaired: list[str] = []
+    in_string = False
+    escaped = False
+    delimiters = {",", "]", "}", ":"}
+
+    for index, character in enumerate(text):
+        if escaped:
+            repaired.append(character)
+            escaped = False
+            continue
+        if character == "\\" and in_string:
+            repaired.append(character)
+            escaped = True
+            continue
+        if character == '"':
+            repaired.append(character)
+            in_string = not in_string
+            continue
+        if character == "“" and not in_string:
+            repaired.append('"')
+            in_string = True
+            continue
+        if character == "”" and in_string:
+            following = text[index + 1 :].lstrip()
+            if following and following[0] in delimiters:
+                repaired.append('"')
+                in_string = False
+                continue
+        repaired.append(character)
+
+    return "".join(repaired)
+
+
+def _recover_json_objects(text: str) -> list[dict[str, Any]]:
+    """Recover complete object members when an LLM array is partly malformed."""
+    decoder = json.JSONDecoder(strict=False)
+    recovered: list[dict[str, Any]] = []
+    cursor = 0
+    while True:
+        start = text.find("{", cursor)
+        if start < 0:
+            break
+        try:
+            value, end = decoder.raw_decode(text, start)
+        except json.JSONDecodeError:
+            cursor = start + 1
+            continue
+        if isinstance(value, dict):
+            recovered.append(value)
+        cursor = end
+    return recovered

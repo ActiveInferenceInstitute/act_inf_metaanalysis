@@ -7,7 +7,7 @@
 1. **Thin orchestrator pattern**: No analysis logic in `scripts/`. All computation lives in `src/`.
    Scripts import from `src/` and handle only file I/O, argument parsing, and logging.
 
-2. **No mock policy**: All tests use real data, real files, real computations (615 tests across 39 files as of 2026-05-25).
+2. **No mock policy**: All tests use real data, real files, real computations (650 passed, 1 skipped in the latest gate).
    - HTTP: use `pytest-httpserver`
    - Files: use `tmp_path` fixture
    - Never `unittest.mock.patch`, `MagicMock`, or `monkeypatch` for mocking logic
@@ -57,6 +57,6 @@ Shared script utilities: `scripts/_bootstrap.py` (path setup), `scripts/_io.py` 
 
 ## Current Test Count
 
-615 tests across 39 files. Run: `uv run pytest tests/ -q --cov=src --cov-fail-under=90`
+650 passed, 1 skipped, 91.12% coverage in the latest gate. Run: `uv run pytest tests/ -q --cov=src --cov-fail-under=90`
 
 See each subpackage's `AGENTS.md` for module-specific constraints.

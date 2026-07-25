@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import pytest
 from visualization.style import VIZ_CONFIG
 
 class TestVizConfig:

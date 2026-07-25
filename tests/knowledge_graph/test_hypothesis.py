@@ -462,7 +462,7 @@ class TestConfigureHypotheses:
             "    name: AIF Optimality\n"
             "    description: Test\n"
         )
-        from knowledge_graph.hypothesis import configure_hypotheses, STANDARD_HYPOTHESES
+        from knowledge_graph.hypothesis import configure_hypotheses
 
         result = configure_hypotheses(config)
         assert len(result) == 2

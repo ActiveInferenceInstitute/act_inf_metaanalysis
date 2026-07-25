@@ -351,10 +351,10 @@ class TestPaperSerialization:
         assert restored.full_text_source == "arxiv"
 
     def test_from_dict_backward_compatible(self):
-        """from_dict handles legacy data without full-text fields."""
+        """from_dict handles older records without full-text fields."""
         data = {
             "title": "Old Paper",
-            "abstract": "Legacy record",
+            "abstract": "Older record",
             "authors": [],
             "year": 2019,
         }

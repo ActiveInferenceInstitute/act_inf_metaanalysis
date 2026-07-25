@@ -1,4 +1,4 @@
-# Discussion: Implications and Community Recommendations \label{sec:discussion}
+# Discussion: Implications and Community Recommendations {#sec:discussion}
 
 ## Relationship to Prior Development Directions
 

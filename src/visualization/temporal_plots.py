@@ -26,6 +26,13 @@ def plot_growth_curve(
     cumulative: dict[int, int],
     output_path: Path,
     smoothed_annual: dict[int, float] | None = None,
+    *,
+    current_year_is_partial: bool = False,
+    as_of_date: str | None = None,
+    cagr: float | None = None,
+    cagr_end_year: int | None = None,
+    corpus_size: int | None = None,
+    undated_papers: int = 0,
 ) -> Path:
     """Dual-axis plot: bar chart of annual counts + line of cumulative.
 
@@ -62,7 +69,16 @@ def plot_growth_curve(
 
     # Bar chart for annual counts
     bar_color = VIZ_CONFIG["palette"][0]
-    ax1.bar(years, annual, color=bar_color, alpha=0.7, label="Annual Publications")
+    bars = ax1.bar(
+        years,
+        annual,
+        color=bar_color,
+        alpha=0.7,
+        label="Annual Publications",
+    )
+    if current_year_is_partial and years:
+        bars[-1].set_hatch("//")
+        bars[-1].set_alpha(0.55)
     
     # Optional smoothed trendline
     if smoothed_annual:
@@ -112,18 +128,28 @@ def plot_growth_curve(
     ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left",
                fontsize=max(VIZ_CONFIG["font_size"] - 2, 16))
 
-    # CAGR and total N annotation. Use the annualised growth of yearly
+    # CAGR and total N annotation. Use the canonical artifact value, which
+    # excludes an incomplete current year when configured.
     # publication VOLUME (first vs last year), matching the canonical
     # ``cagr`` in temporal_analysis.json and the {{CAGR_PCT}} manuscript
     # variable — NOT a cumulative-total ratio (which inflates the figure).
-    total_n = sum(annual)
+    dated_papers = sum(annual)
+    total_n = corpus_size if corpus_size is not None else dated_papers
     if len(years) >= 2:
-        ratio = annual[-1] / max(annual[0], 1)
-        span = years[-1] - years[0]
-        cagr = (ratio ** (1.0 / span) - 1) * 100 if span > 0 else 0
+        if cagr is None:
+            ratio = annual[-1] / max(annual[0], 1)
+            span = years[-1] - years[0]
+            cagr = (ratio ** (1.0 / span) - 1) if span > 0 else 0
+        cagr_pct = cagr * 100
+        span_end = cagr_end_year if cagr_end_year is not None else years[-1]
+        partial_label = "\nHatched bar = current year YTD" if current_year_is_partial else ""
+        as_of_label = f"\nAs of {as_of_date}" if as_of_date else ""
         ax1.text(
             0.98, 0.55,
-            f"N = {total_n:,}\nCAGR = {cagr:.1f}%\nSpan: {years[0]}–{years[-1]}",
+            f"N = {total_n:,}\nDated years = {dated_papers:,}"
+            f"{f'; undated = {undated_papers:,}' if undated_papers else ''}\n"
+            f"CAGR = {cagr_pct:.1f}%\nSpan: {years[0]}–{span_end}"
+            f"{partial_label}{as_of_label}",
             transform=ax1.transAxes, ha="right", va="top",
             fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
             bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="gray", alpha=0.85),
@@ -159,6 +185,12 @@ def plot_growth_curve(
 def plot_subfield_timeline(
     subfield_year_counts: dict[str, dict[int, int]],
     output_path: Path,
+    *,
+    corpus_size: int | None = None,
+    undated_papers: int = 0,
+    current_year_is_partial: bool = False,
+    current_year: int | None = None,
+    as_of_date: str | None = None,
 ) -> Path:
     """Stacked area chart showing subfield growth over time.
 
@@ -214,6 +246,22 @@ def plot_subfield_timeline(
         alpha=0.85,
     )
 
+    if current_year_is_partial and years:
+        partial_year = current_year if current_year is not None else years[-1]
+        if partial_year in years:
+            # A translucent hatched overlay keeps the stacked-area values
+            # intact while making the incomplete calendar year unmistakable.
+            ax.axvspan(
+                partial_year - 0.5,
+                partial_year + 0.5,
+                facecolor="none",
+                edgecolor="gray",
+                hatch="//",
+                linewidth=0.0,
+                alpha=0.35,
+                zorder=3,
+            )
+
     ax.set_xlabel("Year", fontsize=VIZ_CONFIG["font_size"])
     ax.set_ylabel("Number of Papers", fontsize=VIZ_CONFIG["font_size"])
     ax.set_title(
@@ -226,9 +274,19 @@ def plot_subfield_timeline(
     ax.grid(axis="y", alpha=VIZ_CONFIG["grid_alpha"])
 
     # Total N annotation
-    total_n = int(sum(data.sum(axis=0)))
+    dated_papers = int(sum(data.sum(axis=0)))
+    total_n = corpus_size if corpus_size is not None else dated_papers
+    annotation = f"N = {total_n:,}"
+    if corpus_size is not None:
+        annotation += f"\nDated years = {dated_papers:,}"
+        if undated_papers:
+            annotation += f"; undated = {undated_papers:,}"
+    if current_year_is_partial:
+        annotation += "\nHatched band = current year YTD"
+        if as_of_date:
+            annotation += f"\nAs of {as_of_date}"
     ax.text(
-        0.98, 0.95, f"N = {total_n:,}",
+        0.98, 0.95, annotation,
         transform=ax.transAxes, ha="right", va="top",
         fontsize=max(VIZ_CONFIG["font_size"] - 1, 16), fontweight="bold",
         bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray", alpha=0.8),

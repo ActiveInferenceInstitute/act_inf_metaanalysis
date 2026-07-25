@@ -13,8 +13,10 @@ API reference: https://api.semanticscholar.org/api-docs/graph
 from __future__ import annotations
 
 import logging
+import os
 import random
 import time
+from email.utils import parsedate_to_datetime
 from typing import Optional, Callable
 
 import requests
@@ -33,6 +35,7 @@ CITATION_FIELDS = "title,authors,year,externalIds"
 # Retry settings
 MAX_RETRIES = 1
 RETRY_BASE_SECONDS = 10.0
+MAX_BACKOFF_SECONDS = 60.0
 
 # Pagination
 S2_PAGE_SIZE = 100
@@ -97,6 +100,8 @@ def _request_with_retry(
     url: str,
     params: dict,
     max_retries: int = MAX_RETRIES,
+    max_backoff_seconds: float = MAX_BACKOFF_SECONDS,
+    api_key: str | None = None,
     delay_override: Optional[Callable[[float], None]] = None,
 ) -> requests.Response:
     """Make an HTTP GET request with retry on 429 rate-limit errors.
@@ -117,13 +122,18 @@ def _request_with_retry(
         requests.HTTPError: If all retries are exhausted or a non-429 error occurs.
     """
     sleep_fn = delay_override or time.sleep
+    headers = {"X-API-KEY": api_key} if api_key else None
     response = None
     for attempt in range(max_retries + 1):
-        response = http.get(url, params=params, timeout=30)
+        response = http.get(url, params=params, headers=headers, timeout=30)
         if response.status_code == 429:
             if attempt == max_retries:
                 break
-            wait = min(10.0, RETRY_BASE_SECONDS * (2 ** attempt) + random.uniform(0, 1))
+            retry_after = _retry_after_seconds(response.headers.get("Retry-After"))
+            wait = retry_after if retry_after is not None else (
+                RETRY_BASE_SECONDS * (2 ** attempt) + random.uniform(0, 1)
+            )
+            wait = min(max_backoff_seconds, max(0.0, wait))
             logger.warning(
                 "S2 rate-limited (429), retry %d/%d after %.1fs",
                 attempt + 1, max_retries, wait,
@@ -134,10 +144,32 @@ def _request_with_retry(
         return response
 
     # All retries exhausted
-    logger.error("S2 rate-limit retries exhausted after %d attempts", max_retries)
+    logger.error(
+        "S2 rate-limit retries exhausted after %d retries (url=%s, query=%s)",
+        max_retries,
+        url,
+        params.get("query", ""),
+    )
     if response is not None:
         response.raise_for_status()
     raise requests.HTTPError("S2 retries exhausted")  # pragma: no cover
+
+
+def _retry_after_seconds(value: str | None) -> float | None:
+    """Parse numeric or HTTP-date ``Retry-After`` values."""
+    if not value:
+        return None
+    try:
+        return max(0.0, float(value))
+    except ValueError:
+        pass
+    try:
+        retry_at = parsedate_to_datetime(value)
+        if retry_at.tzinfo is None:
+            retry_at = retry_at.astimezone()
+        return max(0.0, retry_at.timestamp() - time.time())
+    except (TypeError, ValueError, OverflowError):
+        return None
 
 
 def search_semantic_scholar(
@@ -146,6 +178,10 @@ def search_semantic_scholar(
     base_url: str = S2_API_URL,
     session: Optional[requests.Session] = None,
     delay_override: Optional[Callable[[float], None]] = None,
+    raise_on_error: bool = False,
+    max_retries: int = MAX_RETRIES,
+    max_backoff_seconds: float = MAX_BACKOFF_SECONDS,
+    api_key: str | None = None,
 ) -> list[Paper]:
     """Search Semantic Scholar for papers matching a query.
 
@@ -158,6 +194,8 @@ def search_semantic_scholar(
         max_results: Maximum number of results to retrieve.
         base_url: API base URL (injectable for testing).
         session: Optional requests.Session for connection reuse.
+        raise_on_error: Raise terminal HTTP errors instead of returning the
+            papers fetched before the error.
 
     Returns:
         List of Paper objects from the search results.
@@ -166,6 +204,7 @@ def search_semantic_scholar(
         requests.HTTPError: If the API returns a non-2xx status after retries.
     """
     http = session or requests.Session()
+    resolved_api_key = api_key or os.environ.get("SEMANTIC_SCHOLAR_API_KEY")
     all_papers: list[Paper] = []
 
     try:
@@ -190,11 +229,19 @@ def search_semantic_scholar(
 
             try:
                 response = _request_with_retry(
-                    http, f"{base_url}/paper/search", params, delay_override=delay_override,
+                    http,
+                    f"{base_url}/paper/search",
+                    params,
+                    max_retries=max_retries,
+                    max_backoff_seconds=max_backoff_seconds,
+                    api_key=resolved_api_key,
+                    delay_override=delay_override,
                 )
                 result = response.json()
             except requests.HTTPError as e:
                 logger.warning("S2 search stopped early due to HTTP error (rate limit): %s", e)
+                if raise_on_error:
+                    raise
                 break
 
             page_papers = [_parse_s2_paper(item) for item in result.get("data", [])]
@@ -235,6 +282,9 @@ def get_paper_details(
     paper_id: str,
     base_url: str = S2_API_URL,
     session: Optional[requests.Session] = None,
+    max_retries: int = MAX_RETRIES,
+    max_backoff_seconds: float = MAX_BACKOFF_SECONDS,
+    api_key: str | None = None,
 ) -> Paper:
     """Retrieve detailed metadata for a single paper by ID.
 
@@ -254,7 +304,14 @@ def get_paper_details(
 
     http = session or requests.Session()
     try:
-        response = _request_with_retry(http, url, params)
+        response = _request_with_retry(
+            http,
+            url,
+            params,
+            max_retries=max_retries,
+            max_backoff_seconds=max_backoff_seconds,
+            api_key=api_key or os.environ.get("SEMANTIC_SCHOLAR_API_KEY"),
+        )
     finally:
         if session is None:
             http.close()
@@ -268,6 +325,9 @@ def get_citations(
     max_results: int = 100,
     base_url: str = S2_API_URL,
     session: Optional[requests.Session] = None,
+    max_retries: int = MAX_RETRIES,
+    max_backoff_seconds: float = MAX_BACKOFF_SECONDS,
+    api_key: str | None = None,
 ) -> list[Citation]:
     """Retrieve papers that cite the given paper.
 
@@ -291,7 +351,14 @@ def get_citations(
 
     http = session or requests.Session()
     try:
-        response = _request_with_retry(http, url, params)
+        response = _request_with_retry(
+            http,
+            url,
+            params,
+            max_retries=max_retries,
+            max_backoff_seconds=max_backoff_seconds,
+            api_key=api_key or os.environ.get("SEMANTIC_SCHOLAR_API_KEY"),
+        )
     finally:
         if session is None:
             http.close()

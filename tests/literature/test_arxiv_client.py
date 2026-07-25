@@ -6,18 +6,14 @@ and search_arxiv (HTTP integration).
 """
 
 import xml.etree.ElementTree as ET
-import re
 
 import pytest
 from pytest_httpserver import HTTPServer
 
 from literature.arxiv_client import (
-    ATOM_NS,
-    ARXIV_NS,
     parse_arxiv_response,
     search_arxiv,
 )
-from literature.models import Paper
 
 
 # ---------------------------------------------------------------------------

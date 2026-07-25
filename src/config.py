@@ -50,10 +50,17 @@ MANUSCRIPT_DIR = PROJECT_ROOT / "manuscript"
 # ---------------------------------------------------------------------------
 # Analysis defaults (02_meta_analysis_pipeline.py)
 # ---------------------------------------------------------------------------
-DEFAULT_N_TOPICS = 5
+DEFAULT_N_TOPICS = 8
 DEFAULT_MAX_FEATURES = 500
 DEFAULT_MIN_YEAR = 2000  # Pre-2000 papers excluded from text/temporal analysis
 DEFAULT_SEED = 42        # RNG seed for NMF reproducibility
+
+# Publication-facing analysis defaults.  The project configuration remains the
+# source of truth; these values are safe fallbacks for standalone invocation.
+DEFAULT_COMPLETE_YEAR_POLICY = "exclude_current_partial_year_from_cagr"
+DEFAULT_TOPIC_STABILITY_SEEDS: tuple[int, ...] = (0, 1, 2, 3, 4, 5, 42)
+PIPELINE_VERSION = "2.0.6"
+PROMPT_VERSION = "v2.0.6"
 
 # ---------------------------------------------------------------------------
 # Knowledge graph defaults (03_build_knowledge_graph.py)
@@ -117,6 +124,10 @@ __all__ = [
     "DEFAULT_MAX_FEATURES",
     "DEFAULT_MIN_YEAR",
     "DEFAULT_SEED",
+    "DEFAULT_COMPLETE_YEAR_POLICY",
+    "DEFAULT_TOPIC_STABILITY_SEEDS",
+    "PIPELINE_VERSION",
+    "PROMPT_VERSION",
     # Knowledge graph defaults
     "KG_MIN_YEAR",
     "DEFAULT_LLM_MODEL",

@@ -23,6 +23,11 @@ element must include:
 
   "hypothesis_id", "direction", "confidence", "reasoning",
   "source_claim_text", "evidence_quote", "evidence_status", "evidence_type"
+
+Include only the three most relevant hypotheses with direction other than
+``irrelevant``. Keep every text field concise (at most 12 words;
+evidence_quote at most 15 words), and always finish the complete JSON array
+with a closing bracket.
 """
 
 

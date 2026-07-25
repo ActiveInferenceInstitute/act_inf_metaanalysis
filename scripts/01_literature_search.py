@@ -37,8 +37,13 @@ def parse_args() -> argparse.Namespace:
     resume_grp = parser.add_mutually_exclusive_group()
     resume_grp.add_argument("--resume", dest="resume", action="store_true")
     resume_grp.add_argument("--no-resume", dest="resume", action="store_false")
-    parser.set_defaults(resume=True)
-    parser.add_argument("--clear-corpus", action="store_true")
+    parser.set_defaults(resume=None)
+    parser.add_argument("--clear-corpus", action="store_true", default=None)
+    parser.add_argument(
+        "--force-search",
+        action="store_true",
+        help="Search configured sources while preserving an existing corpus",
+    )
     parser.add_argument(
         "--log-level",
         default="INFO",

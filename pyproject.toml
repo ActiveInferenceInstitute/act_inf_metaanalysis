@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "act_inf_metaanalysis"
-version = "2.0.1"
+version = "2.0.6"
 description = "Computational literature meta-analysis of the Active Inference field using probabilistic knowledge graphs"
 authors = [
     {name = "Daniel Friedman", email = "daniel@activeinference.institute"},
@@ -60,8 +60,8 @@ exclude_lines = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
-Documentation = "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis/tree/main/doc"
+Homepage = "https://github.com/docxology/act_inf_metaanalysis"
+Documentation = "https://github.com/docxology/act_inf_metaanalysis/tree/main/doc"
 
 [tool.uv]
 # Inherits workspace settings from root pyproject.toml

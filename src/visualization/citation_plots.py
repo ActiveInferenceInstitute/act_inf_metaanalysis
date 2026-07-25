@@ -21,6 +21,8 @@ def plot_citation_network(
     graph: nx.DiGraph,
     output_path: Path,
     max_nodes: int = 100,
+    *,
+    full_graph_metrics: dict[str, int] | None = None,
 ) -> Path:
     """Draw citation network using spring layout.
 
@@ -45,8 +47,17 @@ def plot_citation_network(
     # If graph is too large, take highest in-degree subgraph
     if graph.number_of_nodes() > max_nodes:
         in_degrees = dict(graph.in_degree())
-        top_nodes = sorted(in_degrees, key=in_degrees.get, reverse=True)[:max_nodes]
-        subgraph = graph.subgraph(top_nodes).copy()
+        top_nodes = sorted(
+            in_degrees, key=lambda node: (-in_degrees[node], str(node))
+        )[:max_nodes]
+        selected = set(top_nodes)
+        subgraph = nx.DiGraph()
+        subgraph.add_nodes_from(
+            (node, dict(graph.nodes[node])) for node in sorted(selected, key=str)
+        )
+        subgraph.add_edges_from(
+            sorted((source, target) for source, target in graph.edges() if source in selected and target in selected)
+        )
     else:
         subgraph = graph
 
@@ -101,24 +112,32 @@ def plot_citation_network(
         linewidths=0.5,
     )
 
-    # Label top-5 highest in-degree nodes
-    top5 = sorted(in_degrees, key=in_degrees.get, reverse=True)[:5]
-    for node in top5:
-        if node in pos:
-            x, y = pos[node]
-            short_label = str(node)[:25]
-            ax.annotate(
-                short_label, (x, y),
-                fontsize=max(VIZ_CONFIG["font_size"] - 4, 16),
-                fontweight="bold", alpha=0.85,
-                ha="center", va="bottom",
-                xytext=(0, 6), textcoords="offset points",
-                bbox=dict(boxstyle="round,pad=0.2", fc="white", alpha=0.7, lw=0),
-            )
+    # Keep node labels in a separate key so long DOI identifiers cannot
+    # overlap the dense network drawing.
+    top_labels = sorted(
+        in_degrees, key=lambda node: (-in_degrees[node], str(node))
+    )[:3]
+    label_key = "Top in-degree nodes:\n" + "\n".join(
+        f"{rank}. {str(node)[:28]}"
+        for rank, node in enumerate(top_labels, 1)
+    )
+    ax.text(
+        0.99,
+        0.02,
+        label_key,
+        transform=ax.transAxes,
+        ha="right",
+        va="bottom",
+        fontsize=max(VIZ_CONFIG["font_size"] - 8, 12),
+        bbox=dict(boxstyle="round,pad=0.35", fc="white", alpha=0.85, lw=0.8),
+    )
 
+    full_nodes = (full_graph_metrics or {}).get("num_nodes", graph.number_of_nodes())
+    full_edges = (full_graph_metrics or {}).get("num_edges", graph.number_of_edges())
     ax.set_title(
-        f"Citation Network ({subgraph.number_of_nodes()} nodes, "
-        f"{subgraph.number_of_edges()} edges)",
+        f"Citation Network: top {subgraph.number_of_nodes()} nodes "
+        f"({subgraph.number_of_edges()} edges)\n"
+        f"Full graph: {full_nodes} nodes, {full_edges} edges",
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
     )

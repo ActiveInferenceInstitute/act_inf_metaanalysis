@@ -1,6 +1,5 @@
 from __future__ import annotations
 from pathlib import Path
-import pytest
 from visualization.temporal_plots import plot_growth_curve, plot_subfield_timeline
 
 class TestTemporalPlots:
@@ -11,7 +10,13 @@ class TestTemporalPlots:
 
     def test_plot_growth_curve_creates_file(self, tmp_path: Path) -> None:
         output = tmp_path / "growth_curve.png"
-        result = plot_growth_curve(self.YEAR_COUNTS, self.CUMULATIVE, output)
+        result = plot_growth_curve(
+            self.YEAR_COUNTS,
+            self.CUMULATIVE,
+            output,
+            corpus_size=93,
+            undated_papers=1,
+        )
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0
@@ -38,7 +43,12 @@ class TestTemporalPlots:
             "C2_robotics": {2018: 1, 2019: 1, 2020: 2, 2021: 2},
         }
         output = tmp_path / "subfield_timeline.png"
-        result = plot_subfield_timeline(subfield_data, output)
+        result = plot_subfield_timeline(
+            subfield_data,
+            output,
+            corpus_size=13,
+            undated_papers=1,
+        )
         assert result == output
         assert output.exists()
         assert output.stat().st_size > 0

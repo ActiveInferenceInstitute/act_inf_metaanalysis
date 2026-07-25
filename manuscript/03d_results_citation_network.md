@@ -1,17 +1,17 @@
-## Citation Network Topology \label{sec:citation_network}
+## Citation Network Topology {#sec:citation_network}
 
 The intra-corpus citation network provides a structural view of how Active Inference research is organized, identifying influential hub papers, community structure, and patterns of citation isolation (Figure \ref{fig:citation_network}).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/citation_network.png}
-\caption{Intra-corpus citation network ({{CITATION_NODES}} nodes, {{CITATION_EDGES}} edges). Node size reflects in-degree (number of intra-corpus citations received); highly cited foundational papers serve as nexus points connecting sub-domains.}
+\caption{Intra-corpus citation network. The figure shows a {{CITATION_VIEW_NODES}}-node view ({{CITATION_VIEW_EDGES}} edges) of the full graph ({{CITATION_NODES}} nodes, {{CITATION_EDGES}} edges); node size reflects in-degree and highly cited foundational papers serve as nexus points connecting sub-domains.}
 \label{fig:citation_network}
 \end{figure}
 
 ### Network Density and Degree Distribution
 
-The intra-corpus citation network contains {{CITATION_NODES}} nodes and {{CITATION_EDGES}} edges, with a density of {{CITATION_DENSITY_PCT}}\% and {{CITATION_COMPONENTS}} connected components. The average in-degree of $\approx {{MEAN_IN_DEGREE}}$ indicates that most papers receive few intra-corpus citations, consistent with the field's rapid expansion: the majority of recent papers have not yet accumulated citations within the corpus (Figure \ref{fig:degree_distribution}). Only {{CITATION_RESOLUTION_PCT}}\% of all identified references ({{CITATION_EDGES}} intra-corpus matches out of {{CITATION_TOTAL_REFS}} total reference entries) resolve to other papers within the corpus, reflecting cross-source identifier mismatches and the field's engagement with a broad external literature base. Community detection identifies clusters via greedy modularity maximization \citep{clauset2004finding}.
+The intra-corpus citation network contains {{CITATION_NODES}} nodes and {{CITATION_EDGES}} edges, with a density of {{CITATION_DENSITY_PCT}}\% and {{CITATION_COMPONENTS}} connected components. The average in-degree of approximately {{MEAN_IN_DEGREE}} indicates that most papers receive few intra-corpus citations, consistent with the field's rapid expansion: the majority of recent papers have not yet accumulated citations within the corpus (Figure \ref{fig:degree_distribution}). Only {{CITATION_RESOLUTION_PCT}}\% of all identified references ({{CITATION_EDGES}} intra-corpus matches out of {{CITATION_TOTAL_REFS}} total reference entries) resolve to other papers within the corpus, reflecting cross-source identifier mismatches and the field's engagement with a broad external literature base. Community detection identifies clusters via greedy modularity maximization \citep{clauset2004finding}.
 
 \begin{figure}[htbp]
 \centering
@@ -40,7 +40,7 @@ Edges & {{CITATION_EDGES}} \\
 Reference resolution rate & {{CITATION_RESOLUTION_PCT}}\% ({{CITATION_EDGES}} / {{CITATION_TOTAL_REFS}}) \\
 Connected components & {{CITATION_COMPONENTS}} \\
 Network density & {{CITATION_DENSITY_PCT}}\% \\
-Mean in-degree & $\approx$ {{MEAN_IN_DEGREE}} \\
+Mean in-degree & approximately {{MEAN_IN_DEGREE}} \\
 \bottomrule
 \end{tabular}
 \end{table}

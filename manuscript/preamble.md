@@ -93,4 +93,7 @@ This file contains LaTeX packages and commands that are automatically included i
 
 % Network and graph operators
 \DeclareMathOperator{\PageRank}{PageRank}  % PageRank operator
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
 ```

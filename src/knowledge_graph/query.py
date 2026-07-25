@@ -6,7 +6,7 @@ instance, abstracting away the backend (rdflib vs. networkx).
 
 from __future__ import annotations
 
-from knowledge_graph.graph_builder import KnowledgeGraph, _paper_uri, _assertion_uri
+from knowledge_graph.graph_builder import KnowledgeGraph
 from knowledge_graph.schema import ASSERTION_TYPES
 
 try:

@@ -78,7 +78,11 @@ def compute_temporal_metrics(papers: list[Paper]) -> dict:
     }
 
 
-def estimate_growth_rate(year_counts: dict[int, int]) -> dict:
+def estimate_growth_rate(
+    year_counts: dict[int, int],
+    *,
+    end_year: int | None = None,
+) -> dict:
     """Estimate annual growth rates from year-count data.
 
     Args:
@@ -96,18 +100,25 @@ def estimate_growth_rate(year_counts: dict[int, int]) -> dict:
     Raises:
         ValueError: If year_counts has fewer than 2 entries.
     """
-    if len(year_counts) < 2:
+    if end_year is not None:
+        bounded_counts = {
+            year: count for year, count in year_counts.items() if year <= end_year
+        }
+    else:
+        bounded_counts = dict(year_counts)
+
+    if len(bounded_counts) < 2:
         raise ValueError("Need at least 2 years to compute growth rates")
 
-    sorted_years = sorted(year_counts.keys())
+    sorted_years = sorted(bounded_counts.keys())
 
     # Annual growth rates
     annual_growth_rates: dict[int, float] = {}
     for i in range(1, len(sorted_years)):
         prev_year = sorted_years[i - 1]
         curr_year = sorted_years[i]
-        prev_count = year_counts[prev_year]
-        curr_count = year_counts[curr_year]
+        prev_count = bounded_counts[prev_year]
+        curr_count = bounded_counts[curr_year]
 
         if prev_count > 0:
             rate = (curr_count - prev_count) / prev_count
@@ -156,6 +167,8 @@ def estimate_growth_rate(year_counts: dict[int, int]) -> dict:
         "mean_growth_rate": mean_growth_rate,
         "doubling_time": doubling_time,
         "cagr": cagr,
+        "cagr_start_year": first_year,
+        "cagr_end_year": last_year,
     }
 
 

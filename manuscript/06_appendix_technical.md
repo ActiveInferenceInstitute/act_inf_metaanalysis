@@ -1,8 +1,8 @@
-# Appendix: Mathematical and Algorithmic Details \label{sec:technical_appendix}
+# Appendix: Mathematical and Algorithmic Details {#sec:technical_appendix}
 
 _This appendix collects the formal mathematical definitions, derivations, and algorithmic specifications referenced from the main methodology section. Each subsection is self-contained; equations are labelled for cross-referencing from the body and from \S\ref{tab:notation_symbols}._
 
-## Citation-Weighted Hypothesis Scoring Formula \label{sec:appendix_scoring}
+## Citation-Weighted Hypothesis Scoring Formula {#sec:appendix_scoring}
 
 For each hypothesis $H$, we compute a citation-weighted evidence score aggregating all assertions relevant to $H$:
 
@@ -43,15 +43,15 @@ Boundary tests in `tests/test_scoring.py` confirm that all-support fixtures yiel
 
 \FloatBarrier
 
-## Non-negative Matrix Factorization (NMF) for Topic Modeling \label{sec:appendix_nmf}
+## Non-negative Matrix Factorization (NMF) for Topic Modeling {#sec:appendix_nmf}
 
-We apply NMF to the TF-IDF matrix of the corpus to discover latent topics. Given the document-term matrix $V \in \mathbb{R}^{n \times m}_{\geq 0}$, NMF finds factor matrices $W \in \mathbb{R}^{n \times k}_{\geq 0}$ and $H \in \mathbb{R}^{k \times m}_{\geq 0}$ such that $V \approx W H$, where $k$ is the number of topics. We use multiplicative update rules \citep{lee1999nmf}:
+We apply NMF to the TF-IDF matrix of the corpus to discover latent topics. Given the document-term matrix $V \in \mathbb{R}^{n \times m}_{\geq 0}$, NMF finds factor matrices $W \in \mathbb{R}^{n \times k}_{\geq 0}$ and $H \in \mathbb{R}^{k \times m}_{\geq 0}$ such that $V$ is approximately $W H$, where $k = {{NUM_TOPICS}}$ is the configured number of topics. We use multiplicative update rules \citep{lee1999nmf}:
 
 \begin{equation}
 H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \qquad W \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon}, \label{eq:nmf_update}
 \end{equation}
 
-with $\epsilon = 10^{-10}$ for numerical stability and a fixed random seed of 42 for reproducibility (deterministic topic alignment across pipeline runs, with empirical stability confirmed via Jaccard similarities $> 0.90$ across alternative seeds).
+with $\epsilon = 10^{-10}$ for numerical stability and a fixed random seed of 42 for reproducibility. Across the configured alternate seeds, the mean top-term-set Jaccard similarity is {{TOPIC_STABILITY_MEAN_JACCARD}} and the minimum is {{TOPIC_STABILITY_MIN_JACCARD}}; this is a stability diagnostic, not evidence that the exploratory topics are globally unique or optimal.
 
 **Term-Frequency Inverse Document Frequency (TF-IDF).** The document-term matrix is constructed using a smoothed TF-IDF weighting \citep{salton1975vector}. For term $t$ in document $d$:
 
@@ -63,7 +63,7 @@ where $\text{tf}(t, d) = \text{count}(t,d) / |d|$ is the normalized term frequen
 
 \FloatBarrier
 
-## Field Growth-Rate Estimation \label{sec:appendix_growth}
+## Field Growth-Rate Estimation {#sec:appendix_growth}
 
 The **mean year-over-year growth rate** $\bar{g}$ is the arithmetic mean of annual growth rates computed only for years where the prior year had non-zero publications:
 
@@ -85,11 +85,11 @@ The **compound annual growth rate** (CAGR) over the full span $[y_0, y_T]$ is
 \cagr = \left(\frac{n_{\text{cumulative}}(y_T)}{n_{\text{cumulative}}(y_0)}\right)^{1/(y_T - y_0)} - 1. \label{eq:cagr}
 \end{equation}
 
-For the current corpus, $\cagr = {{CAGR_PCT}}\%$. The more recent growth phase (2010--{{YEAR_END}}) exhibits substantially higher annualized growth than the long-run average; reporting both the $T$-year CAGR and recent-phase CAGR avoids overstating maturity-era expansion.
+For the current corpus, $\cagr = {{CAGR_PCT}}\%$ over complete years {{CAGR_PERIOD}}. The observed {{CURRENT_YEAR}} count is partial as of {{AS_OF_DATE}} and is reported separately rather than used as the CAGR endpoint.
 
 \FloatBarrier
 
-## Advanced Visualization Methods \label{sec:appendix_viz}
+## Advanced Visualization Methods {#sec:appendix_viz}
 
 ### PCA of TF-IDF Embeddings
 
@@ -109,7 +109,7 @@ The co-occurrence matrix $C \in \mathbb{R}^{k \times k}$ counts the number of do
 
 \FloatBarrier
 
-## Nanopublication RDF Schema \label{sec:appendix_rdf}
+## Nanopublication RDF Schema {#sec:appendix_rdf}
 
 Each nanopublication is serialized to RDF/TriG per the nanopublication standard \citep{groth2010anatomy, kuhn2016decentralized}, producing four named graphs. The following annotated example illustrates the structure for a single assertion:
 
@@ -160,22 +160,17 @@ Each nanopublication is serialized to RDF/TriG per the nanopublication standard 
 
 ### Namespace Definitions
 
-\begin{table}[H]
-\centering
-\caption{RDF namespace definitions used in the knowledge graph and nanopublication serialization. Each prefix maps to a W3C or domain-specific URI.}
-\label{tab:namespace_definitions}
-\begin{tabular}{lll}
-\toprule
-\textbf{Prefix} & \textbf{URI} & \textbf{Purpose} \\
-\midrule
-\texttt{np:}   & \texttt{http://www.nanopub.org/nschema\#}     & Nanopub structural predicates \\
-\texttt{prov:} & \texttt{http://www.w3.org/ns/prov\#}          & PROV-O provenance model \\
-\texttt{dc:}   & \texttt{http://purl.org/dc/terms/}            & Dublin Core metadata \\
-\texttt{aif:}  & \texttt{http://activeinference.institute/ontology/} & Domain-specific predicates \\
-\texttt{xsd:}  & \texttt{http://www.w3.org/2001/XMLSchema\#}   & XML Schema datatypes \\
-\bottomrule
-\end{tabular}
-\end{table}
+Table: RDF namespace definitions used in the knowledge graph and
+nanopublication serialization. Each prefix maps to a W3C or domain-specific
+URI. {#tab:namespace_definitions}
+
+| Prefix | URI | Purpose |
+|:--|:--|:--|
+| np: | [Nanopublication schema](http://www.nanopub.org/nschema#) | Nanopub structural predicates |
+| prov: | [PROV-O namespace](http://www.w3.org/ns/prov#) | PROV-O provenance model |
+| dc: | [Dublin Core terms](http://purl.org/dc/terms/) | Dublin Core metadata |
+| aif: | [Active Inference ontology](http://activeinference.institute/ontology/) | Domain-specific predicates |
+| xsd: | [XML Schema datatypes](http://www.w3.org/2001/XMLSchema#) | XML Schema datatypes |
 
 ### Core Triple Patterns
 

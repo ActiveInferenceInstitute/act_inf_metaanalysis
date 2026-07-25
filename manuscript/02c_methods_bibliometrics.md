@@ -1,4 +1,4 @@
-## Stage 2: Bibliometric Analysis \label{sec:methods_bibliometrics}
+## Stage 2: Bibliometric Analysis {#sec:methods_bibliometrics}
 
 Stage 2 performs four complementary analyses on the deduplicated corpus. All analyses are deterministic given fixed random seeds and operate on the same `corpus.jsonl` input.
 
@@ -12,7 +12,7 @@ We compute temporal publication metrics including year-by-year counts with gap-f
 
 ### Text Analytics
 
-We construct the TF-IDF matrix using tokenization with stopword removal and L2-normalized smoothed term-frequency inverse-document-frequency weighting \citep{salton1975vector}, with a configurable vocabulary size (default: 500 features). We apply non-negative matrix factorization (NMF) to discover latent topics using multiplicative update rules \citep{lee1999nmf}. Topic count $k=5$ was selected via expert-driven assessment. Mathematical details are provided in Appendix \ref{sec:appendix_nmf}.
+We construct the TF-IDF matrix using tokenization with stopword removal and L2-normalized smoothed term-frequency inverse-document-frequency weighting \citep{salton1975vector}, with a configurable vocabulary size (default: 500 features). We apply non-negative matrix factorization (NMF) to discover ${{NUM_TOPICS}}$ latent topics using multiplicative update rules \citep{lee1999nmf}. The topic count is fixed in `manuscript/config.yaml` for reproducibility rather than selected post hoc from the results. Mathematical details are provided in Appendix \ref{sec:appendix_nmf}.
 
 ### Citation Network Construction
 

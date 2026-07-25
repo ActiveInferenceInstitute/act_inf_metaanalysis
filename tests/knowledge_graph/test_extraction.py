@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 
-import pytest
 from pytest_httpserver import HTTPServer
 
 from knowledge_graph.extraction import extract_assertions

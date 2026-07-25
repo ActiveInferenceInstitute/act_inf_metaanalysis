@@ -1,11 +1,11 @@
-## Field Overview: Disciplinary Structure and Growth Dynamics \label{sec:field_overview}
+## Field Overview: Disciplinary Structure and Growth Dynamics {#sec:field_overview}
 
 Annual output in the Active Inference literature rose from {{YEAR_START_PUBS}} papers in {{YEAR_START}}, reaching a peak of {{PEAK_YEAR_PUBS}} papers in {{PEAK_YEAR}}—a transition from a niche within theoretical neuroscience to a multi-disciplinary research program spanning three primary domains and eight tracked categories. The corpus start of {{YEAR_START}} was chosen to capture Energy-Based Model and variational Bayesian antecedents \citep{dayan1995helmholtz, lecun2006tutorial} that preceded the formal introduction of the Free Energy Principle in 2006 \citep{friston2006free} and its subsequent full elaboration \citep{friston2010free}. Our corpus, extracted from arXiv, Semantic Scholar, and OpenAlex and deduplicated to $N = {{CORPUS_SIZE}}$ papers ({{YEAR_START}}--{{YEAR_END}}), captures the breadth, tempo, and internal architecture of this expansion (Figure \ref{fig:field_summary}).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/field_summary.png}
-\caption{Publication counts by domain ($N = {{CORPUS_SIZE}}$). Application domains (C1--C5) collectively account for the largest share of the corpus; Domain A2 (qualitative philosophy) is the largest single category, reflecting the FEP's broad theoretical reach.}
+\caption{Publication counts by domain ($N = {{CORPUS_SIZE}}$). Application domains (C1--C5) collectively account for the largest share of the corpus; {{TOP_SUBFIELD_LABEL}} is the largest single category in this run.}
 \label{fig:field_summary}
 \end{figure}
 
@@ -14,14 +14,14 @@ Annual output in the Active Inference literature rose from {{YEAR_START_PUBS}} p
 
 \begin{table}[htbp]
 \centering
-\caption{Corpus-level summary statistics for the Active Inference literature corpus ($N = {{CORPUS_SIZE}}$), spanning {{YEAR_START}}--{{YEAR_END}}.}
+\caption{Corpus-level summary statistics for the Active Inference literature corpus ($N = {{CORPUS_SIZE}}$), observed over {{YEAR_START}}--{{YEAR_END}} with the most recent year reported as {{CURRENT_YEAR_STATUS}}.}
 \label{tab:corpus_summary}
 \begin{tabular}{ll}
 \toprule
 \textbf{Metric} & \textbf{Value} \\
 \midrule
 Total papers & {{CORPUS_SIZE}} \\
-Year range & {{YEAR_START}}--{{YEAR_END}} \\
+Year range & {{YEAR_START}}--{{YEAR_END}} ({{CURRENT_YEAR_STATUS}}) \\
 Peak year & {{PEAK_YEAR}} \\
 CAGR & {{CAGR_PCT}}\% \\
 Active domains & 8 of 8 tracked (A1--A2, B, C1--C5) \\
@@ -30,12 +30,12 @@ Active domains & 8 of 8 tracked (A1--A2, B, C1--C5) \\
 \end{table}
 
 
-The CAGR of {{CAGR_PCT}}\% (measured as the annualised growth rate of yearly publication volume between endpoint years {{YEAR_START}} and {{YEAR_END}}) reflects sustained field expansion; annual output accelerated markedly in the late 2010s—from roughly 2018 onward (Figure \ref{fig:growth_curve}). Sustained high output persisting into subsequent years suggests the field has reached a mature production phase rather than experiencing a transient spike. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{the citation network analysis}).
+The CAGR of {{CAGR_PCT}}\% is measured as the annualised growth rate of yearly publication volume between complete endpoint years {{CAGR_START_YEAR}} and {{CAGR_END_YEAR}}. The corpus also contains {{CURRENT_YEAR_PUBS}} papers from {{CURRENT_YEAR}} as of {{AS_OF_DATE}}; this partial-year count is shown separately in the growth figure and is not used as the CAGR endpoint. Citation network metrics are detailed in the dedicated citation network analysis (see \hyperref[sec:citation_network]{the citation network analysis}).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/growth_curve.png}
-\caption{Annual (bars) and cumulative (line) publication counts, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$, CAGR = {{CAGR_PCT}}\%). Annual output accelerates from the late 2010s (around 2018) to the {{PEAK_YEAR}} peak. Moving average trendline (dashed), peak year, and median year annotated.}
+\caption{Annual (bars) and cumulative (line) publication counts, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$, CAGR = {{CAGR_PCT}}\% over {{CAGR_PERIOD}}). The {{CURRENT_YEAR}} bar is partial as of {{AS_OF_DATE}}.}
 \label{fig:growth_curve}
 \end{figure}
 
@@ -67,7 +67,7 @@ C -- Applications & C1: Neuroscience & {{C1_COUNT}} & {{C1_PCT}}\% \\
 \end{table}
 
 
-The concentration of papers in A2 (qualitative philosophy and general theory) reflects the broad scope of foundational FEP work (Figure \ref{fig:subfield_distribution}). The priority-based classifier mitigates over-assignment by routing papers with mathematical indicators (theorems, proofs, equations, statistical formalism) to A1 before falling back to A2, and by preferring specific application domains (C1–C5) and tools (B) over both core-theory categories. Papers that discuss FEP/AIF conceptually without mathematical formalism or domain-specific vocabulary are correctly assigned to A2. This figure should be read as a *ceiling* on theoretical generality rather than a literal measure of research focus—embedding-based classification would likely redistribute some fraction into more specific categories. That all eight categories are populated, including computational psychiatry (C4) and formal theory (A1), indicates diversification beyond the field's neuroscience origins.
+The largest single category is {{TOP_SUBFIELD_LABEL}}; the counts should be read as classifier assignments rather than as measures of disciplinary importance (Figure \ref{fig:subfield_distribution}). The priority-based classifier routes papers with mathematical indicators (theorems, proofs, equations, statistical formalism) to A1 before falling back to A2, and prefers specific application domains (C1–C5) and tools (B) over both core-theory categories. Papers that discuss FEP/AIF conceptually without mathematical formalism or domain-specific vocabulary are assigned to A2. Embedding-based classification could redistribute some fraction across categories, so the taxonomy is a reproducible map rather than a literal measure of research focus. All eight categories are populated, indicating diversification beyond the field's neuroscience origins.
 
 \begin{figure}[htbp]
 \centering
@@ -102,11 +102,11 @@ C & C5: Biology & {{C5_COUNT}} ({{C5_PCT}}\%) & Rapid & Nascent & Empirical vali
 \end{table}
 
 
-Three structural features emerge from the cross-domain comparison (Figure \ref{fig:subfield_timeline}). First, no single legacy domain dominates: Domain B (Tools \& Translation) accounts for {{B_PCT}}\% of the corpus, followed by C1 (Neuroscience) at {{C1_PCT}}\% and C2 (Robotics) at {{C2_PCT}}\%. Second, Domain A (Core Theory) aggregates {{A_PCT}}\% collectively (A1 + A2), while the emergent application frontiers (C3–C5) exhibit accelerating growth. Third, A1's {{A1_COUNT}} papers understate its intellectual influence—the mathematical formalisms developed in A1 shape implementations across all domains.
+Three structural features emerge from the cross-domain comparison (Figure \ref{fig:subfield_timeline}). Ranked by corpus share, the domains are {{DOMAIN_RANKING}}. Domain C is therefore the largest descriptive tier in this snapshot, while Domain A's smaller share does not measure its intellectual influence: the mathematical formalisms developed in A1 shape implementations across all domains. The emergent application frontiers (C3–C5) should be interpreted through their temporal trajectories rather than assumed to be uniformly accelerating.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/subfield_timeline.png}
-\caption{Stacked area chart of publications by domain, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$). A2 (qualitative philosophy) provides a large baseline; application domains C1--C5 show accelerating diversification from 2015 onward.}
+\caption{Stacked area chart of publications by domain, {{YEAR_START}}--{{YEAR_END}} ($N = {{CORPUS_SIZE}}$). The current-year observation is partial as of {{AS_OF_DATE}}; the chart reports classifier-assigned category totals and temporal composition.}
 \label{fig:subfield_timeline}
 \end{figure}

@@ -4,11 +4,11 @@
 **Scope:** `projects_archive/act_inf_metaanalysis/` (archived; not template pipeline–discovered)  
 **Rubric:** template thermo-nuclear maintainability review (1k-line rule, script gates, thin orchestrators, zero-mock tests)
 
-> **Addendum (2026-07-23):** This audit is a historical snapshot dated **2026-05-24**; every metric below (615 tests / 96.09% coverage, script line counts, etc.) reflects the codebase at that time and is preserved unchanged as the record. The project has since undergone the v2.0.1–v2.0.4 *honest validation reframe* — the extraction-validation study is now a deterministic **rule-based reference-annotator agreement** check (a reproducibility floor, not a human validation), structured extraction provenance runs end-to-end, and a seventh script (`07_run_validation_study.py`) was added. Current verified gates as of 2026-07-23: **632 passed, 1 skipped, 95.05% coverage** (fail_under=90). See [../CHANGELOG.md](../CHANGELOG.md) (v2.0.1 → v2.0.4) for exactly what has changed since this audit.
+> **Historical addendum (2026-07-25):** This audit is a snapshot dated **2026-05-24**; every metric in its original body reflects the codebase at that time and is preserved unchanged as the record. The project subsequently adopted the deterministic **rule-based reference-annotator agreement** study (a reproducibility floor, not a human validation), structured extraction provenance, topic-stability analysis, cross-artifact contracts, manifest closure, tooling-source probes, and release-package verification. The latest source gate verified on 2026-07-25 is **650 passed, 1 skipped, 91.12% coverage** (fail_under=90); live-artifact and template-render gates remain separately reported by the current pipeline manifest.
 
 ## Executive verdict
 
-**Conditional pass → remediated (W1–W3 complete).** Structural debt from script bloat, orchestrator logic leakage, thin LLM tests, and documentation drift has been addressed; verification gates pass at **615 tests / 96.09% coverage** (2026-05-24 follow-up).
+**Historical conditional pass → remediated (W1–W3 complete).** Structural debt from script bloat, orchestrator logic leakage, thin LLM tests, and documentation drift was assessed against the 2026-05-24 baseline of **615 tests / 96.09% coverage**; the current gate is recorded in the addendum above.
 
 ---
 
@@ -61,7 +61,7 @@
 ### W2 — Should-fix (completed)
 
 1. **`advanced_plots.py` split** — `src/visualization/advanced/` (`labels`, `word_cloud`, `embeddings`, `topics`) + re-export shim in `advanced_plots.py`.
-2. **`llm_extraction.py` split** — `llm_config.py`, `llm_client.py`, `llm_prompts.py`; slim orchestrator in `llm_extraction.py` with backward-compat aliases.
+2. **`llm_extraction.py` split** — `llm_config.py`, `llm_client.py`, and `llm_prompts.py`; the remaining module is a slim extraction orchestrator.
 3. **Config-driven search queries** — `DEFAULT_ARXIV_QUERIES` / `DEFAULT_RELEVANCE_KEYWORDS` in `src/config.py`; `src/config_loader.py` loads `project_config.search` from `manuscript/config.yaml` with defaults.
 4. **Example config** — Added `manuscript/config.yaml.example` (stripped template).
 
@@ -70,7 +70,7 @@
 1. Split `tests/knowledge_graph/test_llm_extraction.py` (758 lines) → `llm_extraction_fixtures.py` + six `test_llm_*.py` modules (max 212 lines).
 2. Nested `.git/` — documented in README; not removed (standalone history may still be referenced).
 3. Split `subfield_classifier.py` (500 lines) → `subfield_defaults.py`, `subfield_registry.py`, slim `subfield_classifier.py` (92 lines).
-4. Runner coverage expanded in follow-up passes (**615 tests**, **96.09%** coverage; visualization edge cases, `config_loader` ImportError path, injectable search URLs).
+4. Runner coverage expanded in the historical follow-up pass (**615 tests**, **96.09%** coverage; visualization edge cases, `config_loader` ImportError path, injectable search URLs).
 
 ---
 

@@ -13,7 +13,7 @@ resolution-markers = [
 
 [[package]]
 name = "act-inf-metaanalysis"
-version = "2.0.1"
+version = "2.0.6"
 source = { editable = "." }
 dependencies = [
     { name = "matplotlib" },

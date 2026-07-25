@@ -1,10 +1,10 @@
-### Text Analytics: Topic Modeling, Vocabulary Structure, and Document Embeddings \label{sec:text_analytics}
+### Text Analytics: Topic Modeling, Vocabulary Structure, and Document Embeddings {#sec:text_analytics}
 
 This section examines the latent semantic structure of the Active Inference corpus through complementary text-analytic methods: non-negative matrix factorization for topic discovery, TF-IDF vocabulary analysis, document embedding projections, and term co-occurrence patterns. Together, these analyses reveal thematic structure that cuts across the keyword-based domain taxonomy presented in the \hyperref[sec:field_overview]{field overview}.
 
 ### Topic Modeling: Latent Structure
 
-Non-negative matrix factorization (NMF) applied to the TF-IDF matrix identifies five latent topics:
+Non-negative matrix factorization (NMF) applied to the TF-IDF matrix identifies {{NUM_TOPICS}} latent topics:
 
 
 \begin{table}[htbp]
@@ -15,11 +15,7 @@ Non-negative matrix factorization (NMF) applied to the TF-IDF matrix identifies 
 \toprule
 \textbf{Topic} & \textbf{Top Terms} & \textbf{Interpretation} \\
 \midrule
-0 & learning, agent, model, agents, active, environments, aif, inference, environment, based & Agent-environment modeling and robotic applications \\
-1 & inference, active, energy, free, variational, control, bayesian, expected, optimal, principle & Active inference agents and decision-making \\
-2 & states, internal, external, systems, markov, system, dynamics, information, beliefs, self & Markov blankets and internal/external states \\
-3 & fep, systems, ai, principle, energy, free, theory, networks, modeling, language & Free energy principle and AI systems \\
-4 & predictive, brain, cognitive, prediction, perception, processing, sensory, models, coding, model & Predictive coding and cognitive neuroscience \\
+{{TOPIC_TABLE_ROWS}}
 \bottomrule
 \end{tabular}
 \end{table}
@@ -27,7 +23,7 @@ Non-negative matrix factorization (NMF) applied to the TF-IDF matrix identifies 
 
 #### Topic–Domain Overlap
 
-These topics are partially orthogonal to the domain taxonomy. Topic 0 (agent-environment modeling) spans tools (B), robotics (C2), and core theory (A1)—a cross-cutting theme that the keyword classifier cannot capture. Topic 4 (predictive coding and cognitive neuroscience) aligns closely with neuroscience (C1) but also draws from core theory. Topic 2 (Markov blankets and states) captures the mathematical core shared across domains. Topic 3 (FEP and AI systems) reveals the growing intersection of active inference with mainstream artificial intelligence research. The extracted topics demonstrate high stability; rerunning NMF across multiple random seed initializations yields identical topic clusters (Jaccard similarity $> 0.90$ for top term sets). The absence of retrieval noise (no spurious physics topics) confirms that the phrase-matched arXiv query effectively filters irrelevant content (Figure \ref{fig:topic_term_bars}).
+The topic descriptors are partially orthogonal to the domain taxonomy, providing an exploratory view of cross-cutting vocabulary rather than a replacement for the supervised keyword categories. Across the configured alternate random seeds, the mean top-term-set Jaccard similarity is {{TOPIC_STABILITY_MEAN_JACCARD}} (minimum {{TOPIC_STABILITY_MIN_JACCARD}}). This is a stability diagnostic for the exploratory decomposition, not evidence that the topics are globally unique or optimal. The absence of retrieval noise should likewise be interpreted as a property of this query and corpus, not as a proof of exhaustive relevance filtering (Figure \ref{fig:topic_term_bars}).
 
 \begin{figure}[htbp]
 \centering

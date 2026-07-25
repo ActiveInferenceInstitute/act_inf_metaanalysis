@@ -1,4 +1,4 @@
-## Stage 3: Nanopublication-Based Knowledge Graph \label{sec:methods_kg}
+## Stage 3: Nanopublication-Based Knowledge Graph {#sec:methods_kg}
 
 Stage 3 is the methodological core of this work: it transforms unstructured abstracts into a structured, RDF-compatible knowledge graph of scientific evidence. The stage encompasses four tightly coupled operations: LLM-based assertion extraction, nanopublication packaging, knowledge graph construction, and citation-weighted hypothesis scoring.
 

@@ -5,17 +5,11 @@ from __future__ import annotations
 import json
 import logging
 
-import pytest
 from pytest_httpserver import HTTPServer
 
-from knowledge_graph.extraction import extract_assertions
 from knowledge_graph.llm_extraction import (
     LLMConfig,
-    _parse_llm_response,
-    assess_paper_hypotheses,
-    build_prompt,
     extract_assertions_llm,
-    _hypothesis_dicts,
 )
 from tests.knowledge_graph.llm_extraction_fixtures import (
     httpserver_base_url,
@@ -27,6 +21,65 @@ _make_paper = make_paper
 _valid_llm_response = valid_llm_response
 
 class TestNanopubResume:
+    def test_resume_preserves_run_id_and_writes_state(self, httpserver: HTTPServer, tmp_path):
+        """A checkpoint resume stays in one provenance run and records closure state."""
+        from knowledge_graph.nanopublication import (
+            Assertion, create_nanopub, deserialize_nanopubs, serialize_nanopubs,
+        )
+
+        nanopub_path = tmp_path / "nanopublications.jsonl"
+        run_id = "stable-resume-run"
+        existing_assertion = Assertion(
+            assertion_id="llm_doi:10.1/a_FEP_UNIVERSALITY",
+            paper_id="doi:10.1/a",
+            claim="Pre-existing",
+            assertion_type="supports",
+            hypothesis_id="FEP_UNIVERSALITY",
+            confidence=0.8,
+            citation_count=3,
+        )
+        serialize_nanopubs(
+            [create_nanopub(
+                existing_assertion,
+                attribution="pipeline_2.0.6:v2.0.6",
+                provenance={
+                    "paper_id": "doi:10.1/a",
+                    "model_id": "test-model",
+                    "llm_host": "test",
+                    "prompt_version": "v2.0.6",
+                    "processing_date": "2026-07-24T00:00:00+00:00",
+                    "pipeline_version": "2.0.6",
+                    "run_id": run_id,
+                },
+            )],
+            nanopub_path,
+        )
+        httpserver.expect_request("/api/generate", method="POST").respond_with_json({
+            "response": json.dumps(valid_llm_response()),
+            "done": True,
+        })
+        config = LLMConfig(
+            base_url=httpserver_base_url(httpserver),
+            model="test-model",
+            max_retries=1,
+            nanopub_path=str(nanopub_path),
+            checkpoint_interval=100,
+        )
+
+        assertions = extract_assertions_llm(
+            [make_paper(doi="10.1/a"), make_paper(doi="10.1/b")],
+            config,
+        )
+
+        assert len(assertions) == 4
+        nanopubs = deserialize_nanopubs(nanopub_path)
+        assert {np_obj.provenance["run_id"] for np_obj in nanopubs} == {run_id}
+        state = json.loads((tmp_path / "extraction_state.json").read_text())
+        assert state["status"] == "complete"
+        assert state["run_id"] == run_id
+        assert state["processed_papers"] == 2
+        assert state["unprocessed_papers"] == 0
+
     def test_resume_skips_processed(self, httpserver: HTTPServer, tmp_path):
         """Resume skips papers already in the nanopubs file."""
         from knowledge_graph.nanopublication import (
@@ -135,7 +188,6 @@ class TestNanopubResume:
 
     def test_logs_nanopub_path_on_fresh_run(self, httpserver: HTTPServer, tmp_path, caplog):
         """Fresh run logs the nanopub output path."""
-        import logging
         response_body = {
             "response": json.dumps(valid_llm_response()),
             "done": True,
@@ -164,7 +216,6 @@ class TestNanopubResume:
 
     def test_logs_resume_info(self, httpserver: HTTPServer, tmp_path, caplog):
         """Resume run logs how many papers were already processed."""
-        import logging
         from knowledge_graph.nanopublication import (
             Assertion, create_nanopub, serialize_nanopubs,
         )
@@ -209,4 +260,3 @@ class TestNanopubResume:
 
         assert any("Resuming" in m for m in caplog.messages)
         assert any("1 papers already processed" in m for m in caplog.messages)
-

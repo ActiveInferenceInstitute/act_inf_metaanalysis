@@ -3,19 +3,13 @@
 from __future__ import annotations
 
 import json
-import logging
 
 import pytest
 from pytest_httpserver import HTTPServer
 
-from knowledge_graph.extraction import extract_assertions
 from knowledge_graph.llm_extraction import (
     LLMConfig,
-    _parse_llm_response,
     assess_paper_hypotheses,
-    build_prompt,
-    extract_assertions_llm,
-    _hypothesis_dicts,
 )
 from tests.knowledge_graph.llm_extraction_fixtures import (
     httpserver_base_url,

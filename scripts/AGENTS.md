@@ -14,15 +14,25 @@ scripts/
 ├── 02_meta_analysis_pipeline.py  # → analysis/pipeline_runner.py
 ├── 03_build_knowledge_graph.py   # → knowledge_graph/kg_runner.py
 ├── 04_generate_figures.py        # → visualization/figure_runner.py
-├── 05_inject_variables.py        # → manuscript/variables.py
+├── z_generate_manuscript_variables.py # canonical → manuscript/variables.py
+├── 05_inject_variables.py        # compatibility wrapper
 ├── 06_fulltext_assessment.py     # → literature/fulltext_assessment.py   (auxiliary QA)
-├── 07_run_validation_study.py    # → analysis/validation_{sample,labeling,metrics}.py (auxiliary QA)
+├── 07_run_validation_study.py    # → analysis/validation_{sample,labeling,metrics}.py
+├── 08_validate_artifacts.py      # → analysis/artifact_contract.py
+├── 09_write_pipeline_manifest.py # → analysis/pipeline_manifest.py
+├── 10_release_preflight.py       # → local release package, metadata, render, tests
+├── 11_prepare_evidence_pilots.py # → deterministic full-text/human queues
+├── 12_snapshot_output.py         # → disposable-output inventory/snapshot
+├── 13_verify_tooling_inventory.py # → dated source/license/activity probes
+├── 14_verify_release_package.py  # → local deposit-equivalent hash check
 └── __pycache__/                  # Python bytecode cache (gitignored)
 ```
 
-Scripts `01`–`05` form the core content-generation chain. Scripts `06` (full-text
-assessment) and `07` (rule-based reference-annotator agreement study) are
-auxiliary QA tools run independently of the core chain.
+Scripts `01`–`05` form the core content-generation chain. Scripts `06`–`09`
+perform full-text QA, deterministic validation, cross-artifact validation, and
+manifest closure. Scripts `10`–`14` perform release preflight, review-queue
+preparation, safe output snapshotting, tooling-source verification, and local
+release-package hash verification.
 
 ## Execution Order
 
@@ -32,11 +42,18 @@ Scripts **must** run in numbered order because each stage depends on the outputs
 |--------|--------|---------|--------------|
 | `01` | API responses | `output/data/corpus.jsonl` | Network / cached corpus |
 | `02` | `corpus.jsonl` | `subfield_classification.json`, `temporal_analysis.json`, `tfidf_data.json`, `topics.json`, `citation_network.json`, `citation_graph.gml` | `01` |
-| `03` | `corpus.jsonl` | `nanopublications.jsonl`, `nanopublications.trig`, `hypothesis_scores.json`, `hypothesis_trends.json`, `assertion_summary.json` | `01`, Ollama (optional) |
+| `03` | `corpus.jsonl` | `nanopublications.jsonl`, `nanopublications.trig`, extraction state/coverage, scores and summaries | `01`, Ollama |
 | `04` | All `output/data/*.json`, `citation_graph.gml` | `output/figures/*.png`, `figure_registry.json` | `02`, `03` |
-| `05` | `output/data/*.json`, `manuscript/*.md` | `output/manuscript/*.md` (rendered), `output/reports/zenodo_deposit_metadata.json` | `02`, `03` |
+| `05` | `output/data/*.json`, `manuscript/*.md` | rendered manuscript, token inventory, and artifact hashes | `02`, `03` |
 | `06` | `corpus.jsonl` | `fulltext_assessment.json` | `01` |
 | `07` | `output/data/nanopublications.jsonl`, `output/data/corpus.jsonl` | `output/validation/sample.csv`, `output/validation/labels_rule_reference.csv`, `output/reports/validation_metrics.json` | `01`, `03` |
+| `08` | All current artifacts | `output/reports/artifact_contract.json` | `01`–`07` |
+| `09` | Inputs, outputs, and gate reports | `output/reports/pipeline_manifest.json` | `08` |
+| `10` | All artifacts, release metadata, and tooling gate | `output/reports/release_preflight.json` | `01`–`09`, `13` |
+| `11` | Corpus and validation sample | deterministic review queues/protocols | `01`, `03`, `07` |
+| `12` | Disposable `output/` | `output/reports/snapshot_inventory.json`, optional snapshot copy | current output |
+| `13` | Tooling registry and public source URLs | `output/reports/tooling_verification.json` | registry, network |
+| `14` | Staged release package | local manifest verification report | `10` |
 
 ## Script Details
 
@@ -64,7 +81,7 @@ Runs all quantitative analyses: subfield classification, temporal metrics, TF-ID
 
 **Key flags:**
 - `--corpus PATH` — path to corpus JSONL
-- `--n-topics N` — NMF topic count (default: 5)
+- `--n-topics N` — NMF topic count (default: 8; config-driven)
 - `--max-features N` — TF-IDF vocabulary size (default: 500)
 - `--min-year YYYY` — pre-filter (default: 2000)
 - `--seed N` — NMF random seed (default: 42)
@@ -88,7 +105,7 @@ LLM-based assertion extraction and hypothesis scoring via Ollama.
 **Key flags:**
 - `--llm-model MODEL` — Ollama model name (default: `gemma3:4b`)
 - `--llm-url URL` — Ollama API base URL (default: `http://localhost:11434`)
-- `--checkpoint-interval N` — flush every N papers (default: 50)
+- `--checkpoint-interval N` — flush every N papers (default: 25; config-driven)
 - `--clear-assertions` — discard previous extraction results
 - `--max-papers N` — limit LLM processing (default: no limit)
 - `--config PATH` — load KG settings from YAML

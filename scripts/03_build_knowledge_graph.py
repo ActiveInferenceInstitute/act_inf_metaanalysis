@@ -19,8 +19,6 @@ PROJECT_ROOT = bootstrap_project()
 from config import (
     CORPUS_PATH as DEFAULT_CORPUS_PATH,
     DEFAULT_CHECKPOINT_INTERVAL,
-    DEFAULT_LLM_MODEL,
-    DEFAULT_LLM_URL,
     OUTPUT_DIR as DEFAULT_OUTPUT_DIR,
 )
 from knowledge_graph.kg_runner import run_knowledge_graph_pipeline
@@ -37,15 +35,20 @@ def parse_args() -> argparse.Namespace:
         default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR"],
     )
-    parser.add_argument("--llm-model", type=str, default=DEFAULT_LLM_MODEL)
-    parser.add_argument("--llm-url", type=str, default=DEFAULT_LLM_URL)
+    # ``None`` lets the project config provide defaults while the marker
+    # attributes preserve explicit CLI-over-config precedence.
+    parser.add_argument("--llm-model", type=str, default=None)
+    parser.add_argument("--llm-url", type=str, default=None)
     parser.add_argument(
         "--checkpoint-interval", type=int, default=DEFAULT_CHECKPOINT_INTERVAL
     )
     parser.add_argument("--clear-assertions", action="store_true")
     parser.add_argument("--max-papers", type=int, default=None)
     parser.add_argument("--config", type=str, default=None)
-    return parser.parse_args()
+    args = parser.parse_args()
+    args._llm_model_cli = args.llm_model is not None
+    args._llm_url_cli = args.llm_url is not None
+    return args
 
 
 def main() -> None:

@@ -28,7 +28,7 @@ operation in the pipeline — use incremental mode (the default) whenever possib
 
 ```bash
 # Incremental (default) — skips already-processed papers
-python scripts/03_build_knowledge_graph.py
+python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 
 # Full re-extraction (WARNING: overwrites existing assertions in nanopublications.jsonl)
 python scripts/03_build_knowledge_graph.py --clear-assertions
@@ -37,7 +37,8 @@ python scripts/03_build_knowledge_graph.py --clear-assertions
 python scripts/03_build_knowledge_graph.py --max-papers 0
 ```
 
-Ollama must be running at `http://localhost:11434` with `gemma3:4b` pulled.
+Ollama must be running at the configured `project_config.llm_extraction.base_url`
+with the configured model pulled. The current publication config uses `gemma3:4b`.
 
 ## RDF Graph Structure (per nanopublication)
 
@@ -61,7 +62,7 @@ Ollama must be running at `http://localhost:11434` with `gemma3:4b` pulled.
 
 - **Abstract-only extraction**: LLM sees only title + abstract, not full text. Claims in
   methods/results sections are missed. See manuscript Step 2 (full-text extraction) roadmap.
-- **JSON parsing fragility**: LLM responses with nested JSON or escaped quotes may fail parsing.
-  `_parse_llm_response()` strips markdown fences but has no fallback tokenizer.
+- **Abstract-only extraction**: The extractor is intentionally limited to title and abstract
+  evidence; full-text availability is assessed separately and does not imply extraction.
 - **Assertion ID collision**: IDs use `f"llm_{paper_id}_{hypothesis_id}"`. Reprocessing the
   same paper creates a duplicate that `merge_nanopubs` deduplicates by overwrite.

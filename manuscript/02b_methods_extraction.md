@@ -1,4 +1,4 @@
-## LLM-Based Assertion Extraction: Prompt Design, Error Taxonomy, and Validation \label{sec:extraction_pipeline}
+## LLM-Based Assertion Extraction: Prompt Design, Error Taxonomy, and Validation {#sec:extraction_pipeline}
 
 _This supplementary section documents the implementation specifics of the LLM-based assertion extraction pipeline._
 
@@ -91,7 +91,7 @@ The primary failure modes are documented below.
 
 #### Over-Extraction Bias
 
-Preliminary experiments indicated ~15--20\% over-extraction. The current $N = {{CORPUS_SIZE}}$ corpus was processed without a validation set; error rates are not quantified for this run. This is the most common error mode and produces false supporting evidence. Over-extraction disproportionately affects broad-scope hypotheses (H1 FEP Universality, H2 AIF Optimality) where most papers in the corpus contain relevant terminology without explicitly endorsing the claim. Narrower hypotheses tied to specific domains (H7 Morphogenesis, H8 Language AIF) show lower over-extraction rates because their vocabulary is more distinctive. This systematic bias inflates support counts for broad hypotheses, and we caution against interpreting absolute scores for H1 and H2 without accounting for this effect.
+The refreshed run reports a deterministic rule-reference calibration rather than a preliminary error estimate. The sampled over-extraction rate is {{VAL_ERR_OVER_EXTRACTION}}, and the extraction coverage is {{EXTRACTION_COVERAGE_PCT}}\% of {{EXTRACTION_ELIGIBLE}} eligible papers, with {{EXTRACTION_FAILED}} failures. Over-extraction can produce false supporting evidence, particularly for broad-scope hypotheses whose terminology appears without explicit endorsement; absolute scores should therefore remain bounded by the reported validation metrics.
 
 #### Direction Misclassification
 
@@ -138,7 +138,7 @@ Error taxonomy rates (over-extraction, direction inversion, triage mismatch) are
 
 ### From Assertions to Nanopublications
 
-Each assertion is wrapped in a **nanopublication** \citep{groth2010anatomy, kuhn2016decentralized} that carries a structured provenance block—paper ID, source passage, model ID (`{{PROV_MODEL}}`), prompt version (`{{PROV_PROMPT_VERSION}}`), processing date, pipeline version, and run ID. Every assertion in the corpus is produced by the three-layer extractor and carries this block; the aggregate model, prompt-version, and processing-date coverage is reported in `output/reports/extraction_provenance_summary.json`.
+Each assertion is wrapped in a **nanopublication** \citep{groth2010anatomy, kuhn2016decentralized} that carries a structured provenance block—paper ID, source passage, model ID (`{{PROV_MODEL}}`), prompt version (`{{PROV_PROMPT_VERSION}}`), processing date, pipeline version (`{{PROV_PIPELINE_VERSION}}`), and run ID. The extraction coverage report records every eligible paper's processed, failed, and unprocessed status; every retained assertion carries the structured block, and the aggregate coverage is recomputed directly from `output/reports/extraction_provenance_summary.json`.
 
 Nanopublications are persisted **incrementally** during extraction. Every 50 papers (configurable via `--checkpoint-interval`), the pipeline atomically appends newly extracted nanopublications to `nanopublications.jsonl` using a temporary-file-plus-rename strategy that prevents corruption on interruption. Deduplication operates on the composite key $(paper\_id, hypothesis\_id)$: when a paper is re-processed with an improved model, the newer assertion overwrites the stale entry. This merge-on-add design enables iterative model refinement without costly full-corpus re-extraction.
 

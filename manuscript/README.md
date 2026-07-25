@@ -3,7 +3,7 @@
 *A Living Literature Review Architecture for Active Inference: Scalable Assertion Extraction, Nanopublications, and Citation-Weighted Hypothesis Scoring*
 
 Authors: Daniel Friedman (Active Inference Institute) · Joel Dietz (MIT + CIMC)  
-DOI: [10.5281/zenodo.19461934](https://doi.org/10.5281/zenodo.19461934) · License: CC-BY-4.0
+DOI: [Zenodo deposit record](https://doi.org/10.5281/zenodo.19461934) · License: CC-BY-4.0
 
 ---
 
@@ -34,17 +34,17 @@ DOI: [10.5281/zenodo.19461934](https://doi.org/10.5281/zenodo.19461934) · Licen
 
 ---
 
-## Running Stage 5 (Variable Injection)
+## Running Stage 5 (Variable Hydration)
 
 ```bash
 # From project root
-PYTHONPATH=/path/to/template python scripts/05_inject_variables.py
+python scripts/z_generate_manuscript_variables.py --project .
 
 # Dry run — shows which variables would be injected without writing files
-PYTHONPATH=/path/to/template python scripts/05_inject_variables.py --dry-run
+python scripts/z_generate_manuscript_variables.py --project . --dry-run
 ```
 
-Output goes to `output/manuscript/`. Source files in `manuscript/` are never overwritten.
+Output goes to `output/manuscript/`. Source files in `manuscript/` are never overwritten. The canonical hydrator also records `output/data/manuscript_variables.json` with the exact source-token inventory and artifact hashes. `scripts/05_inject_variables.py` remains a compatible wrapper.
 
 ---
 

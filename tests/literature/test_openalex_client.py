@@ -4,8 +4,6 @@ Uses pytest-httpserver to serve realistic OpenAlex JSON responses locally.
 Tests search_openalex, get_work_by_doi, and _reconstruct_abstract.
 """
 
-import json
-import re
 
 import pytest
 import requests

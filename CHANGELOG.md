@@ -1,5 +1,20 @@
 # CHANGELOG.md
 
+## v2.0.6 — 2026-07-24
+
+### Full-refresh reproducibility and resumability
+- Centralized pipeline version, prompt version, NMF (`n_topics=8`, seed 42), render formats, current-year/YTD policy, and repository metadata in the project configuration.
+- Added atomic extraction state and run-ID-preserving resume semantics. A checkpointed run refuses to mix model, prompt, or pipeline versions; the JSONL checkpoint remains authoritative for processed paper IDs.
+- Added topic-stability analysis, yearly hypothesis assertion counts, direct nanopublication provenance recomputation, cross-artifact validation, and a hash/count/gate pipeline manifest.
+- Added canonical `scripts/z_generate_manuscript_variables.py` hydration with source-token inventory, artifact hashes, and unresolved-token failure; `05_inject_variables.py` remains a compatibility wrapper.
+- Corrected temporal handling for partial current-year data, citation-network top-100/full-graph labeling, figure layout metadata, stale manuscript claims, and template-sensitive LaTeX constructs.
+- The July 24 live refresh was intentionally stopped after its durable checkpoint (517 assertions across 200 of 1,071 eligible papers); it is resumable and is not publication-complete until extraction, figures, hydration, and PDF/HTML gates pass.
+
+### 2026-07-25 closure addendum
+- Completed the local idempotent closure pass: release-package hashes/counts, tooling-source verification, cross-artifact gates, canonical manuscript hydration, and self-reference-free snapshot/manifest reruns.
+- Re-rendered and validated the 64-page PDF and HTML manuscript with exactly 16 registered figures; PDF/HTML are enabled while slides, DOCX, and EPUB remain explicitly disabled.
+- Final local test gate: 650 passed, 1 skipped, 91.12% coverage. Semantic Scholar HTTP 429 and external publication/human-calibration dependencies remain fail-closed release blockers.
+
 ## v2.0.4 — 2026-07-23
 
 ### Completed the v2.0.3 honest-reframe work (in-flight test/artifact gaps)
@@ -113,7 +128,7 @@ None — fully backward compatible.
 - **H2**: Manuscript disclaimers — abstract and conclusion now explicitly state assertions are machine-generated without human validation
 - **M3**: Cross-section table verification note added ("verified against pipeline run output dated 2026-04-28")
 - **M4**: Assertion error rate disclosure — methods now state current corpus lacks validation set; error rates unquantified
-- **M5**: NMF topic count justification documented ("k=5 selected via silhouette analysis across k ∈ {2,…,10}")
+- **M5**: Legacy NMF topic-count note retired; the publication-facing configuration is now `k=8` with fixed alternate-seed topic-stability checks.
 - **M7**: Recency bias limitation acknowledged in Discussion — citation weighting underweights recent papers
 - **M8**: Domain A2 over-classification acknowledgment moved to Discussion Limitations with explicit H1 impact statement
 

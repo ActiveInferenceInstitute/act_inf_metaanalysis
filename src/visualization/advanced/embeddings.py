@@ -66,17 +66,43 @@ def plot_pca_embeddings(
         loadings = pca.components_.T
         magnitude = np.sqrt(loadings[:, 0] ** 2 + loadings[:, 1] ** 2)
         top_idx = np.argsort(magnitude)[::-1][:n_loading_arrows]
-        scale = max(abs(coords).max(), 1.0) * 0.7
+        # Keep loading arrows inside the plotting region; scaling against 1.0
+        # made sparse TF-IDF coordinates expand the canvas and push labels
+        # far above the scatter panel.
+        scale = max(float(abs(coords).max()), 0.3) * 0.45
+        x_min, x_max = coords[:, 0].min(), coords[:, 0].max()
+        y_min, y_max = coords[:, 1].min(), coords[:, 1].max()
+        x_pad = max((x_max - x_min) * 0.08, 0.02)
+        y_pad = max((y_max - y_min) * 0.08, 0.02)
+        label_positions: list[tuple[float, float]] = []
         for idx in top_idx:
             dx, dy = loadings[idx] * scale
+            label_x = float(np.clip(dx * 1.15, x_min + x_pad, x_max - x_pad))
+            label_y = float(np.clip(dy * 1.15, y_min + y_pad, y_max - y_pad))
+            # Text labels need more clearance than their anchor points. Use a
+            # larger radial separation and a smaller publication-safe font so
+            # nearby high-loading terms do not merge into an unreadable stack.
+            min_separation = max(scale * 0.25, 0.08)
+            while any(
+                np.hypot(label_x - prev_x, label_y - prev_y) < min_separation
+                for prev_x, prev_y in label_positions
+            ):
+                label_y = min(label_y + min_separation, y_max - y_pad)
+                if any(
+                    np.hypot(label_x - prev_x, label_y - prev_y) < min_separation
+                    for prev_x, prev_y in label_positions
+                ) and label_y >= y_max - y_pad:
+                    label_x = max(label_x - min_separation, x_min + x_pad)
+                    label_y = max(label_y - min_separation, y_min + y_pad)
+            label_positions.append((label_x, label_y))
             ax.annotate(
                 feature_names[idx],
                 xy=(dx, dy),
-                fontsize=max(VIZ_CONFIG["font_size"] - 3, 16),
+                fontsize=max(VIZ_CONFIG["font_size"] - 6, 12),
                 alpha=0.7,
-                ha="center",
+                ha="left" if label_x >= 0 else "right",
                 arrowprops=dict(arrowstyle="<-", color="gray", lw=0.8),
-                xytext=(dx * 1.15, dy * 1.15),
+                xytext=(label_x, label_y),
             )
 
     var1, var2 = pca.explained_variance_ratio_ * 100

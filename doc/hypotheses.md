@@ -1,6 +1,6 @@
 # Standard Hypotheses
 
-**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
 
 The meta-analysis tracks evidence for and against eight standard hypotheses drawn from the Active Inference literature. Each hypothesis represents a major claim that the field collectively evaluates through ongoing research. The current corpus size, paper-level coverage, and per-hypothesis assertion counts are reported in `output/data/assertion_summary.json` and the rendered manuscript; this document defines the hypotheses themselves rather than fixing a particular run's numbers.
 

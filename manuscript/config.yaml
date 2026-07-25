@@ -4,7 +4,7 @@
 paper:
   title: "A Living Meta-Analysis Architecture for Active Inference"
   subtitle: "Assertion Extraction, Nanopublications, and Hypothesis Scoring"
-  version: "2.0.4"
+  version: "2.0.6"
   date: "" # Auto-generated
 
 authors:
@@ -51,7 +51,7 @@ metadata:
   license: "CC-BY-4.0"
   language: "en"
   # Canonical package URL (pyproject [project.urls]); monorepo path: projects_archive/act_inf_metaanalysis/
-  repository: "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
+  repository: "https://github.com/docxology/act_inf_metaanalysis"
 
 llm:
   reviews:
@@ -68,13 +68,35 @@ testing:
   max_infra_test_failures: 0
   max_project_test_failures: 0
 
+render:
+  formats:
+    pdf: true
+    html: true
+    slides: false
+    docx: false
+    epub: false
+
+analysis:
+  n_topics: 8
+  max_features: 500
+  min_year: 2000
+  seed: 42
+  topic_stability_seeds: [0, 1, 2, 3, 4, 5, 42]
+  complete_year_policy: exclude_current_partial_year_from_cagr
+  # Freeze the temporal snapshot for reproducible reruns; update deliberately
+  # when publishing a new live refresh.
+  as_of_date: "2026-07-24"
+
 # Project-specific configuration namespace.
 # Keys under project_config are passed through without schema validation warnings.
 # Access in scripts via: config.get('project_config', {}).get('search', {})
 project_config:
+  pipeline:
+    pipeline_version: "2.0.6"
+    prompt_version: "v2.0.6"
   search:
     start_year: 2000 # Only include papers published 2000 onward (enforced in pipeline)
-    query: '"active inference" "free energy principle" "energy-based model"'
+    query: "active inference free energy principle"
     max_results: 1000
     resume: true
     clear_corpus: false
@@ -88,21 +110,28 @@ project_config:
       - 'all:"Helmholtz machine" AND all:"inference"'
       - 'all:"Boltzmann machine" AND all:"free energy"'
       - 'all:"contrastive divergence" AND all:"generative model"'
+    semantic_scholar:
+      max_retries: 4
+      max_backoff_seconds: 60
+      api_key_env: "SEMANTIC_SCHOLAR_API_KEY"
 
   knowledge_graph:
     resume: true
-    checkpoint_interval: 50
+    checkpoint_interval: 25
     checkpoint_path: "output/data/nanopublications.jsonl"
     clear_assertions: false
     max_papers: null
 
   llm_extraction:
     model: "gemma3:4b"
-    base_url: "http://localhost:11434"
+    base_url: "http://localhost:11435"
+    worker_urls:
+      - "http://localhost:11435"
+      - "http://localhost:11435"
     temperature: 0.1
-    max_tokens: 2048
+    max_tokens: 1024
     timeout_seconds: 120
-    max_retries: 3
+    max_retries: 5
     min_confidence: 0.6
 
   hypothesis_definitions:
@@ -205,7 +234,7 @@ project_config:
       description: "Render all publication-ready visualizations from analysis JSON outputs"
 
     - name: inject_variables
-      script: 05_inject_variables.py
+      script: z_generate_manuscript_variables.py
       inputs:
         - output/data/corpus.jsonl
         - output/data/temporal_analysis.json

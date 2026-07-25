@@ -5,7 +5,7 @@
 ## Overview
 
 Single module (`variables.py`) that reads all pipeline output JSONs and produces a complete
-`dict[str, str]` of template variables. Called by `scripts/05_inject_variables.py`.
+`dict[str, str]` of template variables. Called by `scripts/z_generate_manuscript_variables.py` (with `05_inject_variables.py` as a compatibility wrapper).
 
 ## Invariants Agents Must Preserve
 
@@ -17,10 +17,9 @@ Single module (`variables.py`) that reads all pipeline output JSONs and produces
   hypothesis list order changes, update both files together.
 - **Infrastructure fallback**: The try/except import of `get_logger` is intentional. Do not
   remove it — the module must work both inside the template monorepo and standalone.
-- **Silent fallback values**: When a JSON file is missing, `compute_variables` returns an
-  empty string for that variable rather than raising. This means a missing file produces
-  blank text in the manuscript rather than a hard failure. Always check that all expected
-  JSON files exist in `output/data/` before running Stage 5.
+- **Hydration is a gate**: `scripts/z_generate_manuscript_variables.py` performs the
+  preflight check and fails when a source token has no computed value. Missing or stale
+  artifacts must be repaired upstream rather than rendered as blank manuscript text.
 - **LaTeX number formatting**: `_latex_number(n)` formats positive integers with `{,}` thousand
   separators for LaTeX (e.g., `2{,}795`). Negative numbers and floats are not handled — keep
   all counts non-negative.
@@ -37,12 +36,13 @@ Single module (`variables.py`) that reads all pipeline output JSONs and produces
 
 ```bash
 PYTHONPATH=/path/to/template:/path/to/act_inf_metaanalysis/src \
-  python scripts/05_inject_variables.py
+  python scripts/z_generate_manuscript_variables.py --project .
 ```
 
-Output: `output/manuscript/*.md` — rendered copies of all manuscript files with all `{{VAR}}`
-replaced. Only `VAR_NAME` in `02e_methods_viz_injection.md` is intentionally left unresolved
-(it is a syntax documentation example, not a real variable).
+Output: `output/manuscript/*.md` — rendered copies of manuscript source files with all
+uppercase `{{VAR}}` tokens replaced. The template engine recognizes the `z_` entrypoint
+automatically and the stage also writes `output/data/manuscript_variables.json` with token
+coverage and artifact hashes.
 
 ## Known Limitations
 

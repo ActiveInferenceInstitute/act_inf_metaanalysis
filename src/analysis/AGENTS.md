@@ -54,8 +54,9 @@ The default `max_iter=200` is an upper bound, not the typical stopping point.
 
 - **Subfield classifier**: Papers using non-canonical vocabulary may default to A2 (catch-all).
   Consider an embedding-based classifier for large future corpora.
-- **Temporal CAGR**: Uses single-year endpoint counts; an incomplete current year (e.g. April 2026)
-  will undercount that year's publications and deflate CAGR.
+- **Temporal CAGR**: The current partial year is retained in corpus totals and plots but excluded
+  from the headline CAGR endpoint; the exact policy and endpoint years are written to
+  `temporal_analysis.json`.
 - **Citation resolution**: Only ~5% of references resolve to corpus papers because API identifier
   formats (DOI, arXiv, S2 ID) rarely match exactly. Cross-format fuzzy matching would improve this.
 - **NMF initialization**: Random initialization means topics are locally optimal, not globally.

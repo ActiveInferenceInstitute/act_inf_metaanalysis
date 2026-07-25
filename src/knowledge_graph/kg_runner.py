@@ -14,6 +14,7 @@ from knowledge_graph.hypothesis import (
     configure_hypotheses,
     score_all_hypotheses,
     temporal_trend,
+    temporal_trend_with_counts,
 )
 from knowledge_graph.llm_extraction import LLMConfig
 from knowledge_graph.nanopublication import (
@@ -38,13 +39,22 @@ def _run_llm_extraction(papers, args, nanopub_path, kg_cfg, logger):
         timeout_seconds=kg_cfg.get("llm_timeout") or 120,
         max_retries=kg_cfg.get("llm_max_retries") or 3,
         min_confidence=kg_cfg.get("llm_min_confidence") or 0.0,
+        worker_urls=(
+            ()
+            if getattr(args, "_llm_url_cli", False)
+            else tuple(kg_cfg.get("worker_urls") or ())
+        ),
     )
     logger.info(
         "Extracting assertions via LLM (model=%s, checkpoint_interval=%d)...",
         llm_config.model,
         llm_config.checkpoint_interval,
     )
-    return extract_assertions(papers, llm_config=llm_config)
+    return extract_assertions(
+        papers,
+        llm_config=llm_config,
+        pipeline_version=kg_cfg.get("pipeline_version"),
+    )
 
 
 def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path) -> None:
@@ -64,10 +74,14 @@ def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path
     )
     if kg_cfg.get("max_papers") is not None and args.max_papers is None:
         args.max_papers = kg_cfg["max_papers"]
-    if kg_cfg.get("llm_model"):
+    if kg_cfg.get("llm_model") and not getattr(args, "_llm_model_cli", False):
         args.llm_model = kg_cfg["llm_model"]
-    if kg_cfg.get("llm_url"):
+    if kg_cfg.get("llm_url") and not getattr(args, "_llm_url_cli", False):
         args.llm_url = kg_cfg["llm_url"]
+    if args.llm_model is None:
+        args.llm_model = "gemma3:4b"
+    if args.llm_url is None:
+        args.llm_url = "http://localhost:11434"
 
     configure_hypotheses(config_path if config_path.exists() else None)
 
@@ -83,9 +97,9 @@ def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path
     logger.info("Loaded %d papers (filtered >= %d)", len(papers), KG_MIN_YEAR)
 
     nanopub_path = data_dir / "nanopublications.jsonl"
-    legacy_checkpoint = output_dir / "llm_checkpoint.jsonl"
-    if legacy_checkpoint.exists():
-        legacy_checkpoint.unlink()
+    stale_checkpoint = output_dir / "llm_checkpoint.jsonl"
+    if stale_checkpoint.exists():
+        stale_checkpoint.unlink()
 
     if args.clear_assertions and nanopub_path.exists():
         nanopub_path.unlink()
@@ -104,6 +118,21 @@ def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path
         if nanopub_path.exists():
             all_nanopubs = deserialize_nanopubs(nanopub_path)
 
+    coverage_path = data_dir / "extraction_coverage.json"
+    if coverage_path.exists():
+        with open(coverage_path, encoding="utf-8") as handle:
+            coverage = json.load(handle)
+        if coverage.get("unprocessed_papers", 0) or coverage.get("failed_papers", 0):
+            raise RuntimeError(
+                "LLM extraction coverage is incomplete: "
+                f"{coverage.get('failed_papers', 0)} failed, "
+                f"{coverage.get('unprocessed_papers', 0)} unprocessed"
+            )
+    elif papers and not (all_nanopubs and not pending and not args.clear_assertions):
+        raise RuntimeError("Missing extraction_coverage.json after LLM extraction")
+    elif all_nanopubs and not pending and not args.clear_assertions:
+        logger.warning("Nanopublication fixture has no extraction coverage report")
+
     print(str(nanopub_path))
     if all_nanopubs:
         trig_path = nanopub_path.with_suffix(".trig")
@@ -118,7 +147,7 @@ def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path
 
     yearly_scores = {}
     for hyp_id in _schema.HYPOTHESIS_CATEGORIES:
-        trend = temporal_trend(assertions, hyp_id, papers)
+        trend = temporal_trend_with_counts(assertions, hyp_id, papers)
         if trend:
             yearly_scores[hyp_id] = {str(k): v for k, v in trend.items()}
 

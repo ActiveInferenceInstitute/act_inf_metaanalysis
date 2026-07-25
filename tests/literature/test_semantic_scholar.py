@@ -4,14 +4,13 @@ Uses pytest-httpserver to serve realistic S2 JSON responses locally.
 Tests search, get_paper_details, and get_citations functions.
 """
 
-import json
-import re
 
 import pytest
 import requests
 from pytest_httpserver import HTTPServer
 
 from literature.semantic_scholar import (
+    _retry_after_seconds,
     get_citations,
     get_paper_details,
     search_semantic_scholar,
@@ -534,3 +533,8 @@ class TestS2PaginationAndRetry:
         )
         assert len(papers) == 1
         assert papers[0].title == "Success"
+
+    def test_retry_after_header_parser(self):
+        assert _retry_after_seconds("2") == 2.0
+        assert _retry_after_seconds("not-a-delay") is None
+        assert _retry_after_seconds(None) is None

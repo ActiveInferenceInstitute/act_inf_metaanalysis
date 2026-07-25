@@ -15,9 +15,22 @@ import matplotlib.pyplot as plt
 
 from visualization.style import VIZ_CONFIG, HYPOTHESIS_NAMES
 
+_HYPOTHESIS_ID_NAMES = {
+    "FEP_UNIVERSALITY": "FEP Universality",
+    "AIF_OPTIMALITY": "AIF Optimality",
+    "MARKOV_BLANKET_REALISM": "Markov Blanket Realism",
+    "PREDICTIVE_CODING": "Predictive Coding",
+    "SCALABILITY": "Scalability",
+    "CLINICAL_UTILITY": "Clinical Utility",
+    "MORPHOGENESIS": "Morphogenesis",
+    "LANGUAGE_AIF": "Language AIF",
+}
+
 
 def _format_hypothesis_label(key: str) -> str:
     """Convert hypothesis key to readable label using HYPOTHESIS_NAMES."""
+    if key in _HYPOTHESIS_ID_NAMES:
+        return _HYPOTHESIS_ID_NAMES[key]
     # Try direct upper-case lookup (H1, H2, ...)
     upper = key.upper().split("_")[0] if "_" in key else key.upper()
     if upper in HYPOTHESIS_NAMES:
@@ -91,16 +104,10 @@ def plot_hypothesis_dashboard(
     ax.set_xlim(-1.1, 1.1)
     ax.set_xlabel("Evidence Score", fontsize=VIZ_CONFIG["font_size"])
     ax.set_title(
-        "Hypothesis Evidence Dashboard",
+        f"Hypothesis Evidence Dashboard (N = {len(scores)} hypotheses)",
         fontsize=VIZ_CONFIG["title_size"],
         fontweight="bold",
-    )
-    # Add N= subtitle
-    n_hypotheses = len(scores)
-    ax.text(
-        0.5, 1.0, f"N = {n_hypotheses} hypotheses",
-        transform=ax.transAxes, ha="center", va="bottom",
-        fontsize=max(VIZ_CONFIG["font_size"] - 2, 16), color="gray",
+        pad=16,
     )
     ax.grid(axis="x", alpha=VIZ_CONFIG["grid_alpha"])
     ax.invert_yaxis()
@@ -115,6 +122,9 @@ def plot_hypothesis_dashboard(
 def plot_evidence_timeline(
     yearly_scores: dict[str, dict[int, float]],
     output_path: Path,
+    *,
+    yearly_assertion_counts: dict[str, dict[int, int]] | None = None,
+    sparse_threshold: int = 10,
 ) -> Path:
     """Line chart showing hypothesis score evolution over time.
 
@@ -144,6 +154,7 @@ def plot_evidence_timeline(
 
     palette = VIZ_CONFIG["palette"]
 
+    sparse_label_added = False
     for i, (hypothesis, year_data) in enumerate(yearly_scores.items()):
         if not year_data:
             continue
@@ -153,6 +164,28 @@ def plot_evidence_timeline(
         label = _format_hypothesis_label(hypothesis)
         ax.plot(years, values, color=color, linewidth=2.0, marker="o",
                 markersize=5, label=label, alpha=0.85)
+        if yearly_assertion_counts:
+            counts = yearly_assertion_counts.get(hypothesis, {})
+            sparse_years = [
+                year for year in years if counts.get(year, 0) < sparse_threshold
+            ]
+            if sparse_years:
+                sparse_values = [year_data[year] for year in sparse_years]
+                ax.scatter(
+                    sparse_years,
+                    sparse_values,
+                    s=70,
+                    facecolors="white",
+                    edgecolors=color,
+                    linewidths=1.5,
+                    zorder=4,
+                    label=(
+                        f"Sparse evidence (<{sparse_threshold} assertions)"
+                        if not sparse_label_added
+                        else "_nolegend_"
+                    ),
+                )
+                sparse_label_added = True
 
     # Neutral line and shaded region
     ax.axhline(y=0, color="black", linewidth=1.0, linestyle="--", alpha=0.6)
@@ -353,4 +386,3 @@ def plot_assertion_summary(
     plt.close(fig)
 
     return output_path
-

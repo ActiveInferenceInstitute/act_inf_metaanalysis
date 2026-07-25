@@ -1,6 +1,5 @@
 from __future__ import annotations
 from pathlib import Path
-import pytest
 from visualization.hypothesis_charts import (
     plot_hypothesis_dashboard,
     plot_evidence_timeline,
@@ -207,7 +206,11 @@ class TestHypothesisCharts:
             "EMPTY_HYP": {},
         }
         output = tmp_path / "partial_timeline.png"
-        result = plot_evidence_timeline(yearly, output)
+        result = plot_evidence_timeline(
+            yearly,
+            output,
+            yearly_assertion_counts={"FEP_UNIVERSALITY": {2020: 2}},
+        )
         assert result == output
         assert output.exists()
 

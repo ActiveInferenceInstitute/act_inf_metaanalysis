@@ -24,6 +24,8 @@ logger = logging.getLogger(__name__)
 def extract_assertions(
     papers: list[Paper],
     llm_config: LLMConfig | None = None,
+    *,
+    pipeline_version: str | None = None,
 ) -> list[Assertion]:
     """Extract assertions from papers via LLM analysis.
 
@@ -53,4 +55,7 @@ def extract_assertions(
         config.base_url,
         config.nanopub_path or "None (in-memory only)",
     )
-    return extract_assertions_llm(papers, config)
+    kwargs = {}
+    if pipeline_version is not None:
+        kwargs["pipeline_version"] = pipeline_version
+    return extract_assertions_llm(papers, config, **kwargs)

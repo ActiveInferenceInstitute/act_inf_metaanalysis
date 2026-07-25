@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-import pytest
 from pytest_httpserver import HTTPServer
 
 from literature.corpus import Corpus
@@ -125,7 +124,7 @@ project_config:
         skip_arxiv=True,
         skip_s2=True,
         skip_openalex=True,
-        resume=True,
+        resume=None,
         clear_corpus=False,
         start_year=None,
         config=str(config_path),

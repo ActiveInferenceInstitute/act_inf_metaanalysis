@@ -1,7 +1,6 @@
 from __future__ import annotations
 from pathlib import Path
 import networkx as nx
-import pytest
 from visualization.citation_plots import plot_citation_network, plot_degree_distribution
 
 def _make_small_graph() -> nx.DiGraph:

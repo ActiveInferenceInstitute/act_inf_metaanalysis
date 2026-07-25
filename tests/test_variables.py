@@ -12,11 +12,9 @@ Tests cover:
 from __future__ import annotations
 
 import json
-import os
 import sys
 from pathlib import Path
 
-import pytest
 
 # Ensure infrastructure is importable
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent
@@ -27,8 +25,10 @@ from manuscript.variables import (
     _count_jsonl_lines,
     _count_total_references,
     _load_json,
+    collect_manuscript_tokens,
     compute_variables,
     inject_variables,
+    write_manuscript_variables,
 )
 
 
@@ -540,3 +540,18 @@ class TestHypothesisAliasMapping:
         (data_dir / "corpus.jsonl").write_text('{"title":"A"}\n{"title":"B"}\n')
         variables = compute_variables(tmp_path)
         assert variables["CORPUS_SIZE"] == "2"
+
+    def test_manuscript_manifest_records_tokens_and_hashes(self, tmp_path):
+        manuscript = tmp_path / "manuscript"
+        manuscript.mkdir()
+        (manuscript / "00_abstract.md").write_text("N={{CORPUS_SIZE}}", encoding="utf-8")
+        (manuscript / "AGENTS.md").write_text("{{NOT_A_VARIABLE}}", encoding="utf-8")
+        output = tmp_path / "output"
+        (output / "data").mkdir(parents=True)
+        (output / "figures").mkdir()
+        (output / "data" / "corpus.jsonl").write_text("{}\n", encoding="utf-8")
+        assert collect_manuscript_tokens(manuscript) == {"CORPUS_SIZE": ["00_abstract.md"]}
+        path = write_manuscript_variables(output, tmp_path, {"CORPUS_SIZE": "1"})
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        assert payload["source_tokens"]["CORPUS_SIZE"] == ["00_abstract.md"]
+        assert payload["source_files"]

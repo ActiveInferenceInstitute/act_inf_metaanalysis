@@ -6,6 +6,7 @@ import argparse
 import json
 import logging
 import time
+from datetime import date
 from pathlib import Path
 
 import networkx as nx
@@ -25,6 +26,8 @@ from analysis.temporal_analysis import (
 )
 from analysis.text_processing import build_tfidf_matrix, tokenize_documents
 from analysis.topic_modeling import fit_nmf_topics
+from analysis.topic_stability import compute_topic_stability
+from config_loader import load_analysis_config
 from literature.corpus import Corpus
 from literature.models import Paper
 
@@ -33,7 +36,7 @@ def _count_paper_references(paper: Paper) -> int:
     refs = getattr(paper, "references", None)
     if isinstance(refs, list) and refs:
         return len(refs)
-    return len(getattr(paper, "referenced_works", []) or [])
+    return 0
 
 
 def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) -> None:
@@ -44,6 +47,13 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
     data_dir = output_dir / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
     pipeline_start = time.monotonic()
+
+    config_path = project_root / "manuscript" / "config.yaml"
+    analysis_cfg = load_analysis_config(config_path)
+    args.n_topics = analysis_cfg["n_topics"]
+    args.max_features = analysis_cfg["max_features"]
+    args.min_year = analysis_cfg["min_year"]
+    args.seed = analysis_cfg["seed"]
 
     corpus = Corpus.load(Path(args.corpus))
     papers = [p for p in corpus.papers if p.year is None or p.year >= args.min_year]
@@ -65,7 +75,21 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
 
     try:
         temporal = compute_temporal_metrics(papers)
-        growth = estimate_growth_rate(temporal["year_counts"])
+        configured_as_of_date = analysis_cfg.get("as_of_date")
+        as_of_date = (
+            date.fromisoformat(str(configured_as_of_date))
+            if configured_as_of_date
+            else date.today()
+        )
+        observed_last_year = temporal["last_year"]
+        current_year_is_partial = observed_last_year == as_of_date.year
+        cagr_end_year = (
+            as_of_date.year - 1 if current_year_is_partial else observed_last_year
+        )
+        growth = estimate_growth_rate(
+            temporal["year_counts"],
+            end_year=cagr_end_year,
+        )
         temporal_results = {
             "year_counts": {str(k): v for k, v in temporal["year_counts"].items()},
             "smoothed_annual": {
@@ -75,10 +99,20 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
             "first_year": temporal["first_year"],
             "last_year": temporal["last_year"],
             "total_papers": temporal["total_papers"],
+            "corpus_size": len(papers),
+            "undated_papers": len(papers) - temporal["total_papers"],
             "peak_year": temporal["peak_year"],
             "mean_growth_rate": growth["mean_growth_rate"],
             "doubling_time": growth["doubling_time"],
             "cagr": growth["cagr"],
+            "as_of_date": as_of_date.isoformat(),
+            "current_year": as_of_date.year,
+            "current_year_is_partial": current_year_is_partial,
+            "current_year_papers": temporal["year_counts"].get(as_of_date.year, 0),
+            "cagr_start_year": growth["cagr_start_year"],
+            "cagr_end_year": growth["cagr_end_year"],
+            "cagr_excludes_partial_year": current_year_is_partial,
+            "complete_year_policy": analysis_cfg["complete_year_policy"],
         }
     except ValueError as exc:
         logger.warning("Temporal analysis skipped: %s", exc)
@@ -124,6 +158,17 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
             json.dump(topics, handle, indent=2)
         print(str(topics_path))
 
+        stability = compute_topic_stability(
+            tfidf_matrix,
+            feature_names,
+            n_topics=args.n_topics,
+            seeds=analysis_cfg["topic_stability_seeds"],
+        )
+        stability_path = data_dir / "topic_stability.json"
+        with open(stability_path, "w", encoding="utf-8") as handle:
+            json.dump(stability, handle, indent=2)
+        print(str(stability_path))
+
     ref_index = build_reference_index(papers)
     citations = resolve_citations(papers, ref_index, logger)
     graph = build_citation_graph(papers, citations)
@@ -136,6 +181,13 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
     gml_path = data_dir / "citation_graph.gml"
     nx.write_gml(graph, str(gml_path))
 
+    view_limit = 100
+    view_nodes = sorted(
+        graph.in_degree(), key=lambda item: (-item[1], str(item[0]))
+    )[:view_limit]
+    view_node_ids = {node_id for node_id, _degree in view_nodes}
+    view_edges = graph.subgraph(view_node_ids).number_of_edges()
+
     network_results = {
         "num_nodes": metrics["num_nodes"],
         "num_edges": metrics["num_edges"],
@@ -147,6 +199,8 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
         "connected_components": metrics["connected_components"],
         "num_communities": len(set(communities.values())) if communities else 0,
         "total_references": sum(_count_paper_references(p) for p in papers),
+        "figure_view_nodes": min(view_limit, graph.number_of_nodes()),
+        "figure_view_edges": view_edges,
         "top_pagerank": {k: float(v) for k, v in list(metrics["pagerank"].items())[:5]},
         "top_hubs": {k: float(v) for k, v in list(metrics.get("hubs", {}).items())[:5]},
         "top_authorities": {

@@ -13,7 +13,6 @@ import sys
 from contextlib import contextmanager
 from pathlib import Path
 
-import pytest
 
 # Scripts directory
 SCRIPTS_DIR = Path(__file__).resolve().parent.parent / "scripts"
@@ -73,7 +72,7 @@ class TestLiteratureSearchScript:
             args = mod.parse_args()
         assert "active inference" in args.query
         assert args.max_results == 1000
-        assert args.resume is True
+        assert args.resume is None
 
     def test_parse_args_no_resume(self):
         """Verify --no-resume disables loading an existing corpus."""

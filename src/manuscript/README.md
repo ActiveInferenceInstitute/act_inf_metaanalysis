@@ -2,8 +2,9 @@
 
 Variable computation and injection for the Active Inference Meta-Analysis manuscript.
 Reads pipeline output JSONs and produces a `dict[str, str]` of 127+ template variables
-that `scripts/05_inject_variables.py` substitutes into `{{VAR}}` placeholders in every
-`manuscript/*.md` file, writing rendered copies to `output/manuscript/`.
+that `scripts/z_generate_manuscript_variables.py` substitutes into `{{VAR}}` placeholders in every
+`manuscript/*.md` file, writing rendered copies to `output/manuscript/`; the numbered
+`05_inject_variables.py` script remains a compatibility wrapper.
 
 ## Module
 

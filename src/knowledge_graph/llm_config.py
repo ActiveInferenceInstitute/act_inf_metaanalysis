@@ -20,3 +20,4 @@ class LLMConfig:
     checkpoint_interval: int = 50
     max_papers: int | None = None
     min_confidence: float = 0.0
+    worker_urls: tuple[str, ...] = ()

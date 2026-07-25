@@ -1,6 +1,6 @@
 # API Reference
 
-**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
 
 Public API for the five packages in `src/`. The pipeline tracks **8 hypotheses** and renders **16 figures**; corpus size and assertion counts evolve with each run (see the latest `output/data/temporal_analysis.json` and `output/data/assertion_summary.json` for current numbers).
 

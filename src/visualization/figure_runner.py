@@ -38,7 +38,7 @@ FIGURE_CAPTIONS = {
     "subfield_distribution.png": "Distribution of distinct subfields identified in the literature.",
     "growth_curve.png": "Annual and cumulative growth of publications over time.",
     "subfield_timeline.png": "Temporal evolution of publications by subfield.",
-    "citation_network.png": "Citation network demonstrating connections between top papers.",
+    "citation_network.png": "Top-100-node citation-network view, with full-graph node and edge counts reported in the figure and source analysis.",
     "degree_distribution.png": "Degree distribution of nodes within the citation network.",
     "hypothesis_dashboard.png": "Dashboard showing evidence scores for proposed hypotheses.",
     "evidence_timeline.png": "Timeline of evidence score accumulation for each hypothesis.",
@@ -104,6 +104,14 @@ def generate_all_figures(args: argparse.Namespace) -> list[str]:
                     cumulative,
                     output_dir / "growth_curve.png",
                     smoothed_annual=smoothed,
+                    current_year_is_partial=bool(
+                        temporal_data.get("current_year_is_partial", False)
+                    ),
+                    as_of_date=temporal_data.get("as_of_date"),
+                    cagr=temporal_data.get("cagr"),
+                    cagr_end_year=temporal_data.get("cagr_end_year"),
+                    corpus_size=temporal_data.get("corpus_size"),
+                    undated_papers=int(temporal_data.get("undated_papers", 0)),
                 )
             )
         )
@@ -114,7 +122,19 @@ def generate_all_figures(args: argparse.Namespace) -> list[str]:
             sf: {int(k): v for k, v in yrs.items()} for sf, yrs in timeline_data.items()
         }
         generated_paths.append(
-            str(plot_subfield_timeline(converted, output_dir / "subfield_timeline.png"))
+            str(
+                plot_subfield_timeline(
+                    converted,
+                    output_dir / "subfield_timeline.png",
+                    corpus_size=temporal_data.get("corpus_size"),
+                    undated_papers=int(temporal_data.get("undated_papers", 0)),
+                    current_year_is_partial=bool(
+                        temporal_data.get("current_year_is_partial", False)
+                    ),
+                    current_year=temporal_data.get("current_year"),
+                    as_of_date=temporal_data.get("as_of_date"),
+                )
+            )
         )
 
     network_data = _load_json(input_dir / "citation_network.json", logger)
@@ -131,7 +151,13 @@ def generate_all_figures(args: argparse.Namespace) -> list[str]:
                     graph.add_node(node_id)
             if graph.number_of_nodes() > 0:
                 generated_paths.append(
-                    str(plot_citation_network(graph, output_dir / "citation_network.png"))
+                    str(
+                        plot_citation_network(
+                            graph,
+                            output_dir / "citation_network.png",
+                            full_graph_metrics=network_data,
+                        )
+                    )
                 )
                 generated_paths.append(
                     str(
@@ -155,13 +181,23 @@ def generate_all_figures(args: argparse.Namespace) -> list[str]:
 
     trends_data = _load_json(input_dir / "hypothesis_trends.json", logger)
     if trends_data:
-        converted_trends = {
-            hyp: {int(k): v for k, v in yrs.items()} for hyp, yrs in trends_data.items()
-        }
+        converted_trends = {}
+        yearly_counts = {}
+        for hyp, years in trends_data.items():
+            converted_trends[hyp] = {}
+            yearly_counts[hyp] = {}
+            for key, value in years.items():
+                if isinstance(value, dict):
+                    converted_trends[hyp][int(key)] = float(value.get("score", 0.0))
+                    yearly_counts[hyp][int(key)] = int(value.get("assertion_count", 0))
+                else:
+                    converted_trends[hyp][int(key)] = float(value)
         generated_paths.append(
             str(
                 plot_evidence_timeline(
-                    converted_trends, output_dir / "evidence_timeline.png"
+                    converted_trends,
+                    output_dir / "evidence_timeline.png",
+                    yearly_assertion_counts=yearly_counts,
                 )
             )
         )
@@ -197,6 +233,7 @@ def generate_all_figures(args: argparse.Namespace) -> list[str]:
                             doc_labels,
                             feature_names,
                             output_dir / "pca_embeddings.png",
+                            n_loading_arrows=6,
                         )
                     ),
                     str(
@@ -276,7 +313,12 @@ def _register_figures(
             f"Figure showing {filename.replace('.png', '').replace('_', ' ')}.",
         )
         label = f"fig:{path.stem}"
-        if not figure_manager.get_figure(label):
+        existing = figure_manager.get_figure(label)
+        if existing:
+            existing.caption = caption
+            existing.generated_by = "04_generate_figures.py"
+            figure_manager._save_registry()
+        else:
             figure_manager.register_figure(
                 filename=filename,
                 caption=caption,

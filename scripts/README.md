@@ -20,17 +20,22 @@ python scripts/03_build_knowledge_graph.py --llm-model gemma3:4b
 # 4. Generate publication figures
 python scripts/04_generate_figures.py --dpi 300
 
-# 5. Inject variables into manuscript templates
-python scripts/05_inject_variables.py
+# 5. Hydrate manuscript variables through the canonical template entrypoint
+python scripts/z_generate_manuscript_variables.py --project .
 
 # 6. Assess full-text availability
 python scripts/06_fulltext_assessment.py
 
-# 7. (Validation / QA — optional) Rule-based reference-annotator agreement study
+# 7. Deterministic validation / QA
 python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
+python scripts/08_validate_artifacts.py
+python scripts/09_write_pipeline_manifest.py
+python scripts/10_release_preflight.py
+python scripts/11_prepare_evidence_pilots.py
+python scripts/12_snapshot_output.py
 ```
 
-Scripts `01`–`05` are the core content-generation chain (run in order). Scripts `06` and `07` are auxiliary QA tools run independently after `03`/`05`.
+Scripts `01`–`05` are the core content-generation chain (run in order). Scripts `06`–`09` close QA, cross-artifact validation, and provenance. Scripts `10` and `11` run non-LLM release preflight and prepare blank review queues. Script `12` inventories or safely snapshots disposable output.
 
 ## Pipeline Overview
 
@@ -40,9 +45,14 @@ Scripts `01`–`05` are the core content-generation chain (run in order). Script
 | 02 | `02_meta_analysis_pipeline.py` | TF-IDF, NMF topics, citation network, temporal analysis | ~30 sec |
 | 03 | `03_build_knowledge_graph.py` | LLM assertion extraction, hypothesis scoring | ~30 min (LLM) |
 | 04 | `04_generate_figures.py` | 16 publication-quality PNG figures | ~15 sec |
-| 05 | `05_inject_variables.py` | `{{VAR}}` → real values in manuscript | ~2 sec |
-| 06 | `06_fulltext_assessment.py` | Open access / PDF availability report (auxiliary QA) | ~5 sec |
-| 07 | `07_run_validation_study.py` | Rule-based reference-annotator agreement study — deterministic reproducibility floor, not human validation (auxiliary QA) | ~5 sec |
+| 05 | `z_generate_manuscript_variables.py` | `{{VAR}}` → real values plus token manifest | ~2 sec |
+| 06 | `06_fulltext_assessment.py` | Open access / PDF availability report | ~5 sec |
+| 07 | `07_run_validation_study.py` | Rule-based reference-annotator agreement study — deterministic reproducibility floor, not human validation | ~5 sec |
+| 08 | `08_validate_artifacts.py` | Cross-artifact contract and token/figure/provenance gate | seconds |
+| 09 | `09_write_pipeline_manifest.py` | Hashes, versions, counts, run IDs, and gate manifest | seconds |
+| 10 | `10_release_preflight.py` | Tests, artifact/RDF/metadata/render release gate and local package | seconds/minutes |
+| 11 | `11_prepare_evidence_pilots.py` | Deterministic full-text and human-review queues | seconds |
+| 12 | `12_snapshot_output.py` | Safe output inventory and non-overwriting snapshot copy | seconds/minutes |
 
 > **Note:** Scripts `01`–`05` must run in order — each stage depends on prior outputs. Scripts `06` and `07` are optional QA steps run independently (07 consumes the `output/data/` corpus + nanopublications produced by `01`/`03`).
 
@@ -73,7 +83,7 @@ search:
     - "predictive coding"
 
 knowledge_graph:
-  checkpoint_interval: 50
+  checkpoint_interval: 25
   max_papers: null
 ```
 

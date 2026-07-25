@@ -1,6 +1,6 @@
 # Output Data Formats
 
-**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
 
 Schema reference for all pipeline output artifacts. Each file is produced by one pipeline stage and consumed by downstream stages. The corpus size, assertion counts, and citation-graph statistics evolve with each pipeline run; consult the latest `output/data/*.json` summaries or the rendered manuscript (which injects values from `temporal_analysis.json`, `citation_network.json`, and `assertion_summary.json`) for current numbers. The schemas documented below are stable across runs.
 
@@ -183,6 +183,15 @@ RDF TriG serialization of all nanopublications, compliant with the nanopub.net s
     <http://activeinference.institute/nanopub/a3f91b> dc:created "2026-04-07T14:00:00Z"^^xsd:dateTime .
 }
 ```
+
+### `extraction_state.json`
+
+Atomic operational sidecar for checkpointed extraction. `status` is one of
+`running`, `checkpoint`, `interrupted`, or `complete`; `run_id`, model, prompt,
+and pipeline versions must remain constant across a resume. The JSONL
+nanopublications remain authoritative for processed paper IDs. A publication
+run is not complete until this sidecar is `complete` and
+`extraction_coverage.json` reports zero failed or unprocessed eligible papers.
 
 ### `hypothesis_scores.json`
 

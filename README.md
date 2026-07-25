@@ -2,11 +2,11 @@
 
 > **Archive status:** This tree lives under `projects_archive/act_inf_metaanalysis/` in the template monorepo. It is preserved for inspection and standalone runs; it is not executed by `./run.sh` unless promoted to `projects/`.
 
-**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis/actions)
-[![Coverage gate](https://img.shields.io/badge/coverage-gate%2090%25-brightgreen)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
-[![Tests](https://img.shields.io/badge/tests-pytest-blue)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis/actions)
+[![Coverage gate](https://img.shields.io/badge/coverage-gate%2090%25-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)
+[![Tests](https://img.shields.io/badge/tests-pytest-blue)](https://github.com/docxology/act_inf_metaanalysis)
 [![Python 3.12](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -126,8 +126,8 @@ python3 scripts/03_build_knowledge_graph.py
 # 4. Render all manuscript figures
 python3 scripts/04_generate_figures.py --dpi 300
 
-# 5. Inject computed variables into manuscript markdown
-python3 scripts/05_inject_variables.py
+# 5. Hydrate manuscript variables through the template-recognized entrypoint
+python3 scripts/z_generate_manuscript_variables.py --project .
 
 # 6. Audit full-text availability across the corpus
 python3 scripts/06_fulltext_assessment.py
@@ -136,9 +136,23 @@ python3 scripts/06_fulltext_assessment.py
 #    Deterministic reproducibility floor, NOT a human validation. Not part of the
 #    core content-generation chain; run after 03 has produced nanopublications.
 python3 scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
+
+# 8–9. Validate cross-artifact consistency and write the pipeline manifest
+python3 scripts/08_validate_artifacts.py
+python3 scripts/09_write_pipeline_manifest.py
+python3 scripts/10_release_preflight.py
+python3 scripts/11_prepare_evidence_pilots.py
+python3 scripts/12_snapshot_output.py
+python3 scripts/13_verify_tooling_inventory.py
+python3 scripts/14_verify_release_package.py
 ```
 
-Steps 1–5 are the core content-generation chain; steps 6 (full-text assessment) and 7 (validation study) are auxiliary QA tools run independently. See [`scripts/AGENTS.md`](scripts/AGENTS.md) for each script's full flag reference.
+If extraction is interrupted, rerun Stage 3 with the same config and without
+`--clear-assertions`. Checkpointed paper IDs are skipped and the original
+extraction `run_id` is preserved; `output/data/extraction_state.json` records
+whether the run is resumable or complete.
+
+Steps 1–5 are the content-generation chain; steps 6–9 provide full-text QA, deterministic validation, cross-artifact validation, and manifest closure. Steps 10–14 provide release preflight, review-queue preparation, snapshots, tooling-source verification, and release-package verification. See [`doc/scripts.md`](doc/scripts.md) for each script's full flag reference.
 
 ---
 
@@ -156,7 +170,7 @@ A nested `.git/` directory may be present from standalone repository history; th
 projects_archive/act_inf_metaanalysis/
 ├── src/                        # Core library (literature, analysis, knowledge_graph, visualization)
 ├── tests/                      # Pytest suite; 90% coverage gate in pyproject.toml
-├── scripts/                    # Numbered orchestrators (01–07)
+├── scripts/                    # Numbered orchestrators (01–14) plus canonical hydration
 ├── manuscript/                 # Markdown sections, config.yaml, references.bib
 └── doc/                        # Architecture, API, data formats, scripts
 ```
@@ -191,6 +205,8 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 - **[Data Formats](doc/data_formats.md)** — Schema definitions for Corpus mapping, RDF serializations, and outputs.
 - **[Project Agents](AGENTS.md)** — Operational metadata and configuration requirements for this distinct subproject.
 - **[Documentation Hub](doc/README.md)** — Project-level quick start and advanced pipeline flags.
+- **[Project TODO](TODO.md)** — Authoritative forward backlog for minor and medium work, with acceptance gates.
+- **[AI Meta-Analysis Playbook](doc/ai_meta_analysis_playbook.md)** — Reproducible stage-by-stage operating procedure.
 
 *Note: The project applies an automated documentation parity standard constraint. Every underlying module inside `src/` and `tests/` features dedicated component-level `README.md` and `AGENTS.md` files mapping code functionality tightly to logic constraints.*
 
@@ -200,8 +216,8 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 
 The canonical, continuously updated changelog lives in **[CHANGELOG.md](CHANGELOG.md)** — treat it as the single source of truth. (An earlier copy was duplicated here and drifted several releases behind; this section is intentionally kept to a short pointer to avoid that recurring.)
 
-**Current release: v2.0.4 (2026-07-23)** — completes the v2.0.1–v2.0.3 *honest validation reframe*: the extraction-validation study is a deterministic **rule-based reference-annotator agreement check** (a reproducibility floor), **not** a human validation; structured extraction provenance now runs end-to-end; and test coverage was closed on the validation modules.
+**Current release: v2.0.6 (2026-07-24)** — adds configuration-driven live-refresh provenance, partial-year-safe temporal statistics, topic stability diagnostics, cross-artifact validation, canonical manuscript hydration, and PDF/HTML-only render closure while preserving the honest rule-based validation boundary.
 
-See **[CHANGELOG.md](CHANGELOG.md)** for the full per-release history (v2.0.0 → v2.0.4).
+See **[CHANGELOG.md](CHANGELOG.md)** for the full per-release history (v2.0.0 → v2.0.6).
 
 ---

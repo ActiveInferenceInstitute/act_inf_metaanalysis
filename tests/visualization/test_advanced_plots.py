@@ -1,7 +1,6 @@
 from __future__ import annotations
 from pathlib import Path
 import numpy as np
-import pytest
 from visualization.advanced_plots import (
     plot_word_cloud,
     plot_pca_embeddings,

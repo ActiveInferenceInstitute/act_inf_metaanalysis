@@ -13,6 +13,7 @@ from analysis.topic_modeling import (
     get_document_topics,
     _nmf_multiplicative_updates,
 )
+from analysis.topic_stability import compute_topic_stability
 
 
 # ── Test data ─────────────────────────────────────────────────────────
@@ -81,6 +82,15 @@ class TestNMFMultiplicativeUpdates:
         np.testing.assert_array_equal(H1, H2)
 
 
+def test_topic_stability_reports_seed_comparisons() -> None:
+    matrix, features = build_tfidf_matrix(DOCS_TWO_THEMES)
+    result = compute_topic_stability(
+        matrix, features, n_topics=2, seeds=(0, 42)
+    )
+    assert result["n_topics"] == 2
+    assert result["primary_seed"] == 42
+    assert len(result["pairwise_comparisons"]) == 1
+    assert 0.0 <= result["min_jaccard"] <= 1.0
 # ── fit_nmf_topics ───────────────────────────────────────────────────
 
 

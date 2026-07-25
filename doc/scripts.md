@@ -1,12 +1,19 @@
 # Pipeline Scripts Reference
 
-The meta-analysis pipeline is composed of **six** numbered scripts, each a **thin orchestrator** that handles only I/O and coordination — all computation is imported from `src/` modules (runners under `src/literature/`, `src/analysis/`, `src/knowledge_graph/`, `src/visualization/`).
+The meta-analysis pipeline is composed of numbered scripts (01–14) plus the canonical `z_generate_manuscript_variables.py` hydration entrypoint. Each is a **thin orchestrator** that handles only I/O and coordination — all computation is imported from `src/` modules (runners under `src/literature/`, `src/analysis/`, `src/knowledge_graph/`, `src/visualization/`).
 
-Run scripts from the project root:
+Run scripts from the archived project root:
 
 ```bash
-cd projects_archive/act_inf_metaanalysis
+cd projects/archive/_ActiveInference/act_inf_metaanalysis
 ```
+
+The live configuration in `manuscript/config.yaml` is the single source of
+truth for pipeline and prompt versions, the `gemma3:4b` Ollama endpoint,
+eight-topic NMF settings, the frozen temporal snapshot date, and the
+PDF/HTML-only render policy. The example configuration mirrors these controls
+for a new checkout. `analysis.as_of_date` is intentionally explicit: update it
+only when starting a new live literature snapshot.
 
 ---
 
@@ -24,9 +31,10 @@ Queries arXiv, Semantic Scholar, and OpenAlex, then merges results into a dedupl
 | `--skip-arxiv` | flag | — | Skip arXiv search |
 | `--skip-s2` | flag | — | Skip Semantic Scholar search |
 | `--skip-openalex` | flag | — | Skip OpenAlex search |
-| `--resume` | flag | on (default) | Load existing corpus before searching (merge) |
+| `--resume` | flag | config | Load existing corpus before searching (merge) |
 | `--no-resume` | flag | — | Ignore existing `corpus.jsonl`; start empty |
 | `--clear-corpus` | flag | — | Delete existing corpus before searching |
+| `--force-search` | flag | off | Query configured sources while resuming; merge fresh results |
 | `--log-level` | choice | `INFO` | `DEBUG` / `INFO` / `WARNING` / `ERROR` |
 | `--config` | `str` | — | Path to YAML config (overrides `--query`, `--max-results`, `--resume`, `--clear-corpus`) |
 
@@ -60,6 +68,41 @@ Results are merged and deduplicated via `Corpus.add()` (highest `metadata_comple
 | File | Format | Description |
 | --- | --- | --- |
 | `corpus.jsonl` | JSON Lines | One JSON object per paper (12 fields per record) |
+| `reports/search_provenance.json` | JSON | Per-source status, counts, timestamps, and failures |
+
+### Idempotent refresh and resume
+
+For a new snapshot, first preserve the disposable output tree, then run the
+stages in order. Retrieval is the only stage that intentionally replaces the
+corpus; extraction checkpoints are resumable and retain one run ID.
+
+```bash
+uv run python scripts/01_literature_search.py --config manuscript/config.yaml \
+  --no-resume --clear-corpus
+uv run python scripts/02_meta_analysis_pipeline.py --log-level INFO
+uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml \
+  --clear-assertions --checkpoint-interval 25
+uv run python scripts/04_generate_figures.py --dpi 300
+uv run python scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/06_fulltext_assessment.py --output-dir output
+uv run python scripts/07_run_validation_study.py --output-dir output
+uv run python scripts/08_validate_artifacts.py
+uv run python scripts/09_write_pipeline_manifest.py \
+  --render-status pass --validation-status pass
+uv run python scripts/10_release_preflight.py
+uv run python scripts/11_prepare_evidence_pilots.py
+uv run python scripts/12_snapshot_output.py
+uv run python scripts/13_verify_tooling_inventory.py
+uv run python scripts/14_verify_release_package.py
+```
+
+If Ollama or a source is interrupted, rerun the same command without the
+clear flag. The extractor skips papers already recorded in its atomic JSONL
+checkpoint, while the analysis and figure stages deterministically overwrite
+their derived artifacts. The final manifest records input/output hashes,
+versions, model, run ID, counts, timestamps, and gate results. A source rate
+limit remains a visible gate failure; it must not be hidden by reducing the
+requested source scope.
 
 ### Example
 
@@ -86,7 +129,7 @@ Loads the corpus and runs all analysis modules: domain classification, temporal 
 | --- | --- | --- | --- |
 | `--corpus` | `str` | `output/data/corpus.jsonl` | Path to input corpus |
 | `--output-dir` | `str` | `output/` | Directory for analysis JSON results |
-| `--n-topics` | `int` | `5` | Number of NMF topics to extract |
+| `--n-topics` | `int` | `8` | Number of NMF topics to extract; overridden by `manuscript/config.yaml` |
 | `--max-features` | `int` | `500` | Maximum TF-IDF vocabulary size |
 | `--min-year` | `int` | `1960` | Filter out papers published before this year |
 | `--seed` | `int` | `42` | Random seed for NMF reproducibility |
@@ -132,8 +175,8 @@ Extracts structured assertions from paper abstracts using an LLM (Ollama), score
 | `--corpus` | `str` | `output/data/corpus.jsonl` | Path to input corpus |
 | `--output-dir` | `str` | `output/` | Directory for KG results |
 | `--llm-model` | `str` | `gemma3:4b` | Ollama model name |
-| `--llm-url` | `str` | `http://localhost:11434` | Ollama API base URL |
-| `--checkpoint-interval` | `int` | `50` | Flush to disk every N papers |
+| `--llm-url` | `str` | config | Ollama API base URL (the live config uses local port 11435) |
+| `--checkpoint-interval` | `int` | `25` | Flush to disk every N papers |
 | `--clear-assertions` | flag | — | Delete existing nanopubs and start fresh |
 | `--max-papers` | `int` | — | Limit papers to process (useful for testing) |
 | `--config` | `str` | — | YAML config path (auto-discovers `manuscript/config.yaml`) |
@@ -143,7 +186,7 @@ Extracts structured assertions from paper abstracts using an LLM (Ollama), score
 
 ```yaml
 knowledge_graph:
-  checkpoint_interval: 50
+  checkpoint_interval: 25
   clear_assertions: false
   max_papers: 100
 ```
@@ -157,6 +200,31 @@ Assertions are persisted to `nanopublications.jsonl` at each checkpoint interval
 3. New results are merged (deduplicating by `(paper_id, hypothesis_id)` — new wins)
 4. No separate checkpoint file is needed
 
+### Interrupted-Run Resume
+
+The extractor writes `output/data/extraction_state.json` atomically at start,
+each checkpoint, and completion. An interrupted run leaves its JSONL checkpoint
+and a non-`complete` state. Resume it with the same configuration and **without**
+`--clear-assertions`:
+
+```bash
+OLLAMA_NUM_PARALLEL=2 OLLAMA_MAX_LOADED_MODELS=1 \
+OLLAMA_CONTEXT_LENGTH=4096 OLLAMA_HOST=127.0.0.1:11435 \
+ollama serve
+
+# In a second terminal, from the project root:
+python scripts/03_build_knowledge_graph.py \
+  --config manuscript/config.yaml \
+  --checkpoint-interval 25 \
+  --log-level INFO
+```
+
+The extractor skips processed paper IDs, preserves the checkpoint's single
+`run_id`, and refuses to mix model, prompt, or pipeline versions. The run is
+publication-eligible only after `extraction_state.json` reports `complete` and
+`extraction_coverage.json` reports zero failed and unprocessed eligible papers.
+Use `--clear-assertions` only to intentionally start a new clean extraction run.
+
 ### Outputs
 
 | File | Format | Description |
@@ -164,6 +232,8 @@ Assertions are persisted to `nanopublications.jsonl` at each checkpoint interval
 | `nanopublications.jsonl` | JSON Lines | Nanopublications with assertions, provenance, timestamps |
 | `hypothesis_scores.json` | JSON | Citation-weighted scores for all 8 hypotheses (range `[-1, 1]`) |
 | `hypothesis_trends.json` | JSON | Per-hypothesis cumulative score by year |
+| `extraction_coverage.json` | JSON | Eligible, processed, failed, and unprocessed paper coverage |
+| `extraction_state.json` | JSON | Atomic running/checkpoint/interrupted/complete resume state |
 | `assertion_summary.json` | JSON | Total assertions, type counts, per-hypothesis breakdown |
 
 ### Example
@@ -223,15 +293,15 @@ python scripts/04_generate_figures.py --dpi 600
 
 ---
 
-## Stage 5 — Manuscript Variable Injection (`05_inject_variables.py`)
+## Stage 5 — Manuscript Variable Hydration (`z_generate_manuscript_variables.py`)
 
-Reads pipeline output data, computes template variables, and injects them into manuscript markdown files. Produces rendered copies in `output/manuscript/` with all `{{VAR}}` placeholders replaced by real values.
+Reads pipeline output data, computes template variables, and injects them into manuscript markdown files. Produces rendered copies in `output/manuscript/` with all `{{VAR}}` placeholders replaced by real values. This `z_` entrypoint is the canonical template-recognized hydrator; `05_inject_variables.py` remains a compatible wrapper.
 
 ### CLI Flags
 
 | Flag | Type | Default | Description |
 | --- | --- | --- | --- |
-| `--project` | `str` | `act_inf_metaanalysis` | Project name |
+| `--project` | `str` | project root | Project root or project name |
 | `--dry-run` | flag | — | Show what would change without writing files |
 
 ### Processing Steps
@@ -265,14 +335,16 @@ Reads pipeline output data, computes template variables, and injects them into m
 | `output/manuscript/config.yaml` | YAML | Copied configuration |
 | `output/manuscript/references.bib` | BibTeX | Copied references |
 
+The hydrator also writes `output/data/manuscript_variables.json`, including the exact source-token inventory, source hashes, and artifact manifest used for hydration.
+
 ### Example
 
 ```bash
-# Standard run
-python scripts/05_inject_variables.py
+# Standard run (canonical entrypoint)
+python scripts/z_generate_manuscript_variables.py --project .
 
 # Preview changes without writing
-python scripts/05_inject_variables.py --dry-run
+python scripts/z_generate_manuscript_variables.py --project . --dry-run
 ```
 
 ---
@@ -319,15 +391,102 @@ data accessibility.
 
 ---
 
+## Stage 7 — Deterministic Validation Study (`07_run_validation_study.py`)
+
+Runs the rule-based reference annotator against a deterministic sample and writes
+agreement and coverage metrics to `output/data/validation_metrics.json` and
+`output/reports/validation_metrics.json`.
+
+## Stage 8 — Cross-Artifact Validation (`08_validate_artifacts.py`)
+
+Checks corpus, subfield, temporal, citation, assertion, hypothesis, provenance,
+topic, figure-registry, and manuscript-variable consistency. The command exits
+non-zero on any mismatch and writes `output/reports/artifact_contract.json`.
+
+## Stage 9 — Pipeline Manifest (`09_write_pipeline_manifest.py`)
+
+Writes `output/reports/pipeline_manifest.json` with input/output hashes, versions,
+model and run identifiers, timestamps, counts, and the current render and
+validation gate results.
+
+## Stage 10 — Release Preflight (`10_release_preflight.py`)
+
+Runs the test/coverage gate, cross-artifact contract, RDF/TriG parity check,
+release metadata checks, dated tooling verification, and PDF/HTML presence
+checks without invoking the LLM. Tooling verification is fail-closed: paper-only
+sources or repositories without independently verified license/activity metadata
+remain visible as blockers.
+It writes `output/reports/release_preflight.json` and stages a local,
+source-complete-independent nanopublication package under
+`output/release/nanopublications-<as_of_date>/`. A failed configured-source gate
+keeps the preflight failed even when the local RDF package is valid.
+
+```bash
+python scripts/10_release_preflight.py
+python scripts/10_release_preflight.py --skip-tests
+```
+
+## Stage 11 — Evidence Pilot Preparation (`11_prepare_evidence_pilots.py`)
+
+Writes deterministic, blank review queues and protocols for the bounded
+full-text pilot and human calibration. It never invents human labels and never
+changes the primary abstract-only analysis.
+
+```bash
+python scripts/11_prepare_evidence_pilots.py --fulltext-size 100 --human-size 200
+```
+
+## Utility 12 — Snapshot Inventory (`12_snapshot_output.py`)
+
+Writes a deterministic file/size inventory and lists retained snapshots. With
+`--label`, it copies the current output tree to a new non-overwriting snapshot;
+it never deletes or replaces an existing snapshot.
+
+```bash
+python scripts/12_snapshot_output.py
+python scripts/12_snapshot_output.py --label 20260725T000000Z
+```
+
+## Stage 13 — Tooling Source Verification (`13_verify_tooling_inventory.py`)
+
+Probes the official source pointer for every retained tooling row and records
+reachability, repository license metadata, release tags, and recent activity.
+Paper-only or incomplete rows remain flagged; this stage never infers a license
+or maintenance status.
+
+```bash
+python scripts/13_verify_tooling_inventory.py
+```
+
+## Stage 14 — Release Package Verification (`14_verify_release_package.py`)
+
+Checks every staged nanopublication package file against its recorded SHA-256
+and byte count, and verifies the JSONL nanopublication count. This is the local
+deposit-equivalent gate; it does not claim that an external deposit exists.
+
+```bash
+python scripts/14_verify_release_package.py
+```
+
+---
+
 ## Full Pipeline
 
 ```bash
 python scripts/01_literature_search.py --config manuscript/config.yaml
-python scripts/02_meta_analysis_pipeline.py
+python scripts/02_meta_analysis_pipeline.py --n-topics 8 --seed 42
 python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 python scripts/04_generate_figures.py
-python scripts/05_inject_variables.py
+python scripts/z_generate_manuscript_variables.py --project .
 python scripts/06_fulltext_assessment.py
+python scripts/07_run_validation_study.py
+python scripts/08_validate_artifacts.py
+python scripts/09_write_pipeline_manifest.py
+python scripts/10_release_preflight.py
+python scripts/11_prepare_evidence_pilots.py
+python scripts/12_snapshot_output.py
+python scripts/13_verify_tooling_inventory.py
+python scripts/14_verify_release_package.py
 ```
 
 ---
@@ -355,4 +514,4 @@ While the standard `./run.sh` pipeline produces `output/pdf/{name}_combined.pdf`
 
 This enforces diagonal watermark overlays, invisible hash layers, and injects a cryptographic manifest that can be verified to prove the document was not tampered with post-generation. See `infrastructure/steganography/` for the cryptographic backend constraints.
 
-> **Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+> **Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)

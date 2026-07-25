@@ -1,10 +1,10 @@
 # Architecture
 
-**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
 
 ## Data Flow
 
-The pipeline operates in five core stages, each producing intermediate artifacts consumed by subsequent stages. Two additional auxiliary scripts — Stage 6 (full-text assessment) and Stage 7 (validation study) — run independently of the core chain.
+The pipeline operates as a fourteen-stage chain: retrieval, analysis, extraction, visualization, manuscript hydration, full-text assessment, deterministic validation, cross-artifact validation, manifest generation, release preflight, evidence-pilot preparation, snapshot inventory, tooling-source verification, and release-package verification. Template rendering is the publication gate and consumes the hydrated manuscript plus the registered figures.
 
 ```text
 Stage 1: Literature Search
@@ -48,26 +48,54 @@ Stage 4: Visualization
   NMF topics    ──▶ topic_term_bars.png
   Token lists   ──▶ cooccurrence_matrix.png
 
-Stage 5: Manuscript Injection
+Stage 5: Manuscript Hydration
 ─────────────────────────
   Analysis JSONs ──▶ Template Variables ──▶ Rendered Manuscript (output/manuscript/)
+                 └─▶ manuscript_variables.json (token inventory + artifact hashes)
 
-Stage 6: Full-Text Assessment (Experimental)
+Stage 6: Full-Text Assessment
 ────────────────────────────────────────────
-  Full-text PDFs ──▶ Extended assertions ──▶ Augmented nanopublications.jsonl
-  (run independently via scripts/06_fulltext_assessment.py; not in standard pipeline)
+  Corpus ──▶ availability assessment ──▶ fulltext_assessment.json
 
-Stage 7: Validation Study (Auxiliary QA)
+Stage 7: Validation Study
 ────────────────────────────────────────
   corpus.jsonl + nanopublications.jsonl ──▶ stratified sample ──▶ rule-based reference labels
     ──▶ agreement metrics (output/validation/, output/reports/validation_metrics.json)
   (run independently via scripts/07_run_validation_study.py; deterministic rule-based
    reference-annotator agreement — a reproducibility floor, NOT a human validation)
+Stage 8: Cross-Artifact Validation
+─────────────────────────────────
+  All JSON/JSONL/PNG/manuscript artifacts ──▶ artifact_contract.json
+
+Stage 9: Pipeline Manifest
+─────────────────────────
+  Inputs + outputs + versions + gates ──▶ pipeline_manifest.json
+
+Stage 10: Release Preflight
+───────────────────────────
+  Tests + artifact contract + RDF parity + metadata + render presence
+    ──▶ release_preflight.json + local nanopublication package
+
+Stage 11: Evidence Pilots
+─────────────────────────
+  Corpus + validation sample ──▶ blank full-text and human-calibration queues
+
+Stage 12: Snapshot Inventory
+────────────────────────────
+  Disposable output tree ──▶ snapshot_inventory.json and optional safe copy
+
+Stage 13: Tooling Verification
+──────────────────────────────
+  Retained tooling registry + public sources ──▶ tooling_verification.json
+
+Stage 14: Release Package Verification
+──────────────────────────────────────
+  Staged JSONL/TriG package ──▶ hash/count verification report
 ```
 
-> **Stage 6** is an auxiliary, opt-in script. It enriches the knowledge graph with claim-evidence pairs extracted from full-text PDFs rather than abstracts alone. It is not part of the standard 5-stage pipeline and requires downloaded PDFs in `output/data/pdfs/`. Current status: experimental — full-text extraction accuracy has not been formally evaluated.
+> **Stage 6** is a read-only availability assessment. It does not enrich the knowledge graph or imply that an available PDF has been extracted.
 
-> **Stage 7** is an auxiliary QA script. It draws a stratified sample of extractions and scores agreement between the LLM pipeline and a deterministic keyword-rule reference (`analysis.validation_labeling`). The reference labels are **rule-generated, not human** — the metrics are a reproducibility floor, not a human validation. Flags: `--sample-fraction`, `--min-size`, `--no-auto-labels`, `--output-dir`. It is not part of the standard 5-stage pipeline.
+> **Stage 7** draws a stratified sample of extractions and scores agreement between the LLM pipeline and a deterministic keyword-rule reference (`analysis.validation_labeling`). The reference labels are **rule-generated, not human** — the metrics are a reproducibility floor, not a human validation. Flags: `--sample-fraction`, `--min-size`, `--no-auto-labels`, `--output-dir`.
 
 ## Key Design Decisions
 
@@ -89,7 +117,9 @@ Papers from different sources are deduplicated by assigning a canonical ID using
 
 ### Thin Orchestrator Pattern
 
-All computation lives in `src/`. The seven scripts in `scripts/` (01–07) handle only I/O, orchestration, and path management; stage bodies live in `src/*_runner.py` and related modules. No business logic in scripts.
+All computation lives in `src/`. The numbered scripts in `scripts/` handle only
+I/O, orchestration, and path management; stage bodies live in `src/*_runner.py`
+and related modules. No business logic lives in scripts.
 
 ---
 
@@ -242,7 +272,7 @@ The extraction layer resumes automatically by default. The system:
 1. Reads `nanopublications.jsonl` from the output directory
 2. Extracts the set of already-processed paper IDs via `get_processed_paper_ids()`
 3. Skips papers whose `canonical_id` appears in the processed set
-4. Flush new assertions every `checkpoint_interval` papers (default: 50) via `append_nanopubs()`
+4. Flush new assertions every `checkpoint_interval` papers (default: 25) via `append_nanopubs()`
 5. Uses atomic writes (write to `.tmp`, then rename) to prevent corruption
 
 This means a multi-hour LLM extraction run can be interrupted and resumed without losing progress. Use `--clear-assertions` to discard existing nanopubs and start fresh.

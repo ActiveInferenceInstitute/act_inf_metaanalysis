@@ -1,6 +1,5 @@
 from __future__ import annotations
 from pathlib import Path
-import pytest
 from visualization.field_overview import plot_field_summary, plot_subfield_distribution
 
 class TestFieldOverview:

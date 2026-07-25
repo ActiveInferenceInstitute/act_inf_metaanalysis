@@ -3,33 +3,17 @@
 from __future__ import annotations
 
 import json
-import logging
 
 import pytest
-from pytest_httpserver import HTTPServer
 
-from knowledge_graph.extraction import extract_assertions
-from knowledge_graph.llm_extraction import (
-    LLMConfig,
-    _parse_llm_response,
-    assess_paper_hypotheses,
-    build_prompt,
-    extract_assertions_llm,
-    _hypothesis_dicts,
-)
-from tests.knowledge_graph.llm_extraction_fixtures import (
-    httpserver_base_url,
-    make_paper,
-    valid_llm_response,
-)
-
-_make_paper = make_paper
-_valid_llm_response = valid_llm_response
+from knowledge_graph.llm_client import parse_llm_response
+from knowledge_graph.llm_prompts import build_prompt, hypothesis_dicts
+from tests.knowledge_graph.llm_extraction_fixtures import make_paper, valid_llm_response
 
 class TestBuildPrompt:
     def test_prompt_contains_paper_info(self):
         paper = make_paper()
-        hypotheses = _hypothesis_dicts()
+        hypotheses = hypothesis_dicts()
         prompt = build_prompt(paper, hypotheses)
 
         assert "Active Inference and Free Energy" in prompt
@@ -40,11 +24,11 @@ class TestBuildPrompt:
 
     def test_prompt_with_long_abstract(self):
         paper = make_paper(abstract="x" * 5000)
-        prompt = build_prompt(paper, _hypothesis_dicts())
+        prompt = build_prompt(paper, hypothesis_dicts())
         assert len(prompt) > 5000
 
     def test_hypothesis_dicts_returns_all_eight(self):
-        dicts = _hypothesis_dicts()
+        dicts = hypothesis_dicts()
         assert len(dicts) == 8
         ids = {d["id"] for d in dicts}
         assert "FEP_UNIVERSALITY" in ids
@@ -58,29 +42,46 @@ class TestBuildPrompt:
 class TestParseResponse:
     def test_clean_json_array(self):
         raw = json.dumps(valid_llm_response())
-        result = _parse_llm_response(raw)
+        result = parse_llm_response(raw)
         assert len(result) == 8
         assert result[0]["hypothesis_id"] == "FEP_UNIVERSALITY"
 
     def test_json_with_markdown_fences(self):
         raw = "```json\n" + json.dumps(valid_llm_response()) + "\n```"
-        result = _parse_llm_response(raw)
+        result = parse_llm_response(raw)
         assert len(result) == 8
 
     def test_json_with_surrounding_text(self):
         raw = "Here is the analysis:\n" + json.dumps(valid_llm_response()) + "\nEnd."
-        result = _parse_llm_response(raw)
+        result = parse_llm_response(raw)
         assert len(result) == 8
 
     def test_no_json_raises_value_error(self):
         with pytest.raises(ValueError, match="No JSON array"):
-            _parse_llm_response("This is just commentary with no JSON.")
+            parse_llm_response("This is just commentary with no JSON.")
 
     def test_invalid_json_raises_value_error(self):
         with pytest.raises(ValueError, match="Failed to parse"):
-            _parse_llm_response("[{invalid json}]")
+            parse_llm_response("[{invalid json}]")
 
     def test_non_array_raises_value_error(self):
         with pytest.raises(ValueError, match="No JSON array"):
-            _parse_llm_response('{"key": "value"}')
+            parse_llm_response('{"key": "value"}')
 
+    def test_directional_quote_delimiters_are_repaired(self):
+        raw = (
+            '[{"hypothesis_id":"FEP_UNIVERSALITY",'
+            '"direction":"supports","confidence":0.8,'
+            '"reasoning":"broad applicability",'
+            '"source_claim_text":"theory spans domains",'
+            '"evidence_quote":"…spanning from inorganic to organic”,'
+            '"evidence_status":"explicit_claim",'
+            '"evidence_type":"theoretical"}]'
+        )
+        result = parse_llm_response(raw)
+        assert result[0]["evidence_quote"] == "…spanning from inorganic to organic"
+
+    def test_directional_quote_pair_can_delimit_a_value(self):
+        raw = '[{"evidence_quote": “short claim”}]'
+        result = parse_llm_response(raw)
+        assert result == [{"evidence_quote": "short claim"}]

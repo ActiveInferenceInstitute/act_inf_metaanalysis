@@ -4,7 +4,7 @@
 
 ## Overview
 
-This directory houses the comprehensive test suite for the Active Inference Meta-Analysis project (**615 tests** in **39 files**, **96.09%** `src/` coverage as of 2026-05-25). The suite enforces the **Zero-Mock Testing Philosophy**, relying on actual data transformations, HTTP test servers, and localized fixture generation rather than object mocking.
+This directory houses the comprehensive test suite for the Active Inference Meta-Analysis project. The suite enforces the **Zero-Mock Testing Philosophy**, relying on actual data transformations, HTTP test servers, and localized fixture generation rather than object mocking. The current verified gate is maintained in `doc/testing.md` rather than duplicated here.
 
 ## Architecture
 
@@ -14,7 +14,7 @@ This directory houses the comprehensive test suite for the Active Inference Meta
 
 ## Coverage Goals
 
-- Current coverage strictly maintains ≥90% instruction line execution (measured **96.09%** on `src/`).
+- Current coverage strictly maintains ≥90% instruction line execution; the latest measured result is recorded in `doc/testing.md`.
 - All new features implemented in `src/` MUST be accompanied by equivalent tests in the corresponding `tests/` subdirectory.
 
 ## Sub-Modules

@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import argparse
+import json
 import logging
+import os
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
 
-from config import OUTPUT_DIR as DEFAULT_OUTPUT_DIR
 from config_loader import load_search_config
 from literature.corpus import Corpus
 from literature.models import Paper
@@ -21,6 +23,7 @@ def search_source(
     max_results: int,
     corpus: Corpus,
     logger: logging.Logger,
+    events: list[dict[str, object]] | None = None,
 ) -> str | None:
     """Search one API source and merge papers into *corpus*."""
     t0 = time.monotonic()
@@ -41,10 +44,28 @@ def search_source(
             duplicates,
             elapsed,
         )
+        if events is not None:
+            events.append({
+                "source": source_name,
+                "success": True,
+                "completed_at": datetime.now(timezone.utc).isoformat(),
+                "fetched": len(papers),
+                "new": new_papers,
+                "duplicates": duplicates,
+                "empty_results": not papers,
+            })
         return f"{source_name} ({len(papers)} papers, {new_papers} new)"
     except Exception as exc:
         elapsed = time.monotonic() - t0
         logger.error("  %s search failed after %.1fs: %s", source_name, elapsed, exc)
+        if events is not None:
+            events.append({
+                "source": source_name,
+                "success": False,
+                "completed_at": datetime.now(timezone.utc).isoformat(),
+                "error": str(exc),
+                "error_type": type(exc).__name__,
+            })
         return None
 
 
@@ -102,6 +123,9 @@ def _semantic_scholar_search_fn(
     base_url: str | None,
     *,
     fast: bool,
+    max_retries: int = 1,
+    max_backoff_seconds: float = 60.0,
+    api_key: str | None = None,
 ) -> Callable[..., list[Paper]]:
     from literature.semantic_scholar import S2_API_URL, search_semantic_scholar
 
@@ -114,6 +138,10 @@ def _semantic_scholar_search_fn(
             max_results=max_results,
             base_url=url,
             delay_override=delay,
+            raise_on_error=True,
+            max_retries=max_retries,
+            max_backoff_seconds=max_backoff_seconds,
+            api_key=api_key,
         )
 
     return _search
@@ -161,19 +189,32 @@ def run_literature_search(
             args.query = cfg["query"]
         if cfg.get("max_results"):
             args.max_results = cfg["max_results"]
-        if cfg.get("resume") is not None:
+        if cfg.get("resume") is not None and args.resume is None:
             args.resume = cfg["resume"]
-        if cfg.get("clear_corpus") is not None:
+        if cfg.get("clear_corpus") is not None and args.clear_corpus is None:
             args.clear_corpus = cfg["clear_corpus"]
         if cfg.get("start_year") is not None and args.start_year is None:
             args.start_year = cfg["start_year"]
         arxiv_queries = cfg["arxiv_queries"]
         relevance_keywords = cfg["relevance_keywords"]
+        s2_cfg = cfg.get("semantic_scholar", {}) or {}
     else:
         from config import DEFAULT_ARXIV_QUERIES, DEFAULT_RELEVANCE_KEYWORDS
 
         arxiv_queries = list(DEFAULT_ARXIV_QUERIES)
         relevance_keywords = list(DEFAULT_RELEVANCE_KEYWORDS)
+        s2_cfg = {}
+
+    s2_cfg = s2_cfg or {}
+    s2_max_retries = int(s2_cfg.get("max_retries", 1))
+    s2_max_backoff_seconds = float(s2_cfg.get("max_backoff_seconds", 60.0))
+    s2_api_key_env = str(s2_cfg.get("api_key_env", "SEMANTIC_SCHOLAR_API_KEY"))
+    s2_api_key = os.environ.get(s2_api_key_env)
+
+    if args.resume is None:
+        args.resume = True
+    if args.clear_corpus is None:
+        args.clear_corpus = False
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -189,7 +230,11 @@ def run_literature_search(
         min_year = args.start_year
         corpus = Corpus.load(corpus_path, min_year=min_year)
         logger.info("Resumed existing corpus with %d papers from %s", len(corpus), corpus_path)
-        if len(corpus) > 0 and not args.clear_corpus:
+        if (
+            len(corpus) > 0
+            and not args.clear_corpus
+            and not getattr(args, "force_search", False)
+        ):
             logger.info(
                 "Corpus already populated (%d papers) — skipping network searches.",
                 len(corpus),
@@ -201,6 +246,7 @@ def run_literature_search(
         corpus = Corpus()
 
     sources_searched: list[str] = []
+    search_events: list[dict[str, object]] = []
     pipeline_start = time.monotonic()
 
     fast_api = any(
@@ -220,6 +266,7 @@ def run_literature_search(
                 args.max_results,
                 corpus,
                 logger,
+                search_events,
             )
             if result:
                 sources_searched.append(result)
@@ -230,7 +277,13 @@ def run_literature_search(
         )
 
     if not args.skip_s2:
-        s2_search = _semantic_scholar_search_fn(semantic_scholar_base_url, fast=fast_api)
+        s2_search = _semantic_scholar_search_fn(
+            semantic_scholar_base_url,
+            fast=fast_api,
+            max_retries=s2_max_retries,
+            max_backoff_seconds=s2_max_backoff_seconds,
+            api_key=s2_api_key,
+        )
         result = search_source(
             "Semantic Scholar",
             s2_search,
@@ -238,6 +291,7 @@ def run_literature_search(
             args.max_results,
             corpus,
             logger,
+            search_events,
         )
         if result:
             sources_searched.append(result)
@@ -251,6 +305,7 @@ def run_literature_search(
             args.max_results,
             corpus,
             logger,
+            search_events,
         )
         if result:
             sources_searched.append(result)
@@ -270,6 +325,41 @@ def run_literature_search(
             )
 
     corpus.save(corpus_path)
+    prior_search_report = {}
+    prior_report_path = output_dir / "reports" / "search_provenance.json"
+    if getattr(args, "force_search", False) and prior_report_path.exists():
+        try:
+            prior_search_report = json.loads(prior_report_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            prior_search_report = {}
+    all_events = list(prior_search_report.get("events", [])) + search_events
+    latest_by_source: dict[str, dict[str, object]] = {}
+    for event in all_events:
+        latest_by_source[str(event.get("source", "unknown"))] = event
+    current_requested_sources = {
+        source for source, skipped in (
+            ("arxiv", args.skip_arxiv),
+            ("semantic_scholar", args.skip_s2),
+            ("openalex", args.skip_openalex),
+        ) if not skipped
+    }
+    requested_sources = sorted(
+        set(prior_search_report.get("requested_sources", []))
+        | current_requested_sources
+    )
+    search_report = {
+        "query": args.query,
+        "requested_sources": requested_sources,
+        "events": all_events,
+        "latest_source_status": latest_by_source,
+        "successful_events": sum(bool(event.get("success")) for event in latest_by_source.values()),
+        "failed_events": sum(not bool(event.get("success")) for event in latest_by_source.values()),
+        "total_unique_papers": len(corpus),
+    }
+    report_path = output_dir / "reports" / "search_provenance.json"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(json.dumps(search_report, indent=2), encoding="utf-8")
+    logger.info("Search provenance saved to: %s", report_path)
     total_elapsed = time.monotonic() - pipeline_start
     logger.info("--- Literature Search Summary ---")
     logger.info("Sources: %s", ", ".join(sources_searched) if sources_searched else "None")

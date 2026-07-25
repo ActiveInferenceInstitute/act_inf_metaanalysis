@@ -1,4 +1,4 @@
-# Appendix: Accessibility, Cognitive Ergonomics, and Participatory Research Infrastructure \label{sec:accessibility}
+# Appendix: Accessibility, Cognitive Ergonomics, and Participatory Research Infrastructure {#sec:accessibility}
 
 Automated meta-analysis tools operate at the intersection of computational infrastructure and human sensemaking. The scalability gains demonstrated by the present pipeline are meaningful only if the resulting knowledge artefacts remain cognitively accessible, ethically transparent, and open to diverse forms of participation. This appendix situates our work within the broader landscape of research accessibility, cognitive ergonomics, decentralized science (DeSci), and participatory infrastructure design, and concludes with a WCAG-mapped checklist that summarizes the concrete accessibility practices implemented in the figure pipeline.
 
