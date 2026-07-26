@@ -134,7 +134,14 @@ projects_archive/act_inf_metaanalysis/
 │   ├── 04_generate_figures.py
 │   ├── z_generate_manuscript_variables.py
 │   ├── 06_fulltext_assessment.py   # auxiliary QA (full-text availability)
-│   └── 07_run_validation_study.py  # auxiliary QA (rule-based reference-annotator agreement)
+│   ├── 07_run_validation_study.py  # auxiliary QA (rule-based reference-annotator agreement)
+│   ├── 08_validate_artifacts.py    # cross-artifact contract
+│   ├── 09_write_pipeline_manifest.py
+│   ├── 10_release_preflight.py
+│   ├── 11_prepare_evidence_pilots.py
+│   ├── 12_snapshot_output.py
+│   ├── 13_verify_tooling_inventory.py
+│   └── 14_verify_release_package.py
 ├── manuscript/                 # 20 sections + references
 │   ├── config.yaml
 │   ├── preamble.md
@@ -155,6 +162,7 @@ projects_archive/act_inf_metaanalysis/
 │   ├── 04a_discussion.md
 │   ├── 05_appendix_tooling.md
 │   ├── 06_appendix_technical.md
+│   ├── 07_appendix_accessibility.md
 │   ├── 98_symbols_glossary.md
 │   ├── 99_references.md
 │   └── references.bib

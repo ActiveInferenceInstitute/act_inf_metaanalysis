@@ -2,17 +2,17 @@
 
 > **Archive status:** This tree lives under `projects_archive/act_inf_metaanalysis/` in the template monorepo. It is preserved for inspection and standalone runs; it is not executed by `./run.sh` unless promoted to `projects/`.
 
-**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
 **Current snapshot (2026-07-26):** PDF/HTML rendering and local artifact/package
-validation pass; the publication gate remains fail-closed because Semantic
-Scholar returned HTTP 429 during the latest three-source retrieval. The
-snapshot is therefore reproducible and reviewable, but not source-complete for
-a new live publication.
+validation pass; the publication gate remains fail-closed because the latest
+resume-safe Semantic Scholar bulk probe returned HTTP 500 after bounded retries.
+The existing 1,106-paper snapshot was preserved, so the package is reproducible
+and reviewable but not source-complete for a new live publication.
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis/actions)
-[![Coverage gate](https://img.shields.io/badge/coverage-gate%2090%25-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)
-[![Tests](https://img.shields.io/badge/tests-pytest-blue)](https://github.com/docxology/act_inf_metaanalysis)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis/actions)
+[![Coverage gate](https://img.shields.io/badge/coverage-gate%2090%25-brightgreen)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
+[![Tests](https://img.shields.io/badge/tests-pytest-blue)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 [![Python 3.12](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -164,7 +164,7 @@ Steps 1–5 are the content-generation chain; steps 6–9 provide full-text QA, 
 
 ## Archive layout
 
-In the template monorepo, this tree is symlinked at `projects_archive/act_inf_metaanalysis/` (typically pointing at the private `projects/archive/` checkout). It is **not** discovered by `./run.sh` unless promoted to `projects/`.
+In the template monorepo, this tree is symlinked at `projects_archive/act_inf_metaanalysis/` (typically pointing at a local template workspace). It is **not** discovered by `./run.sh` unless promoted to `projects/`.
 
 A nested `.git/` directory may be present from standalone repository history; the template monorepo uses the symlink as the working copy. Do not commit pre-populated `output/` when re-promoting.
 
@@ -222,7 +222,7 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 
 The canonical, continuously updated changelog lives in **[CHANGELOG.md](CHANGELOG.md)** — treat it as the single source of truth. (An earlier copy was duplicated here and drifted several releases behind; this section is intentionally kept to a short pointer to avoid that recurring.)
 
-**Current release: v2.0.6 (2026-07-26 closure)** — adds configuration-driven live-refresh provenance, partial-year-safe temporal statistics, topic stability diagnostics, cross-artifact validation, canonical manuscript hydration, external tooling verification, and PDF/HTML-only render closure while preserving the honest rule-based validation boundary. The current working tree adds Semantic Scholar retrieval hardening; the latest gate has 658 passed tests, 1 skipped, and 90.02% coverage against the 90% gate.
+**Current release: v2.0.6 (2026-07-26 closure)** — adds configuration-driven live-refresh provenance, partial-year-safe temporal statistics, topic stability diagnostics, cross-artifact validation, canonical manuscript hydration, external tooling verification, and PDF/HTML-only render closure while preserving the honest rule-based validation boundary. The current working tree adds Semantic Scholar retrieval hardening and canonical public-repository metadata; the latest gate has 659 passed tests, 1 skipped, and 90.04% coverage against the 90% gate.
 
 See **[CHANGELOG.md](CHANGELOG.md)** for the full per-release history (v2.0.0 → v2.0.6).
 

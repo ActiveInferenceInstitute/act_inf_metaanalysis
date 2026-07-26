@@ -2,7 +2,7 @@
 
 **Paper:** *A Living Literature Review Architecture for Active Inference: Scalable Assertion Extraction, Nanopublications, and Citation-Weighted Hypothesis Scoring*
 
-**Package / upstream reference:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Package / upstream reference:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
 **Template monorepo path:** `projects_archive/act_inf_metaanalysis/` (archived; not pipeline-discovered).
 

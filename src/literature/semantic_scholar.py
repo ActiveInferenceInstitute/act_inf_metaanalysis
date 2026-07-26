@@ -33,7 +33,7 @@ S2_API_URL = "https://api.semanticscholar.org/graph/v1"
 S2_BULK_SEARCH_PATH = "/paper/search/bulk"
 S2_DETAIL_FIELDS = "title,abstract,authors,year,externalIds,citationCount,venue,references,isOpenAccess,openAccessPdf"
 S2_BULK_SEARCH_FIELDS = "title,abstract,authors,year,externalIds,citationCount,venue,isOpenAccess,openAccessPdf"
-S2_USER_AGENT = "act-inf-metaanalysis/2.0.6 (+https://github.com/docxology/act_inf_metaanalysis)"
+S2_USER_AGENT = "act-inf-metaanalysis/2.0.6 (+https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)"
 
 # Fields we request from the API
 PAPER_FIELDS = S2_DETAIL_FIELDS

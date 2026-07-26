@@ -20,7 +20,7 @@ The current 2026-07-26 snapshot contains:
 - eight configured NMF topics with seed 42 as the primary fit;
 - 16 registered figures;
 - successful PDF and HTML render/validation stages;
-- 659 collected tests: 658 passed, one skipped, 90.02% coverage against the
+- 660 collected tests: 659 passed, one skipped, 90.04% coverage against the
   90% gate.
 
 The remaining release-level defect is external: Semantic Scholar returned HTTP

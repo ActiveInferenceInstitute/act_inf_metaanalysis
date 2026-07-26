@@ -1,6 +1,6 @@
 # Output Data Formats
 
-**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
 Schema reference for all pipeline output artifacts. Each file is produced by one pipeline stage and consumed by downstream stages. The corpus size, assertion counts, and citation-graph statistics evolve with each pipeline run; consult the latest `output/data/*.json` summaries or the rendered manuscript (which injects values from `temporal_analysis.json`, `citation_network.json`, and `assertion_summary.json`) for current numbers. The schemas documented below are stable across runs.
 

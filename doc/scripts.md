@@ -538,4 +538,4 @@ While the standard `./run.sh` pipeline produces `output/pdf/{name}_combined.pdf`
 
 This enforces diagonal watermark overlays, invisible hash layers, and injects a cryptographic manifest that can be verified to prove the document was not tampered with post-generation. See `infrastructure/steganography/` for the cryptographic backend constraints.
 
-> **Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+> **Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)

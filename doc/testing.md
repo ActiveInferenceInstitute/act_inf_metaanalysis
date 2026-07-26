@@ -1,10 +1,10 @@
 # Testing Guide
 
-**Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
+**Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
 ## Overview
 
-The project maintains **659 collected tests** across the test suite (**658 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.02%**, verified 2026-07-26). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
+The project maintains **660 collected tests** across the test suite (**659 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.04%**, verified 2026-07-26). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
 
 ### Idempotence checks
 

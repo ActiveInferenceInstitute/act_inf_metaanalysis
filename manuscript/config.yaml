@@ -50,8 +50,8 @@ keywords:
 metadata:
   license: "CC-BY-4.0"
   language: "en"
-  # Canonical package URL (pyproject [project.urls]); monorepo path: projects_archive/act_inf_metaanalysis/
-  repository: "https://github.com/docxology/act_inf_metaanalysis"
+  # Canonical publication repository; local monorepo path: projects_archive/act_inf_metaanalysis/
+  repository: "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
 
 llm:
   reviews:

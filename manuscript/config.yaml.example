@@ -23,7 +23,7 @@ keywords:
 metadata:
   license: "CC-BY-4.0"
   language: "en"
-  repository: "https://github.com/docxology/act_inf_metaanalysis"
+  repository: "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
 
 render:
   formats:

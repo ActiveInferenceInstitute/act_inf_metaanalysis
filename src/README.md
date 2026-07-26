@@ -2,7 +2,7 @@
 
 Core library for the Active Inference Meta-Analysis project. All business logic and computation
 lives here; `scripts/` are thin orchestrators that import these modules and handle I/O.
-45+ Python modules across 5 subpackages (+ `config.py`, `config_loader.py`), 658 passed / 1 skipped / 90.02% coverage in the latest gate, no mocks.
+45+ Python modules across 5 subpackages (+ `config.py`, `config_loader.py`), 659 passed / 1 skipped / 90.04% coverage in the latest gate, no mocks.
 
 ## Subpackages
 
@@ -12,7 +12,7 @@ lives here; `scripts/` are thin orchestrators that import these modules and hand
 | `analysis/` | Bibliometric, temporal, and text analytics | `corpus.jsonl` | Analysis JSONs |
 | `knowledge_graph/` | LLM extraction, nanopubs, hypothesis scoring | `corpus.jsonl` | `nanopublications.jsonl`, scores |
 | `visualization/` | Publication-ready PNG figure generation | Analysis JSONs | 16 PNG figures |
-| `manuscript/` | Template variable computation and injection | All output JSONs | `dict[str, str]` of 191 current-snapshot variables |
+| `manuscript/` | Template variable computation and injection | All output JSONs | `dict[str, str]` of 196 current-snapshot variables |
 
 ## Pipeline Stage → Module Mapping
 
@@ -42,7 +42,7 @@ Stage 5 (scripts/z_generate_manuscript_variables.py)
 ```bash
 # From project root
 PYTHONPATH=/path/to/template .venv/bin/python -m pytest tests/ -q
-# 658 passed / 1 skipped / 90.02% coverage, no mocks, deterministic
+# 659 passed / 1 skipped / 90.04% coverage, no mocks, deterministic
 ```
 
 See each subpackage's `README.md` and `AGENTS.md` for module-level details.

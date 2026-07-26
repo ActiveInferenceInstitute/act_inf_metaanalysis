@@ -38,14 +38,14 @@ def _write_package_inputs(root: Path) -> None:
     (data / "temporal_analysis.json").write_text(json.dumps({"as_of_date": "2026-07-24"}), encoding="utf-8")
     (root / "manuscript").mkdir()
     (root / "manuscript" / "config.yaml").write_text(
-        "metadata:\n  license: CC-BY-4.0\n  repository: https://github.com/docxology/act_inf_metaanalysis\n"
+        "metadata:\n  license: CC-BY-4.0\n  repository: https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis\n"
         "publication:\n  doi: 10.5281/zenodo.1\nanalysis:\n  as_of_date: '2026-07-24'\n"
         "project_config:\n  pipeline:\n    pipeline_version: '2.0.6'\n    prompt_version: 'v2.0.6'\n"
         "render:\n  formats:\n    pdf: true\n    html: true\n    slides: false\n    docx: false\n    epub: false\n",
         encoding="utf-8",
     )
     (root / "pyproject.toml").write_text(
-        "[project.urls]\nHomepage = 'https://github.com/docxology/act_inf_metaanalysis'\n",
+        "[project.urls]\nHomepage = 'https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis'\n",
         encoding="utf-8",
     )
     (reports / "zenodo_deposit_metadata.json").write_text(

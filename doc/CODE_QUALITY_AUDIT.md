@@ -4,7 +4,7 @@
 **Scope:** `projects_archive/act_inf_metaanalysis/` (archived; not template pipeline–discovered)  
 **Rubric:** template thermo-nuclear maintainability review (1k-line rule, script gates, thin orchestrators, zero-mock tests)
 
-> **Current addendum (2026-07-26):** This audit retains its original snapshot metrics while the current source gate is **658 passed, 1 skipped, 90.02% coverage** (659 collected; fail_under=90). The current pipeline also verifies structured extraction provenance, topic stability, cross-artifact contracts, manifest closure, registry-owned tooling sources, release-package hashes, and template PDF/HTML rendering. Semantic Scholar remains separately reported as the live-source blocker after the latest bulk endpoint HTTP 500.
+> **Current addendum (2026-07-26):** This audit retains its original snapshot metrics while the current source gate is **659 passed, 1 skipped, 90.04% coverage** (660 collected; fail_under=90). The current pipeline also verifies structured extraction provenance, topic stability, cross-artifact contracts, manifest closure, registry-owned tooling sources, release-package hashes, and template PDF/HTML rendering. Semantic Scholar remains separately reported as the live-source blocker after the latest bulk endpoint HTTP 500.
 
 ## Executive verdict
 

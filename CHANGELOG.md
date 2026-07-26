@@ -13,6 +13,8 @@
 - Preserved fail-closed source provenance: a terminal 429 or 5xx is recorded as
   a failed source, never as a successful empty search. The current live provider
   probe remains externally blocked by HTTP 500; the corpus was not changed.
+- Standardized package, manuscript, documentation, and user-agent URLs on the
+  public repository `ActiveInferenceInstitute/act_inf_metaanalysis`.
 
 ## v2.0.6 — 2026-07-24
 
