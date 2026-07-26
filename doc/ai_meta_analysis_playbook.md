@@ -75,15 +75,15 @@ tokens. Do not hand-edit `output/manuscript/`.
 ## 6. Run QA and closure
 
 ```bash
-uv run python scripts/06_fulltext_assessment.py --output-dir output
+uv run python scripts/06_fulltext_assessment.py --output-dir output/data
 uv run python scripts/07_run_validation_study.py --output-dir output
 uv run python scripts/08_validate_artifacts.py
 uv run python scripts/09_write_pipeline_manifest.py \
   --render-status pass --validation-status pass
-uv run python scripts/10_release_preflight.py
 uv run python scripts/11_prepare_evidence_pilots.py
 uv run python scripts/12_snapshot_output.py
 uv run python scripts/13_verify_tooling_inventory.py
+uv run python scripts/10_release_preflight.py
 uv run python scripts/14_verify_release_package.py
 ```
 

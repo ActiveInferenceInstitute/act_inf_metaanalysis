@@ -16,7 +16,6 @@ from __future__ import annotations
 import json
 import hashlib
 import re
-from datetime import datetime, timezone
 from pathlib import Path
 
 from config import PIPELINE_VERSION
@@ -591,6 +590,8 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
             variables["SENSITIVITY_RANK_FLIPS"] = str(rank_changes)
         default_scores = sensitivity.get("default_scores", {})
         policy_scores = sensitivity.get("policy_comparisons", {})
+        variables["SENSITIVITY_ALTERNATIVE_POLICY_COUNT"] = str(len(policy_scores))
+        variables["SENSITIVITY_POLICY_COUNT"] = str(len(policy_scores) + 1)
         sign_changes: set[str] = set()
         for comparison in policy_scores.values():
             for hid, score in comparison.get("scores", {}).items():
@@ -652,6 +653,7 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
         "openalex": "OpenAlex",
     }
     source_states: list[str] = []
+    completed_sources: list[str] = []
     failed_sources: list[str] = []
     for key, label in source_labels.items():
         if key == "arxiv":
@@ -661,11 +663,19 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
             event = latest_sources.get(label, {})
         if event.get("success"):
             source_states.append(f"{label} complete")
+            completed_sources.append(label)
         else:
             detail = event.get("error_type") or event.get("error") or "not completed"
             source_states.append(f"{label} incomplete ({detail})")
             failed_sources.append(key)
     variables["SOURCE_COMPLETION_STATUS"] = "; ".join(source_states) or "source status unavailable"
+    completed_text = ", ".join(completed_sources) or "no configured source"
+    failed_labels = [source_labels[key] for key in failed_sources]
+    failed_text = ", ".join(failed_labels)
+    variables["SOURCE_COMPLETION_SUMMARY"] = (
+        f"{completed_text} completed"
+        + (f"; {failed_text} incomplete" if failed_text else "")
+    )
     variables["SOURCE_COMPLETION_GATE"] = "pass" if not failed_sources else "blocked"
     variables["SOURCE_COMPLETION_FAILURES"] = ", ".join(failed_sources) or "none"
 
@@ -681,13 +691,25 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
     if tooling and "_error" not in tooling:
         verified = tooling.get("verified_count", 0)
         total = tooling.get("registry_count", 0)
+        flagged = tooling.get("flagged_count", 0)
+        source_only = tooling.get("source_only_count", 0)
+        variables["TOOLING_REGISTRY_COUNT"] = str(total)
+        variables["TOOLING_VERIFIED_COUNT"] = str(verified)
+        variables["TOOLING_FLAGGED_COUNT"] = str(flagged)
+        variables["TOOLING_SOURCE_ONLY_COUNT"] = str(source_only)
+        variables["TOOLING_LAST_CHECKED"] = str(tooling.get("checked_at", "")).split("T", 1)[0]
         variables["TOOLING_VERIFICATION_STATUS"] = (
-            "pass"
+            f"complete ({verified}/{total} rows fully verified; {flagged} flagged with explicit source notes)"
             if tooling.get("status") == "pass"
             else f"partial ({verified}/{total} verified)"
         )
     else:
         variables["TOOLING_VERIFICATION_STATUS"] = "not run"
+        variables["TOOLING_REGISTRY_COUNT"] = "0"
+        variables["TOOLING_VERIFIED_COUNT"] = "0"
+        variables["TOOLING_FLAGGED_COUNT"] = "0"
+        variables["TOOLING_SOURCE_ONLY_COUNT"] = "0"
+        variables["TOOLING_LAST_CHECKED"] = "undated"
     variables["SNAPSHOT_STATUS"] = (
         f"{variables.get('AS_OF_DATE', 'undated')} snapshot; source gate {variables['SOURCE_COMPLETION_GATE']}; "
         f"{variables.get('EXTRACTION_PROCESSED', '0')}/{variables.get('EXTRACTION_ELIGIBLE', '0')} eligible papers processed; "
@@ -833,13 +855,12 @@ def write_manuscript_variables(
         if not base.exists():
             continue
         for path in sorted(base.rglob("*")):
-            if path.is_file():
+            if path.is_file() and path != output_dir / "data" / "manuscript_variables.json":
                 artifact_files[str(path.relative_to(project_root))] = {
                     "sha256": _sha256(path),
                     "size_bytes": path.stat().st_size,
                 }
     payload = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
         "variables": variables,
         "source_tokens": collect_manuscript_tokens(manuscript_dir),
         "variable_keys": sorted(variables),

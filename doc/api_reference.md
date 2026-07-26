@@ -231,7 +231,7 @@ def estimate_growth_rate(year_counts: dict[int, int]) -> dict
 def fit_nmf_topics(
     tfidf_matrix: np.ndarray,
     feature_names: list[str],
-    n_topics: int = 5,
+    n_topics: int = 8,
     seed: int = 42,
     top_n: int = 10,
     max_iter: int = 200,
@@ -240,7 +240,7 @@ def fit_nmf_topics(
 
 def get_document_topics(
     tfidf_matrix: np.ndarray,
-    n_topics: int = 5,
+    n_topics: int = 8,
     seed: int = 42,
     max_iter: int = 200,
 ) -> np.ndarray

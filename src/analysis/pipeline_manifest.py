@@ -9,6 +9,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from config import (
+    DEFAULT_COMPLETE_YEAR_POLICY,
+    DEFAULT_SEED,
+    DEFAULT_TOPIC_STABILITY_SEEDS,
+    PIPELINE_VERSION,
+    PROMPT_VERSION,
+)
+from config_loader import load_analysis_config, load_kg_config
+
 
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -16,6 +25,35 @@ def _sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _load_yaml(path: Path) -> dict[str, Any]:
+    """Load the project configuration without making manifest writing fragile."""
+    try:
+        import yaml
+    except ImportError:
+        return {}
+    if not path.exists():
+        return {}
+    value = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return value if isinstance(value, dict) else {}
+
+
+def _single_provenance_value(value: Any, fallback: Any) -> Any:
+    """Collapse a uniform provenance histogram to its canonical value.
+
+    A non-uniform histogram is retained as a sorted list so the manifest cannot
+    silently select one version from a mixed extraction run.
+    """
+    if isinstance(value, dict):
+        if len(value) == 1:
+            return next(iter(value))
+        if value:
+            return sorted(str(key) for key in value)
+    return fallback
+
+
+_MANUSCRIPT_GUIDANCE_FILES = {"AGENTS.md", "README.md", "SKILL.md", "SYNTAX.md"}
 
 
 def write_pipeline_manifest(
@@ -83,7 +121,19 @@ def write_pipeline_manifest(
     search = json.loads(search_path.read_text(encoding="utf-8")) if search_path.exists() else {}
     corpus_path = output_dir / "data" / "corpus.jsonl"
     corpus_size = sum(1 for line in corpus_path.read_text(encoding="utf-8").splitlines() if line.strip()) if corpus_path.exists() else 0
-    input_paths = [project_root / "manuscript" / "config.yaml", corpus_path]
+    input_paths = [
+        project_root / "manuscript" / "config.yaml",
+        project_root / "manuscript" / "references.bib",
+        corpus_path,
+        project_root / "pyproject.toml",
+        project_root / "uv.lock",
+        project_root / "doc" / "tooling_inventory.yaml",
+    ]
+    input_paths.extend(
+        path
+        for path in sorted((project_root / "manuscript").glob("*.md"))
+        if path.name not in _MANUSCRIPT_GUIDANCE_FILES
+    )
     input_hashes = {
         str(path.relative_to(project_root)): {
             "sha256": _sha256(path),
@@ -94,9 +144,25 @@ def write_pipeline_manifest(
     }
     figures_count = len(list((output_dir / "figures").glob("*.png")))
     manuscript_count = len(list((output_dir / "manuscript").glob("*.md")))
+    config_path = project_root / "manuscript" / "config.yaml"
+    config = _load_yaml(config_path)
+    analysis_config = load_analysis_config(config_path)
+    kg_config = load_kg_config(config_path)
+    pipeline_config = config.get("project_config", {}).get("pipeline", {})
+    configured_pipeline = pipeline_config.get("pipeline_version", PIPELINE_VERSION)
+    configured_prompt = pipeline_config.get("prompt_version", PROMPT_VERSION)
+    configured_model = kg_config.get("llm_model") or ""
+    render_formats = {
+        key: bool(config.get("render", {}).get("formats", {}).get(key))
+        for key in ("pdf", "html", "slides", "docx", "epub")
+    }
     latest_sources = search.get("latest_source_status", {})
+    arxiv_events = [
+        event for name, event in latest_sources.items()
+        if str(name).lower().startswith("arxiv[")
+    ]
     source_gate = {
-        "arxiv": any(bool(event.get("success")) for name, event in latest_sources.items() if str(name).lower().startswith("arxiv[")),
+        "arxiv": bool(arxiv_events) and all(bool(event.get("success")) for event in arxiv_events),
         "semantic_scholar": bool(latest_sources.get("Semantic Scholar", {}).get("success")),
         "openalex": bool(latest_sources.get("OpenAlex", {}).get("success")),
     }
@@ -113,13 +179,42 @@ def write_pipeline_manifest(
         and not coverage.get("unprocessed_papers", 0),
         "literature_sources": source_gate,
     }
+    run_id = coverage.get("run_id") or state.get("run_id")
+    observed_pipeline = _single_provenance_value(
+        provenance.get("pipeline_versions"), configured_pipeline
+    )
+    observed_prompt = _single_provenance_value(
+        provenance.get("prompt_versions"), configured_prompt
+    )
+    observed_model = _single_provenance_value(
+        provenance.get("unique_models"), configured_model
+    )
     payload: dict[str, Any] = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "git_commit": commit,
-        "pipeline_version": provenance.get("pipeline_versions", {}),
-        "prompt_version": provenance.get("prompt_versions", {}),
-        "model": provenance.get("unique_models", {}),
-        "extraction_run": coverage.get("run_id", state.get("run_id")),
+        "pipeline_version": observed_pipeline,
+        "prompt_version": observed_prompt,
+        "model": observed_model,
+        "run_id": run_id,
+        "as_of_date": analysis_config.get("as_of_date"),
+        "complete_year_policy": analysis_config.get(
+            "complete_year_policy", DEFAULT_COMPLETE_YEAR_POLICY
+        ),
+        "configuration": {
+            "pipeline_version": configured_pipeline,
+            "prompt_version": configured_prompt,
+            "model": configured_model,
+            "n_topics": analysis_config.get("n_topics"),
+            "seed": analysis_config.get("seed", DEFAULT_SEED),
+            "topic_stability_seeds": list(
+                analysis_config.get("topic_stability_seeds", DEFAULT_TOPIC_STABILITY_SEEDS)
+            ),
+            "as_of_date": analysis_config.get("as_of_date"),
+            "complete_year_policy": analysis_config.get(
+                "complete_year_policy", DEFAULT_COMPLETE_YEAR_POLICY
+            ),
+            "render_formats": render_formats,
+        },
         "render_status": render_status,
         "validation_status": validation_status,
         "input_hashes": input_hashes,

@@ -555,3 +555,5 @@ class TestHypothesisAliasMapping:
         payload = json.loads(path.read_text(encoding="utf-8"))
         assert payload["source_tokens"]["CORPUS_SIZE"] == ["00_abstract.md"]
         assert payload["source_files"]
+        assert "generated_at" not in payload
+        assert "output/data/manuscript_variables.json" not in payload["artifact_files"]

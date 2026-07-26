@@ -15,7 +15,6 @@ scripts/
 ├── 03_build_knowledge_graph.py   # → knowledge_graph/kg_runner.py
 ├── 04_generate_figures.py        # → visualization/figure_runner.py
 ├── z_generate_manuscript_variables.py # canonical → manuscript/variables.py
-├── 05_inject_variables.py        # compatibility wrapper
 ├── 06_fulltext_assessment.py     # → literature/fulltext_assessment.py   (auxiliary QA)
 ├── 07_run_validation_study.py    # → analysis/validation_{sample,labeling,metrics}.py
 ├── 08_validate_artifacts.py      # → analysis/artifact_contract.py
@@ -28,15 +27,19 @@ scripts/
 └── __pycache__/                  # Python bytecode cache (gitignored)
 ```
 
-Scripts `01`–`05` form the core content-generation chain. Scripts `06`–`09`
+Scripts `01`–`04` plus the canonical manuscript hydrator form the core content-generation chain. Scripts `06`–`09`
 perform full-text QA, deterministic validation, cross-artifact validation, and
-manifest closure. Scripts `10`–`14` perform release preflight, review-queue
-preparation, safe output snapshotting, tooling-source verification, and local
-release-package hash verification.
+the initial manifest. Scripts `11`–`13` prepare review queues, safe output
+snapshotting, and tooling-source verification; Script `10` then performs release
+preflight and refreshes the final manifest; Script `14` verifies the local
+release-package hashes. The final release order is therefore dependency-driven:
+`06, 07, 08, 09, 11, 12, 13, 10, 14`.
 
 ## Execution Order
 
-Scripts **must** run in numbered order because each stage depends on the outputs of prior stages:
+Scripts **must** run in the dependency order above because the final release
+gate consumes the tooling report and must refresh the manifest after all
+release-side outputs exist:
 
 | Script | Inputs | Outputs | Dependencies |
 |--------|--------|---------|--------------|
@@ -53,7 +56,7 @@ Scripts **must** run in numbered order because each stage depends on the outputs
 | `11` | Corpus and validation sample | deterministic review queues/protocols | `01`, `03`, `07` |
 | `12` | Disposable `output/` | `output/reports/snapshot_inventory.json`, optional snapshot copy | current output |
 | `13` | Tooling registry and public source URLs | `output/reports/tooling_verification.json` | registry, network |
-| `14` | Staged release package | local manifest verification report | `10` |
+| `14` | Staged release package | local manifest verification report and final manifest refresh | `10` |
 
 ## Script Details
 
@@ -132,23 +135,6 @@ Generates all 16 publication-quality figures from analysis JSON files.
 - `--output-dir PATH` — figure output directory
 
 **Uses:** `infrastructure.documentation.figure_manager.FigureManager` for figure registration, `src/visualization/` modules for all rendering.
-
-### `05_inject_variables.py`
-
-Template variable injection: replaces `{{VAR}}` placeholders in manuscript markdown with computed values from pipeline output.
-
-**Key flags:**
-- `--project NAME` — project name (default: `act_inf_metaanalysis`)
-- `--dry-run` — show changes without writing
-
-**Process:**
-1. Compute variables from `output/data/*.json`
-2. Write Zenodo deposit metadata to `output/reports/zenodo_deposit_metadata.json` via `write_zenodo_metadata` (occurs before injection; skipped under `--dry-run`)
-3. Inject into each `.md` file → write rendered copies to `output/manuscript/`
-4. Copy non-md support files (config, bib, etc.)
-5. Verify no unresolved `{{VAR}}` placeholders remain
-
-**Imports from `src/`:** `manuscript.variables.compute_variables`, `manuscript.variables.inject_variables`, `manuscript.variables.write_zenodo_metadata`.
 
 ### `06_fulltext_assessment.py`
 

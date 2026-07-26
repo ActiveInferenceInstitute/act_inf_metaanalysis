@@ -350,8 +350,8 @@ class TestPaperSerialization:
         assert restored.is_open_access is True
         assert restored.full_text_source == "arxiv"
 
-    def test_from_dict_backward_compatible(self):
-        """from_dict handles older records without full-text fields."""
+    def test_from_dict_optional_fulltext_fields(self):
+        """from_dict applies explicit defaults for optional full-text fields."""
         data = {
             "title": "Old Paper",
             "abstract": "Older record",

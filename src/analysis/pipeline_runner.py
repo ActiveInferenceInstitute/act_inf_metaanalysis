@@ -201,10 +201,17 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
         "total_references": sum(_count_paper_references(p) for p in papers),
         "figure_view_nodes": min(view_limit, graph.number_of_nodes()),
         "figure_view_edges": view_edges,
-        "top_pagerank": {k: float(v) for k, v in list(metrics["pagerank"].items())[:5]},
-        "top_hubs": {k: float(v) for k, v in list(metrics.get("hubs", {}).items())[:5]},
+        # Round serialized ranking values so harmless floating-point noise from
+        # iterative solvers cannot make an otherwise identical rerun dirty.
+        "top_pagerank": {
+            k: round(float(v), 12) for k, v in list(metrics["pagerank"].items())[:5]
+        },
+        "top_hubs": {
+            k: round(float(v), 12) for k, v in list(metrics.get("hubs", {}).items())[:5]
+        },
         "top_authorities": {
-            k: float(v) for k, v in list(metrics.get("authorities", {}).items())[:5]
+            k: round(float(v), 12)
+            for k, v in list(metrics.get("authorities", {}).items())[:5]
         },
     }
     network_path = data_dir / "citation_network.json"

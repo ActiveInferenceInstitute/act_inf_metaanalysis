@@ -23,6 +23,7 @@ from analysis.release_package import (
     validate_release_metadata,
     verify_release_manifest,
 )
+from analysis.pipeline_manifest import write_pipeline_manifest
 
 
 def _render_checks(output_dir: Path) -> dict[str, object]:
@@ -106,6 +107,24 @@ def main() -> int:
     report_path = output_dir / "reports" / "release_preflight.json"
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
+    # The preflight and package steps write reports after Stage 09. Refresh the
+    # manifest last so its output hashes describe the completed release surface.
+    manifest_path = output_dir / "reports" / "pipeline_manifest.json"
+    prior_manifest: dict[str, object] = {}
+    if manifest_path.exists():
+        try:
+            prior_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            prior_manifest = {}
+    manifest_render_status = str(
+        prior_manifest.get("render_status", "pass" if render["status"] == "pass" else "fail")
+    )
+    manifest_validation_status = str(prior_manifest.get("validation_status", "pending"))
+    write_pipeline_manifest(
+        PROJECT_ROOT,
+        render_status=manifest_render_status,
+        validation_status=manifest_validation_status,
+    )
     print(report_path)
     for name in sorted(blocking):
         print(f"ERROR: release preflight failed: {name}", file=sys.stderr)

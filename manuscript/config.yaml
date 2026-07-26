@@ -85,7 +85,7 @@ analysis:
   complete_year_policy: exclude_current_partial_year_from_cagr
   # Freeze the temporal snapshot for reproducible reruns; update deliberately
   # when publishing a new live refresh.
-  as_of_date: "2026-07-24"
+  as_of_date: "2026-07-26"
 
 # Project-specific configuration namespace.
 # Keys under project_config are passed through without schema validation warnings.

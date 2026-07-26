@@ -12,8 +12,8 @@ Our extraction pipeline deploys a locally hosted LLM through Ollama \citep{ollam
 
 ## Software Ecosystem
 
-The Active Inference community has developed a rapidly growing ecosystem of open-source tools spanning multiple programming languages, inference paradigms, and application domains. This section provides a dated, source-backed inventory of publicly available implementations. We emphasize tools with traceable papers, preprint identifiers, or official project sources: source traceability is a prerequisite for reproducibility and community-driven validation. The registry and exclusion policy are maintained in `doc/tooling_inventory.yaml`; entries without a traceable primary source are not counted in the publication-facing table.
-The dated public-source probe for this snapshot is {{TOOLING_VERIFICATION_STATUS}}: it records repository reachability, license metadata, release tags, and recent activity without treating a paper-only implementation as a verified software distribution.
+The Active Inference community has developed a rapidly growing ecosystem of implementations spanning multiple programming languages, inference paradigms, and application domains. This section provides a dated, source-traceable inventory of implementations and associated paper-only source records. We emphasize entries with traceable papers, preprint identifiers, or official project sources: source traceability is a prerequisite for reproducibility and community-driven validation, but does not by itself establish adoption, comparative performance, or a permissive software license. The registry and exclusion policy are maintained in `doc/tooling_inventory.yaml`; entries without a traceable primary source are not counted in the publication-facing table.
+The dated public-source probe for this snapshot is {{TOOLING_VERIFICATION_STATUS}} as of {{TOOLING_LAST_CHECKED}} across {{TOOLING_REGISTRY_COUNT}} retained rows. It records repository reachability, license metadata, release/version information, and recent activity for every retained row; {{TOOLING_SOURCE_ONLY_COUNT}} rows have source-only evidence and {{TOOLING_FLAGGED_COUNT}} rows carry explicit limitations. Row-level flags remain visible for stale repositories, source-only papers/sites, restricted licenses, and missing license files; no such row is presented as a fully verified maintained software distribution.
 
 ### General-Purpose Frameworks
 
@@ -23,7 +23,7 @@ The source-backed general-purpose inventory covers discrete, continuous, and rea
 
 **SPM.** The SPM package (Wellcome Centre for Human Neuroimaging) includes MATLAB implementations of Dynamic Causal Modeling and variational Bayesian inference under the FEP. It remains the reference implementation for neuroimaging applications and houses the original Friston-group POMDP scripts.
 
-**RxInfer.jl.** RxInfer is a Julia package for reactive message-passing-based Bayesian inference, supporting real-time and streaming inference suitable for robotics and online learning. Version 4.0.0 (early 2025) \citep{rxinfer2025} introduced projected constraints and adaptive inference optimized for dynamic data streams and autonomous systems. The RxInfer ecosystem includes extensive tutorials covering Bayesian linear regression, hidden Markov models, Kalman filtering, Gaussian process regression, hierarchical Gaussian filters, nonlinear sensor fusion, and active inference mountain car control, available at the [official documentation](https://reactivebayes.github.io/RxInfer.jl/stable/) and the [Learnable Loop](https://learnableloop.com/) tutorial portal.
+**RxInfer.jl.** RxInfer is a Julia package for reactive message-passing-based Bayesian inference, supporting real-time and streaming inference suitable for robotics and online learning \citep{rxinfer2025}. The dated source audit records its current release/version and license metadata; the audit report, rather than a hard-coded prose version, is authoritative for this living inventory. The RxInfer ecosystem includes tutorials covering Bayesian linear regression, hidden Markov models, Kalman filtering, Gaussian process regression, hierarchical Gaussian filters, nonlinear sensor fusion, and active inference mountain car control, available at the [official documentation](https://reactivebayes.github.io/RxInfer.jl/stable/) and the [Learnable Loop](https://learnableloop.com/) tutorial portal.
 
 **ActiveInference.jl.** In parallel to RxInfer's generalized message-passing focus, ActiveInference.jl provides a Julia-native, near drop-in conceptual analogue to Python's `pymdp` \citep{ActiveInferencejl}. It explicitly targets computational psychiatry and cognitive neuroscience workflows emphasizing standard discrete-state POMDP simulation, parameter estimation, and recovery. The library leverages Julia's array semantics---utilizing vectors of arrays to efficiently encode multimodal factorized models via the canonical $\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D}, \mathbf{E}$ components---to streamline tasks such as generating synthetic behavioral data, fitting models to subject behavior, and probing internal beliefs via robust simulation loops (`infer_states!`, `infer_policies!`, `sample_action!`).
 
@@ -49,14 +49,14 @@ The scalability gap between AIF and deep reinforcement learning has been a centr
 
 \FloatBarrier
 
-### Comprehensive Open-Source Tool Survey
+### Source-backed Tool Survey
 
-The following table catalogs the principal open-source Active Inference implementations surveyed, organized by functional category. For each tool we list the primary language, application domain, and associated publication or repository. The table is intended as a navigational resource for researchers seeking existing implementations relevant to specific hypotheses (H1--H8) or application domains (A1--C5).
+The following table catalogs the principal source-backed Active Inference implementations surveyed, organized by functional category. For each entry we list the primary language, application domain, and associated publication or repository. The table is intended as a navigational resource for researchers seeking implementations or traceable source records relevant to specific hypotheses (H1--H8) or application domains (A1--C5). External verification status is reported separately so the table does not convert a citation into a maintenance or license claim.
 
 \begin{center}
 \small
 \begin{longtable}{p{3.2cm} p{1.6cm} p{6.4cm} p{2.5cm}}
-\caption{Source-backed inventory of Active Inference and Free Energy Principle software, grouped by functional category. Candidate entries without traceable primary sources are excluded; see the tooling registry.}
+\caption{Source-backed inventory of Active Inference and Free Energy Principle implementations and source records, grouped by functional category. Candidate entries without traceable primary sources are excluded; see the tooling registry and dated verification report.}
 \label{tab:tool_survey} \\
 \toprule
 \textbf{Tool / Repository} & \textbf{Lang.} & \textbf{Description} & \textbf{Paper / Source} \\
@@ -87,7 +87,7 @@ DeepActiveInference & Python & Continuous deep AIF with backprop-based world mod
 BTAI\_3MF & Python & Branching-time AIF with multi-step tree planning & \cite{champion2021realizing} \\
 Deep\_BTAI\_3MF & Python & Deep neural variant of BTAI with learned state spaces & \cite{champion2021realizing} \\
 AXIOM & Python & Object-centric world models; Gameworld 10k in minutes; beats DreamerV3 & \cite{heins2025axiom} \\
-active-inference (Voostrum) & Python & Continuous deep AIF with learned generative models & arXiv:2406.07726 \\
+active-inference (Voostrum) & Python & Discrete-time AIF agent with flattened state and observation factors & repository (tooling registry) \\
 \midrule
 \multicolumn{4}{c}{\textit{Predictive Coding \& Neural Generative Coding}} \\
 \midrule
@@ -97,16 +97,15 @@ PredictiveCodingBackprop & Python & Predictive coding approximates backprop on a
 \midrule
 ants & Python & Ant foraging simulation with stigmergic AIF agents & \cite{heins2024collective} \\
 action-oriented & Python & Action-oriented predictive-processing models & \cite{tschantz2020action} \\
-bayesian-mechanics-sdes & Python & Bayesian mechanics: SDE simulations of Markov-blanket dynamics & arXiv:2206.02629 \\
+bayesian-mechanics-sdes & Python & Bayesian mechanics: stationary-process simulations and companion code & \cite{sakthivadivel2023bayesian} \\
 \midrule
 \multicolumn{4}{c}{\textit{Multi-Agent \& Social Dynamics}} \\
 \midrule
 \midrule
 \multicolumn{4}{c}{\textit{Domain-Specific Applications}} \\
 \midrule
-adaptive\_aif\_agents\_fl & Python & Adaptive AIF agents for federated learning & arXiv:2410.09099 \\
 rl-inference & Python & Bridging RL and active inference policy selection & arXiv:2002.12636 \\
-Robust-FE-Minimization & Python & Robust decision-making via free-energy minimization & arXiv:2503.13223 \\
+Robust-FE-Minimization & Python & Robust decision-making via free-energy minimization & source-only preprint record \\
 \midrule
 \multicolumn{4}{c}{\textit{Tutorials \& Educational Resources}} \\
 \midrule
@@ -119,7 +118,7 @@ Robust-FE-Minimization & Python & Robust decision-making via free-energy minimiz
 
 \begin{table}[H]
 \centering
-\caption{Comparative feature matrix of six source-backed representative Active Inference packages. Features span language, state-space type, inference algorithm, hierarchical support, GPU acceleration, license, and primary use case.}
+\caption{Comparative feature matrix of six source-backed representative Active Inference packages. Features span language, state-space type, inference algorithm, hierarchical support, GPU acceleration, observed license status, and primary use case.}
 \label{tab:aif_feature_matrix}
 \small
 \begin{tabular}{lllllll}
@@ -133,7 +132,7 @@ Deep AIF & Partial & No & Custom factors & No & No & No \\
 Real-time & No & No & Yes & No & Yes & No \\
 Hierarchical & Yes & Yes (DCM) & Yes & No & Yes & No \\
 GPU & No & No & No & No & CPU multi & No \\
-License & MIT & GPL & MIT & MIT & MIT & MIT \\
+License & MIT & Site-only; not assessed & MIT & MIT & BSD-3-Clause & Source-only; not assessed \\
 Primary Use & Prototyping & Neuroimaging & Robotics & Comp.\ psych. & Embedded & Interp.\ RL \\
 \bottomrule
 \end{tabular}
@@ -173,7 +172,7 @@ Consistency checks verify that all nodes link to valid targets and no orphan nod
 
 ### Score-Level Unit Testing
 
-Hypothesis scoring is validated through unit tests on synthetic data verifying boundary conditions: all-support fixtures must produce scores at $+1$, all-contradict at $-1$, and balanced inputs at $0$. Sensitivity analysis sweeps over confidence thresholds and citation-weighting schemes to confirm that qualitative rankings are stable.
+Hypothesis scoring is validated through unit tests on synthetic data verifying boundary conditions: all-support fixtures must produce scores at $+1$, all-contradict at $-1$, and balanced inputs at $0$. Sensitivity analysis sweeps over confidence thresholds and citation-weighting schemes to measure, rather than assume, qualitative rank stability; the current weighting-only snapshot shows high but non-perfect agreement and remains a diagnostic rather than validation of the underlying evidence.
 
 ### Pipeline-Level Test Coverage
 
@@ -194,7 +193,7 @@ Assertion & Rule-reference $\kappa$ (offline sample) & Reported, not gated & Rep
 Graph & Orphan-node ratio & $= 0$ & Reject build \\
 Graph & Corpus coverage & $\geq 80\%$ & Warning \\
 Score & Boundary tests (all-support / all-contradict / balanced) & All pass & Block release \\
-Score & Sensitivity-sweep stability & Top-$k$ ranks unchanged & Warning \\
+Score & Sensitivity-sweep stability & Report rank changes and Spearman $ρ$ & Warning \\
 Pipeline & Project-code coverage & $\geq 90\%$ & Block merge \\
 Pipeline & Infrastructure coverage & $\geq 60\%$ & Block merge \\
 Pipeline & Test pass rate & $100\%$ & Block release \\

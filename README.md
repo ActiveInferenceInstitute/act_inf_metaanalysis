@@ -4,6 +4,12 @@
 
 **Repository:** [github.com/docxology/act_inf_metaanalysis](https://github.com/docxology/act_inf_metaanalysis)
 
+**Current snapshot (2026-07-26):** PDF/HTML rendering and local artifact/package
+validation pass; the publication gate remains fail-closed because Semantic
+Scholar returned HTTP 429 during the latest three-source retrieval. The
+snapshot is therefore reproducible and reviewable, but not source-complete for
+a new live publication.
+
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/docxology/act_inf_metaanalysis/actions)
 [![Coverage gate](https://img.shields.io/badge/coverage-gate%2090%25-brightgreen)](https://github.com/docxology/act_inf_metaanalysis)
 [![Tests](https://img.shields.io/badge/tests-pytest-blue)](https://github.com/docxology/act_inf_metaanalysis)
@@ -140,10 +146,10 @@ python3 scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
 # 8–9. Validate cross-artifact consistency and write the pipeline manifest
 python3 scripts/08_validate_artifacts.py
 python3 scripts/09_write_pipeline_manifest.py
-python3 scripts/10_release_preflight.py
 python3 scripts/11_prepare_evidence_pilots.py
 python3 scripts/12_snapshot_output.py
 python3 scripts/13_verify_tooling_inventory.py
+python3 scripts/10_release_preflight.py
 python3 scripts/14_verify_release_package.py
 ```
 
@@ -152,7 +158,7 @@ If extraction is interrupted, rerun Stage 3 with the same config and without
 extraction `run_id` is preserved; `output/data/extraction_state.json` records
 whether the run is resumable or complete.
 
-Steps 1–5 are the content-generation chain; steps 6–9 provide full-text QA, deterministic validation, cross-artifact validation, and manifest closure. Steps 10–14 provide release preflight, review-queue preparation, snapshots, tooling-source verification, and release-package verification. See [`doc/scripts.md`](doc/scripts.md) for each script's full flag reference.
+Steps 1–5 are the content-generation chain; steps 6–9 provide full-text QA, deterministic validation, cross-artifact validation, and the initial manifest. Steps 11–13 prepare review queues, snapshots, and tooling-source evidence before Stage 10 runs the release preflight and refreshes the final manifest. Stage 14 verifies the staged release package. See [`doc/scripts.md`](doc/scripts.md) for each script's full flag reference.
 
 ---
 
@@ -216,7 +222,7 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 
 The canonical, continuously updated changelog lives in **[CHANGELOG.md](CHANGELOG.md)** — treat it as the single source of truth. (An earlier copy was duplicated here and drifted several releases behind; this section is intentionally kept to a short pointer to avoid that recurring.)
 
-**Current release: v2.0.6 (2026-07-24)** — adds configuration-driven live-refresh provenance, partial-year-safe temporal statistics, topic stability diagnostics, cross-artifact validation, canonical manuscript hydration, and PDF/HTML-only render closure while preserving the honest rule-based validation boundary.
+**Current release: v2.0.6 (2026-07-26 closure)** — adds configuration-driven live-refresh provenance, partial-year-safe temporal statistics, topic stability diagnostics, cross-artifact validation, canonical manuscript hydration, external tooling verification, and PDF/HTML-only render closure while preserving the honest rule-based validation boundary. The current snapshot has 654 passed tests, 1 skipped, and 90.07% coverage against the 90% gate.
 
 See **[CHANGELOG.md](CHANGELOG.md)** for the full per-release history (v2.0.0 → v2.0.6).
 

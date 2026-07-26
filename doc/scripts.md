@@ -84,15 +84,15 @@ uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yam
   --clear-assertions --checkpoint-interval 25
 uv run python scripts/04_generate_figures.py --dpi 300
 uv run python scripts/z_generate_manuscript_variables.py --project .
-uv run python scripts/06_fulltext_assessment.py --output-dir output
+uv run python scripts/06_fulltext_assessment.py --output-dir output/data
 uv run python scripts/07_run_validation_study.py --output-dir output
 uv run python scripts/08_validate_artifacts.py
 uv run python scripts/09_write_pipeline_manifest.py \
   --render-status pass --validation-status pass
-uv run python scripts/10_release_preflight.py
 uv run python scripts/11_prepare_evidence_pilots.py
 uv run python scripts/12_snapshot_output.py
 uv run python scripts/13_verify_tooling_inventory.py
+uv run python scripts/10_release_preflight.py
 uv run python scripts/14_verify_release_package.py
 ```
 
@@ -295,7 +295,7 @@ python scripts/04_generate_figures.py --dpi 600
 
 ## Stage 5 — Manuscript Variable Hydration (`z_generate_manuscript_variables.py`)
 
-Reads pipeline output data, computes template variables, and injects them into manuscript markdown files. Produces rendered copies in `output/manuscript/` with all `{{VAR}}` placeholders replaced by real values. This `z_` entrypoint is the canonical template-recognized hydrator; `05_inject_variables.py` remains a compatible wrapper.
+Reads pipeline output data, computes template variables, and injects them into manuscript markdown files. Produces rendered copies in `output/manuscript/` with all `{{VAR}}` placeholders replaced by real values. This is the canonical template-recognized hydrator.
 
 ### CLI Flags
 
@@ -306,7 +306,7 @@ Reads pipeline output data, computes template variables, and injects them into m
 
 ### Processing Steps
 
-1. **Compute Variables** — Read pipeline output JSONs (`temporal_analysis.json`, `citation_network.json`, `subfield_classification.json`, `assertion_summary.json`, `hypothesis_scores.json`, `topics.json`) and compute ~50 template variables with LaTeX-formatted values
+1. **Compute Variables** — Read pipeline output JSONs (`temporal_analysis.json`, `citation_network.json`, `subfield_classification.json`, `assertion_summary.json`, `hypothesis_scores.json`, `topics.json`) and compute the configuration-dependent manuscript variable set (191 variables in the current snapshot) with LaTeX-formatted values
 2. **Create Output Directory** — `output/manuscript/` for rendered copies
 3. **Inject Variables** — Replace `{{VAR_NAME}}` placeholders in each manuscript `.md` file
 4. **Copy Non-MD Files** — Copy `config.yaml`, `references.bib`, etc. to output directory
@@ -405,8 +405,9 @@ non-zero on any mismatch and writes `output/reports/artifact_contract.json`.
 
 ## Stage 9 — Pipeline Manifest (`09_write_pipeline_manifest.py`)
 
-Writes `output/reports/pipeline_manifest.json` with input/output hashes, versions,
-model and run identifiers, timestamps, counts, and the current render and
+Writes `output/reports/pipeline_manifest.json` with input/output hashes, canonical
+pipeline/prompt/model/run identifiers, configured analysis and render policy,
+timestamps, counts, and the current render and
 validation gate results.
 
 ## Stage 10 — Release Preflight (`10_release_preflight.py`)
@@ -419,7 +420,10 @@ remain visible as blockers.
 It writes `output/reports/release_preflight.json` and stages a local,
 source-complete-independent nanopublication package under
 `output/release/nanopublications-<as_of_date>/`. A failed configured-source gate
-keeps the preflight failed even when the local RDF package is valid.
+keeps the preflight failed even when the local RDF package is valid. Because
+Stages 11–13 can add outputs after the initial Stage 09 manifest, Stage 10
+refreshes `pipeline_manifest.json` after writing its own report; this is the
+final output-hash closure for the documented sequence.
 
 ```bash
 python scripts/10_release_preflight.py
@@ -460,6 +464,10 @@ python scripts/13_verify_tooling_inventory.py
 
 ## Stage 14 — Release Package Verification (`14_verify_release_package.py`)
 
+Verifies the staged JSONL/TriG package against its recorded hashes and count.
+It also refreshes the pipeline manifest after writing the verification report,
+leaving the final manifest as the hash-closed record of the release tree.
+
 Checks every staged nanopublication package file against its recorded SHA-256
 and byte count, and verifies the JSONL nanopublication count. This is the local
 deposit-equivalent gate; it does not claim that an external deposit exists.
@@ -472,6 +480,10 @@ python scripts/14_verify_release_package.py
 
 ## Full Pipeline
 
+The final release order is dependency-driven: Stages 11–13 run before Stage 10
+so the preflight sees the current tooling report, and Stage 10 refreshes the
+manifest after its own report/package writes.
+
 ```bash
 python scripts/01_literature_search.py --config manuscript/config.yaml
 python scripts/02_meta_analysis_pipeline.py --n-topics 8 --seed 42
@@ -482,10 +494,10 @@ python scripts/06_fulltext_assessment.py
 python scripts/07_run_validation_study.py
 python scripts/08_validate_artifacts.py
 python scripts/09_write_pipeline_manifest.py
-python scripts/10_release_preflight.py
 python scripts/11_prepare_evidence_pilots.py
 python scripts/12_snapshot_output.py
 python scripts/13_verify_tooling_inventory.py
+python scripts/10_release_preflight.py
 python scripts/14_verify_release_package.py
 ```
 

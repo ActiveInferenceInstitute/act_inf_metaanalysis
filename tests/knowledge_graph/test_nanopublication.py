@@ -389,7 +389,7 @@ class TestNanopubRDF:
         np_obj = Nanopublication(
             nanopub_id="nanopub:abc123",
             assertion=a,
-            attribution="pipeline_v1",
+            attribution="test-pipeline",
             created_date="2025-01-15T12:00:00+00:00",
         )
         ds = nanopub_to_rdf(np_obj)

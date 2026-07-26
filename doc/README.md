@@ -18,7 +18,7 @@ acceptance gate.
 
 ## Central Philosophy: Reproducible Generative Research
 
-This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **12 numbered scripts** plus the canonical manuscript hydrator: retrieval, analysis, extraction, figures, hydration, full-text QA, deterministic validation, cross-artifact validation, manifest closure, release preflight, review-queue preparation, and safe snapshot inventory. By structuring the literature review this way, this platform ensures:
+This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **14 numbered scripts** plus the canonical manuscript hydrator: retrieval, analysis, extraction, figures, hydration, full-text QA, deterministic validation, cross-artifact validation, manifest closure, review-queue preparation, safe snapshot inventory, tooling-source verification, release preflight, and release-package verification. By structuring the literature review this way, this platform ensures:
 
 1. **Verifiable Provenance**: Every paper, classification, and assertion is strictly mapped from public APIs (arXiv, Semantic Scholar) through atomic JSONL intermediate states into the final visual output.
 2. **Robust Extensibility**: New papers incrementally stream into the corpus, and new LLM models can instantly backfill metadata assessments via checkpointed resumes.
@@ -56,10 +56,10 @@ python scripts/06_fulltext_assessment.py
 python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
 python scripts/08_validate_artifacts.py
 python scripts/09_write_pipeline_manifest.py
-python scripts/10_release_preflight.py
 python scripts/11_prepare_evidence_pilots.py
 python scripts/12_snapshot_output.py
 python scripts/13_verify_tooling_inventory.py
+python scripts/10_release_preflight.py
 python scripts/14_verify_release_package.py
 ```
 
@@ -109,11 +109,12 @@ flowchart LR
     S1 & S3 -->|corpus + nanopublications| S7
     S7 -->|sample.csv, labels_rule_reference.csv, validation_metrics.json| Val["output/validation/, output/reports/"]
     S8 & S9 --> S10
-    S10 -->|release_preflight.json, RDF package| Rel["output/release/, output/reports/"]
     S7 --> S11
     S11 -->|review queues and protocols| Pilot["output/validation/"]
     S12 -->|inventory and optional snapshot copy| Snap["output/reports/ and output/snapshots/"]
     S13 -->|dated source/license/activity report| Tool["output/reports/tooling_verification.json"]
+    S11 & S12 & S13 --> S10
+    S10 -->|release_preflight.json, RDF package, final manifest| Rel["output/release/, output/reports/"]
     S10 --> S14
     S14 -->|hash/count verification| Rel
 ```
@@ -135,7 +136,7 @@ flowchart LR
 | 13. Tooling Verification | `13_verify_tooling_inventory.py` | Retained tooling registry, public sources | `output/reports/tooling_verification.json` |
 | 14. Release Package Verification | `14_verify_release_package.py` | Staged nanopublication package | `output/reports/release_package_verification.json` |
 
-*Stage 7 is a deterministic **rule-based reference-annotator agreement** study (a reproducibility floor), **not** a human validation. Stages 8 and 9 close the cross-artifact and provenance gates before template rendering.*
+*Stage 7 is a deterministic **rule-based reference-annotator agreement** study (a reproducibility floor), **not** a human validation. Stages 8 and 9 close the cross-artifact and provenance gates; Stages 11–13 prepare the remaining release inputs, Stage 10 runs the fail-closed release gate and refreshes the final manifest, and Stage 14 verifies the package.*
 
 ---
 
@@ -193,7 +194,7 @@ The pipeline reads settings from `manuscript/config.yaml`. CLI flags override co
 | `03c_results_text_analytics.md` | `word_cloud.png`, `pca_embeddings.png`, `term_heatmap.png`, `dendrogram.png`, `topic_term_bars.png`, `cooccurrence_matrix.png` | `NUM_TOPICS`, `NUM_VOCAB_FEATURES` | Stage 2 + 5 |
 | `03d_results_citation_network.md` | `citation_network.png`, `degree_distribution.png` | `CITATION_NODES`, `CITATION_EDGES`, `CITATION_DENSITY_PCT` | Stage 2 + 5 |
 
-Variable hydration is handled by `src/manuscript/variables.py`, invoked by `scripts/z_generate_manuscript_variables.py`; `05_inject_variables.py` is a compatible wrapper. See `manuscript/README.md` for the full variable-to-source mapping.
+Variable hydration is handled by `src/manuscript/variables.py`, invoked by the canonical `scripts/z_generate_manuscript_variables.py` entrypoint. See `manuscript/README.md` for the full variable-to-source mapping.
 
 ---
 
@@ -219,5 +220,5 @@ Variable hydration is handled by `src/manuscript/variables.py`, invoked by `scri
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [testing.md](testing.md) | Test architecture, latest 650-pass gate, and coverage configuration |
+| [testing.md](testing.md) | Test architecture, latest 654-pass gate, and coverage configuration |
 | [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |

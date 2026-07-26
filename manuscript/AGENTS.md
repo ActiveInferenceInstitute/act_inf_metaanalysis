@@ -33,7 +33,7 @@ Source directory for the paper: all `.md` sections, `config.yaml`, `preamble.md`
 
 ## Variable Injection System
 
-Manuscript source files use double-brace placeholders of the form `{{<NAME>}}` where `<NAME>` is the variable identifier (the actual placeholders use plain double braces with no angle brackets — angle brackets are shown here only to keep this documentation example from being substituted). Stage 5 (`scripts/z_generate_manuscript_variables.py`) computes values from pipeline outputs and writes rendered files to `output/manuscript/`; `05_inject_variables.py` is a compatible wrapper.
+Manuscript source files use double-brace placeholders of the form `{{<NAME>}}` where `<NAME>` is the variable identifier (the actual placeholders use plain double braces with no angle brackets — angle brackets are shown here only to keep this documentation example from being substituted). Stage 5 (`scripts/z_generate_manuscript_variables.py`) computes values from pipeline outputs and writes rendered files to `output/manuscript/`.
 
 **Injection sources:**
 - `corpus.jsonl` → `{{CORPUS_SIZE}}`, `{{YEAR_START}}`, `{{YEAR_END}}`
@@ -43,7 +43,7 @@ Manuscript source files use double-brace placeholders of the form `{{<NAME>}}` w
 - `assertion_summary.json` → `{{TOTAL_ASSERTIONS}}`, `{{ASSERTION_SUPPORT_PCT}}`, `{{ASSERTION_CONTRADICT_PCT}}`
 - `hypothesis_scores.json` → `{{H1_SCORE}}`, `{{H1_SUPPORT}}`, `{{H1_NEUTRAL}}`, `{{H1_CONTRADICT}}` … (per hypothesis)
 - `topics.json` → `{{NUM_TOPICS}}`, `{{NUM_VOCAB_FEATURES}}`
-- Hardcoded → `{{NUM_FIGURES}}` (= 16)
+- `output/figures/*.png` → `{{NUM_FIGURES}}` (validated against the 16-entry figure registry)
 
 All computation lives in `src/manuscript/variables.py`. Do not add variables to scripts directly.
 

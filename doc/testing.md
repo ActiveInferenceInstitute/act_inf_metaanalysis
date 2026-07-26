@@ -4,7 +4,16 @@
 
 ## Overview
 
-The project maintains **651 collected tests** across the test suite (**650 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**91.12%**, verified 2026-07-25). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
+The project maintains **655 collected tests** across the test suite (**654 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.07%**, verified 2026-07-26). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
+
+### Idempotence checks
+
+The deterministic stages are expected to be byte-stable for a fixed corpus,
+configuration, and extraction checkpoint. Repeat Stages 02, 04, 06, 07, and
+the canonical hydrator, then compare hashes under `output/data/`,
+`output/figures/`, `output/manuscript/`, and `output/validation/`. Citation
+ranking ties and iterative HITS scores are canonicalized before serialization;
+the current repeat check reports zero changed artifacts.
 
 ### Zero-Mock Practicality
 

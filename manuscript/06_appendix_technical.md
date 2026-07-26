@@ -51,7 +51,7 @@ We apply NMF to the TF-IDF matrix of the corpus to discover latent topics. Given
 H \leftarrow H \odot \frac{W^T V}{W^T W H + \epsilon}, \qquad W \leftarrow W \odot \frac{V H^T}{W H H^T + \epsilon}, \label{eq:nmf_update}
 \end{equation}
 
-with $\epsilon = 10^{-10}$ for numerical stability and a fixed random seed of 42 for reproducibility. Across the configured alternate seeds, the mean top-term-set Jaccard similarity is {{TOPIC_STABILITY_MEAN_JACCARD}} and the minimum is {{TOPIC_STABILITY_MIN_JACCARD}}; this is a stability diagnostic, not evidence that the exploratory topics are globally unique or optimal.
+with $\epsilon = 10^{-\!10}$ for numerical stability and a fixed random seed of 42 for reproducibility. Across the configured alternate seeds, the mean top-term-set Jaccard similarity is {{TOPIC_STABILITY_MEAN_JACCARD}} and the minimum is {{TOPIC_STABILITY_MIN_JACCARD}}; this is a stability diagnostic, not evidence that the exploratory topics are globally unique or optimal.
 
 **Term-Frequency Inverse Document Frequency (TF-IDF).** The document-term matrix is constructed using a smoothed TF-IDF weighting \citep{salton1975vector}. For term $t$ in document $d$:
 

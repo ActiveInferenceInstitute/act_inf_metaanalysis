@@ -29,7 +29,7 @@ $k$ & Number of latent topics in NMF factorization \\
 $V \in \mathbb{R}^{n \times m}_{\geq 0}$ & TF-IDF document-term matrix (documents $\times$ terms) \\
 $W \in \mathbb{R}^{n \times k}_{\geq 0}$ & NMF document-topic factor \\
 $H \in \mathbb{R}^{k \times m}_{\geq 0}$ & NMF topic-term factor (overloaded notation; context disambiguates) \\
-$\epsilon$ & Numerical-stability constant ($10^{-10}$) \\
+$\epsilon$ & Numerical-stability constant ($10^{-\!10}$) \\
 $\text{CAGR}$ & Compound annual growth rate (Eq. \ref{eq:cagr}) \\
 $t_d$ & Publication doubling time in years (Eq. \ref{eq:doubling_time}) \\
 $\bar{g}$ & Mean year-over-year growth rate (Eq. \ref{eq:mean_growth}) \\

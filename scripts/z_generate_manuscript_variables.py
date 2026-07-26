@@ -18,6 +18,7 @@ from _bootstrap import bootstrap_project
 PROJECT_ROOT = bootstrap_project()
 
 from manuscript.variables import (
+    TOKEN_RE,
     collect_manuscript_tokens,
     compute_variables,
     inject_variables,
@@ -61,7 +62,7 @@ def hydrate(project_dir: Path, *, dry_run: bool = False) -> tuple[int, int]:
         rendered = inject_variables(content, variables, filename=source.name)
         rendered_contents[source.name] = rendered
         rendered_files += 1
-        injected += sum(source.name in files for files in token_map.values())
+        injected += len(TOKEN_RE.findall(content))
 
     if dry_run:
         logger.info("Dry-run hydration passed for %d manuscript files", rendered_files)

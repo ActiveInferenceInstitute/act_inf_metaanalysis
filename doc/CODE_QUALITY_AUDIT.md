@@ -4,7 +4,7 @@
 **Scope:** `projects_archive/act_inf_metaanalysis/` (archived; not template pipeline–discovered)  
 **Rubric:** template thermo-nuclear maintainability review (1k-line rule, script gates, thin orchestrators, zero-mock tests)
 
-> **Historical addendum (2026-07-25):** This audit is a snapshot dated **2026-05-24**; every metric in its original body reflects the codebase at that time and is preserved unchanged as the record. The project subsequently adopted the deterministic **rule-based reference-annotator agreement** study (a reproducibility floor, not a human validation), structured extraction provenance, topic-stability analysis, cross-artifact contracts, manifest closure, tooling-source probes, and release-package verification. The latest source gate verified on 2026-07-25 is **650 passed, 1 skipped, 91.12% coverage** (fail_under=90); live-artifact and template-render gates remain separately reported by the current pipeline manifest.
+> **Current addendum (2026-07-26):** This audit retains its original snapshot metrics while the current source gate is **654 passed, 1 skipped, 90.07% coverage** (655 collected; fail_under=90). The current pipeline also verifies structured extraction provenance, topic stability, cross-artifact contracts, manifest closure, registry-owned tooling sources, release-package hashes, and template PDF/HTML rendering. Semantic Scholar HTTP 429 remains separately reported as the live-source blocker.
 
 ## Executive verdict
 
@@ -33,7 +33,6 @@
 | 62 | `scripts/03_build_knowledge_graph.py` |
 | 63 | `scripts/01_literature_search.py` |
 | 65 | `scripts/06_fulltext_assessment.py` |
-| 91 | `scripts/05_inject_variables.py` |
 
 ### Largest `src/` modules (after W2 splits)
 

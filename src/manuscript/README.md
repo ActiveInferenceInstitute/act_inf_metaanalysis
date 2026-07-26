@@ -1,10 +1,9 @@
 # Manuscript Template Engine
 
 Variable computation and injection for the Active Inference Meta-Analysis manuscript.
-Reads pipeline output JSONs and produces a `dict[str, str]` of 127+ template variables
+Reads pipeline output JSONs and produces a `dict[str, str]` of current-snapshot template variables
 that `scripts/z_generate_manuscript_variables.py` substitutes into `{{VAR}}` placeholders in every
-`manuscript/*.md` file, writing rendered copies to `output/manuscript/`; the numbered
-`05_inject_variables.py` script remains a compatibility wrapper.
+`manuscript/*.md` file, writing rendered copies to `output/manuscript/`.
 
 ## Module
 
@@ -22,6 +21,7 @@ Reads from `output_dir/` (or `output_dir/data/`):
 | `assertion_summary.json` | `TOTAL_ASSERTIONS`, `TOTAL_SUPPORT`, `TOTAL_NEUTRAL`, `TOTAL_CONTRADICT` |
 | `tfidf_data.json` | `NUM_VOCAB_FEATURES`, `NUM_TOPICS` |
 | `output/figures/` | `NUM_FIGURES` |
+| `tooling_verification.json` | `TOOLING_VERIFICATION_STATUS`, `TOOLING_REGISTRY_COUNT`, `TOOLING_VERIFIED_COUNT`, `TOOLING_FLAGGED_COUNT`, `TOOLING_SOURCE_ONLY_COUNT`, `TOOLING_LAST_CHECKED` |
 
 Hypothesis short aliases H1–H8 map to full IDs:
 ```

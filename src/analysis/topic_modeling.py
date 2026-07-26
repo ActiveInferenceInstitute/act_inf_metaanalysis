@@ -10,6 +10,8 @@ import logging
 
 import numpy as np
 
+from config import DEFAULT_N_TOPICS, DEFAULT_SEED
+
 logger = logging.getLogger(__name__)
 
 
@@ -78,8 +80,8 @@ def _nmf_multiplicative_updates(
 def fit_nmf_topics(
     tfidf_matrix: np.ndarray,
     feature_names: list[str],
-    n_topics: int = 5,
-    seed: int = 42,
+    n_topics: int = DEFAULT_N_TOPICS,
+    seed: int = DEFAULT_SEED,
     top_n: int = 10,
     max_iter: int = 200,
 ) -> list[dict]:
@@ -143,8 +145,8 @@ def fit_nmf_topics(
 
 def get_document_topics(
     tfidf_matrix: np.ndarray,
-    n_topics: int = 5,
-    seed: int = 42,
+    n_topics: int = DEFAULT_N_TOPICS,
+    seed: int = DEFAULT_SEED,
     max_iter: int = 200,
 ) -> np.ndarray:
     """Compute document-topic distribution matrix.

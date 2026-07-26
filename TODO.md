@@ -4,7 +4,7 @@
 
 **Owner:** Active Inference Meta-Analysis project.
 
-**Last reviewed:** 2026-07-25.
+**Last reviewed:** 2026-07-26.
 
 This is the authoritative project-level backlog. It scopes work that can be
 completed without changing the scientific target, hypothesis set, RDF
@@ -13,14 +13,14 @@ represented by source, tests, and reports rather than by a closed-task list.
 
 ## Current baseline
 
-The frozen 2026-07-24 snapshot contains:
+The current 2026-07-26 snapshot contains:
 
 - 1,106 deduplicated papers; 1,071 eligible papers processed;
 - 2,561 provenance-bearing nanopublications;
 - eight configured NMF topics with seed 42 as the primary fit;
 - 16 registered figures;
 - successful PDF and HTML render/validation stages;
-- 651 collected tests: 650 passed, one skipped, 91.12% coverage against the
+- 655 collected tests: 654 passed, one skipped, 90.07% coverage against the
   90% gate.
 
 The remaining release-level defect is external: Semantic Scholar returned HTTP
@@ -43,19 +43,22 @@ treated as current project infrastructure:
 - source-backed tooling registry and AI-meta-analysis playbook;
 - dynamic front matter, current-year policy, and release metadata checks.
 - local release-package hash/count verification before any external deposit;
-- dated tooling-source probing with explicit repository/license/activity flags;
-- removal of two untraceable legacy tooling rows from the publication table.
+- complete dated tooling-source probing with registry-owned canonical URLs,
+  release/version, license, reachability, and activity observations;
+- removal of two untraceable tooling rows from the publication table.
 - release preflight integration for the tooling verification gate;
 - self-reference-free inventory/manifest generation verified stable across a
   repeated run;
-- final portable namespace table cleanup, leaving Stage 04 with no markdown
-  diagnostics.
+- deterministic citation ranking/community serialization verified stable across
+  repeated Stage 02 and downstream runs;
+- final portable namespace table cleanup, leaving Stage 04 with no evidence
+  registry errors or non-critical Markdown URL notes.
 
 ## Medium work
 
 ### MED-01 — Complete the three-source live refresh
 
-**Source:** release blocker identified in the 2026-07-24 run.
+**Source:** release blocker confirmed in the 2026-07-26 run.
 
 Retry Semantic Scholar with the configured query set and rate-limit handling.
 If new papers are added, rerun deterministic downstream stages and extract
@@ -74,7 +77,7 @@ the existing snapshot before replacement.
 **Run rule:** retry without `--clear-corpus` after the source is reachable; use
 `--no-resume --clear-corpus` only for an intentionally new dated snapshot.
 
-**Latest attempt (2026-07-25):** the S2-only resume-safe retry exhausted four
+**Latest attempt (2026-07-26):** the S2-only resume-safe retry exhausted four
 bounded retries after 132.4 seconds with HTTP 429. A broad all-source retry was
 aborted after arXiv timed out/returned 429, before it could overwrite the
 successful arXiv/OpenAlex status. The current search provenance therefore
@@ -85,7 +88,7 @@ retains the known S2 blocker and the existing 1,106-paper snapshot.
 **Source:** GitHub issue #3, “publish nanopubs”.
 
 Select a durable external deposit target, then publish the already staged and
-locally validated package under `output/release/nanopublications-2026-07-24/`.
+locally validated package under the date-stamped output release directory.
 Do not publish a partial or source-incomplete snapshot.
 
 **Dependencies:** explicit deposit target and upload authorization.
@@ -127,31 +130,35 @@ precision, recall, F1, quote fidelity, uncertainty, and error categories.
 confidence policy are versioned, and the manuscript describes results as
 validation evidence rather than model authority.
 
-### MED-06 — Complete external tooling verification
+### MED-06 — Complete external tooling verification — complete locally
 
 **Source:** GitHub issue #4, “include tooling analysis”.
 
 Complete the dated external checks for the retained entries in
 `doc/tooling_inventory.yaml`: canonical repository/documentation URL,
 release/version, license, and access/activity status. The publication-facing
-table and bibliography-backed evidence identifiers are already registry-backed.
+table and bibliography-backed evidence identifiers are registry-backed.
 
 **Done when:** every retained row has a dated check, stale/dead or unlicensed
 entries are flagged or removed, and the rendered PDF/HTML remains legible.
 
-**Latest local probe (2026-07-25):** `output/reports/tooling_verification.json`
-checked all 19 retained rows; 3 repository-backed rows verified fully and 16
-were flagged for paper-only sources, stale activity, missing licenses, or a
-transient GitHub API rate limit. The report is intentionally fail-closed.
+**Completed local probe (2026-07-26):** `output/reports/tooling_verification.json`
+checked every retained row from the registry using the canonical source URL.
+Repository metadata, releases/tags or package versions, license files or
+declared license evidence, reachability, and activity are recorded per row.
+Source-only, stale, restricted, and unlicensed entries remain explicitly
+flagged; the overall report passes only when every row has a complete dated
+observation. The dead adaptive federated-learning repository was removed from
+the retained publication inventory and recorded as an excluded candidate with
+its traceable paper identifier.
 
-The tooling report is now included in `scripts/10_release_preflight.py` and
-`output/reports/pipeline_manifest.json`; release readiness therefore remains
-blocked until the flagged rows receive an owner decision and primary-source
-verification.
+The tooling report is included in `scripts/10_release_preflight.py` and
+`output/reports/pipeline_manifest.json`. Row-level flags remain visible in the
+report and manuscript; they do not become unqualified software claims.
 
 ## Minor work
 
-No locally actionable minor item remains after the 2026-07-25 closure pass.
+No locally actionable minor item remains after the 2026-07-26 closure pass.
 Add a new item here only with a concrete acceptance gate, owner, and project
 scope.
 
@@ -161,7 +168,8 @@ scope.
 2. **MED-03:** select a target and publish the validated local package.
 3. **MED-04 / MED-05:** run full-text and human-calibration pilots after the
    primary source-complete snapshot is frozen.
-4. **MED-06:** complete the external tooling verification pass.
+4. **MED-06:** complete locally; retain the dated report and rerun it whenever
+   the publication snapshot is refreshed.
 
 ## Release gate
 

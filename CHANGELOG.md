@@ -6,21 +6,40 @@
 - Centralized pipeline version, prompt version, NMF (`n_topics=8`, seed 42), render formats, current-year/YTD policy, and repository metadata in the project configuration.
 - Added atomic extraction state and run-ID-preserving resume semantics. A checkpointed run refuses to mix model, prompt, or pipeline versions; the JSONL checkpoint remains authoritative for processed paper IDs.
 - Added topic-stability analysis, yearly hypothesis assertion counts, direct nanopublication provenance recomputation, cross-artifact validation, and a hash/count/gate pipeline manifest.
-- Added canonical `scripts/z_generate_manuscript_variables.py` hydration with source-token inventory, artifact hashes, and unresolved-token failure; `05_inject_variables.py` remains a compatibility wrapper.
+- Established `scripts/z_generate_manuscript_variables.py` as the sole manuscript hydration entrypoint with source-token inventory, artifact hashes, and unresolved-token failure.
 - Corrected temporal handling for partial current-year data, citation-network top-100/full-graph labeling, figure layout metadata, stale manuscript claims, and template-sensitive LaTeX constructs.
 - The July 24 live refresh was intentionally stopped after its durable checkpoint (517 assertions across 200 of 1,071 eligible papers); it is resumable and is not publication-complete until extraction, figures, hydration, and PDF/HTML gates pass.
 
 ### 2026-07-25 closure addendum
 - Completed the local idempotent closure pass: release-package hashes/counts, tooling-source verification, cross-artifact gates, canonical manuscript hydration, and self-reference-free snapshot/manifest reruns.
 - Re-rendered and validated the 64-page PDF and HTML manuscript with exactly 16 registered figures; PDF/HTML are enabled while slides, DOCX, and EPUB remain explicitly disabled.
-- Final local test gate: 650 passed, 1 skipped, 91.12% coverage. Semantic Scholar HTTP 429 and external publication/human-calibration dependencies remain fail-closed release blockers.
+- The prior snapshot recorded the local test gate and live-source blockers; the
+  current gate and current source status are superseded by the 2026-07-26
+  addendum below.
+- Stabilized citation-network reruns by canonicalizing community/tie ordering,
+  using a fixed HITS start vector, and rounding serialized ranking values; the
+  deterministic downstream repeat now produces zero changed artifacts.
+
+### 2026-07-26 MED-06 and render closure addendum
+- Completed registry-owned external verification for all 18 retained tooling
+  rows, with dated source, release/version, license, reachability, and activity
+  observations; row-level limitations remain explicit in the report.
+- Removed the unresolvable adaptive federated-learning repository from the
+  publication-facing tooling table and recorded its traceable preprint as an
+  excluded candidate.
+- Refreshed the configured snapshot date, manuscript variables, PDF, HTML, and
+  template validation reports. The current gate is 655 collected tests, 654
+  passed, 1 skipped, and 90.07% coverage.
+- Stage 03 and Stage 04 both exit 0 with PDF/HTML enabled and slides, DOCX, and
+  EPUB disabled. Semantic Scholar HTTP 429 remains the only live source gate
+  failure.
 
 ## v2.0.4 — 2026-07-23
 
 ### Completed the v2.0.3 honest-reframe work (in-flight test/artifact gaps)
 - **`analysis.validation_sample` had zero test coverage** (0.00%, 73/73 statements uncovered) despite being the module the validation-study runner depends on. Added `tests/analysis/test_validation_sample.py` (6 tests: year-bin boundaries, stratified-sample stratum coverage, fixed-seed determinism, empty-corpus edge case, CSV round-trip). Project coverage rose 93.01% → 94.96% (626 → 632 tests passing).
-- **`output/reports/extraction_provenance_summary.json` was stale**, still showing the pre-v2.0.3 legacy schema (`total: 1490`, `legacy_attribution: {pipeline_v1: 1490}`, zero structured provenance) even though the clean three-layer re-extraction had already populated real provenance blocks on all 793 current nanopublications. Because the report's schema didn't match what `manuscript.variables` reads (`unique_models` / `prompt_versions`), `{{PROV_MODEL}}` / `{{PROV_PROMPT_VERSION}}` in `02b_methods_extraction.md` were unresolved and variable injection raised `RuntimeError`. Regenerated the report via the existing `provenance.write_provenance_summary` (no LLM call needed — pure aggregation over the already-re-extracted nanopub file): now reports `gemma3:4b` / `v2.0.0-three-layer` across all 793 records; injection succeeds cleanly (348 variables across 18 files).
-- **Verified idempotency**: `scripts/07_run_validation_study.py` and `scripts/05_inject_variables.py` each produce byte-identical output across two consecutive runs against the same pipeline data (seed=42 stratified sampling; deterministic rule protocols).
+- **`output/reports/extraction_provenance_summary.json` was stale**, still showing a pre-v2.0.3 schema (`total: 1490`, prior pipeline attribution, and zero structured provenance) even though the clean three-layer re-extraction had already populated real provenance blocks on all 793 current nanopublications. Because the report's schema did not match what `manuscript.variables` reads (`unique_models` / `prompt_versions`), `{{PROV_MODEL}}` / `{{PROV_PROMPT_VERSION}}` in `02b_methods_extraction.md` were unresolved and variable injection raised `RuntimeError`. Regenerated the report via the existing `provenance.write_provenance_summary` (no LLM call needed — pure aggregation over the already-re-extracted nanopub file): it now reports `gemma3:4b` / `v2.0.0-three-layer` across all 793 records; injection succeeds cleanly (348 variables across 18 files).
+- **Verified idempotency**: `scripts/07_run_validation_study.py` and `scripts/z_generate_manuscript_variables.py` each produce byte-identical output across two consecutive runs against the same pipeline data (seed=42 stratified sampling; deterministic rule protocols).
 - **`data/validation/annotation_schema.md` was a missed call-site of the v2.0.3 reframe**: still titled "Dual-Annotator Validation Schema" and documenting the old fabricated design (`labels_human.csv` / `labels_assistant.csv`, `human_triage` / `assistant_triage` columns, "Human gold labels"). Rewrote it to document the actual current schema (`labels_rule_reference.csv`, `ref_*` / `secondary_*` columns, both deterministic rule protocols) and state plainly this is not a human study.
 - **A repo-wide exhaustive literal sweep (`annotator`, `dual`, `inter-rater`, `kappa`, `agreement`) surfaced two more missed call-sites in `manuscript/05_appendix_tooling.md`**: prose stating "Inter-annotator agreement (κ) is computed when multiple annotators assess the same paper" (present tense, describing a live per-assertion mechanism that does not exist) and a quality-thresholds table row enforcing "Inter-annotator κ ≥ 0.70 → Re-annotate" (a fictional gate — no re-annotation loop exists, and the real measured κ is negative, nowhere near 0.70). Reframed both to describe the actual offline rule-based reference-annotator check, reported not enforced. Also tightened the `98_symbols_glossary.md` κ definition to name the rule-reference-vs-pipeline usage instead of a bare "inter-annotator agreement" that reads as human annotation in isolation.
 - **Added a proof-of-detection test for `analysis.validation_metrics.classify_error`** (`test_classify_error_detects_each_known_bad_case`): asserts the function actually fires the correct taxonomy code on six planted defect shapes (over-extraction, direction inversion, quote mismatch, triage mismatch, evidence-status/type mismatch) plus the well-formed no-error case — this taxonomy previously had no direct unit test, only indirect exercise via aggregate metrics.
@@ -106,7 +125,7 @@ cover every eligible paper. 558/558 tests pass at 94.76 % coverage.
 Minor update with critical bug fixes, robustness improvements, and pipeline infrastructure modernization. All 558 tests pass with 94.75% coverage.
 
 ### Breaking Changes
-None — fully backward compatible.
+No public API changes.
 
 ### New Features
 - Centralized configuration: all hardcoded paths and constants now live in `src/config.py`
@@ -128,7 +147,7 @@ None — fully backward compatible.
 - **H2**: Manuscript disclaimers — abstract and conclusion now explicitly state assertions are machine-generated without human validation
 - **M3**: Cross-section table verification note added ("verified against pipeline run output dated 2026-04-28")
 - **M4**: Assertion error rate disclosure — methods now state current corpus lacks validation set; error rates unquantified
-- **M5**: Legacy NMF topic-count note retired; the publication-facing configuration is now `k=8` with fixed alternate-seed topic-stability checks.
+- **M5**: Former NMF topic-count note removed; the publication-facing configuration is now `k=8` with fixed alternate-seed topic-stability checks.
 - **M7**: Recency bias limitation acknowledged in Discussion — citation weighting underweights recent papers
 - **M8**: Domain A2 over-classification acknowledgment moved to Discussion Limitations with explicit H1 impact statement
 

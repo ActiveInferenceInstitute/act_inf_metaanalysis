@@ -41,7 +41,7 @@ analysis:
   topic_stability_seeds: [0, 1, 2, 3, 4, 5, 42]
   complete_year_policy: exclude_current_partial_year_from_cagr
   # Set deliberately for a reproducible snapshot; advance for a new refresh.
-  as_of_date: "2026-07-24"
+  as_of_date: "2026-07-26"
 
 llm:
   reviews:

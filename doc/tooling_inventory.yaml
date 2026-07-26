@@ -1,6 +1,15 @@
-schema_version: "1.0"
-survey_date: "2026-07-25"
+schema_version: "2.0"
+survey_date: "2026-07-26"
 purpose: "Source registry for the publication-facing Active Inference tooling inventory."
+verification_policy:
+  stale_after_days: 365
+  required_observations:
+    - canonical_source_url
+    - source_alive
+    - release_or_version
+    - license
+    - activity_status
+  interpretation: "A pass means every row was externally checked. Row-level flags remain visible for source-only, stale, restricted, or unlicensed entries."
 inclusion_rule:
   - "Retain a tool only when a paper, preprint identifier, or official project source is recorded."
   - "Do not infer adoption, maintenance, license, or comparative performance from citation counts."
@@ -22,7 +31,6 @@ published_source_keys:
   - action_oriented
   - bayesian_mechanics_sdes
   - deep_btai_3mf
-  - adaptive_aif_agents_fl
   - rl_inference
   - robust_fe_minimization
 retained_tools:
@@ -30,78 +38,128 @@ retained_tools:
     display_name: pymdp
     evidence: heins2022pymdp
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/infer-actively/pymdp"
+      kind: github
   - id: spm
     display_name: SPM
     evidence: friston2017active
     evidence_type: bibliography
+    verification_source:
+      url: "https://www.fil.ion.ucl.ac.uk/spm/software/spm12/"
+      kind: official_site
   - id: rxinfer
     display_name: RxInfer.jl
     evidence: rxinfer2025
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/ReactiveBayes/RxInfer.jl"
+      kind: github
   - id: activeinference_jl
     display_name: ActiveInference.jl
     evidence: ActiveInferencejl
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/ComputationalPsychiatry/ActiveInference.jl"
+      kind: github
   - id: cpp_aif
     display_name: Cpp-AIF
     evidence: gregoretti2023cppaif
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/fgregoretti/Cpp-AIF"
+      kind: github
   - id: feps
     display_name: FEPS
     evidence: pazem2024feps
     evidence_type: bibliography
+    verification_source:
+      url: "https://arxiv.org/abs/2411.14991"
+      kind: preprint
   - id: deep_active_inference_mc
     display_name: deep-active-inference-mc
     evidence: fountas2020deep
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/zfountas/deep-active-inference-mc"
+      kind: github
   - id: deep_active_inference
     display_name: DeepActiveInference
     evidence: millidge2020deep
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/BerenMillidge/DeepActiveInference"
+      kind: github
   - id: btai_3mf
     display_name: BTAI_3MF
     evidence: champion2021realizing
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/ChampiB/BTAI_3MF"
+      kind: github
   - id: deep_btai_3mf
     display_name: Deep_BTAI_3MF
     evidence: champion2021realizing
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/ChampiB/Deep_BTAI_3MF"
+      kind: github
   - id: axiom
     display_name: AXIOM
     evidence: heins2025axiom
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/VersesTech/axiom"
+      kind: github
   - id: active_inference_voostrum
     display_name: active-inference (Voostrum)
     evidence: arXiv:2406.07726
     evidence_type: preprint_identifier
+    verification_source:
+      url: "https://github.com/jessevoostrum/active-inference"
+      kind: github
   - id: predictive_coding_backprop
     display_name: PredictiveCodingBackprop
     evidence: millidge2022predictive
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/BerenMillidge/PredictiveCodingBackprop"
+      kind: github
   - id: ants
     display_name: ants
     evidence: heins2024collective
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/conorheins/collective_motion_actinf"
+      kind: github
   - id: action_oriented
     display_name: action-oriented
     evidence: tschantz2020action
     evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/alec-tschantz/action-oriented"
+      kind: github
   - id: bayesian_mechanics_sdes
     display_name: bayesian-mechanics-sdes
-    evidence: arXiv:2206.02629
-    evidence_type: preprint_identifier
-  - id: adaptive_aif_agents_fl
-    display_name: adaptive_aif_agents_fl
-    evidence: arXiv:2410.09099
-    evidence_type: preprint_identifier
+    evidence: sakthivadivel2023bayesian
+    evidence_type: bibliography
+    verification_source:
+      url: "https://github.com/conorheins/bayesian-mechanics-sdes"
+      kind: github
   - id: rl_inference
     display_name: rl-inference
     evidence: arXiv:2002.12636
     evidence_type: preprint_identifier
+    verification_source:
+      url: "https://github.com/alec-tschantz/rl-inference"
+      kind: github
   - id: robust_fe_minimization
     display_name: Robust-FE-Minimization
     evidence: arXiv:2503.13223
     evidence_type: preprint_identifier
+    verification_source:
+      url: "https://arxiv.org/abs/2503.13223"
+      kind: preprint
 excluded_candidates:
   - name: ActivPynference
     reason: "No traceable primary source in the current bibliography."
@@ -121,8 +179,11 @@ excluded_candidates:
     reason: "Venue/year label was not sufficient as a traceable source."
   - name: tutorials_and_unlinked_demos
     reason: "Unresolved candidate group; not included in publication counts."
+  - name: adaptive_aif_agents_fl
+    reason: "The traceable paper links a GitHub repository that returned HTTP 404 on 2026-07-26; excluded from the publication-facing software inventory until a resolvable implementation source is identified."
+    evidence: "arXiv:2410.09099"
 verification_status:
-  current_snapshot: "source identifiers are traceable; dated repository/license/activity probes are recorded separately and flagged when incomplete"
-  last_external_probe: "2026-07-25"
+  current_snapshot: "every retained row has a dated external source observation; repository and source-only limitations remain explicit"
+  last_external_probe: "2026-07-26"
   report: "output/reports/tooling_verification.json"
-  last_full_external_check: null
+  last_full_external_check: "2026-07-26"

@@ -39,7 +39,7 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 
 ### Infrastructure Integration
 
-- **Thin Orchestrators**: 6 scripts that import from `src/` for all computation
+- **Thin Orchestrators**: 14 numbered scripts plus the canonical manuscript hydrator import from `src/` for all computation
 - **≥90% Test Coverage** (gate in `pyproject.toml`): extensive pytest suite using real data and pytest-httpserver for API testing
 - **Deterministic Results**: Fixed RNG seeds (seed=42) for reproducibility
 - **Structured Logging**: All scripts use Python `logging` module with configurable `--log-level`
@@ -132,7 +132,7 @@ projects_archive/act_inf_metaanalysis/
 │   ├── 02_meta_analysis_pipeline.py
 │   ├── 03_build_knowledge_graph.py
 │   ├── 04_generate_figures.py
-│   ├── 05_inject_variables.py
+│   ├── z_generate_manuscript_variables.py
 │   ├── 06_fulltext_assessment.py   # auxiliary QA (full-text availability)
 │   └── 07_run_validation_study.py  # auxiliary QA (rule-based reference-annotator agreement)
 ├── manuscript/                 # 20 sections + references

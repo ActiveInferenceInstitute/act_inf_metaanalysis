@@ -30,12 +30,14 @@ python scripts/06_fulltext_assessment.py
 python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
 python scripts/08_validate_artifacts.py
 python scripts/09_write_pipeline_manifest.py
-python scripts/10_release_preflight.py
 python scripts/11_prepare_evidence_pilots.py
 python scripts/12_snapshot_output.py
+python scripts/13_verify_tooling_inventory.py
+python scripts/10_release_preflight.py
+python scripts/14_verify_release_package.py
 ```
 
-Scripts `01`–`05` are the core content-generation chain (run in order). Scripts `06`–`09` close QA, cross-artifact validation, and provenance. Scripts `10` and `11` run non-LLM release preflight and prepare blank review queues. Script `12` inventories or safely snapshots disposable output.
+Scripts `01`–`04` plus the canonical `z_generate_manuscript_variables.py` entrypoint form the core content-generation chain (run in order). Scripts `06`–`09` close QA, cross-artifact validation, and provenance. Scripts `11`–`13` prepare review queues, snapshots, and tooling-source evidence; Script `10` then runs the non-LLM release preflight and refreshes the final manifest. Script `14` verifies the staged package.
 
 ## Pipeline Overview
 
@@ -54,7 +56,7 @@ Scripts `01`–`05` are the core content-generation chain (run in order). Script
 | 11 | `11_prepare_evidence_pilots.py` | Deterministic full-text and human-review queues | seconds |
 | 12 | `12_snapshot_output.py` | Safe output inventory and non-overwriting snapshot copy | seconds/minutes |
 
-> **Note:** Scripts `01`–`05` must run in order — each stage depends on prior outputs. Scripts `06` and `07` are optional QA steps run independently (07 consumes the `output/data/` corpus + nanopublications produced by `01`/`03`).
+> **Note:** Scripts `01`–`04` and the canonical hydrator must run in order — each stage depends on prior outputs. Scripts `06` and `07` are optional QA steps run independently (07 consumes the `output/data/` corpus + nanopublications produced by `01`/`03`).
 
 ## Common Options
 
@@ -66,7 +68,6 @@ Scripts `01`, `02`, `03` also accept:
 - `--config PATH` — YAML config file for project-specific overrides
 
 **Exceptions:**
-- `05_inject_variables.py` accepts **only** `--project NAME` and `--dry-run` (no `--log-level`, no `--output-dir`; it resolves paths from the project root).
 - `07_run_validation_study.py` accepts `--output-dir`, `--sample-fraction`, `--min-size`, and `--no-auto-labels` (no `--log-level`).
 
 ## Configuration

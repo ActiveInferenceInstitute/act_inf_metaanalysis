@@ -5,7 +5,7 @@
 ## Overview
 
 Single module (`variables.py`) that reads all pipeline output JSONs and produces a complete
-`dict[str, str]` of template variables. Called by `scripts/z_generate_manuscript_variables.py` (with `05_inject_variables.py` as a compatibility wrapper).
+`dict[str, str]` of template variables. Called by `scripts/z_generate_manuscript_variables.py`.
 
 ## Invariants Agents Must Preserve
 

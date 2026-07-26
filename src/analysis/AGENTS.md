@@ -60,4 +60,5 @@ The default `max_iter=200` is an upper bound, not the typical stopping point.
 - **Citation resolution**: Only ~5% of references resolve to corpus papers because API identifier
   formats (DOI, arXiv, S2 ID) rarely match exactly. Cross-format fuzzy matching would improve this.
 - **NMF initialization**: Random initialization means topics are locally optimal, not globally.
-  Jaccard stability > 0.90 across alternative seeds has been verified empirically.
+  Topic stability is an empirical diagnostic, not an assumed threshold; report the
+  mean and minimum values from `output/data/topic_stability.json` for each snapshot.

@@ -95,14 +95,24 @@ def compute_network_metrics(
     if num_nodes > 0:
         # PageRank
         pr = nx.pagerank(graph)
-        sorted_pr = sorted(pr.items(), key=lambda x: -x[1])
+        sorted_pr = sorted(pr.items(), key=lambda x: (-x[1], str(x[0])))
         pagerank = {node: score for node, score in sorted_pr[:10]}
         
         # HITS (Hubs and Authorities)
         try:
-            h, a = nx.hits(graph, max_iter=hits_max_iter, tol=hits_tol)
-            sorted_hubs = sorted(h.items(), key=lambda x: -x[1])
-            sorted_auth = sorted(a.items(), key=lambda x: -x[1])
+            # Isolates make the HITS normalization singular. Exclude them and
+            # use a fixed, uniform start vector so scores are repeatable.
+            active_nodes = [
+                node for node in sorted(graph.nodes(), key=str)
+                if graph.degree(node) > 0
+            ]
+            hits_graph = graph.subgraph(active_nodes)
+            nstart = {node: 1.0 for node in active_nodes}
+            h, a = nx.hits(
+                hits_graph, max_iter=hits_max_iter, tol=hits_tol, nstart=nstart
+            )
+            sorted_hubs = sorted(h.items(), key=lambda x: (-x[1], str(x[0])))
+            sorted_auth = sorted(a.items(), key=lambda x: (-x[1], str(x[0])))
             hubs = {node: score for node, score in sorted_hubs[:10]}
             authorities = {node: score for node, score in sorted_auth[:10]}
         except Exception as e:
@@ -150,11 +160,14 @@ def detect_communities(graph: nx.DiGraph) -> dict[str, int]:
     undirected = graph.to_undirected()
 
     # Remove isolated nodes for community detection, add them back after
-    communities = nx.community.greedy_modularity_communities(undirected)
+    communities = sorted(
+        nx.community.greedy_modularity_communities(undirected),
+        key=lambda community: tuple(sorted(str(node) for node in community)),
+    )
 
     node_to_community: dict[str, int] = {}
     for community_id, community in enumerate(communities):
-        for node in community:
+        for node in sorted(community, key=str):
             node_to_community[node] = community_id
 
     n_communities = len(set(node_to_community.values()))

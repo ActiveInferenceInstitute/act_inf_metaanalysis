@@ -200,6 +200,22 @@ class TestComputeNetworkMetrics:
         max_node = max(pr, key=pr.get)
         assert max_node == p1_id
 
+    def test_metrics_are_repeatable_with_tied_scores(self):
+        """Tie ordering is stable rather than dependent on graph iteration order."""
+        graph = nx.DiGraph()
+        graph.add_nodes_from(["b", "a", "c"])
+        graph.add_edges_from([("a", "b"), ("c", "b")])
+        assert compute_network_metrics(graph) == compute_network_metrics(graph)
+
+    def test_hits_failure_returns_empty_rankings(self):
+        """A non-convergent HITS run fails closed without hiding other metrics."""
+        graph = nx.DiGraph()
+        graph.add_edge("a", "b")
+        metrics = compute_network_metrics(graph, hits_max_iter=0)
+        assert metrics["num_edges"] == 1
+        assert metrics["hubs"] == {}
+        assert metrics["authorities"] == {}
+
     def test_connected_components(self):
         """Verify weakly connected component count."""
         papers = _make_papers()
@@ -260,6 +276,13 @@ class TestDetectCommunities:
         ids = set(communities.values())
         assert all(isinstance(c, int) for c in ids)
         assert min(ids) == 0
+
+    def test_community_labels_are_repeatable(self):
+        """Greedy community labels are canonicalized across repeated runs."""
+        papers = _make_papers()
+        citations = _make_citations(papers)
+        graph = build_citation_graph(papers, citations)
+        assert detect_communities(graph) == detect_communities(graph)
 
     def test_single_node_returns_empty(self):
         """Graph with < 2 nodes returns empty dict."""
@@ -423,4 +446,3 @@ class TestResolveCitations:
         index = build_reference_index([p1])
         citations = resolve_citations([p1], index, logging.getLogger("test"))
         assert len(citations) == 0
-

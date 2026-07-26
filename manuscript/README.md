@@ -44,7 +44,7 @@ python scripts/z_generate_manuscript_variables.py --project .
 python scripts/z_generate_manuscript_variables.py --project . --dry-run
 ```
 
-Output goes to `output/manuscript/`. Source files in `manuscript/` are never overwritten. The canonical hydrator also records `output/data/manuscript_variables.json` with the exact source-token inventory and artifact hashes. `scripts/05_inject_variables.py` remains a compatible wrapper.
+Output goes to `output/manuscript/`. Source files in `manuscript/` are never overwritten. The canonical hydrator also records `output/data/manuscript_variables.json` with the exact source-token inventory and artifact hashes.
 
 ---
 

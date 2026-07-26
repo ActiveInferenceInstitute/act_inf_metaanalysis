@@ -132,7 +132,7 @@ flowchart TD
         S2["02_meta_analysis_pipeline"]
         S3["03_build_knowledge_graph"]
         S4["04_generate_figures"]
-        S5["05_inject_variables"]
+        S5["z_generate_manuscript_variables"]
         S6["06_fulltext_assessment (aux QA)"]
         S7["07_run_validation_study (aux QA)"]
     end
