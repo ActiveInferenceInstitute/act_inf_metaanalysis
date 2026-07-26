@@ -1,0 +1,86 @@
+# Example configuration for act_inf_metaanalysis (copy to config.yaml)
+
+paper:
+  title: "A Living Meta-Analysis Architecture for Active Inference"
+  subtitle: "Assertion Extraction, Nanopublications, and Hypothesis Scoring"
+  version: "2.0.6"
+
+authors:
+  - name: "Author Name"
+    orcid: "0000-0000-0000-0000"
+    email: "author@example.com"
+    affiliations:
+      - "Institution"
+    corresponding: true
+
+publication:
+  doi: ""
+
+keywords:
+  - "active inference"
+  - "free energy principle"
+
+metadata:
+  license: "CC-BY-4.0"
+  language: "en"
+  repository: "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
+
+render:
+  formats:
+    pdf: true
+    html: true
+    slides: false
+    docx: false
+    epub: false
+
+analysis:
+  n_topics: 8
+  max_features: 500
+  min_year: 2000
+  seed: 42
+  topic_stability_seeds: [0, 1, 2, 3, 4, 5, 42]
+  complete_year_policy: exclude_current_partial_year_from_cagr
+  # Set deliberately for a reproducible snapshot; advance for a new refresh.
+  as_of_date: "2026-07-26"
+
+llm:
+  reviews:
+    enabled: false
+  translations:
+    enabled: false
+
+project_config:
+  pipeline:
+    pipeline_version: "2.0.6"
+    prompt_version: "v2.0.6"
+  search:
+    start_year: 2000
+    query: '"active inference" "free energy principle"'
+    max_results: 1000
+    resume: true
+    clear_corpus: false
+    arxiv_queries:
+      - 'all:"active inference"'
+      - 'all:"free energy principle"'
+    semantic_scholar:
+      max_retries: 3
+      max_backoff_seconds: 60
+      api_key_env: "SEMANTIC_SCHOLAR_API_KEY"
+    relevance_keywords:
+      - "active inference"
+      - "free energy principle"
+      - "predictive coding"
+
+  knowledge_graph:
+    checkpoint_interval: 25
+    clear_assertions: false
+    max_papers: null
+
+  llm_extraction:
+    model: "gemma3:4b"
+    base_url: "http://localhost:11435"
+    temperature: 0.1
+    max_tokens: 2048
+    timeout_seconds: 120
+    max_retries: 3
+    min_confidence: 0.6

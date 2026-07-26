@@ -1,0 +1,297 @@
+\frametitle{Software Ecosystem}
+\protect\phantomsection\label{software-ecosystem}
+The Active Inference community has developed a rapidly growing ecosystem
+of open-source tools spanning multiple programming languages, inference
+paradigms, and application domains. This section provides a
+comprehensive survey of publicly available implementations as of early
+2026, organized by functional category. We emphasize tools with
+accessible source code: open-source availability is a prerequisite for
+reproducibility and community-driven validation.
+
+\begin{block}{General-Purpose Frameworks}
+\protect\phantomsection\label{general-purpose-frameworks}
+Six general-purpose frameworks dominate the landscape, collectively
+covering discrete, continuous, and real-time inference:
+
+\textbf{pymdp.} The pymdp library \citep{heins2022pymdp} provides a
+Python implementation of active inference for discrete state-space
+POMDPs, supporting message passing on factor graphs, policy inference
+via expected free energy, and hierarchical generative models. It has
+become the standard entry point for algorithm development and the most
+widely forked AIF repository.
+
+\textbf{SPM.} The SPM package (Wellcome Centre for Human Neuroimaging)
+includes MATLAB implementations of Dynamic Causal Modeling and
+variational Bayesian inference under the FEP. It remains the reference
+implementation for neuroimaging applications and houses the original
+Friston-group POMDP scripts.
+
+\textbf{RxInfer.jl.} RxInfer is a Julia package for reactive
+message-passing-based Bayesian inference, supporting real-time and
+streaming inference suitable for robotics and online learning. Version
+4.0.0 (early 2025) \citep{rxinfer2025} introduced projected constraints
+and adaptive inference optimized for dynamic data streams and autonomous
+systems. The RxInfer ecosystem includes extensive tutorials covering
+Bayesian linear regression, hidden Markov models, Kalman filtering,
+Gaussian process regression, hierarchical Gaussian filters, nonlinear
+sensor fusion, and active inference mountain car control, available at
+the \href{https://reactivebayes.github.io/RxInfer.jl/stable/}{official
+documentation} and the \href{https://learnableloop.com/}{Learnable Loop}
+tutorial portal.
+
+\textbf{ActiveInference.jl.} In parallel to RxInfer's generalized
+message-passing focus, ActiveInference.jl provides a Julia-native, near
+drop-in conceptual analogue to Python's \texttt{pymdp}
+\citep{ActiveInferencejl}. It explicitly targets computational
+psychiatry and cognitive neuroscience workflows emphasizing standard
+discrete-state POMDP simulation, parameter estimation, and recovery. The
+library leverages Julia's array semantics---utilizing vectors of arrays
+to efficiently encode multimodal factorized models via the canonical
+\(\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D}, \mathbf{E}\)
+components---to streamline tasks such as generating synthetic behavioral
+data, fitting models to subject behavior, and probing internal beliefs
+via robust simulation loops (\texttt{infer\_states!},
+\texttt{infer\_policies!}, \texttt{sample\_action!}).
+
+\textbf{Cpp-AIF.} The Cpp-AIF header-only C++ library
+\citep{gregoretti2023cppaif} implements active inference for discrete
+POMDPs with multicore parallelization of the most demanding
+computational kernels---multidimensional inner products for expected
+free energy computation and state estimation. By abstracting the
+mathematical details behind a high-level API, Cpp-AIF targets embedded
+systems and performance-critical applications where Python overhead is
+prohibitive.
+
+\textbf{FEPS.} Free Energy Projective Simulation \citep{pazem2024feps}
+combines active inference with interpretable graphical policy
+representations, enabling agents to plan via expected free energy while
+exposing decision logic as human-readable policy graphs. FEPS targets
+interpretable reinforcement learning tasks where black-box deep agents
+are undesirable---behavioral biology, clinical decision support, and
+safety-critical robotics.
+\end{block}
+
+\begin{block}{Deep Active Inference}
+\protect\phantomsection\label{deep-active-inference}
+Scaling active inference beyond tabular POMDPs to high-dimensional
+observation spaces requires neural-network function approximators. A
+growing body of deep active inference implementations explores this
+direction:
+
+The foundational deep AIF agent of Fountas et
+al.~\citep{fountas2020deep} introduced Monte-Carlo tree search over
+learned latent spaces, achieving non-trivial Atari performance.
+Millidge's DeepActiveInference extended this to continuous control with
+backpropagation-based world models \citep{millidge2020deep}. Champion's
+Branching-Time Active Inference (BTAI\_3MF) and its deep variant
+(Deep\_BTAI\_3MF) implement tree-structured planning under the
+free-energy objective, scaling active inference to partially observable
+environments with multi-step lookahead \citep{champion2021realizing}.
+Most recently, AXIOM \citep{heins2025axiom} achieves competitive
+Gameworld-10k benchmark performance using expanding object-centric world
+models, learning in minutes rather than hours---a landmark result for
+scalability.
+\end{block}
+
+\begin{block}{Predictive Coding and Neural Generative Coding}
+\protect\phantomsection\label{predictive-coding-and-neural-generative-coding}
+Predictive coding provides the core computational mechanism linking
+active inference to neuroscience. Several implementations offer
+accessible entry points:
+
+\textbf{ngc-learn.} The Neural Generative Coding library (ngc-learn
+v3.0, JAX-based) provides a framework for simulating
+neurobiologically-plausible systems using predictive-coding circuits,
+Hebbian learning, and spike-based dynamics. It supports constructing
+arbitrary neural generative models without backpropagation, directly
+instantiating the FEP's prediction-error minimization at the circuit
+level.
+
+\textbf{Active Neural Generative Coding (ANGC).} ANGC implements a form
+of active inference using paired predictive-coding circuits---an
+actor/policy circuit and a world/transition model---that co-evolve
+across episodes without backpropagation. The agent decomposes behavior
+into epistemic foraging (uncertainty reduction) and instrumental
+(reward-seeking) terms, operating with sparse rewards where classical
+DQN requires dense reward engineering.
+
+\textbf{Predictive Coding \(\approx\) Backprop.} Millidge et
+al.~demonstrate that predictive-coding networks can approximate
+backpropagation along arbitrary computational graphs
+\citep{millidge2022predictive}, providing a biologically plausible
+alternative to gradient descent. The
+\href{https://github.com/BerenMillidge/PredictiveCodingBackprop}{PredictiveCodingBackprop}
+repository provides the reference implementation.
+\end{block}
+
+\begin{block}{Benchmarking Progress}
+\protect\phantomsection\label{benchmarking-progress}
+The scalability gap between AIF and deep reinforcement learning has been
+a central limitation of the tools domain. Recent work demonstrates
+significant progress on two fronts. First, AXIOM \citep{heins2025axiom}
+outperforms state-of-the-art model-based deep RL agents including
+DreamerV3 on the Gameworld-10k benchmark while using substantially
+smaller model sizes; its object-centric scene decomposition enables
+sample-efficient learning from structured representations rather than
+raw-pixel memorization. Second, variational message-passing formulations
+\citep{champion2021realizing} connect EFE decomposition---into risk,
+ambiguity, epistemic (information-seeking), and instrumental
+(goal-reaching) components---to practical planning algorithms, advancing
+the theoretical justification for EFE-based policy selection (H2).
+Separately, Friston et al.~\citep{friston2025active} introduce structure
+learning via Bayesian Model Reduction as a principled approach to
+artificial reasoning under active inference.
+
+\FloatBarrier
+\end{block}
+
+\begin{block}{Comprehensive Open-Source Tool Survey}
+\protect\phantomsection\label{comprehensive-open-source-tool-survey}
+The following table catalogs the principal open-source Active Inference
+implementations surveyed, organized by functional category. For each
+tool we list the primary language, application domain, and associated
+publication or repository. The table is intended as a navigational
+resource for researchers seeking existing implementations relevant to
+specific hypotheses (H1--H8) or application domains (A1--C5).
+
+\begin{center}
+\small
+\begin{longtable}{p{3.2cm} p{1.6cm} p{6.4cm} p{2.5cm}}
+\caption{Comprehensive open-source survey of Active Inference and Free Energy Principle software, grouped by functional category. Forty-plus implementations span seven categories.}
+\label{tab:tool_survey} \\
+\toprule
+\textbf{Tool / Repository} & \textbf{Lang.} & \textbf{Description} & \textbf{Paper / Source} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Tool / Repository} & \textbf{Lang.} & \textbf{Description} & \textbf{Paper / Source} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+\multicolumn{4}{c}{\textit{General-Purpose Frameworks}} \\
+\midrule
+pymdp & Python & Discrete POMDP active inference; factor graphs, hierarchical models & \cite{heins2022pymdp} \\
+SPM & MATLAB & DCM, variational Bayes; neuroimaging reference implementation & \cite{friston2017active} \\
+RxInfer.jl & Julia & Reactive message passing; real-time streaming Bayesian inference & \cite{rxinfer2025} \\
+ActiveInference.jl & Julia & Discrete POMDP AIF; parameter recovery for computational psychiatry & \cite{ActiveInferencejl} \\
+Cpp-AIF & C++ & Header-only POMDP AIF library with multicore parallelization & \cite{gregoretti2023cppaif} \\
+FEPS & Python & EFE on interpretable policy graphs; projective simulation & \cite{pazem2024feps} \\
+ActivPynference & Python & Discrete AIF with factor-graph message passing; educational focus & --- \\
+pypc & Python & Predictive-coding inference engine for continuous models & --- \\
+ActiveInferAnts & Rust & Rust-native AIF framework with WASM compilation target & --- \\
+\midrule
+\multicolumn{4}{c}{\textit{Deep Active Inference}} \\
+\midrule
+deep-active-inference-mc & Python & Monte-Carlo tree search in learned latent spaces; Atari & \cite{fountas2020deep} \\
+DeepActiveInference & Python & Continuous deep AIF with backprop-based world models & \cite{millidge2020deep} \\
+BTAI\_3MF & Python & Branching-time AIF with multi-step tree planning & \cite{champion2021realizing} \\
+Deep\_BTAI\_3MF & Python & Deep neural variant of BTAI with learned state spaces & \cite{champion2021realizing} \\
+OO-BTAI\_3MF & Python & Object-oriented BTAI variant for structured environments & --- \\
+AXIOM & Python & Object-centric world models; Gameworld 10k in minutes; beats DreamerV3 & \cite{heins2025axiom} \\
+Deep-AIF-POMDPs & Python & Deep AIF for partially observable MDPs & --- \\
+Homing-Pigeon & Python & Navigation agent using deep active inference & --- \\
+active-inference (Voostrum) & Python & Continuous deep AIF with learned generative models & arXiv:2406.07726 \\
+\midrule
+\multicolumn{4}{c}{\textit{Predictive Coding \& Neural Generative Coding}} \\
+\midrule
+ngc-learn & Python/JAX & Neurobiological simulation; predictive-coding circuits, Hebbian learning & --- \\
+ANGC & Python & Backprop-free AIF agent with paired PC circuits & AAAI 2022 \\
+PredictiveCodingBackprop & Python & Predictive coding approximates backprop on arbitrary graphs & \cite{millidge2022predictive} \\
+Supervised-Predictive-Coding & Python & Supervised learning via hierarchical predictive coding & --- \\
+predcoding & Python & Minimal predictive-coding implementation & --- \\
+pybrid & Python & Hybrid predictive-coding and active-inference library & --- \\
+nmpassing & Python & Neural message passing for PC networks & --- \\
+\midrule
+\multicolumn{4}{c}{\textit{Neuroscience, Embodied \& Biological}} \\
+\midrule
+allostasis & Python & Allostatic regulation via AIF; interoceptive inference & bioRxiv:2021.02.16 \\
+ants & Python & Ant foraging simulation with stigmergic AIF agents & \cite{heins2024collective} \\
+Reward\_Bases & Python & Reward-basis function representations under AIF & bioRxiv:2022.04.14 \\
+action-oriented & Python & Action-oriented predictive-processing models & \cite{tschantz2020action} \\
+Biofirm & Python & Bioregional stewardship via organizational AIF & --- \\
+bayesian-mechanics-sdes & Python & Bayesian mechanics: SDE simulations of Markov-blanket dynamics & arXiv:2206.02629 \\
+reverse\_engineering & MATLAB & Reverse-engineering neural dynamics under the FEP & --- \\
+\midrule
+\multicolumn{4}{c}{\textit{Multi-Agent \& Social Dynamics}} \\
+\midrule
+opinion\_dynamics & Python & Opinion dynamics and belief formation via AIF & --- \\
+network-actinf & Python & Network-level active inference with coupled agents & --- \\
+Variational-Capsule-Routing & Python & Capsule networks with variational inference routing & AAAI 2020 \\
+Active-Inference-Successor & Python & Successor representations under active inference & --- \\
+\midrule
+\multicolumn{4}{c}{\textit{Domain-Specific Applications}} \\
+\midrule
+adaptive\_aif\_agents\_fl & Python & Adaptive AIF agents for federated learning & arXiv:2410.09099 \\
+smartville & Python & IoT smart-building control via AIF under partial observability & TechRxiv 2025 \\
+FEP\_Blorpomon & Python & Game-theoretic AIF agent demonstration & --- \\
+MountainCarAI & Python & Mountain car control via active inference & --- \\
+rl-inference & Python & Bridging RL and active inference policy selection & arXiv:2002.12636 \\
+EFE-GLean & Python & Expected free energy with generalized learning & Entropy 2025 \\
+EFEasVFE & Julia & EFE reformulated as variational free energy & --- \\
+Robust-FE-Minimization & Python & Robust decision-making via free-energy minimization & arXiv:2503.13223 \\
+\midrule
+\multicolumn{4}{c}{\textit{Tutorials \& Educational Resources}} \\
+\midrule
+Active-Inference-from-Scratch & Python & Step-by-step AIF implementation tutorial & --- \\
+IC2S2-AIF-Tutorial & Python & Computational social-science AIF tutorial & --- \\
+julia4ta tutorials (9x10--12) & Julia & RxInfer-based AIF agent tutorials & --- \\
+ActInf Textbook Colab & Python & Interactive notebooks for \cite{parr2022active} & --- \\
+deep\_aif\_workshop & Python & Workshop materials for deep active inference & --- \\
+AdaptiveResonance.jl & Julia & Adaptive resonance theory models in Julia & --- \\
+\end{longtable}
+\end{center}
+
+\FloatBarrier
+\end{block}
+
+\begin{block}{Comparative Feature Matrix}
+\protect\phantomsection\label{comparative-feature-matrix}
+\begin{table}[H]
+\centering
+\caption{Comparative feature matrix of seven representative Active Inference packages. Features span language, state-space type, inference algorithm, hierarchical support, GPU acceleration, license, and primary use case.}
+\label{tab:aif_feature_matrix}
+\small
+\begin{tabular}{llllllll}
+\toprule
+\textbf{Feature} & \textbf{pymdp} & \textbf{SPM} & \textbf{RxInfer.jl} & \textbf{ActiveInf.jl} & \textbf{Cpp-AIF} & \textbf{FEPS} & \textbf{ngc-learn} \\
+\midrule
+Language & Python & MATLAB & Julia & Julia & C++ & Python & Python/JAX \\
+State Spaces & Discrete & Disc.+Cont. & Continuous & Discrete & Discrete & Discrete & Continuous \\
+Inference & Msg.\ pass. & Var.\ Bayes & Reactive msg. & Msg.\ pass. & EFE+state & EFE on graphs & Pred.\ coding \\
+Deep AIF & Partial & No & Custom factors & No & No & No & Yes \\
+Real-time & No & No & Yes & No & Yes & No & No \\
+Hierarchical & Yes & Yes (DCM) & Yes & No & Yes & No & Yes \\
+GPU & No & No & No & No & CPU multi & No & Yes (JAX) \\
+License & MIT & GPL & MIT & MIT & MIT & MIT & BSD-3 \\
+Primary Use & Prototyping & Neuroimaging & Robotics & Comp.\ psych. & Embedded & Interp.\ RL & NeuroAI \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The complementary strengths across these packages reflect a fragmented
+but maturing ecosystem. The survey reveals several patterns: (1) Python
+dominates (\$\sim\$75\% of implementations), with Julia emerging as the
+preferred alternative for performance-critical applications; (2)
+discrete-POMDP implementations outnumber continuous variants by
+approximately 3:1, reflecting pymdp's community influence; (3) deep
+active-inference implementations are concentrated in a small number of
+research groups (Champion, Millidge, Fountas, Heins), suggesting high
+barriers to entry; (4) multi-agent and social AIF implementations remain
+sparse relative to single-agent tools; and (5) domain-specific
+applications (IoT, federated learning, smart buildings) represent the
+newest and fastest-growing category, aligning with the temporal growth
+patterns observed in the C-domain (applied) subfields. The
+variational-free-energy foundations shared by Active Inference and
+Energy-Based Models---including Helmholtz machines
+\citep{dayan1995helmholtz}, Boltzmann machines
+\citep{hinton2002training}, and variational autoencoders
+\citep{kingma2014auto}---suggest that interoperability with mainstream
+deep generative-modeling frameworks (PyTorch, JAX) could bridge these
+parallel research programs.
+
+\FloatBarrier
+\end{block}

@@ -166,9 +166,9 @@ Steps 1–5 are the content-generation chain; steps 6–9 provide full-text QA, 
 
 ## Archive layout
 
-In the template monorepo, this tree is symlinked at `projects_archive/act_inf_metaanalysis/` (typically pointing at a local template workspace). It is **not** discovered by `./run.sh` unless promoted to `projects/`.
+In the template monorepo, this tree is symlinked at `projects_archive/act_inf_metaanalysis/` (typically pointing at a local template workspace). It is **not** discovered by `./run.sh` unless promoted to `projects/`. The standalone publication repository versions the complete generated `output/` tree so the current data, figures, hydrated manuscript, reports, validation records, release package, snapshots, PDF, and HTML are available alongside the source.
 
-A nested `.git/` directory may be present from standalone repository history; the template monorepo uses the symlink as the working copy. Do not commit pre-populated `output/` when re-promoting.
+A nested `.git/` directory may be present from standalone repository history; the template monorepo uses the symlink as the working copy. Local environments, caches, coverage databases, and bytecode remain ignored; generated publication outputs are intentionally versioned.
 
 ---
 

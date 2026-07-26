@@ -1,0 +1,6 @@
+{
+  "title": "A Living Meta-Analysis Architecture for Active Inference (2000\u20132026)",
+  "description": "Corpus N=1106; inclusion from 2000; rule-based reference agreement n=256, inter-rule \u03ba=0.704, pipeline-vs-reference precision=0.013, recall=1.000. Reference labels are deterministic keyword rules, not human annotation. Hypothesis scores report citation-weighted evidence mapping and triage, not scientific confirmation.",
+  "version": "2.0.6",
+  "doi": "10.5281/zenodo.19461934"
+}

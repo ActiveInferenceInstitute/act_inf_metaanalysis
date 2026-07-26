@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>04_conclusion.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    window.MathJax.startup.defaultReady();
+    window.MathJax.startup.promise.then(window.normalizeTemplateMathJaxAria);
+  }
+});
+</script>
+<script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"
+  type="text/javascript" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h1 id="sec:conclusion">Conclusion: Evidence Landscape, Methodological
+Limitations, and Research Agenda</h1>
+<h2 id="summary">Summary</h2>
+<p>This work demonstrates a first-generation prototype infrastructure
+for citation-weighted evidence mapping and hypothesis triage across a
+rapidly growing scientific field. By combining configured multi-source
+retrieval (<span class="math inline">\(N = 1106\)</span> papers,
+inclusion from 2000 onward; arXiv, OpenAlex completed; Semantic Scholar
+incomplete), LLM-based assertion extraction encoded as
+provenance-bearing nanopublications, and citation-weighted triage
+scoring, we produce a queryable, RDF-compatible knowledge graph that
+maps the evolving evidence landscape for eight core Active Inference
+claims. The system demonstrates the feasibility of automated living
+reviews, while clearly delineating the boundaries of current model
+capabilities.</p>
+<p>All assertions and hypothesis scores are machine-generated; outputs
+always report evidence mapping and triage, not scientific
+confirmation—there is no live gate that suppresses or changes output
+based on the validation metrics below, which are reported as
+reproducibility context, not an enforced pass/fail threshold. A
+stratified rule-based reference-annotator agreement study (<span
+class="math inline">\(n = 256\)</span>) yields inter-rule <span
+class="math inline">\(\kappa = 0.704\)</span> and pipeline precision
+0.013, recall 1.000 against a deterministic keyword-rule reference;
+direction agreement between that reference and the pipeline is only
+<span class="math inline">\(\kappa = -0.048\)</span>. These are
+reproducibility signals, not accuracy against human labels—the
+pre-declared human gold-standard baseline below has not yet been
+collected.</p>
+<h2 id="constraints-and-methodological-scope">Constraints and
+Methodological Scope</h2>
+<p>Several conscious design constraints scope these findings.</p>
+<h3 id="keyword-classifier-resolution">Keyword Classifier
+Resolution</h3>
+<p>The keyword-based classifier operates over 200+ keyword indicators
+distributed across 8 domain categories (74 mathematical indicators in A1
+alone), using a deterministic priority system that routes papers to
+specific application domains (C1–C5) before testing tools (B), formal
+theory (A1), and the qualitative philosophy catch-all (A2).
+Word-boundary-aware matching reduces partial-match false positives, but
+keyword-based methods cannot capture semantic nuance: papers using novel
+terminology or discussing cross-domain topics without standard
+vocabulary risk misclassification. Residual A2 concentration should be
+interpreted as a ceiling on broad theoretical generality rather than a
+literal measure of philosophical focus. An embedding-based classifier
+trained on a labeled subset would provide a quantitative upper bound on
+the fraction of A2 papers that merit redistribution.</p>
+<h3 id="citation-network-coverage-gaps">Citation Network Coverage
+Gaps</h3>
+<p>The 4,829 intra-corpus edges spanning 645 connected components
+provide a topological skeleton, but three systematic gaps inflate the
+component count: (1) cross-source identifier mismatches (DOI
+vs. OpenAlex vs. arXiv ID), (2) papers whose references are not indexed
+by any source API, and (3) open-access preprints whose DOIs differ from
+their published versions. Exhaustive DOI-level cross-matching with fuzzy
+title matching would condense the graph further.</p>
+<h3 id="corpus-biases-citation-dynamics-and-linguistic-framing">Corpus
+Biases, Citation Dynamics, and Linguistic Framing</h3>
+<p>Citation counts are subject to Matthew effects and cumulative
+field-size biases. Partial-year indexing for the most recent calendar
+year undercounts recent publications. The measured 24.94% CAGR is
+calculated over complete years 2003–2025, while 98 papers from 2026 are
+reported as of 2026-07-26 and excluded from that endpoint. Additionally,
+the retrieved corpus itself suffers from selection biases inherent to
+queried databases, including English-language dominance and the
+structural over-indexing of preprints relative to peer-reviewed final
+versions. Finally, positive and negative hypothesis scores alike are
+affected by publication bias and linguistic asymmetry: declarative
+scholarly claims are phrased affirmatively more often than negatively.
+Relative rankings and temporal trajectories are retained for transparent
+comparison, but their robustness is not established by this
+abstract-only calibration.</p>
+<h3 id="llm-extraction-fidelity-domain-drift-and-robustness">LLM
+Extraction Fidelity, Domain Drift, and Robustness</h3>
+<p>Zero-shot LLM extraction introduces distinct systematic biases:
+over-extraction (the model hallucinating certainty for claims the paper
+merely mentions in passing) and direction inversion (misclassifying
+opposing evidence as supporting). Recent benchmarking confirms that
+state-of-the-art systems often fall short of production-level precision
+on tasks requiring exhaustive retrieval and aggregation of directional
+claims from long documents . Furthermore, because our corpus extends to
+2026, LLM extraction is vulnerable to <em>domain drift</em>—the base
+models may lack parametric knowledge of the most recent theoretical
+developments. As an alternative, fine-tuned models specifically trained
+on FEP/AIF abstracts could yield higher precision than our zero-shot
+approach, though at a steeper computational setup cost.</p>
+<p>The current validation protocol is a deterministic rule-based
+reference study, not a human-annotation ground truth. It provides a
+reproducibility floor through inter-rule agreement and
+pipeline-versus-reference metrics; a future human-labeled study is
+required before making accuracy claims.</p>
+<h2 id="sec:next_steps">Research Agenda: Four Priority Next Steps</h2>
+<p>The current prototype establishes a reproducible baseline and
+surfaces the field’s evidence structure at corpus scale. Four concrete
+next steps, ordered by the dependency chain each one unlocks, define the
+path from prototype to production-grade living review.</p>
+<h3 id="next-step-1-expand-the-scope-of-referenced-data">Next Step 1 —
+Expand the Scope of Referenced Data</h3>
+<p>The present corpus of <span class="math inline">\(N = 1106\)</span>
+papers is assembled via keyword queries against the configured APIs
+(Semantic Scholar, OpenAlex, arXiv); this snapshot records arXiv,
+OpenAlex completed; Semantic Scholar incomplete. Three expansion axes
+would materially change the evidence landscape.</p>
+<p><strong>Additional sources.</strong> PubMed, PsycINFO, and IEEE
+Xplore each index Active Inference literature that the current APIs do
+not reach: neuroscience clinical trials (PubMed), cognitive-behavioral
+studies (PsycINFO), and robotics control architectures (IEEE). For each
+new source, the retrieval layer requires only a source-specific
+connector implementing the same
+<code>fetch_papers(query, max_results)</code> interface used by existing
+adapters. Gray literature—technical reports, theses, and institutional
+preprints not yet indexed by major APIs—represents an additional tier:
+harvesting from ORCID work records and institutional repositories would
+capture practitioner findings that never appear in indexed venues.</p>
+<p><strong>Broader query coverage.</strong> The current query set is
+derived from the eight hypothesis keywords and their immediate synonyms.
+Expanding to a full ontological synonym set (e.g., mapping “variational
+inference,” “surprise minimization,” and “Helmholtz machine” as
+equivalent retrieval terms for FEP-related claims) would reduce the
+retrieval false-negative rate for papers that use non-canonical
+vocabulary. A systematic evaluation of retrieval precision and recall
+against a hand-curated gold-standard set of 100 known AIF papers would
+quantify the gap.</p>
+<p><strong>Custom curated bibliographies.</strong> Domain experts can
+contribute citation lists directly to the corpus without modifying any
+code: placing a <code>.bib</code> or <code>.ris</code> file in
+<code>data/custom_bibliographies/</code> triggers the deduplication
+merge on the next pipeline run. This pathway is the lowest-friction
+route to extending scope for researchers who maintain personal reference
+libraries.</p>
+<h3
+id="next-step-2-extract-and-verify-evidence-supporting-claims-in-each-paper">Next
+Step 2 — Extract and Verify Evidence Supporting Claims in Each
+Paper</h3>
+<p>The current extraction pipeline operates exclusively on abstracts.
+Abstracts contain the claims authors choose to foreground, not
+necessarily the claims best supported by the paper’s data. Three
+mechanisms bridge this gap.</p>
+<p><strong>Full-text ingestion.</strong> For the subset of papers with
+open-access PDFs (approximately 60–70% of recent AIF preprints on
+arXiv), Stage 3 can be extended to parse full-text sections—specifically
+Methods, Results, and Discussion—using a structured chunking strategy
+that splits documents into ~512-token segments aligned to section
+boundaries. The existing nanopublication schema accommodates a
+<code>source_section</code> field (currently unused) that would record
+the provenance of each extracted assertion (abstract vs. results
+vs. discussion), enabling downstream stratification of evidence by
+rhetorical function.</p>
+<p><strong>Claim-evidence pairing.</strong> The current extraction
+prompt asks the LLM to classify a paper’s stance toward a hypothesis but
+does not require it to quote the specific sentence or data point that
+justifies the classification. A revised prompt would require the model
+to (a) identify the hypothesis-relevant passage verbatim, (b) classify
+the stance, and (c) rate confidence on the basis of whether the passage
+reports an empirical measurement, a theoretical derivation, or an
+assertion without quantitative support. This three-field extraction — ,
+, — upgrades the nanopublication from a classification label to a
+traceable evidential pointer. For H3 (Markov Blanket Realism), where the
+14 contradicting assertions drive a contested score, reviewers could
+then inspect the actual quoted passages rather than trusting the LLM
+classification in isolation.</p>
+<p><strong>Human spot-check coverage.</strong> The planned 10%
+manual-annotation baseline would focus on inter-rater agreement; this
+manual validation has not yet been performed. Extending spot-checks to
+verify that the extracted evidence quote actually appears in the source
+document (a verbatim-match check) adds an additional fidelity gate
+beyond stance accuracy.</p>
+<h3 id="next-step-3-tie-hypotheses-to-real-world-outcomes">Next Step 3 —
+Tie Hypotheses to Real-World Outcomes</h3>
+<p>The eight tracked hypotheses are formulated at the level of
+theoretical constructs (e.g., “the FEP provides a universal account of
+self-organizing systems”). Practical applicability requires mapping from
+hypothesis support to observable real-world outcomes, distinguishing
+which claims are actionable from which remain theoretical
+scaffolding.</p>
+<p><strong>Outcome taxonomy.</strong> Each hypothesis should be
+annotated with a set of <em>outcome indicators</em>: specific,
+measurable real-world results whose observation would constitute
+evidence for or against the hypothesis under the closest empirical
+operationalization. For example: - H4 (Predictive Coding): outcome
+indicator = reduction in prediction-error amplitude as measured by ERP
+N400 or oscillatory gamma-band response in human neuroimaging studies. -
+H5 (Scalability): outcome indicator = task performance on standard RL
+benchmarks (Atari, MuJoCo, ProcGen) at or above the performance of
+model-free SOTA at matched computational budgets. - H6 (Clinical
+Utility): outcome indicator = statistically significant improvement on
+standardized psychiatric assessment scales (PANSS, BDI-II, PTSD
+Checklist) in at least one registered clinical trial. - H7
+(Morphogenesis): outcome indicator = quantitative recapitulation of at
+least one morphogenetic patterning sequence (e.g., digit formation
+timecourse, limb bud size scaling) in a computational model governed by
+FEP dynamics rather than reaction-diffusion equations.</p>
+<p>For each hypothesis, the extraction pipeline can be extended to tag
+assertions whose evidence type is <code>empirical_measurement</code> and
+whose outcome aligns with these indicators, producing a filtered score
+that counts only outcome-linked evidence. This <em>outcome-filtered
+score</em> sits alongside the current citation-weighted score in the
+hypothesis table, providing a direct answer to “how much of this support
+is grounded in real-world observations rather than theoretical
+commentary?”</p>
+<p><strong>Application domain cross-walk.</strong> The subfield
+classification (A1–C5) already partitions the corpus by application
+domain. Intersecting hypothesis scores with application domain
+membership—computing <span class="math inline">\(\text{score}(H_i,
+D_j)\)</span> for each hypothesis <span
+class="math inline">\(H_i\)</span> and domain <span
+class="math inline">\(D_j\)</span>—would reveal which domains are
+generating empirical traction versus theoretical citation counts. H1
+(FEP Universality) likely has high A2 (philosophy) support and lower
+C1–C5 empirical support; quantifying this split would replace
+qualitative description of the “neutral plurality” with a decomposed
+evidence profile grounded in domain labels already computed by Stage
+2.</p>
+<h3 id="next-step-4-formal-evaluation-rubric-for-pipeline-quality">Next
+Step 4 — Formal Evaluation Rubric for Pipeline Quality</h3>
+<p>The current validation is primarily structural: do scripts run, do
+outputs exist, do tests pass, does the PDF render? A formal evaluation
+rubric answers a different question: <em>how accurate is the evidence
+landscape this system produces?</em> Four rubric dimensions, together
+with their measurement protocols and target thresholds, define what
+“good enough for a published living review” means.</p>
+<p>The four rubric dimensions map directly to the four next steps:
+corpus recall measures Step 1 progress, evidence-quote fidelity measures
+Step 2 progress, outcome grounding rate measures Step 3 progress, and
+extraction direction accuracy is the targeted baseline to be established
+as the other three improve. Reporting all four numbers alongside
+hypothesis scores in each pipeline release converts a qualitative
+description of limitations into a versioned, trackable quality
+scorecard. This transforms the current “we acknowledge limitations”
+posture into an audit trail: readers can see whether the rubric scores
+improved between release v1.0 and v2.0, and reviewers can evaluate
+pipeline trustworthiness on principled criteria rather than subjective
+judgement.</p>
+<hr />
+<h2
+id="future-directions-beyond-tally-based-evidence-aggregation">Future
+Directions: Beyond Tally-Based Evidence Aggregation</h2>
+<p>Beyond the four priority next steps above, the scoring machinery
+itself can be upgraded. We identify four directions, ordered by expected
+impact.</p>
+<h3 id="hierarchical-bayesian-hypothesis-scoring">Hierarchical Bayesian
+Hypothesis Scoring</h3>
+<p>The most direct extension replaces the additive tally with a
+<strong>hierarchical Bayesian model</strong> that treats each hypothesis
+score as a latent variable inferred from noisy assertion observations.
+Under this formulation, each assertion <span
+class="math inline">\(a_i\)</span> contributes a likelihood term <span
+class="math inline">\(P(a_i | \theta_H, \sigma)\)</span> parameterized
+by the hypothesis-level evidence strength <span
+class="math inline">\(\theta_H\)</span> and an observation noise term
+<span class="math inline">\(\sigma\)</span> capturing LLM extraction
+uncertainty. A hierarchical prior <span class="math inline">\(\theta_H
+\sim \mathcal{N}(\mu_{\text{field}}, \tau^2)\)</span> pools information
+across hypotheses, enabling principled shrinkage for hypotheses with
+sparse evidence (e.g., H6 Clinical Utility, with only 26 assertions).
+This framework produces posterior credible intervals rather than point
+estimates, providing uncertainty quantification that the current
+tally-based scores lack. Temporal dynamics can be modeled through
+time-varying parameters <span class="math inline">\(\theta_H(t)\)</span>
+using state-space formulations that re-weight older evidence rather than
+treating all cumulative assertions equally.</p>
+<h3 id="causal-evidence-graphs">Causal Evidence Graphs</h3>
+<p>A second-generation knowledge graph would encode not only
+assertion-level relationships (paper → supports → hypothesis) but also
+<strong>causal dependencies among hypotheses</strong> themselves. For
+example, evidence for predictive coding (H4) often implicitly supports
+FEP universality (H1), yet the tally-based approach treats them as
+independent. A causal evidence graph—structured as a directed acyclic
+graph (DAG) over hypotheses with edge weights learned from co-assertion
+patterns—would enable cross-hypothesis evidence propagation using belief
+propagation or variational message passing. This is particularly
+relevant for the Active Inference literature, where hypotheses are
+theoretically nested: FEP universality (H1) logically entails predictive
+coding (H4), and Markov blanket realism (H3) is a prerequisite for
+certain formulations of H1. Encoding these dependencies would prevent
+the double-counting of evidence from papers that support multiple
+related hypotheses and enable identification of which specific claims
+drive support for downstream hypotheses. The resulting causal structure
+itself would be a scientific contribution—a formal map of evidential
+dependencies within the field’s theoretical architecture.</p>
+<h3 id="evidential-diversity-and-source-weighting">Evidential Diversity
+and Source Weighting</h3>
+<p>The current formula weights assertions by <span
+class="math inline">\(\log(1 + \text{citations}) \cdot
+\text{confidence}\)</span>, treating all assertion sources
+symmetrically. A more nuanced approach would introduce an
+<strong>evidential diversity index</strong> that downweights correlated
+evidence from papers sharing authors, institutions, or methodological
+approaches. Concretely, assertions could be weighted by the inverse of
+their similarity to previously counted assertions, measured via cosine
+similarity of paper embeddings. This would address the observation that
+H1 (FEP universality) accumulates a large neutral tally partly because
+many A2 (philosophy) papers invoke the FEP without independently testing
+it—a form of evidential redundancy that inflates the evidence base
+without adding independent information. Additionally, assertions could
+be stratified by evidence type (empirical, theoretical, review) with
+configurable type-specific weights, enabling users to compute evidence
+scores that privilege experimental results over theoretical
+commentary.</p>
+<h3 id="agentic-llm-extractors-and-domain-adaptation">Agentic LLM
+Extractors and Domain Adaptation</h3>
+<p>Drawing on recent work extending active inference into artificial
+reasoning and proposing AIF as a reward-free alternative for LLM-based
+agents , replacing static prompt templates with goal-directed reasoning
+architectures could significantly improve confidence calibration. As
+demonstrated by Friston et al. , “active reasoning” enables agents to
+perform structure learning—determining which causal rule governs a
+situation by seeking observations that explicitly disambiguate competing
+hypotheses about world models. Applied to literature extraction,
+analogous uncertainty-aware reasoning could treat each paper as a
+structured observation to be parsed against hypothesis definitions via
+an optimal experimental design rubric—directly operationalizing Next
+Step 2’s claim-evidence pairing at scale. The framework is
+domain-agnostic by design; adaptation to foundation models, quantum
+computing, or synthetic biology requires only domain-specific hypothesis
+definitions and keyword lists within the A/B/C taxonomy. The broader
+convergence between AIF and deep learning demonstrated by AXIOM —which
+plans in object-centric state-spaces—further validates this trajectory.
+Systematic cross-referencing with the Energy-Based Model research
+program —including Helmholtz machines , contrastive divergence training
+, and variational autoencoders —would illuminate shared mathematical
+structures currently obscured by disciplinary siloing.</p>
+<h2 id="limitations">Limitations</h2>
+<p>Three constraints bound the current findings. First, extraction
+operates on abstracts only: full-text methods, results, and
+supplementary data—where quantitative effect sizes and experimental
+controls live—are not yet parsed. The rubric’s evidence-quote fidelity
+dimension (Step 4, Table <span
+class="math inline">\(\ref{tab:eval_rubric}\)</span>) will quantify
+exactly how much signal this omission suppresses once a full-text pilot
+is run. Second, keyword-based retrieval across the configured APIs
+produces a snapshot with systematic false negatives: papers using
+non-canonical terminology, gray literature, and domain-adjacent work
+(EBM, Bayesian brain models) are undercounted. The corpus recall metric
+provides a principled bound on this gap rather than a vague
+acknowledgement of it. Third, the citation-weighted tally treats all
+assertion sources symmetrically; the evidential diversity and
+outcome-grounding extensions above are the concrete remedies. These are
+not general disclaimers but tracked deficits against which the Step 1–4
+roadmap makes measurable progress.</p>
+<h2 id="broader-impact">Broader Impact</h2>
+<p>Knight et al.  identified three capabilities as goals for the field:
+“encompass increased scope of relevant works,” “integrate multiple forms
+of annotation and participation,” and “facilitate integration of manual
+and artificial contributions.” The four-step research agenda in §<span
+class="math inline">\(\ref{sec:next_steps}\)</span> operationalizes each
+of these directly: Step 1 addresses scope, Step 2 addresses the quality
+of extracted contributions, Step 3 addresses empirical grounding, and
+Step 4 provides the formal rubric that makes “integration of manual and
+artificial contributions” verifiable rather than aspirational.</p>
+<p>By demonstrating that LLM-driven assertion extraction can produce
+scalable, queryable representations of scientific evidence—processing
+<span class="math inline">\(N = 1106\)</span> papers spanning
+approximately two and a half decades (2003–2026), extracting structured
+assertions, and evaluating 8 core hypotheses—this work provides a
+reusable architecture for realizing this vision. The corpus window
+begins in 2003 to capture Energy-Based Model and variational Bayesian
+antecedents that predate the Free Energy Principle label itself; the
+formal FEP was introduced in 2006 and reached its core elaboration by
+2010 . The citation network metrics (4,829 edges, 0.40% density, mean
+in-degree 4.4) characterize the field’s structure, which has grown at a
+24.94% CAGR while diversifying across the 8 configured domains.</p>
+<p>The limitations of keyword-based retrieval across disjoint academic
+repositories mean that any retrieved corpus will contain both false
+positives and false negatives. There is no single threshold that
+perfectly defines inclusion or exclusion for a dynamic,
+interdisciplinary research field. The primary contribution of this work
+is therefore not a definitive corpus but an open-source, modularly
+updatable, and versioned software package. This tool is built in
+reference to custom literature bibliographies that can be iteratively
+curated for relevance by the community.</p>
+<p>The combination of multi-source retrieval, LLM-based extraction, and
+probabilistic knowledge graph construction provides a reusable template
+that advances each of these goals. A complementary pathway is emerging
+through Retrieval-Augmented Generation (RAG) architectures that ground
+LLMs directly in knowledge graphs, reducing hallucination and enabling
+real-time, context-aware reasoning over structured evidence .
+Integrating our nanopublication graph into such a RAG system would
+enable natural-language querying of the evidence base, further lowering
+the barrier for community engagement. The recent release of nanopub-js
+v0.1.0 —enabling browser-based creation, signing, and querying of
+nanopublications—lowers the barrier for community-contributed
+assertions, bringing the participatory evidence curation envisioned by
+Knight et al. within practical reach. As LLM capabilities improve and
+standardized metadata adoption grows, the cost of maintaining such
+systems will decrease while their utility increases. By open-sourcing
+the pipeline and publishing the schema, we provide both a concrete tool
+for the Active Inference community and a modular blueprint that other
+fields can adapt and refine.</p>
+<p><strong>Data and code availability.</strong> The pipeline source
+code, configuration, and manuscript templates are available in the
+project repository (see in or the manuscript front matter).
+Nanopublications are persisted as JSON Lines (for incremental runs) and
+RDF/TriG (nanopub.net-compliant); both can be archived with the code
+release or on a data repository (e.g., Zenodo) for citation and
+long-term access.</p>
+<p>Community recommendations, actionable implications, and open
+questions arising from this work are detailed in the .</p>
+</main>
+</body>
+</html>

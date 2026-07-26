@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Inventory disposable output and optionally copy it to a new snapshot."""
+"""Inventory versioned output and optionally copy it to a new snapshot."""
 
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ from analysis.snapshot_manager import copy_snapshot, inventory_output, write_inv
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Inventory or snapshot disposable output.")
+    parser = argparse.ArgumentParser(description="Inventory or snapshot versioned output.")
     parser.add_argument("--label", help="New single-directory snapshot label; never overwrites.")
     args = parser.parse_args()
     output_dir = PROJECT_ROOT / "output"

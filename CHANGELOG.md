@@ -18,6 +18,9 @@
 - Removed the obsolete root PDF `act_inf_metaanalysis_v2_04-30-2026.pdf` and
   published the current validated render as the date-stamped
   `act_inf_metaanalysis_v2.0.6_2026-07-26.pdf`.
+- Promoted the complete current `output/` tree into the public repository;
+  generated data, figures, manuscript, HTML/PDF renders, reports, validation
+  records, release packages, and snapshots are now versioned for reproducibility.
 
 ## v2.0.6 — 2026-07-24
 

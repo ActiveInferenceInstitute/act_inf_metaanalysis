@@ -1,0 +1,88 @@
+{
+  "default_policy": "log_citation",
+  "default_scores": {
+    "FEP_UNIVERSALITY": 0.13499617321656215,
+    "AIF_OPTIMALITY": 0.675092074798955,
+    "MARKOV_BLANKET_REALISM": -0.8150750688734788,
+    "PREDICTIVE_CODING": 0.9146766149187365,
+    "SCALABILITY": 0.73215694564297,
+    "CLINICAL_UTILITY": 0.8374998922757231,
+    "MORPHOGENESIS": 0.5523849578055348,
+    "LANGUAGE_AIF": 0.8132077675769369
+  },
+  "policy_comparisons": {
+    "uniform": {
+      "scores": {
+        "FEP_UNIVERSALITY": 0.08279430789133248,
+        "AIF_OPTIMALITY": 0.747072599531616,
+        "MARKOV_BLANKET_REALISM": -0.8512396694214877,
+        "PREDICTIVE_CODING": 0.8783783783783784,
+        "SCALABILITY": 0.8899082568807339,
+        "CLINICAL_UTILITY": 0.7105263157894737,
+        "MORPHOGENESIS": 0.5652173913043478,
+        "LANGUAGE_AIF": 0.8125
+      },
+      "rank_stability_spearman": 0.7619047619047619,
+      "rank_change_count": 4
+    },
+    "confidence_only": {
+      "scores": {
+        "FEP_UNIVERSALITY": 0.10495986828565435,
+        "AIF_OPTIMALITY": 0.7705067721807942,
+        "MARKOV_BLANKET_REALISM": -0.8520231213872835,
+        "PREDICTIVE_CODING": 0.8945470932852634,
+        "SCALABILITY": 0.9001919385796546,
+        "CLINICAL_UTILITY": 0.7282229965156795,
+        "MORPHOGENESIS": 0.5457227138643068,
+        "LANGUAGE_AIF": 0.8350515463917527
+      },
+      "rank_stability_spearman": 0.7619047619047619,
+      "rank_change_count": 4
+    },
+    "raw_citation": {
+      "scores": {
+        "FEP_UNIVERSALITY": 0.11596696901253611,
+        "AIF_OPTIMALITY": 0.5995880423882709,
+        "MARKOV_BLANKET_REALISM": -0.8629946579534258,
+        "PREDICTIVE_CODING": 0.9257949401845421,
+        "SCALABILITY": 0.5651542649727768,
+        "CLINICAL_UTILITY": 0.7188355581679531,
+        "MORPHOGENESIS": 0.749137187230371,
+        "LANGUAGE_AIF": 0.9153827341648325
+      },
+      "rank_stability_spearman": 0.7857142857142857,
+      "rank_change_count": 4
+    },
+    "age_discount": {
+      "scores": {
+        "FEP_UNIVERSALITY": 0.1385630569688824,
+        "AIF_OPTIMALITY": 0.6688371692234336,
+        "MARKOV_BLANKET_REALISM": -0.8167734261249887,
+        "PREDICTIVE_CODING": 0.8985134264541189,
+        "SCALABILITY": 0.7384016822831779,
+        "CLINICAL_UTILITY": 0.8417168692088336,
+        "MORPHOGENESIS": 0.5522490444315229,
+        "LANGUAGE_AIF": 0.8185676051190943
+      },
+      "rank_stability_spearman": 1.0,
+      "rank_change_count": 0
+    },
+    "field_normalized": {
+      "scores": {
+        "FEP_UNIVERSALITY": 0.1497355758685625,
+        "AIF_OPTIMALITY": 0.6581584445326699,
+        "MARKOV_BLANKET_REALISM": -0.8435445323364654,
+        "PREDICTIVE_CODING": 0.7824714971785663,
+        "SCALABILITY": 0.7241959336606236,
+        "CLINICAL_UTILITY": 0.7703719631252184,
+        "MORPHOGENESIS": 0.7596936446928506,
+        "LANGUAGE_AIF": 0.8684911910555871
+      },
+      "rank_stability_spearman": 0.8571428571428572,
+      "rank_change_count": 6
+    }
+  },
+  "rank_stability_spearman": 0.7619047619047619,
+  "rank_change_count": 18,
+  "reference_year": 2026
+}

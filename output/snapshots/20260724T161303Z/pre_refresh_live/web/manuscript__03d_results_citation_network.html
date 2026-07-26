@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>03d_results_citation_network.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    window.MathJax.startup.defaultReady();
+    window.MathJax.startup.promise.then(window.normalizeTemplateMathJaxAria);
+  }
+});
+</script>
+<script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"
+  type="text/javascript" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h2 id="citation-network-topology">Citation Network Topology </h2>
+<p>The intra-corpus citation network provides a structural view of how
+Active Inference research is organized, identifying influential hub
+papers, community structure, and patterns of citation isolation (Figure
+<span class="math inline">\(\ref{fig:citation_network}\)</span>).</p>
+<h3 id="network-density-and-degree-distribution">Network Density and
+Degree Distribution</h3>
+<p>The intra-corpus citation network contains 817 nodes and 2,176 edges,
+with a density of 0.33% and 547 connected components. The average
+in-degree of <span class="math inline">\(\approx 2.7\)</span> indicates
+that most papers receive few intra-corpus citations, consistent with the
+field’s rapid expansion: the majority of recent papers have not yet
+accumulated citations within the corpus (Figure <span
+class="math inline">\(\ref{fig:degree_distribution}\)</span>). Only 7.4%
+of all identified references (2,176 intra-corpus matches out of 29,323
+total reference entries) resolve to other papers within the corpus,
+reflecting cross-source identifier mismatches and the field’s engagement
+with a broad external literature base. Community detection identifies
+clusters via greedy modularity maximization .</p>
+<h3 id="connected-components-and-citation-isolation">Connected
+Components and Citation Isolation</h3>
+<p>The high number of connected components (547 out of 817 nodes)
+reveals that much of the corpus consists of citation-isolated
+papers—works that neither cite nor are cited by other papers in the
+collection. A single Giant Connected Component (GCC) typically dominates
+mature scientific networks; here, with 547 components across 817 nodes,
+the GCC contains a minority of nodes while the remainder form singletons
+or small clusters of two to three papers. This is partially an artifact
+of cross-source identifier mismatches, but it also reflects the field’s
+pattern of papers engaging with the FEP literature conceptually without
+building explicit, graph-tractable citation chains. PageRank analysis
+identifies highly influential papers, predominantly Friston’s
+foundational work and the AIF textbook , which serve as nexus points
+linking otherwise disconnected subgraphs.</p>
+<h3 id="network-summary">Network Summary</h3>
+<p>The citation topology corroborates the field overview findings (RQ1,
+RQ2): a small number of foundational papers—predominantly Friston’s free
+energy and active inference formulations—anchor a rapidly expanding
+periphery of increasingly specialized work. The extremely low density
+(0.33%) corresponds to an epistemic stage of high fragmentation, meaning
+that literature synthesis and cross-pollination between specific
+sub-domains remain difficult. Theoretical influence flows primarily
+through shared conceptual foundations (the hub nodes) rather than
+through dense mutual citation across the periphery. As metadata
+standardization improves and DOI adoption becomes universal across
+preprint and journal ecosystems, re-running this pipeline should yield
+substantially higher reference resolution rates and a more connected
+graph, enabling finer-grained community detection and tracking.</p>
+</main>
+</body>
+</html>

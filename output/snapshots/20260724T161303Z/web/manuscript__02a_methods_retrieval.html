@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>02a_methods_retrieval.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    window.MathJax.startup.defaultReady();
+    window.MathJax.startup.promise.then(window.normalizeTemplateMathJaxAria);
+  }
+});
+</script>
+<script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"
+  type="text/javascript" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h2
+id="stage-1-multi-source-literature-retrieval-and-deduplication">Stage
+1: Multi-Source Literature Retrieval and Deduplication </h2>
+<p>We retrieve papers from three complementary academic databases to
+maximize coverage and enable cross-source deduplication. The retrieval
+window begins at 2005, encompassing the period when Energy-Based Model
+and variational Bayesian research provided mathematical precursors to
+what Friston formalized as the Free Energy Principle in 2006 ; this
+inclusive start captures historical lineage and cross-disciplinary
+convergence that a later cutoff would exclude.</p>
+<p><strong>arXiv.</strong> We query the arXiv Atom API using five
+phrase-matched searches by default: <code>all:"active inference"</code>,
+<code>all:"free energy principle"</code>,
+<code>all:"predictive coding" AND all:"free energy"</code>,
+<code>all:"expected free energy"</code>, and
+<code>all:"variational free energy" AND all:"inference"</code>. The
+<code>all:</code> prefix searches titles, abstracts, and full text;
+phrase matching reduces contamination from unrelated physics papers that
+mention “free energy” in thermodynamic contexts. Additional Energy-Based
+Model queries
+(<code>all:"energy-based model" AND all:"free energy"</code>,
+<code>all:"Helmholtz machine" AND all:"inference"</code>,
+<code>all:"Boltzmann machine" AND all:"free energy"</code>,
+<code>all:"contrastive divergence" AND all:"generative model"</code>)
+are available via the <code>arxiv_queries</code> list in
+<code>config.yaml</code> for researchers wishing to capture adjacent EBM
+literature at the intersection of energy-based generative modeling and
+variational inference .</p>
+<p><strong>Semantic Scholar.</strong> We query the Semantic Scholar
+Graph API with the same terms. Semantic Scholar provides citation
+graphs, abstract embeddings, and links to published versions. Retry
+logic with exponential backoff handles rate limiting.</p>
+<p><strong>OpenAlex.</strong> We query OpenAlex to capture
+journal-published work that may not appear on arXiv, including clinical
+studies and neuroscience experiments in domain-specific venues. The
+<code>referenced_works</code> field populates citation links for each
+paper.</p>
+<h3 id="canonical-identifier-deduplication">Canonical Identifier
+Deduplication</h3>
+<p>After retrieval, papers are assigned a canonical identifier using the
+priority scheme: DOI <span class="math inline">\(&gt;\)</span> arXiv ID
+<span class="math inline">\(&gt;\)</span> Semantic Scholar ID <span
+class="math inline">\(&gt;\)</span> OpenAlex ID <span
+class="math inline">\(&gt;\)</span> title hash. When the same paper
+appears in multiple sources, the record with the highest metadata
+completeness is retained. For each incoming paper, the two records are
+compared on metadata completeness—defined as the count of non-empty
+optional attributes across the full Paper record (abstract, DOI, arXiv
+ID, Semantic Scholar ID, OpenAlex ID, venue, citation count, references,
+publication date, PDF URL, open-access flag, and author list). The
+pipeline retains the richer record; in the event of a tie, the incumbent
+is preserved. This “merge-on-add” strategy aggregates the richest
+available metadata without requiring an expensive downstream
+reconciliation pass. Deduplication produces <span
+class="math inline">\(N = 817\)</span> unique papers spanning
+2005–2026.</p>
+<h3 id="relevance-filtering-and-curation">Relevance Filtering and
+Curation</h3>
+<p>After deduplication, a <strong>relevance filter</strong> removes
+papers whose titles and abstracts lack any core Active Inference
+terminology (e.g., <code>active inference,''</code>free energy
+principle,’’ ``variational free energy’’), eliminating off-topic results
+introduced by broad keyword overlap across heterogeneous databases. We
+acknowledge that this retrieval strategy yields limited bibliographic
+depth, functioning as a representative snapshot rather than an
+exhaustive census of the literature.</p>
+<p>We emphasize that this process relies on keyword search strategies
+across divergent APIs. In any complex research field, there is no single
+optimal word or threshold for definitive inclusion or exclusion.
+Different information sources and repositories yield differing schemas
+and representations, introducing both false positives (e.g., machine
+learning papers that mention “free energy” in a purely thermodynamic
+context, or bioinformatics tools whose names overlap with AIF
+terminology) and false negatives (e.g., predictive coding studies that
+avoid the phrase “free energy principle” entirely, or agent-based
+modeling papers that implement functionally equivalent algorithms under
+different labels). The keyword lists in <code>config.yaml</code>
+document all search terms explicitly to enable systematic replication
+and refinement.</p>
+<p>Consequently, this pipeline is not intended to produce a static,
+“golden” list of canonical papers. Rather, it is designed as an
+open-source software package that can be modularly updated and
+versioned. Researchers can configure the pipeline to operate on custom
+literature bibliographies curated for specific relevance criteria
+through time, treating the initial query-based retrieval as a
+programmatic starting point rather than an absolute boundary. For
+example, adding a ninth domain category (e.g., “D: Education”) requires
+only adding a keyword list to the <code>subfield_keywords</code> section
+of <code>config.yaml</code>—no source code modification is needed.</p>
+</main>
+</body>
+</html>

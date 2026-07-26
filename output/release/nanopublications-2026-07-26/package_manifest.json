@@ -1,0 +1,30 @@
+{
+  "files": {
+    "README.md": {
+      "sha256": "a387f1cf3577a6ec7acb0b139f5a74e6da2067c95cd6b81f7345b0b34e5a998f",
+      "size_bytes": 492
+    },
+    "extraction_provenance_summary.json": {
+      "sha256": "1bf8082e50d22d274f34c0ed230908d1b45cf9769b4d039b8273b6af2cc12f44",
+      "size_bytes": 385
+    },
+    "nanopublications.jsonl": {
+      "sha256": "406d3aacac011516129bca132f07e5cfd3501c887fb8f832f02ed30b5f75f2c4",
+      "size_bytes": 2740370
+    },
+    "nanopublications.trig": {
+      "sha256": "60109ed226f1e8aef75c7cbd803edec538c72b07280b84e6f752d720e6a96265",
+      "size_bytes": 7244663
+    },
+    "rdf_package_validation.json": {
+      "sha256": "5d8f06e64c52d926cdceb560b92661e140fb44864b586a520f0f227da7fcf6ad",
+      "size_bytes": 896
+    }
+  },
+  "license": "CC-BY-4.0",
+  "namespace": "http://activeinference.institute/ontology/",
+  "nanopublication_count": 2561,
+  "package_schema_version": "1.0",
+  "repository": "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis",
+  "snapshot_date": "2026-07-26"
+}

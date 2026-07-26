@@ -1,0 +1,158 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Abstract}{4}{section.1}%
+\contentsline {section}{\numberline {2}Introduction: Evidence Gaps in a Rapidly Expanding Field}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}The Free Energy Principle and Active Inference Framework}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Challenges Posed by Rapid Literature Growth}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Related Work and Prior Meta-Analyses}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Synergizing Knowledge Graphs and LLMs}{6}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}This Study: Approach and Overview}{6}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Research Questions}{6}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Scope and Delimitations}{7}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Principal Contributions}{7}{subsection.2.8}%
+\contentsline {section}{\numberline {3}Methodology: Pipeline Design and Formal Definitions}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Pipeline Overview}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Reproducible Build Infrastructure}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Stage 1: Multi-Source Literature Retrieval and Deduplication}{9}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Canonical Identifier Deduplication}{9}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Relevance Filtering and Curation}{9}{subsubsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.4}LLM-Based Assertion Extraction: Prompt Design, Error Taxonomy, and Validation}{10}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Relationship to Prior Approaches}{10}{subsubsection.3.4.1}%
+\contentsline {paragraph}{\numberline {3.4.1.1}Positioning in the LLM-Based Review Landscape}{10}{paragraph.3.4.1.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}The Eight Tracked Hypotheses}{10}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Prompt Engineering and Schema Design}{10}{subsubsection.3.4.3}%
+\contentsline {paragraph}{\numberline {3.4.3.1}Prompt Template}{11}{paragraph.3.4.3.1}%
+\contentsline {subsubsection}{\numberline {3.4.4}Failure Modes and Error Recovery}{11}{subsubsection.3.4.4}%
+\contentsline {paragraph}{\numberline {3.4.4.1}Over-Extraction Bias}{11}{paragraph.3.4.4.1}%
+\contentsline {paragraph}{\numberline {3.4.4.2}Direction Misclassification}{11}{paragraph.3.4.4.2}%
+\contentsline {paragraph}{\numberline {3.4.4.3}Confidence Calibration Constraints}{11}{paragraph.3.4.4.3}%
+\contentsline {paragraph}{\numberline {3.4.4.4}Progressive JSON Parsing Recovery}{12}{paragraph.3.4.4.4}%
+\contentsline {subsubsection}{\numberline {3.4.5}Validation Methodology}{12}{subsubsection.3.4.5}%
+\contentsline {subsubsection}{\numberline {3.4.6}From Assertions to Nanopublications}{12}{subsubsection.3.4.6}%
+\contentsline {subsection}{\numberline {3.5}Stage 2: Bibliometric Analysis}{13}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Subfield Classification}{13}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Temporal Metrics and Growth-Rate Estimation}{13}{subsubsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.3}Text Analytics}{13}{subsubsection.3.5.3}%
+\contentsline {subsubsection}{\numberline {3.5.4}Citation Network Construction}{13}{subsubsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.6}Stage 3: Nanopublication-Based Knowledge Graph}{14}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}LLM-Based Assertion Extraction}{14}{subsubsection.3.6.1}%
+\contentsline {subsubsection}{\numberline {3.6.2}Nanopublication Schema and RDF Structure}{14}{subsubsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {3.6.3}Knowledge Graph Construction}{14}{subsubsection.3.6.3}%
+\contentsline {subsubsection}{\numberline {3.6.4}Citation-Weighted Hypothesis Scoring}{15}{subsubsection.3.6.4}%
+\contentsline {subsubsection}{\numberline {3.6.5}Tally-Based Evidence Aggregation}{15}{subsubsection.3.6.5}%
+\contentsline {subsection}{\numberline {3.7}Stages 4--5: Visualization, Variable Injection, and Reproducibility}{16}{subsection.3.7}%
+\contentsline {subsubsection}{\numberline {3.7.1}Stage 4: Visualization}{16}{subsubsection.3.7.1}%
+\contentsline {subsubsection}{\numberline {3.7.2}Stage 5: Manuscript Variable Hydration}{16}{subsubsection.3.7.2}%
+\contentsline {subsubsection}{\numberline {3.7.3}Reproducibility and Test-Driven Validation}{16}{subsubsection.3.7.3}%
+\contentsline {section}{\numberline {4}Results}{17}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Hypothesis Evidence Landscape and Temporal Dynamics}{17}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Interpretation of Evidence Profiles}{17}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Temporal Dynamics of Evidence Accumulation}{18}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Assertion Composition and Distribution}{18}{subsubsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.4}Limitations of the Current Scoring Approach}{20}{subsubsection.4.1.4}%
+\contentsline {paragraph}{\numberline {4.1.4.1}Publication Bias and Linguistic Asymmetry}{20}{paragraph.4.1.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.5}Methodological Validation and LLM Calibration}{20}{subsubsection.4.1.5}%
+\contentsline {subsubsection}{\numberline {4.1.6}Citation-Weighting Sensitivity}{20}{subsubsection.4.1.6}%
+\contentsline {subsection}{\numberline {4.2}Field Overview: Disciplinary Structure and Growth Dynamics}{21}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Corpus-Level Summary}{21}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Domain Distribution}{21}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Cross-Domain Comparison}{22}{subsubsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.3}Domain Analyses: Growth Trajectories and Open Problems}{24}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Domain A: Core Theory}{24}{subsubsection.4.3.1}%
+\contentsline {paragraph}{\numberline {4.3.1.1}A1 --- Quantitative and Formal Theory (n = 86, 7.8 percent)}{24}{paragraph.4.3.1.1}%
+\contentsline {paragraph}{\numberline {4.3.1.2}A2 --- Qualitative Philosophy and General Theory (n = 79, 7.1 percent)}{24}{paragraph.4.3.1.2}%
+\contentsline {subsubsection}{\numberline {4.3.2}Domain B: Tools and Translation Methods}{25}{subsubsection.4.3.2}%
+\contentsline {paragraph}{\numberline {4.3.2.1}B --- Algorithms, Scaling, and Software (n = 263, 23.8 percent)}{25}{paragraph.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.3}Domain C: Application Domains}{25}{subsubsection.4.3.3}%
+\contentsline {paragraph}{\numberline {4.3.3.1}C1 --- Neuroscience (n = 212, 19.2 percent)}{25}{paragraph.4.3.3.1}%
+\contentsline {paragraph}{\numberline {4.3.3.2}C2 --- Robotics (n = 159, 14.4 percent)}{25}{paragraph.4.3.3.2}%
+\contentsline {paragraph}{\numberline {4.3.3.3}C3 --- Language Processing (n = 75, 6.8 percent)}{25}{paragraph.4.3.3.3}%
+\contentsline {paragraph}{\numberline {4.3.3.4}C4 --- Computational Psychiatry (n = 60, 5.4 percent)}{26}{paragraph.4.3.3.4}%
+\contentsline {paragraph}{\numberline {4.3.3.5}C5 --- Biology and Morphogenesis (n = 172, 15.6 percent)}{26}{paragraph.4.3.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.4}Comparative Synthesis}{26}{subsubsection.4.3.4}%
+\contentsline {paragraph}{\numberline {4.3.4.1}Domain--Hypothesis Cross-Reference}{26}{paragraph.4.3.4.1}%
+\contentsline {subsubsection}{\numberline {4.3.5}Text Analytics: Topic Modeling, Vocabulary Structure, and Document Embeddings}{27}{subsubsection.4.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.6}Topic Modeling: Latent Structure}{27}{subsubsection.4.3.6}%
+\contentsline {paragraph}{\numberline {4.3.6.1}Topic--Domain Overlap}{28}{paragraph.4.3.6.1}%
+\contentsline {subsubsection}{\numberline {4.3.7}Vocabulary Analysis}{28}{subsubsection.4.3.7}%
+\contentsline {subsubsection}{\numberline {4.3.8}Document Embedding Projections}{28}{subsubsection.4.3.8}%
+\contentsline {subsubsection}{\numberline {4.3.9}Domain Semantic Similarity}{28}{subsubsection.4.3.9}%
+\contentsline {subsubsection}{\numberline {4.3.10}Term Co-occurrence Patterns}{29}{subsubsection.4.3.10}%
+\contentsline {subsection}{\numberline {4.4}Citation Network Topology}{30}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Network Density and Degree Distribution}{30}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Connected Components and Citation Isolation}{30}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Network Summary}{32}{subsubsection.4.4.3}%
+\contentsline {section}{\numberline {5}Conclusion: Evidence Landscape, Methodological Limitations, and Research Agenda}{34}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Summary}{34}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Constraints and Methodological Scope}{34}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Keyword Classifier Resolution}{34}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Citation Network Coverage Gaps}{34}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Corpus Biases, Citation Dynamics, and Linguistic Framing}{34}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}LLM Extraction Fidelity, Domain Drift, and Robustness}{34}{subsubsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.3}Research Agenda: Four Priority Next Steps}{35}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Next Step 1 --- Expand the Scope of Referenced Data}{35}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Next Step 2 --- Extract and Verify Evidence Supporting Claims in Each Paper}{35}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Next Step 3 --- Tie Hypotheses to Real-World Outcomes}{36}{subsubsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.4}Next Step 4 --- Formal Evaluation Rubric for Pipeline Quality}{36}{subsubsection.5.3.4}%
+\contentsline {subsection}{\numberline {5.4}Future Directions: Beyond Tally-Based Evidence Aggregation}{37}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Hierarchical Bayesian Hypothesis Scoring}{37}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Causal Evidence Graphs}{37}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Evidential Diversity and Source Weighting}{37}{subsubsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.4}Agentic LLM Extractors and Domain Adaptation}{37}{subsubsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.5}Limitations}{38}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Broader Impact}{38}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Discussion: Implications and Community Recommendations}{39}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Relationship to Prior Development Directions}{39}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Tactical and Strategic Priorities}{39}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Adopt Rigorous Reporting Metadata}{39}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Explore Open Knowledge Graph Infrastructure}{39}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}Standardize the Ontological Lexicon}{39}{subsubsection.6.2.3}%
+\contentsline {subsection}{\numberline {6.3}Empirical and Theoretical Imperatives}{39}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Architect Unified Performance Benchmarks}{39}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.2}Prioritize Empirical Validation}{39}{subsubsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.4}Living Review Maintenance}{39}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}Agentic Workspaces and MCP Integration}{40}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}The Discovery Engine and Future Architectures}{40}{subsubsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.5}Open Questions}{40}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Pipeline as a Community Instrument}{41}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Limitations}{41}{subsection.6.7}%
+\contentsline {section}{\numberline {7}Appendix: Tooling and Infrastructure}{42}{section.7}%
+\contentsline {subsection}{\numberline {7.1}LLM-Based Assertion Extraction}{42}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Software Ecosystem}{42}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.2.1}General-Purpose Frameworks}{42}{subsubsection.7.2.1}%
+\contentsline {subsubsection}{\numberline {7.2.2}Deep Active Inference}{43}{subsubsection.7.2.2}%
+\contentsline {subsubsection}{\numberline {7.2.3}Predictive Coding and Neural Generative Coding}{43}{subsubsection.7.2.3}%
+\contentsline {subsubsection}{\numberline {7.2.4}Benchmarking Progress}{43}{subsubsection.7.2.4}%
+\contentsline {subsubsection}{\numberline {7.2.5}Source-backed Tool Survey}{43}{subsubsection.7.2.5}%
+\contentsline {subsubsection}{\numberline {7.2.6}Comparative Feature Matrix}{45}{subsubsection.7.2.6}%
+\contentsline {subsection}{\numberline {7.3}Knowledge Graph Infrastructure}{45}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Multi-Level Quality Assurance}{46}{subsection.7.4}%
+\contentsline {subsubsection}{\numberline {7.4.1}Assertion-Level Validation}{46}{subsubsection.7.4.1}%
+\contentsline {subsubsection}{\numberline {7.4.2}Graph-Level Consistency Checks}{46}{subsubsection.7.4.2}%
+\contentsline {subsubsection}{\numberline {7.4.3}Score-Level Unit Testing}{46}{subsubsection.7.4.3}%
+\contentsline {subsubsection}{\numberline {7.4.4}Pipeline-Level Test Coverage}{46}{subsubsection.7.4.4}%
+\contentsline {subsubsection}{\numberline {7.4.5}Quality Thresholds}{46}{subsubsection.7.4.5}%
+\contentsline {section}{\numberline {8}Appendix: Mathematical and Algorithmic Details}{47}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Citation-Weighted Hypothesis Scoring Formula}{47}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Non-negative Matrix Factorization (NMF) for Topic Modeling}{47}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Field Growth-Rate Estimation}{48}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Advanced Visualization Methods}{48}{subsection.8.4}%
+\contentsline {subsubsection}{\numberline {8.4.1}PCA of TF-IDF Embeddings}{48}{subsubsection.8.4.1}%
+\contentsline {subsubsection}{\numberline {8.4.2}Hierarchical Clustering Dendrogram}{48}{subsubsection.8.4.2}%
+\contentsline {subsubsection}{\numberline {8.4.3}Term Heatmap}{49}{subsubsection.8.4.3}%
+\contentsline {subsubsection}{\numberline {8.4.4}Term Co-occurrence Matrix}{49}{subsubsection.8.4.4}%
+\contentsline {subsection}{\numberline {8.5}Nanopublication RDF Schema}{49}{subsection.8.5}%
+\contentsline {subsubsection}{\numberline {8.5.1}Namespace Definitions}{50}{subsubsection.8.5.1}%
+\contentsline {subsubsection}{\numberline {8.5.2}Core Triple Patterns}{50}{subsubsection.8.5.2}%
+\contentsline {section}{\numberline {9}Appendix: Accessibility, Cognitive Ergonomics, and Participatory Research Infrastructure}{51}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Cognitive Ergonomics of Knowledge Graphs}{51}{subsection.9.1}%
+\contentsline {subsubsection}{\numberline {9.1.1}Action--Intention UX and Active Inference Design Principles}{51}{subsubsection.9.1.1}%
+\contentsline {subsubsection}{\numberline {9.1.2}Risk-Aware and Bias-Transparent Design}{51}{subsubsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.2}FAIR Data and Decentralized Science}{51}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Participatory Research and Universal Access}{52}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Pipeline Accessibility Checklist}{52}{subsection.9.4}%
+\contentsline {section}{\numberline {10}Notation, Abbreviations, and Glossary}{54}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Mathematical Symbols and Notation}{54}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Abbreviations and Acronyms Used}{54}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Standard Hypothesis Definitions and Identifiers}{56}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Glossary of Key Terms}{56}{subsection.10.4}%
+\contentsline {section}{\numberline {11}References}{60}{section.11}%

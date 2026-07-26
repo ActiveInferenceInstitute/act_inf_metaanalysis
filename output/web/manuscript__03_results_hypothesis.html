@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>03_results_hypothesis.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    window.MathJax.startup.defaultReady();
+    window.MathJax.startup.promise.then(window.normalizeTemplateMathJaxAria);
+  }
+});
+</script>
+<script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"
+  type="text/javascript" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h1 id="sec:results">Results</h1>
+<h2 id="sec:hypothesis_results">Hypothesis Evidence Landscape and
+Temporal Dynamics</h2>
+<p>The LLM-based extraction pipeline produced a total of 2,561
+assertions across the eight tracked hypotheses, drawn from the retrieved
+corpus snapshot of <span class="math inline">\(N = 1106\)</span> papers.
+Before presenting the results, we reiterate the interpretive framework
+established in the : hypothesis scores are descriptive comparisons among
+hypotheses and cumulative trajectories within each hypothesis—they are
+not absolute probability estimates or validated measures of scientific
+support. Publication bias and linguistic asymmetry (<span
+class="math inline">\(\ref{sec:pub_bias}\)</span>) inflate all scores
+toward the positive end, and the tally-based aggregation does not model
+evidential dependencies. The distribution of assertion types and the
+resulting citation-weighted scores reveal a differentiated evidence
+landscape (Figure <span
+class="math inline">\(\ref{fig:hypothesis_dashboard}\)</span>):</p>
+<h3 id="interpretation-of-evidence-profiles">Interpretation of Evidence
+Profiles</h3>
+<p>To directly address our core research questions—identifying which
+claims are robustly supported and which remain contested—we evaluated
+how the hypothesis-level evidence maps against the critiques introduced
+in <span class="math inline">\(\ref{sec:methods}\)</span>. The score
+ordering is data-derived and should be read as a relative evidence map,
+not as a set of absolute scientific-certainty tiers. The highest
+observed score is Scalability (SCALABILITY) at <span
+class="math inline">\(+1.00\)</span>, while 8 hypotheses have positive
+scores and 0 have negative scores in this snapshot. FEP Universality
+(H1), with 1069 assertions, has the largest assessed evidence base;
+assertion volume and score magnitude answer different questions. Across
+hypotheses, citation-weighting captures which claims the community cites
+most rather than providing a simple ballot of assertion counts; this can
+amplify highly cited supportive or critical evidence. The complete score
+and count table is the authoritative comparison, while the dashboard and
+timeline provide visual summaries.</p>
+<p>Markov blanket realism (H3) has 34 assertions, a score of <span
+class="math inline">\(+0.14\)</span>, and 14 contradicting assertions.
+Its relatively low positive score is consistent with an active
+ontological debate between accounts that treat Markov blankets as real
+thermodynamic boundaries and accounts that treat them as instrumental
+statistical tools ; a positive tally should not be relabeled as
+consensus.</p>
+<p>FEP universality (H1) generates 1069 assertions yet achieves a score
+of <span class="math inline">\(+0.63\)</span>. Neutral assessments
+account for 533 of those tallies, compared with 522 supporting and 14
+contradicting assertions. This composition illustrates why a large
+evidence count does not imply a strongly directional result: many papers
+invoke the FEP as conceptual scaffolding without explicitly testing
+universality. The observation is consistent with falsifiability
+critiques of broad principle-level claims , but remains an
+interpretation of the extracted abstract-level evidence.</p>
+<h3 id="temporal-dynamics-of-evidence-accumulation">Temporal Dynamics of
+Evidence Accumulation</h3>
+<p>The cumulative evidence timeline (Figure <span
+class="math inline">\(\ref{fig:evidence_timeline}\)</span>) is
+descriptive and limited to the observed corpus years. Early years can
+show extreme scores when only a small number of assertions contribute;
+the updated figure reports cumulative assertion counts alongside the
+score encoding. Later trajectories should be interpreted as accumulation
+patterns rather than causal effects of individual papers, especially for
+H5 and H6, whose evidence base is concentrated in more recent
+literature. The timeline does not establish that any hypothesis became
+positive before the first year represented in this corpus.</p>
+<h3 id="assertion-composition-and-distribution">Assertion Composition
+and Distribution</h3>
+<p>The per-hypothesis composition of assertions (Figure <span
+class="math inline">\(\ref{fig:assertion_breakdown}\)</span>) and the
+multi-panel summary (Figure <span
+class="math inline">\(\ref{fig:assertion_summary}\)</span>) provide
+complementary views of the extraction results.</p>
+<h3 id="limitations-of-the-current-scoring-approach">Limitations of the
+Current Scoring Approach</h3>
+<h4 id="sec:pub_bias">Publication Bias and Linguistic Asymmetry</h4>
+<p>The mixed scores observed across the eight hypotheses should be
+interpreted with two systematic caveats.</p>
+<p>First, <strong>publication bias</strong> systematically inflates
+supporting evidence. Academic journals preferentially publish positive
+and confirmatory results (), meaning that studies finding null or
+contradictory outcomes for any hypothesis are less likely to appear in
+the retrievable literature. This is well-documented across scientific
+disciplines and is expected to disproportionately suppress contradicting
+assertions in our extraction pipeline. The Active Inference literature
+is particularly susceptible: as a theoretical framework with strong
+foundational proponents, papers are more likely to frame results as
+consistent with the FEP than as challenges to it.</p>
+<p>Second, <strong>linguistic asymmetry</strong> in academic writing
+further skews extraction toward positive classifications. Declarative
+scholarly claims are inherently phrased affirmatively—authors write “our
+results support,” “consistent with,” or “extends the prediction of” far
+more frequently than “our results refute” or “contradicts the claim
+that.” Because the LLM extraction pipeline operates on abstract text,
+this linguistic imbalance propagates directly into the assertion
+distribution. Even papers presenting genuinely mixed evidence tend to
+frame their abstracts in terms of what found rather than what was not,
+biasing the extracted direction toward ``supports.’’</p>
+<p>These two effects act in concert: publication bias reduces the number
+of contradicting papers in the corpus, and linguistic framing reduces
+the number of contradicting assertions extracted from the papers that do
+appear. Consequently, the absolute values of hypothesis scores should
+not be taken as unbiased measures of scientific consensus. We retain the
+relative ordering and temporal trajectories as transparent descriptive
+summaries, but the present study does not establish that they are robust
+to extraction error, retrieval bias, or correlated evidence.</p>
+<h3 id="methodological-validation-and-llm-calibration">Methodological
+Validation and LLM Calibration</h3>
+<p>The evidence derives from automated LLM-based assertion extraction
+operating on abstracts only. A stratified rule-based reference-annotator
+agreement study (<span class="math inline">\(n = 256\)</span>) provides
+a first quantitative, fully reproducible calibration: two deterministic
+keyword-rule protocols agree at <span class="math inline">\(\kappa =
+0.704\)</span> (reference stability), while pipeline triage against the
+primary rule reference yields precision 0.013, recall 1.000, and F1
+0.026, with reference–pipeline direction agreement of only <span
+class="math inline">\(\kappa = -0.048\)</span>. That the LLM and an
+independent keyword reference diverge this sharply is itself the
+calibration result: over-extraction (pipeline labels relevant where the
+keyword reference labels irrelevant) accounts for 0.738 of sampled rows,
+directly motivating the tempered interpretation of absolute hypothesis
+scores. Rankings and temporal trajectories are retained for
+auditability, not treated as validated estimates. These figures are a
+reproducibility floor, not accuracy against human ground truth, which
+remains future work. Full metrics and error taxonomy appear in Table
+<span class="math inline">\(\ref{tab:validation_metrics}\)</span> (<span
+class="math inline">\(\ref{sec:extraction_pipeline}\)</span>).</p>
+<h3 id="citation-weighting-sensitivity">Citation-Weighting
+Sensitivity</h3>
+<p>Hypothesis ranks under 5 alternative weight policies remain stable in
+this weighting-only sensitivity check: minimum rank-stability Spearman
+<span class="math inline">\(\rho = 0.976\)</span> versus the default
+log-citation policy, with 2 rank-position changes across all 6 tested
+policies. 1 hypotheses change sign under at least one tested policy, so
+sign and tier language remain sensitivity-dependent. The largest policy
+shifts should be read as a weighting diagnostic rather than as evidence
+of a different scientific conclusion.</p>
+</main>
+</body>
+</html>

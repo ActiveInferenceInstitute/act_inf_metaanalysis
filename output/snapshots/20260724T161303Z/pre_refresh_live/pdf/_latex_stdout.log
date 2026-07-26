@@ -1,0 +1,664 @@
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex)
+entering extended mode
+(./_combined_manuscript.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/size10.clo))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/xetex.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/unicode-math/unicode-math.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-xetex.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/unicode-math/unicode-math-xetex.s
+ty (/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty)
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/fix-cm.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ts1enc.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/unicode-math/unicode-math-table.t
+ex))) (/usr/local/texlive/2026/texmf-dist/tex/latex/upquote/upquote.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/textcomp.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype-xetex.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/parskip/parskip.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/array.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/footnotehyper/footnotehyper.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/xebabel.def)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/locale/en/babel-english.t
+ex) (/usr/local/texlive/2026/texmf-dist/tex/generic/babel-english/english.ldf))
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/ltcaption.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/bookmark/bookmark.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty)) (/usr/local/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hxetex.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+))) (/usr/local/texlive/2026/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xurl/xurl.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/seqsplit/seqsplit.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/placeins/placeins.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstpatch.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.cfg))
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/11/14 1.11b (Carsten Heinz)
+    so I'm assuming it got fixed.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/cleveref/cleveref.sty)
+==> First Aid for cleveref.sty applied!
+(/usr/local/texlive/2026/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/xspace.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/relsize/relsize.sty))
+No file _combined_manuscript.aux.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-LatinModernRoman.cfg
+)
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+[1]
+No file _combined_manuscript.toc.
+[1] (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg) [2]
+
+Package natbib Warning: Citation `friston2006free' on page 3 undefined on input
+ line 338.
+
+
+Package natbib Warning: Citation `friston2010free' on page 3 undefined on input
+ line 338.
+
+
+Package natbib Warning: Citation `parr2022active' on page 3 undefined on input
+line 346.
+
+
+Package natbib Warning: Citation `friston2017active' on page 3 undefined on inp
+ut line 346.
+
+
+Package natbib Warning: Citation `sakthivadivel2023bayesian' on page 3 undefine
+d on input line 350.
+
+
+Package natbib Warning: Citation `lecun2006tutorial' on page 3 undefined on inp
+ut line 356.
+
+
+Package natbib Warning: Citation `dayan1995helmholtz' on page 3 undefined on in
+put line 357.
+
+
+Package natbib Warning: Citation `hinton2002training' on page 3 undefined on in
+put line 358.
+
+
+Package natbib Warning: Citation `kingma2014auto' on page 3 undefined on input
+line 359.
+
+
+Package natbib Warning: Citation `knight2022fep' on page 3 undefined on input l
+ine 381.
+
+
+Package natbib Warning: Citation `clark2013whatever' on page 3 undefined on inp
+ut line 393.
+
+
+Package natbib Warning: Citation `hohwy2013predictive' on page 3 undefined on i
+nput line 393.
+
+
+Package natbib Warning: Citation `sakthivadivel2023bayesian' on page 3 undefine
+d on input line 394.
+
+
+Package natbib Warning: Citation `colombo2021free' on page 3 undefined on input
+ line 397.
+
+
+Package natbib Warning: Citation `sajid2021active' on page 3 undefined on input
+ line 406.
+
+
+Package natbib Warning: Citation `dacosta2020active' on page 3 undefined on inp
+ut line 408.
+
+
+Package natbib Warning: Citation `lanillos2021active' on page 3 undefined on in
+put line 409.
+
+
+Package natbib Warning: Citation `smith2021computational' on page 3 undefined o
+n input line 410.
+
+
+Package natbib Warning: Citation `millidge2021understanding' on page 3 undefine
+d on input line 412.
+
+
+Package natbib Warning: Citation `ramstead2018answering' on page 3 undefined on
+ input line 414.
+
+
+Package natbib Warning: Citation `pezzulo2015active' on page 3 undefined on inp
+ut line 416.
+
+
+Package natbib Warning: Citation `millidge2024retrospective' on page 3 undefine
+d on input line 417.
+
+
+Package natbib Warning: Citation `namjoshi2026fundamentals' on page 3 undefined
+ on input line 425.
+
+
+Package natbib Warning: Citation `namjoshi2026aiffepdb' on page 3 undefined on
+input line 428.
+
+[3]
+
+Package natbib Warning: Citation `knight2022fep' on page 4 undefined on input l
+ine 437.
+
+
+Package natbib Warning: Citation `knight2022fep' on page 4 undefined on input l
+ine 456.
+
+
+Package natbib Warning: Citation `quevedo2025combining' on page 4 undefined on
+input line 472.
+
+
+Package natbib Warning: Citation `li2024unifying' on page 4 undefined on input
+line 472.
+
+
+Package natbib Warning: Citation `groth2010anatomy' on page 4 undefined on inpu
+t line 473.
+
+
+LaTeX Warning: Hyper reference `sec:hypothesis_results' on page 4 undefined on
+input line 525.
+
+
+Package natbib Warning: Citation `dayan1995helmholtz' on page 4 undefined on in
+put line 540.
+
+
+Package natbib Warning: Citation `lecun2006tutorial' on page 4 undefined on inp
+ut line 540.
+
+
+Package natbib Warning: Citation `friston2006free' on page 4 undefined on input
+ line 543.
+
+
+LaTeX Warning: Hyper reference `sec:field_overview' on page 4 undefined on inpu
+t line 552.
+
+
+LaTeX Warning: Hyper reference `sec:extraction_pipeline' on page 4 undefined on
+ input line 558.
+
+
+Package natbib Warning: Citation `knight2022fep' on page 4 undefined on input l
+ine 561.
+
+[4]
+
+LaTeX Warning: Hyper reference `sec:subfield_analyses' on page 5 undefined on i
+nput line 583.
+
+
+LaTeX Warning: Hyper reference `sec:methods' on page 5 undefined on input line
+596.
+
+
+LaTeX Warning: Hyper reference `sec:methods_retrieval' on page 5 undefined on i
+nput line 599.
+
+
+LaTeX Warning: Hyper reference `sec:extraction_pipeline' on page 5 undefined on
+ input line 600.
+
+
+LaTeX Warning: Hyper reference `sec:methods_bibliometrics' on page 5 undefined
+on input line 601.
+
+
+LaTeX Warning: Hyper reference `sec:methods_kg' on page 5 undefined on input li
+ne 602.
+
+
+LaTeX Warning: Hyper reference `sec:methods_viz' on page 5 undefined on input l
+ine 603.
+
+
+LaTeX Warning: Hyper reference `sec:hypothesis_results' on page 5 undefined on
+input line 604.
+
+
+LaTeX Warning: Hyper reference `sec:field_overview' on page 5 undefined on inpu
+t line 606.
+
+
+LaTeX Warning: Hyper reference `sec:subfield_analyses' on page 5 undefined on i
+nput line 608.
+
+
+LaTeX Warning: Hyper reference `sec:text_analytics' on page 5 undefined on inpu
+t line 609.
+
+
+LaTeX Warning: Hyper reference `sec:citation_network' on page 5 undefined on in
+put line 610.
+
+
+LaTeX Warning: Hyper reference `sec:conclusion' on page 5 undefined on input li
+ne 611.
+
+
+LaTeX Warning: Hyper reference `sec:discussion' on page 5 undefined on input li
+ne 612.
+
+
+LaTeX Warning: Reference `sec:technical_appendix' on page 5 undefined on input
+line 614.
+
+
+LaTeX Warning: Reference `sec:tooling' on page 5 undefined on input line 615.
+
+[5]
+
+Package natbib Warning: Citation `knight2022fep' on page 6 undefined on input l
+ine 627.
+
+
+LaTeX Warning: Reference `tab:pipeline_stages' on page 1 undefined on input lin
+e 638.
+
+
+LaTeX Warning: Hyper reference `sec:methods_retrieval' on page 6 undefined on i
+nput line 648.
+
+
+LaTeX Warning: Hyper reference `sec:methods_bibliometrics' on page 6 undefined
+on input line 649.
+
+
+LaTeX Warning: Hyper reference `sec:methods_kg' on page 6 undefined on input li
+ne 650.
+
+
+LaTeX Warning: Hyper reference `sec:methods_viz' on page 6 undefined on input l
+ine 651.
+
+
+LaTeX Warning: Hyper reference `sec:methods_viz' on page 6 undefined on input l
+ine 652.
+
+
+Overfull \hbox (177.44516pt too wide) in paragraph at lines 644--655
+ [][]
+
+Package natbib Warning: Citation `Friedman2026TemplateReproducibleGenerative' o
+n page 6 undefined on input line 670.
+
+
+Package natbib Warning: Citation `FriedmanTemplateSoftware' on page 6 undefined
+ on input line 670.
+
+
+Package natbib Warning: Citation `wilkinson2016fair' on page 6 undefined on inp
+ut line 678.
+
+[6]
+
+Package natbib Warning: Citation `dayan1995helmholtz' on page 7 undefined on in
+put line 722.
+
+
+Package natbib Warning: Citation `lecun2006tutorial' on page 7 undefined on inp
+ut line 722.
+
+
+Package natbib Warning: Citation `friston2006free' on page 7 undefined on input
+ line 724.
+
+
+Package natbib Warning: Citation `lecun2006tutorial' on page 7 undefined on inp
+ut line 745.
+
+
+Package natbib Warning: Citation `kinney2023semantic' on page 7 undefined on in
+put line 748.
+
+
+Package natbib Warning: Citation `priem2022openalex' on page 7 undefined on inp
+ut line 752.
+
+[7]
+
+Package natbib Warning: Citation `knight2022fep' on page 8 undefined on input l
+ine 825.
+
+[8] [9]
+
+Package natbib Warning: Citation `groth2010anatomy' on page 10 undefined on inp
+ut line 1092.
+
+
+Package natbib Warning: Citation `kuhn2016decentralized' on page 10 undefined o
+n input line 1092.
+
+
+LaTeX Warning: Hyper reference `sec:methods_kg' on page 10 undefined on input l
+ine 1116.
+
+
+LaTeX Warning: Reference `sec:appendix_rdf' on page 10 undefined on input line
+1117.
+
+[10] [11]
+
+LaTeX Warning: Reference `sec:appendix_growth' on page 12 undefined on input li
+ne 1162.
+
+
+Package natbib Warning: Citation `salton1975vector' on page 12 undefined on inp
+ut line 1168.
+
+
+Package natbib Warning: Citation `lee1999nmf' on page 12 undefined on input lin
+e 1171.
+
+
+LaTeX Warning: Reference `sec:appendix_nmf' on page 12 undefined on input line
+1173.
+
+
+Package natbib Warning: Citation `kleinberg1999authoritative' on page 12 undefi
+ned on input line 1186.
+
+
+Package natbib Warning: Citation `clauset2004finding' on page 12 undefined on i
+nput line 1188.
+
+[12]
+
+Package natbib Warning: Citation `ollama2024' on page 13 undefined on input lin
+e 1206.
+
+
+LaTeX Warning: Hyper reference `sec:extraction_pipeline' on page 13 undefined o
+n input line 1216.
+
+
+Package natbib Warning: Citation `groth2010anatomy' on page 13 undefined on inp
+ut line 1222.
+
+
+Package natbib Warning: Citation `kuhn2016decentralized' on page 13 undefined o
+n input line 1222.
+
+
+Overfull \hbox (291.19516pt too wide) in paragraph at lines 1252--1262
+ [][]
+
+Package natbib Warning: Citation `rdflib2023' on page 13 undefined on input lin
+e 1302.
+
+[13]
+
+LaTeX Warning: Reference `sec:appendix_scoring' on page 14 undefined on input l
+ine 1335.
+
+
+LaTeX Warning: Hyper reference `sec:conclusion' on page 14 undefined on input l
+ine 1359.
+
+
+LaTeX Warning: Hyper reference `sec:conclusion' on page 14 undefined on input l
+ine 1370.
+
+[14]
+
+Package natbib Warning: Citation `wong2011colorblind' on page 15 undefined on i
+nput line 1385.
+
+[15]
+
+LaTeX Warning: Hyper reference `sec:methods_kg' on page 16 undefined on input l
+ine 1440.
+
+
+LaTeX Warning: Reference `sec:pub_bias' on page 16 undefined on input line 1444
+.
+
+
+LaTeX Warning: Reference `fig:hypothesis_dashboard' on page 16 undefined on inp
+ut line 1448.
+
+
+LaTeX Warning: Reference `eq:score' on page 16 undefined on input line 1452.
+
+
+LaTeX Warning: Reference `eq:score' on page 16 undefined on input line 1452.
+
+
+Overfull \hbox (1.52522pt too wide) in paragraph at lines 1454--1468
+ [][]
+
+LaTeX Warning: Reference `sec:pub_bias' on page 16 undefined on input line 1473
+.
+
+
+LaTeX Warning: Reference `sec:pub_bias' on page 16 undefined on input line 1473
+.
+
+
+LaTeX Warning: Reference `sec:methods' on page 16 undefined on input line 1483.
+
+
+
+Package natbib Warning: Citation `knight2022fep' on page 16 undefined on input
+line 1504.
+
+[16]
+
+Package natbib Warning: Citation `bruineberg2022emperor' on page 17 undefined o
+n input line 1520.
+
+
+Package natbib Warning: Citation `colombo2021free' on page 17 undefined on inpu
+t line 1537.
+
+
+LaTeX Warning: Reference `fig:evidence_timeline' on page 17 undefined on input
+line 1546.
+
+
+Package natbib Warning: Citation `rao1999predictive' on page 17 undefined on in
+put line 1550.
+
+
+Package natbib Warning: Citation `heins2025axiom' on page 17 undefined on input
+ line 1556.
+
+
+LaTeX Warning: Reference `fig:assertion_breakdown' on page 17 undefined on inpu
+t line 1577.
+
+
+LaTeX Warning: Reference `fig:assertion_summary' on page 17 undefined on input
+line 1578.
+
+
+Package natbib Warning: Citation `sterling1959publication' on page 17 undefined
+ on input line 1606.
+
+[17] [18]
+
+LaTeX Warning: Reference `tab:validation_metrics' on page 19 undefined on input
+ line 1654.
+
+
+LaTeX Warning: Reference `sec:extraction_pipeline' on page 19 undefined on inpu
+t line 1655.
+
+[19] [20]
+
+Package natbib Warning: Citation `dayan1995helmholtz' on page 21 undefined on i
+nput line 1679.
+
+
+Package natbib Warning: Citation `lecun2006tutorial' on page 21 undefined on in
+put line 1679.
+
+
+Package natbib Warning: Citation `friston2006free' on page 21 undefined on inpu
+t line 1681.
+
+
+Package natbib Warning: Citation `friston2010free' on page 21 undefined on inpu
+t line 1682.
+
+
+LaTeX Warning: Reference `fig:field_summary' on page 21 undefined on input line
+ 1685.
+
+
+LaTeX Warning: Reference `fig:growth_curve' on page 21 undefined on input line
+1716.
+
+
+LaTeX Warning: Hyper reference `sec:citation_network' on page 21 undefined on i
+nput line 1721.
+
+
+LaTeX Warning: Reference `fig:subfield_distribution' on page 21 undefined on in
+put line 1759.
+
+[21]
+
+LaTeX Warning: Hyper reference `sec:subfield_analyses' on page 22 undefined on
+input line 1783.
+
+
+LaTeX Warning: Hyper reference `sec:text_analytics' on page 22 undefined on inp
+ut line 1786.
+
+
+Package natbib Warning: Citation `sakthivadivel2023bayesian' on page 22 undefin
+ed on input line 1798.
+
+
+Package natbib Warning: Citation `friston2010free' on page 22 undefined on inpu
+t line 1799.
+
+
+Package natbib Warning: Citation `fountas2020deep' on page 22 undefined on inpu
+t line 1800.
+
+
+Package natbib Warning: Citation `clark2013whatever' on page 22 undefined on in
+put line 1801.
+
+
+Package natbib Warning: Citation `lanillos2021active' on page 22 undefined on i
+nput line 1802.
+
+
+Package natbib Warning: Citation `friston2020generative' on page 22 undefined o
+n input line 1803.
+
+
+Package natbib Warning: Citation `smith2021computational' on page 22 undefined
+on input line 1804.
+
+
+Package natbib Warning: Citation `kuchling2020morphogenesis' on page 22 undefin
+ed on input line 1805.
+
+
+LaTeX Warning: Reference `fig:subfield_timeline' on page 22 undefined on input
+line 1811.
+
+[22] [23] [24])
+Runaway argument?
+{\texorpdfstring {A1 --- Quantitative \& Formal Theory (\(n = 64\), 7\ETC.
+! File ended while scanning use of \@xdblarg.
+<inserted text>
+                \par
+<*> _combined_manuscript.tex
+
+! Emergency stop.
+<*> _combined_manuscript.tex
+
+Output written on _combined_manuscript.pdf (25 pages).
+Transcript written on _combined_manuscript.log.

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>03_results_hypothesis</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="results">Results </h1>
+<h2 id="hypothesis-evidence-landscape-and-temporal-dynamics">Hypothesis
+Evidence Landscape and Temporal Dynamics </h2>
+<p>The LLM-based extraction pipeline produced a total of 1,490
+assertions across the eight tracked hypotheses, drawn from the full
+corpus of <span class="math inline">\(N = 819\)</span> papers. Before
+presenting the results, we reiterate the interpretive framework
+established in the : hypothesis scores are <em>relative rankings</em>
+among hypotheses and <em>temporal trajectories</em> within each
+hypothesis—they are not absolute probability estimates. Publication bias
+and linguistic asymmetry (<span
+class="math inline">\(\ref{sec:pub_bias}\)</span>) inflate all scores
+toward the positive end, and the tally-based aggregation does not model
+evidential dependencies. The distribution of assertion types and the
+resulting citation-weighted scores reveal a differentiated evidence
+landscape (Figure <span
+class="math inline">\(\ref{fig:hypothesis_dashboard}\)</span>):</p>
+<h3 id="interpretation-of-evidence-profiles">Interpretation of Evidence
+Profiles</h3>
+<p>To directly address our core research questions—identifying which
+claims are robustly supported and which remain contested—we evaluated
+how the hypothesis-level evidence maps against the critiques introduced
+in <span class="math inline">\(\ref{sec:methods}\)</span>. The eight
+hypotheses cluster into three tiers, defined by score ranges that emerge
+from the data rather than being imposed a priori. The <strong>consensus
+tier</strong> (score <span class="math inline">\(&gt; 0.83\)</span>; H7,
+H2, H4, H6, H5) spans five of the eight hypotheses, revealing a
+predominantly supportive evidence landscape across domains. H8 (Language
+AIF) sits at the <strong>boundary of consensus</strong> at score <span
+class="math inline">\(+0.83\)</span> — above 0.8 but below the more
+stringent 0.83 line that separates the densely populated upper tier from
+the rest. Morphogenesis (H7) achieves the maximum score (<span
+class="math inline">\(+1.00\)</span>), though its small evidence base
+(24 assertions) means unanimity reflects limited assessment scope rather
+than mature empirical closure. AIF Optimality (H2) holds the second
+highest score (<span class="math inline">\(+0.97\)</span>) despite
+carrying the largest raw count of contradicting assertions (2):
+supporting assertions are substantially more highly cited than critical
+ones, so citation-weighting amplifies the supportive signal—underscoring
+that citation-weighted scores capture claims the community cites most,
+not a simple ballot of assertion counts. Predictive coding (H4), the
+most extensively assessed hypothesis with 258 assertions and a score of
+<span class="math inline">\(+0.94\)</span>, has accumulated
+overwhelmingly supportive evidence since the 1970s, reflecting the deep
+empirical grounding of hierarchical prediction error models in
+neuroscience. This trajectory is consistent with the manual benchmarking
+results of Knight et al. , which similarly identified predictive coding
+as the most rigorously validated construct in the corpus. Clinical
+Utility (H6, <span class="math inline">\(+0.93\)</span>) and Scalability
+(H5, <span class="math inline">\(+0.85\)</span>) complete the upper
+consensus tier; H5’s trajectory accelerated sharply after 2017 as deep
+active inference architectures emerged. The H8 (Language AIF) boundary
+placement noted above reflects recent breakthroughs coupling active
+inference to large language models within a still-maturing evidence
+base.</p>
+<p>The <strong>moderate tier</strong> (score <span
+class="math inline">\(0.5\)</span>–<span
+class="math inline">\(0.8\)</span>; H3) contains a single hypothesis.
+Markov blanket realism (H3) has the smallest overall evidence base (18
+assertions) with a score of <span class="math inline">\(+0.78\)</span>
+and 4 contradicting assertions—empirically capturing the ongoing
+philosophical debate between those who treat Markov blankets as real
+thermodynamic boundaries
+(<code>Friston blankets'') and those who argue they are purely instrumental statistical tools (</code>Pearl
+blankets’’) . The moderate score for H3 reflects this active ontological
+debate: the supporting literature is more highly cited but not by a
+large margin, and the small total evidence base limits inferential
+confidence.</p>
+<p>The <strong>diffuse tier</strong> (score <span
+class="math inline">\(&lt; 0.5\)</span>; H1) is the most diagnostically
+informative for understanding the field’s intellectual maturation. FEP
+universality (H1) generates one of the largest raw evidence bases (711
+assertions) yet achieves a score of only <span
+class="math inline">\(+0.48\)</span>—a striking gap explained by
+assertion composition: neutral assessments account for 429 of those 711
+tallies, while supporting assertions number 281 and contradicting
+assertions just 1. This neutral plurality—more than either supporting or
+contradicting tallies—reveals that researchers routinely the FEP as
+conceptual scaffolding without subjecting its universality claim to
+explicit empirical test. This composition is the quantitative
+fingerprint of the falsifiability critique leveled by Colombo and
+Seri`es : a principle elastic enough to accommodate any self-organizing
+system without generating predictions that distinguish it from
+alternatives will naturally accumulate invocations rather than tests,
+and invocations register as neutral in the extraction pipeline.</p>
+<h3 id="temporal-dynamics-of-evidence-accumulation">Temporal Dynamics of
+Evidence Accumulation</h3>
+<p>The cumulative evidence timeline (Figure <span
+class="math inline">\(\ref{fig:evidence_timeline}\)</span>) reveals
+three temporal patterns. First, <strong>early convergence</strong>: H4
+(predictive coding) reached positive territory in the late 1990s
+following the publication of Rao and Ballard’s foundational predictive
+coding model and has maintained a high score since, reflecting the
+mature empirical base in cognitive neuroscience. Second, <strong>recent
+acceleration</strong>: H5 (scalability) and H6 (clinical utility) show
+steep upward trends after 2017, tracking the emergence of deep active
+inference tools and computational psychiatry applications. The H5
+trajectory reflects a cumulative body of work culminating in benchmark
+demonstrations such as AXIOM , which showed that object-centric world
+models under AIF can match state-of-the-art deep RL performance—but the
+temporal trend was already positive before any single result, and the
+score captures the aggregate rather than any individual paper. Third,
+<strong>moderate and stable</strong>: H3 (Markov blanket realism) has
+maintained a score in the moderate range since 2018, with supporting
+papers partially offset by targeted philosophical critiques—a pattern
+consistent with ongoing debate rather than either clear consensus or
+rejection.</p>
+<h3 id="assertion-composition-and-distribution">Assertion Composition
+and Distribution</h3>
+<p>The per-hypothesis composition of assertions (Figure <span
+class="math inline">\(\ref{fig:assertion_breakdown}\)</span>) and the
+multi-panel summary (Figure <span
+class="math inline">\(\ref{fig:assertion_summary}\)</span>) provide
+complementary views of the extraction results.</p>
+<h3 id="limitations-of-the-current-scoring-approach">Limitations of the
+Current Scoring Approach</h3>
+<h4 id="publication-bias-and-linguistic-asymmetry">Publication Bias and
+Linguistic Asymmetry </h4>
+<p>The predominantly positive scores observed across all eight
+hypotheses should be interpreted with two systematic caveats.</p>
+<p>First, <strong>publication bias</strong> systematically inflates
+supporting evidence. Academic journals preferentially publish positive
+and confirmatory results (), meaning that studies finding null or
+contradictory outcomes for any hypothesis are less likely to appear in
+the retrievable literature. This is well-documented across scientific
+disciplines and is expected to disproportionately suppress contradicting
+assertions in our extraction pipeline. The Active Inference literature
+is particularly susceptible: as a theoretical framework with strong
+foundational proponents, papers are more likely to frame results as
+consistent with the FEP than as challenges to it.</p>
+<p>Second, <strong>linguistic asymmetry</strong> in academic writing
+further skews extraction toward positive classifications. Declarative
+scholarly claims are inherently phrased affirmatively—authors write “our
+results support,” “consistent with,” or “extends the prediction of” far
+more frequently than “our results refute” or “contradicts the claim
+that.” Because the LLM extraction pipeline operates on abstract text,
+this linguistic imbalance propagates directly into the assertion
+distribution. Even papers presenting genuinely mixed evidence tend to
+frame their abstracts in terms of what found rather than what was not,
+biasing the extracted direction toward ``supports.’’</p>
+<p>These two effects act in concert: publication bias reduces the number
+of contradicting papers in the corpus, and linguistic framing reduces
+the number of contradicting assertions extracted from the papers that do
+appear. Consequently, the absolute values of hypothesis scores should
+not be taken as unbiased measures of scientific consensus. The ordering
+and temporal of hypothesis scores are more robust indicators, as these
+biases affect all hypotheses approximately equally.</p>
+<h3 id="methodological-validation-and-llm-calibration">Methodological
+Validation and LLM Calibration</h3>
+<p>The evidence derives from automated LLM-based assertion extraction
+operating on abstracts only, without human-validated ground truth
+calibration; confidence scores are self-assessed and uncalibrated; the
+pipeline uses <span class="math inline">\(c \ge 0.60\)</span> threshold
+to mitigate over-extraction. Relative rankings are more robust than
+absolute scores. A formal validation protocol (10% manual annotation,
+Cohen’s <span class="math inline">\(\kappa\)</span>, boundary-case
+auditing) remains a critical next step.</p>
+</body>
+</html>

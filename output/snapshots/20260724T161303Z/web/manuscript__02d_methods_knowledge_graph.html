@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>02d_methods_knowledge_graph.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    window.MathJax.startup.defaultReady();
+    window.MathJax.startup.promise.then(window.normalizeTemplateMathJaxAria);
+  }
+});
+</script>
+<script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"
+  type="text/javascript" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h2 id="stage-3-nanopublication-based-knowledge-graph">Stage 3:
+Nanopublication-Based Knowledge Graph </h2>
+<p>Stage 3 is the methodological core of this work: it transforms
+unstructured abstracts into a structured, RDF-compatible knowledge graph
+of scientific evidence. The stage encompasses four tightly coupled
+operations: LLM-based assertion extraction, nanopublication packaging,
+knowledge graph construction, and citation-weighted hypothesis
+scoring.</p>
+<h3 id="llm-based-assertion-extraction">LLM-Based Assertion
+Extraction</h3>
+<p>We extract assertions by prompting a locally hosted LLM (Ollama ) to
+assess each paper’s abstract against eight standard hypotheses. The
+model receives a structured prompt containing the paper title, abstract,
+and hypothesis definitions, and returns a JSON array where each element
+specifies a hypothesis ID, direction (supports, contradicts, neutral, or
+irrelevant), a confidence score <span class="math inline">\(c \in [0,
+1]\)</span>, and a reasoning string. Assertions marked “irrelevant” are
+discarded; confidence values are clamped to <span
+class="math inline">\([0, 1]\)</span>; and responses are validated
+against the known hypothesis ID set. Papers lacking abstracts are
+skipped. Detailed prompt engineering, error taxonomy, and validation
+methodology are documented in the .</p>
+<h3 id="nanopublication-schema-and-rdf-structure">Nanopublication Schema
+and RDF Structure</h3>
+<p>Each assertion is encoded as a <strong>nanopublication</strong> —a
+minimal, self-contained, machine-readable unit of scientific evidence.
+Formally, each nanopublication is a tuple <span
+class="math inline">\((p, h, d, c)\)</span> where <span
+class="math inline">\(p\)</span> is the paper identifier, <span
+class="math inline">\(h\)</span> the hypothesis identifier, <span
+class="math inline">\(d \in \{\text{supports}, \text{contradicts},
+\text{neutral}\}\)</span> the direction, and <span
+class="math inline">\(c\)</span> the confidence. Provenance metadata
+records the LLM model, UTC timestamp, and paper identifier.</p>
+<p>The pipeline serializes nanopublications in two complementary
+formats:</p>
+<ol type="1">
+<li><p><strong>JSON Lines</strong> (one JSON object per line) for
+efficient incremental checkpointing. Assertions are saved at
+configurable intervals (default: every 50 papers), enabling the pipeline
+to resume from where it left off after interruption without
+re-processing already-analyzed papers. Deduplication uses the composite
+key <span class="math inline">\((paper\_id, hypothesis\_id)\)</span>;
+re-runs with improved models overwrite stale results.</p></li>
+<li><p><strong>RDF/TriG</strong> per the nanopublication standard (<a
+href="https://nanopub.net/">nanopub.net</a>), producing four named
+graphs per nanopublication:</p></li>
+</ol>
+<p>The namespace <code>http://activeinference.institute/ontology/</code>
+(prefix <code>aif:</code>) defines all domain predicates; the
+nanopublication schema (<code>http://www.nanopub.org/nschema#</code>,
+prefix <code>np:</code>) provides structural predicates; provenance uses
+PROV-O (<code>http://www.w3.org/ns/prov#</code>); and Dublin Core
+(<code>http://purl.org/dc/terms/</code>) provides publication metadata.
+The TriG output is suitable for publication to the decentralized
+nanopublication network and aligns with FAIR data principles:
+<strong>F</strong>indable via URI-based identification,
+<strong>A</strong>ccessible via standard RDF protocols,
+<strong>I</strong>nteroperable through W3C-standard serialization, and
+<strong>R</strong>eusable with explicit provenance and CC0
+licensing.</p>
+<h3 id="knowledge-graph-construction">Knowledge Graph Construction</h3>
+<p>The knowledge graph is an RDF-compatible directed graph with three
+node types: <strong>paper nodes</strong> (metadata: title, abstract,
+authors, year, venue, citation count, domain), <strong>assertion
+nodes</strong> (claim text, direction, hypothesis ID, confidence), and
+<strong>hypothesis nodes</strong> (the eight standard hypotheses). Edges
+encode five relations defined in the schema:</p>
+<ul>
+<li><code>aif:asserts</code> — Paper <span
+class="math inline">\(\to\)</span> Assertion</li>
+<li><code>aif:cites</code> — Paper <span
+class="math inline">\(\to\)</span> Paper</li>
+<li><code>aif:belongsTo</code> — Paper <span
+class="math inline">\(\to\)</span> Subfield</li>
+<li><code>aif:supports</code> — Assertion <span
+class="math inline">\(\to\)</span> Hypothesis</li>
+<li><code>aif:contradicts</code> — Assertion <span
+class="math inline">\(\to\)</span> Hypothesis</li>
+</ul>
+<p>The graph is implemented with a dual backend: <code>rdflib</code>
+when available (preferred for semantic web compatibility), with
+automatic fallback to <code>networkx.DiGraph</code> for environments
+without RDF dependencies. Both backends maintain identical internal
+indices for efficient paper, assertion, and hypothesis queries.</p>
+<h3 id="citation-weighted-hypothesis-scoring">Citation-Weighted
+Hypothesis Scoring</h3>
+<p>For each hypothesis <span class="math inline">\(H\)</span>, we
+compute a citation-weighted evidence score:</p>
+<p><span class="math display">\[\begin{equation}
+\text{score}(H) = \frac{\sum_{a \in S(H)} w(a) - \sum_{a \in C(H)}
+w(a)}{\sum_{a \in A(H)} w(a)} \label{eq:score}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(S(H)\)</span>, <span
+class="math inline">\(C(H)\)</span>, and <span
+class="math inline">\(A(H)\)</span> are the sets of supporting,
+contradicting, and all assertions for <span
+class="math inline">\(H\)</span>, and the weight function is:</p>
+<p><span class="math display">\[\begin{equation}
+w(a) = \log(1 + \text{citations}(a)) \cdot \text{confidence}(a)
+\label{eq:weight}
+\end{equation}\]</span></p>
+<p>The logarithmic citation weighting ensures that highly cited papers
+carry more influence without allowing any single paper to dominate. The
+score lies in <span class="math inline">\([-1, 1]\)</span>.
+<strong>Interpretation note:</strong> a score of <span
+class="math inline">\(+0.7\)</span> indicates that 70% of weighted
+evidence supports the hypothesis (net of contradictions and normalized
+by total weighted evidence), <em>not</em> that the hypothesis has a 70%
+probability of being true. Scores are best interpreted as relative
+rankings across hypotheses and as temporal trajectories within a
+hypothesis, rather than as absolute probability estimates. Temporal
+trends are computed by evaluating the cumulative score at each year,
+using only assertions from papers published up to that year. A full
+derivation appears in Appendix <span
+class="math inline">\(\ref{sec:appendix_scoring}\)</span>.</p>
+<h3 id="tally-based-evidence-aggregation">Tally-Based Evidence
+Aggregation</h3>
+<p>We emphasize that this algorithmic scoring formula constitutes a
+<strong>tally-based approach</strong> to evidence synthesis: each
+nanopublication assertion operates as an independent evidential vote,
+weighted by citation impact and the extraction model’s confidence. The
+aggregation is linear and additive—supporting and contradicting
+assertions are summed and differenced without modeling dependencies,
+correlated evidence, or causal structure among claims. This design
+choice prioritizes transparency, reproducibility, and computational
+tractability over statistical sophistication.</p>
+<p>The tally-based framing introduces three constraints. First,
+assertions from methodologically related papers (e.g., iterative
+publications from a single research group testing the same model) are
+counted independently, amplifying correlated evidence. To illustrate: if
+a group publishes three papers (2019, 2021, 2023) reporting successively
+refined variants of the same predictive coding model, each with high
+citation counts, the scoring formula counts three independent supporting
+assertions for H4—even though the underlying empirical evidence is
+largely overlapping. An evidential diversity index (proposed in the )
+would downweight this cluster. Second, the scoring metric treats all
+assertion sources symmetrically: an assertion from a theoretical review
+and one from an empirical trial carry equal weight at a given confidence
+level. Third, temporal scoring tracks <em>cumulative totals</em> rather
+than dynamic probabilistic estimates; the score at year <span
+class="math inline">\(t\)</span> is the sum of all historical evidence,
+rather than a decaying posterior that downweights early work.</p>
+<p>We embrace these constraints intentionally. The tally-based approach
+provides a stable, interpretable baseline against which more
+sophisticated scoring methods can be evaluated. The describes concrete
+extensions—including hierarchical Bayesian scoring, causal evidence
+graphs, and evidential diversity indices that downweight correlated
+evidence.</p>
+</main>
+</body>
+</html>

@@ -10,6 +10,11 @@
 
 Project-level documentation for the `act_inf_metaanalysis` pipeline.
 
+The complete generated `output/` tree is versioned in the public repository for
+reproducibility. It contains the current data, 16 figures, hydrated manuscript,
+HTML/PDF renders, reports, validation records, release package, and dated
+snapshots. Local environments and caches remain excluded by `.gitignore`.
+
 > See [AGENTS.md](AGENTS.md) for doc-hub architectural conventions, [../AGENTS.md](../AGENTS.md) for project-wide contributor properties, and the [project README](../README.md) for setup and overview.
 
 The authoritative forward backlog is the [project-level TODO](../TODO.md). It

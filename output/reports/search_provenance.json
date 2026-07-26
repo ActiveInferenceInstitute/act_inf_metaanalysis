@@ -1,0 +1,220 @@
+{
+  "query": "active inference free energy principle",
+  "requested_sources": [
+    "arxiv",
+    "openalex",
+    "semantic_scholar"
+  ],
+  "events": [
+    {
+      "source": "arXiv[1]",
+      "success": true,
+      "fetched": 434,
+      "new": 434,
+      "duplicates": 0,
+      "empty_results": false
+    },
+    {
+      "source": "arXiv[2]",
+      "success": true,
+      "fetched": 188,
+      "new": 120,
+      "duplicates": 68,
+      "empty_results": false
+    },
+    {
+      "source": "arXiv[3]",
+      "success": true,
+      "fetched": 26,
+      "new": 10,
+      "duplicates": 16,
+      "empty_results": false
+    },
+    {
+      "source": "arXiv[4]",
+      "success": true,
+      "fetched": 76,
+      "new": 10,
+      "duplicates": 66,
+      "empty_results": false
+    },
+    {
+      "source": "arXiv[5]",
+      "success": true,
+      "fetched": 81,
+      "new": 31,
+      "duplicates": 50,
+      "empty_results": false
+    },
+    {
+      "source": "arXiv[6]",
+      "success": true,
+      "fetched": 14,
+      "new": 14,
+      "duplicates": 0,
+      "empty_results": false
+    },
+    {
+      "source": "arXiv[7]",
+      "success": true,
+      "fetched": 6,
+      "new": 5,
+      "duplicates": 1,
+      "empty_results": false
+    },
+    {
+      "source": "arXiv[8]",
+      "success": true,
+      "fetched": 33,
+      "new": 29,
+      "duplicates": 4,
+      "empty_results": false
+    },
+    {
+      "source": "arXiv[9]",
+      "success": true,
+      "fetched": 34,
+      "new": 34,
+      "duplicates": 0,
+      "empty_results": false
+    },
+    {
+      "source": "Semantic Scholar",
+      "success": false,
+      "error": "429 Client Error:  for url: https://api.semanticscholar.org/graph/v1/paper/search?query=active+inference+free+energy+principle&offset=0&limit=100&fields=title%2Cabstract%2Cauthors%2Cyear%2CexternalIds%2CcitationCount%2Cvenue%2Creferences%2CisOpenAccess%2CopenAccessPdf"
+    },
+    {
+      "source": "OpenAlex",
+      "success": true,
+      "fetched": 1000,
+      "new": 970,
+      "duplicates": 30,
+      "empty_results": false
+    },
+    {
+      "source": "Semantic Scholar",
+      "success": false,
+      "error": "429 Client Error:  for url: https://api.semanticscholar.org/graph/v1/paper/search?query=active+inference+free+energy+principle&offset=100&limit=100&fields=title%2Cabstract%2Cauthors%2Cyear%2CexternalIds%2CcitationCount%2Cvenue%2Creferences%2CisOpenAccess%2CopenAccessPdf"
+    },
+    {
+      "source": "Semantic Scholar",
+      "success": false,
+      "completed_at": "2026-07-25T20:54:14.905940+00:00",
+      "error": "429 Client Error:  for url: https://api.semanticscholar.org/graph/v1/paper/search?query=active+inference+free+energy+principle&offset=0&limit=100&fields=title%2Cabstract%2Cauthors%2Cyear%2CexternalIds%2CcitationCount%2Cvenue%2Creferences%2CisOpenAccess%2CopenAccessPdf",
+      "error_type": "HTTPError"
+    },
+    {
+      "source": "Semantic Scholar",
+      "success": false,
+      "completed_at": "2026-07-25T22:04:22.395432+00:00",
+      "error": "429 Client Error:  for url: https://api.semanticscholar.org/graph/v1/paper/search?query=active+inference+free+energy+principle&offset=0&limit=100&fields=title%2Cabstract%2Cauthors%2Cyear%2CexternalIds%2CcitationCount%2Cvenue%2Creferences%2CisOpenAccess%2CopenAccessPdf",
+      "error_type": "HTTPError"
+    },
+    {
+      "source": "Semantic Scholar",
+      "success": false,
+      "completed_at": "2026-07-26T16:12:31.730745+00:00",
+      "error": "429 Client Error:  for url: https://api.semanticscholar.org/graph/v1/paper/search?query=active+inference+free+energy+principle&offset=0&limit=100&fields=title%2Cabstract%2Cauthors%2Cyear%2CexternalIds%2CcitationCount%2Cvenue%2Creferences%2CisOpenAccess%2CopenAccessPdf",
+      "error_type": "HTTPError"
+    },
+    {
+      "source": "Semantic Scholar",
+      "success": false,
+      "completed_at": "2026-07-26T20:00:03.593466+00:00",
+      "error": "500 Server Error: Internal Server Error for url: https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=active+inference+free+energy+principle&limit=1000&fields=title%2Cabstract%2Cauthors%2Cyear%2CexternalIds%2CcitationCount%2Cvenue%2CisOpenAccess%2CopenAccessPdf",
+      "error_type": "HTTPError"
+    }
+  ],
+  "latest_source_status": {
+    "arXiv[1]": {
+      "source": "arXiv[1]",
+      "success": true,
+      "fetched": 434,
+      "new": 434,
+      "duplicates": 0,
+      "empty_results": false
+    },
+    "arXiv[2]": {
+      "source": "arXiv[2]",
+      "success": true,
+      "fetched": 188,
+      "new": 120,
+      "duplicates": 68,
+      "empty_results": false
+    },
+    "arXiv[3]": {
+      "source": "arXiv[3]",
+      "success": true,
+      "fetched": 26,
+      "new": 10,
+      "duplicates": 16,
+      "empty_results": false
+    },
+    "arXiv[4]": {
+      "source": "arXiv[4]",
+      "success": true,
+      "fetched": 76,
+      "new": 10,
+      "duplicates": 66,
+      "empty_results": false
+    },
+    "arXiv[5]": {
+      "source": "arXiv[5]",
+      "success": true,
+      "fetched": 81,
+      "new": 31,
+      "duplicates": 50,
+      "empty_results": false
+    },
+    "arXiv[6]": {
+      "source": "arXiv[6]",
+      "success": true,
+      "fetched": 14,
+      "new": 14,
+      "duplicates": 0,
+      "empty_results": false
+    },
+    "arXiv[7]": {
+      "source": "arXiv[7]",
+      "success": true,
+      "fetched": 6,
+      "new": 5,
+      "duplicates": 1,
+      "empty_results": false
+    },
+    "arXiv[8]": {
+      "source": "arXiv[8]",
+      "success": true,
+      "fetched": 33,
+      "new": 29,
+      "duplicates": 4,
+      "empty_results": false
+    },
+    "arXiv[9]": {
+      "source": "arXiv[9]",
+      "success": true,
+      "fetched": 34,
+      "new": 34,
+      "duplicates": 0,
+      "empty_results": false
+    },
+    "Semantic Scholar": {
+      "source": "Semantic Scholar",
+      "success": false,
+      "completed_at": "2026-07-26T20:00:03.593466+00:00",
+      "error": "500 Server Error: Internal Server Error for url: https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=active+inference+free+energy+principle&limit=1000&fields=title%2Cabstract%2Cauthors%2Cyear%2CexternalIds%2CcitationCount%2Cvenue%2CisOpenAccess%2CopenAccessPdf",
+      "error_type": "HTTPError"
+    },
+    "OpenAlex": {
+      "source": "OpenAlex",
+      "success": true,
+      "fetched": 1000,
+      "new": 970,
+      "duplicates": 30,
+      "empty_results": false
+    }
+  },
+  "successful_events": 10,
+  "failed_events": 1,
+  "total_unique_papers": 1106
+}

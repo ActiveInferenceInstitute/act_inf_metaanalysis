@@ -1,0 +1,122 @@
+{
+  "n_topics": 8,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    42
+  ],
+  "primary_seed": 42,
+  "pairwise_comparisons": [
+    {
+      "seed_a": 0,
+      "seed_b": 1,
+      "mean_jaccard": 0.4929212943918826
+    },
+    {
+      "seed_a": 0,
+      "seed_b": 2,
+      "mean_jaccard": 0.5057776653171391
+    },
+    {
+      "seed_a": 0,
+      "seed_b": 3,
+      "mean_jaccard": 0.43346930846930853
+    },
+    {
+      "seed_a": 0,
+      "seed_b": 4,
+      "mean_jaccard": 0.44219771241830064
+    },
+    {
+      "seed_a": 0,
+      "seed_b": 5,
+      "mean_jaccard": 0.4067041489642109
+    },
+    {
+      "seed_a": 0,
+      "seed_b": 42,
+      "mean_jaccard": 0.42203848782796144
+    },
+    {
+      "seed_a": 1,
+      "seed_b": 2,
+      "mean_jaccard": 0.6141774891774892
+    },
+    {
+      "seed_a": 1,
+      "seed_b": 3,
+      "mean_jaccard": 0.6172438672438673
+    },
+    {
+      "seed_a": 1,
+      "seed_b": 4,
+      "mean_jaccard": 0.5248397435897436
+    },
+    {
+      "seed_a": 1,
+      "seed_b": 5,
+      "mean_jaccard": 0.5593989343989344
+    },
+    {
+      "seed_a": 1,
+      "seed_b": 42,
+      "mean_jaccard": 0.6482683982683983
+    },
+    {
+      "seed_a": 2,
+      "seed_b": 3,
+      "mean_jaccard": 0.6169685577580315
+    },
+    {
+      "seed_a": 2,
+      "seed_b": 4,
+      "mean_jaccard": 0.6012712777418661
+    },
+    {
+      "seed_a": 2,
+      "seed_b": 5,
+      "mean_jaccard": 0.634492700282174
+    },
+    {
+      "seed_a": 2,
+      "seed_b": 42,
+      "mean_jaccard": 0.6497668997668997
+    },
+    {
+      "seed_a": 3,
+      "seed_b": 4,
+      "mean_jaccard": 0.463565233785822
+    },
+    {
+      "seed_a": 3,
+      "seed_b": 5,
+      "mean_jaccard": 0.5687229437229437
+    },
+    {
+      "seed_a": 3,
+      "seed_b": 42,
+      "mean_jaccard": 0.7213480963480964
+    },
+    {
+      "seed_a": 4,
+      "seed_b": 5,
+      "mean_jaccard": 0.4554655870445344
+    },
+    {
+      "seed_a": 4,
+      "seed_b": 42,
+      "mean_jaccard": 0.4440973113573733
+    },
+    {
+      "seed_a": 5,
+      "seed_b": 42,
+      "mean_jaccard": 0.6202106716812599
+    }
+  ],
+  "mean_jaccard": 0.5449022061693446,
+  "min_jaccard": 0.4067041489642109
+}

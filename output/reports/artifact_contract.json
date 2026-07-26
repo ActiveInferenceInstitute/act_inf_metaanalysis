@@ -1,0 +1,9 @@
+{
+  "status": "fail",
+  "errors": [
+    "literature source did not complete successfully: semantic_scholar"
+  ],
+  "warnings": [],
+  "corpus_size": 1106,
+  "figure_count": 16
+}

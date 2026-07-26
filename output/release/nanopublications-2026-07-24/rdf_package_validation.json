@@ -1,0 +1,34 @@
+{
+  "errors": [],
+  "jsonl_count": 2561,
+  "jsonl_sha256": "406d3aacac011516129bca132f07e5cfd3501c887fb8f832f02ed30b5f75f2c4",
+  "namespace": "http://activeinference.institute/ontology/",
+  "namespace_checks": {
+    "aif": true,
+    "dcterms": true,
+    "nanopub": true,
+    "prov": true,
+    "xsd": true
+  },
+  "package_directory": "output/release/nanopublications-2026-07-24",
+  "package_manifest": "output/release/nanopublications-2026-07-24/package_manifest.json",
+  "package_schema_version": "1.0",
+  "provenance_fields": {
+    "model_id": [
+      "gemma3:4b"
+    ],
+    "pipeline_version": [
+      "2.0.6"
+    ],
+    "prompt_version": [
+      "v2.0.6"
+    ],
+    "run_id": [
+      "f198c4266b204f7393c0e15fcc1e18c4"
+    ]
+  },
+  "rdf_nanopub_count": 2561,
+  "rdf_triple_count": 74150,
+  "status": "pass",
+  "trig_sha256": "4061739be9920e323a215a9cd70ed09a6b804c25f367b7eef371dc811af68587"
+}

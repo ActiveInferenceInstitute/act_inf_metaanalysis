@@ -1,0 +1,265 @@
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex)
+entering extended mode
+(./_combined_manuscript.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/size10.clo))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/xetex.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/unicode-math/unicode-math.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-xetex.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/unicode-math/unicode-math-xetex.s
+ty (/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty)
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/fix-cm.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ts1enc.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/unicode-math/unicode-math-table.t
+ex))) (/usr/local/texlive/2026/texmf-dist/tex/latex/upquote/upquote.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/textcomp.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype-xetex.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/parskip/parskip.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/array.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/ltcaption.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/footnotehyper/footnotehyper.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/xebabel.def)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/babel/locale/en/babel-english.t
+ex) (/usr/local/texlive/2026/texmf-dist/tex/generic/babel-english/english.ldf))
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/caption/subcaption.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/bookmark/bookmark.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty)) (/usr/local/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hxetex.def
+(/usr/local/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+
+(/usr/local/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+))) (/usr/local/texlive/2026/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/xurl/xurl.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/seqsplit/seqsplit.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/local/texlive/2026/texmf-dist/tex/latex/placeins/placeins.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstpatch.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/listings/listings.cfg))
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/11/14 1.11b (Carsten Heinz)
+    so I'm assuming it got fixed.
+(/usr/local/texlive/2026/texmf-dist/tex/latex/cleveref/cleveref.sty)
+==> First Aid for cleveref.sty applied!
+(/usr/local/texlive/2026/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/tools/xspace.sty)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/relsize/relsize.sty))
+(./_combined_manuscript.aux)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-LatinModernRoman.cfg
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+[1] (./_combined_manuscript.toc
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-msb.cfg) [1]
+[2]) [3] [4] [5] [6] [7]
+Overfull \hbox (212.25516pt too wide) in paragraph at lines 663--678
+ [][]
+
+Underfull \hbox (badness 1237) in paragraph at lines 691--706
+\TU/lmr/m/n/10 The analysis pipeline described above is embedded within \TU/lmt
+t/m/n/10 template/ \TU/lmr/m/n/10 [[][]Friedman[][], [][]2026a[][],[][]b[][]],
+an open-source
+[8] [9] [10] [11] [12] [13]
+Overfull \hbox (291.19516pt too wide) in paragraph at lines 1259--1269
+ [][]
+[14] [15] [16]
+Overfull \hbox (161.88522pt too wide) in paragraph at lines 1462--1476
+ [][]
+[17] [18] [19] [20] [21]
+Overfull \hbox (37.57523pt too wide) in paragraph at lines 1759--1773
+ [][]
+[22] [23] [24] [25] [26]
+Underfull \hbox (badness 6961) in paragraph at lines 2096--2097
+\TU/lmr/m/n/10 ciple, variational, states, systems,
+
+Underfull \hbox (badness 10000) in paragraph at lines 2096--2097
+\TU/lmr/m/n/10 bayesian, expected, information,
+
+Underfull \hbox (badness 2418) in paragraph at lines 2097--2098
+[]|\TU/lmr/m/n/10 Dominant terms: inference, active,
+
+Underfull \hbox (badness 1173) in paragraph at lines 2097--2098
+\TU/lmr/m/n/10 control, optimal, theory, framework,
+
+Underfull \hbox (badness 4416) in paragraph at lines 2100--2101
+\TU/lmr/m/n/10 environments, learning, exploration,
+
+Overfull \hbox (130.44168pt too wide) in paragraph at lines 2089--2103
+ [][]
+[27] [28] [29] [30] [31] [32] [33] [34] [35]
+Overfull \hbox (102.3132pt too wide) in paragraph at lines 2555--2565
+ [][]
+[36] [37] [38] [39] [40] [41] [42]
+Underfull \hbox (badness 1314) in paragraph at lines 3214--3214
+[]|\TU/lmr/m/n/9 Discrete POMDP active inference; factor
+
+Underfull \hbox (badness 10000) in paragraph at lines 3215--3216
+[]|[][]\TU/lmr/m/n/9 Friston et al.[][]
+
+Underfull \hbox (badness 10000) in paragraph at lines 3216--3217
+[]|[][]\TU/lmr/m/n/9 Bagaev et al.[][]
+
+Underfull \hbox (badness 10000) in paragraph at lines 3217--3218
+[]|[][]\TU/lmr/m/n/9 Nehrer et al.[][]
+
+Underfull \hbox (badness 10000) in paragraph at lines 3219--3220
+[]|[][]\TU/lmr/m/n/9 Pazem et al.[][]
+
+Underfull \hbox (badness 10000) in paragraph at lines 3223--3223
+[]|\TU/lmr/m/n/9 deep-active-inference-
+
+Underfull \hbox (badness 10000) in paragraph at lines 3223--3224
+[]|[][]\TU/lmr/m/n/9 Fountas et al.[][]
+
+Underfull \hbox (badness 1990) in paragraph at lines 3225--3225
+[]|\TU/lmr/m/n/9 Branching-time AIF with multi-step tree
+
+Underfull \hbox (badness 10000) in paragraph at lines 3228--3228
+[]|\TU/lmr/m/n/9 active-inference
+
+Underfull \hbox (badness 7522) in paragraph at lines 3228--3229
+[]|\TU/lmr/m/n/9 repository (tool-
+
+Overfull \hbox (17.17628pt too wide) in paragraph at lines 3232--3232
+[]|\TU/lmr/m/n/9 PredictiveCodingBackprop|
+
+Underfull \hbox (badness 10000) in paragraph at lines 3232--3233
+[]|[][]\TU/lmr/m/n/9 Millidge et al.[][]
+
+Underfull \hbox (badness 5446) in paragraph at lines 3237--3238
+[]|[][]\TU/lmr/m/n/9 Tschantz et al.[][]
+
+Underfull \hbox (badness 10000) in paragraph at lines 3238--3238
+[]|\TU/lmr/m/n/9 bayesian-mechanics-
+
+Underfull \hbox (badness 10000) in paragraph at lines 3238--3239
+[]|[][]\TU/lmr/m/n/9 Sakthivadivel[][]
+
+Underfull \hbox (badness 10000) in paragraph at lines 3246--3246
+[]|\TU/lmr/m/n/9 Robust-FE-
+
+Underfull \hbox (badness 10000) in paragraph at lines 3246--3247
+[]|\TU/lmr/m/n/9 source-only
+[43]
+Overfull \hbox (36.73329pt too wide) in paragraph at lines 3263--3278
+ [][]
+[44] [45]
+Overfull \hbox (53.57518pt too wide) in paragraph at lines 3402--3417
+ [][]
+[46] [47] [48] [49] [50]
+Underfull \hbox (badness 1009) in paragraph at lines 3758--3771
+\TU/lmr/m/n/10 The knowledge-graph outputs of this pipeline—hypothesis dashboar
+ds, citation networks, temporal evidence
+[51]
+Underfull \hbox (badness 10000) in paragraph at lines 3907--3907
+[]|\TU/lmr/bx/n/9 WCAG
+[52] [53]
+Overfull \hbox (159.73877pt too wide) in paragraph at lines 3950--3982
+ [][]
+[54] [55]
+Underfull \hbox (badness 10000) in paragraph at lines 4118--4118
+[]|\TU/lmr/m/n/10 Compound Annual
+
+Underfull \hbox (badness 10000) in paragraph at lines 4123--4123
+[]|\TU/lmr/m/n/10 Energy-Based Model
+
+Underfull \hbox (badness 10000) in paragraph at lines 4124--4124
+[]|\TU/lmr/m/n/10 Expected Free Energy
+
+Underfull \hbox (badness 10000) in paragraph at lines 4126--4126
+[]|\TU/lmr/m/n/10 Free Energy Principle
+
+Underfull \hbox (badness 10000) in paragraph at lines 4129--4129
+[]|\TU/lmr/m/n/10 HITS Hub/Authority
+
+Underfull \hbox (badness 10000) in paragraph at lines 4135--4135
+[]|\TU/lmr/m/n/10 Mean Year-over-Year
+
+Underfull \hbox (badness 10000) in paragraph at lines 4146--4146
+[]|\TU/lmr/m/n/10 Stochastic Differential
+
+Underfull \hbox (badness 10000) in paragraph at lines 4147--4147
+[]|\TU/lmr/m/n/10 Surprise (Self-
+
+Underfull \hbox (badness 7907) in paragraph at lines 4148--4148
+[]|\TU/lmr/m/n/10 Term Frequency–Inverse
+
+Underfull \hbox (badness 2409) in paragraph at lines 4151--4151
+[]|\TU/lmr/m/n/10 Variational Free Energy
+ [56] [57] [58] [59] (./_combined_manuscript.bbl [60] [61] [62])
+
+Package caption Warning: Unused \captionsetup[sub] on input line 200.
+See the caption package documentation for explanation.
+
+[63] (./_combined_manuscript.aux) )
+(see the transcript file for additional information)
+Output written on _combined_manuscript.pdf (64 pages).
+Transcript written on _combined_manuscript.log.

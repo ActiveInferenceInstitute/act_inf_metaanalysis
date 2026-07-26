@@ -1,0 +1,216 @@
+{
+  "timestamp": "2026-04-30T14:06:54.157603",
+  "infrastructure": {},
+  "project": {
+    "passed": 558,
+    "failed": 0,
+    "skipped": 0,
+    "total": 558,
+    "warnings": 2,
+    "exit_code": 0,
+    "discovery_count": 558,
+    "collection_errors": 0,
+    "execution_phases": {
+      "setup": 34.64,
+      "collection": 34.64,
+      "execution": 34.64
+    },
+    "test_categories": {},
+    "coverage_percent": 94.75857687420584,
+    "failed_tests": []
+  },
+  "summary": {
+    "total_passed": 558,
+    "total_failed": 0,
+    "total_skipped": 0,
+    "total_tests": 558,
+    "all_passed": true,
+    "project_coverage": 94.75857687420584
+  },
+  "coverage_details": {
+    "project": {
+      "overall_coverage": 96.05645496056455,
+      "total_executed": 2314,
+      "total_missing": 88,
+      "total_excluded": 7,
+      "total_lines": 2409,
+      "file_coverage": {
+        "projects/act_inf_metaanalysis/src/analysis/citation_network.py": {
+          "coverage_percent": 100.0,
+          "executed_lines": 106,
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "total_lines": 106
+        },
+        "projects/act_inf_metaanalysis/src/analysis/subfield_classifier.py": {
+          "coverage_percent": 92.7710843373494,
+          "executed_lines": 77,
+          "missing_lines": 6,
+          "excluded_lines": 0,
+          "total_lines": 83
+        },
+        "projects/act_inf_metaanalysis/src/analysis/temporal_analysis.py": {
+          "coverage_percent": 96.7741935483871,
+          "executed_lines": 60,
+          "missing_lines": 2,
+          "excluded_lines": 0,
+          "total_lines": 62
+        },
+        "projects/act_inf_metaanalysis/src/analysis/text_processing.py": {
+          "coverage_percent": 90.0,
+          "executed_lines": 54,
+          "missing_lines": 6,
+          "excluded_lines": 0,
+          "total_lines": 60
+        },
+        "projects/act_inf_metaanalysis/src/analysis/topic_modeling.py": {
+          "coverage_percent": 96.49122807017544,
+          "executed_lines": 55,
+          "missing_lines": 2,
+          "excluded_lines": 0,
+          "total_lines": 57
+        },
+        "projects/act_inf_metaanalysis/src/config.py": {
+          "coverage_percent": 100.0,
+          "executed_lines": 24,
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "total_lines": 24
+        },
+        "projects/act_inf_metaanalysis/src/knowledge_graph/extraction.py": {
+          "coverage_percent": 100.0,
+          "executed_lines": 10,
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "total_lines": 10
+        },
+        "projects/act_inf_metaanalysis/src/knowledge_graph/graph_builder.py": {
+          "coverage_percent": 98.36065573770492,
+          "executed_lines": 120,
+          "missing_lines": 0,
+          "excluded_lines": 2,
+          "total_lines": 122
+        },
+        "projects/act_inf_metaanalysis/src/knowledge_graph/hypothesis.py": {
+          "coverage_percent": 96.90721649484536,
+          "executed_lines": 94,
+          "missing_lines": 3,
+          "excluded_lines": 0,
+          "total_lines": 97
+        },
+        "projects/act_inf_metaanalysis/src/knowledge_graph/llm_extraction.py": {
+          "coverage_percent": 95.36082474226805,
+          "executed_lines": 185,
+          "missing_lines": 9,
+          "excluded_lines": 0,
+          "total_lines": 194
+        },
+        "projects/act_inf_metaanalysis/src/knowledge_graph/nanopublication.py": {
+          "coverage_percent": 98.6013986013986,
+          "executed_lines": 141,
+          "missing_lines": 2,
+          "excluded_lines": 0,
+          "total_lines": 143
+        },
+        "projects/act_inf_metaanalysis/src/knowledge_graph/query.py": {
+          "coverage_percent": 94.11764705882352,
+          "executed_lines": 32,
+          "missing_lines": 0,
+          "excluded_lines": 2,
+          "total_lines": 34
+        },
+        "projects/act_inf_metaanalysis/src/knowledge_graph/schema.py": {
+          "coverage_percent": 94.11764705882352,
+          "executed_lines": 16,
+          "missing_lines": 1,
+          "excluded_lines": 0,
+          "total_lines": 17
+        },
+        "projects/act_inf_metaanalysis/src/literature/arxiv_client.py": {
+          "coverage_percent": 97.2972972972973,
+          "executed_lines": 108,
+          "missing_lines": 2,
+          "excluded_lines": 1,
+          "total_lines": 111
+        },
+        "projects/act_inf_metaanalysis/src/literature/corpus.py": {
+          "coverage_percent": 98.71794871794873,
+          "executed_lines": 77,
+          "missing_lines": 1,
+          "excluded_lines": 0,
+          "total_lines": 78
+        },
+        "projects/act_inf_metaanalysis/src/literature/models.py": {
+          "coverage_percent": 100.0,
+          "executed_lines": 81,
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "total_lines": 81
+        },
+        "projects/act_inf_metaanalysis/src/literature/openalex_client.py": {
+          "coverage_percent": 97.12230215827337,
+          "executed_lines": 135,
+          "missing_lines": 3,
+          "excluded_lines": 1,
+          "total_lines": 139
+        },
+        "projects/act_inf_metaanalysis/src/literature/semantic_scholar.py": {
+          "coverage_percent": 97.47899159663865,
+          "executed_lines": 116,
+          "missing_lines": 2,
+          "excluded_lines": 1,
+          "total_lines": 119
+        },
+        "projects/act_inf_metaanalysis/src/manuscript/variables.py": {
+          "coverage_percent": 97.3568281938326,
+          "executed_lines": 221,
+          "missing_lines": 6,
+          "excluded_lines": 0,
+          "total_lines": 227
+        },
+        "projects/act_inf_metaanalysis/src/visualization/advanced_plots.py": {
+          "coverage_percent": 96.06986899563319,
+          "executed_lines": 220,
+          "missing_lines": 9,
+          "excluded_lines": 0,
+          "total_lines": 229
+        },
+        "projects/act_inf_metaanalysis/src/visualization/citation_plots.py": {
+          "coverage_percent": 95.18072289156626,
+          "executed_lines": 79,
+          "missing_lines": 4,
+          "excluded_lines": 0,
+          "total_lines": 83
+        },
+        "projects/act_inf_metaanalysis/src/visualization/field_overview.py": {
+          "coverage_percent": 93.84615384615384,
+          "executed_lines": 61,
+          "missing_lines": 4,
+          "excluded_lines": 0,
+          "total_lines": 65
+        },
+        "projects/act_inf_metaanalysis/src/visualization/hypothesis_charts.py": {
+          "coverage_percent": 89.03225806451613,
+          "executed_lines": 138,
+          "missing_lines": 17,
+          "excluded_lines": 0,
+          "total_lines": 155
+        },
+        "projects/act_inf_metaanalysis/src/visualization/style.py": {
+          "coverage_percent": 100.0,
+          "executed_lines": 12,
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "total_lines": 12
+        },
+        "projects/act_inf_metaanalysis/src/visualization/temporal_plots.py": {
+          "coverage_percent": 91.0891089108911,
+          "executed_lines": 92,
+          "missing_lines": 9,
+          "excluded_lines": 0,
+          "total_lines": 101
+        }
+      }
+    }
+  }
+}

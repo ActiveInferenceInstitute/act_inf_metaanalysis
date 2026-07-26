@@ -1,0 +1,16 @@
+{
+  "total": 1671,
+  "with_provenance": 1671,
+  "missing_provenance": 0,
+  "unique_models": {
+    "gemma3:4b": 1671
+  },
+  "prompt_versions": {
+    "v2.0.4": 1671
+  },
+  "unique_run_ids": 2,
+  "processing_date_range": [
+    "2026-07-23T16:15:14.030415+00:00",
+    "2026-07-24T00:15:05.981595+00:00"
+  ]
+}

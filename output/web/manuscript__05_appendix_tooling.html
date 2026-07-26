@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>05_appendix_tooling.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    window.MathJax.startup.defaultReady();
+    window.MathJax.startup.promise.then(window.normalizeTemplateMathJaxAria);
+  }
+});
+</script>
+<script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"
+  type="text/javascript" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h1 id="sec:tooling">Appendix: Tooling and Infrastructure</h1>
+<p>The practical utility of a computational meta-analysis depends on
+robust tooling at each pipeline stage: assertion extraction, modeling
+and simulation, knowledge-graph infrastructure, and quality assurance.
+This appendix surveys the source-backed ecosystem of Active Inference
+(AIF) and Free Energy Principle (FEP) implementations as of 2026-07-26,
+documents the engineering trade-offs behind our knowledge-graph backend,
+and lists the multi-level quality gates enforced by the pipeline.</p>
+<h2 id="llm-based-assertion-extraction">LLM-Based Assertion
+Extraction</h2>
+<p>Extracting structured assertions from unstructured text is the most
+labor-intensive component of knowledge-graph construction. Manual
+annotation produces high-quality results but does not scale to corpora
+of thousands of papers—a constraint demonstrated by Knight et al. ,
+whose systematic analysis of FEP and Active Inference publications
+required manual coding of structural, visual, and mathematical features
+for hundreds of annotated papers. We implement a hybrid approach: an LLM
+performs initial extraction and human review provides validation
+pathways.</p>
+<p>Our extraction pipeline deploys a locally hosted LLM through Ollama .
+Each paper’s abstract is assessed against the eight hypothesis
+definitions in a structured prompt requesting a JSON array of
+assessments. Unlike keyword matching, which detects only topical terms,
+the LLM evaluates the <em>semantic relationship</em> between a paper’s
+claims and each hypothesis. Papers critiquing the FEP correctly receive
+“contradicts” assessments for FEP Universality (H1), while methodology
+tutorials receive “neutral” assessments reflecting their pedagogical
+character. Detailed prompt engineering, schemas, and failure modes are
+documented in the .</p>
+<!-- See 02b_methods_extraction.md for detailed pipeline documentation -->
+<h2 id="software-ecosystem">Software Ecosystem</h2>
+<p>The Active Inference community has developed a rapidly growing
+ecosystem of implementations spanning multiple programming languages,
+inference paradigms, and application domains. This section provides a
+dated, source-traceable inventory of implementations and associated
+paper-only source records. We emphasize entries with traceable papers,
+preprint identifiers, or official project sources: source traceability
+is a prerequisite for reproducibility and community-driven validation,
+but does not by itself establish adoption, comparative performance, or a
+permissive software license. The registry and exclusion policy are
+maintained in <code>doc/tooling_inventory.yaml</code>; entries without a
+traceable primary source are not counted in the publication-facing
+table. The dated public-source probe for this snapshot is complete (3/18
+rows fully verified; 15 flagged with explicit source notes) as of
+2026-07-26 across 18 retained rows. It records repository reachability,
+license metadata, release/version information, and recent activity for
+every retained row; 3 rows have source-only evidence and 15 rows carry
+explicit limitations. Row-level flags remain visible for stale
+repositories, source-only papers/sites, restricted licenses, and missing
+license files; no such row is presented as a fully verified maintained
+software distribution.</p>
+<h3 id="general-purpose-frameworks">General-Purpose Frameworks</h3>
+<p>The source-backed general-purpose inventory covers discrete,
+continuous, and real-time inference:</p>
+<p><strong>pymdp.</strong> The pymdp library provides a Python
+implementation of active inference for discrete state-space POMDPs,
+supporting message passing on factor graphs, policy inference via
+expected free energy, and hierarchical generative models.</p>
+<p><strong>SPM.</strong> The SPM package (Wellcome Centre for Human
+Neuroimaging) includes MATLAB implementations of Dynamic Causal Modeling
+and variational Bayesian inference under the FEP. It remains the
+reference implementation for neuroimaging applications and houses the
+original Friston-group POMDP scripts.</p>
+<p><strong>RxInfer.jl.</strong> RxInfer is a Julia package for reactive
+message-passing-based Bayesian inference, supporting real-time and
+streaming inference suitable for robotics and online learning . The
+dated source audit records its current release/version and license
+metadata; the audit report, rather than a hard-coded prose version, is
+authoritative for this living inventory. The RxInfer ecosystem includes
+tutorials covering Bayesian linear regression, hidden Markov models,
+Kalman filtering, Gaussian process regression, hierarchical Gaussian
+filters, nonlinear sensor fusion, and active inference mountain car
+control, available at the <a
+href="https://reactivebayes.github.io/RxInfer.jl/stable/">official
+documentation</a> and the <a href="https://learnableloop.com/">Learnable
+Loop</a> tutorial portal.</p>
+<p><strong>ActiveInference.jl.</strong> In parallel to RxInfer’s
+generalized message-passing focus, ActiveInference.jl provides a
+Julia-native, near drop-in conceptual analogue to Python’s
+<code>pymdp</code> . It explicitly targets computational psychiatry and
+cognitive neuroscience workflows emphasizing standard discrete-state
+POMDP simulation, parameter estimation, and recovery. The library
+leverages Julia’s array semantics—utilizing vectors of arrays to
+efficiently encode multimodal factorized models via the canonical <span
+class="math inline">\(\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D},
+\mathbf{E}\)</span> components—to streamline tasks such as generating
+synthetic behavioral data, fitting models to subject behavior, and
+probing internal beliefs via robust simulation loops
+(<code>infer_states!</code>, <code>infer_policies!</code>,
+<code>sample_action!</code>).</p>
+<p><strong>Cpp-AIF.</strong> The Cpp-AIF header-only C++ library
+implements active inference for discrete POMDPs with multicore
+parallelization of the most demanding computational
+kernels—multidimensional inner products for expected free energy
+computation and state estimation. By abstracting the mathematical
+details behind a high-level API, Cpp-AIF targets embedded systems and
+performance-critical applications where Python overhead is
+prohibitive.</p>
+<p><strong>FEPS.</strong> Free Energy Projective Simulation combines
+active inference with interpretable graphical policy representations,
+enabling agents to plan via expected free energy while exposing decision
+logic as human-readable policy graphs. FEPS targets interpretable
+reinforcement learning tasks where black-box deep agents are
+undesirable—behavioral biology, clinical decision support, and
+safety-critical robotics.</p>
+<h3 id="deep-active-inference">Deep Active Inference</h3>
+<p>Scaling active inference beyond tabular POMDPs to high-dimensional
+observation spaces requires neural-network function approximators. A
+growing body of deep active inference implementations explores this
+direction:</p>
+<p>The foundational deep AIF agent of Fountas et al.  introduced
+Monte-Carlo tree search over learned latent spaces, achieving
+non-trivial Atari performance. Millidge’s DeepActiveInference extended
+this to continuous control with backpropagation-based world models .
+Champion’s Branching-Time Active Inference (BTAI_3MF) and its deep
+variant (Deep_BTAI_3MF) implement tree-structured planning under the
+free-energy objective, scaling active inference to partially observable
+environments with multi-step lookahead . Most recently, AXIOM achieves
+competitive Gameworld-10k benchmark performance using expanding
+object-centric world models, learning in minutes rather than hours—a
+landmark result for scalability.</p>
+<h3 id="predictive-coding-and-neural-generative-coding">Predictive
+Coding and Neural Generative Coding</h3>
+<p>Predictive coding provides the core computational mechanism linking
+active inference to neuroscience. Several implementations offer
+accessible entry points:</p>
+<p><strong>Predictive Coding and Backpropagation.</strong> Millidge et
+al. demonstrate that predictive-coding networks can approximately
+implement backpropagation along arbitrary computational graphs ,
+providing a biologically plausible alternative to gradient descent. The
+<a
+href="https://github.com/BerenMillidge/PredictiveCodingBackprop">PredictiveCodingBackprop</a>
+repository provides the reference implementation.</p>
+<h3 id="benchmarking-progress">Benchmarking Progress</h3>
+<p>The scalability gap between AIF and deep reinforcement learning has
+been a central limitation of the tools domain. Recent work demonstrates
+significant progress on two fronts. First, AXIOM outperforms
+state-of-the-art model-based deep RL agents including DreamerV3 on the
+Gameworld-10k benchmark while using substantially smaller model sizes;
+its object-centric scene decomposition enables sample-efficient learning
+from structured representations rather than raw-pixel memorization.
+Second, variational message-passing formulations connect EFE
+decomposition—into risk, ambiguity, epistemic (information-seeking), and
+instrumental (goal-reaching) components—to practical planning
+algorithms, advancing the theoretical justification for EFE-based policy
+selection (H2). Separately, Friston et al.  introduce structure learning
+via Bayesian Model Reduction as a principled approach to artificial
+reasoning under active inference.</p>
+<h3 id="source-backed-tool-survey">Source-backed Tool Survey</h3>
+<p>The following table catalogs the principal source-backed Active
+Inference implementations surveyed, organized by functional category.
+For each entry we list the primary language, application domain, and
+associated publication or repository. The table is intended as a
+navigational resource for researchers seeking implementations or
+traceable source records relevant to specific hypotheses (H1–H8) or
+application domains (A1–C5). External verification status is reported
+separately so the table does not convert a citation into a maintenance
+or license claim.</p>
+<h3 id="comparative-feature-matrix">Comparative Feature Matrix</h3>
+<p>The complementary strengths across these packages reflect a
+fragmented ecosystem. The table is descriptive rather than a
+market-share or adoption estimate: it shows a mixture of Python, Julia,
+MATLAB, and C++ implementations across discrete, continuous, deep, and
+domain-specific use cases. The variational-free-energy foundations
+shared by Active Inference and Energy-Based Models—including Helmholtz
+machines , Boltzmann machines , and variational autoencoders —suggest a
+potential interoperability pathway with mainstream deep
+generative-modeling frameworks, but no comparative performance claim is
+made here.</p>
+<h2 id="knowledge-graph-infrastructure">Knowledge Graph
+Infrastructure</h2>
+<p>Our knowledge graph uses an RDF-compatible schema deployable on
+standard semantic-web infrastructure. The nanopublication model provides
+a principled atomic unit of scientific evidence: each nanopublication
+packages a single assertion (e.g., “Paper X supports Hypothesis Y”) with
+explicit provenance and publication metadata in four named RDF graphs
+(Head, Assertion, Provenance, Publication Info). This structure
+satisfies the FAIR data principles by design: nanopublications are
+<strong>F</strong>indable via URI-based identification,
+<strong>A</strong>ccessible through standard RDF protocols,
+<strong>I</strong>nteroperable via W3C-standard TriG serialization, and
+<strong>R</strong>eusable with explicit provenance and CC0 licensing.
+The full RDF schema and a TriG serialization example are presented in
+the and Appendix <span
+class="math inline">\(\ref{sec:appendix_rdf}\)</span>.</p>
+<p>The engineering trade-offs among the three deployment options are
+straightforward:</p>
+<p><strong>Nanopublication servers</strong> provide decentralized,
+content-addressed storage. The pipeline writes nanopublications in two
+forms: JSON Lines (for incremental checkpointing and tooling) and
+RDF/TriG per the <a href="https://nanopub.net/">nanopublication
+standard</a> (Assertion, Provenance, Publication Info), suitable for the
+nanopublication network and FAIR deployment. The recent release of
+nanopub-js v0.1.0 —a JavaScript library enabling browser-based creation,
+signing, and querying of nanopublications—opens the possibility of
+community-contributed assertions directly from web interfaces, lowering
+the barrier to participatory evidence curation. Future integration with
+Trusty URIs would provide cryptographic content verification and
+persistent identifiers for each nanopublication.</p>
+<p><strong>RDF stores</strong> (e.g., Apache Jena Fuseki, Blazegraph,
+Oxigraph) enable SPARQL queries such as “find all papers supporting
+hypothesis <span class="math inline">\(H\)</span> published after 2020
+in the neuroscience domain (C1).” The cost is operational overhead and
+query latency.</p>
+<p><strong>Property-graph databases</strong> (e.g., Neo4j) prioritize
+traversal performance for path queries and community detection, at the
+expense of semantic-web compatibility.</p>
+<p>While RDF and property graphs excel at structurally organizing
+assertions, it is crucial to recognize that they inherently compress the
+rich epistemic context of the original papers (e.g., methodological
+caveats, sample sizes, scope limitations) into flattened confidence
+scores—a fundamental limitation of current automated knowledge
+extraction discussed in the .</p>
+<p>The <a href="http://activeinference.institute/ontology/">Active
+Inference Ontology namespace</a> ensures integration with external
+ontologies and linked-data resources.</p>
+<h2 id="multi-level-quality-assurance">Multi-Level Quality
+Assurance</h2>
+<p>Quality assurance operates at four levels: assertion-level confidence
+and review, graph-level structural consistency, score-level boundary
+tests, and pipeline-level continuous-integration coverage.</p>
+<h3 id="assertion-level-validation">Assertion-Level Validation</h3>
+<p>Assertions below a configurable confidence threshold (default 0.6)
+are flagged for review. The threshold is chosen to balance recall
+against the prompt-engineering cost of pushing the LLM to over-commit;
+lowering it inflates noisy neutral assertions, raising it discards
+weakly supported but legitimate claims. There is no live per-assertion
+multi-annotator mechanism; instead, an offline stratified sample is
+checked against a deterministic rule-based reference (see the
+extraction-agreement study in the main methods section)—a
+reproducibility floor, not human inter-annotator agreement.</p>
+<h3 id="graph-level-consistency-checks">Graph-Level Consistency
+Checks</h3>
+<p>Consistency checks verify that all nodes link to valid targets and no
+orphan nodes exist. Coverage metrics track the proportion of annotated
+papers, the fraction of references that resolve inside the corpus, and
+the per-domain assertion density.</p>
+<h3 id="score-level-unit-testing">Score-Level Unit Testing</h3>
+<p>Hypothesis scoring is validated through unit tests on synthetic data
+verifying boundary conditions: all-support fixtures must produce scores
+at <span class="math inline">\(+1\)</span>, all-contradict at <span
+class="math inline">\(-1\)</span>, and balanced inputs at <span
+class="math inline">\(0\)</span>. Sensitivity analysis sweeps over
+confidence thresholds and citation-weighting schemes to measure, rather
+than assume, qualitative rank stability; the current weighting-only
+snapshot shows high but non-perfect agreement and remains a diagnostic
+rather than validation of the underlying evidence.</p>
+<h3 id="pipeline-level-test-coverage">Pipeline-Level Test Coverage</h3>
+<p>Test-driven development enforces 90% minimum code coverage on project
+modules and 60% on shared infrastructure, with real data and computation
+(no mocking). All tests run on every push; failures block merges and
+releases.</p>
+<h3 id="quality-thresholds">Quality Thresholds</h3>
+<p>The hypothesis-evidence results, temporal dynamics of evidence
+accumulation, and assertion analysis are presented in the .</p>
+</main>
+</body>
+</html>

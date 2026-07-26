@@ -1,4 +1,4 @@
-"""Safe, explicit inventory and snapshot operations for disposable outputs."""
+"""Safe, explicit inventory and snapshot operations for versioned outputs."""
 
 from __future__ import annotations
 

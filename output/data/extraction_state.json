@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "run_id": "f198c4266b204f7393c0e15fcc1e18c4",
+  "model_id": "gemma3:4b",
+  "prompt_version": "v2.0.6",
+  "pipeline_version": "2.0.6",
+  "total_papers": 1106,
+  "eligible_papers": 1071,
+  "processed_papers": 1071,
+  "failed_papers": 0,
+  "unprocessed_papers": 0,
+  "assertions": 2561,
+  "checkpoint_interval": 25,
+  "updated_at": "2026-07-25T16:08:43.805580+00:00"
+}

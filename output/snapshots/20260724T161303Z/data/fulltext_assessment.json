@@ -1,0 +1,59 @@
+{
+  "total_papers": 819,
+  "abstract_coverage": {
+    "has_abstract": 790,
+    "no_abstract": 29,
+    "percent_with_abstract": 96.5
+  },
+  "open_access": {
+    "is_oa": 775,
+    "not_oa": 44,
+    "unknown": 0,
+    "percent_oa": 94.6
+  },
+  "pdf_availability": {
+    "has_pdf_url": 719,
+    "no_pdf_url": 100,
+    "percent_with_pdf": 87.8
+  },
+  "fulltext_source_breakdown": {
+    "arxiv": 485,
+    "publisher": 157,
+    "none": 100,
+    "repository": 67,
+    "openalex": 10
+  },
+  "pdf_domain_breakdown": {
+    "arxiv.org": 523,
+    "www.frontiersin.org": 47,
+    "link.springer.com": 23,
+    "www.mdpi.com": 17,
+    "journals.plos.org": 11,
+    "psyarxiv.com": 7,
+    "royalsocietypublishing.org": 6,
+    "discovery.ucl.ac.uk": 6,
+    "academic.oup.com": 6,
+    "direct.mit.edu": 5,
+    "www.preprints.org": 5,
+    "www.jneurosci.org": 5,
+    "www.biorxiv.org": 4,
+    "onlinelibrary.wiley.com": 4,
+    "philsci-archive.pitt.edu": 3,
+    "www.cell.com": 3,
+    "www.cambridge.org": 3,
+    "www.nature.com": 3,
+    "downloads.hindawi.com": 3,
+    "journals.sagepub.com": 2
+  },
+  "identifier_coverage": {
+    "doi": 420,
+    "arxiv_id": 485,
+    "s2_id": 0,
+    "openalex_id": 334
+  },
+  "fulltext_format": {
+    "latex_source_and_pdf": 485,
+    "publisher_pdf_only": 234,
+    "no_fulltext_available": 100
+  }
+}

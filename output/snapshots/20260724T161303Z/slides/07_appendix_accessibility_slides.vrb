@@ -1,0 +1,27 @@
+\frametitle{FAIR Data and Decentralized Science}
+\protect\phantomsection\label{fair-data-and-decentralized-science}
+The pipeline's outputs---nanopublications, knowledge-graph triples, and
+structured assertion records---are designed to satisfy the FAIR
+principles (Findable, Accessible, Interoperable, Reusable) articulated
+by Wilkinson et al.~\citep{wilkinson2016fair}. Each nanopublication
+carries machine-readable provenance (source paper DOI, extraction model,
+confidence score, timestamp), enabling downstream consumers to evaluate
+evidential quality independently of our aggregation choices. The JSON
+Lines and RDF/TriG serialization formats guarantee interoperability with
+existing semantic-web infrastructure.
+
+Decentralized Science (DeSci) represents a broader movement to dismantle
+structural barriers in scientific publishing and funding through
+blockchain-based governance, tokenized intellectual property, and
+community-owned research commons \citep{hamburg2021desci}. Our
+pipeline's open-source, modular, and configuration-driven design aligns
+with DeSci principles: the entire analytical workflow is reproducible
+from source code, hypothesis definitions and extraction prompts are
+version-controlled in YAML rather than embedded in proprietary systems,
+and the nanopublication output format is natively compatible with
+federated semantic publishing networks. ResNei's architecture further
+advances this trajectory by grounding its collaborative features in
+\texttt{social\ accountability\textquotesingle{}\textquotesingle{}\ and}reciprocity,
+interdependence, and access'\,' as explicit design values
+\citep{lumiruusu2025resnei}, directly addressing the power asymmetries
+that traditional centralized publication systems perpetuate.

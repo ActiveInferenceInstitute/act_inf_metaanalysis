@@ -84,7 +84,8 @@ interpreted as an empty successful result.
 
 ### Idempotent refresh and resume
 
-For a new snapshot, first preserve the disposable output tree, then run the
+For a new snapshot, first preserve the current output tree with a dated,
+non-overwriting snapshot, then run the
 stages in order. Retrieval is the only stage that intentionally replaces the
 corpus; extraction checkpoints are resumable and retain one run ID.
 

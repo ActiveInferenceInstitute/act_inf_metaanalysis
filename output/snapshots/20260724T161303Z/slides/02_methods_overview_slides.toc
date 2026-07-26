@@ -1,0 +1,1 @@
+\beamer@sectionintoc {1}{Methodology: Pipeline Design and Formal Definitions }{1}{0}{1}

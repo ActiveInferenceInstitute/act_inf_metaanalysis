@@ -1,0 +1,38 @@
+{
+  "sample_size": 256,
+  "reference_kind": "deterministic_rule_based",
+  "kappa_interrule": 0.7036822686826304,
+  "kappa_reference_pipeline": -0.0479334477749901,
+  "precision": 0.013071895424836602,
+  "recall": 1.0,
+  "f1": 0.02580645161290323,
+  "quote_fidelity_rate": 0.05327868852459016,
+  "quote_fidelity_status": "measured",
+  "error_taxonomy_rates": {
+    "over_extraction": 0.73828125,
+    "quote_mismatch": 0.20703125,
+    "direction_inversion": 0.0234375,
+    "triage_mismatch": 0.0234375
+  },
+  "confusion_reference_vs_pipeline": {
+    "irrelevant": {
+      "contradicts": 13,
+      "supports": 104,
+      "neutral": 72
+    },
+    "neutral": {
+      "supports": 41,
+      "neutral": 5,
+      "contradicts": 11
+    },
+    "contradicts": {
+      "supports": 6,
+      "neutral": 1,
+      "contradicts": 1
+    },
+    "supports": {
+      "supports": 2
+    }
+  },
+  "status": "complete"
+}

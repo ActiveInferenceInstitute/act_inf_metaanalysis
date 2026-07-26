@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>07_appendix_accessibility.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h1
+id="appendix-accessibility-cognitive-ergonomics-and-participatory-research-infrastructure">Appendix:
+Accessibility, Cognitive Ergonomics, and Participatory Research
+Infrastructure </h1>
+<p>Automated meta-analysis tools operate at the intersection of
+computational infrastructure and human sensemaking. The scalability
+gains demonstrated by the present pipeline are meaningful only if the
+resulting knowledge artefacts remain cognitively accessible, ethically
+transparent, and open to diverse forms of participation. This appendix
+situates our work within the broader landscape of research
+accessibility, cognitive ergonomics, decentralized science (DeSci), and
+participatory infrastructure design, and concludes with a WCAG-mapped
+checklist that summarizes the concrete accessibility practices
+implemented in the figure pipeline.</p>
+<h2 id="cognitive-ergonomics-of-knowledge-graphs">Cognitive Ergonomics
+of Knowledge Graphs</h2>
+<p>The knowledge-graph outputs of this pipeline—hypothesis dashboards,
+citation networks, temporal evidence trajectories—impose nontrivial
+cognitive demands on users who must interpret multidimensional evidence
+landscapes. Cognitive Load Theory establishes that information system
+designs which exceed working-memory capacity produce disorientation and
+interpretive errors. Our visualization pipeline addresses this through
+progressive disclosure (summarized dashboards linking to detailed
+per-hypothesis breakdowns), consistent visual grammars (a fixed colour
+palette for supports/contradicts/neutral across all figures), and a
+minimum font-size floor of 16,pt that satisfies low-vision accessibility
+guidelines. These are not cosmetic choices but functional requirements
+for trustworthy scientific communication.</p>
+<p>The ResNei (Research Neighbourhood) platform provides a particularly
+instructive design exemplar for the next generation of
+cognitive-ergonomic research tools. ResNei is an AI-augmented,
+neuro-informed research environment that transforms heterogeneous
+scientific corpora into a living, collaborative knowledge graph
+structured as modular Conceptual Nexus Models (CNMs). Where our pipeline
+produces a static (though periodically updated) evidence snapshot,
+ResNei’s architecture foregrounds dynamic, responsive exploration
+through three cognitive modes: (tracking a concept’s evolution over
+time), (surveying related concepts across subfields), and (mapping
+connections between concepts). This trimodal navigation directly
+operationalizes the progressive-disclosure principle, enabling users to
+manage cognitive complexity by choosing their depth of engagement.</p>
+<h3
+id="actionintention-ux-and-active-inference-design-principles">Action–Intention
+UX and Active Inference Design Principles</h3>
+<p>ResNei’s most theoretically significant contribution is its
+action–intention UX model, which replaces the conventional passive,
+attention-maximizing feed with a framework that interprets user actions
+(uploading papers, highlighting passages, opening concept maps,
+initiating discussions) as situated signals of research direction.
+Rather than deploying opaque recommendation engines, the system uses
+explicit action trajectories to surface contextually appropriate tools
+and views—an approach that resonates with the perception–action loop
+central to Active Inference itself . The design principle of ``minimal
+system intervention, maximum research coherence’’ ensures that the
+interface scaffolds orientation and affordances without interruptive
+prompts or aggressive automation. This ethos directly addresses the risk
+that AI-augmented sensemaking tools inadvertently narrow epistemic
+horizons through algorithmic filtering.</p>
+<h3 id="risk-aware-and-bias-transparent-design">Risk-Aware and
+Bias-Transparent Design</h3>
+<p>ResNei’s solution-design document is notable for its unusually
+explicit treatment of harms and ameliorations. It identifies exclusion,
+algorithmic misrepresentation, overconfidence in AI outputs, hidden
+inequalities, marginalization of less-cited work, surveillance risks,
+cognitive overload, false comprehensiveness, and data privacy as
+first-class design constraints . Mitigations include deliberately
+inclusive UX (designing from the standpoint of those usually excluded),
+systematic provenance and confidence indicators, framing all AI outputs
+as suggestions with traceable bases, and configurable metrics beyond
+citation counts (e.g., conceptual novelty, geographic diversity,
+publication type). This risk model provides a concrete template for
+future iterations of our own pipeline, which currently presents
+citation-weighted scores without UI-level confidence calibration or
+per-assertion provenance indicators.</p>
+<h2 id="fair-data-and-decentralized-science">FAIR Data and Decentralized
+Science</h2>
+<p>The pipeline’s outputs—nanopublications, knowledge-graph triples, and
+structured assertion records—are designed to satisfy the FAIR principles
+(Findable, Accessible, Interoperable, Reusable) articulated by Wilkinson
+et al. . Each nanopublication carries machine-readable provenance
+(source paper DOI, extraction model, confidence score, timestamp),
+enabling downstream consumers to evaluate evidential quality
+independently of our aggregation choices. The JSON Lines and RDF/TriG
+serialization formats guarantee interoperability with existing
+semantic-web infrastructure.</p>
+<p>Decentralized Science (DeSci) represents a broader movement to
+dismantle structural barriers in scientific publishing and funding
+through blockchain-based governance, tokenized intellectual property,
+and community-owned research commons . Our pipeline’s open-source,
+modular, and configuration-driven design aligns with DeSci principles:
+the entire analytical workflow is reproducible from source code,
+hypothesis definitions and extraction prompts are version-controlled in
+YAML rather than embedded in proprietary systems, and the
+nanopublication output format is natively compatible with federated
+semantic publishing networks. ResNei’s architecture further advances
+this trajectory by grounding its collaborative features in
+<code>social accountability'' and</code>reciprocity, interdependence,
+and access’’ as explicit design values , directly addressing the power
+asymmetries that traditional centralized publication systems
+perpetuate.</p>
+<h2 id="participatory-research-and-universal-access">Participatory
+Research and Universal Access</h2>
+<p>The aspiration toward participatory research infrastructure—where
+diverse contributors can meaningfully engage with evidence synthesis
+regardless of technical expertise—is a recurring theme across the
+projects discussed here. Bonney et al.’s foundational work on citizen
+science demonstrated that non-expert participants can make rigorous
+contributions to scientific knowledge production when provided with
+appropriate scaffolding, standardized protocols, and feedback loops.
+Universal Design for Learning principles further emphasize that
+accessibility is not a specialized accommodation but a design paradigm
+that improves usability for all users.</p>
+<p>Applied to computational meta-analysis, this means designing systems
+where:</p>
+<p>The convergence of ResNei’s neuro-informed collaborative environment,
+DeSci’s decentralized governance models, FAIR-data interoperability, and
+citizen-science participation frameworks collectively describes the
+emerging infrastructure requirements for equitable, cognitively
+supportive, and community-governed scientific sensemaking. These are not
+peripheral concerns for computational meta-analysis but architectural
+prerequisites for systems that aspire to serve as living, trusted
+evidence ledgers for rapidly evolving scientific fields.</p>
+<h2 id="pipeline-accessibility-checklist">Pipeline Accessibility
+Checklist</h2>
+<p>The following checklist summarizes the concrete accessibility
+practices implemented in the figure-generation and rendering stages,
+mapped to the relevant Web Content Accessibility Guidelines (WCAG 2.1,
+Level AA) success criteria. ``Status’’ is recorded as
+<strong>Implemented</strong>, <strong>Partial</strong>, or
+<strong>Planned</strong> based on the current state of the pipeline.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "files": {
+    "fulltext_queue": "validation/fulltext_pilot_queue.csv",
+    "human_queue": "validation/human_calibration_queue.csv"
+  },
+  "fulltext_candidates": 1012,
+  "fulltext_queue_rows": 100,
+  "human_labels_present": false,
+  "human_queue_rows": 200,
+  "primary_analysis_unchanged": true,
+  "schema_version": "1.0",
+  "seed": 42
+}

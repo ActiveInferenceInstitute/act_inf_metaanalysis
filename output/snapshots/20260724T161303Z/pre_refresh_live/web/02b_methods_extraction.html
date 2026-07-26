@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>02b_methods_extraction</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h2
+id="llm-based-assertion-extraction-prompt-design-error-taxonomy-and-validation">LLM-Based
+Assertion Extraction: Prompt Design, Error Taxonomy, and Validation
+</h2>
+<p><em>This supplementary section documents the implementation specifics
+of the LLM-based assertion extraction pipeline.</em></p>
+<h3 id="relationship-to-prior-approaches">Relationship to Prior
+Approaches</h3>
+<p>The closest prior effort is the systematic literature analysis of
+Knight, Cordes, and Friedman , which used human annotators to manually
+code structural, visual, and mathematical features of FEP and Active
+Inference publications. Their work operated at the scale of hundreds of
+annotated papers and employed terms from the Active Inference
+Institute’s Active Inference Ontology for automated text analysis. Our
+pipeline replaces the manual coding step with LLM-based assertion
+extraction, enabling scalable processing of the full corpus (<span
+class="math inline">\(N = 819\)</span> papers) at the cost of exchanging
+human-verified precision for machine-generated assessments that require
+post-hoc validation. This trade-off is characteristic of the broader
+LLM-based scientific extraction landscape: recent benchmarking confirms
+that even state-of-the-art modular extraction architectures fall short
+of production-level precision—particularly on tasks requiring exhaustive
+retrieval and aggregation of multiple values from long
+documents—validating our design choice to retain human review pathways
+alongside automated extraction.</p>
+<h4 id="positioning-in-the-llm-based-review-landscape">Positioning in
+the LLM-Based Review Landscape</h4>
+<p>Our pipeline operates within a rapidly maturing ecosystem of
+LLM-powered literature analysis tools. Multi-agent architectures such as
+LitLLM decompose the review process into specialized sub-agents
+(planner, identifier, extractor, compiler), while ensemble approaches
+aggregate outputs from multiple LLMs via weighted voting to improve
+reliability. Our work differs from these tools in three respects: (1) we
+target <em>hypothesis-level evidence scoring</em> rather than
+inclusion/exclusion screening; (2) we produce structured
+nanopublications rather than narrative summaries; and (3) we are only
+analyzing abstracts for claims. This deliberate trade-off enables
+corpus-scale processing (<span class="math inline">\(N = 819\)</span>)
+but fundamentally misses fine-grained claims embedded in method sections
+or discussion paragraphs. Full-text processing could improve extraction
+recall, particularly for hypotheses with small evidence bases (H6
+Clinical Utility, H7 Morphogenesis).</p>
+<h3 id="the-eight-tracked-hypotheses">The Eight Tracked Hypotheses</h3>
+<p>Our analysis tracks the evolving evidence base for eight distinct
+claims within the Active Inference literature, spanning theoretical
+universality to applied clinical utility:</p>
+<ol type="1">
+<li><strong>H1: FEP Universality (Theoretical).</strong> The Free Energy
+Principle applies universally to all self-organizing systems.</li>
+<li><strong>H2: AIF Optimality (Computational).</strong> Active
+Inference agents achieve optimal decision-making under uncertainty.</li>
+<li><strong>H3: Markov Blanket Realism (Philosophical).</strong> Markov
+blankets correspond to real physical boundaries.</li>
+<li><strong>H4: Predictive Coding (Empirical).</strong> Cortical
+hierarchies minimize prediction errors via predictive coding.</li>
+<li><strong>H5: Scalability (Computational).</strong> Active Inference
+scales to complex, high-dimensional environments.</li>
+<li><strong>H6: Clinical Utility (Applied).</strong> Active Inference
+provides clinically useful models of psychiatric conditions.</li>
+<li><strong>H7: Morphogenesis (Biological).</strong> The FEP explains
+morphogenetic and developmental processes.</li>
+<li><strong>H8: Language AIF (Applied).</strong> Active Inference
+provides a viable framework for language processing.</li>
+</ol>
+<h3 id="prompt-engineering-and-schema-design">Prompt Engineering and
+Schema Design</h3>
+<p>The structured prompt is designed to minimize parsing failures and
+maximize assessment quality:</p>
+<ol type="1">
+<li><p><strong>Explicit JSON schema.</strong> The prompt specifies the
+exact output schema—field names, allowed direction values, and the
+numeric confidence range—reducing the LLM’s tendency to generate
+free-form text or ad hoc structures.</p></li>
+<li><p><strong>Hypothesis definitions in-context.</strong> All eight
+definitions are included verbatim, ensuring the LLM assesses relevance
+from the provided context rather than relying on parametric knowledge
+that may be stale.</p></li>
+<li><p><strong>Reasoning field.</strong> Each assessment includes a
+natural-language reasoning string, providing an audit trail for human
+reviewers and enabling systematic analysis of error patterns.</p></li>
+<li><p><strong>Irrelevant filtering.</strong> An explicit “irrelevant”
+direction allows the LLM to mark hypotheses that a paper does not
+address, avoiding forced spurious assessments.</p></li>
+</ol>
+<h4 id="prompt-template">Prompt Template</h4>
+<p>The extraction prompt follows a two-part structure (system +
+user):</p>
+<pre class="text"><code>SYSTEM: You are a scientific literature analyst specializing in the
+Free Energy Principle and Active Inference. Assess the relevance of
+the given paper to each hypothesis. Return a JSON array.
+
+USER:
+Paper: {title}
+Abstract: {abstract}
+
+Hypotheses:
+H1: FEP Universality — {description}
+H2: AIF Optimality — {description}
+...
+H8: Language AIF — {description}
+
+For each hypothesis, return:
+{
+  &quot;hypothesis_id&quot;: &quot;H1&quot;,
+  &quot;direction&quot;: &quot;supports|contradicts|neutral|irrelevant&quot;,
+  &quot;confidence&quot;: 0.0-1.0,
+  &quot;reasoning&quot;: &quot;...&quot;
+}</code></pre>
+<p>The extraction module
+(<code>src/knowledge_graph/llm_extraction.py</code>) includes
+configurable retry logic with exponential backoff, JSON parsing with
+handling of markdown code fences and extraneous text, confidence
+clamping, and validation against the hypothesis ID set. The default
+model is <code>gemma3:4b</code> on a local Ollama instance, configurable
+via <code>--llm-model</code> and <code>--llm-url</code> flags.</p>
+<h3 id="failure-modes-and-error-recovery">Failure Modes and Error
+Recovery</h3>
+<p>The primary failure modes are documented below.</p>
+<h4 id="over-extraction-bias">Over-Extraction Bias</h4>
+<p>Preliminary experiments indicated ~15–20% over-extraction. The
+current <span class="math inline">\(N = 819\)</span> corpus was
+processed without a validation set; error rates are not quantified for
+this run. This is the most common error mode and produces false
+supporting evidence. Over-extraction disproportionately affects
+broad-scope hypotheses (H1 FEP Universality, H2 AIF Optimality) where
+most papers in the corpus contain relevant terminology without
+explicitly endorsing the claim. Narrower hypotheses tied to specific
+domains (H7 Morphogenesis, H8 Language AIF) show lower over-extraction
+rates because their vocabulary is more distinctive. This systematic bias
+inflates support counts for broad hypotheses, and we caution against
+interpreting absolute scores for H1 and H2 without accounting for this
+effect.</p>
+<h4 id="direction-misclassification">Direction Misclassification</h4>
+<p>The LLM misclassifies a contradicting claim as supporting, or vice
+versa. Rarer but more consequential, as it directly inverts the evidence
+signal. Most common for papers that discuss limitations while ultimately
+endorsing a hypothesis.</p>
+<h4 id="confidence-calibration-constraints">Confidence Calibration
+Constraints</h4>
+<p>The model occasionally assigns high confidence to assessments where
+the underlying evidence is ambiguous. Reliable confidence calibration
+remains an open problem for zero-shot LLM applications, motivating the
+multi-tiered validation protocols described below.</p>
+<h4 id="progressive-json-parsing-recovery">Progressive JSON Parsing
+Recovery</h4>
+<p>To mitigate formatting inconsistencies, the module implements a
+progressive parsing pipeline to recover malformed LLM outputs:</p>
+<ol type="1">
+<li><strong>Direct parse</strong>: Attempt <code>json.loads()</code> on
+the raw response.</li>
+<li><strong>Strip code fences</strong>: Remove Markdown
+<code>```json ... ```</code> wrappers and retry.</li>
+<li><strong>Extract JSON array</strong>: Scan for the first
+<code>[...]</code> substring in the response text.</li>
+</ol>
+<p>Papers that fail all parsing stages are logged and skipped; their
+count is reported at pipeline completion.</p>
+<h3 id="validation-methodology">Validation Methodology</h3>
+<p>Validation of LLM-extracted assertions follows a three-tier
+protocol:</p>
+<ol type="1">
+<li><p><strong>Validation Dataset (10%, not yet created).</strong> A
+ground-truth validation protocol is specified in which a random 10%
+subset of the corpus will be manually annotated by human experts.
+Inter-rater reliability will be calculated using Cohen’s <span
+class="math inline">\(\kappa\)</span>; the LLM-based extraction pipeline
+will be evaluated against this human consensus, targeting a <span
+class="math inline">\(\kappa &gt; 0.70\)</span> threshold for direction
+accuracy (supports/contradicts/neutral/irrelevant). The formal 10%
+manual annotation dataset has not yet been created; its development is a
+prioritized next step for this living review architecture.</p></li>
+<li><p><strong>Boundary-case audit (conceptual design).</strong> Papers
+known to make contested claims (e.g., critiques of FEP universality,
+Markov blanket realism debates) would be specifically checked for
+correct direction assignment. This tier remains a conceptual design and
+has not been executed.</p></li>
+<li><p><strong>Aggregate consistency (conceptual design).</strong>
+Hypothesis scores would be compared against qualitative expectations
+from the literature: hypotheses known to be well-supported (e.g., H4
+Predictive Coding) should score positively; those known to be contested
+(e.g., H3 Markov Blanket Realism) should show lower or mixed scores.
+This tier also remains a conceptual design and has not been
+executed.</p></li>
+</ol>
+<p>The current extraction pipeline operates without human-validated
+ground truth; all reported assertions are machine-generated and
+unaudited.</p>
+<h3 id="from-assertions-to-nanopublications">From Assertions to
+Nanopublications</h3>
+<p>Each validated assertion is wrapped in a
+<strong>nanopublication</strong> —a self-contained, machine-readable
+knowledge unit packaging the assertion with explicit provenance
+metadata. The wrapping process assigns:</p>
+<ul>
+<li>A <strong>unique identifier</strong>
+(<code>nanopub:&lt;uuid12&gt;</code>) for graph-level
+deduplication.</li>
+<li>An <strong>attribution string</strong> recording the pipeline name
+and LLM model version.</li>
+<li>A <strong>UTC timestamp</strong> in ISO 8601 format, establishing
+temporal provenance.</li>
+</ul>
+<p>Nanopublications are persisted <strong>incrementally</strong> during
+extraction. Every 50 papers (configurable via
+<code>--checkpoint-interval</code>), the pipeline atomically appends
+newly extracted nanopublications to <code>nanopublications.jsonl</code>
+using a temporary-file-plus-rename strategy that prevents corruption on
+interruption. Deduplication operates on the composite key <span
+class="math inline">\((paper\_id, hypothesis\_id)\)</span>: when a paper
+is re-processed with an improved model, the newer assertion overwrites
+the stale entry. This merge-on-add design enables iterative model
+refinement without costly full-corpus re-extraction.</p>
+<p>After extraction completes, the full nanopublication set is
+additionally serialized to <strong>RDF/TriG</strong> format per the
+nanopublication standard, producing four named graphs per
+nanopublication (Head, Assertion, Provenance, Publication Info). The
+TriG output is suitable for publication to the decentralized
+nanopublication network and archival on data repositories such as
+Zenodo. The complete RDF schema is specified in the and Appendix <span
+class="math inline">\(\ref{sec:appendix_rdf}\)</span>.</p>
+</body>
+</html>

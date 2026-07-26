@@ -1,0 +1,949 @@
+{
+  "artifact_files": {
+    "output/data/assertion_summary.json": {
+      "sha256": "12ca377461ed3d136a9d50b3e194e80e12a3a9b40642d25cb21d76e0c0781de9",
+      "size_bytes": 865
+    },
+    "output/data/citation_graph.gml": {
+      "sha256": "854e61b3e7768bb7ca7b22b8cb78a1a152db07b8cc217dcdac04625bb9f9db9d",
+      "size_bytes": 433784
+    },
+    "output/data/citation_network.json": {
+      "sha256": "e449c6c596f1100d0188931acb9bd0a9d1277ad24c6f10acee4f5ff4fed8ba19",
+      "size_bytes": 1215
+    },
+    "output/data/corpus.jsonl": {
+      "sha256": "728bc398340a47621e6005c7f1cdf5954d4b08d1b88c527e713a0339750229b2",
+      "size_bytes": 3367879
+    },
+    "output/data/extraction_coverage.json": {
+      "sha256": "8676b07abf9ceb60787f54808b9b3660b555d691889426f2da8eb3f419ddc767",
+      "size_bytes": 288
+    },
+    "output/data/extraction_state.json": {
+      "sha256": "501d44a61c525db76517d79877f3b2b41a2db2c7336a56be579d293cb2873161",
+      "size_bytes": 394
+    },
+    "output/data/fulltext_assessment.json": {
+      "sha256": "c7df2c78ba9bafa4564126e4f31ad18c9f166415d3992b554a1999ac9e74bacd",
+      "size_bytes": 1309
+    },
+    "output/data/hypothesis_scores.json": {
+      "sha256": "99dd01b8738ba163c563ba8012bc29f2944b72c38782e0297b1379d30dadc491",
+      "size_bytes": 313
+    },
+    "output/data/hypothesis_sensitivity.json": {
+      "sha256": "5f02be59cff5f06d9e998e9ef431ec6377e0fff0031fba4f2749f6936038ea52",
+      "size_bytes": 2993
+    },
+    "output/data/hypothesis_trends.json": {
+      "sha256": "0c46b20433ef72db26b44fe1ed51f43781596d0d21d1aa3ef35f3243e4ec5cdd",
+      "size_bytes": 9305
+    },
+    "output/data/nanopublications.jsonl": {
+      "sha256": "406d3aacac011516129bca132f07e5cfd3501c887fb8f832f02ed30b5f75f2c4",
+      "size_bytes": 2740370
+    },
+    "output/data/nanopublications.trig": {
+      "sha256": "60109ed226f1e8aef75c7cbd803edec538c72b07280b84e6f752d720e6a96265",
+      "size_bytes": 7244663
+    },
+    "output/data/subfield_classification.json": {
+      "sha256": "9a9a8873fcd5bab23cc1d2f879f0419a803d996406d5417a07ca922f3d4fdde5",
+      "size_bytes": 175
+    },
+    "output/data/subfield_timeline.json": {
+      "sha256": "d23a7587b940730eceee9aa3d6e44a1fc2dac47e7bfbfc58615fbd181b8f0129",
+      "size_bytes": 2181
+    },
+    "output/data/temporal_analysis.json": {
+      "sha256": "0546057f94406124e2f01599a7cae1746d889d3fefad05da4d3e0f43c19e8935",
+      "size_bytes": 2049
+    },
+    "output/data/tfidf_data.json": {
+      "sha256": "6875560a3db1f64fc080a06489c2a858347e6dadf7147f63915f537959f03a1f",
+      "size_bytes": 4961838
+    },
+    "output/data/topic_stability.json": {
+      "sha256": "fc365988afad0e6d378cf921ff072e511255508de6de28e165663491f7743772",
+      "size_bytes": 2154
+    },
+    "output/data/topics.json": {
+      "sha256": "613a550eaf98d463f4ed839c86c9245a64b3a0fd0ea749b255e36295f6f690ad",
+      "size_bytes": 4181
+    },
+    "output/data/validation_metrics.json": {
+      "sha256": "69f64c23b23088d8173d228cd631cf964b51a967b2cd46dcc638e01ff20c8dd1",
+      "size_bytes": 894
+    },
+    "output/figures/assertion_breakdown.png": {
+      "sha256": "f2447da8ba4e2735c2a0602a0bdb7a8055ad97ebf4200cd178780fbd1c1e2216",
+      "size_bytes": 127802
+    },
+    "output/figures/assertion_summary.png": {
+      "sha256": "65405df202c49246c21a0c644115595a5811339e28437192067296fcc2531bdb",
+      "size_bytes": 131715
+    },
+    "output/figures/citation_network.png": {
+      "sha256": "c6196b5b404c559ba0c6ec26640537482aee887b05a32bd217d036a7767822e6",
+      "size_bytes": 238015
+    },
+    "output/figures/cooccurrence_matrix.png": {
+      "sha256": "9c965838b399c7096bb1d8675d71864b451c3dca6693a7f5c668ec14c39f6e57",
+      "size_bytes": 214354
+    },
+    "output/figures/degree_distribution.png": {
+      "sha256": "93c16d4d06664bb303b38b2b7bf5b7941ae82db5deb2b310b82e83cba6cd73ee",
+      "size_bytes": 53770
+    },
+    "output/figures/dendrogram.png": {
+      "sha256": "28268b058bbd1389598d7ef99d44777ee95037faba42a26a8e9e95f56dada28a",
+      "size_bytes": 114547
+    },
+    "output/figures/evidence_timeline.png": {
+      "sha256": "e0049728b3a9dc21d7e45ef7c2a46b8ae5b94013722f967b24a9975a0d66f6f8",
+      "size_bytes": 191915
+    },
+    "output/figures/field_summary.png": {
+      "sha256": "b5b0342cba966fe272259fd2e5f576f578a7d0c6dcaaefa23c047f70b2c5c3c4",
+      "size_bytes": 105005
+    },
+    "output/figures/figure_registry.json": {
+      "sha256": "47e4e4278ab21447e3da6b1369d843f315b581b14be85e07614b84fa304c7e9a",
+      "size_bytes": 5740
+    },
+    "output/figures/growth_curve.png": {
+      "sha256": "71d199accee6c01214cfeaf849fa0d1b800789b42f44ab4f003c787d7551da85",
+      "size_bytes": 186069
+    },
+    "output/figures/hypothesis_dashboard.png": {
+      "sha256": "84dd0b42774e9285d7d1a6dee373bbfcf15f7c1fb282b486805af13a40d50a11",
+      "size_bytes": 91440
+    },
+    "output/figures/pca_embeddings.png": {
+      "sha256": "8f8b67abe85975be2529b286b8373168f59e54fa7cfb8036a0854c5f54b44634",
+      "size_bytes": 327619
+    },
+    "output/figures/subfield_distribution.png": {
+      "sha256": "bf37df6b0a27a7ab823b34e02f7de85ed40911bda16da9215dd9aec942a2ccc9",
+      "size_bytes": 112636
+    },
+    "output/figures/subfield_timeline.png": {
+      "sha256": "05cf4bae43adee5fc04797b60358c312cb30eca22cbfe8b5b0d1259dc51e2cd2",
+      "size_bytes": 188126
+    },
+    "output/figures/term_heatmap.png": {
+      "sha256": "1347a33a63813c03994a70c544413a4073ba4053091e485a1d6374d1ea8dd3e2",
+      "size_bytes": 147731
+    },
+    "output/figures/topic_term_bars.png": {
+      "sha256": "6ec824bd7adc91cd48f1c2eae1977cbc085dcf77f3e773f2e2f81d213002a71d",
+      "size_bytes": 257915
+    },
+    "output/figures/word_cloud.png": {
+      "sha256": "2356ba5d6319abf01ed7b15bbc0343daf2db9bf019fe874121fcb853b39e84a9",
+      "size_bytes": 605430
+    }
+  },
+  "source_files": {
+    "manuscript/00_abstract.md": "ee226fc9d460c9152da722746a43eadfb621878b8fc83dcb1512208977b83661",
+    "manuscript/01_introduction.md": "1514bcb760438bf38d457826d9101865fcbc3fbbe352c45bd9fc1da276d6a1ae",
+    "manuscript/02_methods_overview.md": "09dd81080207787713b3fe27d0bb8bca06b8e34264ec3ef7a5791094e6395bb1",
+    "manuscript/02a_methods_retrieval.md": "3c212e7ddd989f633998ffa2a0ea45819ee4003f500e3c1de79e6d2e543c044c",
+    "manuscript/02b_methods_extraction.md": "3f6bdcd34af62fcaa4a8882bd421bce17c46b3d04116f4a715cba17e444f408f",
+    "manuscript/02c_methods_bibliometrics.md": "c169695da52be099e6ef75b0030b53cb091dbf331e886d9f7e07ddeca28e5332",
+    "manuscript/02d_methods_knowledge_graph.md": "163c8df8d624fcb63aca2d0343b33672e8d10958e3f7bad42a9459309f86badf",
+    "manuscript/02e_methods_viz_injection.md": "442d79a270f97371be3210045eab0ce6fdfb16ec928095128445e86a3108d8fd",
+    "manuscript/03_results_hypothesis.md": "2edb2883f01a0cb709f95b607049ec5facedf2e9e2afaf62e86020dcae1791aa",
+    "manuscript/03a_results_field_overview.md": "e75ae811eed1626f94e36734e2d41f5a3eb206b6412bed579bb96b4b96525585",
+    "manuscript/03b_results_subfields.md": "5061d45c3fd93da05435de59d56321ce5e5b9df7d43f821477e264fffbd19536",
+    "manuscript/03c_results_text_analytics.md": "765a20072f287b03605d4364d795bf5cdff402645c6d7ba0624a8cbf9f35a717",
+    "manuscript/03d_results_citation_network.md": "d97ebb590e0af1a287fbb07c13b67b79ccf635cda4c19390f1fd0d2516dd4af4",
+    "manuscript/04_conclusion.md": "9711af0a762764a1dff12bd537eae73300f6acc5b54eddf8a4c8b01e8c52aea1",
+    "manuscript/04a_discussion.md": "f1c90c9efdcee311c0828d518695734a8eb2635671f6a689fe7b2b82fa08b5b5",
+    "manuscript/05_appendix_tooling.md": "ff5d7e555d8665090273d7aa64adf98c40b0a433169346ec2d366fb580122f92",
+    "manuscript/06_appendix_technical.md": "0702d0e67f1a561173a4d838607932794ec067e69b196404081b0665d7759a14",
+    "manuscript/07_appendix_accessibility.md": "b1ab7930ff8539b4672b0d390c61afcca14d4032a876e3268702966015039b3a",
+    "manuscript/98_symbols_glossary.md": "f65160736a84ff81b0974f122ae241862d5866dbc12665a1ad26af8914a08fcb",
+    "manuscript/99_references.md": "879c12f7b980811e2ed42f8e32f8b24cdd3ae6772d20b23a2d74b7046b10451b",
+    "manuscript/preamble.md": "ab3676bcebbe00d0ddc792cfa134d4a9b339bb87f6f28c0efd6ded068661e95e"
+  },
+  "source_tokens": {
+    "A1_COUNT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "A1_PCT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "A2_COUNT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "A2_PCT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "AS_OF_DATE": [
+      "03a_results_field_overview.md",
+      "04_conclusion.md",
+      "05_appendix_tooling.md",
+      "06_appendix_technical.md"
+    ],
+    "A_PCT": [
+      "00_abstract.md"
+    ],
+    "B_COUNT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "B_PCT": [
+      "00_abstract.md",
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C1_COUNT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C1_PCT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C2_COUNT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C2_PCT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C3_COUNT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C3_PCT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C4_COUNT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C4_PCT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C5_COUNT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "C5_PCT": [
+      "03a_results_field_overview.md",
+      "03b_results_subfields.md"
+    ],
+    "CAGR_END_YEAR": [
+      "03a_results_field_overview.md"
+    ],
+    "CAGR_PCT": [
+      "00_abstract.md",
+      "01_introduction.md",
+      "03a_results_field_overview.md",
+      "04_conclusion.md",
+      "06_appendix_technical.md"
+    ],
+    "CAGR_PERIOD": [
+      "03a_results_field_overview.md",
+      "04_conclusion.md",
+      "06_appendix_technical.md"
+    ],
+    "CAGR_START_YEAR": [
+      "03a_results_field_overview.md"
+    ],
+    "CITATION_COMPONENTS": [
+      "03d_results_citation_network.md",
+      "04_conclusion.md"
+    ],
+    "CITATION_DENSITY_PCT": [
+      "03d_results_citation_network.md",
+      "04_conclusion.md"
+    ],
+    "CITATION_EDGES": [
+      "00_abstract.md",
+      "03d_results_citation_network.md",
+      "04_conclusion.md"
+    ],
+    "CITATION_NODES": [
+      "03d_results_citation_network.md"
+    ],
+    "CITATION_RESOLUTION_PCT": [
+      "00_abstract.md",
+      "02c_methods_bibliometrics.md",
+      "03d_results_citation_network.md",
+      "98_symbols_glossary.md"
+    ],
+    "CITATION_TOTAL_REFS": [
+      "00_abstract.md",
+      "03d_results_citation_network.md"
+    ],
+    "CITATION_VIEW_EDGES": [
+      "03d_results_citation_network.md"
+    ],
+    "CITATION_VIEW_NODES": [
+      "03d_results_citation_network.md"
+    ],
+    "CORPUS_SIZE": [
+      "00_abstract.md",
+      "01_introduction.md",
+      "02a_methods_retrieval.md",
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md",
+      "03a_results_field_overview.md",
+      "03c_results_text_analytics.md",
+      "03d_results_citation_network.md",
+      "04_conclusion.md"
+    ],
+    "CURRENT_YEAR": [
+      "03a_results_field_overview.md",
+      "04_conclusion.md",
+      "06_appendix_technical.md"
+    ],
+    "CURRENT_YEAR_PUBS": [
+      "03a_results_field_overview.md",
+      "04_conclusion.md"
+    ],
+    "CURRENT_YEAR_STATUS": [
+      "00_abstract.md",
+      "03a_results_field_overview.md"
+    ],
+    "C_PCT": [
+      "00_abstract.md"
+    ],
+    "DOMAIN_RANKING": [
+      "03a_results_field_overview.md"
+    ],
+    "EXTRACTION_COVERAGE_PCT": [
+      "02b_methods_extraction.md"
+    ],
+    "EXTRACTION_ELIGIBLE": [
+      "02b_methods_extraction.md"
+    ],
+    "EXTRACTION_FAILED": [
+      "02b_methods_extraction.md"
+    ],
+    "H1_CONTRADICT": [
+      "03_results_hypothesis.md"
+    ],
+    "H1_NEUTRAL": [
+      "03_results_hypothesis.md",
+      "04a_discussion.md"
+    ],
+    "H1_SCORE": [
+      "03_results_hypothesis.md"
+    ],
+    "H1_SUPPORT": [
+      "03_results_hypothesis.md"
+    ],
+    "H1_TOTAL": [
+      "03_results_hypothesis.md"
+    ],
+    "H3_CONTRADICT": [
+      "03_results_hypothesis.md",
+      "03b_results_subfields.md",
+      "04_conclusion.md"
+    ],
+    "H3_SCORE": [
+      "03_results_hypothesis.md",
+      "03b_results_subfields.md"
+    ],
+    "H3_TOTAL": [
+      "03_results_hypothesis.md"
+    ],
+    "H6_TOTAL": [
+      "04_conclusion.md"
+    ],
+    "HYPOTHESIS_TABLE_ROWS": [
+      "03_results_hypothesis.md"
+    ],
+    "INCLUSION_PERIOD": [
+      "00_abstract.md"
+    ],
+    "INCLUSION_YEAR_START": [
+      "00_abstract.md",
+      "04_conclusion.md"
+    ],
+    "MEAN_IN_DEGREE": [
+      "03d_results_citation_network.md",
+      "04_conclusion.md"
+    ],
+    "MODEL_ID": [
+      "00_abstract.md"
+    ],
+    "NEGATIVE_HYPOTHESIS_COUNT": [
+      "03_results_hypothesis.md"
+    ],
+    "NUM_FIGURES": [
+      "02_methods_overview.md",
+      "02e_methods_viz_injection.md"
+    ],
+    "NUM_TOPICS": [
+      "00_abstract.md",
+      "02c_methods_bibliometrics.md",
+      "03c_results_text_analytics.md",
+      "06_appendix_technical.md"
+    ],
+    "NUM_VOCAB_FEATURES": [
+      "03c_results_text_analytics.md"
+    ],
+    "PEAK_YEAR": [
+      "03a_results_field_overview.md"
+    ],
+    "PEAK_YEAR_PUBS": [
+      "03a_results_field_overview.md"
+    ],
+    "PIPELINE_VERSION": [
+      "00_abstract.md"
+    ],
+    "POSITIVE_HYPOTHESIS_COUNT": [
+      "03_results_hypothesis.md"
+    ],
+    "PROMPT_VERSION": [
+      "00_abstract.md"
+    ],
+    "PROV_MODEL": [
+      "02b_methods_extraction.md"
+    ],
+    "PROV_PIPELINE_VERSION": [
+      "02b_methods_extraction.md"
+    ],
+    "PROV_PROMPT_VERSION": [
+      "02b_methods_extraction.md"
+    ],
+    "SENSITIVITY_ALTERNATIVE_POLICY_COUNT": [
+      "03_results_hypothesis.md"
+    ],
+    "SENSITIVITY_POLICY_COUNT": [
+      "03_results_hypothesis.md"
+    ],
+    "SENSITIVITY_RANK_FLIPS": [
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md"
+    ],
+    "SENSITIVITY_SIGN_CHANGE_COUNT": [
+      "03_results_hypothesis.md"
+    ],
+    "SENSITIVITY_SPEARMAN": [
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md",
+      "06_appendix_technical.md"
+    ],
+    "SNAPSHOT_STATUS": [
+      "00_abstract.md"
+    ],
+    "SOURCE_COMPLETION_STATUS": [
+      "00_abstract.md"
+    ],
+    "SOURCE_COMPLETION_SUMMARY": [
+      "00_abstract.md",
+      "03a_results_field_overview.md",
+      "04_conclusion.md"
+    ],
+    "TOOLING_FLAGGED_COUNT": [
+      "05_appendix_tooling.md"
+    ],
+    "TOOLING_LAST_CHECKED": [
+      "05_appendix_tooling.md"
+    ],
+    "TOOLING_REGISTRY_COUNT": [
+      "05_appendix_tooling.md"
+    ],
+    "TOOLING_SOURCE_ONLY_COUNT": [
+      "05_appendix_tooling.md"
+    ],
+    "TOOLING_VERIFICATION_STATUS": [
+      "05_appendix_tooling.md"
+    ],
+    "TOPIC_STABILITY_MEAN_JACCARD": [
+      "03c_results_text_analytics.md",
+      "06_appendix_technical.md"
+    ],
+    "TOPIC_STABILITY_MIN_JACCARD": [
+      "03c_results_text_analytics.md",
+      "06_appendix_technical.md"
+    ],
+    "TOPIC_TABLE_ROWS": [
+      "03c_results_text_analytics.md"
+    ],
+    "TOP_HYPOTHESIS_ID": [
+      "03_results_hypothesis.md"
+    ],
+    "TOP_HYPOTHESIS_NAME": [
+      "03_results_hypothesis.md"
+    ],
+    "TOP_HYPOTHESIS_SCORE": [
+      "03_results_hypothesis.md"
+    ],
+    "TOP_SUBFIELD_LABEL": [
+      "03a_results_field_overview.md"
+    ],
+    "TOTAL_ASSERTIONS": [
+      "03_results_hypothesis.md"
+    ],
+    "VAL_ERR_OVER_EXTRACTION": [
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md"
+    ],
+    "VAL_F1": [
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md"
+    ],
+    "VAL_KAPPA": [
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md",
+      "04_conclusion.md"
+    ],
+    "VAL_KAPPA_PIPELINE": [
+      "00_abstract.md",
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md",
+      "04_conclusion.md"
+    ],
+    "VAL_N": [
+      "00_abstract.md",
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md",
+      "04_conclusion.md"
+    ],
+    "VAL_PRECISION": [
+      "00_abstract.md",
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md",
+      "04_conclusion.md"
+    ],
+    "VAL_QUOTE_FIDELITY": [
+      "04_conclusion.md"
+    ],
+    "VAL_RECALL": [
+      "00_abstract.md",
+      "02b_methods_extraction.md",
+      "03_results_hypothesis.md",
+      "04_conclusion.md"
+    ],
+    "YEAR_END": [
+      "00_abstract.md",
+      "01_introduction.md",
+      "02a_methods_retrieval.md",
+      "03_results_hypothesis.md",
+      "03a_results_field_overview.md",
+      "04_conclusion.md"
+    ],
+    "YEAR_START": [
+      "00_abstract.md",
+      "01_introduction.md",
+      "02a_methods_retrieval.md",
+      "03_results_hypothesis.md",
+      "03a_results_field_overview.md",
+      "04_conclusion.md"
+    ],
+    "YEAR_START_PUBS": [
+      "03a_results_field_overview.md"
+    ]
+  },
+  "variable_keys": [
+    "A1_COUNT",
+    "A1_PCT",
+    "A2_COUNT",
+    "A2_PCT",
+    "AIF_OPTIMALITY_CONTRADICT",
+    "AIF_OPTIMALITY_NEUTRAL",
+    "AIF_OPTIMALITY_SCORE",
+    "AIF_OPTIMALITY_SUPPORT",
+    "AIF_OPTIMALITY_TOTAL",
+    "ASSERTION_CONTRADICT_PCT",
+    "ASSERTION_SUPPORT_PCT",
+    "AS_OF_DATE",
+    "A_COUNT",
+    "A_PCT",
+    "B_COUNT",
+    "B_PCT",
+    "C1_COUNT",
+    "C1_PCT",
+    "C2_COUNT",
+    "C2_PCT",
+    "C3_COUNT",
+    "C3_PCT",
+    "C4_COUNT",
+    "C4_PCT",
+    "C5_COUNT",
+    "C5_PCT",
+    "CAGR_END_YEAR",
+    "CAGR_PCT",
+    "CAGR_PERIOD",
+    "CAGR_START_YEAR",
+    "CITATION_COMMUNITIES",
+    "CITATION_COMPONENTS",
+    "CITATION_DENSITY_PCT",
+    "CITATION_EDGES",
+    "CITATION_EDGES_RAW",
+    "CITATION_NODES",
+    "CITATION_RESOLUTION_PCT",
+    "CITATION_TOTAL_REFS",
+    "CITATION_TOTAL_REFS_RAW",
+    "CITATION_VIEW_EDGES",
+    "CITATION_VIEW_NODES",
+    "CLINICAL_UTILITY_CONTRADICT",
+    "CLINICAL_UTILITY_NEUTRAL",
+    "CLINICAL_UTILITY_SCORE",
+    "CLINICAL_UTILITY_SUPPORT",
+    "CLINICAL_UTILITY_TOTAL",
+    "CORPUS_SIZE",
+    "CORPUS_SIZE_LATEX",
+    "CURRENT_YEAR",
+    "CURRENT_YEAR_POLICY",
+    "CURRENT_YEAR_PUBS",
+    "CURRENT_YEAR_STATUS",
+    "C_COUNT",
+    "C_PCT",
+    "DOMAIN_RANKING",
+    "DOUBLING_TIME",
+    "EXTRACTION_COVERAGE_PCT",
+    "EXTRACTION_ELIGIBLE",
+    "EXTRACTION_FAILED",
+    "EXTRACTION_PROCESSED",
+    "FEP_UNIVERSALITY_CONTRADICT",
+    "FEP_UNIVERSALITY_NEUTRAL",
+    "FEP_UNIVERSALITY_SCORE",
+    "FEP_UNIVERSALITY_SUPPORT",
+    "FEP_UNIVERSALITY_TOTAL",
+    "H1_CONTRADICT",
+    "H1_NEUTRAL",
+    "H1_SCORE",
+    "H1_SUPPORT",
+    "H1_TOTAL",
+    "H2_CONTRADICT",
+    "H2_NEUTRAL",
+    "H2_SCORE",
+    "H2_SUPPORT",
+    "H2_TOTAL",
+    "H3_CONTRADICT",
+    "H3_NEUTRAL",
+    "H3_SCORE",
+    "H3_SUPPORT",
+    "H3_TOTAL",
+    "H4_CONTRADICT",
+    "H4_NEUTRAL",
+    "H4_SCORE",
+    "H4_SUPPORT",
+    "H4_TOTAL",
+    "H5_CONTRADICT",
+    "H5_NEUTRAL",
+    "H5_SCORE",
+    "H5_SUPPORT",
+    "H5_TOTAL",
+    "H6_CONTRADICT",
+    "H6_NEUTRAL",
+    "H6_SCORE",
+    "H6_SUPPORT",
+    "H6_TOTAL",
+    "H7_CONTRADICT",
+    "H7_NEUTRAL",
+    "H7_SCORE",
+    "H7_SUPPORT",
+    "H7_TOTAL",
+    "H8_CONTRADICT",
+    "H8_NEUTRAL",
+    "H8_SCORE",
+    "H8_SUPPORT",
+    "H8_TOTAL",
+    "HYPOTHESIS_TABLE_ROWS",
+    "INCLUSION_PERIOD",
+    "INCLUSION_YEAR_START",
+    "LANGUAGE_AIF_CONTRADICT",
+    "LANGUAGE_AIF_NEUTRAL",
+    "LANGUAGE_AIF_SCORE",
+    "LANGUAGE_AIF_SUPPORT",
+    "LANGUAGE_AIF_TOTAL",
+    "MARKOV_BLANKET_REALISM_CONTRADICT",
+    "MARKOV_BLANKET_REALISM_NEUTRAL",
+    "MARKOV_BLANKET_REALISM_SCORE",
+    "MARKOV_BLANKET_REALISM_SUPPORT",
+    "MARKOV_BLANKET_REALISM_TOTAL",
+    "MEAN_IN_DEGREE",
+    "MEAN_YOY_GROWTH_PCT",
+    "MODEL_ID",
+    "MORPHOGENESIS_CONTRADICT",
+    "MORPHOGENESIS_NEUTRAL",
+    "MORPHOGENESIS_SCORE",
+    "MORPHOGENESIS_SUPPORT",
+    "MORPHOGENESIS_TOTAL",
+    "NEGATIVE_HYPOTHESIS_COUNT",
+    "NUM_FIGURES",
+    "NUM_TOPICS",
+    "NUM_VOCAB_FEATURES",
+    "NUM_VOCAB_FEATURES_LATEX",
+    "PEAK_YEAR",
+    "PEAK_YEAR_COUNT",
+    "PEAK_YEAR_PUBS",
+    "PIPELINE_VERSION",
+    "POSITIVE_HYPOTHESIS_COUNT",
+    "PREDICTIVE_CODING_CONTRADICT",
+    "PREDICTIVE_CODING_NEUTRAL",
+    "PREDICTIVE_CODING_SCORE",
+    "PREDICTIVE_CODING_SUPPORT",
+    "PREDICTIVE_CODING_TOTAL",
+    "PROMPT_VERSION",
+    "PROV_MODEL",
+    "PROV_PIPELINE_VERSION",
+    "PROV_PROMPT_VERSION",
+    "RDF_PACKAGE_STATUS",
+    "RELEASE_PREFLIGHT_STATUS",
+    "RENDER_STATUS",
+    "SCALABILITY_CONTRADICT",
+    "SCALABILITY_NEUTRAL",
+    "SCALABILITY_SCORE",
+    "SCALABILITY_SUPPORT",
+    "SCALABILITY_TOTAL",
+    "SECOND_SUBFIELD",
+    "SECOND_SUBFIELD_COUNT",
+    "SENSITIVITY_ALTERNATIVE_POLICY_COUNT",
+    "SENSITIVITY_POLICY_COUNT",
+    "SENSITIVITY_RANK_FLIPS",
+    "SENSITIVITY_SIGN_CHANGE_COUNT",
+    "SENSITIVITY_SPEARMAN",
+    "SNAPSHOT_STATUS",
+    "SOURCE_COMPLETION_FAILURES",
+    "SOURCE_COMPLETION_GATE",
+    "SOURCE_COMPLETION_STATUS",
+    "SOURCE_COMPLETION_SUMMARY",
+    "TOOLING_FLAGGED_COUNT",
+    "TOOLING_LAST_CHECKED",
+    "TOOLING_REGISTRY_COUNT",
+    "TOOLING_SOURCE_ONLY_COUNT",
+    "TOOLING_VERIFICATION_STATUS",
+    "TOOLING_VERIFIED_COUNT",
+    "TOPIC_STABILITY_MEAN_JACCARD",
+    "TOPIC_STABILITY_MIN_JACCARD",
+    "TOPIC_TABLE_ROWS",
+    "TOP_HYPOTHESIS_ID",
+    "TOP_HYPOTHESIS_NAME",
+    "TOP_HYPOTHESIS_SCORE",
+    "TOP_SUBFIELD",
+    "TOP_SUBFIELD_COUNT",
+    "TOP_SUBFIELD_LABEL",
+    "TOTAL_ASSERTIONS",
+    "TOTAL_ASSERTIONS_RAW",
+    "VAL_ERR_DIRECTION_INVERSION",
+    "VAL_ERR_OVER_EXTRACTION",
+    "VAL_ERR_QUOTE_MISMATCH",
+    "VAL_ERR_TRIAGE_MISMATCH",
+    "VAL_F1",
+    "VAL_KAPPA",
+    "VAL_KAPPA_PIPELINE",
+    "VAL_N",
+    "VAL_PRECISION",
+    "VAL_QUOTE_FIDELITY",
+    "VAL_RECALL",
+    "YEAR_END",
+    "YEAR_START",
+    "YEAR_START_PUBS"
+  ],
+  "variables": {
+    "A1_COUNT": "86",
+    "A1_PCT": "7.8",
+    "A2_COUNT": "79",
+    "A2_PCT": "7.1",
+    "AIF_OPTIMALITY_CONTRADICT": "46",
+    "AIF_OPTIMALITY_NEUTRAL": "137",
+    "AIF_OPTIMALITY_SCORE": "+0.72",
+    "AIF_OPTIMALITY_SUPPORT": "700",
+    "AIF_OPTIMALITY_TOTAL": "883",
+    "ASSERTION_CONTRADICT_PCT": "4.2",
+    "ASSERTION_SUPPORT_PCT": "95.8",
+    "AS_OF_DATE": "2026-07-26",
+    "A_COUNT": "165",
+    "A_PCT": "14.9",
+    "B_COUNT": "263",
+    "B_PCT": "23.8",
+    "C1_COUNT": "212",
+    "C1_PCT": "19.2",
+    "C2_COUNT": "159",
+    "C2_PCT": "14.4",
+    "C3_COUNT": "75",
+    "C3_PCT": "6.8",
+    "C4_COUNT": "60",
+    "C4_PCT": "5.4",
+    "C5_COUNT": "172",
+    "C5_PCT": "15.6",
+    "CAGR_END_YEAR": "2025",
+    "CAGR_PCT": "24.94",
+    "CAGR_PERIOD": "2003\u20132025",
+    "CAGR_START_YEAR": "2003",
+    "CITATION_COMMUNITIES": "649",
+    "CITATION_COMPONENTS": "645",
+    "CITATION_DENSITY_PCT": "0.40",
+    "CITATION_EDGES": "4,829",
+    "CITATION_EDGES_RAW": "4829",
+    "CITATION_NODES": "1106",
+    "CITATION_RESOLUTION_PCT": "10.4",
+    "CITATION_TOTAL_REFS": "46,598",
+    "CITATION_TOTAL_REFS_RAW": "46598",
+    "CITATION_VIEW_EDGES": "905",
+    "CITATION_VIEW_NODES": "100",
+    "CLINICAL_UTILITY_CONTRADICT": "0",
+    "CLINICAL_UTILITY_NEUTRAL": "1",
+    "CLINICAL_UTILITY_SCORE": "+0.97",
+    "CLINICAL_UTILITY_SUPPORT": "25",
+    "CLINICAL_UTILITY_TOTAL": "26",
+    "CORPUS_SIZE": "1106",
+    "CORPUS_SIZE_LATEX": "1,106",
+    "CURRENT_YEAR": "2026",
+    "CURRENT_YEAR_POLICY": "exclude_current_partial_year_from_cagr",
+    "CURRENT_YEAR_PUBS": "98",
+    "CURRENT_YEAR_STATUS": "YTD / partial year",
+    "C_COUNT": "678",
+    "C_PCT": "61.3",
+    "DOMAIN_RANKING": "Domain C (Applications) (61.3\\%), Domain B (Tools and Translation) (23.8\\%), Domain A (Core Theory) (14.9\\%)",
+    "DOUBLING_TIME": "2.8",
+    "EXTRACTION_COVERAGE_PCT": "100.0",
+    "EXTRACTION_ELIGIBLE": "1071",
+    "EXTRACTION_FAILED": "0",
+    "EXTRACTION_PROCESSED": "1071",
+    "FEP_UNIVERSALITY_CONTRADICT": "14",
+    "FEP_UNIVERSALITY_NEUTRAL": "533",
+    "FEP_UNIVERSALITY_SCORE": "+0.63",
+    "FEP_UNIVERSALITY_SUPPORT": "522",
+    "FEP_UNIVERSALITY_TOTAL": "1069",
+    "H1_CONTRADICT": "14",
+    "H1_NEUTRAL": "533",
+    "H1_SCORE": "+0.63",
+    "H1_SUPPORT": "522",
+    "H1_TOTAL": "1069",
+    "H2_CONTRADICT": "46",
+    "H2_NEUTRAL": "137",
+    "H2_SCORE": "+0.72",
+    "H2_SUPPORT": "700",
+    "H2_TOTAL": "883",
+    "H3_CONTRADICT": "14",
+    "H3_NEUTRAL": "5",
+    "H3_SCORE": "+0.14",
+    "H3_SUPPORT": "15",
+    "H3_TOTAL": "34",
+    "H4_CONTRADICT": "1",
+    "H4_NEUTRAL": "49",
+    "H4_SCORE": "+0.83",
+    "H4_SUPPORT": "193",
+    "H4_TOTAL": "243",
+    "H5_CONTRADICT": "1",
+    "H5_NEUTRAL": "6",
+    "H5_SCORE": "+1.00",
+    "H5_SUPPORT": "225",
+    "H5_TOTAL": "232",
+    "H6_CONTRADICT": "0",
+    "H6_NEUTRAL": "1",
+    "H6_SCORE": "+0.97",
+    "H6_SUPPORT": "25",
+    "H6_TOTAL": "26",
+    "H7_CONTRADICT": "0",
+    "H7_NEUTRAL": "2",
+    "H7_SCORE": "+0.95",
+    "H7_SUPPORT": "37",
+    "H7_TOTAL": "39",
+    "H8_CONTRADICT": "1",
+    "H8_NEUTRAL": "0",
+    "H8_SCORE": "+0.86",
+    "H8_SUPPORT": "34",
+    "H8_TOTAL": "35",
+    "HYPOTHESIS_TABLE_ROWS": "Scalability (SCALABILITY) & $+1.00$ & 225 & 6 & 1 & 232 & Very strong positive signal \\\\\nClinical Utility (CLINICAL\\_UTILITY) & $+0.97$ & 25 & 1 & 0 & 26 & Very strong positive signal \\\\\nMorphogenesis (MORPHOGENESIS) & $+0.95$ & 37 & 2 & 0 & 39 & Very strong positive signal \\\\\nLanguage as Active Inference (LANGUAGE\\_AIF) & $+0.86$ & 34 & 0 & 1 & 35 & Strong positive signal \\\\\nPredictive Coding (PREDICTIVE\\_CODING) & $+0.83$ & 193 & 49 & 1 & 243 & Strong positive signal \\\\\nAIF Optimality (AIF\\_OPTIMALITY) & $+0.72$ & 700 & 137 & 46 & 883 & Positive but diffuse \\\\\nFEP Universality (FEP\\_UNIVERSALITY) & $+0.63$ & 522 & 533 & 14 & 1069 & Positive but diffuse \\\\\nMarkov Blanket Realism (MARKOV\\_BLANKET\\_REALISM) & $+0.14$ & 15 & 5 & 14 & 34 & Weak positive / contested \\\\",
+    "INCLUSION_PERIOD": "2000\u20132026",
+    "INCLUSION_YEAR_START": "2000",
+    "LANGUAGE_AIF_CONTRADICT": "1",
+    "LANGUAGE_AIF_NEUTRAL": "0",
+    "LANGUAGE_AIF_SCORE": "+0.86",
+    "LANGUAGE_AIF_SUPPORT": "34",
+    "LANGUAGE_AIF_TOTAL": "35",
+    "MARKOV_BLANKET_REALISM_CONTRADICT": "14",
+    "MARKOV_BLANKET_REALISM_NEUTRAL": "5",
+    "MARKOV_BLANKET_REALISM_SCORE": "+0.14",
+    "MARKOV_BLANKET_REALISM_SUPPORT": "15",
+    "MARKOV_BLANKET_REALISM_TOTAL": "34",
+    "MEAN_IN_DEGREE": "4.4",
+    "MEAN_YOY_GROWTH_PCT": "28.5",
+    "MODEL_ID": "gemma3:4b",
+    "MORPHOGENESIS_CONTRADICT": "0",
+    "MORPHOGENESIS_NEUTRAL": "2",
+    "MORPHOGENESIS_SCORE": "+0.95",
+    "MORPHOGENESIS_SUPPORT": "37",
+    "MORPHOGENESIS_TOTAL": "39",
+    "NEGATIVE_HYPOTHESIS_COUNT": "0",
+    "NUM_FIGURES": "16",
+    "NUM_TOPICS": "8",
+    "NUM_VOCAB_FEATURES": "500",
+    "NUM_VOCAB_FEATURES_LATEX": "500",
+    "PEAK_YEAR": "2025",
+    "PEAK_YEAR_COUNT": "134",
+    "PEAK_YEAR_PUBS": "134",
+    "PIPELINE_VERSION": "2.0.6",
+    "POSITIVE_HYPOTHESIS_COUNT": "8",
+    "PREDICTIVE_CODING_CONTRADICT": "1",
+    "PREDICTIVE_CODING_NEUTRAL": "49",
+    "PREDICTIVE_CODING_SCORE": "+0.83",
+    "PREDICTIVE_CODING_SUPPORT": "193",
+    "PREDICTIVE_CODING_TOTAL": "243",
+    "PROMPT_VERSION": "v2.0.6",
+    "PROV_MODEL": "gemma3:4b",
+    "PROV_PIPELINE_VERSION": "2.0.6",
+    "PROV_PROMPT_VERSION": "v2.0.6",
+    "RDF_PACKAGE_STATUS": "pass",
+    "RELEASE_PREFLIGHT_STATUS": "fail",
+    "RENDER_STATUS": "PDF and HTML pass",
+    "SCALABILITY_CONTRADICT": "1",
+    "SCALABILITY_NEUTRAL": "6",
+    "SCALABILITY_SCORE": "+1.00",
+    "SCALABILITY_SUPPORT": "225",
+    "SCALABILITY_TOTAL": "232",
+    "SECOND_SUBFIELD": "C1_neuroscience",
+    "SECOND_SUBFIELD_COUNT": "212",
+    "SENSITIVITY_ALTERNATIVE_POLICY_COUNT": "5",
+    "SENSITIVITY_POLICY_COUNT": "6",
+    "SENSITIVITY_RANK_FLIPS": "2",
+    "SENSITIVITY_SIGN_CHANGE_COUNT": "1",
+    "SENSITIVITY_SPEARMAN": "0.976",
+    "SNAPSHOT_STATUS": "2026-07-26 snapshot; source gate blocked; 1071/1071 eligible papers processed; 2,561 assertions; PDF and HTML pass",
+    "SOURCE_COMPLETION_FAILURES": "semantic_scholar",
+    "SOURCE_COMPLETION_GATE": "blocked",
+    "SOURCE_COMPLETION_STATUS": "arXiv complete; Semantic Scholar incomplete (HTTPError); OpenAlex complete",
+    "SOURCE_COMPLETION_SUMMARY": "arXiv, OpenAlex completed; Semantic Scholar incomplete",
+    "TOOLING_FLAGGED_COUNT": "15",
+    "TOOLING_LAST_CHECKED": "2026-07-26",
+    "TOOLING_REGISTRY_COUNT": "18",
+    "TOOLING_SOURCE_ONLY_COUNT": "3",
+    "TOOLING_VERIFICATION_STATUS": "complete (3/18 rows fully verified; 15 flagged with explicit source notes)",
+    "TOOLING_VERIFIED_COUNT": "3",
+    "TOPIC_STABILITY_MEAN_JACCARD": "0.545",
+    "TOPIC_STABILITY_MIN_JACCARD": "0.407",
+    "TOPIC_TABLE_ROWS": "0 & cognitive, ai, social, human, cognition, systems, self, framework, consciousness, embodied & Dominant terms: cognitive, ai, social, human, cognition, systems, self, framework, consciousness, embodied \\\\\n1 & neural, networks, network, quantum, neuronal, variational, local, dynamics, learning, activity & Dominant terms: neural, networks, network, quantum, neuronal, variational, local, dynamics, learning, activity \\\\\n2 & fep, principle, systems, brain, free, theoretical, energy, theory, principles, argue & Dominant terms: fep, principle, systems, brain, free, theoretical, energy, theory, principles, argue \\\\\n3 & energy, free, principle, variational, states, systems, bayesian, expected, information, markov & Dominant terms: energy, free, principle, variational, states, systems, bayesian, expected, information, markov \\\\\n4 & inference, active, control, optimal, theory, framework, bayesian, problem, planning, decision & Dominant terms: inference, active, control, optimal, theory, framework, bayesian, problem, planning, decision \\\\\n5 & data, models, learning, training, model, algorithm, generative, based, divergence, sampling & Dominant terms: data, models, learning, training, model, algorithm, generative, based, divergence, sampling \\\\\n6 & sensory, predictive, brain, perception, precision, prediction, action, model, body, visual & Dominant terms: sensory, predictive, brain, perception, precision, prediction, action, model, body, visual \\\\\n7 & agent, agents, aif, environments, learning, exploration, model, environment, reward, behavior & Dominant terms: agent, agents, aif, environments, learning, exploration, model, environment, reward, behavior \\\\",
+    "TOP_HYPOTHESIS_ID": "SCALABILITY",
+    "TOP_HYPOTHESIS_NAME": "Scalability",
+    "TOP_HYPOTHESIS_SCORE": "+1.00",
+    "TOP_SUBFIELD": "B_tools",
+    "TOP_SUBFIELD_COUNT": "263",
+    "TOP_SUBFIELD_LABEL": "B tools",
+    "TOTAL_ASSERTIONS": "2,561",
+    "TOTAL_ASSERTIONS_RAW": "2561",
+    "VAL_ERR_DIRECTION_INVERSION": "0.023",
+    "VAL_ERR_OVER_EXTRACTION": "0.738",
+    "VAL_ERR_QUOTE_MISMATCH": "0.207",
+    "VAL_ERR_TRIAGE_MISMATCH": "0.023",
+    "VAL_F1": "0.026",
+    "VAL_KAPPA": "0.704",
+    "VAL_KAPPA_PIPELINE": "-0.048",
+    "VAL_N": "256",
+    "VAL_PRECISION": "0.013",
+    "VAL_QUOTE_FIDELITY": "0.053",
+    "VAL_RECALL": "1.000",
+    "YEAR_END": "2026",
+    "YEAR_START": "2003",
+    "YEAR_START_PUBS": "1"
+  }
+}

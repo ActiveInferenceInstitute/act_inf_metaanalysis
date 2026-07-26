@@ -1,0 +1,478 @@
+{
+  "FEP_UNIVERSALITY": {
+    "2005": {
+      "score": 0.0,
+      "assertion_count": 1
+    },
+    "2007": {
+      "score": 0.0,
+      "assertion_count": 2
+    },
+    "2008": {
+      "score": 0.0,
+      "assertion_count": 5
+    },
+    "2009": {
+      "score": 0.2704723282571355,
+      "assertion_count": 8
+    },
+    "2010": {
+      "score": 0.32619340485019654,
+      "assertion_count": 12
+    },
+    "2011": {
+      "score": 0.47137521972486013,
+      "assertion_count": 19
+    },
+    "2012": {
+      "score": 0.6211291296722407,
+      "assertion_count": 35
+    },
+    "2013": {
+      "score": 0.6631265118541793,
+      "assertion_count": 52
+    },
+    "2014": {
+      "score": 0.694721756115499,
+      "assertion_count": 71
+    },
+    "2015": {
+      "score": 0.6819990280005541,
+      "assertion_count": 91
+    },
+    "2016": {
+      "score": 0.6936929967095262,
+      "assertion_count": 119
+    },
+    "2017": {
+      "score": 0.6608413878371764,
+      "assertion_count": 150
+    },
+    "2018": {
+      "score": 0.6465880108563103,
+      "assertion_count": 201
+    },
+    "2019": {
+      "score": 0.6514876989669749,
+      "assertion_count": 273
+    },
+    "2020": {
+      "score": 0.6414184406088019,
+      "assertion_count": 352
+    },
+    "2021": {
+      "score": 0.606122415909487,
+      "assertion_count": 474
+    },
+    "2022": {
+      "score": 0.6136078109129512,
+      "assertion_count": 602
+    },
+    "2023": {
+      "score": 0.6297072821342342,
+      "assertion_count": 721
+    },
+    "2024": {
+      "score": 0.6266079965580045,
+      "assertion_count": 837
+    },
+    "2025": {
+      "score": 0.6302566280641908,
+      "assertion_count": 971
+    },
+    "2026": {
+      "score": 0.6313507984545771,
+      "assertion_count": 1068
+    }
+  },
+  "AIF_OPTIMALITY": {
+    "2008": {
+      "score": 1.0,
+      "assertion_count": 2
+    },
+    "2009": {
+      "score": 1.0,
+      "assertion_count": 3
+    },
+    "2010": {
+      "score": 0.82141497217191,
+      "assertion_count": 6
+    },
+    "2011": {
+      "score": 0.907323665107392,
+      "assertion_count": 12
+    },
+    "2012": {
+      "score": 0.8515823137157319,
+      "assertion_count": 25
+    },
+    "2013": {
+      "score": 0.8780763525189814,
+      "assertion_count": 37
+    },
+    "2014": {
+      "score": 0.8436863797472168,
+      "assertion_count": 53
+    },
+    "2015": {
+      "score": 0.8334939610924441,
+      "assertion_count": 68
+    },
+    "2016": {
+      "score": 0.77886067224377,
+      "assertion_count": 87
+    },
+    "2017": {
+      "score": 0.7750150159156077,
+      "assertion_count": 114
+    },
+    "2018": {
+      "score": 0.7807089295709407,
+      "assertion_count": 160
+    },
+    "2019": {
+      "score": 0.7254375702251454,
+      "assertion_count": 214
+    },
+    "2020": {
+      "score": 0.7274348588084129,
+      "assertion_count": 278
+    },
+    "2021": {
+      "score": 0.709629400523096,
+      "assertion_count": 377
+    },
+    "2022": {
+      "score": 0.714001256885998,
+      "assertion_count": 474
+    },
+    "2023": {
+      "score": 0.7196737011165034,
+      "assertion_count": 578
+    },
+    "2024": {
+      "score": 0.7211141262797631,
+      "assertion_count": 682
+    },
+    "2025": {
+      "score": 0.7184810837893186,
+      "assertion_count": 793
+    },
+    "2026": {
+      "score": 0.7188178810936149,
+      "assertion_count": 882
+    }
+  },
+  "MARKOV_BLANKET_REALISM": {
+    "2013": {
+      "score": 0.0,
+      "assertion_count": 1
+    },
+    "2017": {
+      "score": -0.49906024472401106,
+      "assertion_count": 2
+    },
+    "2018": {
+      "score": 0.3768045848184637,
+      "assertion_count": 4
+    },
+    "2019": {
+      "score": 0.6125649513434656,
+      "assertion_count": 8
+    },
+    "2020": {
+      "score": 0.5025729009446029,
+      "assertion_count": 13
+    },
+    "2021": {
+      "score": 0.08510897687399255,
+      "assertion_count": 19
+    },
+    "2022": {
+      "score": 0.08510897687399255,
+      "assertion_count": 23
+    },
+    "2023": {
+      "score": 0.11089862597770819,
+      "assertion_count": 25
+    },
+    "2024": {
+      "score": 0.11089862597770819,
+      "assertion_count": 27
+    },
+    "2025": {
+      "score": 0.1395399984578521,
+      "assertion_count": 32
+    },
+    "2026": {
+      "score": 0.1395399984578521,
+      "assertion_count": 34
+    }
+  },
+  "PREDICTIVE_CODING": {
+    "2008": {
+      "score": 1.0,
+      "assertion_count": 1
+    },
+    "2010": {
+      "score": 1.0,
+      "assertion_count": 2
+    },
+    "2011": {
+      "score": 0.8558853273823483,
+      "assertion_count": 7
+    },
+    "2012": {
+      "score": 0.8640170117817344,
+      "assertion_count": 14
+    },
+    "2013": {
+      "score": 0.850474367501304,
+      "assertion_count": 23
+    },
+    "2014": {
+      "score": 0.8341953298497937,
+      "assertion_count": 31
+    },
+    "2015": {
+      "score": 0.8554206679330765,
+      "assertion_count": 39
+    },
+    "2016": {
+      "score": 0.8732932448280057,
+      "assertion_count": 52
+    },
+    "2017": {
+      "score": 0.8768373541989285,
+      "assertion_count": 65
+    },
+    "2018": {
+      "score": 0.8755096770201469,
+      "assertion_count": 77
+    },
+    "2019": {
+      "score": 0.8217397496509046,
+      "assertion_count": 94
+    },
+    "2020": {
+      "score": 0.8240807719012655,
+      "assertion_count": 110
+    },
+    "2021": {
+      "score": 0.832676567708534,
+      "assertion_count": 133
+    },
+    "2022": {
+      "score": 0.8342702102247944,
+      "assertion_count": 155
+    },
+    "2023": {
+      "score": 0.8344955449099778,
+      "assertion_count": 182
+    },
+    "2024": {
+      "score": 0.8294044608619178,
+      "assertion_count": 198
+    },
+    "2025": {
+      "score": 0.8297550736335177,
+      "assertion_count": 226
+    },
+    "2026": {
+      "score": 0.8308678744521795,
+      "assertion_count": 242
+    }
+  },
+  "SCALABILITY": {
+    "2009": {
+      "score": 1.0,
+      "assertion_count": 1
+    },
+    "2012": {
+      "score": 1.0,
+      "assertion_count": 3
+    },
+    "2013": {
+      "score": 1.0,
+      "assertion_count": 4
+    },
+    "2015": {
+      "score": 1.0,
+      "assertion_count": 5
+    },
+    "2016": {
+      "score": 1.0,
+      "assertion_count": 7
+    },
+    "2017": {
+      "score": 1.0,
+      "assertion_count": 11
+    },
+    "2018": {
+      "score": 1.0,
+      "assertion_count": 15
+    },
+    "2019": {
+      "score": 1.0,
+      "assertion_count": 23
+    },
+    "2020": {
+      "score": 1.0,
+      "assertion_count": 40
+    },
+    "2021": {
+      "score": 1.0,
+      "assertion_count": 70
+    },
+    "2022": {
+      "score": 1.0,
+      "assertion_count": 97
+    },
+    "2023": {
+      "score": 1.0,
+      "assertion_count": 121
+    },
+    "2024": {
+      "score": 1.0,
+      "assertion_count": 150
+    },
+    "2025": {
+      "score": 1.0,
+      "assertion_count": 195
+    },
+    "2026": {
+      "score": 1.0,
+      "assertion_count": 232
+    }
+  },
+  "CLINICAL_UTILITY": {
+    "2013": {
+      "score": 1.0,
+      "assertion_count": 1
+    },
+    "2014": {
+      "score": 1.0,
+      "assertion_count": 2
+    },
+    "2016": {
+      "score": 1.0,
+      "assertion_count": 3
+    },
+    "2018": {
+      "score": 1.0,
+      "assertion_count": 5
+    },
+    "2019": {
+      "score": 1.0,
+      "assertion_count": 9
+    },
+    "2020": {
+      "score": 1.0,
+      "assertion_count": 12
+    },
+    "2021": {
+      "score": 1.0,
+      "assertion_count": 15
+    },
+    "2022": {
+      "score": 0.971870947903127,
+      "assertion_count": 20
+    },
+    "2023": {
+      "score": 0.9735696327137943,
+      "assertion_count": 22
+    },
+    "2024": {
+      "score": 0.9744426961718275,
+      "assertion_count": 24
+    },
+    "2025": {
+      "score": 0.9748912337969389,
+      "assertion_count": 26
+    }
+  },
+  "MORPHOGENESIS": {
+    "2015": {
+      "score": 0.0,
+      "assertion_count": 1
+    },
+    "2016": {
+      "score": 0.0,
+      "assertion_count": 2
+    },
+    "2018": {
+      "score": 1.0,
+      "assertion_count": 5
+    },
+    "2019": {
+      "score": 1.0,
+      "assertion_count": 8
+    },
+    "2020": {
+      "score": 1.0,
+      "assertion_count": 11
+    },
+    "2021": {
+      "score": 0.9090457261282195,
+      "assertion_count": 13
+    },
+    "2022": {
+      "score": 0.9511138673960342,
+      "assertion_count": 23
+    },
+    "2023": {
+      "score": 0.9536302946372698,
+      "assertion_count": 27
+    },
+    "2024": {
+      "score": 0.9549055090937093,
+      "assertion_count": 32
+    },
+    "2025": {
+      "score": 0.9549055090937093,
+      "assertion_count": 36
+    },
+    "2026": {
+      "score": 0.9549055090937093,
+      "assertion_count": 39
+    }
+  },
+  "LANGUAGE_AIF": {
+    "2017": {
+      "score": 0.0,
+      "assertion_count": 1
+    },
+    "2019": {
+      "score": 1.0,
+      "assertion_count": 5
+    },
+    "2020": {
+      "score": 1.0,
+      "assertion_count": 7
+    },
+    "2021": {
+      "score": 0.619771964843918,
+      "assertion_count": 9
+    },
+    "2022": {
+      "score": 0.6493962688061878,
+      "assertion_count": 11
+    },
+    "2023": {
+      "score": 0.8197701370350106,
+      "assertion_count": 18
+    },
+    "2024": {
+      "score": 0.8598114793058782,
+      "assertion_count": 25
+    },
+    "2025": {
+      "score": 0.8638262936300353,
+      "assertion_count": 30
+    },
+    "2026": {
+      "score": 0.8638262936300353,
+      "assertion_count": 35
+    }
+  }
+}

@@ -1,0 +1,173 @@
+\frametitle{Research Agenda: Four Priority Next Steps \label {sec:next_steps}}
+\protect\phantomsection\label{research-agenda-four-priority-next-steps}
+The current prototype establishes a reproducible baseline and surfaces
+the field's evidence structure at corpus scale. Four concrete next
+steps, ordered by the dependency chain each one unlocks, define the path
+from prototype to production-grade living review.
+
+\begin{block}{Next Step 1 --- Expand the Scope of Referenced Data}
+\protect\phantomsection\label{next-step-1-expand-the-scope-of-referenced-data}
+The present corpus of \(N = 817\) papers is retrieved via keyword
+queries against three APIs (Semantic Scholar, OpenAlex, arXiv). Three
+expansion axes would materially change the evidence landscape.
+
+\textbf{Additional sources.} PubMed, PsycINFO, and IEEE Xplore each
+index Active Inference literature that the current APIs do not reach:
+neuroscience clinical trials (PubMed), cognitive-behavioral studies
+(PsycINFO), and robotics control architectures (IEEE). For each new
+source, the retrieval layer requires only a source-specific connector
+implementing the same \breaktt{fetch\_papers(query,\ max\_results)}
+interface used by existing adapters. Gray literature---technical
+reports, theses, and institutional preprints not yet indexed by major
+APIs---represents an additional tier: harvesting from ORCID work records
+and institutional repositories would capture practitioner findings that
+never appear in indexed venues.
+
+\textbf{Broader query coverage.} The current query set is derived from
+the eight hypothesis keywords and their immediate synonyms. Expanding to
+a full ontological synonym set (e.g., mapping ``variational inference,''
+``surprise minimization,'' and ``Helmholtz machine'' as equivalent
+retrieval terms for FEP-related claims) would reduce the retrieval
+false-negative rate for papers that use non-canonical vocabulary. A
+systematic evaluation of retrieval precision and recall against a
+hand-curated gold-standard set of 100 known AIF papers would quantify
+the gap.
+
+\textbf{Custom curated bibliographies.} Domain experts can contribute
+citation lists directly to the corpus without modifying any code:
+placing a \texttt{.bib} or \texttt{.ris} file in
+\breaktt{data/custom\_bibliographies/} triggers the deduplication merge
+on the next pipeline run. This pathway is the lowest-friction route to
+extending scope for researchers who maintain personal reference
+libraries.
+\end{block}
+
+\begin{block}{Next Step 2 --- Extract and Verify Evidence Supporting
+Claims in Each Paper}
+\protect\phantomsection\label{next-step-2-extract-and-verify-evidence-supporting-claims-in-each-paper}
+The current extraction pipeline operates exclusively on abstracts.
+Abstracts contain the claims authors choose to foreground, not
+necessarily the claims best supported by the paper's data. Three
+mechanisms bridge this gap.
+
+\textbf{Full-text ingestion.} For the subset of papers with open-access
+PDFs (approximately 60--70\% of recent AIF preprints on arXiv), Stage 3
+can be extended to parse full-text sections---specifically Methods,
+Results, and Discussion---using a structured chunking strategy that
+splits documents into \textasciitilde512-token segments aligned to
+section boundaries. The existing nanopublication schema accommodates a
+\texttt{source\_section} field (currently unused) that would record the
+provenance of each extracted assertion (abstract vs.~results
+vs.~discussion), enabling downstream stratification of evidence by
+rhetorical function.
+
+\textbf{Claim-evidence pairing.} The current extraction prompt asks the
+LLM to classify a paper's stance toward a hypothesis but does not
+require it to quote the specific sentence or data point that justifies
+the classification. A revised prompt would require the model to (a)
+identify the hypothesis-relevant passage verbatim, (b) classify the
+stance, and (c) rate confidence on the basis of whether the passage
+reports an empirical measurement, a theoretical derivation, or an
+assertion without quantitative support. This three-field extraction ---
+\texttt{evidence\_quote}, \texttt{stance}, \texttt{evidence\_type} ---
+upgrades the nanopublication from a classification label to a traceable
+evidential pointer. For H3 (Markov Blanket Realism), where the 108
+contradicting assertions drive a contested score, reviewers could then
+inspect the actual quoted passages rather than trusting the LLM
+classification in isolation.
+
+\textbf{Human spot-check coverage.} The planned 10\% manual-annotation
+baseline would focus on inter-rater agreement; this manual validation
+has not yet been performed. Extending spot-checks to verify that the
+extracted evidence quote actually appears in the source document (a
+verbatim-match check) adds an additional fidelity gate beyond stance
+accuracy.
+\end{block}
+
+\begin{block}{Next Step 3 --- Tie Hypotheses to Real-World Outcomes}
+\protect\phantomsection\label{next-step-3-tie-hypotheses-to-real-world-outcomes}
+The eight tracked hypotheses are formulated at the level of theoretical
+constructs (e.g., ``the FEP provides a universal account of
+self-organizing systems''). Practical applicability requires mapping
+from hypothesis support to observable real-world outcomes,
+distinguishing which claims are actionable from which remain theoretical
+scaffolding.
+
+\textbf{Outcome taxonomy.} Each hypothesis should be annotated with a
+set of \emph{outcome indicators}: specific, measurable real-world
+results whose observation would constitute evidence for or against the
+hypothesis under the closest empirical operationalization. For example:
+- H4 (Predictive Coding): outcome indicator = reduction in
+prediction-error amplitude as measured by ERP N400 or oscillatory
+gamma-band response in human neuroimaging studies. - H5 (Scalability):
+outcome indicator = task performance on standard RL benchmarks (Atari,
+MuJoCo, ProcGen) at or above the performance of model-free SOTA at
+matched computational budgets. - H6 (Clinical Utility): outcome
+indicator = statistically significant improvement on standardized
+psychiatric assessment scales (PANSS, BDI-II, PTSD Checklist) in at
+least one registered clinical trial. - H7 (Morphogenesis): outcome
+indicator = quantitative recapitulation of at least one morphogenetic
+patterning sequence (e.g., digit formation timecourse, limb bud size
+scaling) in a computational model governed by FEP dynamics rather than
+reaction-diffusion equations.
+
+For each hypothesis, the extraction pipeline can be extended to tag
+assertions whose evidence type is \breaktt{empirical\_measurement} and
+whose outcome aligns with these indicators, producing a filtered score
+that counts only outcome-linked evidence. This \emph{outcome-filtered
+score} sits alongside the current citation-weighted score in the
+hypothesis table, providing a direct answer to ``how much of this
+support is grounded in real-world observations rather than theoretical
+commentary?''
+
+\textbf{Application domain cross-walk.} The subfield classification
+(A1--C5) already partitions the corpus by application domain.
+Intersecting hypothesis scores with application domain
+membership---computing \(\text{score}(H_i, D_j)\) for each hypothesis
+\(H_i\) and domain \(D_j\)---would reveal which domains are generating
+empirical traction versus theoretical citation counts. H1 (FEP
+Universality) likely has high A2 (philosophy) support and lower C1--C5
+empirical support; quantifying this split would replace qualitative
+description of the ``neutral plurality'' with a decomposed evidence
+profile grounded in domain labels already computed by Stage 2.
+\end{block}
+
+\begin{block}{Next Step 4 --- Formal Evaluation Rubric for Pipeline
+Quality}
+\protect\phantomsection\label{next-step-4-formal-evaluation-rubric-for-pipeline-quality}
+The current validation is primarily structural: do scripts run, do
+outputs exist, do tests pass, does the PDF render? A formal evaluation
+rubric answers a different question: \emph{how accurate is the evidence
+landscape this system produces?} Four rubric dimensions, together with
+their measurement protocols and target thresholds, define what ``good
+enough for a published living review'' means.
+
+\begin{table}[htbp]
+\centering
+\caption{Proposed evaluation rubric for pipeline quality assessment. Each dimension has a measurement protocol, a current baseline, and a target threshold for a production living review. All metrics are computed on a held-out annotation set of 200 randomly sampled assertions.}
+\label{tab:eval_rubric}
+\begin{tabular}{llll}
+\toprule
+\textbf{Dimension} & \textbf{Protocol} & \textbf{Current} & \textbf{Target} \\
+\midrule
+Extraction direction accuracy & Cohen's $\kappa$ (rule reference vs.\ LLM stance) & $\kappa = -0.055$ & $\kappa > 0.80$ \\
+Evidence-quote fidelity & Verbatim substring match rate & 0.085 (no quotes stored) & $\geq 90\%$ \\
+Corpus recall & Precision/recall vs.\ rule reference & $P = 0.000$, $R = 0.000$ & recall $\geq 0.85$ \\
+Outcome grounding rate & Fraction of supporting assertions citing an outcome indicator & pending & $\geq 30\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The four rubric dimensions map directly to the four next steps: corpus
+recall measures Step 1 progress, evidence-quote fidelity measures Step 2
+progress, outcome grounding rate measures Step 3 progress, and
+extraction direction accuracy is the targeted baseline to be established
+as the other three improve. Reporting all four numbers alongside
+hypothesis scores in each pipeline release converts a qualitative
+description of limitations into a versioned, trackable quality
+scorecard. This transforms the current ``we acknowledge limitations''
+posture into an audit trail: readers can see whether the rubric scores
+improved between release v1.0 and v2.0, and reviewers can evaluate
+pipeline trustworthiness on principled criteria rather than subjective
+judgement.
+\end{block}

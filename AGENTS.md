@@ -177,7 +177,7 @@ projects_archive/act_inf_metaanalysis/
 │   ├── testing.md
 │   ├── visualization_guide.md
 │   └── CODE_QUALITY_AUDIT.md
-├── output/                     # Disposable, regenerated
+├── output/                     # Versioned generated publication artifacts
 ├── pyproject.toml
 ├── README.md
 └── AGENTS.md

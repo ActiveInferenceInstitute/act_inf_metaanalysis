@@ -21,7 +21,7 @@ scripts/
 ├── 09_write_pipeline_manifest.py # → analysis/pipeline_manifest.py
 ├── 10_release_preflight.py       # → local release package, metadata, render, tests
 ├── 11_prepare_evidence_pilots.py # → deterministic full-text/human queues
-├── 12_snapshot_output.py         # → disposable-output inventory/snapshot
+├── 12_snapshot_output.py         # → versioned-output inventory/snapshot
 ├── 13_verify_tooling_inventory.py # → dated source/license/activity probes
 ├── 14_verify_release_package.py  # → local deposit-equivalent hash check
 └── __pycache__/                  # Python bytecode cache (gitignored)
@@ -54,7 +54,7 @@ release-side outputs exist:
 | `09` | Inputs, outputs, and gate reports | `output/reports/pipeline_manifest.json` | `08` |
 | `10` | All artifacts, release metadata, and tooling gate | `output/reports/release_preflight.json` | `01`–`09`, `13` |
 | `11` | Corpus and validation sample | deterministic review queues/protocols | `01`, `03`, `07` |
-| `12` | Disposable `output/` | `output/reports/snapshot_inventory.json`, optional snapshot copy | current output |
+| `12` | Versioned `output/` | `output/reports/snapshot_inventory.json`, optional snapshot copy | current output |
 | `13` | Tooling registry and public source URLs | `output/reports/tooling_verification.json` | registry, network |
 | `14` | Staged release package | local manifest verification report and final manifest refresh | `10` |
 

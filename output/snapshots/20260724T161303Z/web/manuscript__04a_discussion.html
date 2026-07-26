@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>04a_discussion.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    window.MathJax.startup.defaultReady();
+    window.MathJax.startup.promise.then(window.normalizeTemplateMathJaxAria);
+  }
+});
+</script>
+<script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"
+  type="text/javascript" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h1
+id="discussion-implications-and-community-recommendations">Discussion:
+Implications and Community Recommendations </h1>
+<h2 id="relationship-to-prior-development-directions">Relationship to
+Prior Development Directions</h2>
+<p>Knight, Cordes, and Friedman identified six development directions
+for systematic Active Inference literature analysis: (1) increased scope
+of relevant works, (2) richer annotation schemes, (3) integration of
+manual and artificial contributions, (4) transferable approaches across
+fields, (5) participation by diverse contributors, and (6) updated
+analyses tracking the field’s evolution. This pipeline directly
+addresses directions 1, 2, 3, and 6: it scales retrieval to three
+databases, replaces manual annotation with LLM-driven extraction while
+preserving human review pathways, and produces a pipeline designed for
+incremental re-execution as new literature appears. Directions 4 and
+5—cross-field transferability and community participation—remain open
+and are addressed below.</p>
+<h2 id="tactical-and-strategic-priorities">Tactical and Strategic
+Priorities</h2>
+<h3 id="adopt-rigorous-reporting-metadata">Adopt Rigorous Reporting
+Metadata</h3>
+<p>Papers should systematically report DOIs, ORCIDs, and explicit
+hypothesis commitments. Submitted preprints should forward-link to their
+published versions to prevent fragmented citation subgraphs. Our
+extraction pipeline prioritizes the DOI as the canonical identifier;
+failing that, deduplication cascades to arXiv IDs, Semantic Scholar IDs,
+and OpenAlex IDs. Broad DOI adoption would resolve the cross-source
+mismatch problem, enabling higher-resolution evidence mapping.</p>
+<h3 id="explore-open-knowledge-graph-infrastructure">Explore Open
+Knowledge Graph Infrastructure</h3>
+<p>We encourage the exploration of federated nanopublication server
+architectures to house community-contributed assertions. This would
+enable a continuously updated living literature review that incorporates
+new findings as they are published. The release of nanopub-js v0.1.0
+makes browser-based creation and querying of nanopublications practical,
+enabling researchers to contribute assertions directly from web
+interfaces. Integrating this approach with the Active Inference
+Institute’s Knowledge-Engineering infrastructure could provide the
+standardized semantic vocabulary necessary for rigorous cross-study
+comparison.</p>
+<h3 id="standardize-the-ontological-lexicon">Standardize the Ontological
+Lexicon</h3>
+<p>Immediate future extraction cycles should align assertion predicates
+with the formally curated Active Inference Ontology. Enforcing shared
+ontological primitives across studies will accelerate the aggregation of
+evidence from otherwise siloed research communities, advancing the
+interoperability goal outlined by Knight et al. .</p>
+<h2 id="empirical-and-theoretical-imperatives">Empirical and Theoretical
+Imperatives</h2>
+<h3 id="architect-unified-performance-benchmarks">Architect Unified
+Performance Benchmarks</h3>
+<p>The computational tools domain (B) lacks standardized performance
+benchmarks for direct comparison against deep reinforcement learning
+architectures. Establishing baseline metrics analogous to standard RL
+environments (e.g., OpenAI Gym) is a prerequisite for transitioning
+theoretical proposals into applied systems.</p>
+<h3 id="prioritize-empirical-validation">Prioritize Empirical
+Validation</h3>
+<p>Biology (C5) and Language (C3) have established theoretical
+frameworks but limited empirical validation. Targeted experiments
+designed to test specific FEP-derived predictions—such as demonstrating
+morphogenesis as Bayesian inference or measuring active inference
+advantages in language tasks—would strengthen the evidence base beyond
+what further theoretical work alone can achieve.</p>
+<h2 id="living-review-maintenance">Living Review Maintenance</h2>
+<p>The pipeline is designed for continuous operation rather than
+one-time analysis. Incremental resume capabilities (checkpoint-based
+assertion extraction, merge-on-add corpus deduplication) enable periodic
+re-execution as new papers are indexed. We envision a maintenance cycle
+in which the pipeline is re-run quarterly, with updated hypothesis
+scores and field statistics published alongside the pipeline release.
+Community contributors can extend the framework by adding custom
+hypothesis definitions, alternative keyword taxonomies, or
+domain-specific extraction prompts—all configurable via the YAML
+configuration file without modifying source code. A complementary
+long-term trajectory is toward RAG-enabled access: integrating the
+nanopublication knowledge graph into a Retrieval-Augmented Generation
+architecture would enable natural-language querying of the evidence
+base, making quantitative literature synthesis accessible to researchers
+without programming expertise.</p>
+<h3 id="agentic-workspaces-and-mcp-integration">Agentic Workspaces and
+MCP Integration</h3>
+<p>Beyond traditional open-source maintenance, the repository is
+architected as an intrinsically agentic workspace. Every underlying
+source module (e.g., <code>src/knowledge_graph/</code>,
+<code>src/visualization/</code>) is governed by dedicated
+<code>SKILL.md</code> files serving as Model Context Protocol (MCP)
+prompt-boundaries. These explicitly define the “rules of engagement” for
+autonomous AI inference agents—such as enforcing the zero-mock testing
+philosophy via local HTTP proxies, handling specific LLM fallback
+parsing logic, and respecting headless rendering constraints. This
+design ensures that future AI orchestrators can natively interface with,
+scale, and refine the computational meta-analysis pipeline safely and
+deterministically without structural micromanagement.</p>
+<h3 id="the-discovery-engine-and-future-architectures">The Discovery
+Engine and Future Architectures</h3>
+<p>Broadening our synthesis of knowledge graphs and LLMs, future
+iterations of this pipeline may interface with architectures like the
+<em>Discovery Engine</em> . This comprehensive framework is designed to
+overcome the limitations of the document-centric publishing paradigm by
+transforming unstructured scientific literature into a machine-operable
+“world model.” Their approach uses systematic, self-consistent LLM
+distillation to extract typed “knowledge artifacts” from publications,
+which are sequentially assembled into a hierarchical Conceptual Nexus
+Model (CNM) graph and encoded as a high-dimensional Conceptual Nexus
+Tensor. By explicitly modeling experimental variables, causal relations,
+and evidential contradictions within a FAIR-aligned representation, this
+architecture enables AI agents to mathematically navigate the knowledge
+landscape, trace provenance, and generate novel hypotheses through
+operations akin to tensor factorization and Vector Symbolic
+Architectures (VSA). This shift from static digital libraries to a
+computable, relation-rich evidence graph deeply parallels our objective
+of translating unstructured Active Inference literature into a
+quantifiable assertion tracking system.</p>
+<h2 id="open-questions">Open Questions</h2>
+<p>This meta-analysis surfaces four empirically testable questions whose
+answers would directly advance the four-step research agenda outlined in
+<span class="math inline">\(\ref{sec:next_steps}\)</span>.</p>
+<ul>
+<li><p><strong>Recency bias in citation weighting (Methodological
+limitation).</strong> The citation-weighting function <span
+class="math inline">\(w(a) = \log(1+\text{citations}) \cdot
+\text{confidence}\)</span> systematically underweights recent papers
+(2024–2026) which have few citations. A 2024 paper with 1 citation is
+weighted approximately 0.69versus a 2015 paper with 100 citations at
+approximately 4.6. Future work may explore time-decay normalization to
+mitigate this recency penalty.</p></li>
+<li><p><strong>Domain classifier over-assignment to A2
+(Philosophy).</strong> The keyword-based domain classifier tends to
+over-assign papers to the broad A2 (philosophy) category, where FEP
+universality is implicitly invoked but rarely explicitly tested. This
+classification bias likely inflates H1’s neutral evidence count and
+should be addressed in future work through embedding-based
+classification or expert annotation.</p></li>
+<li><p><strong>Classifier calibration (feeds Step 1).</strong> What
+proportion of A1 (Formal Theory) papers would be reclassified under an
+embedding-based or expert-annotated scheme, and how does this affect the
+field’s theoretical core? An embedding-classifier trained on a 200-paper
+labeled set and evaluated on held-out A1 vs. A2 examples would quantify
+the fraction of “philosophy” papers that carry formal mathematical
+content, directly sharpening both retrieval scope and outcome-grounding
+rate.</p></li>
+<li><p><strong>Falsifiability and explicit testing (feeds Step
+3).</strong> H1 (FEP Universality) produces a predominantly neutral
+evidence profile, consistent with the critique that FEP accommodates any
+behavior without generating distinctive predictions . Can hypothesis
+definitions—and author reporting standards—be reformulated to require a
+formal, refutable empirical prediction before contributing a supporting
+assertion? The proposed outcome-indicator taxonomy (§<span
+class="math inline">\(\ref{sec:next_steps}\)</span>) would
+operationalize this: only assertions paired with a measurable outcome
+indicator would count as empirical support, converting the neutral H1
+tally into a decomposed “invoked vs. tested” breakdown.</p></li>
+<li><p><strong>The Scalability Gap (feeds Step 3).</strong> H5 (AIF
+Scalability) shows a strong positive trend, yet head-to-head comparisons
+with deep RL remain concentrated on a narrow set of benchmarks
+(predominantly low-dimensional discrete environments). Beyond what
+state-space dimensionality and reward density does the
+expected-free-energy exploration advantage of model-based AIF degrade
+relative to model-free architectures such as SAC or PPO? Answering this
+requires assembling the outcome-indicator-tagged evidence (Step 3) and
+identifying which benchmark comparisons are already in the literature
+versus which are genuinely absent.</p></li>
+<li><p><strong>Evidence Cross-Pollination (feeds Step 1 + Step
+4).</strong> To what extent do mathematical structures underlying
+variational free energy minimization and energy function optimization in
+Energy-Based Models (VAEs, contrastive divergence) converge? Extending
+the corpus to include EBM literature (Step 1) and running the assertion
+extractor on the merged set would produce a cross-domain hypothesis
+score for the shared-architecture claim—a direct test of convergence
+rather than a theoretical argument. The rubric’s corpus recall metric
+(Step 4) would validate whether the expanded retrieval actually captures
+the EBM literature at recall <span class="math inline">\(\geq
+0.85\)</span>.</p></li>
+</ul>
+<h2 id="pipeline-as-a-community-instrument">Pipeline as a Community
+Instrument</h2>
+<p>The four next steps are not a private development roadmap—they are an
+invitation. The repository is structured so that each step can be
+contributed incrementally: a new source connector (Step 1), a revised
+extraction prompt with evidence-quote fields (Step 2), a YAML file
+defining outcome indicators per hypothesis (Step 3), and an annotation
+script that computes rubric scores against a provided gold set (Step 4).
+None of these require modifying the scoring engine or the knowledge
+graph schema. By publishing the rubric thresholds alongside the current
+baseline scores, this work makes explicit what it would take for a
+community contributor to demonstrably improve the system—and provides
+the tooling to verify that improvement without relying on subjective
+assessment.</p>
+<h2 id="limitations">Limitations</h2>
+<p>Recency bias: The citation-weighting function <span
+class="math inline">\(w(a) =
+\log(1+\text{citations})\cdot\text{confidence}\)</span> systematically
+underweights recent papers (2024–2026) which have few citations. A 2024
+paper with 1 citation is weighted <span
+class="math inline">\(\sim0.69\times\)</span> versus a 2015 paper with
+100 citations at <span class="math inline">\(\sim4.6\times\)</span>.
+Future work may explore time-decay normalization.</p>
+<p>Classifier bias: The assertion counts are also sensitive to corpus
+composition: H1’s large neutral tally (703) partially reflects the
+keyword classifier’s tendency to assign papers to the broad A2
+(philosophy) category, where FEP universality is implicitly invoked but
+rarely explicitly tested. This classifier bias likely inflates H1’s
+neutral classification count and should be addressed in future work.</p>
+</main>
+</body>
+</html>

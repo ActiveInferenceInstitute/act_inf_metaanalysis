@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>03a_results_field_overview.md.web</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script data-template-mathjax-config>
+window.MathJax = window.MathJax || {};
+window.MathJax.chtml = Object.assign({}, window.MathJax.chtml, {
+  fontURL: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/woff2",
+  dynamicPrefix: "https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font@4.0.0/chtml/dynamic"
+});
+window.normalizeTemplateMathJaxAria = function () {
+  document.querySelectorAll("mjx-speech[aria-roledescription]").forEach(function (node) {
+    var roleDescription = node.getAttribute("aria-roledescription") || "";
+    if (/[-]/.test(roleDescription)) {
+      node.setAttribute("aria-roledescription", "mathematical expression");
+    }
+  });
+};
+window.MathJax.startup = Object.assign({}, window.MathJax.startup, {
+  ready: function () {
+    window.MathJax.startup.defaultReady();
+    window.MathJax.startup.promise.then(window.normalizeTemplateMathJaxAria);
+  }
+});
+</script>
+<script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"
+  type="text/javascript" integrity="sha384-2BWc4dVaHADUocwKrUrK9u3iDwHxVMKXWEcoRmUkXYSFKhAsgVAYClu9ydNuo5Oz" crossorigin="anonymous"></script>
+
+<link data-template-favicon rel="icon" href="favicon.ico">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<main id="main-content" tabindex="-1">
+<h2 id="field-overview-disciplinary-structure-and-growth-dynamics">Field
+Overview: Disciplinary Structure and Growth Dynamics </h2>
+<p>Annual output in the Active Inference literature rose from 1 papers
+in 2005, reaching a peak of 123 papers in 2025—a transition from a niche
+within theoretical neuroscience to a multi-disciplinary research program
+spanning three primary domains and eight tracked categories. The corpus
+start of 2005 was chosen to capture Energy-Based Model and variational
+Bayesian antecedents that preceded the formal introduction of the Free
+Energy Principle in 2006 and its subsequent full elaboration . Our
+corpus, extracted from arXiv, Semantic Scholar, and OpenAlex and
+deduplicated to <span class="math inline">\(N = 817\)</span> papers
+(2005–2026), captures the breadth, tempo, and internal architecture of
+this expansion (Figure <span
+class="math inline">\(\ref{fig:field_summary}\)</span>).</p>
+<h3 id="corpus-level-summary">Corpus-Level Summary</h3>
+<p>The CAGR of 20.36% (measured as the annualised growth rate of yearly
+publication volume between endpoint years 2005 and 2026) reflects
+sustained field expansion; annual output accelerated markedly in the
+late 2010s—from roughly 2018 onward (Figure <span
+class="math inline">\(\ref{fig:growth_curve}\)</span>). Sustained high
+output persisting into subsequent years suggests the field has reached a
+mature production phase rather than experiencing a transient spike.
+Citation network metrics are detailed in the dedicated citation network
+analysis (see ).</p>
+<h3 id="domain-distribution">Domain Distribution</h3>
+<p>Keyword-based classification assigns each paper to one of eight
+categories across three domains:</p>
+<p>The concentration of papers in A2 (qualitative philosophy and general
+theory) reflects the broad scope of foundational FEP work (Figure <span
+class="math inline">\(\ref{fig:subfield_distribution}\)</span>). The
+priority-based classifier mitigates over-assignment by routing papers
+with mathematical indicators (theorems, proofs, equations, statistical
+formalism) to A1 before falling back to A2, and by preferring specific
+application domains (C1–C5) and tools (B) over both core-theory
+categories. Papers that discuss FEP/AIF conceptually without
+mathematical formalism or domain-specific vocabulary are correctly
+assigned to A2. This figure should be read as a <em>ceiling</em> on
+theoretical generality rather than a literal measure of research
+focus—embedding-based classification would likely redistribute some
+fraction into more specific categories. That all eight categories are
+populated, including computational psychiatry (C4) and formal theory
+(A1), indicates diversification beyond the field’s neuroscience
+origins.</p>
+<p>Detailed characterizations of each domain—including historical
+context, growth trends, and open problems—are provided in the
+supplementary domain analyses (see ). Latent topic structure, vocabulary
+analysis, and document embeddings are presented in the text analytics
+section (see ).</p>
+<h3 id="cross-domain-comparison">Cross-Domain Comparison</h3>
+<p>Three structural features emerge from the cross-domain comparison
+(Figure <span
+class="math inline">\(\ref{fig:subfield_timeline}\)</span>). First, no
+single legacy domain dominates: Domain B (Tools &amp; Translation)
+accounts for 20.8% of the corpus, followed by C1 (Neuroscience) at 19.7%
+and C2 (Robotics) at 16.6%. Second, Domain A (Core Theory) aggregates
+15.2% collectively (A1 + A2), while the emergent application frontiers
+(C3–C5) exhibit accelerating growth. Third, A1’s 64 papers understate
+its intellectual influence—the mathematical formalisms developed in A1
+shape implementations across all domains.</p>
+</main>
+</body>
+</html>

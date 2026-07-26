@@ -1,0 +1,3075 @@
+{
+  "file_count": 766,
+  "files": [
+    {
+      "path": "data/assertion_summary.json",
+      "size_bytes": 865
+    },
+    {
+      "path": "data/citation_graph.gml",
+      "size_bytes": 433784
+    },
+    {
+      "path": "data/citation_network.json",
+      "size_bytes": 1215
+    },
+    {
+      "path": "data/corpus.jsonl",
+      "size_bytes": 3367879
+    },
+    {
+      "path": "data/extraction_coverage.json",
+      "size_bytes": 288
+    },
+    {
+      "path": "data/extraction_state.json",
+      "size_bytes": 394
+    },
+    {
+      "path": "data/fulltext_assessment.json",
+      "size_bytes": 1309
+    },
+    {
+      "path": "data/hypothesis_scores.json",
+      "size_bytes": 313
+    },
+    {
+      "path": "data/hypothesis_sensitivity.json",
+      "size_bytes": 2993
+    },
+    {
+      "path": "data/hypothesis_trends.json",
+      "size_bytes": 9305
+    },
+    {
+      "path": "data/manuscript_variables.json",
+      "size_bytes": 31289
+    },
+    {
+      "path": "data/nanopublications.jsonl",
+      "size_bytes": 2740370
+    },
+    {
+      "path": "data/nanopublications.trig",
+      "size_bytes": 7244663
+    },
+    {
+      "path": "data/subfield_classification.json",
+      "size_bytes": 175
+    },
+    {
+      "path": "data/subfield_timeline.json",
+      "size_bytes": 2181
+    },
+    {
+      "path": "data/temporal_analysis.json",
+      "size_bytes": 2049
+    },
+    {
+      "path": "data/tfidf_data.json",
+      "size_bytes": 4961838
+    },
+    {
+      "path": "data/topic_stability.json",
+      "size_bytes": 2154
+    },
+    {
+      "path": "data/topics.json",
+      "size_bytes": 4181
+    },
+    {
+      "path": "data/validation_metrics.json",
+      "size_bytes": 894
+    },
+    {
+      "path": "figures/assertion_breakdown.png",
+      "size_bytes": 127802
+    },
+    {
+      "path": "figures/assertion_summary.png",
+      "size_bytes": 131715
+    },
+    {
+      "path": "figures/citation_network.png",
+      "size_bytes": 238015
+    },
+    {
+      "path": "figures/cooccurrence_matrix.png",
+      "size_bytes": 214354
+    },
+    {
+      "path": "figures/degree_distribution.png",
+      "size_bytes": 53770
+    },
+    {
+      "path": "figures/dendrogram.png",
+      "size_bytes": 114547
+    },
+    {
+      "path": "figures/evidence_timeline.png",
+      "size_bytes": 191915
+    },
+    {
+      "path": "figures/field_summary.png",
+      "size_bytes": 105005
+    },
+    {
+      "path": "figures/figure_registry.json",
+      "size_bytes": 5740
+    },
+    {
+      "path": "figures/growth_curve.png",
+      "size_bytes": 186069
+    },
+    {
+      "path": "figures/hypothesis_dashboard.png",
+      "size_bytes": 91440
+    },
+    {
+      "path": "figures/pca_embeddings.png",
+      "size_bytes": 327619
+    },
+    {
+      "path": "figures/subfield_distribution.png",
+      "size_bytes": 112636
+    },
+    {
+      "path": "figures/subfield_timeline.png",
+      "size_bytes": 188126
+    },
+    {
+      "path": "figures/term_heatmap.png",
+      "size_bytes": 147731
+    },
+    {
+      "path": "figures/topic_term_bars.png",
+      "size_bytes": 257915
+    },
+    {
+      "path": "figures/word_cloud.png",
+      "size_bytes": 605430
+    },
+    {
+      "path": "manuscript/00_abstract.md",
+      "size_bytes": 3780
+    },
+    {
+      "path": "manuscript/01_introduction.md",
+      "size_bytes": 15167
+    },
+    {
+      "path": "manuscript/02_methods_overview.md",
+      "size_bytes": 5007
+    },
+    {
+      "path": "manuscript/02a_methods_retrieval.md",
+      "size_bytes": 4977
+    },
+    {
+      "path": "manuscript/02b_methods_extraction.md",
+      "size_bytes": 12070
+    },
+    {
+      "path": "manuscript/02c_methods_bibliometrics.md",
+      "size_bytes": 3549
+    },
+    {
+      "path": "manuscript/02d_methods_knowledge_graph.md",
+      "size_bytes": 8497
+    },
+    {
+      "path": "manuscript/02e_methods_viz_injection.md",
+      "size_bytes": 2577
+    },
+    {
+      "path": "manuscript/03_results_hypothesis.md",
+      "size_bytes": 10958
+    },
+    {
+      "path": "manuscript/03a_results_field_overview.md",
+      "size_bytes": 7622
+    },
+    {
+      "path": "manuscript/03b_results_subfields.md",
+      "size_bytes": 14629
+    },
+    {
+      "path": "manuscript/03c_results_text_analytics.md",
+      "size_bytes": 7924
+    },
+    {
+      "path": "manuscript/03d_results_citation_network.md",
+      "size_bytes": 4249
+    },
+    {
+      "path": "manuscript/04_conclusion.md",
+      "size_bytes": 24860
+    },
+    {
+      "path": "manuscript/04a_discussion.md",
+      "size_bytes": 11730
+    },
+    {
+      "path": "manuscript/05_appendix_tooling.md",
+      "size_bytes": 21291
+    },
+    {
+      "path": "manuscript/06_appendix_technical.md",
+      "size_bytes": 11336
+    },
+    {
+      "path": "manuscript/07_appendix_accessibility.md",
+      "size_bytes": 11277
+    },
+    {
+      "path": "manuscript/98_symbols_glossary.md",
+      "size_bytes": 17053
+    },
+    {
+      "path": "manuscript/99_references.md",
+      "size_bytes": 793
+    },
+    {
+      "path": "manuscript/config.yaml",
+      "size_bytes": 14450
+    },
+    {
+      "path": "manuscript/config.yaml.example",
+      "size_bytes": 1913
+    },
+    {
+      "path": "manuscript/preamble.md",
+      "size_bytes": 3425
+    },
+    {
+      "path": "manuscript/references.bib",
+      "size_bytes": 26809
+    },
+    {
+      "path": "pdf/_combined_manuscript.aux",
+      "size_bytes": 96262
+    },
+    {
+      "path": "pdf/_combined_manuscript.bbl",
+      "size_bytes": 23374
+    },
+    {
+      "path": "pdf/_combined_manuscript.blg",
+      "size_bytes": 1480
+    },
+    {
+      "path": "pdf/_combined_manuscript.log",
+      "size_bytes": 63530
+    },
+    {
+      "path": "pdf/_combined_manuscript.md",
+      "size_bytes": 199916
+    },
+    {
+      "path": "pdf/_combined_manuscript.tex",
+      "size_bytes": 222736
+    },
+    {
+      "path": "pdf/_combined_manuscript.toc",
+      "size_bytes": 16924
+    },
+    {
+      "path": "pdf/_latex_stdout.log",
+      "size_bytes": 12997
+    },
+    {
+      "path": "pdf/act_inf_metaanalysis_combined.pdf",
+      "size_bytes": 3529684
+    },
+    {
+      "path": "pdf/references.bib",
+      "size_bytes": 26809
+    },
+    {
+      "path": "release/nanopublications-2026-07-24/README.md",
+      "size_bytes": 477
+    },
+    {
+      "path": "release/nanopublications-2026-07-24/extraction_provenance_summary.json",
+      "size_bytes": 385
+    },
+    {
+      "path": "release/nanopublications-2026-07-24/nanopublications.jsonl",
+      "size_bytes": 2740370
+    },
+    {
+      "path": "release/nanopublications-2026-07-24/nanopublications.trig",
+      "size_bytes": 7244663
+    },
+    {
+      "path": "release/nanopublications-2026-07-24/package_manifest.json",
+      "size_bytes": 1022
+    },
+    {
+      "path": "release/nanopublications-2026-07-24/rdf_package_validation.json",
+      "size_bytes": 896
+    },
+    {
+      "path": "reports/artifact_contract.json",
+      "size_bytes": 176
+    },
+    {
+      "path": "reports/artifact_manifest.json",
+      "size_bytes": 34459
+    },
+    {
+      "path": "reports/evidence_registry.json",
+      "size_bytes": 84274
+    },
+    {
+      "path": "reports/extraction_provenance_summary.json",
+      "size_bytes": 385
+    },
+    {
+      "path": "reports/rdf_package_validation.json",
+      "size_bytes": 896
+    },
+    {
+      "path": "reports/release_package_verification.json",
+      "size_bytes": 276
+    },
+    {
+      "path": "reports/release_preflight.json",
+      "size_bytes": 8239
+    },
+    {
+      "path": "reports/search_provenance.json",
+      "size_bytes": 6027
+    },
+    {
+      "path": "reports/tooling_verification.json",
+      "size_bytes": 22549
+    },
+    {
+      "path": "reports/validation_metrics.json",
+      "size_bytes": 894
+    },
+    {
+      "path": "reports/validation_report.json",
+      "size_bytes": 4497
+    },
+    {
+      "path": "reports/validation_report.md",
+      "size_bytes": 326
+    },
+    {
+      "path": "reports/zenodo_deposit_metadata.json",
+      "size_bytes": 493
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/assertion_summary.json",
+      "size_bytes": 929
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/citation_graph.gml",
+      "size_bytes": 258241
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/citation_network.json",
+      "size_bytes": 1218
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/corpus.jsonl",
+      "size_bytes": 2320335
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/fulltext_assessment.json",
+      "size_bytes": 1311
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/hypothesis_scores.json",
+      "size_bytes": 330
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/hypothesis_sensitivity.json",
+      "size_bytes": 3091
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/hypothesis_trends.json",
+      "size_bytes": 3548
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/nanopublications.jsonl",
+      "size_bytes": 2426535
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/nanopublications.legacy.bak",
+      "size_bytes": 773593
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/nanopublications.trig",
+      "size_bytes": 5384554
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/subfield_classification.json",
+      "size_bytes": 175
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/subfield_timeline.json",
+      "size_bytes": 2045
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/temporal_analysis.json",
+      "size_bytes": 1558
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/tfidf_data.json",
+      "size_bytes": 3652219
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/topics.json",
+      "size_bytes": 4173
+    },
+    {
+      "path": "snapshots/20260724T161303Z/data/validation_metrics.json",
+      "size_bytes": 838
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/assertion_breakdown.png",
+      "size_bytes": 127288
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/assertion_summary.png",
+      "size_bytes": 128737
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/citation_network.png",
+      "size_bytes": 211858
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/cooccurrence_matrix.png",
+      "size_bytes": 216049
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/degree_distribution.png",
+      "size_bytes": 53483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/dendrogram.png",
+      "size_bytes": 116885
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/evidence_timeline.png",
+      "size_bytes": 172657
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/field_summary.png",
+      "size_bytes": 106376
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/figure_registry.json",
+      "size_bytes": 5686
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/growth_curve.png",
+      "size_bytes": 161738
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/hypothesis_dashboard.png",
+      "size_bytes": 89086
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/pca_embeddings.png",
+      "size_bytes": 277905
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/subfield_distribution.png",
+      "size_bytes": 112055
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/subfield_timeline.png",
+      "size_bytes": 157923
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/term_heatmap.png",
+      "size_bytes": 153566
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/topic_term_bars.png",
+      "size_bytes": 253162
+    },
+    {
+      "path": "snapshots/20260724T161303Z/figures/word_cloud.png",
+      "size_bytes": 575842
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/checkpoints/pipeline_checkpoint.json",
+      "size_bytes": 1511
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/00_abstract.md",
+      "size_bytes": 3157
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/01_introduction.md",
+      "size_bytes": 15151
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/02_methods_overview.md",
+      "size_bytes": 5334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/02a_methods_retrieval.md",
+      "size_bytes": 5032
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/02b_methods_extraction.md",
+      "size_bytes": 12386
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/02c_methods_bibliometrics.md",
+      "size_bytes": 3489
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/02d_methods_knowledge_graph.md",
+      "size_bytes": 8456
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/02e_methods_viz_injection.md",
+      "size_bytes": 2438
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/03_results_hypothesis.md",
+      "size_bytes": 13343
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/03a_results_field_overview.md",
+      "size_bytes": 7801
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/03b_results_subfields.md",
+      "size_bytes": 14816
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/03c_results_text_analytics.md",
+      "size_bytes": 7289
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/03d_results_citation_network.md",
+      "size_bytes": 4214
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/04_conclusion.md",
+      "size_bytes": 25291
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/04a_discussion.md",
+      "size_bytes": 11668
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/05_appendix_tooling.md",
+      "size_bytes": 24296
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/06_appendix_technical.md",
+      "size_bytes": 11455
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/07_appendix_accessibility.md",
+      "size_bytes": 11210
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/98_symbols_glossary.md",
+      "size_bytes": 17072
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/99_references.md",
+      "size_bytes": 793
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/AGENTS.md",
+      "size_bytes": 4002
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/README.md",
+      "size_bytes": 3334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/manifest/preamble.md",
+      "size_bytes": 3230
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/reextraction.log",
+      "size_bytes": 61633
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/render_logs/00_abstract.log",
+      "size_bytes": 1065
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/render_logs/_combined_manuscript.aux",
+      "size_bytes": 61693
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/render_logs/_combined_manuscript.log",
+      "size_bytes": 44962
+    },
+    {
+      "path": "snapshots/20260724T161303Z/interrupted_refresh_stale/render_logs/_combined_manuscript.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/00_abstract.md",
+      "size_bytes": 3157
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/01_introduction.md",
+      "size_bytes": 15151
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/02_methods_overview.md",
+      "size_bytes": 5334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/02a_methods_retrieval.md",
+      "size_bytes": 5032
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/02b_methods_extraction.md",
+      "size_bytes": 12386
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/02c_methods_bibliometrics.md",
+      "size_bytes": 3489
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/02d_methods_knowledge_graph.md",
+      "size_bytes": 8456
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/02e_methods_viz_injection.md",
+      "size_bytes": 2438
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/03_results_hypothesis.md",
+      "size_bytes": 13343
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/03a_results_field_overview.md",
+      "size_bytes": 7801
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/03b_results_subfields.md",
+      "size_bytes": 14816
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/03c_results_text_analytics.md",
+      "size_bytes": 7289
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/03d_results_citation_network.md",
+      "size_bytes": 4214
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/04_conclusion.md",
+      "size_bytes": 25291
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/04a_discussion.md",
+      "size_bytes": 11668
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/05_appendix_tooling.md",
+      "size_bytes": 24296
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/06_appendix_technical.md",
+      "size_bytes": 11455
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/07_appendix_accessibility.md",
+      "size_bytes": 11210
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/98_symbols_glossary.md",
+      "size_bytes": 17072
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/99_references.md",
+      "size_bytes": 793
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/AGENTS.md",
+      "size_bytes": 4002
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/README.md",
+      "size_bytes": 3334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/config.yaml",
+      "size_bytes": 13777
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/config.yaml.example",
+      "size_bytes": 1351
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/preamble.md",
+      "size_bytes": 3310
+    },
+    {
+      "path": "snapshots/20260724T161303Z/manuscript/references.bib",
+      "size_bytes": 26809
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_combined_manuscript.log",
+      "size_bytes": 69077
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_combined_manuscript.md",
+      "size_bytes": 205261
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_combined_manuscript.tex",
+      "size_bytes": 230700
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_combined_manuscript.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_combined_manuscript.txt",
+      "size_bytes": 69813
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_latex_stdout.log",
+      "size_bytes": 20419
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/00_abstract.md",
+      "size_bytes": 3157
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/01_introduction.md",
+      "size_bytes": 15151
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/02_methods_overview.md",
+      "size_bytes": 5334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/02a_methods_retrieval.md",
+      "size_bytes": 5032
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/02b_methods_extraction.md",
+      "size_bytes": 12386
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/02c_methods_bibliometrics.md",
+      "size_bytes": 3489
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/02d_methods_knowledge_graph.md",
+      "size_bytes": 8456
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/02e_methods_viz_injection.md",
+      "size_bytes": 2438
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/03_results_hypothesis.md",
+      "size_bytes": 13343
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/03a_results_field_overview.md",
+      "size_bytes": 7801
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/03b_results_subfields.md",
+      "size_bytes": 14816
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/03c_results_text_analytics.md",
+      "size_bytes": 7289
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/03d_results_citation_network.md",
+      "size_bytes": 4214
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/04_conclusion.md",
+      "size_bytes": 25291
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/04a_discussion.md",
+      "size_bytes": 11668
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/05_appendix_tooling.md",
+      "size_bytes": 24296
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/06_appendix_technical.md",
+      "size_bytes": 11455
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/07_appendix_accessibility.md",
+      "size_bytes": 11210
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/98_symbols_glossary.md",
+      "size_bytes": 17072
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/99_references.md",
+      "size_bytes": 793
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/AGENTS.md",
+      "size_bytes": 4002
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/README.md",
+      "size_bytes": 3334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_manuscript_sections/preamble.md",
+      "size_bytes": 3310
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/_xelatex_stdout.log",
+      "size_bytes": 14525
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/act_inf_metaanalysis_combined.pdf",
+      "size_bytes": 1226017
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/act_inf_metaanalysis_combined.pdf.bak",
+      "size_bytes": 3169179
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/act_inf_metaanalysis_combined_v2.pdf",
+      "size_bytes": 1226017
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pdf/references.bib",
+      "size_bytes": 26809
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/assertion_summary.json",
+      "size_bytes": 929
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/citation_graph.gml",
+      "size_bytes": 258241
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/citation_network.json",
+      "size_bytes": 1218
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/corpus.jsonl",
+      "size_bytes": 2320335
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/fulltext_assessment.json",
+      "size_bytes": 1311
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/hypothesis_scores.json",
+      "size_bytes": 330
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/hypothesis_sensitivity.json",
+      "size_bytes": 3091
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/hypothesis_trends.json",
+      "size_bytes": 3548
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/nanopublications.jsonl",
+      "size_bytes": 2426535
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/nanopublications.legacy.bak",
+      "size_bytes": 773593
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/nanopublications.trig",
+      "size_bytes": 5384554
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/subfield_classification.json",
+      "size_bytes": 175
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/subfield_timeline.json",
+      "size_bytes": 2045
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/temporal_analysis.json",
+      "size_bytes": 1558
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/tfidf_data.json",
+      "size_bytes": 3652219
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/topics.json",
+      "size_bytes": 4173
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/data/validation_metrics.json",
+      "size_bytes": 838
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/assertion_breakdown.png",
+      "size_bytes": 127288
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/assertion_summary.png",
+      "size_bytes": 128737
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/citation_network.png",
+      "size_bytes": 211858
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/cooccurrence_matrix.png",
+      "size_bytes": 216049
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/degree_distribution.png",
+      "size_bytes": 53483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/dendrogram.png",
+      "size_bytes": 116885
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/evidence_timeline.png",
+      "size_bytes": 172657
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/field_summary.png",
+      "size_bytes": 106376
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/figure_registry.json",
+      "size_bytes": 5686
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/growth_curve.png",
+      "size_bytes": 161738
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/hypothesis_dashboard.png",
+      "size_bytes": 89086
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/pca_embeddings.png",
+      "size_bytes": 277905
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/subfield_distribution.png",
+      "size_bytes": 112055
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/subfield_timeline.png",
+      "size_bytes": 157923
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/term_heatmap.png",
+      "size_bytes": 153566
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/topic_term_bars.png",
+      "size_bytes": 253162
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/figures/word_cloud.png",
+      "size_bytes": 575842
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/logs/pipeline.log",
+      "size_bytes": 2549
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/00_abstract.md",
+      "size_bytes": 3157
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/01_introduction.md",
+      "size_bytes": 15151
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/02_methods_overview.md",
+      "size_bytes": 5334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/02a_methods_retrieval.md",
+      "size_bytes": 5032
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/02b_methods_extraction.md",
+      "size_bytes": 12386
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/02c_methods_bibliometrics.md",
+      "size_bytes": 3489
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/02d_methods_knowledge_graph.md",
+      "size_bytes": 8456
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/02e_methods_viz_injection.md",
+      "size_bytes": 2438
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/03_results_hypothesis.md",
+      "size_bytes": 13343
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/03a_results_field_overview.md",
+      "size_bytes": 7801
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/03b_results_subfields.md",
+      "size_bytes": 14816
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/03c_results_text_analytics.md",
+      "size_bytes": 7289
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/03d_results_citation_network.md",
+      "size_bytes": 4214
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/04_conclusion.md",
+      "size_bytes": 25291
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/04a_discussion.md",
+      "size_bytes": 11668
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/05_appendix_tooling.md",
+      "size_bytes": 24296
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/06_appendix_technical.md",
+      "size_bytes": 11455
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/07_appendix_accessibility.md",
+      "size_bytes": 11210
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/98_symbols_glossary.md",
+      "size_bytes": 17072
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/99_references.md",
+      "size_bytes": 793
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/AGENTS.md",
+      "size_bytes": 4002
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/README.md",
+      "size_bytes": 3334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/config.yaml",
+      "size_bytes": 13777
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/config.yaml.example",
+      "size_bytes": 1351
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/preamble.md",
+      "size_bytes": 3310
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/manuscript/references.bib",
+      "size_bytes": 26809
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_combined_manuscript.log",
+      "size_bytes": 69077
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_combined_manuscript.md",
+      "size_bytes": 205261
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_combined_manuscript.tex",
+      "size_bytes": 230700
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_combined_manuscript.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_combined_manuscript.txt",
+      "size_bytes": 69813
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_latex_stdout.log",
+      "size_bytes": 20419
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/00_abstract.md",
+      "size_bytes": 3157
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/01_introduction.md",
+      "size_bytes": 15151
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/02_methods_overview.md",
+      "size_bytes": 5334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/02a_methods_retrieval.md",
+      "size_bytes": 5032
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/02b_methods_extraction.md",
+      "size_bytes": 12386
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/02c_methods_bibliometrics.md",
+      "size_bytes": 3489
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/02d_methods_knowledge_graph.md",
+      "size_bytes": 8456
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/02e_methods_viz_injection.md",
+      "size_bytes": 2438
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/03_results_hypothesis.md",
+      "size_bytes": 13343
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/03a_results_field_overview.md",
+      "size_bytes": 7801
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/03b_results_subfields.md",
+      "size_bytes": 14816
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/03c_results_text_analytics.md",
+      "size_bytes": 7289
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/03d_results_citation_network.md",
+      "size_bytes": 4214
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/04_conclusion.md",
+      "size_bytes": 25291
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/04a_discussion.md",
+      "size_bytes": 11668
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/05_appendix_tooling.md",
+      "size_bytes": 24296
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/06_appendix_technical.md",
+      "size_bytes": 11455
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/07_appendix_accessibility.md",
+      "size_bytes": 11210
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/98_symbols_glossary.md",
+      "size_bytes": 17072
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/99_references.md",
+      "size_bytes": 793
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/AGENTS.md",
+      "size_bytes": 4002
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/README.md",
+      "size_bytes": 3334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_manuscript_sections/preamble.md",
+      "size_bytes": 3310
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/_xelatex_stdout.log",
+      "size_bytes": 14525
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/act_inf_metaanalysis_combined.pdf",
+      "size_bytes": 1226017
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/act_inf_metaanalysis_combined.pdf.bak",
+      "size_bytes": 3169179
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/act_inf_metaanalysis_combined_v2.pdf",
+      "size_bytes": 1226017
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/pdf/references.bib",
+      "size_bytes": 26809
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/diagnostics.json",
+      "size_bytes": 41048
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/extraction_provenance_summary.json",
+      "size_bytes": 304
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/output_statistics.json",
+      "size_bytes": 7270
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/output_statistics.txt",
+      "size_bytes": 945
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/telemetry.json",
+      "size_bytes": 3082
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/telemetry.txt",
+      "size_bytes": 1203
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/test_results.json",
+      "size_bytes": 7232
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/test_results.md",
+      "size_bytes": 293
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/validation_metrics.json",
+      "size_bytes": 838
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/validation_report.json",
+      "size_bytes": 4417
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/validation_report.md",
+      "size_bytes": 202
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/reports/zenodo_deposit_metadata.json",
+      "size_bytes": 492
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/00_abstract_slides.aux",
+      "size_bytes": 1158
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/00_abstract_slides.log",
+      "size_bytes": 65203
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/00_abstract_slides.nav",
+      "size_bytes": 631
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/00_abstract_slides.pdf",
+      "size_bytes": 20535
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/00_abstract_slides.snm",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/00_abstract_slides.tex",
+      "size_bytes": 7300
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/00_abstract_slides.toc",
+      "size_bytes": 44
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/01_introduction_slides.aux",
+      "size_bytes": 5576
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/01_introduction_slides.log",
+      "size_bytes": 67618
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/01_introduction_slides.nav",
+      "size_bytes": 2088
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/01_introduction_slides.pdf",
+      "size_bytes": 46835
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/01_introduction_slides.snm",
+      "size_bytes": 433
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/01_introduction_slides.tex",
+      "size_bytes": 20414
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/01_introduction_slides.toc",
+      "size_bytes": 92
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/01_introduction_slides.vrb",
+      "size_bytes": 3652
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02_methods_overview_slides.aux",
+      "size_bytes": 2923
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02_methods_overview_slides.log",
+      "size_bytes": 67089
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02_methods_overview_slides.nav",
+      "size_bytes": 895
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02_methods_overview_slides.pdf",
+      "size_bytes": 36261
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02_methods_overview_slides.snm",
+      "size_bytes": 191
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02_methods_overview_slides.tex",
+      "size_bytes": 9989
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02_methods_overview_slides.toc",
+      "size_bytes": 88
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02_methods_overview_slides.vrb",
+      "size_bytes": 2883
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02a_methods_retrieval_slides.aux",
+      "size_bytes": 2415
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02a_methods_retrieval_slides.log",
+      "size_bytes": 65533
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02a_methods_retrieval_slides.nav",
+      "size_bytes": 659
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02a_methods_retrieval_slides.pdf",
+      "size_bytes": 26535
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02a_methods_retrieval_slides.snm",
+      "size_bytes": 390
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02a_methods_retrieval_slides.tex",
+      "size_bytes": 9629
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02a_methods_retrieval_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02a_methods_retrieval_slides.vrb",
+      "size_bytes": 5546
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02b_methods_extraction_slides.aux",
+      "size_bytes": 3399
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02b_methods_extraction_slides.log",
+      "size_bytes": 68743
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02b_methods_extraction_slides.nav",
+      "size_bytes": 395
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02b_methods_extraction_slides.pdf",
+      "size_bytes": 49540
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02b_methods_extraction_slides.snm",
+      "size_bytes": 866
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02b_methods_extraction_slides.tex",
+      "size_bytes": 20825
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02b_methods_extraction_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02b_methods_extraction_slides.vrb",
+      "size_bytes": 14385
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02c_methods_bibliometrics_slides.aux",
+      "size_bytes": 1745
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02c_methods_bibliometrics_slides.log",
+      "size_bytes": 65925
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02c_methods_bibliometrics_slides.nav",
+      "size_bytes": 395
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02c_methods_bibliometrics_slides.pdf",
+      "size_bytes": 28937
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02c_methods_bibliometrics_slides.snm",
+      "size_bytes": 328
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02c_methods_bibliometrics_slides.tex",
+      "size_bytes": 8042
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02c_methods_bibliometrics_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02c_methods_bibliometrics_slides.vrb",
+      "size_bytes": 3959
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02d_methods_knowledge_graph_slides.aux",
+      "size_bytes": 2525
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02d_methods_knowledge_graph_slides.log",
+      "size_bytes": 67937
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02d_methods_knowledge_graph_slides.nav",
+      "size_bytes": 483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02d_methods_knowledge_graph_slides.pdf",
+      "size_bytes": 45709
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02d_methods_knowledge_graph_slides.snm",
+      "size_bytes": 528
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02d_methods_knowledge_graph_slides.tex",
+      "size_bytes": 13414
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02d_methods_knowledge_graph_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02d_methods_knowledge_graph_slides.vrb",
+      "size_bytes": 9331
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02e_methods_viz_injection_slides.aux",
+      "size_bytes": 1962
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02e_methods_viz_injection_slides.log",
+      "size_bytes": 65362
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02e_methods_viz_injection_slides.nav",
+      "size_bytes": 483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02e_methods_viz_injection_slides.pdf",
+      "size_bytes": 18290
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02e_methods_viz_injection_slides.snm",
+      "size_bytes": 347
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02e_methods_viz_injection_slides.tex",
+      "size_bytes": 6961
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02e_methods_viz_injection_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/02e_methods_viz_injection_slides.vrb",
+      "size_bytes": 2878
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03_results_hypothesis_slides.aux",
+      "size_bytes": 5748
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03_results_hypothesis_slides.log",
+      "size_bytes": 69551
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03_results_hypothesis_slides.nav",
+      "size_bytes": 895
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03_results_hypothesis_slides.pdf",
+      "size_bytes": 583693
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03_results_hypothesis_slides.snm",
+      "size_bytes": 970
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03_results_hypothesis_slides.tex",
+      "size_bytes": 18316
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03_results_hypothesis_slides.toc",
+      "size_bytes": 44
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03_results_hypothesis_slides.vrb",
+      "size_bytes": 14152
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03a_results_field_overview_slides.aux",
+      "size_bytes": 2749
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03a_results_field_overview_slides.log",
+      "size_bytes": 72357
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03a_results_field_overview_slides.nav",
+      "size_bytes": 483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03a_results_field_overview_slides.pdf",
+      "size_bytes": 572305
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03a_results_field_overview_slides.snm",
+      "size_bytes": 600
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03a_results_field_overview_slides.tex",
+      "size_bytes": 12210
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03a_results_field_overview_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03b_results_subfields_slides.aux",
+      "size_bytes": 3444
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03b_results_subfields_slides.log",
+      "size_bytes": 68425
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03b_results_subfields_slides.nav",
+      "size_bytes": 395
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03b_results_subfields_slides.pdf",
+      "size_bytes": 42652
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03b_results_subfields_slides.snm",
+      "size_bytes": 881
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03b_results_subfields_slides.tex",
+      "size_bytes": 20170
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03b_results_subfields_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03c_results_text_analytics_slides.aux",
+      "size_bytes": 2620
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03c_results_text_analytics_slides.log",
+      "size_bytes": 69163
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03c_results_text_analytics_slides.nav",
+      "size_bytes": 307
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03c_results_text_analytics_slides.pdf",
+      "size_bytes": 1673211
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03c_results_text_analytics_slides.snm",
+      "size_bytes": 662
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03c_results_text_analytics_slides.tex",
+      "size_bytes": 12002
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03c_results_text_analytics_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03d_results_citation_network_slides.aux",
+      "size_bytes": 2268
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03d_results_citation_network_slides.log",
+      "size_bytes": 68334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03d_results_citation_network_slides.nav",
+      "size_bytes": 483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03d_results_citation_network_slides.pdf",
+      "size_bytes": 284282
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03d_results_citation_network_slides.snm",
+      "size_bytes": 445
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03d_results_citation_network_slides.tex",
+      "size_bytes": 8621
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/03d_results_citation_network_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04_conclusion_slides.aux",
+      "size_bytes": 11680
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04_conclusion_slides.log",
+      "size_bytes": 68084
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04_conclusion_slides.nav",
+      "size_bytes": 1948
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04_conclusion_slides.pdf",
+      "size_bytes": 67455
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04_conclusion_slides.snm",
+      "size_bytes": 1199
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04_conclusion_slides.tex",
+      "size_bytes": 31545
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04_conclusion_slides.toc",
+      "size_bytes": 116
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04_conclusion_slides.vrb",
+      "size_bytes": 9876
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04a_discussion_slides.aux",
+      "size_bytes": 8149
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04a_discussion_slides.log",
+      "size_bytes": 65829
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04a_discussion_slides.nav",
+      "size_bytes": 1902
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04a_discussion_slides.pdf",
+      "size_bytes": 47864
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04a_discussion_slides.snm",
+      "size_bytes": 780
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04a_discussion_slides.tex",
+      "size_bytes": 17449
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04a_discussion_slides.toc",
+      "size_bytes": 91
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/04a_discussion_slides.vrb",
+      "size_bytes": 3407
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/05_appendix_tooling_slides.aux",
+      "size_bytes": 8375
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/05_appendix_tooling_slides.log",
+      "size_bytes": 184717
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/05_appendix_tooling_slides.nav",
+      "size_bytes": 1590
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/05_appendix_tooling_slides.pdf",
+      "size_bytes": 58174
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/05_appendix_tooling_slides.snm",
+      "size_bytes": 898
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/05_appendix_tooling_slides.tex",
+      "size_bytes": 29956
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/05_appendix_tooling_slides.toc",
+      "size_bytes": 73
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/05_appendix_tooling_slides.vrb",
+      "size_bytes": 17065
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/06_appendix_technical_slides.aux",
+      "size_bytes": 13479
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/06_appendix_technical_slides.log",
+      "size_bytes": 72619
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/06_appendix_technical_slides.nav",
+      "size_bytes": 1884
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/06_appendix_technical_slides.pdf",
+      "size_bytes": 68365
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/06_appendix_technical_slides.snm",
+      "size_bytes": 1513
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/06_appendix_technical_slides.tex",
+      "size_bytes": 20447
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/06_appendix_technical_slides.toc",
+      "size_bytes": 83
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/06_appendix_technical_slides.vrb",
+      "size_bytes": 5040
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/07_appendix_accessibility_slides.aux",
+      "size_bytes": 6387
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/07_appendix_accessibility_slides.log",
+      "size_bytes": 68528
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/07_appendix_accessibility_slides.nav",
+      "size_bytes": 1598
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/07_appendix_accessibility_slides.pdf",
+      "size_bytes": 46392
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/07_appendix_accessibility_slides.snm",
+      "size_bytes": 488
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/07_appendix_accessibility_slides.tex",
+      "size_bytes": 16338
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/07_appendix_accessibility_slides.toc",
+      "size_bytes": 125
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/07_appendix_accessibility_slides.vrb",
+      "size_bytes": 1746
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/98_symbols_glossary_slides.aux",
+      "size_bytes": 4815
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/98_symbols_glossary_slides.log",
+      "size_bytes": 105381
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/98_symbols_glossary_slides.nav",
+      "size_bytes": 1852
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/98_symbols_glossary_slides.pdf",
+      "size_bytes": 62322
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/98_symbols_glossary_slides.snm",
+      "size_bytes": 367
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/98_symbols_glossary_slides.tex",
+      "size_bytes": 21663
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/98_symbols_glossary_slides.toc",
+      "size_bytes": 73
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/99_references_slides.aux",
+      "size_bytes": 1025
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/99_references_slides.log",
+      "size_bytes": 63107
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/99_references_slides.nav",
+      "size_bytes": 547
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/99_references_slides.pdf",
+      "size_bytes": 11269
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/99_references_slides.snm",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/99_references_slides.tex",
+      "size_bytes": 4651
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/99_references_slides.toc",
+      "size_bytes": 46
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/99_references_slides.vrb",
+      "size_bytes": 527
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/slides/_slides_math_header.tex",
+      "size_bytes": 1339
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/validation/labels_assistant.csv",
+      "size_bytes": 147836
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/validation/labels_human.csv",
+      "size_bytes": 147836
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/validation/labels_rule_reference.csv",
+      "size_bytes": 199378
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/validation/sample.csv",
+      "size_bytes": 178418
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/00_abstract.html",
+      "size_bytes": 7584
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/01_introduction.html",
+      "size_bytes": 18358
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/02_methods_overview.html",
+      "size_bytes": 8032
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/02a_methods_retrieval.html",
+      "size_bytes": 9409
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/02b_methods_extraction.html",
+      "size_bytes": 16011
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/02c_methods_bibliometrics.html",
+      "size_bytes": 7795
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/02d_methods_knowledge_graph.html",
+      "size_bytes": 12678
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/02e_methods_viz_injection.html",
+      "size_bytes": 6679
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/03_results_hypothesis.html",
+      "size_bytes": 14038
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/03a_results_field_overview.html",
+      "size_bytes": 7644
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/03b_results_subfields.html",
+      "size_bytes": 17910
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/03c_results_text_analytics.html",
+      "size_bytes": 8395
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/03d_results_citation_network.html",
+      "size_bytes": 7087
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/04_conclusion.html",
+      "size_bytes": 29234
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/04a_discussion.html",
+      "size_bytes": 16604
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/05_appendix_tooling.html",
+      "size_bytes": 20263
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/06_appendix_technical.html",
+      "size_bytes": 16505
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/07_appendix_accessibility.html",
+      "size_bytes": 12007
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/98_symbols_glossary.html",
+      "size_bytes": 5910
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/99_references.html",
+      "size_bytes": 4623
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/_combined_manuscript.md",
+      "size_bytes": 204881
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/favicon.ico",
+      "size_bytes": 121
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/index.html",
+      "size_bytes": 225468
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__00_abstract.html",
+      "size_bytes": 8569
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__01_introduction.html",
+      "size_bytes": 19641
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__02_methods_overview.html",
+      "size_bytes": 8299
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__02a_methods_retrieval.html",
+      "size_bytes": 10692
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__02b_methods_extraction.html",
+      "size_bytes": 17519
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__02c_methods_bibliometrics.html",
+      "size_bytes": 9078
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__02d_methods_knowledge_graph.html",
+      "size_bytes": 13961
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__02e_methods_viz_injection.html",
+      "size_bytes": 7962
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__03_results_hypothesis.html",
+      "size_bytes": 16681
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__03a_results_field_overview.html",
+      "size_bytes": 8912
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__03b_results_subfields.html",
+      "size_bytes": 19195
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__03c_results_text_analytics.html",
+      "size_bytes": 9666
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__03d_results_citation_network.html",
+      "size_bytes": 8370
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__04_conclusion.html",
+      "size_bytes": 31214
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__04a_discussion.html",
+      "size_bytes": 17887
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__05_appendix_tooling.html",
+      "size_bytes": 21695
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__06_appendix_technical.html",
+      "size_bytes": 17971
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__07_appendix_accessibility.html",
+      "size_bytes": 12274
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__98_symbols_glossary.html",
+      "size_bytes": 7193
+    },
+    {
+      "path": "snapshots/20260724T161303Z/pre_refresh_live/web/manuscript__99_references.html",
+      "size_bytes": 4890
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/diagnostics.json",
+      "size_bytes": 41048
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/extraction_provenance_summary.json",
+      "size_bytes": 304
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/output_statistics.json",
+      "size_bytes": 7270
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/output_statistics.txt",
+      "size_bytes": 945
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/telemetry.json",
+      "size_bytes": 3082
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/telemetry.txt",
+      "size_bytes": 1203
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/test_results.json",
+      "size_bytes": 7232
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/test_results.md",
+      "size_bytes": 293
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/validation_metrics.json",
+      "size_bytes": 838
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/validation_report.json",
+      "size_bytes": 4417
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/validation_report.md",
+      "size_bytes": 202
+    },
+    {
+      "path": "snapshots/20260724T161303Z/reports/zenodo_deposit_metadata.json",
+      "size_bytes": 492
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/00_abstract_slides.aux",
+      "size_bytes": 1158
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/00_abstract_slides.log",
+      "size_bytes": 65203
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/00_abstract_slides.nav",
+      "size_bytes": 631
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/00_abstract_slides.pdf",
+      "size_bytes": 20535
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/00_abstract_slides.snm",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/00_abstract_slides.tex",
+      "size_bytes": 7300
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/00_abstract_slides.toc",
+      "size_bytes": 44
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/01_introduction_slides.aux",
+      "size_bytes": 5576
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/01_introduction_slides.log",
+      "size_bytes": 67618
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/01_introduction_slides.nav",
+      "size_bytes": 2088
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/01_introduction_slides.pdf",
+      "size_bytes": 46835
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/01_introduction_slides.snm",
+      "size_bytes": 433
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/01_introduction_slides.tex",
+      "size_bytes": 20414
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/01_introduction_slides.toc",
+      "size_bytes": 92
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/01_introduction_slides.vrb",
+      "size_bytes": 3652
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02_methods_overview_slides.aux",
+      "size_bytes": 2923
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02_methods_overview_slides.log",
+      "size_bytes": 67089
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02_methods_overview_slides.nav",
+      "size_bytes": 895
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02_methods_overview_slides.pdf",
+      "size_bytes": 36261
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02_methods_overview_slides.snm",
+      "size_bytes": 191
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02_methods_overview_slides.tex",
+      "size_bytes": 9989
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02_methods_overview_slides.toc",
+      "size_bytes": 88
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02_methods_overview_slides.vrb",
+      "size_bytes": 2883
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02a_methods_retrieval_slides.aux",
+      "size_bytes": 2415
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02a_methods_retrieval_slides.log",
+      "size_bytes": 65533
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02a_methods_retrieval_slides.nav",
+      "size_bytes": 659
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02a_methods_retrieval_slides.pdf",
+      "size_bytes": 26535
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02a_methods_retrieval_slides.snm",
+      "size_bytes": 390
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02a_methods_retrieval_slides.tex",
+      "size_bytes": 9629
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02a_methods_retrieval_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02a_methods_retrieval_slides.vrb",
+      "size_bytes": 5546
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02b_methods_extraction_slides.aux",
+      "size_bytes": 3399
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02b_methods_extraction_slides.log",
+      "size_bytes": 68743
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02b_methods_extraction_slides.nav",
+      "size_bytes": 395
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02b_methods_extraction_slides.pdf",
+      "size_bytes": 49540
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02b_methods_extraction_slides.snm",
+      "size_bytes": 866
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02b_methods_extraction_slides.tex",
+      "size_bytes": 20825
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02b_methods_extraction_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02b_methods_extraction_slides.vrb",
+      "size_bytes": 14385
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02c_methods_bibliometrics_slides.aux",
+      "size_bytes": 1745
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02c_methods_bibliometrics_slides.log",
+      "size_bytes": 65925
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02c_methods_bibliometrics_slides.nav",
+      "size_bytes": 395
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02c_methods_bibliometrics_slides.pdf",
+      "size_bytes": 28937
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02c_methods_bibliometrics_slides.snm",
+      "size_bytes": 328
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02c_methods_bibliometrics_slides.tex",
+      "size_bytes": 8042
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02c_methods_bibliometrics_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02c_methods_bibliometrics_slides.vrb",
+      "size_bytes": 3959
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02d_methods_knowledge_graph_slides.aux",
+      "size_bytes": 2525
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02d_methods_knowledge_graph_slides.log",
+      "size_bytes": 67937
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02d_methods_knowledge_graph_slides.nav",
+      "size_bytes": 483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02d_methods_knowledge_graph_slides.pdf",
+      "size_bytes": 45709
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02d_methods_knowledge_graph_slides.snm",
+      "size_bytes": 528
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02d_methods_knowledge_graph_slides.tex",
+      "size_bytes": 13414
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02d_methods_knowledge_graph_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02d_methods_knowledge_graph_slides.vrb",
+      "size_bytes": 9331
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02e_methods_viz_injection_slides.aux",
+      "size_bytes": 1962
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02e_methods_viz_injection_slides.log",
+      "size_bytes": 65362
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02e_methods_viz_injection_slides.nav",
+      "size_bytes": 483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02e_methods_viz_injection_slides.pdf",
+      "size_bytes": 18290
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02e_methods_viz_injection_slides.snm",
+      "size_bytes": 347
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02e_methods_viz_injection_slides.tex",
+      "size_bytes": 6961
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02e_methods_viz_injection_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/02e_methods_viz_injection_slides.vrb",
+      "size_bytes": 2878
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03_results_hypothesis_slides.aux",
+      "size_bytes": 5748
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03_results_hypothesis_slides.log",
+      "size_bytes": 69551
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03_results_hypothesis_slides.nav",
+      "size_bytes": 895
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03_results_hypothesis_slides.pdf",
+      "size_bytes": 583693
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03_results_hypothesis_slides.snm",
+      "size_bytes": 970
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03_results_hypothesis_slides.tex",
+      "size_bytes": 18316
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03_results_hypothesis_slides.toc",
+      "size_bytes": 44
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03_results_hypothesis_slides.vrb",
+      "size_bytes": 14152
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03a_results_field_overview_slides.aux",
+      "size_bytes": 2749
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03a_results_field_overview_slides.log",
+      "size_bytes": 72357
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03a_results_field_overview_slides.nav",
+      "size_bytes": 483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03a_results_field_overview_slides.pdf",
+      "size_bytes": 572305
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03a_results_field_overview_slides.snm",
+      "size_bytes": 600
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03a_results_field_overview_slides.tex",
+      "size_bytes": 12210
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03a_results_field_overview_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03b_results_subfields_slides.aux",
+      "size_bytes": 3444
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03b_results_subfields_slides.log",
+      "size_bytes": 68425
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03b_results_subfields_slides.nav",
+      "size_bytes": 395
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03b_results_subfields_slides.pdf",
+      "size_bytes": 42652
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03b_results_subfields_slides.snm",
+      "size_bytes": 881
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03b_results_subfields_slides.tex",
+      "size_bytes": 20170
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03b_results_subfields_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03c_results_text_analytics_slides.aux",
+      "size_bytes": 2620
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03c_results_text_analytics_slides.log",
+      "size_bytes": 69163
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03c_results_text_analytics_slides.nav",
+      "size_bytes": 307
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03c_results_text_analytics_slides.pdf",
+      "size_bytes": 1673211
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03c_results_text_analytics_slides.snm",
+      "size_bytes": 662
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03c_results_text_analytics_slides.tex",
+      "size_bytes": 12002
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03c_results_text_analytics_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03d_results_citation_network_slides.aux",
+      "size_bytes": 2268
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03d_results_citation_network_slides.log",
+      "size_bytes": 68334
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03d_results_citation_network_slides.nav",
+      "size_bytes": 483
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03d_results_citation_network_slides.pdf",
+      "size_bytes": 284282
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03d_results_citation_network_slides.snm",
+      "size_bytes": 445
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03d_results_citation_network_slides.tex",
+      "size_bytes": 8621
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/03d_results_citation_network_slides.toc",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04_conclusion_slides.aux",
+      "size_bytes": 11680
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04_conclusion_slides.log",
+      "size_bytes": 68084
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04_conclusion_slides.nav",
+      "size_bytes": 1948
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04_conclusion_slides.pdf",
+      "size_bytes": 67455
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04_conclusion_slides.snm",
+      "size_bytes": 1199
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04_conclusion_slides.tex",
+      "size_bytes": 31545
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04_conclusion_slides.toc",
+      "size_bytes": 116
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04_conclusion_slides.vrb",
+      "size_bytes": 9876
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04a_discussion_slides.aux",
+      "size_bytes": 8149
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04a_discussion_slides.log",
+      "size_bytes": 65829
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04a_discussion_slides.nav",
+      "size_bytes": 1902
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04a_discussion_slides.pdf",
+      "size_bytes": 47864
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04a_discussion_slides.snm",
+      "size_bytes": 780
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04a_discussion_slides.tex",
+      "size_bytes": 17449
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04a_discussion_slides.toc",
+      "size_bytes": 91
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/04a_discussion_slides.vrb",
+      "size_bytes": 3407
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/05_appendix_tooling_slides.aux",
+      "size_bytes": 8375
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/05_appendix_tooling_slides.log",
+      "size_bytes": 184717
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/05_appendix_tooling_slides.nav",
+      "size_bytes": 1590
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/05_appendix_tooling_slides.pdf",
+      "size_bytes": 58174
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/05_appendix_tooling_slides.snm",
+      "size_bytes": 898
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/05_appendix_tooling_slides.tex",
+      "size_bytes": 29956
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/05_appendix_tooling_slides.toc",
+      "size_bytes": 73
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/05_appendix_tooling_slides.vrb",
+      "size_bytes": 17065
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/06_appendix_technical_slides.aux",
+      "size_bytes": 13479
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/06_appendix_technical_slides.log",
+      "size_bytes": 72619
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/06_appendix_technical_slides.nav",
+      "size_bytes": 1884
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/06_appendix_technical_slides.pdf",
+      "size_bytes": 68365
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/06_appendix_technical_slides.snm",
+      "size_bytes": 1513
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/06_appendix_technical_slides.tex",
+      "size_bytes": 20447
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/06_appendix_technical_slides.toc",
+      "size_bytes": 83
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/06_appendix_technical_slides.vrb",
+      "size_bytes": 5040
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/07_appendix_accessibility_slides.aux",
+      "size_bytes": 6387
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/07_appendix_accessibility_slides.log",
+      "size_bytes": 68528
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/07_appendix_accessibility_slides.nav",
+      "size_bytes": 1598
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/07_appendix_accessibility_slides.pdf",
+      "size_bytes": 46392
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/07_appendix_accessibility_slides.snm",
+      "size_bytes": 488
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/07_appendix_accessibility_slides.tex",
+      "size_bytes": 16338
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/07_appendix_accessibility_slides.toc",
+      "size_bytes": 125
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/07_appendix_accessibility_slides.vrb",
+      "size_bytes": 1746
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/98_symbols_glossary_slides.aux",
+      "size_bytes": 4815
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/98_symbols_glossary_slides.log",
+      "size_bytes": 105381
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/98_symbols_glossary_slides.nav",
+      "size_bytes": 1852
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/98_symbols_glossary_slides.pdf",
+      "size_bytes": 62322
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/98_symbols_glossary_slides.snm",
+      "size_bytes": 367
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/98_symbols_glossary_slides.tex",
+      "size_bytes": 21663
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/98_symbols_glossary_slides.toc",
+      "size_bytes": 73
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/99_references_slides.aux",
+      "size_bytes": 1025
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/99_references_slides.log",
+      "size_bytes": 63107
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/99_references_slides.nav",
+      "size_bytes": 547
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/99_references_slides.pdf",
+      "size_bytes": 11269
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/99_references_slides.snm",
+      "size_bytes": 0
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/99_references_slides.tex",
+      "size_bytes": 4651
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/99_references_slides.toc",
+      "size_bytes": 46
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/99_references_slides.vrb",
+      "size_bytes": 527
+    },
+    {
+      "path": "snapshots/20260724T161303Z/slides/_slides_math_header.tex",
+      "size_bytes": 1339
+    },
+    {
+      "path": "snapshots/20260724T161303Z/validation/labels_assistant.csv",
+      "size_bytes": 147836
+    },
+    {
+      "path": "snapshots/20260724T161303Z/validation/labels_human.csv",
+      "size_bytes": 147836
+    },
+    {
+      "path": "snapshots/20260724T161303Z/validation/labels_rule_reference.csv",
+      "size_bytes": 199378
+    },
+    {
+      "path": "snapshots/20260724T161303Z/validation/sample.csv",
+      "size_bytes": 178418
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/00_abstract.html",
+      "size_bytes": 7584
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/01_introduction.html",
+      "size_bytes": 18358
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/02_methods_overview.html",
+      "size_bytes": 8032
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/02a_methods_retrieval.html",
+      "size_bytes": 9409
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/02b_methods_extraction.html",
+      "size_bytes": 16011
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/02c_methods_bibliometrics.html",
+      "size_bytes": 7795
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/02d_methods_knowledge_graph.html",
+      "size_bytes": 12678
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/02e_methods_viz_injection.html",
+      "size_bytes": 6679
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/03_results_hypothesis.html",
+      "size_bytes": 14038
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/03a_results_field_overview.html",
+      "size_bytes": 7644
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/03b_results_subfields.html",
+      "size_bytes": 17910
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/03c_results_text_analytics.html",
+      "size_bytes": 8395
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/03d_results_citation_network.html",
+      "size_bytes": 7087
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/04_conclusion.html",
+      "size_bytes": 29234
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/04a_discussion.html",
+      "size_bytes": 16604
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/05_appendix_tooling.html",
+      "size_bytes": 20263
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/06_appendix_technical.html",
+      "size_bytes": 16505
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/07_appendix_accessibility.html",
+      "size_bytes": 12007
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/98_symbols_glossary.html",
+      "size_bytes": 5910
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/99_references.html",
+      "size_bytes": 4623
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/_combined_manuscript.md",
+      "size_bytes": 204881
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/favicon.ico",
+      "size_bytes": 121
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/index.html",
+      "size_bytes": 225468
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__00_abstract.html",
+      "size_bytes": 8569
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__01_introduction.html",
+      "size_bytes": 19641
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__02_methods_overview.html",
+      "size_bytes": 8299
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__02a_methods_retrieval.html",
+      "size_bytes": 10692
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__02b_methods_extraction.html",
+      "size_bytes": 17519
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__02c_methods_bibliometrics.html",
+      "size_bytes": 9078
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__02d_methods_knowledge_graph.html",
+      "size_bytes": 13961
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__02e_methods_viz_injection.html",
+      "size_bytes": 7962
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__03_results_hypothesis.html",
+      "size_bytes": 16681
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__03a_results_field_overview.html",
+      "size_bytes": 8912
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__03b_results_subfields.html",
+      "size_bytes": 19195
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__03c_results_text_analytics.html",
+      "size_bytes": 9666
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__03d_results_citation_network.html",
+      "size_bytes": 8370
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__04_conclusion.html",
+      "size_bytes": 31214
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__04a_discussion.html",
+      "size_bytes": 17887
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__05_appendix_tooling.html",
+      "size_bytes": 21695
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__06_appendix_technical.html",
+      "size_bytes": 17971
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__07_appendix_accessibility.html",
+      "size_bytes": 12274
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__98_symbols_glossary.html",
+      "size_bytes": 7193
+    },
+    {
+      "path": "snapshots/20260724T161303Z/web/manuscript__99_references.html",
+      "size_bytes": 4890
+    },
+    {
+      "path": "validation/fulltext_pilot_protocol.md",
+      "size_bytes": 375
+    },
+    {
+      "path": "validation/fulltext_pilot_queue.csv",
+      "size_bytes": 66512
+    },
+    {
+      "path": "validation/human_calibration_protocol.md",
+      "size_bytes": 477
+    },
+    {
+      "path": "validation/human_calibration_queue.csv",
+      "size_bytes": 158419
+    },
+    {
+      "path": "validation/labels_rule_reference.csv",
+      "size_bytes": 226222
+    },
+    {
+      "path": "validation/pilot_manifest.json",
+      "size_bytes": 341
+    },
+    {
+      "path": "validation/sample.csv",
+      "size_bytes": 198207
+    },
+    {
+      "path": "web/_combined_manuscript.md",
+      "size_bytes": 199536
+    },
+    {
+      "path": "web/favicon.ico",
+      "size_bytes": 121
+    },
+    {
+      "path": "web/index.html",
+      "size_bytes": 219912
+    },
+    {
+      "path": "web/manuscript__00_abstract.html",
+      "size_bytes": 9223
+    },
+    {
+      "path": "web/manuscript__01_introduction.html",
+      "size_bytes": 19621
+    },
+    {
+      "path": "web/manuscript__02_methods_overview.html",
+      "size_bytes": 7335
+    },
+    {
+      "path": "web/manuscript__02a_methods_retrieval.html",
+      "size_bytes": 10580
+    },
+    {
+      "path": "web/manuscript__02b_methods_extraction.html",
+      "size_bytes": 17109
+    },
+    {
+      "path": "web/manuscript__02c_methods_bibliometrics.html",
+      "size_bytes": 9126
+    },
+    {
+      "path": "web/manuscript__02d_methods_knowledge_graph.html",
+      "size_bytes": 13952
+    },
+    {
+      "path": "web/manuscript__02e_methods_viz_injection.html",
+      "size_bytes": 8057
+    },
+    {
+      "path": "web/manuscript__03_results_hypothesis.html",
+      "size_bytes": 13822
+    },
+    {
+      "path": "web/manuscript__03a_results_field_overview.html",
+      "size_bytes": 8688
+    },
+    {
+      "path": "web/manuscript__03b_results_subfields.html",
+      "size_bytes": 18943
+    },
+    {
+      "path": "web/manuscript__03c_results_text_analytics.html",
+      "size_bytes": 9229
+    },
+    {
+      "path": "web/manuscript__03d_results_citation_network.html",
+      "size_bytes": 8314
+    },
+    {
+      "path": "web/manuscript__04_conclusion.html",
+      "size_bytes": 30606
+    },
+    {
+      "path": "web/manuscript__04a_discussion.html",
+      "size_bytes": 17891
+    },
+    {
+      "path": "web/manuscript__05_appendix_tooling.html",
+      "size_bytes": 21230
+    },
+    {
+      "path": "web/manuscript__06_appendix_technical.html",
+      "size_bytes": 19360
+    },
+    {
+      "path": "web/manuscript__07_appendix_accessibility.html",
+      "size_bytes": 12229
+    },
+    {
+      "path": "web/manuscript__98_symbols_glossary.html",
+      "size_bytes": 7170
+    },
+    {
+      "path": "web/manuscript__99_references.html",
+      "size_bytes": 4867
+    }
+  ],
+  "generated_at": "2026-07-26T16:20:32.004745+00:00",
+  "output_dir": "/Users/4d/Documents/GitHub/projects/archive/_ActiveInference/act_inf_metaanalysis/output",
+  "snapshots": [
+    "20260724T161303Z"
+  ],
+  "total_bytes": 102237253
+}

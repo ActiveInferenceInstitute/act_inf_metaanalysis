@@ -132,4 +132,5 @@ uv run python scripts/gates/module_line_count_check.py
 
 - **Archive location:** Not executed by `./run.sh` until promoted to `projects/`.
 - **Optional infrastructure coupling:** Script 04 / `figure_runner` lazy-imports template `infrastructure` when present; standalone archive runs without it.
-- **Pre-populated `output/`:** Expected for snapshot; do not commit on re-promotion.
+- **Versioned `output/`:** Expected in the standalone publication repository; keep
+  local environments, caches, and coverage databases outside the tracked tree.

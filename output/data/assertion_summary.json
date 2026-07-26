@@ -1,0 +1,47 @@
+{
+  "total_assertions": 2561,
+  "type_counts": {
+    "supports": 1751,
+    "neutral": 733,
+    "contradicts": 77
+  },
+  "per_hypothesis": {
+    "FEP_UNIVERSALITY": {
+      "supports": 522,
+      "neutral": 533,
+      "contradicts": 14
+    },
+    "AIF_OPTIMALITY": {
+      "neutral": 137,
+      "supports": 700,
+      "contradicts": 46
+    },
+    "PREDICTIVE_CODING": {
+      "neutral": 49,
+      "supports": 193,
+      "contradicts": 1
+    },
+    "SCALABILITY": {
+      "supports": 225,
+      "neutral": 6,
+      "contradicts": 1
+    },
+    "MARKOV_BLANKET_REALISM": {
+      "contradicts": 14,
+      "supports": 15,
+      "neutral": 5
+    },
+    "LANGUAGE_AIF": {
+      "supports": 34,
+      "contradicts": 1
+    },
+    "MORPHOGENESIS": {
+      "supports": 37,
+      "neutral": 2
+    },
+    "CLINICAL_UTILITY": {
+      "supports": 25,
+      "neutral": 1
+    }
+  }
+}

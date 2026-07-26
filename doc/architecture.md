@@ -82,7 +82,7 @@ Stage 11: Evidence Pilots
 
 Stage 12: Snapshot Inventory
 ────────────────────────────
-  Disposable output tree ──▶ snapshot_inventory.json and optional safe copy
+  Versioned output tree ──▶ snapshot_inventory.json and optional safe copy
 
 Stage 13: Tooling Verification
 ──────────────────────────────
