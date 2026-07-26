@@ -1,11 +1,14 @@
 """Semantic Scholar Graph API client.
 
-Provides functions to search papers, retrieve paper details, and
-fetch citation relationships via the Semantic Scholar API. All
-functions accept an injectable base_url for testing with pytest-httpserver.
+Provides functions to bulk-search papers, retrieve paper details, and fetch
+citation relationships via the Semantic Scholar API. All functions accept an
+injectable base_url for testing with pytest-httpserver.
 
-Includes pagination via offset, retry with exponential backoff and jitter
-on 429 rate-limit responses, and structured logging throughout.
+Bulk search uses the API's continuation-token endpoint so a large retrieval is
+served by one request whenever possible. Detail and citation calls retain the
+full nested field set, while bulk search requests only fields supported by the
+bulk endpoint. All requests use bounded Retry-After-aware backoff and
+structured rate-limit diagnostics.
 
 API reference: https://api.semanticscholar.org/api-docs/graph
 """
@@ -17,7 +20,7 @@ import os
 import random
 import time
 from email.utils import parsedate_to_datetime
-from typing import Optional, Callable
+from typing import Callable, Optional
 
 import requests
 
@@ -27,18 +30,56 @@ logger = logging.getLogger(__name__)
 
 # Default API base URL
 S2_API_URL = "https://api.semanticscholar.org/graph/v1"
+S2_BULK_SEARCH_PATH = "/paper/search/bulk"
+S2_DETAIL_FIELDS = "title,abstract,authors,year,externalIds,citationCount,venue,references,isOpenAccess,openAccessPdf"
+S2_BULK_SEARCH_FIELDS = "title,abstract,authors,year,externalIds,citationCount,venue,isOpenAccess,openAccessPdf"
+S2_USER_AGENT = "act-inf-metaanalysis/2.0.6 (+https://github.com/docxology/act_inf_metaanalysis)"
 
 # Fields we request from the API
-PAPER_FIELDS = "title,abstract,authors,year,externalIds,citationCount,venue,references,isOpenAccess,openAccessPdf"
+PAPER_FIELDS = S2_DETAIL_FIELDS
 CITATION_FIELDS = "title,authors,year,externalIds"
 
 # Retry settings
-MAX_RETRIES = 1
+MAX_RETRIES = 3
 RETRY_BASE_SECONDS = 10.0
 MAX_BACKOFF_SECONDS = 60.0
+TRANSIENT_STATUS_CODES = frozenset({429, 500, 502, 503, 504})
 
-# Pagination
-S2_PAGE_SIZE = 100
+# Bulk-search pagination. The API accepts up to 1,000 rows per request and
+# returns a continuation token when more matches remain.
+S2_BULK_PAGE_SIZE = 1000
+
+
+class SemanticScholarRateLimitError(requests.HTTPError):
+    """A bounded Semantic Scholar 429 failure with safe diagnostic fields."""
+
+    status_code = 429
+    rate_limited = True
+
+    def __init__(
+        self,
+        *,
+        url: str,
+        attempts: int,
+        api_key_configured: bool,
+        retry_after: float | None,
+        response_body: str,
+    ) -> None:
+        self.attempts = attempts
+        self.api_key_configured = api_key_configured
+        self.retry_after = retry_after
+        self.response_body = response_body[:240]
+        key_status = "configured" if api_key_configured else "not configured"
+        retry_status = (
+            f"Retry-After={retry_after:.1f}s"
+            if retry_after is not None
+            else "Retry-After=absent"
+        )
+        super().__init__(
+            "Semantic Scholar returned HTTP 429 after "
+            f"{attempts} attempts ({retry_status}; API key {key_status}; url={url}). "
+            "Configure an API key or retry after the service releases the throttle."
+        )
 
 
 def _parse_s2_paper(data: dict) -> Paper:
@@ -104,7 +145,7 @@ def _request_with_retry(
     api_key: str | None = None,
     delay_override: Optional[Callable[[float], None]] = None,
 ) -> requests.Response:
-    """Make an HTTP GET request with retry on 429 rate-limit errors.
+    """Make an HTTP GET request with bounded transient-error retries.
 
     Uses exponential backoff with jitter to avoid thundering herd.
 
@@ -119,40 +160,76 @@ def _request_with_retry(
         Successful response object.
 
     Raises:
-        requests.HTTPError: If all retries are exhausted or a non-429 error occurs.
+        requests.RequestException: If a transport or HTTP error remains after
+            the bounded retry budget.
     """
     sleep_fn = delay_override or time.sleep
-    headers = {"X-API-KEY": api_key} if api_key else None
-    response = None
+    headers = {
+        "Accept": "application/json",
+        "User-Agent": S2_USER_AGENT,
+    }
+    if api_key:
+        # Semantic Scholar documents this exact header spelling for API keys.
+        headers["x-api-key"] = api_key
+    response: requests.Response | None = None
+    last_transport_error: requests.RequestException | None = None
     for attempt in range(max_retries + 1):
-        response = http.get(url, params=params, headers=headers, timeout=30)
-        if response.status_code == 429:
+        try:
+            response = http.get(url, params=params, headers=headers, timeout=30)
+            last_transport_error = None
+        except (requests.ConnectionError, requests.Timeout) as exc:
+            last_transport_error = exc
             if attempt == max_retries:
-                break
-            retry_after = _retry_after_seconds(response.headers.get("Retry-After"))
-            wait = retry_after if retry_after is not None else (
-                RETRY_BASE_SECONDS * (2 ** attempt) + random.uniform(0, 1)
+                raise
+            wait = min(
+                max_backoff_seconds,
+                max(0.0, RETRY_BASE_SECONDS * (2 ** attempt) + random.uniform(0, 1)),
             )
-            wait = min(max_backoff_seconds, max(0.0, wait))
             logger.warning(
-                "S2 rate-limited (429), retry %d/%d after %.1fs",
-                attempt + 1, max_retries, wait,
+                "S2 transport error (%s), retry %d/%d after %.1fs",
+                type(exc).__name__, attempt + 1, max_retries, wait,
             )
             sleep_fn(wait)
             continue
-        response.raise_for_status()
-        return response
+
+        if response.status_code not in TRANSIENT_STATUS_CODES:
+            response.raise_for_status()
+            return response
+        if attempt == max_retries:
+            break
+
+        retry_after = _retry_after_seconds(response.headers.get("Retry-After"))
+        wait = retry_after if retry_after is not None else (
+            RETRY_BASE_SECONDS * (2 ** attempt) + random.uniform(0, 1)
+        )
+        wait = min(max_backoff_seconds, max(0.0, wait))
+        logger.warning(
+            "S2 transient HTTP %d, retry %d/%d after %.1fs",
+            response.status_code, attempt + 1, max_retries, wait,
+        )
+        sleep_fn(wait)
 
     # All retries exhausted
     logger.error(
-        "S2 rate-limit retries exhausted after %d retries (url=%s, query=%s)",
+        "S2 transient retries exhausted after %d retries (status=%s, url=%s, query=%s)",
         max_retries,
+        response.status_code if response is not None else "transport",
         url,
         params.get("query", ""),
     )
+    if response is not None and response.status_code == 429:
+        raise SemanticScholarRateLimitError(
+            url=url,
+            attempts=max_retries + 1,
+            api_key_configured=bool(api_key),
+            retry_after=_retry_after_seconds(response.headers.get("Retry-After")),
+            response_body=response.text,
+        ) from None
     if response is not None:
         response.raise_for_status()
-    raise requests.HTTPError("S2 retries exhausted")  # pragma: no cover
+    if last_transport_error is not None:  # pragma: no cover - final transport errors re-raise above
+        raise last_transport_error
+    raise requests.HTTPError("Semantic Scholar request retries exhausted")  # pragma: no cover
 
 
 def _retry_after_seconds(value: str | None) -> float | None:
@@ -185,9 +262,10 @@ def search_semantic_scholar(
 ) -> list[Paper]:
     """Search Semantic Scholar for papers matching a query.
 
-    Automatically paginates via offset when max_results exceeds the
-    per-page limit (100 per page). Retries on 429 rate-limit errors
-    with exponential backoff and jitter.
+    Uses Semantic Scholar's bulk-search endpoint with continuation-token
+    pagination. The endpoint returns basic paper metadata and intentionally
+    does not request nested references; detail retrieval remains available via
+    :func:`get_paper_details`.
 
     Args:
         query: Free-text search query.
@@ -205,32 +283,39 @@ def search_semantic_scholar(
     """
     http = session or requests.Session()
     resolved_api_key = api_key or os.environ.get("SEMANTIC_SCHOLAR_API_KEY")
+    if max_results <= 0:
+        return []
+
     all_papers: list[Paper] = []
 
     try:
-        offset = 0
+        continuation_token: str | None = None
         page_num = 0
 
-        while offset < max_results:
-            page_size = min(S2_PAGE_SIZE, max_results - offset)
+        while len(all_papers) < max_results:
+            page_size = min(S2_BULK_PAGE_SIZE, max_results - len(all_papers))
             page_num += 1
 
             params = {
                 "query": query,
-                "offset": offset,
                 "limit": page_size,
-                "fields": PAPER_FIELDS,
+                "fields": S2_BULK_SEARCH_FIELDS,
             }
+            if continuation_token:
+                params["token"] = continuation_token
 
             logger.info(
-                "S2 page %d: fetching %d results (offset %d, target %d)",
-                page_num, page_size, offset, max_results,
+                "S2 bulk page %d: fetching up to %d results (token=%s, target %d)",
+                page_num,
+                page_size,
+                "present" if continuation_token else "initial",
+                max_results,
             )
 
             try:
                 response = _request_with_retry(
                     http,
-                    f"{base_url}/paper/search",
+                    f"{base_url.rstrip('/')}{S2_BULK_SEARCH_PATH}",
                     params,
                     max_retries=max_retries,
                     max_backoff_seconds=max_backoff_seconds,
@@ -238,8 +323,8 @@ def search_semantic_scholar(
                     delay_override=delay_override,
                 )
                 result = response.json()
-            except requests.HTTPError as e:
-                logger.warning("S2 search stopped early due to HTTP error (rate limit): %s", e)
+            except requests.RequestException as e:
+                logger.warning("S2 bulk search stopped due to HTTP error: %s", e)
                 if raise_on_error:
                     raise
                 break
@@ -253,23 +338,29 @@ def search_semantic_scholar(
                 )
                 break
 
-            all_papers.extend(page_papers)
+            remaining = max_results - len(all_papers)
+            all_papers.extend(page_papers[:remaining])
             logger.info(
                 "S2 page %d: fetched %d papers (total: %d)",
-                page_num, len(page_papers), len(all_papers),
+                page_num, min(len(page_papers), remaining), len(all_papers),
             )
 
-            # Check if S2 reports a total and we've reached it
-            total_available = result.get("total", max_results)
-            if offset + page_size >= total_available:
-                logger.info("S2: all available results fetched (%d total)", total_available)
+            if len(all_papers) >= max_results:
+                logger.info("S2: requested result limit reached (%d)", max_results)
                 break
 
-            if len(page_papers) < page_size:
-                logger.info("S2: received partial page, all results fetched")
+            next_token = result.get("token")
+            if not next_token:
+                logger.info(
+                    "S2: bulk search complete (%d available results)",
+                    result.get("total", len(all_papers)),
+                )
                 break
 
-            offset += page_size
+            if next_token == continuation_token:
+                logger.error("S2: API returned a repeated continuation token; stopping")
+                break
+            continuation_token = str(next_token)
     finally:
         if session is None:
             http.close()
@@ -299,7 +390,7 @@ def get_paper_details(
     Raises:
         requests.HTTPError: If the API returns a non-2xx status (e.g. 404).
     """
-    url = f"{base_url}/paper/{paper_id}"
+    url = f"{base_url.rstrip('/')}/paper/{paper_id}"
     params = {"fields": PAPER_FIELDS}
 
     http = session or requests.Session()
@@ -343,7 +434,7 @@ def get_citations(
     Raises:
         requests.HTTPError: If the API returns a non-2xx status.
     """
-    url = f"{base_url}/paper/{paper_id}/citations"
+    url = f"{base_url.rstrip('/')}/paper/{paper_id}/citations"
     params = {
         "limit": min(max_results, 100),
         "fields": CITATION_FIELDS,

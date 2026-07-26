@@ -20,7 +20,7 @@ The current 2026-07-26 snapshot contains:
 - eight configured NMF topics with seed 42 as the primary fit;
 - 16 registered figures;
 - successful PDF and HTML render/validation stages;
-- 655 collected tests: 654 passed, one skipped, 90.07% coverage against the
+- 659 collected tests: 658 passed, one skipped, 90.02% coverage against the
   90% gate.
 
 The remaining release-level defect is external: Semantic Scholar returned HTTP
@@ -28,6 +28,14 @@ The remaining release-level defect is external: Semantic Scholar returned HTTP
 artifact contract and pipeline manifest retain this failure deliberately. A
 new publication snapshot is not source-complete until all three configured
 sources report successful completion.
+
+The local Semantic Scholar implementation is now hardened: bulk continuation
+tokens, local result caps, documented `x-api-key` delivery, bounded retries for
+429/5xx and transport failures, secret-safe terminal diagnostics, and source
+provenance status capture are covered by the project test gate. The provider
+returned HTTP 500 after the 2026-07-26 bounded retry during the follow-up live
+probe; no corpus records changed. The external source gate remains open until
+the provider returns a successful bulk response.
 
 ## Completed local closure
 
@@ -77,11 +85,12 @@ the existing snapshot before replacement.
 **Run rule:** retry without `--clear-corpus` after the source is reachable; use
 `--no-resume --clear-corpus` only for an intentionally new dated snapshot.
 
-**Latest attempt (2026-07-26):** the S2-only resume-safe retry exhausted four
-bounded retries after 132.4 seconds with HTTP 429. A broad all-source retry was
-aborted after arXiv timed out/returned 429, before it could overwrite the
-successful arXiv/OpenAlex status. The current search provenance therefore
-retains the known S2 blocker and the existing 1,106-paper snapshot.
+**Latest attempts (2026-07-26):** the S2-only resume-safe retry exhausted four
+bounded attempts after 132.4 seconds with HTTP 429, then the bulk-endpoint
+follow-up exhausted four bounded attempts after 88.6 seconds with HTTP 500.
+Both attempts preserved the existing 1,106-paper snapshot and recorded failure
+provenance rather than treating the source as an empty success. Re-run with
+`--force-search` after provider recovery; do not clear the corpus for a retry.
 
 ### MED-03 — Publish the nanopublication artifact
 

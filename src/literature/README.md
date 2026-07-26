@@ -39,9 +39,12 @@ Atom format; strips version suffix from arXiv IDs for deduplication canonicaliza
 - `search_arxiv(query, max_results, base_url, session, rate_limit_seconds) -> list[Paper]`
 
 ### `semantic_scholar.py`
-Searches Semantic Scholar Graph API (`/paper/search`). Offset pagination: 100 per page.
-Retries on 429/5xx (max 2 attempts). Returns rich metadata including reference IDs for citation
-network construction.
+Searches Semantic Scholar Graph API (`/paper/search/bulk`) with continuation-token pagination
+and up to 1,000 records per request. Bulk search requests only fields supported by that endpoint;
+nested references are obtained through the detail endpoint. Retries transient 429/5xx and transport
+failures with bounded `Retry-After`-aware backoff. A terminal 429 raises a structured,
+secret-safe `SemanticScholarRateLimitError` when `raise_on_error=True` and is recorded as a failed
+source by the search runner.
 
 - `search_semantic_scholar(query, max_results, base_url, session) -> list[Paper]`
 - `get_paper_details(paper_id, base_url, session) -> Paper`

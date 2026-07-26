@@ -1,5 +1,19 @@
 # CHANGELOG.md
 
+## Unreleased — Semantic Scholar retrieval hardening
+
+- Switched literature search to the provider's bulk continuation-token endpoint,
+  with a local result cap because the provider may over-return rows.
+- Split bulk-search fields from detail fields so unsupported nested references
+  are not requested from the bulk endpoint; detail and citation calls retain
+  their full field sets.
+- Added documented `x-api-key` and user-agent headers, bounded retries for
+  transient 429/5xx and transport failures, and structured secret-safe terminal
+  429 diagnostics.
+- Preserved fail-closed source provenance: a terminal 429 or 5xx is recorded as
+  a failed source, never as a successful empty search. The current live provider
+  probe remains externally blocked by HTTP 500; the corpus was not changed.
+
 ## v2.0.6 — 2026-07-24
 
 ### Full-refresh reproducibility and resumability

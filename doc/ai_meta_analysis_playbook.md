@@ -36,6 +36,13 @@ HTTP 429 is a failed source, not an empty successful result. A retry of an
 interrupted source can use `--force-search` with the existing corpus and should
 not use `--clear-corpus`.
 
+Semantic Scholar retrieval uses the bulk continuation-token endpoint, locally
+caps provider over-returns, and omits nested references from the search request.
+The client sends `x-api-key` from `SEMANTIC_SCHOLAR_API_KEY` when configured and
+retries transient 429/5xx and transport failures within a bounded three-retry
+budget. A terminal 429 is retained as a failed-source event with safe diagnostic
+fields, never as a successful empty search.
+
 ## 3. Compute deterministic analysis
 
 ```bash

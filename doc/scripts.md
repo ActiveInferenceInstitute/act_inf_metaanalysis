@@ -63,6 +63,18 @@ With `--config manuscript/config.yaml`, `project_config.search.arxiv_queries` re
 
 Results are merged and deduplicated via `Corpus.add()` (highest `metadata_completeness` wins).
 
+### Semantic Scholar transport policy
+
+Semantic Scholar retrieval uses `/paper/search/bulk`, with continuation tokens and
+up to 1,000 records per request. The requested result limit is enforced locally
+because the provider can return more records than the requested page size. Bulk
+search intentionally omits nested references; detail and citation endpoints are
+the only sources for those relationships. The client sends `x-api-key` from the
+configured `api_key_env` when available, retries transient 429/5xx and transport
+failures three times with bounded `Retry-After`-aware backoff, and records a
+terminal 429 as a failed source with rate-limit metadata. A 429 must never be
+interpreted as an empty successful result.
+
 ### Outputs
 
 | File | Format | Description |
@@ -508,7 +520,7 @@ python scripts/14_verify_release_package.py
 | Issue | Root Cause | Solution |
 | --- | --- | --- |
 | **arXiv 403 Forbidden** | Bypassed the 3-second delay rate limit | Ensure you are not running `01_literature_search.py` in multiple terminals simultaneously. |
-| **S2 HTTP 429** | Semantic Scholar hard limits (e.g., 100 requests / 5 minutes) | The script will auto-retry with exponential backoff. Do not kill the script; let it sleep and recover. |
+| **S2 HTTP 429** | Provider throttling, commonly stricter without an API key | The client retries three times with `Retry-After`-aware backoff, then records a failed source. Configure `SEMANTIC_SCHOLAR_API_KEY` and retry with `--force-search`; do not treat the result as a successful empty search. |
 | **Ollama Connection Refused** | Local LLM server is not running | Run `ollama serve` in a background terminal before starting `03_build_knowledge_graph.py`. |
 | **JSONDecodeError in Stage 3** | The LLM generated malformed JSON | Decrease `temperature` in config (e.g., `0.05`), or increase `max_retries`. |
 | **Empty `output/figures/`** | `matplotlib` lacks the backend | The scripts automatically force `MPLBACKEND=Agg` (headless). If rendering still fails, ensure `pip install matplotlib` completed. |

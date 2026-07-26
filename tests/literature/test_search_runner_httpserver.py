@@ -99,7 +99,7 @@ def test_run_literature_search_all_sources_httpserver(
         ARXIV_ENTRY,
         content_type="application/atom+xml",
     )
-    httpserver.expect_request("/paper/search").respond_with_json(S2_RESPONSE)
+    httpserver.expect_request("/paper/search/bulk").respond_with_json(S2_RESPONSE)
     httpserver.expect_request("/works").respond_with_json(OPENALEX_RESPONSE)
 
     output_dir = tmp_path / "output"

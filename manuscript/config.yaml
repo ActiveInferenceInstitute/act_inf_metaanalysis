@@ -111,7 +111,7 @@ project_config:
       - 'all:"Boltzmann machine" AND all:"free energy"'
       - 'all:"contrastive divergence" AND all:"generative model"'
     semantic_scholar:
-      max_retries: 4
+      max_retries: 3
       max_backoff_seconds: 60
       api_key_env: "SEMANTIC_SCHOLAR_API_KEY"
 

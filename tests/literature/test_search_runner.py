@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import requests
 from pathlib import Path
 
 from pytest_httpserver import HTTPServer
@@ -10,6 +11,7 @@ from pytest_httpserver import HTTPServer
 from literature.corpus import Corpus
 from literature.models import Paper
 from literature.search_runner import apply_relevance_filter, run_literature_search, search_source
+from literature.semantic_scholar import SemanticScholarRateLimitError
 
 
 def _paper(title: str, abstract: str = "active inference study") -> Paper:
@@ -63,6 +65,56 @@ def test_search_source_returns_none_on_failure() -> None:
 
     assert search_source("Fail", failing_search, "query", 10, corpus, logger) is None
     assert len(corpus) == 0
+
+
+def test_search_source_records_safe_rate_limit_diagnostics() -> None:
+    corpus = Corpus()
+    logger = __import__("logging").getLogger("test")
+    events: list[dict[str, object]] = []
+
+    def rate_limited_search(_query: str, max_results: int = 100) -> list[Paper]:
+        raise SemanticScholarRateLimitError(
+            url="https://api.semanticscholar.org/graph/v1/paper/search/bulk",
+            attempts=4,
+            api_key_configured=True,
+            retry_after=0.0,
+            response_body="Too Many Requests",
+        )
+
+    assert search_source(
+        "Semantic Scholar",
+        rate_limited_search,
+        "query",
+        10,
+        corpus,
+        logger,
+        events,
+    ) is None
+    assert events[0]["success"] is False
+    assert events[0]["error_type"] == "SemanticScholarRateLimitError"
+    assert events[0]["status_code"] == 429
+    assert events[0]["rate_limited"] is True
+    assert events[0]["api_key_configured"] is True
+    assert events[0]["retry_after"] == 0.0
+    assert "Too Many Requests" not in str(events[0])
+
+
+def test_search_source_records_status_from_standard_http_error() -> None:
+    corpus = Corpus()
+    logger = __import__("logging").getLogger("test")
+    events: list[dict[str, object]] = []
+    response = requests.Response()
+    response.status_code = 500
+    response.url = "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
+
+    def failing_search(_query: str, max_results: int = 100) -> list[Paper]:
+        response.raise_for_status()
+        return []
+
+    assert search_source(
+        "Semantic Scholar", failing_search, "query", 10, corpus, logger, events
+    ) is None
+    assert events[0]["status_code"] == 500
 
 
 def test_run_literature_search_resumes_populated_corpus(

@@ -74,11 +74,24 @@ def search_semantic_scholar(
     max_results: int = 100,
     base_url: str = "https://api.semanticscholar.org/graph/v1",
     session: requests.Session | None = None,
+    raise_on_error: bool = False,
+    max_retries: int = 3,
+    api_key: str | None = None,
 ) -> list[Paper]
 
 def get_paper_details(paper_id: str, ...) -> Paper
 def get_citations(paper_id: str, ...) -> list[Citation]
 ```
+
+Search uses Semantic Scholar's bulk continuation-token endpoint (up to 1,000
+records per request) and locally enforces `max_results` because providers may
+return more rows than requested. Bulk search does not provide nested references;
+the detail endpoint retains the full reference field set. Requests send the
+documented `x-api-key` header when `api_key` or `SEMANTIC_SCHOLAR_API_KEY` is
+configured. The client retries transient 429/5xx and transport failures within
+the bounded retry budget; a terminal 429 is represented by
+`SemanticScholarRateLimitError` and the search runner records it as a failed
+source rather than an empty successful result.
 
 ### OpenAlex Client (`literature.openalex_client`)
 

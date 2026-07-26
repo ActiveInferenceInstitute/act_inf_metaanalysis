@@ -101,7 +101,10 @@ Stage 14: Release Package Verification
 
 ### Synchronous HTTP Clients
 
-All API clients use synchronous `requests` with rate-limit delays. This matches the existing repo patterns, simplifies testing (pytest-httpserver), and respects API rate limits (arXiv: 3s between requests; S2: ~100 req/5min).
+All API clients use synchronous `requests` with provider-aware bounded delays.
+This matches the existing repo patterns, simplifies testing (pytest-httpserver),
+and respects provider policies (arXiv: 3s between requests; Semantic Scholar:
+bulk continuation-token retrieval with optional API-key quota).
 
 ### Injectable Base URLs
 
@@ -213,7 +216,7 @@ flowchart TD
 | `models.py` | `Paper`, `Author`, `Citation` | Core dataclasses for bibliographic records |
 | `corpus.py` | `Corpus` (add, merge, filter, save, load) | Deduplication, JSONL persistence, year/domain filtering |
 | `arxiv_client.py` | `search_arxiv`, `parse_arxiv_response` | arXiv Atom XML API with pagination and 3s rate limiting |
-| `semantic_scholar.py` | `search_semantic_scholar`, `get_paper_details`, `get_citations` | S2 Graph API with 429 retry + exponential backoff |
+| `semantic_scholar.py` | `search_semantic_scholar`, `get_paper_details`, `get_citations` | S2 bulk continuation-token search, detail/citation retrieval, bounded transient-error backoff |
 | `openalex_client.py` | `search_openalex`, `get_work_by_doi` | OpenAlex API with cursor pagination and inverted-index abstract reconstruction |
 
 ### analysis/ — Bibliometric Analysis
@@ -286,7 +289,11 @@ The pipeline implements strict fault-tolerance patterns:
 ### Stage 1: API Rate Limiting
 
 - **arXiv**: The Atom API explicitly requires a 3-second delay between requests. The `arxiv_client` enforces this synchronously.
-- **Semantic Scholar**: The S2 Graph API frequently throws `429 Too Many Requests`. The client employs exponential backoff logic, retrying up to 5 times.
+- **Semantic Scholar**: Bulk search uses continuation tokens and requests only
+  fields supported by that endpoint. The client sends `x-api-key` when configured,
+  retries transient 429/5xx and transport failures three times with bounded
+  `Retry-After` handling, and records a terminal 429 as a failed source with
+  structured diagnostics.
 - **Circuit Breakers**: If an API completely fails, the script captures the Exception, logs an error, and continues to the next provider, merging whatever it successfully fetched.
 
 ### Stage 3: LLM Timeouts and Faults

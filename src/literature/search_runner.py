@@ -59,13 +59,21 @@ def search_source(
         elapsed = time.monotonic() - t0
         logger.error("  %s search failed after %.1fs: %s", source_name, elapsed, exc)
         if events is not None:
-            events.append({
+            event: dict[str, object] = {
                 "source": source_name,
                 "success": False,
                 "completed_at": datetime.now(timezone.utc).isoformat(),
                 "error": str(exc),
                 "error_type": type(exc).__name__,
-            })
+            }
+            for attribute in ("status_code", "rate_limited", "api_key_configured", "retry_after"):
+                value = getattr(exc, attribute, None)
+                if value is None and attribute == "status_code":
+                    response = getattr(exc, "response", None)
+                    value = getattr(response, "status_code", None)
+                if value is not None:
+                    event[attribute] = value
+            events.append(event)
         return None
 
 
@@ -123,7 +131,7 @@ def _semantic_scholar_search_fn(
     base_url: str | None,
     *,
     fast: bool,
-    max_retries: int = 1,
+    max_retries: int = 3,
     max_backoff_seconds: float = 60.0,
     api_key: str | None = None,
 ) -> Callable[..., list[Paper]]:
@@ -206,7 +214,7 @@ def run_literature_search(
         s2_cfg = {}
 
     s2_cfg = s2_cfg or {}
-    s2_max_retries = int(s2_cfg.get("max_retries", 1))
+    s2_max_retries = int(s2_cfg.get("max_retries", 3))
     s2_max_backoff_seconds = float(s2_cfg.get("max_backoff_seconds", 60.0))
     s2_api_key_env = str(s2_cfg.get("api_key_env", "SEMANTIC_SCHOLAR_API_KEY"))
     s2_api_key = os.environ.get(s2_api_key_env)

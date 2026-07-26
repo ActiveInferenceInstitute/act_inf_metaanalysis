@@ -10,6 +10,9 @@ import requests
 from pytest_httpserver import HTTPServer
 
 from literature.semantic_scholar import (
+    S2_BULK_SEARCH_FIELDS,
+    S2_USER_AGENT,
+    SemanticScholarRateLimitError,
     _retry_after_seconds,
     get_citations,
     get_paper_details,
@@ -24,8 +27,6 @@ from literature.models import Paper, Citation
 
 SEARCH_RESPONSE = {
     "total": 2,
-    "offset": 0,
-    "next": 2,
     "data": [
         {
             "paperId": "abc123",
@@ -43,10 +44,6 @@ SEARCH_RESPONSE = {
             },
             "citationCount": 450,
             "venue": "Neural Computation",
-            "references": [
-                {"paperId": "def456"},
-                {"paperId": "ghi789"},
-            ],
             "isOpenAccess": True,
             "openAccessPdf": {
                 "url": "https://arxiv.org/pdf/1709.02341.pdf",
@@ -66,7 +63,6 @@ SEARCH_RESPONSE = {
             },
             "citationCount": 3500,
             "venue": "Nature Reviews Neuroscience",
-            "references": [],
             "isOpenAccess": False,
             "openAccessPdf": None,
         },
@@ -122,7 +118,6 @@ CITATIONS_RESPONSE = {
 
 EMPTY_SEARCH_RESPONSE = {
     "total": 0,
-    "offset": 0,
     "data": [],
 }
 
@@ -137,7 +132,7 @@ class TestSearchSemanticScholar:
 
     def test_search_returns_papers(self, httpserver: HTTPServer):
         """Search returns correctly parsed Paper objects."""
-        httpserver.expect_request("/paper/search").respond_with_json(SEARCH_RESPONSE)
+        httpserver.expect_request("/paper/search/bulk").respond_with_json(SEARCH_RESPONSE)
 
         papers = search_semantic_scholar(
             query="active inference",
@@ -166,7 +161,7 @@ class TestSearchSemanticScholar:
 
     def test_search_authors_parsed(self, httpserver: HTTPServer):
         """Authors are correctly parsed from search results."""
-        httpserver.expect_request("/paper/search").respond_with_json(SEARCH_RESPONSE)
+        httpserver.expect_request("/paper/search/bulk").respond_with_json(SEARCH_RESPONSE)
 
         papers = search_semantic_scholar(
             query="active inference",
@@ -178,9 +173,9 @@ class TestSearchSemanticScholar:
         assert papers[0].authors[0].name == "Karl Friston"
         assert papers[0].authors[1].name == "Thomas Parr"
 
-    def test_search_references_parsed(self, httpserver: HTTPServer):
-        """References are parsed with s2: prefix."""
-        httpserver.expect_request("/paper/search").respond_with_json(SEARCH_RESPONSE)
+    def test_bulk_search_does_not_require_nested_references(self, httpserver: HTTPServer):
+        """Bulk search remains valid because nested references are detail-only."""
+        httpserver.expect_request("/paper/search/bulk").respond_with_json(SEARCH_RESPONSE)
 
         papers = search_semantic_scholar(
             query="active inference",
@@ -188,13 +183,12 @@ class TestSearchSemanticScholar:
             delay_override=lambda _: None,
         )
 
-        assert "s2:def456" in papers[0].references
-        assert "s2:ghi789" in papers[0].references
+        assert papers[0].references == []
         assert papers[1].references == []
 
     def test_search_empty_results(self, httpserver: HTTPServer):
         """Search with no results returns empty list."""
-        httpserver.expect_request("/paper/search").respond_with_json(EMPTY_SEARCH_RESPONSE)
+        httpserver.expect_request("/paper/search/bulk").respond_with_json(EMPTY_SEARCH_RESPONSE)
 
         papers = search_semantic_scholar(
             query="nonexistent topic xyz",
@@ -206,7 +200,7 @@ class TestSearchSemanticScholar:
 
     def test_search_canonical_id(self, httpserver: HTTPServer):
         """Paper canonical_id uses DOI when available."""
-        httpserver.expect_request("/paper/search").respond_with_json(SEARCH_RESPONSE)
+        httpserver.expect_request("/paper/search/bulk").respond_with_json(SEARCH_RESPONSE)
 
         papers = search_semantic_scholar(
             query="active inference",
@@ -218,7 +212,7 @@ class TestSearchSemanticScholar:
 
     def test_search_http_error(self, httpserver: HTTPServer):
         """HTTP error after retries is swallowed and returns empty list."""
-        httpserver.expect_request("/paper/search").respond_with_data(
+        httpserver.expect_request("/paper/search/bulk").respond_with_data(
             "Rate limited", status=429
         )
 
@@ -231,7 +225,7 @@ class TestSearchSemanticScholar:
 
     def test_search_with_session(self, httpserver: HTTPServer):
         """Search works with a provided session."""
-        httpserver.expect_request("/paper/search").respond_with_json(SEARCH_RESPONSE)
+        httpserver.expect_request("/paper/search/bulk").respond_with_json(SEARCH_RESPONSE)
 
         session = requests.Session()
         papers = search_semantic_scholar(
@@ -244,45 +238,57 @@ class TestSearchSemanticScholar:
 
         assert len(papers) == 2
 
-    def test_search_max_results_capped(self, httpserver: HTTPServer):
-        """max_results is capped at 100 per API requirement."""
-        httpserver.expect_request("/paper/search").respond_with_json(EMPTY_SEARCH_RESPONSE)
-
-        # Even if we request 500, it should cap to 100
-        search_semantic_scholar(
-            query="test",
-            max_results=500,
-            base_url=httpserver.url_for(""),
-        )
-        httpserver.check()
-
-    def test_search_string_references(self, httpserver: HTTPServer):
-        """References given as plain strings (not dicts) are handled."""
-        response_with_string_refs = {
-            "total": 1,
-            "data": [{
-                "paperId": "str_ref_paper",
-                "title": "Paper with string refs",
-                "abstract": "Test abstract",
-                "year": 2023,
-                "authors": [{"name": "Test Author"}],
-                "externalIds": {},
-                "citationCount": 10,
-                "venue": "Test Venue",
-                "references": ["ref_string_id_1", "ref_string_id_2"],
-            }],
-        }
-        httpserver.expect_request("/paper/search").respond_with_json(response_with_string_refs)
+    def test_bulk_search_caps_provider_over_return(self, httpserver: HTTPServer):
+        """The local result contract holds if the provider returns extra rows."""
+        httpserver.expect_request(
+            "/paper/search/bulk",
+            query_string={"query": "test", "limit": "1", "fields": S2_BULK_SEARCH_FIELDS},
+        ).respond_with_json(SEARCH_RESPONSE)
 
         papers = search_semantic_scholar(
             query="test",
+            max_results=1,
             base_url=httpserver.url_for(""),
-            delay_override=lambda _: None,
+        )
+        assert len(papers) == 1
+        httpserver.check()
+
+    def test_bulk_search_sends_documented_headers(self, httpserver: HTTPServer):
+        """Requests include the API key and stable identification headers."""
+        httpserver.expect_request(
+            "/paper/search/bulk",
+            headers={"x-api-key": "test-secret", "User-Agent": S2_USER_AGENT},
+        ).respond_with_json(EMPTY_SEARCH_RESPONSE)
+
+        search_semantic_scholar(
+            query="test",
+            base_url=httpserver.url_for(""),
+            api_key="test-secret",
+        )
+        httpserver.check()
+
+    def test_detail_parses_string_references(self, httpserver: HTTPServer):
+        """The detail parser tolerates string reference identifiers."""
+        response_with_string_refs = {
+            "paperId": "str_ref_paper",
+            "title": "Paper with string refs",
+            "abstract": "Test abstract",
+            "year": 2023,
+            "authors": [{"name": "Test Author"}],
+            "externalIds": {},
+            "citationCount": 10,
+            "venue": "Test Venue",
+            "references": ["ref_string_id_1", "ref_string_id_2"],
+        }
+        httpserver.expect_request("/paper/str_ref_paper").respond_with_json(response_with_string_refs)
+
+        paper = get_paper_details(
+            paper_id="str_ref_paper",
+            base_url=httpserver.url_for(""),
         )
 
-        assert len(papers) == 1
-        assert "s2:ref_string_id_1" in papers[0].references
-        assert "s2:ref_string_id_2" in papers[0].references
+        assert "s2:ref_string_id_1" in paper.references
+        assert "s2:ref_string_id_2" in paper.references
 
     def test_search_null_fields(self, httpserver: HTTPServer):
         """Papers with null authors, references, etc. are handled."""
@@ -297,10 +303,9 @@ class TestSearchSemanticScholar:
                 "externalIds": None,
                 "citationCount": None,
                 "venue": None,
-                "references": None,
             }],
         }
-        httpserver.expect_request("/paper/search").respond_with_json(response_with_nulls)
+        httpserver.expect_request("/paper/search/bulk").respond_with_json(response_with_nulls)
 
         papers = search_semantic_scholar(
             query="test",
@@ -447,6 +452,7 @@ class TestGetCitations:
             get_citations(
                 paper_id="bad",
                 base_url=httpserver.url_for(""),
+                max_retries=0,
             )
 
     def test_citations_max_results(self, httpserver: HTTPServer):
@@ -484,28 +490,29 @@ class TestS2PaginationAndRetry:
     """Tests for auto-pagination and retry logic."""
 
     def test_pagination(self, httpserver: HTTPServer):
-        """search_semantic_scholar fetches multiple pages via offset."""
-        # Page 1: 100 results (full page)
+        """search_semantic_scholar follows bulk continuation tokens."""
+        # Page 1: 100 results and a continuation token.
         page1 = {
             "total": 150,
-            "data": [{"paperId": f"id_{i}", "title": f"Paper {i}"} for i in range(100)]
+            "token": "next-page",
+            "data": [{"paperId": f"id_{i}", "title": f"Paper {i}"} for i in range(100)],
         }
         # Page 2: 50 results (partial page)
         page2 = {
             "total": 150,
+            "token": None,
             "data": [{"paperId": f"id_{i+100}", "title": f"Paper {i+100}"} for i in range(50)]
         }
 
-        # Expect calls with specific offsets (order matters for the client logic)
-        # Note: dict matching for query params covers specific keys
+        # Expect calls with a continuation token (order matters for client logic).
         httpserver.expect_request(
-            "/paper/search", 
-            query_string={"query": "test", "offset": "0", "limit": "100", "fields": "title,abstract,authors,year,externalIds,citationCount,venue,references,isOpenAccess,openAccessPdf"}
+            "/paper/search/bulk",
+            query_string={"query": "test", "limit": "150", "fields": S2_BULK_SEARCH_FIELDS}
         ).respond_with_json(page1)
         
         httpserver.expect_request(
-            "/paper/search", 
-            query_string={"query": "test", "offset": "100", "limit": "50", "fields": "title,abstract,authors,year,externalIds,citationCount,venue,references,isOpenAccess,openAccessPdf"}
+            "/paper/search/bulk",
+            query_string={"query": "test", "limit": "50", "token": "next-page", "fields": S2_BULK_SEARCH_FIELDS}
         ).respond_with_json(page2)
 
         papers = search_semantic_scholar(
@@ -519,10 +526,10 @@ class TestS2PaginationAndRetry:
         assert papers[149].title == "Paper 149"
 
     def test_retry_on_429(self, httpserver: HTTPServer):
-        """search retries on 429 Too Many Requests (up to 1 time)."""
+        """search retries on 429 Too Many Requests within the configured budget."""
         # Fail once with 429 then succeed
-        httpserver.expect_ordered_request("/paper/search").respond_with_data("Rate Limit", status=429)
-        httpserver.expect_ordered_request("/paper/search").respond_with_json(
+        httpserver.expect_ordered_request("/paper/search/bulk").respond_with_data("Rate Limit", status=429)
+        httpserver.expect_ordered_request("/paper/search/bulk").respond_with_json(
             {"total": 1, "data": [{"paperId": "id_1", "title": "Success"}]}
         )
 
@@ -533,6 +540,49 @@ class TestS2PaginationAndRetry:
         )
         assert len(papers) == 1
         assert papers[0].title == "Success"
+
+    def test_retry_on_transient_503(self, httpserver: HTTPServer):
+        """search retries a transient server error and then succeeds."""
+        httpserver.expect_ordered_request("/paper/search/bulk").respond_with_data(
+            "Service unavailable", status=503
+        )
+        httpserver.expect_ordered_request("/paper/search/bulk").respond_with_json(
+            {"total": 1, "data": [{"paperId": "id_503", "title": "Recovered"}]}
+        )
+
+        papers = search_semantic_scholar(
+            query="test",
+            base_url=httpserver.url_for(""),
+            delay_override=lambda _: None,
+        )
+        assert [paper.title for paper in papers] == ["Recovered"]
+
+    def test_rate_limit_error_is_structured_and_secret_safe(self, httpserver: HTTPServer):
+        """A terminal 429 exposes diagnostics without exposing the API key."""
+        for _ in range(4):
+            httpserver.expect_ordered_request("/paper/search/bulk").respond_with_data(
+                '{"message":"Too Many Requests"}',
+                status=429,
+                headers={"Retry-After": "0"},
+            )
+
+        with pytest.raises(SemanticScholarRateLimitError) as exc_info:
+            search_semantic_scholar(
+                query="test",
+                base_url=httpserver.url_for(""),
+                api_key="test-secret",
+                max_retries=3,
+                delay_override=lambda _: None,
+                raise_on_error=True,
+            )
+
+        error = exc_info.value
+        assert error.status_code == 429
+        assert error.rate_limited is True
+        assert error.api_key_configured is True
+        assert error.attempts == 4
+        assert error.retry_after == 0.0
+        assert "test-secret" not in str(error)
 
     def test_retry_after_header_parser(self):
         assert _retry_after_seconds("2") == 2.0

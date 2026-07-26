@@ -4,7 +4,7 @@
 
 ## Overview
 
-The project maintains **655 collected tests** across the test suite (**654 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.07%**, verified 2026-07-26). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
+The project maintains **659 collected tests** across the test suite (**658 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.02%**, verified 2026-07-26). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
 
 ### Idempotence checks
 
@@ -19,22 +19,23 @@ the current repeat check reports zero changed artifacts.
 
 We NEVER use `unittest.mock` to mock `requests.get` or `aiohttp.ClientSession`. Instead, we spin up lightweight, real HTTP servers using `pytest-httpserver`.
 
-**Compliant Test Example (`tests/api/test_semantic_scholar.py`):**
+**Compliant Test Example (`tests/literature/test_semantic_scholar.py`):**
 
 ```python
+from literature.semantic_scholar import search_semantic_scholar
+
 def test_s2_search_success(httpserver):
     # 1. Instruct the local server to serve a specific JSON response
-    httpserver.expect_request("/graph/v1/paper/search").respond_with_json({
+    httpserver.expect_request("/graph/v1/paper/search/bulk").respond_with_json({
         "total": 1,
         "data": [{"paperId": "123", "title": "Test Paper"}]
     })
 
-    # 2. Inject the local server URI into the client
-    client = SemanticScholarClient(base_url=httpserver.url_for("/"))
-
-    # 3. Execute real networking logic against the local port
-    results = client.search("test query")
-    assert results[0].raw_id == "123"
+    # 2. Execute the real function against the local port
+    results = search_semantic_scholar(
+        "test query", base_url=httpserver.url_for("/graph/v1")
+    )
+    assert results[0].s2_id == "123"
 ```
 
 ## Testing LLM Logic Locally
@@ -95,7 +96,7 @@ Key points:
 | `literature/test_models.py` | `models.py` | ~15 | Paper/Author/Citation creation, `canonical_id` priority, `metadata_completeness`, JSONL round-trip |
 | `literature/test_corpus.py` | `corpus.py` | ~20 | Add/merge/dedup, year filtering, domain filtering, JSONL save/load, `__contains__`/`__len__` |
 | `literature/test_arxiv_client.py` | `arxiv_client.py` | ~18 | XML parsing, pagination, rate limiting, retry on HTTP errors (via `pytest-httpserver`) |
-| `literature/test_semantic_scholar.py` | `semantic_scholar.py` | ~22 | JSON parsing, 429 rate-limit retry with backoff, pagination, `get_paper_details`, `get_citations` |
+| `literature/test_semantic_scholar.py` | `semantic_scholar.py` | 27 | Bulk continuation-token pagination, provider-over-return capping, header/auth behavior, transient 429/503 retry, secret-safe terminal 429, `get_paper_details`, `get_citations` |
 | `literature/test_openalex_client.py` | `openalex_client.py` | ~15 | Inverted-index abstract reconstruction, cursor pagination, `get_work_by_doi` |
 | `literature/test_search_runner.py` | `search_runner.py` | 10 | Relevance filter, resume/clear corpus, YAML config merge, duplicate counting |
 | `literature/test_search_runner_httpserver.py` | `search_runner.py` + API clients | 3 | End-to-end search via injectable `*_base_url` (arXiv, S2, OpenAlex) |

@@ -45,13 +45,14 @@ to all downstream pipeline stages.
 | Source | Rate limit | Pagination | Notes |
 |---|---|---|---|
 | arXiv | 3s between requests | 100/page, offset | Free; no auth |
-| Semantic Scholar | 1 req/s (unauthenticated) | 100/page, offset | Auth header boosts to 100/s |
+| Semantic Scholar | Provider-controlled; unauthenticated calls may be throttled | Bulk continuation token, up to 1,000/page | `x-api-key` raises the available quota; nested references require detail calls |
 | OpenAlex | Polite pool (mailto param) | 200/page, cursor | Cursor more reliable than offset |
 
 ## Known Limitations
 
-- **Semantic Scholar single retry**: `MAX_RETRIES=1` is conservative; burst rate-limit
-  windows may require 2–3 retries. Consider increasing to 3.
+- **Semantic Scholar throttling**: bulk search uses continuation tokens and a bounded
+  three-retry budget. A terminal 429 is recorded as a failed source with safe rate-limit
+  metadata; configure `SEMANTIC_SCHOLAR_API_KEY` for a higher provider quota.
 - **Inverted index gaps**: OpenAlex abstract reconstruction assumes dense position indices.
   Sparse indices (0, 5, 10...) produce gaps in the abstract string; no validation exists.
 - **Title hash collisions**: Fallback ID `sha256(title.lower().strip())` is truncated to

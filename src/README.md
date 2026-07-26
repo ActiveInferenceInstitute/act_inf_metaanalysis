@@ -2,7 +2,7 @@
 
 Core library for the Active Inference Meta-Analysis project. All business logic and computation
 lives here; `scripts/` are thin orchestrators that import these modules and handle I/O.
-45+ Python modules across 5 subpackages (+ `config.py`, `config_loader.py`), 654 passed / 1 skipped / 90.07% coverage in the latest gate, no mocks.
+45+ Python modules across 5 subpackages (+ `config.py`, `config_loader.py`), 658 passed / 1 skipped / 90.02% coverage in the latest gate, no mocks.
 
 ## Subpackages
 
@@ -42,7 +42,7 @@ Stage 5 (scripts/z_generate_manuscript_variables.py)
 ```bash
 # From project root
 PYTHONPATH=/path/to/template .venv/bin/python -m pytest tests/ -q
-# 654 passed / 1 skipped / 90.07% coverage, no mocks, deterministic
+# 658 passed / 1 skipped / 90.02% coverage, no mocks, deterministic
 ```
 
 See each subpackage's `README.md` and `AGENTS.md` for module-level details.
