@@ -10,6 +10,8 @@ resume-safe Semantic Scholar bulk probe returned HTTP 500 after bounded retries.
 The existing 1,106-paper snapshot was preserved, so the package is reproducible
 and reviewable but not source-complete for a new live publication.
 
+**Current publication PDF:** [act_inf_metaanalysis_v2.0.6_2026-07-26.pdf](act_inf_metaanalysis_v2.0.6_2026-07-26.pdf). This date-stamped root artifact is the public release copy; `output/pdf/act_inf_metaanalysis_combined.pdf` remains the reproducible render output used by the pipeline.
+
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis/actions)
 [![Coverage gate](https://img.shields.io/badge/coverage-gate%2090%25-brightgreen)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 [![Tests](https://img.shields.io/badge/tests-pytest-blue)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
@@ -174,6 +176,7 @@ A nested `.git/` directory may be present from standalone repository history; th
 
 ```text
 projects_archive/act_inf_metaanalysis/
+├── act_inf_metaanalysis_v2.0.6_2026-07-26.pdf  # date-stamped publication artifact
 ├── src/                        # Core library (literature, analysis, knowledge_graph, visualization)
 ├── tests/                      # Pytest suite; 90% coverage gate in pyproject.toml
 ├── scripts/                    # Numbered orchestrators (01–14) plus canonical hydration

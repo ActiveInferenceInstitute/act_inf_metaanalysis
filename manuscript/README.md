@@ -5,6 +5,8 @@
 Authors: Daniel Friedman (Active Inference Institute) · Joel Dietz (MIT + CIMC)  
 DOI: [Zenodo deposit record](https://doi.org/10.5281/zenodo.19461934) · License: CC-BY-4.0
 
+Current public release: [act_inf_metaanalysis_v2.0.6_2026-07-26.pdf](../act_inf_metaanalysis_v2.0.6_2026-07-26.pdf). The dated root PDF is generated from the same hydrated manuscript and template render validated by the release workflow.
+
 ---
 
 ## Section Map

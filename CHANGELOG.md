@@ -15,6 +15,9 @@
   probe remains externally blocked by HTTP 500; the corpus was not changed.
 - Standardized package, manuscript, documentation, and user-agent URLs on the
   public repository `ActiveInferenceInstitute/act_inf_metaanalysis`.
+- Removed the obsolete root PDF `act_inf_metaanalysis_v2_04-30-2026.pdf` and
+  published the current validated render as the date-stamped
+  `act_inf_metaanalysis_v2.0.6_2026-07-26.pdf`.
 
 ## v2.0.6 — 2026-07-24
 

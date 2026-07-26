@@ -50,6 +50,7 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 
 ```text
 projects_archive/act_inf_metaanalysis/
+├── act_inf_metaanalysis_v2.0.6_2026-07-26.pdf  # date-stamped publication artifact
 ├── src/                        # Core library (45+ public APIs, 5 packages)
 │   ├── __init__.py
 │   ├── literature/             # Multi-source retrieval and corpus management

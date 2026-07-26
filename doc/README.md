@@ -4,6 +4,8 @@
 
 **Package / upstream reference:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 
+**Current publication PDF:** [act_inf_metaanalysis_v2.0.6_2026-07-26.pdf](../act_inf_metaanalysis_v2.0.6_2026-07-26.pdf). The root PDF is the dated public release copy; `output/pdf/act_inf_metaanalysis_combined.pdf` is the reproducible pipeline render.
+
 **Template monorepo path:** `projects_archive/act_inf_metaanalysis/` (archived; not pipeline-discovered).
 
 Project-level documentation for the `act_inf_metaanalysis` pipeline.
@@ -220,5 +222,5 @@ Variable hydration is handled by `src/manuscript/variables.py`, invoked by the c
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [testing.md](testing.md) | Test architecture, latest 654-pass gate, and coverage configuration |
+| [testing.md](testing.md) | Test architecture, latest 659-pass gate, and coverage configuration |
 | [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |
