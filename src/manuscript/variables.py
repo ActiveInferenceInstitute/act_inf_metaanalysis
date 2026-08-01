@@ -382,7 +382,12 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
                 variables[f"{hid}_NEUTRAL"] = str(neu)
                 variables[f"{hid}_TOTAL"] = str(total)
 
-        # Overall assertion direction percentages
+        # Overall assertion direction percentages.
+        # NOTE (MIN-18): these percentages use a NON-NEUTRAL denominator — the
+        # share of directional (supports + contradicts) assertions that are
+        # supports — so ASSERTION_SUPPORT_PCT + ASSERTION_CONTRADICT_PCT sum to
+        # 100 regardless of how many neutral assertions exist. Do not read
+        # ASSERTION_SUPPORT_PCT as a share of ALL assertions.
         type_counts = assertion.get("type_counts", {})
         total_sup = type_counts.get("supports", 0)
         total_con = type_counts.get("contradicts", 0)

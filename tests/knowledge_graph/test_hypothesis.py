@@ -183,6 +183,10 @@ class TestScoreHypothesis:
 
         assert abs(score - expected) < 1e-10
         assert -1.0 <= score <= 1.0
+        # Independently precomputed constant (MIN-16): a systematic change to
+        # the weighting (log base, dropped confidence, dropped +1) would move
+        # this value even if the mirrored computation above stays in sync.
+        assert abs(score - 0.7557955103653411) < 1e-9
 
     def test_no_assertions_returns_zero(self) -> None:
         """When no assertions match, score should be 0.0."""

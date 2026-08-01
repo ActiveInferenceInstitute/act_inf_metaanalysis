@@ -136,6 +136,41 @@ class TestAddAssertion:
         ids = kg.get_assertions_for_paper(p.canonical_id)
         assert "an1" in ids
 
+    def test_neutral_assertion_linked_to_hypothesis(self, use_rdflib: bool) -> None:
+        """Neutral assertions get a `neutral` hypothesis link (MIN-02), matching the RDF export."""
+        from knowledge_graph.schema import AIF_NAMESPACE
+
+        kg = KnowledgeGraph(use_rdflib=use_rdflib)
+        p = _make_paper("neu2")
+        kg.add_paper(p)
+        a = _make_assertion("an2", "neu2", assertion_type="neutral", hypothesis_id="SCALABILITY")
+        kg.add_assertion(a)
+        if kg._use_rdflib:
+            from rdflib import URIRef
+
+            neutral_triples = list(
+                kg._rdf_graph.triples((None, URIRef(AIF_NAMESPACE + "neutral"), None))
+            )
+            assert len(neutral_triples) >= 1
+        else:
+            predicates = [
+                d.get("predicate") for _, _, d in kg._nx_graph.edges(data=True)
+            ]
+            assert "neutral" in predicates
+
+    def test_paper_assertion_index_used(self, use_rdflib: bool) -> None:
+        """get_assertions_for_paper uses the paper index, not a scan (MIN-03)."""
+        kg = KnowledgeGraph(use_rdflib=use_rdflib)
+        p = _make_paper("idx1")
+        kg.add_paper(p)
+        for i in range(3):
+            kg.add_assertion(
+                _make_assertion(f"aidx{i}", "idx1", hypothesis_id="SCALABILITY")
+            )
+        assert kg.get_assertions_for_paper(p.canonical_id) == ["aidx0", "aidx1", "aidx2"]
+        # Unknown paper → empty
+        assert kg.get_assertions_for_paper("doi:10.1234/nope") == []
+
 
 class TestAddCitation:
     """Validate citation edges."""

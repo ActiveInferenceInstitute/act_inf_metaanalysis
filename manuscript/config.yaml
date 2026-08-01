@@ -125,6 +125,8 @@ project_config:
   llm_extraction:
     model: "gemma3:4b"
     base_url: "http://localhost:11435"
+    # Both entries target the same server: they are intentional parallel worker
+    # slots for extraction throughput, not distinct endpoints (MIN-07).
     worker_urls:
       - "http://localhost:11435"
       - "http://localhost:11435"

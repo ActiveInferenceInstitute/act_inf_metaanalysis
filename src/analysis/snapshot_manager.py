@@ -49,14 +49,34 @@ def write_inventory(output_dir: Path) -> Path:
 
 
 def copy_snapshot(output_dir: Path, label: str) -> Path:
-    """Copy output to a new snapshot label; never overwrite an existing snapshot."""
+    """Copy output to a new snapshot label; never overwrite an existing snapshot.
+
+    The copy is written to a temporary sibling directory and then atomically
+    renamed into place, so an interrupt never leaves a partial snapshot at the
+    destination and a same-label retry can proceed cleanly (MIN-12).
+    """
+    import tempfile
+
     if not label or label in {".", ".."} or "/" in label or "\\" in label:
         raise ValueError("snapshot label must be a non-empty single directory name")
     destination = output_dir / "snapshots" / label
     if destination.exists():
         raise FileExistsError(destination)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(output_dir, destination, ignore=shutil.ignore_patterns("snapshots"))
+    tmp_dir = Path(
+        tempfile.mkdtemp(prefix=f".{label}.tmp.", dir=str(destination.parent))
+    )
+    try:
+        shutil.copytree(
+            output_dir,
+            tmp_dir,
+            ignore=shutil.ignore_patterns("snapshots"),
+            dirs_exist_ok=True,
+        )
+        tmp_dir.rename(destination)
+    except Exception:
+        shutil.rmtree(tmp_dir, ignore_errors=True)
+        raise
     return destination
 
 

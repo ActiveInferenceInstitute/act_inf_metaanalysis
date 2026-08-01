@@ -23,7 +23,7 @@ Verification was run live against this tree with `uv run pytest --cov=src
 - **2,561** provenance-bearing nanopublications (`output/data/nanopublications.jsonl`);
 - 16 registered figures (16 PNG + `figure_registry.json`);
 - hypothesis scores stable across snapshots (e.g. H4 0.8317, H5 1.0);
-- test gate: **678 passed, 1 skipped, 90.07% coverage** after implementing the
+- test gate: **686 passed, 1 skipped, 90.06% coverage** after implementing the
   review findings below (fails at 90 gate only if coverage drops below 90);
 - the one skipped test is `tests/visualization/test_figure_runner.py:291`
   ("template infrastructure not importable") — see MIN-05.
@@ -132,10 +132,13 @@ validation evidence rather than model authority.
 
 **Implementation status (2026-07-31):** All Major and Medium items below were
 implemented and are covered by tests / CI (`ruff check`, `mypy`, pytest with the
-90% gate) in the same commit. Several Minor items were also fixed; the Minor
-items still listed as open (MIN-02, MIN-03, MIN-05, MIN-08, MIN-09, MIN-10,
-MIN-12, MIN-13, MIN-15, MIN-18) remain as polish backlog and should be picked up
-independently.
+90% gate) in the same commit. Most Minor items are also fixed (MIN-01, MIN-02,
+MIN-03, MIN-04, MIN-06, MIN-07, MIN-08, MIN-11, MIN-12, MIN-13, MIN-14, MIN-15,
+MIN-16, MIN-17, MIN-18). Remaining open items are low-impact polish: MIN-05 (one
+template-dependent test skips without the external template repo), MIN-09 (NMF
+clamping already emits a warning; optionally fail instead), MIN-10 (optional
+`_io.load_json` requirement flag), and the stale `.coverage_review.json`
+artifact.
 
 Each item below is a real, code-verified defect with an acceptance gate. They
 are independent of the pre-existing release work and can be addressed in any

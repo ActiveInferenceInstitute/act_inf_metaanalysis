@@ -96,6 +96,7 @@ class KnowledgeGraph:
         # Auxiliary index for fast lookups (used by both backends)
         self._paper_ids: set[str] = set()
         self._assertion_map: dict[str, Assertion] = {}  # assertion_id -> Assertion
+        self._paper_assertions: dict[str, list[str]] = {}  # paper_id -> [assertion_id]
 
     # ------------------------------------------------------------------ #
     # Mutation
@@ -134,6 +135,9 @@ class KnowledgeGraph:
             assertion: Assertion dataclass instance.
         """
         self._assertion_map[assertion.assertion_id] = assertion
+        self._paper_assertions.setdefault(assertion.paper_id, []).append(
+            assertion.assertion_id
+        )
 
         p_uri = _paper_uri(assertion.paper_id)
         a_uri = _assertion_uri(assertion.assertion_id)
@@ -146,6 +150,11 @@ class KnowledgeGraph:
             rel_pred = ASSERTION_TYPES["supports"]
         elif assertion.assertion_type == "contradicts":
             rel_pred = ASSERTION_TYPES["contradicts"]
+        else:
+            # Neutral assertions are also linked to their hypothesis via a
+            # `neutral` predicate, matching the nanopublication RDF export
+            # (nanopublication.py uses aif:neutral) — MIN-02.
+            rel_pred = f"{AIF_NAMESPACE}neutral"
 
         if assertion.hypothesis_id in _schema.HYPOTHESIS_CATEGORIES:
             h_uri = _schema.HYPOTHESIS_CATEGORIES[assertion.hypothesis_id]
@@ -252,30 +261,10 @@ class KnowledgeGraph:
             paper_id: Canonical paper ID.
 
         Returns:
-            List of assertion ID strings.
+            List of assertion ID strings (sorted), via the O(1) paper index
+            (MIN-03: replaces a per-paper linear scan of the assertion map).
         """
-        p_uri = _paper_uri(paper_id)
-        asserts_pred = ASSERTION_TYPES["asserts"]
-
-        result: list[str] = []
-        if self._use_rdflib:
-            for _, _, obj in self._rdf_graph.triples(
-                (URIRef(p_uri), URIRef(asserts_pred), None)
-            ):
-                # Reverse-lookup assertion_id from the assertion map
-                a_uri_str = str(obj)
-                for aid, aobj in self._assertion_map.items():
-                    if _assertion_uri(aid) == a_uri_str:
-                        result.append(aid)
-        else:
-            if p_uri in self._nx_graph:
-                for _, target, data in self._nx_graph.edges(p_uri, data=True):
-                    if data.get("predicate") == "asserts":
-                        node_data = self._nx_graph.nodes.get(target, {})
-                        aid = node_data.get("assertion_id")
-                        if aid:
-                            result.append(aid)
-        return sorted(result)
+        return sorted(self._paper_assertions.get(paper_id, []))
 
     def get_papers_for_hypothesis(self, hypothesis_id: str) -> list[str]:
         """Return paper IDs that have assertions related to a hypothesis.

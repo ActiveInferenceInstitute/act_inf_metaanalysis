@@ -21,6 +21,38 @@ def _format_subfield_label(sf: str) -> str:
     return SUBFIELD_NAMES.get(sf, sf.replace("_", " ").title())
 
 
+def _growth_annotation_text(
+    *,
+    total_n: int,
+    dated_papers: int,
+    undated_papers: int,
+    cagr_pct: float,
+    first_year: int,
+    span_end: int,
+    current_year_is_partial: bool,
+    as_of_date: str | None,
+) -> str:
+    """Compose the growth-curve headline annotation (N / CAGR / span) as text."""
+    parts = [f"N = {total_n:,}", f"Dated years = {dated_papers:,}"]
+    if undated_papers:
+        parts.append(f"undated = {undated_papers:,}")
+    parts.append(f"CAGR = {cagr_pct:.1f}%")
+    parts.append(f"Span: {first_year}–{span_end}")
+    if current_year_is_partial:
+        parts.append("Hatched bar = current year YTD")
+    if as_of_date:
+        parts.append(f"As of {as_of_date}")
+    return "\n".join(parts)
+
+
+def _median_year(years: list[int], annual: list[int]) -> int | None:
+    """Weighted median publication year (each year repeated by its count)."""
+    weighted: list[int] = []
+    for y, c in zip(years, annual):
+        weighted.extend([y] * c)
+    return int(np.median(weighted)) if weighted else None
+
+
 def plot_growth_curve(
     year_counts: dict[int, int],
     cumulative: dict[int, int],
@@ -136,20 +168,24 @@ def plot_growth_curve(
     dated_papers = sum(annual)
     total_n = corpus_size if corpus_size is not None else dated_papers
     if len(years) >= 2:
-        if cagr is None:
+        resolved_cagr = cagr
+        if resolved_cagr is None:
             ratio = annual[-1] / max(annual[0], 1)
             span = years[-1] - years[0]
-            cagr = (ratio ** (1.0 / span) - 1) if span > 0 else 0
-        cagr_pct = cagr * 100
+            resolved_cagr = (ratio ** (1.0 / span) - 1) if span > 0 else 0.0
         span_end = cagr_end_year if cagr_end_year is not None else years[-1]
-        partial_label = "\nHatched bar = current year YTD" if current_year_is_partial else ""
-        as_of_label = f"\nAs of {as_of_date}" if as_of_date else ""
         ax1.text(
             0.98, 0.55,
-            f"N = {total_n:,}\nDated years = {dated_papers:,}"
-            f"{f'; undated = {undated_papers:,}' if undated_papers else ''}\n"
-            f"CAGR = {cagr_pct:.1f}%\nSpan: {years[0]}–{span_end}"
-            f"{partial_label}{as_of_label}",
+            _growth_annotation_text(
+                total_n=total_n,
+                dated_papers=dated_papers,
+                undated_papers=undated_papers,
+                cagr_pct=resolved_cagr * 100,
+                first_year=years[0],
+                span_end=span_end,
+                current_year_is_partial=current_year_is_partial,
+                as_of_date=as_of_date,
+            ),
             transform=ax1.transAxes, ha="right", va="top",
             fontsize=max(VIZ_CONFIG["font_size"] - 2, 16),
             bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="gray", alpha=0.85),
@@ -157,11 +193,8 @@ def plot_growth_curve(
 
     # Annotate median year
     if annual:
-        weighted_years = []
-        for y, c in zip(years, annual):
-            weighted_years.extend([y] * c)
-        if weighted_years:
-            median_year = int(np.median(weighted_years))
+        median_year = _median_year(years, annual)
+        if median_year is not None:
             ax1.axvline(median_year, color="gray", linestyle=":", linewidth=1.5, alpha=0.7)
             ax1.text(
                 median_year + 0.3, max(annual) * 0.5,

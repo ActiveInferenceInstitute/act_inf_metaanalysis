@@ -80,6 +80,12 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
     try:
         temporal = compute_temporal_metrics(papers)
         configured_as_of_date = analysis_cfg.get("as_of_date")
+        if not configured_as_of_date:
+            logger.warning(
+                "analysis.as_of_date is not configured; using today's date %s — "
+                "set it in manuscript/config.yaml for reproducible snapshots (MIN-08)",
+                date.today(),
+            )
         as_of_date = (
             date.fromisoformat(str(configured_as_of_date))
             if configured_as_of_date

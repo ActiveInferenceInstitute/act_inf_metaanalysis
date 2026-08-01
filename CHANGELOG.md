@@ -3,7 +3,7 @@
 ## Unreleased — hostile red-team review closure (2026-07-31)
 
 Applied the findings of a full hostile deep review of the tree. Test gate now
-**678 passed, 1 skipped, 90.07% coverage**; `ruff check` and `mypy` are clean
+**686 passed, 1 skipped, 90.06% coverage**; `ruff check` and `mypy` are clean
 and enforced in a new CI workflow.
 
 - **Reproducibility / data integrity.** Title-fallback `canonical_id` now uses a
@@ -33,6 +33,14 @@ and enforced in a new CI workflow.
   fail-closed OpenAlex, transport retries, and malformed-nanopub errors; the sole
   `unittest`-style `__import__` monkeypatch was removed (no-mock policy). Added
   `ruff`/`mypy` config and `.github/workflows/ci.yml`.
+- **Second polish pass.** Fixed MIN-02 (neutral assertions get a `neutral`
+  hypothesis triple in the KnowledgeGraph, matching the RDF export), MIN-03
+  (O(1) paper→assertion index), MIN-08 (warn when `as_of_date` is unset),
+  MIN-12 (atomic snapshot copy via temp dir + rename), MIN-13 (release staging
+  clears stale files before re-staging), MIN-15 (real CAGR/N/median annotation
+  text assertions with extracted helpers), and MIN-18 (documented the
+  `ASSERTION_SUPPORT_PCT` non-neutral denominator and decoupled the abstract
+  CAGR claim from the inclusion window).
 
 ## Semantic Scholar retrieval hardening (earlier working-tree state, 2026-07-26)
 

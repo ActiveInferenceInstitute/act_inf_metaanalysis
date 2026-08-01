@@ -173,6 +173,10 @@ def prepare_release_package(output_dir: Path, project_root: Path) -> dict[str, A
     config = _load_yaml(project_root / "manuscript" / "config.yaml")
     snapshot = str(temporal.get("as_of_date", "undated"))
     package_dir = output_dir / "release" / f"nanopublications-{snapshot}"
+    if package_dir.exists():
+        # A partial or stale prior staging must not leak files into the new
+        # manifest's hashes — clear it before re-staging (MIN-13).
+        shutil.rmtree(package_dir)
     package_dir.mkdir(parents=True, exist_ok=True)
     source_paths = (
         data_dir / "nanopublications.jsonl",
