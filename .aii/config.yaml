@@ -1,0 +1,66 @@
+# AII sidecar — InstituteOS metadata. Schema: instituteos.platform.aii_sidecar
+meta:
+  updated: '2026-07-26'
+repo:
+  name: act_inf_metaanalysis
+  slug: act-inf-metaanalysis
+  full_name: ActiveInferenceInstitute/act_inf_metaanalysis
+  description: A reproducible computational meta-analysis snapshot of the Active
+    Inference and Free Energy Principle literature. The checked-in publication
+    snapshot covers 1,106 retrieved papers and 2,561 extracted nanopublications
+    across theory, tools, and application domains. By mapping these into a
+    citation-weighted knowledge graph, this project provides a reproducible review
+    of hypothesis-level evidence while preserving an explicit boundary around
+    incomplete live-source refreshes.
+institute:
+  category: publication
+  maturity: released
+  steward: Active Inference Institute
+ecosystem:
+  relations:
+  - repo: ActiveInferenceInstitute/InstituteOS
+    relation: referenced-by
+    note: Federated via the InstituteOS .aii manifest.
+  - repo: ActiveInferenceInstitute/Active_Inference_Ontology
+    note: Uses Active Inference Ontology terms.
+  - repo: ActiveInferenceInstitute/ActiveInferenceJournal
+    relation: referenced-by
+    note: Featured in Institute materials.
+  links:
+    github: https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis
+    website: https://www.activeinference.org
+artifacts:
+- path: README.md
+  kind: doc
+  description: Repository overview.
+- path: src
+  kind: code
+  description: Source tree.
+- path: pyproject.toml
+  kind: code
+  description: Python package config.
+- path: act_inf_metaanalysis_v2.0.6_2026-07-26.pdf
+  kind: publication
+  description: Date-stamped validated PDF release artifact.
+- path: output
+  kind: publication-data
+  description: Versioned data, figures, hydrated manuscript, reports, validation records, release packages, snapshots, and HTML/PDF build outputs.
+provenance:
+  license: CC-BY-4.0
+  citation:
+    text: Active Inference Institute — act_inf_metaanalysis.
+instituteos:
+  tags:
+  - act
+  - inf
+  - metaanalysis
+  - computational
+  - meta
+  - tex
+capabilities:
+- python-package
+- tested
+tasks:
+  test:
+    cmd: python -m pytest
+    description: Run the test suite.
