@@ -158,10 +158,34 @@ class TestAssessPaperHypotheses:
             base_url=httpserver_base_url(httpserver),
             model="test-model",
             max_retries=1,
+            min_confidence=0.0,  # isolate clamping from the 0.6 confidence gate
         )
 
         pairs = assess_paper_hypotheses(make_paper(), config)
         assertions = [a for a, _ in pairs]
         assert assertions[0].confidence == 1.0
         assert assertions[1].confidence == 0.0
+
+    def test_min_confidence_filters_low_confidence(self, httpserver: HTTPServer):
+        """Default 0.6 confidence floor drops weak-triage assertions (MED-19/MED-17)."""
+        response_data = [
+            {"hypothesis_id": "FEP_UNIVERSALITY", "direction": "supports", "confidence": 0.9, "reasoning": "strong"},
+            {"hypothesis_id": "AIF_OPTIMALITY", "direction": "supports", "confidence": 0.4, "reasoning": "weak"},
+            {"hypothesis_id": "SCALABILITY", "direction": "supports", "confidence": 0.6, "reasoning": "borderline"},
+        ]
+        httpserver.expect_request(
+            "/api/generate", method="POST"
+        ).respond_with_json({"response": json.dumps(response_data), "done": True})
+
+        config = LLMConfig(
+            base_url=httpserver_base_url(httpserver),
+            model="test-model",
+            max_retries=1,
+        )
+
+        pairs = assess_paper_hypotheses(make_paper(), config)
+        assertions = [a for a, _ in pairs]
+        hyp_ids = {a.hypothesis_id for a in assertions}
+        # 0.4 filtered, 0.6 kept (>= 0.6 retained)
+        assert hyp_ids == {"FEP_UNIVERSALITY", "SCALABILITY"}
 

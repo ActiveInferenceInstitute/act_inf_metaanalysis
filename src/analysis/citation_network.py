@@ -33,7 +33,7 @@ def build_citation_graph(
     graph = nx.DiGraph()
 
     for paper in papers:
-        attrs = {}
+        attrs: dict[str, object] = {}
         if paper.title is not None:
             attrs["title"] = paper.title
         if paper.year is not None:
@@ -159,7 +159,9 @@ def detect_communities(graph: nx.DiGraph) -> dict[str, int]:
 
     undirected = graph.to_undirected()
 
-    # Remove isolated nodes for community detection, add them back after
+    # Isolates naturally become singleton communities here; greedy modularity
+    # handles them. (Historical comment promised explicit isolate removal that
+    # is not implemented — this note is kept in sync with the code, MIN-04.)
     communities = sorted(
         nx.community.greedy_modularity_communities(undirected),
         key=lambda community: tuple(sorted(str(node) for node in community)),

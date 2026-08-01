@@ -7,6 +7,7 @@ bibliographic records, authorship, and citation relationships.
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Optional
@@ -95,7 +96,12 @@ class Paper:
             return f"s2:{self.s2_id}"
         if self.openalex_id:
             return f"openalex:{self.openalex_id}"
-        return f"title:{hash(self.title.lower().strip())}"
+        # Deterministic title fallback: builtin hash() is process-randomized
+        # (PYTHONHASHSEED) and can be negative, so it must not be used for a
+        # stable cross-run identity. Truncated sha256 matches src/literature/AGENTS.md.
+        title_key = self.title.lower().strip()
+        digest = hashlib.sha256(title_key.encode("utf-8")).hexdigest()[:16]
+        return f"title:{digest}"
 
     @property
     def metadata_completeness(self) -> int:

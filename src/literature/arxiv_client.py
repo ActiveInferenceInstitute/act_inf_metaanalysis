@@ -190,10 +190,12 @@ def _fetch_page(
             response = session.get(base_url, params=params, timeout=30)
             response.raise_for_status()
             return parse_arxiv_response(response.text)
-        except requests.HTTPError as e:
+        except (requests.HTTPError, requests.ConnectionError, requests.Timeout) as e:
+            # Retry both transient HTTP errors and transport errors so a flaky
+            # network does not fail the whole source (MED-15).
             wait = RETRY_BASE_SECONDS * (2 ** attempt) + random.uniform(0, 1)
             logger.warning(
-                "arXiv HTTP error (attempt %d/%d): %s — retrying in %.1fs",
+                "arXiv request failed (attempt %d/%d): %s — retrying in %.1fs",
                 attempt + 1, MAX_RETRIES, e, wait,
             )
             if attempt < MAX_RETRIES - 1:

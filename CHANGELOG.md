@@ -1,6 +1,40 @@
 # CHANGELOG.md
 
-## Unreleased — Semantic Scholar retrieval hardening
+## Unreleased — hostile red-team review closure (2026-07-31)
+
+Applied the findings of a full hostile deep review of the tree. Test gate now
+**678 passed, 1 skipped, 90.07% coverage**; `ruff check` and `mypy` are clean
+and enforced in a new CI workflow.
+
+- **Reproducibility / data integrity.** Title-fallback `canonical_id` now uses a
+  deterministic sha256 digest instead of the process-randomized builtin `hash()`
+  (`models.py`), so ID-less papers keep a stable cross-run identity. Nanopub IDs
+  are now derived deterministically from `(paper_id, hypothesis_id, assertion_type)`
+  (stable RDF/JSONL across re-runs), and `merge_nanopubs` no longer collapses
+  mixed-direction (supports + contradicts) evidence for one paper+hypothesis.
+- **Python contract.** `pyproject.toml` now declares `requires-python = ">=3.12"`
+  to match the PEP 701 syntax actually used (the f-string backslash in
+  `variables.py` that broke 3.10/3.11 is rewritten).
+- **Fail-closed retrieval.** OpenAlex and arXiv now retry transport errors;
+  OpenAlex fails *closed* on a terminal HTTP error (matching Semantic Scholar)
+  so a rate-limited source can no longer silently thin the corpus. OpenAlex DOI
+  lookups URL-quote their argument.
+- **CLI over config.** Explicit `--query/--max-results/--n-topics/--max-features/
+  --min-year/--seed` flags are honored over `manuscript/config.yaml` instead of
+  being silently overwritten.
+- **Robustness.** `bootstrap_project` prefers `TEMPLATE_REPO_ROOT`/project-local
+  template and logs any fallback scan; a malformed nanopub line now fails with a
+  precise `file:line` instead of an opaque trace-back; `min_confidence` defaults
+  to the validated 0.6; the LLM port documented in code/`scripts/AGENTS.md`
+  matches config (`11435`).
+- **Test/infra hardening.** A duplicate test class that silently shadowed 4
+  corpus tests is fixed; a suite-inventory test (AST) guards against recurrence;
+  tests added for weight policies, the 0.6 confidence gate, H1–H8 alias order,
+  fail-closed OpenAlex, transport retries, and malformed-nanopub errors; the sole
+  `unittest`-style `__import__` monkeypatch was removed (no-mock policy). Added
+  `ruff`/`mypy` config and `.github/workflows/ci.yml`.
+
+## Semantic Scholar retrieval hardening (earlier working-tree state, 2026-07-26)
 
 - Switched literature search to the provider's bulk continuation-token endpoint,
   with a local result cap because the provider may over-return rows.

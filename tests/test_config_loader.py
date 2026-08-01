@@ -2,10 +2,7 @@
 
 from __future__ import annotations
 
-import builtins
 from pathlib import Path
-
-import pytest
 
 from config import DEFAULT_ARXIV_QUERIES, DEFAULT_RELEVANCE_KEYWORDS, MANUSCRIPT_DIR
 from config_loader import default_config_path, load_kg_config, load_search_config
@@ -87,17 +84,22 @@ def test_default_config_path_points_at_manuscript() -> None:
     assert default_config_path() == MANUSCRIPT_DIR / "config.yaml"
 
 
-def test_load_yaml_import_error_returns_empty_dict(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    real_import = builtins.__import__
+def test_load_yaml_import_error_returns_empty_dict(tmp_path: Path) -> None:
+    """When yaml is unavailable, loaders fall back to {} — verified mock-free in a subprocess
+    (MED-18: the previous test monkeypatched builtins.__import__, violating the no-mock policy)."""
+    import subprocess
+    import sys
 
-    def blocked_import(name, globals=None, locals=None, fromlist=(), level=0):
-        if name == "yaml":
-            raise ImportError("yaml unavailable in test")
-        return real_import(name, globals, locals, fromlist, level)
-
-    monkeypatch.setattr(builtins, "__import__", blocked_import)
-    from config_loader import _load_yaml
-
-    assert _load_yaml(tmp_path / "missing.yaml") == {}
+    src = str(Path(__file__).resolve().parents[1] / "src")
+    missing = str(tmp_path / "missing.yaml")
+    code = (
+        "import sys; "
+        f"sys.path.insert(0, {src!r}); "
+        # Force `import yaml` to raise ImportError before importing the loader.
+        "sys.modules['yaml']=None; "
+        "import config_loader; "
+        f"print(config_loader._load_yaml({missing!r}))"
+    )
+    proc = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True)
+    assert proc.returncode == 0, proc.stderr
+    assert "{}" in proc.stdout

@@ -298,7 +298,7 @@ class TestCorpusFilterByYear:
 # ---------------------------------------------------------------------------
 
 
-class TestCorpusFilterBySubfield:
+class TestCorpusFilterBySubfieldPrimary:
     """Tests for subfield-based filtering using classify_paper."""
 
     def test_filter_neuroscience(self):

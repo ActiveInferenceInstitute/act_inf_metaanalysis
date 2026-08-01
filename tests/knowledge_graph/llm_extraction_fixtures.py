@@ -47,7 +47,7 @@ def valid_llm_response() -> list[dict]:
         {
             "hypothesis_id": "MARKOV_BLANKET_REALISM",
             "direction": "neutral",
-            "confidence": 0.5,
+            "confidence": 0.6,
             "reasoning": "The paper mentions Markov blankets but does not take a stance.",
         },
         {

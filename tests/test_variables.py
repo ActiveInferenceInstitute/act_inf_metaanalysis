@@ -501,6 +501,26 @@ class TestHypothesisAliasMapping:
         variables = compute_variables(tmp_path)
         assert variables.get("H3_SCORE") == "-0.15"
 
+    def test_all_h_aliases_follow_standard_hypotheses_order(self, tmp_path):
+        """Every H1-H8 alias maps to STANDARD_HYPOTHESES order (MIN-17/MED-09 guard)."""
+        from knowledge_graph.hypothesis import STANDARD_HYPOTHESES
+
+        (tmp_path / "corpus.jsonl").write_text("")
+        # Give each hypothesis a distinct score so a swapped alias is detected.
+        scores = {
+            h.hypothesis_id: (i + 1) * 0.05
+            for i, h in enumerate(STANDARD_HYPOTHESES)
+        }
+        (tmp_path / "hypothesis_scores.json").write_text(json.dumps(scores))
+        variables = compute_variables(tmp_path)
+        assert len(STANDARD_HYPOTHESES) == 8
+        for i, h in enumerate(STANDARD_HYPOTHESES, start=1):
+            expected = f"{scores[h.hypothesis_id]:+.2f}"
+            assert variables.get(f"H{i}_SCORE") == expected, (
+                f"H{i} did not alias to {h.hypothesis_id}"
+            )
+            assert variables.get(f"{h.hypothesis_id}_SCORE") == expected
+
     def test_assertion_aliases(self, tmp_path):
         """H1_SUPPORT etc. created from full assertion summary keys."""
         (tmp_path / "corpus.jsonl").write_text("")

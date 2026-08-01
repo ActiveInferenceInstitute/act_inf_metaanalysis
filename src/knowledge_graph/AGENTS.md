@@ -13,8 +13,7 @@ operation in the pipeline — use incremental mode (the default) whenever possib
 - **Incremental extraction**: `llm_extraction.py` skips papers already in `nanopublications.jsonl`.
   Never delete this file without the `--clear-assertions` flag unless explicitly asked to restart.
   Deleting it triggers full LLM re-extraction (~hours on local Ollama).
-- **Confidence floor**: `min_confidence: 0.6` is the validated extraction threshold. Do not lower
-  it without re-running the calibration study (`κ > 0.70` requirement).
+- **Confidence floor**: `min_confidence: 0.6` is the validated extraction threshold (the default in `LLMConfig`). Do not lower it without re-running the calibration study. Note: the real agreement figures are κ=0.704 for *rule-vs-rule* stability of the reference protocols; the pipeline-vs-rule-reference κ is −0.048, so the 0.6 gate is a pipeline-design constant, not a calibrated human-agreement milestone.
 - **RDF namespace stability**: `AIF_NAMESPACE = "http://activeinference.institute/ontology/"` is
   published in the nanopub.trig output. Never change it without a migration script that rewrites
   all existing nanopublications.

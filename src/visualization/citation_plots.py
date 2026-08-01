@@ -189,7 +189,7 @@ def plot_degree_distribution(
         # Log-spaced bins for power-law visualization
         bins = np.logspace(0, np.log10(max_degree + 1), num=25)
         ax.hist(
-            in_arr[in_arr > 0], bins=bins,
+            in_arr[in_arr > 0], bins=bins,  # type: ignore[arg-type]
             color=VIZ_CONFIG["palette"][0],
             edgecolor="white", alpha=0.8,
         )

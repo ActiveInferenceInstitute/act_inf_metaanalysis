@@ -50,10 +50,14 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
 
     config_path = project_root / "manuscript" / "config.yaml"
     analysis_cfg = load_analysis_config(config_path)
-    args.n_topics = analysis_cfg["n_topics"]
-    args.max_features = analysis_cfg["max_features"]
-    args.min_year = analysis_cfg["min_year"]
-    args.seed = analysis_cfg["seed"]
+    # Explicit CLI values win over config; config fills in whatever was left
+    # unset, so `--seed 0` is no longer silently discarded (MED-10).
+    args.n_topics = args.n_topics if args.n_topics is not None else analysis_cfg["n_topics"]
+    args.max_features = (
+        args.max_features if args.max_features is not None else analysis_cfg["max_features"]
+    )
+    args.min_year = args.min_year if args.min_year is not None else analysis_cfg["min_year"]
+    args.seed = args.seed if args.seed is not None else analysis_cfg["seed"]
 
     corpus = Corpus.load(Path(args.corpus))
     papers = [p for p in corpus.papers if p.year is None or p.year >= args.min_year]

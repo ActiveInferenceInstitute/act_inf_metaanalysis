@@ -124,6 +124,9 @@ class TestPaperCanonicalId:
         p = Paper(title="Active Inference: A Process Theory")
         cid = p.canonical_id
         assert cid.startswith("title:")
+        # Deterministic hex digest (16 chars), never a signed process hash.
+        assert len(cid.split(":", 1)[1]) == 16
+        assert all(c in "0123456789abcdef" for c in cid.split(":", 1)[1])
         # Hash should be deterministic
         p2 = Paper(title="Active Inference: A Process Theory")
         assert p.canonical_id == p2.canonical_id

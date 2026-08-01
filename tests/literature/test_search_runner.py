@@ -170,8 +170,8 @@ project_config:
     )
     output_dir = tmp_path / "output"
     args = argparse.Namespace(
-        query="default query",
-        max_results=10,
+        query=None,
+        max_results=None,
         output_dir=str(output_dir),
         skip_arxiv=True,
         skip_s2=True,
@@ -185,6 +185,42 @@ project_config:
     run_literature_search(args, project_root=project_root)
     assert args.query == "custom query"
     assert args.max_results == 42
+    assert args.resume is False
+
+
+def test_run_literature_search_cli_wins_over_config(
+    sample_papers: list[Paper],
+    tmp_path: Path,
+) -> None:
+    """Explicitly-passed CLI values are preserved even when config differs (MED-10)."""
+    config_path = tmp_path / "config.yaml"
+    config_path.write_text(
+        """
+project_config:
+  search:
+    query: "custom query"
+    max_results: 42
+    resume: false
+""".strip(),
+        encoding="utf-8",
+    )
+    output_dir = tmp_path / "output"
+    args = argparse.Namespace(
+        query="cli query",
+        max_results=7,
+        output_dir=str(output_dir),
+        skip_arxiv=True,
+        skip_s2=True,
+        skip_openalex=True,
+        resume=None,
+        clear_corpus=False,
+        start_year=None,
+        config=str(config_path),
+    )
+    run_literature_search(args, project_root=tmp_path)
+    assert args.query == "cli query"
+    assert args.max_results == 7
+    # resume was left unset, so config fills it
     assert args.resume is False
 
 

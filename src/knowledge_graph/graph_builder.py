@@ -16,8 +16,6 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-logger = logging.getLogger(__name__)
-
 import networkx as nx
 
 from literature.models import Paper
@@ -36,6 +34,8 @@ try:
     RDFLIB_AVAILABLE = True
 except ImportError:  # pragma: no cover
     RDFLIB_AVAILABLE = False
+
+logger = logging.getLogger(__name__)
 
 
 def _paper_uri(paper_id: str) -> str:

@@ -237,6 +237,23 @@ class TestSearchOpenalex:
         assert len(papers) == 2
         assert isinstance(papers[0], Paper)
 
+    def test_retry_on_transport_error_then_raise(self):
+        """A transport error is retried, then re-raised (MED-15)."""
+        from literature.openalex_client import _request_with_retry
+
+        session = requests.Session()
+        try:
+            with pytest.raises(requests.ConnectionError):
+                _request_with_retry(
+                    session,
+                    "http://127.0.0.1:1/works",  # nothing listens on port 1
+                    {"search": "test"},
+                    max_retries=1,
+                    delay_override=lambda _: None,
+                )
+        finally:
+            session.close()
+
     def test_search_first_result_fields(self, httpserver: HTTPServer):
         """First result has correct field values."""
         httpserver.expect_request("/works").respond_with_json(SEARCH_RESPONSE)
@@ -324,17 +341,17 @@ class TestSearchOpenalex:
         assert papers == []
 
     def test_search_http_error(self, httpserver: HTTPServer):
-        """HTTP error after retries is swallowed and returns empty list."""
+        """HTTP error after retries propagates (fail-closed, MED-16)."""
         httpserver.expect_request("/works").respond_with_data(
             "Service Unavailable", status=503
         )
 
-        papers = search_openalex(
-            query="test",
-            base_url=httpserver.url_for(""),
-            delay_override=lambda _: None,
-        )
-        assert papers == []
+        with pytest.raises(requests.HTTPError):
+            search_openalex(
+                query="test",
+                base_url=httpserver.url_for(""),
+                delay_override=lambda _: None,
+            )
 
     def test_search_with_session(self, httpserver: HTTPServer):
         """Search works with a provided session."""

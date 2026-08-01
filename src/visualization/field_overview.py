@@ -139,7 +139,7 @@ def plot_subfield_distribution(
 
     fig, ax = plt.subplots(figsize=VIZ_CONFIG["figure_size"], dpi=VIZ_CONFIG["dpi"])
 
-    wedges, texts, autotexts = ax.pie(
+    wedges, texts, autotexts = ax.pie(  # type: ignore[misc]
         sizes,
         labels=labels,
         colors=colors,

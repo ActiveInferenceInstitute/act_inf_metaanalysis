@@ -413,7 +413,7 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
             if isinstance(value, (int, float, dict))
         }
         if numeric_scores:
-            top_hypothesis = max(numeric_scores, key=numeric_scores.get)
+            top_hypothesis = max(numeric_scores, key=lambda k: numeric_scores[k])
             variables["TOP_HYPOTHESIS_ID"] = top_hypothesis
             variables["TOP_HYPOTHESIS_SCORE"] = f"{numeric_scores[top_hypothesis]:+.2f}"
             hypothesis_names = {
@@ -471,8 +471,9 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
                 neutral = int(counts_for_hyp.get("neutral", 0))
                 contradicts = int(counts_for_hyp.get("contradicts", 0))
                 total_hyp = supports + neutral + contradicts
+                escaped_hid = hid.replace("_", "\\_")
                 rows.append(
-                    f"{hypothesis_names.get(hid, hid)} ({hid.replace('_', r'\_')}) & ${score:+.2f}$ & "
+                    f"{hypothesis_names.get(hid, hid)} ({escaped_hid}) & ${score:+.2f}$ & "
                     f"{supports} & {neutral} & {contradicts} & {total_hyp} & "
                     f"{profile(score)} \\\\"
                 )
@@ -518,7 +519,7 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
     if topics and "_error" not in topics:
         topic_list = topics if isinstance(topics, list) else topics.get("topics", [])
         variables["NUM_TOPICS"] = str(len(topic_list))
-        topic_rows = []
+        topic_rows: list[str] = []
         for topic in topic_list:
             terms = ", ".join(str(term).replace("_", r"\_") for term in topic.get("top_words", []))
             topic_rows.append(
@@ -606,13 +607,13 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
     if provenance and "_error" not in provenance:
         models = provenance.get("unique_models", {})
         if isinstance(models, dict) and models:
-            variables["PROV_MODEL"] = max(models, key=models.get)
+            variables["PROV_MODEL"] = max(models, key=lambda k: float(models[k] or 0))
         prompts = provenance.get("prompt_versions", {})
         if isinstance(prompts, dict) and prompts:
-            variables["PROV_PROMPT_VERSION"] = max(prompts, key=prompts.get)
+            variables["PROV_PROMPT_VERSION"] = max(prompts, key=lambda k: float(prompts[k] or 0))
         pipelines = provenance.get("pipeline_versions", {})
         if isinstance(pipelines, dict) and pipelines:
-            variables["PROV_PIPELINE_VERSION"] = max(pipelines, key=pipelines.get)
+            variables["PROV_PIPELINE_VERSION"] = max(pipelines, key=lambda k: float(pipelines[k] or 0))
 
     coverage = _load_json(data_dir / "extraction_coverage.json")
     if coverage and "_error" not in coverage:

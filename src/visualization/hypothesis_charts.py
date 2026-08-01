@@ -324,7 +324,7 @@ def plot_assertion_summary(
                 labels.append(t.title())
                 sizes.append(count)
 
-        pie_colors = [colors_pie.get(l.lower(), "#999999") for l in labels]
+        pie_colors = [colors_pie.get(label.lower(), "#999999") for label in labels]
         wedges, texts, autotexts = ax1.pie(
             sizes, labels=labels, colors=pie_colors,
             autopct="%1.1f%%", startangle=140, pctdistance=0.85,

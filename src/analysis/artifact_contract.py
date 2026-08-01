@@ -329,8 +329,8 @@ def validate_artifacts(output_dir: Path, project_root: Path) -> dict[str, Any]:
                         cumulative = [
                             obj.assertion
                             for obj in nanopubs
-                            if paper_years.get(obj.assertion.paper_id) is not None
-                            and paper_years[obj.assertion.paper_id] <= year
+                            if (py := paper_years.get(obj.assertion.paper_id)) is not None
+                            and py <= year
                         ]
                         relevant = [
                             assertion

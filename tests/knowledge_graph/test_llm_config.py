@@ -18,13 +18,16 @@ _valid_llm_response = valid_llm_response
 class TestLLMConfig:
     def test_defaults(self):
         config = LLMConfig()
-        assert config.base_url == "http://localhost:11434"
+        assert config.base_url == "http://localhost:11435"
         assert config.model == "gemma3:4b"
         assert config.temperature == 0.1
         assert config.max_retries == 3
         assert config.nanopub_path is None
         assert config.checkpoint_interval == 50
         assert config.max_papers is None
+        # Validated confidence floor: a missing config key must not silently
+        # lower the 0.6 gate (MED-19).
+        assert config.min_confidence == 0.6
 
     def test_custom_values(self):
         config = LLMConfig(model="llama3:8b", temperature=0.5)

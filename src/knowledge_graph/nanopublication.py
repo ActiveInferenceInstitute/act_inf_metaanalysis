@@ -14,6 +14,7 @@ with (1) Assertion, (2) Provenance, and (3) Publication Info.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import re
@@ -97,25 +98,43 @@ def create_nanopub(
     assertion: Assertion,
     attribution: str = "",
     provenance: dict[str, str] | None = None,
+    created_date: str | None = None,
+    nanopub_id: str | None = None,
 ) -> Nanopublication:
     """Create a new nanopublication wrapping the given assertion.
 
-    Generates a unique nanopub_id and sets created_date to the current
-    UTC timestamp in ISO format.
+    The ``nanopub_id`` is derived deterministically from the assertion identity
+    ``(paper_id, hypothesis_id, assertion_type)`` — the same key used by
+    :func:`merge_nanopubs` — so a full re-extraction of identical evidence
+    produces stable nanopub URIs (reproducible RDF/JSONL), and mixed-direction
+    assessments for one paper+hypothesis get distinct, non-colliding IDs.
 
     Args:
         assertion: The assertion to wrap.
         attribution: Optional attribution string (e.g. author or pipeline name).
         provenance: Structured extraction lineage metadata.
+        created_date: Optional ISO-8601 creation timestamp; defaults to `now`
+            (a real run time, so provenance remains honest — reproducibility
+            is anchored by the nanopub id, not by backdating timestamps).
+        nanopub_id: Optional explicit id; defaults to a deterministic digest.
 
     Returns:
         A fully populated Nanopublication instance.
     """
+    if nanopub_id is None:
+        key = (
+            f"{assertion.paper_id}|{assertion.hypothesis_id}|"
+            f"{assertion.assertion_type}"
+        )
+        digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:24]
+        nanopub_id = f"nanopub:{digest}"
+    if created_date is None:
+        created_date = datetime.now(timezone.utc).isoformat()
     return Nanopublication(
-        nanopub_id=f"nanopub:{uuid.uuid4().hex[:12]}",
+        nanopub_id=nanopub_id,
         assertion=assertion,
         attribution=attribution,
-        created_date=datetime.now(timezone.utc).isoformat(),
+        created_date=created_date,
         provenance=provenance,
     )
 
@@ -211,11 +230,19 @@ def deserialize_nanopubs(path: Path) -> list[Nanopublication]:
     """
     nanopubs: list[Nanopublication] = []
     with open(path, "r", encoding="utf-8") as fh:
-        for line in fh:
+        for lineno, line in enumerate(fh, 1):
             line = line.strip()
-            if line:
+            if not line:
+                continue
+            try:
                 data = json.loads(line)
                 nanopubs.append(nanopub_from_dict(data))
+            except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+                # Fail with a precise, line-numbered message so a single corrupt
+                # record is trivially located and repaired (MED-13).
+                raise ValueError(
+                    f"Malformed nanopublication record at {path}:{lineno}: {exc}"
+                ) from exc
     return nanopubs
 
 
@@ -225,9 +252,13 @@ def merge_nanopubs(
 ) -> list[Nanopublication]:
     """Merge two lists of nanopublications, deduplicating by assertion key.
 
-    The composite key ``(paper_id, hypothesis_id)`` uniquely identifies an
-    assertion.  When duplicates exist the *new* entry wins so that re-runs
-    with improved models can overwrite stale results.
+    The composite key ``(paper_id, hypothesis_id, assertion_type)`` uniquely
+    identifies an assertion direction; a single paper can legitimately carry
+    both a ``supports`` and a ``contradicts`` assessment for the same
+    hypothesis (mixed evidence), and collapsing them would silently drop one
+    direction and bias the citation-weighted score. When an exact duplicate
+    (same paper, hypothesis, and direction) exists, the *new* entry wins so
+    that re-runs with improved models can overwrite stale results.
 
     Args:
         existing: Previously saved nanopublications.
@@ -236,13 +267,21 @@ def merge_nanopubs(
     Returns:
         Merged list with duplicates removed.
     """
-    seen: dict[tuple[str, str], Nanopublication] = {}
+    seen: dict[tuple[str, str, str], Nanopublication] = {}
     for np_obj in existing:
-        key = (np_obj.assertion.paper_id, np_obj.assertion.hypothesis_id)
+        key = (
+            np_obj.assertion.paper_id,
+            np_obj.assertion.hypothesis_id,
+            np_obj.assertion.assertion_type,
+        )
         seen[key] = np_obj
     for np_obj in new:
-        key = (np_obj.assertion.paper_id, np_obj.assertion.hypothesis_id)
-        seen[key] = np_obj  # new wins
+        key = (
+            np_obj.assertion.paper_id,
+            np_obj.assertion.hypothesis_id,
+            np_obj.assertion.assertion_type,
+        )
+        seen[key] = np_obj  # new wins per direction
     return list(seen.values())
 
 

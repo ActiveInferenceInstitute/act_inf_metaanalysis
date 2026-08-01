@@ -181,7 +181,6 @@ class TestBuildTfidfMatrix:
         # TF(cortex, doc0) = 1/3, IDF(cortex) = log(2/2)+1 = log(1)+1 = 1
         idf_brain = math.log(n_docs / (2 + 1)) + 1
         idf_cortex = math.log(n_docs / (1 + 1)) + 1
-        idf_robot = math.log(n_docs / (1 + 1)) + 1
 
         # Before normalization:
         raw_00 = (2 / 3) * idf_brain  # brain in doc0

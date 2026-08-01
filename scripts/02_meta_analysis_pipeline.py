@@ -19,10 +19,6 @@ PROJECT_ROOT = bootstrap_project()
 from analysis.pipeline_runner import run_meta_analysis_pipeline
 from config import (
     CORPUS_PATH as DEFAULT_CORPUS_PATH,
-    DEFAULT_MAX_FEATURES,
-    DEFAULT_MIN_YEAR,
-    DEFAULT_N_TOPICS,
-    DEFAULT_SEED,
     OUTPUT_DIR as DEFAULT_OUTPUT_DIR,
 )
 
@@ -33,10 +29,14 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--corpus", type=str, default=str(DEFAULT_CORPUS_PATH))
     parser.add_argument("--output-dir", type=str, default=str(DEFAULT_OUTPUT_DIR))
-    parser.add_argument("--n-topics", type=int, default=DEFAULT_N_TOPICS)
-    parser.add_argument("--max-features", type=int, default=DEFAULT_MAX_FEATURES)
-    parser.add_argument("--min-year", type=int, default=DEFAULT_MIN_YEAR)
-    parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
+    parser.add_argument("--n-topics", type=int, default=None,
+                        help="NMF topic count (default: config `analysis.n_topics`; 8)")
+    parser.add_argument("--max-features", type=int, default=None,
+                        help="TF-IDF vocabulary size (default: config `analysis.max_features`; 500)")
+    parser.add_argument("--min-year", type=int, default=None,
+                        help="Pre-filter year (default: config `analysis.min_year`; 2000)")
+    parser.add_argument("--seed", type=int, default=None,
+                        help="NMF random seed (default: config `analysis.seed`; 42)")
     parser.add_argument(
         "--log-level",
         default="INFO",

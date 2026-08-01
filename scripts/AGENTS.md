@@ -107,7 +107,7 @@ LLM-based assertion extraction and hypothesis scoring via Ollama.
 
 **Key flags:**
 - `--llm-model MODEL` — Ollama model name (default: `gemma3:4b`)
-- `--llm-url URL` — Ollama API base URL (default: `http://localhost:11434`)
+- `--llm-url URL` — Ollama API base URL (default: `http://localhost:11435`, matching `manuscript/config.yaml`; Ollama's stock port is 11434 but the published config injects 11435, so use the config value)
 - `--checkpoint-interval N` — flush every N papers (default: 25; config-driven)
 - `--clear-assertions` — discard previous extraction results
 - `--max-papers N` — limit LLM processing (default: no limit)

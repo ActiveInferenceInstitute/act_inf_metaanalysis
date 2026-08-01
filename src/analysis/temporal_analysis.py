@@ -148,12 +148,14 @@ def estimate_growth_rate(
     # Standard bibliometric measure: annualised growth rate of yearly
     # publication volume between the first and last observed years.
     # Measures field *activity* growth, not cumulative corpus size growth.
+    # Read from bounded_counts (not the full year_counts) so the partial-year
+    # end_year bound is honoured consistently (MIN-01).
     first_year = sorted_years[0]
     last_year = sorted_years[-1]
     n_years = last_year - first_year
 
-    start_count = year_counts[first_year]
-    end_count = year_counts[last_year]
+    start_count = bounded_counts[first_year]
+    end_count = bounded_counts[last_year]
 
     if start_count == 0:
         cagr = float('inf') if end_count > 0 else 0.0

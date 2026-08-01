@@ -193,9 +193,9 @@ def run_literature_search(
     config_path = Path(args.config) if args.config else project_root / "manuscript" / "config.yaml"
     if config_path.exists():
         cfg = load_search_config(config_path)
-        if cfg.get("query"):
+        if cfg.get("query") and args.query is None:
             args.query = cfg["query"]
-        if cfg.get("max_results"):
+        if cfg.get("max_results") and args.max_results is None:
             args.max_results = cfg["max_results"]
         if cfg.get("resume") is not None and args.resume is None:
             args.resume = cfg["resume"]
@@ -223,6 +223,11 @@ def run_literature_search(
         args.resume = True
     if args.clear_corpus is None:
         args.clear_corpus = False
+    # Final fallbacks if neither CLI nor config supplied a value (MED-10).
+    if args.query is None:
+        args.query = "active inference free energy principle"
+    if args.max_results is None:
+        args.max_results = 1000
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)

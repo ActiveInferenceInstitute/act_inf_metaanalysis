@@ -36,6 +36,7 @@ class TestMaxPapers:
             model="test-model",
             max_retries=1,
             max_papers=2,
+            min_confidence=0.0,  # isolate max_papers from the 0.6 confidence gate
         )
 
         papers = [make_paper(doi=f"10.1234/p{i}") for i in range(5)]
@@ -59,6 +60,7 @@ class TestMaxPapers:
             model="test-model",
             max_retries=1,
             max_papers=None,
+            min_confidence=0.0,  # isolate max_papers from the 0.6 confidence gate
         )
 
         papers = [make_paper(doi=f"10.1234/p{i}") for i in range(4)]
@@ -103,6 +105,7 @@ class TestMaxPapers:
             nanopub_path=str(nanopub_path),
             checkpoint_interval=100,
             max_papers=1,  # only process 1 NEW paper
+            min_confidence=0.0,  # isolate max_papers from the 0.6 confidence gate
         )
 
         papers = [

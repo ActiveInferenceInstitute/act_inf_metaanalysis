@@ -26,10 +26,11 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--query",
-        default="active inference free energy principle",
-        help="Search query string",
+        default=None,
+        help="Search query string (default: config `search.query`)",
     )
-    parser.add_argument("--max-results", type=int, default=1000)
+    parser.add_argument("--max-results", type=int, default=None,
+                        help="Cap per-source results (default: config `search.max_results`; 1000)")
     parser.add_argument("--output-dir", type=str, default=str(DEFAULT_OUTPUT_DIR))
     parser.add_argument("--skip-arxiv", action="store_true")
     parser.add_argument("--skip-s2", action="store_true")

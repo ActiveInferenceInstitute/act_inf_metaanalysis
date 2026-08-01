@@ -128,12 +128,19 @@ class TestCreateNanopub:
         assert np.assertion.assertion_id == a.assertion_id
         assert np.assertion.claim == a.claim
 
-    def test_unique_ids(self) -> None:
-        """Two calls should produce different nanopub_ids."""
+    def test_deterministic_ids(self) -> None:
+        """Nanopub ids are deterministic per identity and distinct per direction/paper."""
         a = _make_assertion()
         np1 = create_nanopub(a)
         np2 = create_nanopub(a)
-        assert np1.nanopub_id != np2.nanopub_id
+        # Same identity -> same id (reproducible RDF URIs across re-runs)
+        assert np1.nanopub_id == np2.nanopub_id
+        # Different direction for the same paper+hypothesis -> distinct id
+        a_contra = _make_assertion(assertion_type="contradicts")
+        assert np1.nanopub_id != create_nanopub(a_contra).nanopub_id
+        # Different paper -> distinct id
+        a_other = _make_assertion(paper_id="doi:10.other/x")
+        assert np1.nanopub_id != create_nanopub(a_other).nanopub_id
 
 
 class TestDictRoundTrip:
@@ -223,6 +230,19 @@ class TestJSONLSerialization:
         loaded = deserialize_nanopubs(filepath)
         assert loaded == []
 
+    def test_malformed_line_raises_with_line_number(self, tmp_path: Path) -> None:
+        """A malformed record fails with a precise, line-numbered error (MED-13)."""
+        import pytest
+
+        filepath = tmp_path / "bad.jsonl"
+        filepath.write_text(
+            '{"nanopub_id": "nanopub:aaa", "assertion": {"paper_id": "p1"}}\n'
+            "{ NOT VALID JSON\n",
+            encoding="utf-8",
+        )
+        with pytest.raises(ValueError, match="Malformed nanopublication record"):
+            deserialize_nanopubs(filepath)
+
     def test_creates_parent_directories(self, tmp_path: Path) -> None:
         """serialize_nanopubs should create missing parent directories."""
         filepath = tmp_path / "sub" / "dir" / "nanopubs.jsonl"
@@ -292,6 +312,19 @@ class TestMergeNanopubs:
         np2 = create_nanopub(a2)
         merged = merge_nanopubs([np1], [np2])
         assert len(merged) == 2
+
+    def test_mixed_direction_evidence_preserved(self) -> None:
+        """Supports + contradicts for the same paper+hypothesis must BOTH survive."""
+        a_sup = _make_assertion(
+            paper_id="doi:10.1/a", hypothesis_id="H1", assertion_type="supports", claim="yes"
+        )
+        a_con = _make_assertion(
+            paper_id="doi:10.1/a", hypothesis_id="H1", assertion_type="contradicts", claim="no"
+        )
+        merged = merge_nanopubs([create_nanopub(a_sup)], [create_nanopub(a_con)])
+        assert len(merged) == 2
+        types = {np_.assertion.assertion_type for np_ in merged}
+        assert types == {"supports", "contradicts"}
 
 
 class TestGetProcessedPaperIds:

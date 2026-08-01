@@ -197,8 +197,22 @@ def _request_with_retry(
     """
     sleep_fn = delay_override or time.sleep
     response = None
+    last_transport_error: requests.RequestException | None = None
     for attempt in range(max_retries + 1):
-        response = http.get(url, params=params, timeout=30)
+        try:
+            response = http.get(url, params=params, timeout=30)
+            last_transport_error = None
+        except (requests.ConnectionError, requests.Timeout) as exc:
+            last_transport_error = exc
+            if attempt == max_retries:
+                raise
+            wait = min(10.0, RETRY_BASE_SECONDS * (2 ** attempt) + random.uniform(0, 1))
+            logger.warning(
+                "OpenAlex transport error (%s), retry %d/%d after %.1fs",
+                type(exc).__name__, attempt + 1, max_retries, wait,
+            )
+            sleep_fn(wait)
+            continue
         if response.status_code in (429, 500, 502, 503, 504):
             wait = min(10.0, RETRY_BASE_SECONDS * (2 ** attempt) + random.uniform(0, 1))
             logger.warning(
@@ -214,6 +228,8 @@ def _request_with_retry(
     logger.error("OpenAlex retries exhausted after %d attempts", max_retries)
     if response is not None:
         response.raise_for_status()
+    if last_transport_error is not None:  # pragma: no cover - transport errors re-raise above
+        raise last_transport_error
     raise requests.HTTPError("OpenAlex retries exhausted")  # pragma: no cover
 
 
@@ -269,8 +285,13 @@ def search_openalex(
                 )
                 result = response.json()
             except requests.HTTPError as e:
-                logger.warning("OpenAlex search stopped early due to HTTP error (rate limit): %s", e)
-                break
+                # Fail closed like Semantic Scholar: a terminal HTTP error after
+                # bounded retries must not be recorded as a successful (partial)
+                # search, which would silently thin the corpus (MED-16).
+                logger.error(
+                    "OpenAlex search stopped after retries due to HTTP error: %s", e
+                )
+                raise
 
             page_papers = [_parse_openalex_work(item) for item in result.get("results", [])]
 
@@ -281,13 +302,14 @@ def search_openalex(
                 )
                 break
 
-            all_papers.extend(page_papers)
+            remaining = max_results - len(all_papers)
+            all_papers.extend(page_papers[:remaining])
             logger.info(
                 "OpenAlex page %d: fetched %d papers (total: %d)",
-                page_num, len(page_papers), len(all_papers),
+                page_num, min(len(page_papers), remaining), len(all_papers),
             )
 
-            if len(page_papers) < page_size:
+            if len(page_papers[:remaining]) < page_size:
                 logger.info("OpenAlex: received partial page, all results fetched")
                 break
 
@@ -324,7 +346,18 @@ def get_work_by_doi(
     Raises:
         requests.HTTPError: If the API returns a non-2xx status (e.g. 404).
     """
-    url = f"{base_url}/works/https://doi.org/{doi}"
+    from urllib.parse import quote, urlparse
+
+    parsed = urlparse(base_url)
+    # Only accept an http(s) base to avoid protocol-relative injection, and
+    # URL-quote the DOI path segment (DOIs must not contain '/', whitespace, or
+    # control characters — MIN-14).
+    if parsed.scheme not in ("http", "https"):
+        raise ValueError(f"OpenAlex base_url must be http(s), got: {base_url!r}")
+    if any(ch.isspace() or ord(ch) < 32 for ch in doi):
+        raise ValueError(f"Invalid DOI (whitespace/control chars): {doi!r}")
+    encoded_doi = quote(doi, safe="")
+    url = f"{base_url}/works/https://doi.org/{encoded_doi}"
 
     http = session or requests.Session()
     try:

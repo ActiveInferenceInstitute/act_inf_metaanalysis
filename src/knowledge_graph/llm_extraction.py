@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-import logging
 import json
+import logging
 import time
+
+import requests
+
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import replace
 from datetime import datetime, timezone
 from pathlib import Path
-
-import requests
+from typing import Any, Iterator
 
 from knowledge_graph.llm_client import call_ollama, parse_llm_response
 from knowledge_graph.llm_config import LLMConfig
@@ -391,7 +393,7 @@ def extract_assertions_llm(
             return paper, [], exc, metrics
 
     if len(worker_configs) == 1:
-        results = map(_process, enumerate(eligible_papers))
+        results: Iterator[Any] = map(_process, enumerate(eligible_papers))
         executor = None
     else:
         executor = ThreadPoolExecutor(max_workers=len(worker_configs))
@@ -499,10 +501,10 @@ def extract_assertions_llm(
             pipeline_version=pipeline_version,
             total_papers=len(papers),
             eligible_papers=len(eligible_ids),
-            processed_papers=coverage["processed_papers"],
-            failed_papers=coverage["failed_papers"],
-            unprocessed_papers=coverage["unprocessed_papers"],
-            assertions=coverage["assertions"],
+            processed_papers=len(eligible_ids & processed_ids),
+            failed_papers=fail_count,
+            unprocessed_papers=len(eligible_ids - processed_ids),
+            assertions=len(prior_assertions) + len(new_assertions),
             checkpoint_interval=config.checkpoint_interval,
         )
 

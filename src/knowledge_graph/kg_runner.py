@@ -13,7 +13,6 @@ from knowledge_graph.extraction import extract_assertions
 from knowledge_graph.hypothesis import (
     configure_hypotheses,
     score_all_hypotheses,
-    temporal_trend,
     temporal_trend_with_counts,
 )
 from knowledge_graph.llm_extraction import LLMConfig
@@ -38,7 +37,7 @@ def _run_llm_extraction(papers, args, nanopub_path, kg_cfg, logger):
         max_tokens=kg_cfg.get("llm_max_tokens") or 2048,
         timeout_seconds=kg_cfg.get("llm_timeout") or 120,
         max_retries=kg_cfg.get("llm_max_retries") or 3,
-        min_confidence=kg_cfg.get("llm_min_confidence") or 0.0,
+        min_confidence=kg_cfg.get("llm_min_confidence") or 0.6,
         worker_urls=(
             ()
             if getattr(args, "_llm_url_cli", False)
@@ -81,7 +80,7 @@ def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path
     if args.llm_model is None:
         args.llm_model = "gemma3:4b"
     if args.llm_url is None:
-        args.llm_url = "http://localhost:11434"
+        args.llm_url = "http://localhost:11435"
 
     configure_hypotheses(config_path if config_path.exists() else None)
 

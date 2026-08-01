@@ -4,7 +4,7 @@
 
 ## Overview
 
-The project maintains **660 collected tests** across the test suite (**659 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.04%**, verified 2026-07-26). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
+The project maintains **688 collected tests** across the test suite (**678 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.07%**, verified 2026-07-31). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
 
 ### Idempotence checks
 

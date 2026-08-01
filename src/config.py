@@ -67,7 +67,9 @@ PROMPT_VERSION = "v2.0.6"
 # ---------------------------------------------------------------------------
 KG_MIN_YEAR = 1960  # Pre-1960 papers excluded from KG construction
 DEFAULT_LLM_MODEL = "gemma3:4b"
-DEFAULT_LLM_URL = "http://localhost:11434"
+# Matches `project_config.llm_extraction.base_url` in manuscript/config.yaml
+# (the published snapshot's live Ollama endpoint); kept as a fallback default.
+DEFAULT_LLM_URL = "http://localhost:11435"
 DEFAULT_CHECKPOINT_INTERVAL = 50
 
 # Literature search defaults (01_literature_search.py)

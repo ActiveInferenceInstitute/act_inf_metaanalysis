@@ -64,14 +64,14 @@ class TestLiteratureSearchScript:
         assert corpus_path.exists(), "Corpus file should be created even with no sources"
 
     def test_parse_args_defaults(self):
-        """Verify default argument parsing."""
+        """Verify default argument parsing (CLI flags default to None so config fills them)."""
         mod = _load_script_module(
             "literature_search", SCRIPTS_DIR / "01_literature_search.py"
         )
         with _argv(["01_literature_search.py"]):
             args = mod.parse_args()
-        assert "active inference" in args.query
-        assert args.max_results == 1000
+        assert args.query is None
+        assert args.max_results is None
         assert args.resume is None
 
     def test_parse_args_no_resume(self):

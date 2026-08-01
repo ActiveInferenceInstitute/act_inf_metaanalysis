@@ -181,8 +181,8 @@ def generate_all_figures(args: argparse.Namespace) -> list[str]:
 
     trends_data = _load_json(input_dir / "hypothesis_trends.json", logger)
     if trends_data:
-        converted_trends = {}
-        yearly_counts = {}
+        converted_trends: dict[str, dict[int, float]] = {}
+        yearly_counts: dict[str, dict[int, int]] = {}
         for hyp, years in trends_data.items():
             converted_trends[hyp] = {}
             yearly_counts[hyp] = {}
