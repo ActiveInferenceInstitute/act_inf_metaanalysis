@@ -121,6 +121,25 @@ class TestTemporalPlots:
         img = Image.open(output)
         assert img.width > 0 and img.height > 0
 
+    def test_plot_subfield_timeline_partial_year(self, tmp_path: Path) -> None:
+        """Partial-year hatch + total-N annotation branch renders (MIN-15 coverage)."""
+        subfield_data = {
+            "A2_philosophy": {2020: 3, 2021: 5},
+            "C1_neuroscience": {2020: 1, 2021: 2},
+        }
+        output = tmp_path / "timeline_partial.png"
+        result = plot_subfield_timeline(
+            subfield_data,
+            output,
+            corpus_size=11,
+            undated_papers=0,
+            current_year_is_partial=True,
+            current_year=2021,
+            as_of_date="2026-07-26",
+        )
+        assert result == output
+        assert output.exists() and output.stat().st_size > 0
+
     def test_plot_subfield_timeline_all_eight(self, tmp_path: Path) -> None:
         subfield_data = {
             "A2_philosophy": {2020: 10, 2021: 12},

@@ -30,7 +30,7 @@ One JSON object per line, each representing a deduplicated paper. Fields corresp
 | `is_open_access` | bool or null | no | OA flag from OpenAlex/S2 |
 | `full_text_source` | string or null | no | Provenance label (`"arxiv"`, `"openalex"`, …) |
 
-**Canonical ID priority** (for deduplication): DOI > arXiv ID > S2 ID > OpenAlex ID > title hash.
+**Canonical ID priority** (for deduplication): DOI > arXiv ID > S2 ID > OpenAlex ID > title sha256 (16-hex digest, deterministic across runs).
 
 ---
 

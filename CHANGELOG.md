@@ -3,7 +3,7 @@
 ## Unreleased — hostile red-team review closure (2026-07-31)
 
 Applied the findings of a full hostile deep review of the tree. Test gate now
-**686 passed, 1 skipped, 90.06% coverage**; `ruff check` and `mypy` are clean
+**687 passed, 1 skipped, 90.24% coverage**; `ruff check` and `mypy` are clean
 and enforced in a new CI workflow.
 
 - **Reproducibility / data integrity.** Title-fallback `canonical_id` now uses a

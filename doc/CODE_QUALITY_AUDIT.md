@@ -4,7 +4,27 @@
 **Scope:** `projects_archive/act_inf_metaanalysis/` (archived; not template pipeline–discovered)  
 **Rubric:** template thermo-nuclear maintainability review (1k-line rule, script gates, thin orchestrators, zero-mock tests)
 
-> **Current addendum (2026-07-26):** This audit retains its original snapshot metrics while the current source gate is **659 passed, 1 skipped, 90.04% coverage** (660 collected; fail_under=90). The current pipeline also verifies structured extraction provenance, topic stability, cross-artifact contracts, manifest closure, registry-owned tooling sources, release-package hashes, and template PDF/HTML rendering. Semantic Scholar remains separately reported as the live-source blocker after the latest bulk endpoint HTTP 500.
+> **Current addendum (2026-07-31):** The historical snapshot metrics below
+> (original audit + W1–W3) are retained as a record; the live gate is now
+> **687 passed, 1 skipped, 90.24% coverage** (697 collected; fail_under=90)
+> with `ruff check` (src/scripts/tests) and `mypy` clean, both enforced by
+> `.github/workflows/ci.yml`. A full hostile red-team review (2026-07-31) was
+> implemented end-to-end: deterministic canonical/nanopub IDs, fail-closed
+> multi-source retrieval, explicit-CLI-wins-over-config, the 0.6 `min_confidence`
+> gate, removal of the sole `__import__` monkeypatch, and a suite-inventory
+> guard against silently-shadowed tests. Semantic Scholar remains separately
+> reported as the live-source blocker (HTTP 429/500).
+>
+> **Line-count reality check (2026-07-31):** the historical "largest `src/`
+> module ≤250 lines" PASS no longer holds. Post-feature modules that exceed the
+> 250-line aspirational guideline: `manuscript/variables.py` (879),
+> `knowledge_graph/llm_extraction.py` (526), `knowledge_graph/nanopublication.py`
+> (484), `literature/semantic_scholar.py` (476), `analysis/artifact_contract.py`
+> (470), `visualization/hypothesis_charts.py` (388), `literature/search_runner.py`
+> (383), `analysis/release_package.py` (374), `literature/openalex_client.py`
+> (370), `knowledge_graph/hypothesis.py` (354), `visualization/temporal_plots.py`
+> (332). These are coherent, well-tested units; decomposing them is a deliberate
+> future refactor, not a correctness defect.
 
 ## Executive verdict
 

@@ -27,7 +27,7 @@ acceptance gate.
 
 This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **14 numbered scripts** plus the canonical manuscript hydrator: retrieval, analysis, extraction, figures, hydration, full-text QA, deterministic validation, cross-artifact validation, manifest closure, review-queue preparation, safe snapshot inventory, tooling-source verification, release preflight, and release-package verification. By structuring the literature review this way, this platform ensures:
 
-1. **Verifiable Provenance**: Every paper, classification, and assertion is strictly mapped from public APIs (arXiv, Semantic Scholar) through atomic JSONL intermediate states into the final visual output.
+1. **Verifiable Provenance**: Every paper, classification, and assertion is strictly mapped from public APIs (arXiv, Semantic Scholar, and OpenAlex) through atomic JSONL intermediate states into the final visual output.
 2. **Robust Extensibility**: New papers incrementally stream into the corpus, and new LLM models can instantly backfill metadata assessments via checkpointed resumes.
 3. **Artifact Duality**: Project documentation adheres to strict constraints, requiring human-readable `README.md` and semantic subagent parameters in `AGENTS.md` for every single module.
 
@@ -37,7 +37,7 @@ This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Rese
 
 If you are joining the Active Inference Institute to extend this pipeline, you should consume the documentation hub in the following order:
 
-1. **[architecture.md](architecture.md)** — Understand the 5-stage core data flow (plus the two auxiliary QA scripts) and why we enforce a "Thin Orchestrator" scripting pattern.
+1. **[architecture.md](architecture.md)** — Understand the 5-stage core data flow (plus the QA/closure scripts 06–14) and why we enforce a "Thin Orchestrator" scripting pattern.
 2. **[data_formats.md](data_formats.md)** — Internalize the schemas (especially JSONL/TriG) that form the nervous system between modules.
 3. **[scripts.md](scripts.md)** — Learn how to execute, pause, configure, and troubleshoot the pipeline from the command line.
 4. **[hypotheses.md](hypotheses.md)** — Understand the theoretical domain bounds and the mathematical formulation of our citation-weighted scoring logic.
@@ -173,7 +173,7 @@ The pipeline reads settings from `manuscript/config.yaml`. CLI flags override co
 
 | File | Stage | Format | Description |
 | --- | --- | --- | --- |
-| `corpus.jsonl` | 1 | JSON Lines | Deduplicated papers (12 fields per record) |
+| `corpus.jsonl` | 1 | JSON Lines | Deduplicated papers (15 fields per record) |
 | `subfield_classification.json` | 2 | JSON | Domain → paper count mapping |
 | `subfield_timeline.json` | 2 | JSON | Domain → {year → count} nested mapping |
 | `temporal_analysis.json` | 2 | JSON | Year counts, cumulative, CAGR, peak year, doubling time |
@@ -227,5 +227,5 @@ Variable hydration is handled by `src/manuscript/variables.py`, invoked by the c
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [testing.md](testing.md) | Test architecture, latest 659-pass gate, and coverage configuration |
+| [testing.md](testing.md) | Test architecture, latest 687-pass gate, and coverage configuration |
 | [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |

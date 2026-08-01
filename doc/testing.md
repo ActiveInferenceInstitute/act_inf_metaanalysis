@@ -4,7 +4,7 @@
 
 ## Overview
 
-The project maintains **696 collected tests** across the test suite (**686 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.06%**, verified 2026-07-31). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
+The project maintains **697 collected tests** across the test suite (**687 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.24%**, verified 2026-07-31). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
 
 ### Idempotence checks
 
@@ -42,10 +42,10 @@ def test_s2_search_success(httpserver):
 
 The `knowledge_graph` module relies heavily on Ollama model outputs. Testing LLM parsing logic without triggering heavy GPU inference or hanging CI pipelines is critical.
 
-To test the LLM extraction loop (`tests/knowledge_graph/test_extraction.py`):
-1. **Stub the Ollama API**: Use `pytest-httpserver` to intercept `POST /api/generate` and return a hardcoded JSON string representing a mock assertion.
-2. **Test the Parser**: The test validates that the `extract_assertions()` Python logic correctly parses your hardcoded JSON into the `Assertion` Pydantic models.
-3. **Never mock the LLM wrapper**: Always instantiate the real `LLMConfig(base_url=httpserver.url_for("/"))` so the real `aiohttp` or `requests` machinery is executed.
+To test the LLM extraction loop (`tests/knowledge_graph/test_extraction.py` and the `test_llm_*.py` modules):
+1. **Stub the Ollama API**: Use `pytest-httpserver` to intercept `POST /api/generate` and return a hardcoded JSON string representing the assessed hypotheses.
+2. **Test the Parser**: The tests validate that the extraction logic correctly parses the hardcoded JSON into `Assertion` dataclasses and descends into `parse_llm_response`.
+3. **Never mock the LLM wrapper**: Always instantiate the real `LLMConfig(base_url=httpserver.url_for("/"))` so the real `requests` machinery executes against the local server (no network egress).
 
 ---
 
@@ -137,14 +137,16 @@ Key points:
 | --- | --- | --- | --- |
 | `visualization/test_field_overview.py` | `field_overview.py` | ~8 | Field summary and subfield distribution figure generation |
 | `visualization/test_citation_plots.py` | `citation_plots.py` | ~8 | Citation network and degree distribution plots |
-| `visualization/test_temporal_plots.py` | `temporal_plots.py` | ~8 | Growth curve and subfield timeline plots |
+| `visualization/test_temporal_plots.py` | `temporal_plots.py` | ~11 | Growth curve and subfield timeline plots; CAGR/N/span/median annotation text (MIN-15) |
 | `visualization/test_hypothesis_charts.py` | `hypothesis_charts.py` | ~8 | Hypothesis dashboard and evidence timeline |
 | `visualization/test_advanced_plots.py` | `advanced_plots.py` | ~10 | Word cloud, PCA, heatmap, dendrogram, topics, co-occurrence |
-| `visualization/test_figure_runner.py` | `figure_runner.py` | 4 | Minimal/full fixtures, citation network without GML, empty inputs |
+| `visualization/test_figure_runner.py` | `figure_runner.py` | 4 | Minimal/full fixtures, citation network without GML, empty inputs (one optional template-dependent test may skip) |
 | `visualization/test_style.py` | `style.py` | ~5 | VIZ_CONFIG palette and font size enforcement |
-| `test_config_loader.py` | `config_loader.py` | 4 | Search/KG YAML loading and defaults |
-| `test_scripts.py` | All 6 pipeline scripts | ~8 | `--help` parsing, argument defaults, module importability |
-| `test_variables.py` | `manuscript/variables.py` | ~36 | LaTeX formatting, JSONL counting, compute_variables with full/partial/empty output, inject_variables |
+| `test_config_loader.py` | `config_loader.py` | 4 | Search/KG YAML loading, defaults, and the no-mock `ImportError` subprocess path |
+| `test_scripts.py` | All orchestrator/helper scripts | ~8 | Argument parsing, defaults, module importability |
+| `test_variables.py` | `manuscript/variables.py` | ~38 | LaTeX formatting, JSONL counting, compute_variables with full/partial/empty output, H1–H8 alias order, inject_variables |
+| `analysis/test_hypothesis_weights.py` | `hypothesis_weights.py` | 7 | All six weighting policies incl. age-discount decay and field normalization (MED-17) |
+| `test_suite_inventory.py` | (whole suite) | 2 | AST guard: no duplicate top-level test classes, no test-less `Test*` classes (MIN-06) |
 
 ## Testing Patterns
 

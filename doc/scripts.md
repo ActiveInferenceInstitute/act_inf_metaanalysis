@@ -25,8 +25,8 @@ Queries arXiv, Semantic Scholar, and OpenAlex, then merges results into a dedupl
 
 | Flag | Type | Default | Description |
 | --- | --- | --- | --- |
-| `--query` | `str` | `"active inference free energy principle"` | Search query string |
-| `--max-results` | `int` | `1000` | Maximum results **per source** |
+| `--query` | `str` | `config` | Search query string (explicit CLI wins over `search.query`; fallback `"active inference free energy principle"`) |
+| `--max-results` | `int` | `config` | Maximum results **per source** (explicit CLI wins over `search.max_results`; fallback `1000`) |
 | `--output-dir` | `str` | `output/` | Directory for `corpus.jsonl` |
 | `--skip-arxiv` | flag | — | Skip arXiv search |
 | `--skip-s2` | flag | — | Skip Semantic Scholar search |
@@ -36,7 +36,7 @@ Queries arXiv, Semantic Scholar, and OpenAlex, then merges results into a dedupl
 | `--clear-corpus` | flag | — | Delete existing corpus before searching |
 | `--force-search` | flag | off | Query configured sources while resuming; merge fresh results |
 | `--log-level` | choice | `INFO` | `DEBUG` / `INFO` / `WARNING` / `ERROR` |
-| `--config` | `str` | — | Path to YAML config (overrides `--query`, `--max-results`, `--resume`, `--clear-corpus`) |
+| `--config` | `str` | — | Path to YAML config; fills any flag left unset (`--query`, `--max-results`, `--resume`, `--clear-corpus`). Explicitly-passed CLI flags always win over config. |
 
 ### YAML Config Keys (`search` section)
 
@@ -142,10 +142,10 @@ Loads the corpus and runs all analysis modules: domain classification, temporal 
 | --- | --- | --- | --- |
 | `--corpus` | `str` | `output/data/corpus.jsonl` | Path to input corpus |
 | `--output-dir` | `str` | `output/` | Directory for analysis JSON results |
-| `--n-topics` | `int` | `8` | Number of NMF topics to extract; overridden by `manuscript/config.yaml` |
-| `--max-features` | `int` | `500` | Maximum TF-IDF vocabulary size |
-| `--min-year` | `int` | `1960` | Filter out papers published before this year |
-| `--seed` | `int` | `42` | Random seed for NMF reproducibility |
+| `--n-topics` | `int` | `config` (`8`) | Number of NMF topics to extract; explicit CLI wins over `analysis.n_topics` |
+| `--max-features` | `int` | `config` (`500`) | Maximum TF-IDF vocabulary size |
+| `--min-year` | `int` | `config` (`2000`) | Filter out papers published before this year |
+| `--seed` | `int` | `config` (`42`) | Random seed for NMF reproducibility |
 | `--log-level` | choice | `INFO` | `DEBUG` / `INFO` / `WARNING` / `ERROR` |
 
 ### Processing Steps

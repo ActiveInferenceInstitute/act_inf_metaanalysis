@@ -225,7 +225,7 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 
 The canonical, continuously updated changelog lives in **[CHANGELOG.md](CHANGELOG.md)** — treat it as the single source of truth. (An earlier copy was duplicated here and drifted several releases behind; this section is intentionally kept to a short pointer to avoid that recurring.)
 
-**Current release: v2.0.6 (2026-07-26 closure)** — adds configuration-driven live-refresh provenance, partial-year-safe temporal statistics, topic stability diagnostics, cross-artifact validation, canonical manuscript hydration, external tooling verification, and PDF/HTML-only render closure while preserving the honest rule-based validation boundary. The current working tree adds Semantic Scholar retrieval hardening and canonical public-repository metadata; the latest gate has 686 passed tests, 1 skipped, and 90.06% coverage against the 90% gate.
+**Current release: v2.0.6 (2026-07-26 closure)** — adds configuration-driven live-refresh provenance, partial-year-safe temporal statistics, topic stability diagnostics, cross-artifact validation, canonical manuscript hydration, external tooling verification, and PDF/HTML-only render closure while preserving the honest rule-based validation boundary. The current working tree adds Semantic Scholar retrieval hardening and canonical public-repository metadata; the latest gate has 687 passed tests, 1 skipped, and 90.24% coverage against the 90% gate.
 
 See **[CHANGELOG.md](CHANGELOG.md)** for the full per-release history (v2.0.0 → v2.0.6).
 

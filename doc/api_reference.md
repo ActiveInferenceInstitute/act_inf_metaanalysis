@@ -42,7 +42,7 @@ class Paper:
     full_text_source: Optional[str] = None    # Provenance label, e.g. "arxiv", "openalex"
 
     @property
-    def canonical_id(self) -> str  # Priority: doi > arxiv_id > s2_id > openalex_id > title hash
+    def canonical_id(self) -> str  # Priority: doi > arxiv_id > s2_id > openalex_id > title sha256 (truncated 16 hex)
 
     @property
     def metadata_completeness(self) -> int  # Count of non-None optional fields
@@ -297,15 +297,19 @@ class Nanopublication:
     attribution: str = ""
     created_date: str = ""
 
-def create_nanopub(assertion: Assertion, attribution: str = "") -> Nanopublication
+def create_nanopub(assertion: Assertion, attribution: str = "", provenance: dict | None = None,
+                   created_date: str | None = None, nanopub_id: str | None = None) -> Nanopublication
+    # nanopub_id is derived deterministically from (paper_id, hypothesis_id, assertion_type)
 def nanopub_to_dict(nanopub: Nanopublication) -> dict
 def nanopub_from_dict(data: dict) -> Nanopublication
 def serialize_nanopubs(nanopubs: list[Nanopublication], path: Path) -> None
 def deserialize_nanopubs(path: Path) -> list[Nanopublication]
+    # Raises ValueError with a precise file:line on a malformed record
 def merge_nanopubs(existing: list[Nanopublication], new: list[Nanopublication]) -> list[Nanopublication]
+    # Deduplicates by (paper_id, hypothesis_id, assertion_type); preserves mixed-direction evidence
 def get_processed_paper_ids(nanopubs: list[Nanopublication]) -> set[str]
 def append_nanopubs(new_nanopubs: list[Nanopublication], path: Path) -> list[Nanopublication]
-    # Atomic read-merge-write with deduplication by (paper_id, hypothesis_id)
+    # Atomic read-merge-write; deduplication key includes assertion_type
 ```
 
 ### Hypothesis Scoring (`knowledge_graph.hypothesis`)
@@ -373,7 +377,7 @@ def count_triples_by_type(kg: KnowledgeGraph) -> dict[str, int]
 ```python
 @dataclass
 class LLMConfig:
-    base_url: str = "http://localhost:11434"
+    base_url: str = "http://localhost:11435"
     model: str = "gemma3:4b"
     temperature: float = 0.1
     max_tokens: int = 2048
@@ -383,6 +387,8 @@ class LLMConfig:
     nanopub_path: str | None = None         # JSONL file for incremental persistence
     checkpoint_interval: int = 50           # Papers between disk flushes
     max_papers: int | None = None           # None = process all papers
+    min_confidence: float = 0.6             # Validated confidence floor (0.6 gate)
+    worker_urls: tuple[str, ...] = ()       # Extra parallel extraction endpoints
 
 def build_prompt(paper: Paper, hypotheses: list[dict[str, str]]) -> str
     # Constructs system+user prompt for LLM assessment
@@ -420,7 +426,7 @@ corpus = Corpus.load(Path("output/data/corpus.jsonl"))
 
 # Configure Ollama integration (resumes automatically if nanopub_path exists)
 config = LLMConfig(
-    base_url="http://localhost:11434",
+    base_url="http://localhost:11435",
     model="gemma3:4b", 
     nanopub_path="output/nanopublications.jsonl",
     checkpoint_interval=10

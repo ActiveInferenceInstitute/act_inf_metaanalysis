@@ -23,7 +23,7 @@ Verification was run live against this tree with `uv run pytest --cov=src
 - **2,561** provenance-bearing nanopublications (`output/data/nanopublications.jsonl`);
 - 16 registered figures (16 PNG + `figure_registry.json`);
 - hypothesis scores stable across snapshots (e.g. H4 0.8317, H5 1.0);
-- test gate: **686 passed, 1 skipped, 90.06% coverage** after implementing the
+- test gate: **687 passed, 1 skipped, 90.24% coverage** after implementing the
   review findings below (fails at 90 gate only if coverage drops below 90);
 - the one skipped test is `tests/visualization/test_figure_runner.py:291`
   ("template infrastructure not importable") — see MIN-05.
