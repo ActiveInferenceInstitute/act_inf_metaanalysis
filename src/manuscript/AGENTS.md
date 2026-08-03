@@ -35,8 +35,7 @@ Single module (`variables.py`) that reads all pipeline output JSONs and produces
 ## Running Injection Manually
 
 ```bash
-PYTHONPATH=/path/to/template:/path/to/act_inf_metaanalysis/src \
-  python scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/z_generate_manuscript_variables.py --project .
 ```
 
 Output: `output/manuscript/*.md` — rendered copies of manuscript source files with all

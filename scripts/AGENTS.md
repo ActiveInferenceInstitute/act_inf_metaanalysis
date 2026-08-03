@@ -186,9 +186,9 @@ Violations of this pattern break the architecture and test coverage guarantees.
 
 ## Configuration
 
-All scripts support `--log-level {DEBUG,INFO,WARNING,ERROR}` for verbosity control.
+Scripts `01`, `02`, `03`, `04`, and `06` support `--log-level {DEBUG,INFO,WARNING,ERROR}` for verbosity control (script `07` deliberately does not; see its flag list below).
 
-Scripts `01`, `02`, and `03` auto-discover or accept `--config PATH` pointing to `manuscript/config.yaml` for project-specific overrides (search queries, relevance keywords, checkpoint intervals, custom hypothesis definitions, etc.).
+Scripts `01` and `03` auto-discover or accept `--config PATH` pointing to `manuscript/config.yaml` for project-specific overrides (search queries, relevance keywords, checkpoint intervals, custom hypothesis definitions, etc.).
 
 ## Output Directory Structure
 

@@ -29,7 +29,7 @@ Source directory for the paper: all `.md` sections, `config.yaml`, `preamble.md`
 | `07_appendix_accessibility.md` | FAIR data, cognitive ergonomics, decentralized science |
 | `98_symbols_glossary.md` | Mathematical notation table and abbreviations |
 | `99_references.md` | BibTeX bibliography directive (points to `references.bib`) |
-| `references.bib` | BibTeX source file (100+ citations, 2000–2026) |
+| `references.bib` | BibTeX source file (71 citations, 1959–2026) |
 
 ## Variable Injection System
 

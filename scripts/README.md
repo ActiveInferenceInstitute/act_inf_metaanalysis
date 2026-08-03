@@ -5,36 +5,36 @@ Project-specific orchestrator scripts for the Active Inference literature meta-a
 ## Quick Start
 
 ```bash
-# From the project root (projects_archive/act_inf_metaanalysis/)
+# From the project root (projects_archive/act_inf_metaanalysis/ in the monorepo, or the repository root in a standalone clone)
 cd /path/to/template/projects_archive/act_inf_metaanalysis
 
 # 1. Retrieve literature corpus (default: merge into existing corpus.jsonl; use --no-resume to ignore it)
-python scripts/01_literature_search.py
+uv run python scripts/01_literature_search.py
 
 # 2. Run quantitative analyses
-python scripts/02_meta_analysis_pipeline.py
+uv run python scripts/02_meta_analysis_pipeline.py
 
 # 3. Build knowledge graph (requires Ollama for LLM extraction)
-python scripts/03_build_knowledge_graph.py --llm-model gemma3:4b
+uv run python scripts/03_build_knowledge_graph.py --llm-model gemma3:4b
 
 # 4. Generate publication figures
-python scripts/04_generate_figures.py --dpi 300
+uv run python scripts/04_generate_figures.py --dpi 300
 
 # 5. Hydrate manuscript variables through the canonical template entrypoint
-python scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/z_generate_manuscript_variables.py --project .
 
 # 6. Assess full-text availability
-python scripts/06_fulltext_assessment.py
+uv run python scripts/06_fulltext_assessment.py
 
 # 7. Deterministic validation / QA
-python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
-python scripts/08_validate_artifacts.py
-python scripts/09_write_pipeline_manifest.py
-python scripts/11_prepare_evidence_pilots.py
-python scripts/12_snapshot_output.py
-python scripts/13_verify_tooling_inventory.py
-python scripts/10_release_preflight.py
-python scripts/14_verify_release_package.py
+uv run python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
+uv run python scripts/08_validate_artifacts.py
+uv run python scripts/09_write_pipeline_manifest.py
+uv run python scripts/11_prepare_evidence_pilots.py
+uv run python scripts/12_snapshot_output.py
+uv run python scripts/13_verify_tooling_inventory.py
+uv run python scripts/10_release_preflight.py
+uv run python scripts/14_verify_release_package.py
 ```
 
 Scripts `01`–`04` plus the canonical `z_generate_manuscript_variables.py` entrypoint form the core content-generation chain (run in order). Scripts `06`–`09` close QA, cross-artifact validation, and provenance. Scripts `11`–`13` prepare review queues, snapshots, and tooling-source evidence; Script `10` then runs the non-LLM release preflight and refreshes the final manifest. Script `14` verifies the staged package.
@@ -64,7 +64,7 @@ Most scripts accept:
 - `--log-level {DEBUG,INFO,WARNING,ERROR}` — verbosity control (default: `INFO`) — scripts `01`, `02`, `03`, `04`, `06`
 - `--output-dir PATH` — override output directory — scripts `01`, `02`, `03`, `04`, `06`, `07`
 
-Scripts `01`, `02`, `03` also accept:
+Scripts `01` and `03` also accept:
 - `--config PATH` — YAML config file for project-specific overrides
 
 **Exceptions:**
@@ -99,7 +99,7 @@ All outputs are written to `output/`:
 
 ## Dependencies
 
-- **Python 3.10+** with packages listed in `pyproject.toml`
+- **Python 3.12+** with packages listed in `pyproject.toml`
 - **Ollama** (optional) — required only for `03_build_knowledge_graph.py` LLM extraction
 - **matplotlib** / **networkx** / **scikit-learn** — for analysis and visualization
 

@@ -40,10 +40,10 @@ Current public release: [act_inf_metaanalysis_v2.0.6_2026-07-26.pdf](../act_inf_
 
 ```bash
 # From project root
-python scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/z_generate_manuscript_variables.py --project .
 
 # Dry run — shows which variables would be injected without writing files
-python scripts/z_generate_manuscript_variables.py --project . --dry-run
+uv run python scripts/z_generate_manuscript_variables.py --project . --dry-run
 ```
 
 Output goes to `output/manuscript/`. Source files in `manuscript/` are never overwritten. The canonical hydrator also records `output/data/manuscript_variables.json` with the exact source-token inventory and artifact hashes.

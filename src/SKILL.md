@@ -19,6 +19,6 @@ When operating within this workspace, adhere to the following interaction protoc
 
 - **Modularity**: Business logic never resides in `scripts/`. It belongs here.
 - **Reproducibility**: When adding new NLP or analytical functions, ensure RNG seeds are hardcoded (typically `seed=42`) to guarantee deterministic analysis.
-- **Documentation Parity**: If you modify any file here, you must run `python3 -m infrastructure.validation.cli markdown` to verify nothing was broken.
+- **Documentation Parity**: If you modify any file here, run the local gates (`uv run ruff check src/ scripts/ tests/`, `uv run mypy src/`, and the pytest suite with the 90% coverage floor) to verify nothing was broken.
 
 Refer to the specific `SKILL.md` in each subdirectory for granular file-level guidance.

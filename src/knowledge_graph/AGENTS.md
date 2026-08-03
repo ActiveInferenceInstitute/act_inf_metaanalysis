@@ -27,13 +27,13 @@ operation in the pipeline — use incremental mode (the default) whenever possib
 
 ```bash
 # Incremental (default) — skips already-processed papers
-python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
+uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 
 # Full re-extraction (WARNING: overwrites existing assertions in nanopublications.jsonl)
-python scripts/03_build_knowledge_graph.py --clear-assertions
+uv run python scripts/03_build_knowledge_graph.py --clear-assertions
 
 # Score-only mode — reload from existing nanopubs, no LLM calls
-python scripts/03_build_knowledge_graph.py --max-papers 0
+uv run python scripts/03_build_knowledge_graph.py --max-papers 0
 ```
 
 Ollama must be running at the configured `project_config.llm_extraction.base_url`

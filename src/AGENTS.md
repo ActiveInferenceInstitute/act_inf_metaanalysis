@@ -14,11 +14,11 @@
 
 3. **Determinism**: All stochastic operations use `seed=42`. Never remove seeds.
 
-4. **PYTHONPATH requirement**: When running scripts manually, set:
-   ```
-   PYTHONPATH=/path/to/template:/path/to/act_inf_metaanalysis/src
-   ```
-   The first entry enables infrastructure imports; the second enables `from literature.models import Paper`.
+4. **Path setup**: Every `scripts/` orchestrator inserts `src/` on `sys.path` via
+   `scripts/_bootstrap.py` — no manual `PYTHONPATH` is needed to run the
+   pipeline. Template-infrastructure imports (e.g. `infrastructure.documentation`)
+   are only used when a template root is present; pin it explicitly with
+   `TEMPLATE_REPO_ROOT` to avoid an ancestor-dir scan (MED-11).
 
 5. **Coverage gates**: `tests/` targets 90%+ coverage. A pipeline run fails if coverage drops below this.
 
