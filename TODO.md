@@ -7,7 +7,7 @@ are listed under Minor / Medium / Major below; pre-existing open release items
 
 **Owner:** Active Inference Meta-Analysis project.
 
-**Last reviewed:** 2026-07-31 (hostile deep review + backlog reconciliation).
+**Last reviewed:** 2026-08-02 (docs deep review + backlog reconciliation).
 
 This is the authoritative project-level backlog. It scopes work that can be
 completed without changing the scientific target, hypothesis set, RDF
@@ -410,6 +410,113 @@ order; Major items should land before the next publication snapshot.
   computed over non-neutral assertions only (1751/1828) — rename to
   `NON_NEUTRAL_SUPPORT_PCT` or document the denominator so future prose cannot
   misuse it as a share of all 2,561.
+
+## Docs deep review (2026-08-02)
+
+**Scope:** a mega-deep documentation review of the whole tree (README, AGENTS.md,
+`doc/` hub, scripts/manuscript/src/tests README+AGENTS pairs, CI, license,
+changelog). Every entry below was verified against the current source before
+editing. Implementation status: all items implemented in the same pass and
+committed; entries are marked ✓ with the commit reference. Full narrative in
+`REVIEW_LOG_2026-08-02.md`.
+
+### Major
+
+- ✓ **MAJ-D01 — Remove the fabricated "Steganographic Hardening" section from
+  `doc/scripts.md`.** Lines 531–540 describe `secure_run.sh`, `./run.sh`, and
+  `infrastructure/steganography/`, none of which exist in this repository; the
+  content is a template leftover. Replaced with the actual PDF/HTML render
+  policy. (`doc/scripts.md`; commit `MAJ-D01`)
+- ✓ **MAJ-D02 — Rewrite the stale directory tree in root `AGENTS.md`.** The tree
+  omitted ~25 current modules (search_runner, kg_runner, figure_runner,
+  pipeline_runner, llm_*, provenance, sensitivity, validation_*,
+  artifact_contract, pipeline_manifest, release_package, snapshot_manager,
+  tooling_verification, topic_stability, subfield_defaults/registry,
+  config_loader, visualization/advanced/, scripts 07–14, newer tests). Now
+  matches the tracked tree. (`AGENTS.md`; commit `MAJ-D02`)
+- ✓ **MAJ-D03 — Fix the license contradiction in `README.md`.** Badge claimed
+  MIT while `LICENSE`, `manuscript/config.yaml`, `.aii/config.yaml`, and
+  `manuscript/README.md` all declare CC-BY-4.0. Badge and link now say
+  CC-BY-4.0. (`README.md`; commit `MAJ-D03`)
+
+### Medium
+
+- ✓ **MED-D01 — Correct stale test-gate numbers.** `src/README.md:5,45` said
+  "659 passed / 1 skipped / 90.04%"; `doc/testing.md:7` and
+  `doc/CODE_QUALITY_AUDIT.md:9` said "697 collected". Live gate: **688
+  collected / 687 passed / 1 skipped / 90.24%**. All four sites updated.
+  (commit `MED-D01`)
+- ✓ **MED-D02 — Fix Python version floor in `scripts/README.md:102`** ("3.10+"
+  → "3.12+", matching `pyproject.toml` `requires-python = ">=3.12"`).
+  (commit `MED-D02`)
+- ✓ **MED-D03 — Correct the script count wording.** There are **13 numbered
+  scripts** (01–04, 06–14) plus the canonical `z_generate` hydrator, not "14
+  numbered scripts plus the hydrator". Fixed in `AGENTS.md:42`,
+  `doc/README.md:28`, and `README.md:182`. (commit `MED-D03`)
+- ✓ **MED-D04 — Update `doc/architecture.md` module inventory and dedup key.**
+  (a) Inventory now lists all current modules (kg_runner, llm_config,
+  llm_client, llm_prompts, hypothesis_weights, provenance, sensitivity,
+  validation_*, artifact_contract, pipeline_manifest, release_package,
+  snapshot_manager, tooling_verification, topic_stability, subfield_defaults,
+  subfield_registry, search_runner, figure_runner, pipeline_runner,
+  fulltext_assessment, config_loader). (b) Nanopub dedup key corrected from
+  `(paper_id, hypothesis_id)` to `(paper_id, hypothesis_id, assertion_type)`
+  at lines 237 and 396 (matches the MED-07 fix). (commit `MED-D04`)
+- ✓ **MED-D05 — Fix `doc/hypotheses.md` confidence threshold and custom-hypothesis
+  YAML schema.** Line 105 said "< 0.5 flagged for human review"; the validated
+  gate is **0.6** (`min_confidence`). The custom-hypothesis example used a list
+  schema; the real config uses a dict keyed by H1–H8 under
+  `project_config.hypothesis_definitions`. Both fixed to match code.
+  (commit `MED-D05`)
+- ✓ **MED-D06 — Fix `doc/scripts.md` path and field-count errors.** Line 8 used
+  a wrong path `projects/archive/_ActiveInference/...` (canonical:
+  `projects_archive/act_inf_metaanalysis`); line 82 said "12 fields per
+  record" (actual: 15). (commit `MED-D06`)
+- ✓ **MED-D07 — Update `doc/AGENTS.md` for the full 06–14 closure set.** The
+  file still described "the 5-stage core chain plus the two auxiliary QA
+  scripts (06, 07)" and its file-spec list omitted `ai_meta_analysis_playbook.md`,
+  `CODE_QUALITY_AUDIT.md`, and `tooling_inventory.yaml`. (commit `MED-D07`)
+- ✓ **MED-D08 — Fix `doc/README.md` API-reference count and documentation
+  index.** "24 modules" → "25 module sections" (verified against
+  `doc/api_reference.md`), and the index now includes
+  `ai_meta_analysis_playbook.md` and `tooling_inventory.yaml`. (commit `MED-D08`)
+- ✓ **MED-D09 — Standardize quick-start invocations on `uv run python`.** README
+  used `python3`, doc/README and scripts/README used `python`; the playbook and
+  scripts.md already used `uv run python`. Unified, with a clear
+  standalone-vs-monorepo `cd` note. (commit `MED-D09`)
+- ✓ **MED-D10 — Add missing code-adjacent docs.** New `CITATION.cff` (Zenodo
+  DOI 10.5281/zenodo.19461934, authors from `manuscript/config.yaml`, CC-BY-4.0),
+  `CONTRIBUTING.md` (grounded in the repo's zero-mock / thin-orchestrator /
+  doc-duality / gate conventions), and `SECURITY.md` (GitHub private
+  vulnerability reporting). (commit `MED-D10`)
+
+### Minor
+
+- ✓ **MIN-D01 — Fix `doc/api_reference.md:431` nanopub_path example** from
+  `output/nanopublications.jsonl` to `output/data/nanopublications.jsonl`
+  (matches `manuscript/config.yaml` `checkpoint_path`). (commit `MIN-D01`)
+- ✓ **MIN-D02 — Clarify `--checkpoint-interval` default in `doc/scripts.md:192`.**
+  Script default is `DEFAULT_CHECKPOINT_INTERVAL=50` (`src/config.py`), with
+  `manuscript/config.yaml` setting 25; the table now states both.
+  (commit `MIN-D02`)
+- ✓ **MIN-D03 — Align `doc/architecture.md:364` checkpoint wording** with the
+  live config (25) while noting the 50 code default. (commit `MIN-D03`)
+- **MIN-D04 — "45+ public APIs" in `src/SKILL.md` is a safe floor claim** (the
+  API reference documents well over 45 public functions). No change needed;
+  retained as a review note. (no commit)
+
+## Open / deferred
+
+- **MIN-05, MIN-09, MIN-10, MIN-11 (stale `.coverage_review.json` artifact)**
+  from the 2026-07-31 review remain open as before; this docs pass did not
+  touch them.
+- **MED-01, MED-03, MED-04, MED-05** remain the release-blocking external items
+  (live-source refresh, nanopub deposit, full-text pilot, human calibration) —
+  unchanged and out of scope for a docs-only pass.
+- The root `AGENTS.md` archive-status prose keeps the `projects_archive/`
+  monorepo context (it is the project's declared home in the template), but all
+  monorepo-relative *links* were converted to standalone-resolving targets so
+  the public clone has no dead anchors.
 
 ## Order of work
 
