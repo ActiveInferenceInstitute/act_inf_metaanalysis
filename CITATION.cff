@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software or its data artifacts in your research, please cite it as follows."
+title: "act_inf_metaanalysis: A computational meta-analysis of the Active Inference literature"
+abstract: >-
+  A reproducible computational meta-analysis snapshot of the Active Inference and
+  Free Energy Principle literature: multi-source retrieval (arXiv, Semantic
+  Scholar, OpenAlex), LLM-based assertion extraction as nanopublications,
+  citation-weighted hypothesis triage across eight standard hypotheses, and
+  publication-ready visualization and manuscript generation.
+authors:
+  - family-names: Friedman
+    given-names: Daniel
+    orcid: "https://orcid.org/0000-0001-6232-9096"
+    affiliation: "Active Inference Institute"
+  - family-names: Dietz
+    given-names: Joel
+    orcid: "https://orcid.org/0000-0002-9456-2691"
+    affiliation: "Massachusetts Institute of Technology"
+keywords:
+  - active inference
+  - free energy principle
+  - meta-analysis
+  - nanopublications
+  - knowledge graphs
+  - computational psychiatry
+date-released: "2026-07-26"
+version: "2.0.6"
+doi: "10.5281/zenodo.19461934"
+license: "CC-BY-4.0"
+url: "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
+repository-code: "https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis"
