@@ -1,6 +1,6 @@
 # Active Inference Meta-Analysis
 
-**Archived project** under [`projects_archive/act_inf_metaanalysis/`](../../projects_archive/act_inf_metaanalysis/). It is **not** discovered by template pipeline discovery (`projects/` only). To run locally, execute scripts from this directory or promote the tree back to `projects/`.
+**Archived project** under `projects_archive/act_inf_metaanalysis/` in the template monorepo (when checked out there). As a standalone repository it is **not** discovered by template pipeline discovery (`projects/` only). To run locally, execute scripts from this directory or promote the tree back to `projects/`.
 
 ## Overview
 
@@ -39,7 +39,7 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 
 ### Infrastructure Integration
 
-- **Thin Orchestrators**: 14 numbered scripts plus the canonical manuscript hydrator import from `src/` for all computation
+- **Thin Orchestrators**: 13 numbered scripts (01–04, 06–14) plus the canonical manuscript hydrator import from `src/` for all computation
 - **≥90% Test Coverage** (gate in `pyproject.toml`): extensive pytest suite using real data and pytest-httpserver for API testing
 - **Deterministic Results**: Fixed RNG seeds (seed=42) for reproducibility
 - **Structured Logging**: All scripts use Python `logging` module with configurable `--log-level`
@@ -51,81 +51,69 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 ```text
 projects_archive/act_inf_metaanalysis/
 ├── act_inf_metaanalysis_v2.0.6_2026-07-26.pdf  # date-stamped publication artifact
-├── src/                        # Core library (45+ public APIs, 5 packages)
+├── src/                        # Core library (5 packages, 47 modules)
 │   ├── __init__.py
+│   ├── config.py               # Centralized path/seed/query constants
+│   ├── config_loader.py        # YAML project_config (search, kg)
 │   ├── literature/             # Multi-source retrieval and corpus management
-│   │   ├── __init__.py
 │   │   ├── models.py           # Paper, Author, Citation dataclasses
 │   │   ├── arxiv_client.py     # arXiv Atom API search + parsing
 │   │   ├── semantic_scholar.py # Semantic Scholar Graph API client
 │   │   ├── openalex_client.py  # OpenAlex API client
 │   │   ├── corpus.py           # Unified corpus: dedup, merge, persist
 │   │   ├── search_runner.py    # Stage-01 orchestration
-│   │   └── fulltext_assessment.py
-│   ├── config_loader.py        # YAML project_config (search, kg)
+│   │   └── fulltext_assessment.py # Stage-06 OA/PDF availability report
 │   ├── analysis/               # Bibliometric and text analysis
 │   │   ├── pipeline_runner.py  # Stage-02 orchestration (imported by script 02)
 │   │   ├── text_processing.py  # Tokenization, stopwords, TF-IDF matrix
 │   │   ├── citation_network.py # networkx DiGraph, PageRank, communities
 │   │   ├── topic_modeling.py   # NMF topic extraction from TF-IDF
+│   │   ├── topic_stability.py  # Alternate-seed topic stability diagnostics
 │   │   ├── temporal_analysis.py# Publication trends, growth rates, subfield timeline
 │   │   ├── subfield_defaults.py# Default keyword map (8 domains)
 │   │   ├── subfield_registry.py# Config load + compiled pattern cache
-│   │   └── subfield_classifier.py # classify_paper / classify_corpus API
+│   │   ├── subfield_classifier.py # classify_paper / classify_corpus API
+│   │   ├── validation_sample.py, validation_labeling.py, validation_metrics.py  # Stage-07 rule-based reference study
+│   │   ├── artifact_contract.py# Stage-08 cross-artifact contract
+│   │   ├── pipeline_manifest.py# Stage-09 hash/gate manifest
+│   │   ├── release_package.py  # Stage-10 local nanopub package
+│   │   ├── pilot_protocol.py   # Stage-11 full-text/human review queues
+│   │   ├── snapshot_manager.py # Stage-12 atomic snapshot inventory/copy
+│   │   └── tooling_verification.py # Stage-13 source/license probes
 │   ├── knowledge_graph/        # RDF knowledge graph and hypothesis scoring
 │   │   ├── kg_runner.py        # Stage-03 orchestration
-│   │   ├── llm_config.py       # LLMConfig dataclass
+│   │   ├── llm_config.py       # LLMConfig dataclass (0.6 confidence floor)
 │   │   ├── llm_client.py       # Ollama HTTP client
 │   │   ├── llm_prompts.py      # Prompt templates + JSON recovery
 │   │   ├── llm_extraction.py   # Batch assess + nanopub persistence
 │   │   ├── schema.py           # RDF namespaces, assertion types
-│   │   ├── nanopublication.py  # Assertion + Nanopub dataclasses
+│   │   ├── nanopublication.py  # Assertion + Nanopub dataclasses, atomic JSONL
 │   │   ├── hypothesis.py       # 8 hypotheses, citation-weighted scoring
+│   │   ├── hypothesis_weights.py # Sensitivity weight policies
+│   │   ├── sensitivity.py      # Weight-policy sensitivity analysis
+│   │   ├── provenance.py       # Structured extraction provenance summary
 │   │   ├── graph_builder.py    # KnowledgeGraph (rdflib + networkx fallback)
 │   │   ├── query.py            # Graph query helpers
 │   │   └── extraction.py       # Assertion extraction dispatcher
-│   └── visualization/          # Publication-ready figures
-│       ├── figure_runner.py    # Stage-04 orchestration
-│       ├── advanced/           # Word cloud, PCA, heatmap, dendrogram, topics
-│       └── advanced_plots.py   # Re-export shim
+│   ├── visualization/          # Publication-ready figures
+│   │   ├── figure_runner.py    # Stage-04 orchestration
+│   │   ├── style.py            # Wong (2011) palette, 16pt font floor
+│   │   ├── field_overview.py, citation_plots.py, temporal_plots.py,
+│   │   ├── hypothesis_charts.py, advanced_plots.py (re-export shim)
+│   │   └── advanced/           # labels, word_cloud, embeddings, topics
+│   └── manuscript/             # Manuscript variable computation
+│       └── variables.py        # compute_variables / inject_variables
 ├── tests/                      # Pytest suite (see `pyproject.toml` coverage gate)
-│   ├── __init__.py
 │   ├── conftest.py             # Path setup, MPLBACKEND=Agg, shared fixtures
-│   ├── analysis/
-│   │   ├── test_citation_network.py
-│   │   ├── test_subfield_classifier.py
-│   │   ├── test_temporal_analysis.py
-│   │   ├── test_text_processing.py
-│   │   └── test_topic_modeling.py
-│   ├── knowledge_graph/
-│   │   ├── llm_extraction_fixtures.py
-│   │   ├── test_llm_prompt_parse.py
-│   │   ├── test_llm_assess_paper.py
-│   │   ├── test_llm_batch.py
-│   │   ├── test_llm_config.py
-│   │   ├── test_llm_nanopub_resume.py
-│   │   ├── test_llm_max_papers.py
-│   │   ├── test_extraction.py
-│   │   ├── test_graph_builder.py
-│   │   ├── test_hypothesis.py
-│   │   ├── test_nanopublication.py
-│   │   ├── test_query.py
-│   │   └── test_schema.py
-│   ├── literature/
-│   │   ├── test_arxiv_client.py
-│   │   ├── test_corpus.py
-│   │   ├── test_models.py
-│   │   ├── test_openalex_client.py
-│   │   └── test_semantic_scholar.py
-│   ├── visualization/
-│   │   ├── test_advanced_plots.py
-│   │   ├── test_citation_plots.py
-│   │   ├── test_field_overview.py
-│   │   ├── test_hypothesis_charts.py
-│   │   ├── test_style.py
-│   │   └── test_temporal_plots.py
+│   ├── analysis/               # 16 test modules incl. validation, contract, snapshots
+│   ├── knowledge_graph/        # 15 test modules incl. LLM resume/config/max-papers
+│   ├── literature/             # 8 test modules incl. search_runner + httpserver
+│   ├── visualization/          # 7 test modules incl. figure_runner
 │   ├── test_scripts.py         # Integration tests for script entry points
-│   └── test_variables.py       # Manuscript variable computation tests
+│   ├── test_variables.py       # Manuscript variable computation tests
+│   ├── test_config_loader.py   # YAML load paths + no-mock ImportError fallback
+│   ├── test_quality_remediation.py # W1–W3 regression guards
+│   └── test_suite_inventory.py # AST guard: no shadowed/duplicate test classes
 ├── scripts/                    # Thin orchestrators (I/O + sequencing only; logic in src/)
 │   ├── _bootstrap.py
 │   ├── _io.py
@@ -144,48 +132,36 @@ projects_archive/act_inf_metaanalysis/
 │   ├── 13_verify_tooling_inventory.py
 │   └── 14_verify_release_package.py
 ├── manuscript/                 # 20 sections + references
-│   ├── config.yaml
+│   ├── config.yaml             # Single source of truth (paper, hypotheses, pipeline)
+│   ├── config.yaml.example     # Stripped template for new checkouts
 │   ├── preamble.md
-│   ├── 00_abstract.md
-│   ├── 01_introduction.md
-│   ├── 02_methods_overview.md
-│   ├── 02a_methods_retrieval.md
-│   ├── 02b_methods_extraction.md
-│   ├── 02c_methods_bibliometrics.md
-│   ├── 02d_methods_knowledge_graph.md
-│   ├── 02e_methods_viz_injection.md
-│   ├── 03_results_hypothesis.md
-│   ├── 03a_results_field_overview.md
-│   ├── 03b_results_subfields.md
-│   ├── 03c_results_text_analytics.md
-│   ├── 03d_results_citation_network.md
-│   ├── 04_conclusion.md
-│   ├── 04a_discussion.md
-│   ├── 05_appendix_tooling.md
-│   ├── 06_appendix_technical.md
-│   ├── 07_appendix_accessibility.md
-│   ├── 98_symbols_glossary.md
+│   ├── 00_abstract.md … 07_appendix_accessibility.md, 98_symbols_glossary.md,
 │   ├── 99_references.md
 │   └── references.bib
-├── doc/                        # Documentation
-│   ├── README.md
-│   ├── architecture.md
-│   ├── api_reference.md
-│   ├── hypotheses.md
-│   ├── data_formats.md
-│   ├── scripts.md
-│   ├── testing.md
-│   ├── visualization_guide.md
-│   └── CODE_QUALITY_AUDIT.md
+├── data/validation/            # Rule-based reference-annotator agreement schema
+│   └── annotation_schema.md
+├── doc/                        # Documentation hub
+│   ├── README.md               # Index + onboarding
+│   ├── architecture.md, api_reference.md, data_formats.md, hypotheses.md,
+│   ├── scripts.md, testing.md, visualization_guide.md,
+│   ├── ai_meta_analysis_playbook.md, CODE_QUALITY_AUDIT.md
+│   └── tooling_inventory.yaml  # Publication-facing tooling source registry
 ├── output/                     # Versioned generated publication artifacts
+├── .github/workflows/ci.yml    # ruff + mypy + pytest 90% gate
 ├── pyproject.toml
+├── uv.lock
+├── LICENSE                     # CC-BY-4.0
+├── CHANGELOG.md
+├── TODO.md
 ├── README.md
 └── AGENTS.md
 ```
 
 ## See Also
 
-- [Root AGENTS.md](../../AGENTS.md) --- Template documentation
+- [README.md](README.md) --- Project overview, quick start, and changelog pointer
+- [TODO.md](TODO.md) --- Authoritative forward backlog (Minor / Medium / Major)
 - [doc/](doc/) --- Architecture, API reference, and hypothesis documentation
+- [LICENSE](LICENSE) --- CC-BY-4.0 license terms
 
 *Note: Every directory and subdirectory within `src/` and `tests/` contains localized `AGENTS.md` and `README.md` pairs mapping immediate context.*

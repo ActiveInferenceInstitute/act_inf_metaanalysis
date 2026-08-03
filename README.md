@@ -16,7 +16,7 @@ and reviewable but not source-complete for a new live publication.
 [![Coverage gate](https://img.shields.io/badge/coverage-gate%2090%25-brightgreen)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 [![Tests](https://img.shields.io/badge/tests-pytest-blue)](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)
 [![Python 3.12](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-yellow.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 > A computational meta-analysis of the **Active Inference** and **Free Energy Principle (FEP)** literature. Multi-source retrieval, LLM-based assertion extraction (nanopublications), citation-weighted hypothesis triage, and a rule-based reference-annotator agreement check map the field's evidence landscape—scores indicate evidence mapping, not scientific confirmation.
 
@@ -95,7 +95,7 @@ Use `uv` for dependencies. In the **template monorepo**, this project lives at `
 Use `uv` for dependency management. From **within the project directory** (ensures correct venv context):
 
 ```bash
-cd projects_archive/act_inf_metaanalysis
+cd projects_archive/act_inf_metaanalysis   # or the repository root in a standalone clone
 uv sync --extra dev  # First time only: install dependencies
 uv run pytest --cov=src --cov-fail-under=90 -v
 ```
@@ -118,41 +118,42 @@ uv run pytest tests/knowledge_graph/test_hypothesis.py -v
 
 ### Running the orchestration scripts
 
-Thin orchestrators live under `scripts/`:
+Thin orchestrators live under `scripts/` (13 numbered scripts plus the canonical `z_` hydrator; run from the project root):
 
 ```bash
 cd projects_archive/act_inf_metaanalysis
+# In a standalone clone, the project root is the repository root.
 # 1. Literature search (multi-source; default merges into existing corpus — use --no-resume to ignore it)
-python3 scripts/01_literature_search.py --log-level INFO
+uv run python scripts/01_literature_search.py --log-level INFO
 
 # 2. Meta-analysis processing
-python3 scripts/02_meta_analysis_pipeline.py --log-level DEBUG
+uv run python scripts/02_meta_analysis_pipeline.py --log-level DEBUG
 
 # 3. Build & evaluate the knowledge graph
-python3 scripts/03_build_knowledge_graph.py
+uv run python scripts/03_build_knowledge_graph.py
 
 # 4. Render all manuscript figures
-python3 scripts/04_generate_figures.py --dpi 300
+uv run python scripts/04_generate_figures.py --dpi 300
 
 # 5. Hydrate manuscript variables through the template-recognized entrypoint
-python3 scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/z_generate_manuscript_variables.py --project .
 
 # 6. Audit full-text availability across the corpus
-python3 scripts/06_fulltext_assessment.py
+uv run python scripts/06_fulltext_assessment.py
 
 # 7. (Validation / QA — optional) Rule-based reference-annotator agreement study.
 #    Deterministic reproducibility floor, NOT a human validation. Not part of the
 #    core content-generation chain; run after 03 has produced nanopublications.
-python3 scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
+uv run python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
 
 # 8–9. Validate cross-artifact consistency and write the pipeline manifest
-python3 scripts/08_validate_artifacts.py
-python3 scripts/09_write_pipeline_manifest.py
-python3 scripts/11_prepare_evidence_pilots.py
-python3 scripts/12_snapshot_output.py
-python3 scripts/13_verify_tooling_inventory.py
-python3 scripts/10_release_preflight.py
-python3 scripts/14_verify_release_package.py
+uv run python scripts/08_validate_artifacts.py
+uv run python scripts/09_write_pipeline_manifest.py
+uv run python scripts/11_prepare_evidence_pilots.py
+uv run python scripts/12_snapshot_output.py
+uv run python scripts/13_verify_tooling_inventory.py
+uv run python scripts/10_release_preflight.py
+uv run python scripts/14_verify_release_package.py
 ```
 
 If extraction is interrupted, rerun Stage 3 with the same config and without
@@ -179,7 +180,7 @@ projects_archive/act_inf_metaanalysis/
 ├── act_inf_metaanalysis_v2.0.6_2026-07-26.pdf  # date-stamped publication artifact
 ├── src/                        # Core library (literature, analysis, knowledge_graph, visualization)
 ├── tests/                      # Pytest suite; 90% coverage gate in pyproject.toml
-├── scripts/                    # Numbered orchestrators (01–14) plus canonical hydration
+├── scripts/                    # Numbered orchestrators (01–04, 06–14) plus canonical hydration
 ├── manuscript/                 # Markdown sections, config.yaml, references.bib
 └── doc/                        # Architecture, API, data formats, scripts
 ```
@@ -216,6 +217,9 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 - **[Documentation Hub](doc/README.md)** — Project-level quick start and advanced pipeline flags.
 - **[Project TODO](TODO.md)** — Authoritative forward backlog for minor and medium work, with acceptance gates.
 - **[AI Meta-Analysis Playbook](doc/ai_meta_analysis_playbook.md)** — Reproducible stage-by-stage operating procedure.
+- **[Contributing](CONTRIBUTING.md)** — Conventions and gates for new contributors.
+- **[Citing this work](CITATION.cff)** — Zenodo DOI `10.5281/zenodo.19461934`, CC-BY-4.0.
+- **[Security](SECURITY.md)** — How to report vulnerabilities.
 
 *Note: The project applies an automated documentation parity standard constraint. Every underlying module inside `src/` and `tests/` features dedicated component-level `README.md` and `AGENTS.md` files mapping code functionality tightly to logic constraints.*
 
