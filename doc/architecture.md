@@ -218,39 +218,63 @@ flowchart TD
 | `arxiv_client.py` | `search_arxiv`, `parse_arxiv_response` | arXiv Atom XML API with pagination and 3s rate limiting |
 | `semantic_scholar.py` | `search_semantic_scholar`, `get_paper_details`, `get_citations` | S2 bulk continuation-token search, detail/citation retrieval, bounded transient-error backoff |
 | `openalex_client.py` | `search_openalex`, `get_work_by_doi` | OpenAlex API with cursor pagination and inverted-index abstract reconstruction |
+| `search_runner.py` | `run_literature_search`, `search_source`, `apply_relevance_filter` | Stage-01 orchestration: multi-source retrieval, relevance filter, corpus save |
+| `fulltext_assessment.py` | `assess_fulltext_availability` | OA / PDF availability report (Stage 6) |
 
 ### analysis/ — Bibliometric Analysis
 
 | Module | Functions | Purpose |
 | --- | --- | --- |
+| `pipeline_runner.py` | `run_pipeline` | Stage-02 orchestration (imported by script 02) |
 | `text_processing.py` | `tokenize`, `remove_stopwords`, `build_tfidf_matrix` | Manual TF-IDF (TF × IDF with L2 normalization) |
 | `citation_network.py` | `build_citation_graph`, `compute_network_metrics`, `detect_communities`, `build_reference_index`, `resolve_citations` | NetworkX DiGraph, PageRank, greedy modularity, reference normalization |
 | `temporal_analysis.py` | `compute_temporal_metrics`, `estimate_growth_rate` | Year counts, cumulative growth, CAGR, doubling time |
 | `subfield_classifier.py` | `classify_paper`, `classify_corpus` | Priority-based classification (C→B→A1→A2) with regex word boundaries |
+| `subfield_defaults.py` | `DEFAULT_SUBFIELDS`, `DEFAULT_KEYWORDS` | Default 8-domain keyword map |
+| `subfield_registry.py` | `configure_subfields`, `get_pattern_cache` | Config load + compiled pattern cache |
 | `topic_modeling.py` | `fit_nmf_topics`, `get_document_topics` | NMF via multiplicative updates, topic descriptor extraction |
+| `topic_stability.py` | `run_topic_stability` | Alternate-seed topic stability diagnostics |
+| `validation_sample.py` | `build_stratified_sample` | Deterministic stratified sampling for Stage 7 |
+| `validation_labeling.py` | `apply_primary_rule_protocol`, `apply_secondary_rule_protocol` | Rule-based reference annotation (not human) |
+| `validation_metrics.py` | `compute_agreement_metrics`, `classify_error` | Agreement metrics and error taxonomy |
+| `artifact_contract.py` | `validate_artifacts` | Cross-artifact consistency gate (Stage 8) |
+| `pipeline_manifest.py` | `write_manifest` | Input/output hash + gate manifest (Stage 9) |
+| `pilot_protocol.py` | `prepare_pilots` | Deterministic full-text / human-review queues (Stage 11) |
+| `snapshot_manager.py` | `inventory_outputs`, `copy_snapshot` | Atomic snapshot inventory/copy (Stage 12) |
+| `tooling_verification.py` | `verify_tooling` | Dated source/license/activity probes (Stage 13) |
+| `release_package.py` | `prepare_release_package` | Local nanopublication package staging (Stage 10) |
 
 ### knowledge_graph/ — Hypothesis Scoring
 
 | Module | Functions | Purpose |
 | --- | --- | --- |
+| `kg_runner.py` | `run_kg_pipeline` | Stage-03 orchestration (imported by script 03) |
 | `schema.py` | `ASSERTION_TYPES`, `HYPOTHESIS_CATEGORIES`, `SUBFIELD_URIS`, `configure_hypothesis_categories` | RDF namespace URIs and ontology constants (configurable) |
-| `nanopublication.py` | `Assertion`, `Nanopublication`, create/serialize/deserialize/merge/append | Atomic JSONL persistence with `(paper_id, hypothesis_id)` dedup |
+| `nanopublication.py` | `Assertion`, `Nanopublication`, create/serialize/deserialize/merge/append | Atomic JSONL persistence with `(paper_id, hypothesis_id, assertion_type)` dedup |
 | `extraction.py` | `extract_assertions` | Coordinator that delegates to `llm_extraction` |
-| `hypothesis.py` | `Hypothesis`, `HYPOTHESES`, `configure_hypotheses`, `score_hypothesis`, `score_all_hypotheses`, `temporal_trend` | Configurable hypothesis definitions, citation-weighted scoring |
-| `llm_extraction.py` | `LLMConfig`, `build_prompt`, `assess_paper_hypotheses`, `extract_assertions_llm` | Ollama API integration, JSON parsing, incremental checkpoints |
+| `hypothesis.py` | `Hypothesis`, `HYPOTHESES`, `configure_hypotheses`, `score_hypothesis`, `score_all_hypotheses`, `temporal_trend`, `temporal_trend_with_counts` | Configurable hypothesis definitions, citation-weighted scoring |
+| `hypothesis_weights.py` | weighting policies (`RAW_CITATION`, `CONFIDENCE_ONLY`, `AGE_DISCOUNT`, `FIELD_NORMALIZED`, …) | Sensitivity weight-policy definitions |
+| `llm_config.py` | `LLMConfig` | Dataclass for Ollama endpoint/model/thresholds |
+| `llm_client.py` | `call_ollama` | Ollama HTTP client |
+| `llm_prompts.py` | `build_prompt`, `parse_llm_response` | Prompt templates + JSON recovery |
+| `llm_extraction.py` | `assess_paper_hypotheses`, `extract_assertions_llm` | Ollama API integration, JSON parsing, incremental checkpoints |
 | `graph_builder.py` | `KnowledgeGraph` (add_paper, add_assertion, add_citation, add_subfield, to_networkx) | RDF/networkx graph construction with rdflib-optional fallback |
 | `query.py` | `query_papers_by_hypothesis`, `query_supporting_papers`, `query_contradicting_papers`, `count_triples_by_type` | Graph query helpers for hypothesis-paper relationships |
+| `provenance.py` | `write_provenance_summary` | Structured extraction provenance aggregation |
+| `sensitivity.py` | `compute_sensitivity_analysis` | Weight-policy sensitivity analysis |
 
 ### visualization/ — Figure Rendering
 
 | Module | Functions | Purpose |
 | --- | --- | --- |
+| `figure_runner.py` | `generate_all_figures` | Stage-04 orchestration (imported by script 04) |
 | `style.py` | `VIZ_CONFIG` | Wong (2011) colorblind-safe palette, 16pt font floor, domain color map |
 | `field_overview.py` | `plot_field_summary`, `plot_subfield_distribution` | Bar chart + pie chart of domain distribution |
 | `citation_plots.py` | `plot_citation_network`, `plot_degree_distribution` | Spring-layout network graph + degree histogram |
 | `temporal_plots.py` | `plot_growth_curve`, `plot_subfield_timeline` | Dual-axis growth curve + stacked area domain timeline |
 | `hypothesis_charts.py` | `plot_hypothesis_dashboard`, `plot_evidence_timeline`, `plot_assertion_type_breakdown`, `plot_assertion_summary` | Diverging bars, multi-line trends, stacked breakdown, summary panel |
 | `advanced_plots.py` | `plot_word_cloud`, `plot_pca_embeddings`, `plot_term_heatmap`, `plot_dendrogram`, `plot_topic_term_bars`, `plot_cooccurrence_matrix` | PCA scatter, TF-IDF heatmap, Ward dendrogram, co-occurrence matrix |
+| `advanced/` | `labels.py`, `word_cloud.py`, `embeddings.py`, `topics.py` | Split implementations behind the `advanced_plots.py` re-export shim |
 
 ### manuscript/ — Manuscript Management
 
@@ -361,7 +385,7 @@ Config affects:
 | Knowledge Graph (LLM) | 1–3 hours (corpus on the order of 10^3 papers) | Sequential LLM inference (~0.1 papers/s with gemma3:4b) |
 | Visualization | < 30s | Figure rendering, Matplotlib I/O |
 
-The LLM extraction stage dominates total runtime. Checkpointing every 50 papers ensures that interruptions cost at most ~8 minutes of re-work.
+The LLM extraction stage dominates total runtime. Checkpointing every configured interval (25 papers in `manuscript/config.yaml`; code default 50) ensures that interruptions cost at most a bounded amount of re-work.
 
 ---
 
@@ -393,7 +417,7 @@ When the pipeline runs incrementally (the default), assertions accumulate across
 1. Read existing `nanopublications.jsonl` (if present) via `deserialize_nanopubs()`
 2. Extract the set of already-processed paper IDs via `get_processed_paper_ids()`
 3. Run LLM extraction only for new papers (those not in the processed set)
-4. Every `checkpoint_interval` papers, flush new assertions to disk via `append_nanopubs()`, which merges and deduplicates by `(paper_id, hypothesis_id)` composite key
+4. Every `checkpoint_interval` papers, flush new assertions to disk via `append_nanopubs()`, which merges and deduplicates by `(paper_id, hypothesis_id, assertion_type)` composite key
 5. After all papers are processed, the final `nanopublications.jsonl` contains the authoritative merged set
 
 This workflow is controlled by the `--clear-assertions` flag; without it, assertions persist and grow as the corpus expands.

@@ -5,7 +5,8 @@ The meta-analysis pipeline is composed of numbered scripts (01–14) plus the ca
 Run scripts from the archived project root:
 
 ```bash
-cd projects/archive/_ActiveInference/act_inf_metaanalysis
+cd projects_archive/act_inf_metaanalysis
+# In a standalone clone of this repository, the project root is the repository root.
 ```
 
 The live configuration in `manuscript/config.yaml` is the single source of
@@ -79,7 +80,7 @@ interpreted as an empty successful result.
 
 | File | Format | Description |
 | --- | --- | --- |
-| `corpus.jsonl` | JSON Lines | One JSON object per paper (12 fields per record) |
+| `corpus.jsonl` | JSON Lines | One JSON object per paper (15 fields per record) |
 | `reports/search_provenance.json` | JSON | Per-source status, counts, timestamps, and failures |
 
 ### Idempotent refresh and resume
@@ -121,13 +122,13 @@ requested source scope.
 
 ```bash
 # Full search with all sources
-python scripts/01_literature_search.py --max-results 500
+uv run python scripts/01_literature_search.py --max-results 500
 
 # Resume with config file
-python scripts/01_literature_search.py --config manuscript/config.yaml
+uv run python scripts/01_literature_search.py --config manuscript/config.yaml
 
 # arXiv only, fresh start
-python scripts/01_literature_search.py --skip-s2 --skip-openalex --clear-corpus
+uv run python scripts/01_literature_search.py --skip-s2 --skip-openalex --clear-corpus
 ```
 
 ---
@@ -172,7 +173,7 @@ Loads the corpus and runs all analysis modules: domain classification, temporal 
 ### Example
 
 ```bash
-python scripts/02_meta_analysis_pipeline.py --n-topics 8
+uv run python scripts/02_meta_analysis_pipeline.py --n-topics 8
 ```
 
 ---
@@ -189,7 +190,7 @@ Extracts structured assertions from paper abstracts using an LLM (Ollama), score
 | `--output-dir` | `str` | `output/` | Directory for KG results |
 | `--llm-model` | `str` | `gemma3:4b` | Ollama model name |
 | `--llm-url` | `str` | config | Ollama API base URL (the live config uses local port 11435) |
-| `--checkpoint-interval` | `int` | `25` | Flush to disk every N papers |
+| `--checkpoint-interval` | `int` | `50` (script default; `manuscript/config.yaml` sets `25`) | Flush to disk every N papers |
 | `--clear-assertions` | flag | — | Delete existing nanopubs and start fresh |
 | `--max-papers` | `int` | — | Limit papers to process (useful for testing) |
 | `--config` | `str` | — | YAML config path (auto-discovers `manuscript/config.yaml`) |
@@ -226,7 +227,7 @@ OLLAMA_CONTEXT_LENGTH=4096 OLLAMA_HOST=127.0.0.1:11435 \
 ollama serve
 
 # In a second terminal, from the project root:
-python scripts/03_build_knowledge_graph.py \
+uv run python scripts/03_build_knowledge_graph.py \
   --config manuscript/config.yaml \
   --checkpoint-interval 25 \
   --log-level INFO
@@ -253,13 +254,13 @@ Use `--clear-assertions` only to intentionally start a new clean extraction run.
 
 ```bash
 # Standard run (incremental)
-python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
+uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 
 # Fresh start with limited papers
-python scripts/03_build_knowledge_graph.py --clear-assertions --max-papers 50
+uv run python scripts/03_build_knowledge_graph.py --clear-assertions --max-papers 50
 
 # Use a different model
-python scripts/03_build_knowledge_graph.py --llm-model llama3.2:3b
+uv run python scripts/03_build_knowledge_graph.py --llm-model llama3.2:3b
 ```
 
 ---
@@ -301,7 +302,7 @@ Reads analysis JSON files and generates publication-quality figures. Forces `MPL
 ### Example
 
 ```bash
-python scripts/04_generate_figures.py --dpi 600
+uv run python scripts/04_generate_figures.py --dpi 600
 ```
 
 ---
@@ -354,10 +355,10 @@ The hydrator also writes `output/data/manuscript_variables.json`, including the 
 
 ```bash
 # Standard run (canonical entrypoint)
-python scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/z_generate_manuscript_variables.py --project .
 
 # Preview changes without writing
-python scripts/z_generate_manuscript_variables.py --project . --dry-run
+uv run python scripts/z_generate_manuscript_variables.py --project . --dry-run
 ```
 
 ---
@@ -388,10 +389,10 @@ methodology and discussion sections about full-text coverage.
 
 ```bash
 # Default — uses canonical corpus path
-python scripts/06_fulltext_assessment.py
+uv run python scripts/06_fulltext_assessment.py
 
 # Custom corpus + output directory
-python scripts/06_fulltext_assessment.py \
+uv run python scripts/06_fulltext_assessment.py \
   --corpus output/data/corpus.jsonl \
   --output-dir output/data
 ```
@@ -439,8 +440,8 @@ refreshes `pipeline_manifest.json` after writing its own report; this is the
 final output-hash closure for the documented sequence.
 
 ```bash
-python scripts/10_release_preflight.py
-python scripts/10_release_preflight.py --skip-tests
+uv run python scripts/10_release_preflight.py
+uv run python scripts/10_release_preflight.py --skip-tests
 ```
 
 ## Stage 11 — Evidence Pilot Preparation (`11_prepare_evidence_pilots.py`)
@@ -450,7 +451,7 @@ full-text pilot and human calibration. It never invents human labels and never
 changes the primary abstract-only analysis.
 
 ```bash
-python scripts/11_prepare_evidence_pilots.py --fulltext-size 100 --human-size 200
+uv run python scripts/11_prepare_evidence_pilots.py --fulltext-size 100 --human-size 200
 ```
 
 ## Utility 12 — Snapshot Inventory (`12_snapshot_output.py`)
@@ -460,8 +461,8 @@ Writes a deterministic file/size inventory and lists retained snapshots. With
 it never deletes or replaces an existing snapshot.
 
 ```bash
-python scripts/12_snapshot_output.py
-python scripts/12_snapshot_output.py --label 20260725T000000Z
+uv run python scripts/12_snapshot_output.py
+uv run python scripts/12_snapshot_output.py --label 20260725T000000Z
 ```
 
 ## Stage 13 — Tooling Source Verification (`13_verify_tooling_inventory.py`)
@@ -472,7 +473,7 @@ Paper-only or incomplete rows remain flagged; this stage never infers a license
 or maintenance status.
 
 ```bash
-python scripts/13_verify_tooling_inventory.py
+uv run python scripts/13_verify_tooling_inventory.py
 ```
 
 ## Stage 14 — Release Package Verification (`14_verify_release_package.py`)
@@ -486,7 +487,7 @@ and byte count, and verifies the JSONL nanopublication count. This is the local
 deposit-equivalent gate; it does not claim that an external deposit exists.
 
 ```bash
-python scripts/14_verify_release_package.py
+uv run python scripts/14_verify_release_package.py
 ```
 
 ---
@@ -498,20 +499,20 @@ so the preflight sees the current tooling report, and Stage 10 refreshes the
 manifest after its own report/package writes.
 
 ```bash
-python scripts/01_literature_search.py --config manuscript/config.yaml
-python scripts/02_meta_analysis_pipeline.py --n-topics 8 --seed 42
-python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
-python scripts/04_generate_figures.py
-python scripts/z_generate_manuscript_variables.py --project .
-python scripts/06_fulltext_assessment.py
-python scripts/07_run_validation_study.py
-python scripts/08_validate_artifacts.py
-python scripts/09_write_pipeline_manifest.py
-python scripts/11_prepare_evidence_pilots.py
-python scripts/12_snapshot_output.py
-python scripts/13_verify_tooling_inventory.py
-python scripts/10_release_preflight.py
-python scripts/14_verify_release_package.py
+uv run python scripts/01_literature_search.py --config manuscript/config.yaml
+uv run python scripts/02_meta_analysis_pipeline.py --n-topics 8 --seed 42
+uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
+uv run python scripts/04_generate_figures.py
+uv run python scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/06_fulltext_assessment.py
+uv run python scripts/07_run_validation_study.py
+uv run python scripts/08_validate_artifacts.py
+uv run python scripts/09_write_pipeline_manifest.py
+uv run python scripts/11_prepare_evidence_pilots.py
+uv run python scripts/12_snapshot_output.py
+uv run python scripts/13_verify_tooling_inventory.py
+uv run python scripts/10_release_preflight.py
+uv run python scripts/14_verify_release_package.py
 ```
 
 ---
@@ -528,15 +529,24 @@ python scripts/14_verify_release_package.py
 
 ---
 
-## Steganographic Hardening
+## Render Policy
 
-While the standard `./run.sh` pipeline produces `output/pdf/{name}_combined.pdf`, the system is also capable of producing a cryptographically hardened, steganographic version of the final manuscript via `secure_run.sh`.
+The publication render is configured in `manuscript/config.yaml` (`render.formats`):
 
-```bash
-# Execute the full pipeline, then harden the PDF output
-./secure_run.sh --pipeline
+```yaml
+render:
+  formats:
+    pdf: true
+    html: true
+    slides: false
+    docx: false
+    epub: false
 ```
 
-This enforces diagonal watermark overlays, invisible hash layers, and injects a cryptographic manifest that can be verified to prove the document was not tampered with post-generation. See `infrastructure/steganography/` for the cryptographic backend constraints.
+PDF and HTML are the enabled outputs; slides, DOCX, and EPUB are explicitly
+disabled. The pipeline writes the combined manuscript to `output/pdf/` and the
+HTML export to `output/web/`. The date-stamped root
+`act_inf_metaanalysis_v2.0.6_2026-07-26.pdf` is the public release copy; the
+reproducible render output is `output/pdf/act_inf_metaanalysis_combined.pdf`.
 
 > **Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)

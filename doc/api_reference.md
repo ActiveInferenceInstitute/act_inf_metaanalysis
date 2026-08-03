@@ -428,7 +428,7 @@ corpus = Corpus.load(Path("output/data/corpus.jsonl"))
 config = LLMConfig(
     base_url="http://localhost:11435",
     model="gemma3:4b", 
-    nanopub_path="output/nanopublications.jsonl",
+    nanopub_path="output/data/nanopublications.jsonl",
     checkpoint_interval=10
 )
 

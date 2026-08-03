@@ -102,7 +102,7 @@ where:
 
 **Logarithmic citation weighting** ensures that highly cited papers carry more influence while preventing any single paper from dominating the score. A paper with 1000 citations gets ~3x the weight of a paper with 10 citations, not 100x.
 
-**Confidence weighting** allows assertions with higher extraction confidence to contribute more to the score. Assertions with confidence below 0.5 are flagged for human review.
+**Confidence weighting** allows assertions with higher extraction confidence to contribute more to the score. The validated extraction floor is `min_confidence: 0.6` — assertions below it are discarded during extraction (see `LLMConfig.min_confidence` and `manuscript/config.yaml`).
 
 **Neutral assertions** appear in the denominator but not the numerator, acting as a dampening factor. A hypothesis with many neutral assertions and few directional ones will have a score closer to zero, reflecting evidential ambiguity rather than absence. In practice, a "neutral" assertion signifies that the NLP model successfully extracted an assertion related to the domain space, but mathematically determined it neither provided supporting momentum nor explicit denouncement. This serves to penalize highly-debated or poorly-formed hypotheses.
 
@@ -153,13 +153,15 @@ for year, cumulative_score in trend.items():
 > You do NOT need to edit Python source code to introduce a novel hypothesis into the Knowledge Graph pipeline. Simply open `manuscript/config.yaml` and append an entry matching the following schema:
 >
 > ```yaml
-> hypothesis_definitions:
->   - id: MY_NEW_HYPOTHESIS
->     name: "An explicit theory"
->     description: "A highly specific, refutable string that the LLM will grade the paper against."
+> project_config:
+>   hypothesis_definitions:
+>     H9:
+>       name: "An explicit theory"
+>       description: "A highly specific, refutable string that the LLM will grade the paper against."
+>       scope: "theoretical"
 > ```
 >
-> Restart `03_build_knowledge_graph.py` with `--clear-assertions` to force a complete re-evaluation.
+> Restart `03_build_knowledge_graph.py` with `--clear-assertions` to force a complete re-evaluation. Note that the H1–H8→code-identifier aliases in `src/manuscript/variables.py` are order-dependent; adding H9 requires extending that alias mapping and updating the manuscript's hypothesis tables.
 
 ---
 
@@ -167,10 +169,10 @@ for year, cumulative_score in trend.items():
 
 Each paper is assessed against all eight hypotheses in a single LLM call. The prompt consists of:
 
-1. **System prompt** — defines the role ("scientific literature analyst"), output schema (JSON array), and valid field values (`direction`, `confidence`, `reasoning`)
+1. **System prompt** — defines the role ("scientific literature analyst"), the three-layer output contract (source claim → evidence supply → hypothesis triage), and valid field values (`direction`: `supports` | `contradicts` | `neutral` | `irrelevant`; `evidence_status`: `explicit_claim` | `mentions` | `no_evidence`; `evidence_type`: `theoretical` | `empirical` | `none`)
 2. **User prompt** — contains the paper title, abstract, and a list of hypothesis IDs with descriptions
 
-The expected output is a JSON array with one object per hypothesis:
+The expected output is a JSON array with one object per assessed hypothesis:
 
 ```json
 [
@@ -178,7 +180,11 @@ The expected output is a JSON array with one object per hypothesis:
     "hypothesis_id": "FEP_UNIVERSALITY",
     "direction": "supports",
     "confidence": 0.85,
-    "reasoning": "The paper provides formal proofs extending FEP..."
+    "reasoning": "The paper provides formal proofs extending FEP...",
+    "source_claim_text": "The paper claims...",
+    "evidence_quote": "verbatim sentence from the abstract",
+    "evidence_status": "explicit_claim",
+    "evidence_type": "theoretical"
   }
 ]
 ```

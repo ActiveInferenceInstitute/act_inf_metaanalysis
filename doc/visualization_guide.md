@@ -174,10 +174,10 @@ Symmetric heatmap of term co-occurrence across documents. Cell intensity reflect
 
 ```bash
 # Generate all 16 figures
-python scripts/04_generate_figures.py
+uv run python scripts/04_generate_figures.py
 
 # Custom DPI
-python scripts/04_generate_figures.py --dpi 600
+uv run python scripts/04_generate_figures.py --dpi 600
 ```
 
 All plot functions return `output_path` after saving, enabling chaining in custom pipelines.

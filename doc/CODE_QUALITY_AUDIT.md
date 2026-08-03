@@ -6,7 +6,7 @@
 
 > **Current addendum (2026-07-31):** The historical snapshot metrics below
 > (original audit + W1–W3) are retained as a record; the live gate is now
-> **687 passed, 1 skipped, 90.24% coverage** (697 collected; fail_under=90)
+> **687 passed, 1 skipped, 90.24% coverage** (688 collected; fail_under=90)
 > with `ruff check` (src/scripts/tests) and `mypy` clean, both enforced by
 > `.github/workflows/ci.yml`. A full hostile red-team review (2026-07-31) was
 > implemented end-to-end: deterministic canonical/nanopub IDs, fail-closed

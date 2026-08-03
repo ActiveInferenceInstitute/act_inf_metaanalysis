@@ -25,7 +25,7 @@ acceptance gate.
 
 ## Central Philosophy: Reproducible Generative Research
 
-This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **14 numbered scripts** plus the canonical manuscript hydrator: retrieval, analysis, extraction, figures, hydration, full-text QA, deterministic validation, cross-artifact validation, manifest closure, review-queue preparation, safe snapshot inventory, tooling-source verification, release preflight, and release-package verification. By structuring the literature review this way, this platform ensures:
+This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **13 numbered scripts** (01–04, 06–14) plus the canonical manuscript hydrator: retrieval, analysis, extraction, figures, hydration, full-text QA, deterministic validation, cross-artifact validation, manifest closure, review-queue preparation, safe snapshot inventory, tooling-source verification, release preflight, and release-package verification. By structuring the literature review this way, this platform ensures:
 
 1. **Verifiable Provenance**: Every paper, classification, and assertion is strictly mapped from public APIs (arXiv, Semantic Scholar, and OpenAlex) through atomic JSONL intermediate states into the final visual output.
 2. **Robust Extensibility**: New papers incrementally stream into the corpus, and new LLM models can instantly backfill metadata assessments via checkpointed resumes.
@@ -49,25 +49,26 @@ If you are joining the Active Inference Institute to extend this pipeline, you s
 ## Quick Start
 
 ```bash
-# From the project root (projects_archive/act_inf_metaanalysis/)
+# From the project root (projects_archive/act_inf_metaanalysis/ in the monorepo,
+# or the repository root in a standalone clone)
 
 # Core content-generation chain (run in order):
-python scripts/01_literature_search.py --config manuscript/config.yaml
-python scripts/02_meta_analysis_pipeline.py
-python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
-python scripts/04_generate_figures.py
-python scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/01_literature_search.py --config manuscript/config.yaml
+uv run python scripts/02_meta_analysis_pipeline.py
+uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
+uv run python scripts/04_generate_figures.py
+uv run python scripts/z_generate_manuscript_variables.py --project .
 
 # QA and closure scripts (run after the content chain):
-python scripts/06_fulltext_assessment.py
-python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
-python scripts/08_validate_artifacts.py
-python scripts/09_write_pipeline_manifest.py
-python scripts/11_prepare_evidence_pilots.py
-python scripts/12_snapshot_output.py
-python scripts/13_verify_tooling_inventory.py
-python scripts/10_release_preflight.py
-python scripts/14_verify_release_package.py
+uv run python scripts/06_fulltext_assessment.py
+uv run python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
+uv run python scripts/08_validate_artifacts.py
+uv run python scripts/09_write_pipeline_manifest.py
+uv run python scripts/11_prepare_evidence_pilots.py
+uv run python scripts/12_snapshot_output.py
+uv run python scripts/13_verify_tooling_inventory.py
+uv run python scripts/10_release_preflight.py
+uv run python scripts/14_verify_release_package.py
 ```
 
 ---
@@ -223,9 +224,11 @@ Variable hydration is handled by `src/manuscript/variables.py`, invoked by the c
 | --- | --- |
 | [architecture.md](architecture.md) | Pipeline design, module dependency graph, data flow |
 | [scripts.md](scripts.md) | Per-script CLI reference with all flags, YAML keys, and examples |
-| [api_reference.md](api_reference.md) | Module-level API documentation (all 5 packages, 24 modules) |
+| [api_reference.md](api_reference.md) | Module-level API documentation (all 5 packages, 25 module sections) |
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
+| [ai_meta_analysis_playbook.md](ai_meta_analysis_playbook.md) | Stage-by-stage reproducible operating procedure and recovery rules |
+| [tooling_inventory.yaml](tooling_inventory.yaml) | Source registry for the publication-facing tooling table |
 | [testing.md](testing.md) | Test architecture, latest 687-pass gate, and coverage configuration |
 | [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |
