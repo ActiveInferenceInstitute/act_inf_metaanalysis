@@ -1,5 +1,26 @@
 # CHANGELOG.md
 
+## Unreleased — CI gate repair: dev tools declared, lint rule set stated (2026-11-01)
+
+The workflow runs `ruff check src/ scripts/ tests/` and `mypy src/`, but neither
+tool was declared in the `dev` extra, so every run on `main` since 2026-08-01
+failed at the lint step in 15–22 seconds (`error: Failed to spawn: ruff`). The
+documented development setup in `CONTRIBUTING.md` names the same three gates, so
+the declaration was the missing piece.
+
+- **`pyproject.toml`** — the `dev` extra now declares `ruff>=0.6.0` and
+  `mypy>=1.10.0`, matching the documented commands.
+- **`pyproject.toml`** — the lint gate states its rule set explicitly
+  (`select = ["E4", "E7", "E9", "F"]`), which is the classic default the
+  configuration comment already described. Without it a newer ruff release
+  silently widens the gate: ruff 0.17.3's wider defaults report 199 findings on
+  this unchanged tree, all outside the documented rule set.
+- **`uv.lock`** — regenerated for the two added tools.
+- **Verified on this tree**: `uv run ruff check src/ scripts/ tests/` → "All
+  checks passed!"; `uv run mypy src/` → "Success: no issues found in 60 source
+  files"; `uv run pytest tests/ --cov=src --cov-fail-under=90` → 687 passed,
+  1 skipped, 90.05% coverage.
+
 ## Unreleased — GNN structural sketches for H1, H4, and H8 (2026-11-01)
 
 Added `gnn/`, three illustrative GNN (Generalized Notation Notation) models that
