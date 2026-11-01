@@ -1,6 +1,6 @@
 # AII sidecar — InstituteOS metadata. Schema: instituteos.platform.aii_sidecar
 meta:
-  updated: '2026-07-26'
+  updated: '2026-11-01'
 repo:
   name: act_inf_metaanalysis
   slug: act-inf-metaanalysis
@@ -39,6 +39,10 @@ artifacts:
 - path: pyproject.toml
   kind: code
   description: Python package config.
+- path: gnn
+  kind: doc
+  description: Illustrative GNN structural sketches for hypotheses H1, H4, and H8;
+    documentation only, not evidence and not a pipeline input.
 - path: act_inf_metaanalysis_v2.0.6_2026-07-26.pdf
   kind: publication
   description: Date-stamped validated PDF release artifact.
