@@ -146,6 +146,10 @@ projects_archive/act_inf_metaanalysis/
 │   ├── scripts.md, testing.md, visualization_guide.md,
 │   ├── ai_meta_analysis_playbook.md, CODE_QUALITY_AUDIT.md
 │   └── tooling_inventory.yaml  # Publication-facing tooling source registry
+├── gnn/                        # Illustrative GNN structural sketches for H1, H4, H8
+│   ├── README.md               # Claim boundary, worked examples, verification receipts
+│   ├── AGENTS.md               # Constraints for editing the sketches
+│   └── h1_*.md, h4_*.md, h8_*.md  # One sketch per hypothesis; documentation only
 ├── output/                     # Versioned generated publication artifacts
 ├── .github/workflows/ci.yml    # ruff + mypy + pytest 90% gate
 ├── pyproject.toml

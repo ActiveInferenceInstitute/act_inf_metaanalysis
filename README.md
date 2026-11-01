@@ -182,6 +182,7 @@ projects_archive/act_inf_metaanalysis/
 ├── tests/                      # Pytest suite; 90% coverage gate in pyproject.toml
 ├── scripts/                    # Numbered orchestrators (01–04, 06–14) plus canonical hydration
 ├── manuscript/                 # Markdown sections, config.yaml, references.bib
+├── gnn/                        # Illustrative GNN structural sketches for H1, H4, H8 (docs only)
 └── doc/                        # Architecture, API, data formats, scripts
 ```
 
@@ -215,6 +216,7 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 - **[Data Formats](doc/data_formats.md)** — Schema definitions for Corpus mapping, RDF serializations, and outputs.
 - **[Project Agents](AGENTS.md)** — Operational metadata and configuration requirements for this distinct subproject.
 - **[Documentation Hub](doc/README.md)** — Project-level quick start and advanced pipeline flags.
+- **[GNN sketches](gnn/README.md)** — Illustrative GNN models of the structure behind hypotheses H1, H4, and H8 (documentation, not evidence).
 - **[Project TODO](TODO.md)** — Authoritative forward backlog for minor and medium work, with acceptance gates.
 - **[AI Meta-Analysis Playbook](doc/ai_meta_analysis_playbook.md)** — Reproducible stage-by-stage operating procedure.
 - **[Contributing](CONTRIBUTING.md)** — Conventions and gates for new contributors.

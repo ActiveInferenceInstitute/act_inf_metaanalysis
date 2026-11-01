@@ -43,6 +43,7 @@ If you are joining the Active Inference Institute to extend this pipeline, you s
 4. **[hypotheses.md](hypotheses.md)** — Understand the theoretical domain bounds and the mathematical formulation of our citation-weighted scoring logic.
 5. **[ai_meta_analysis_playbook.md](ai_meta_analysis_playbook.md)** — Follow the complete reproducible operating procedure and recovery paths.
 6. **[../TODO.md](../TODO.md)** — Review the forward minor/medium backlog and acceptance gates.
+7. **[../gnn/README.md](../gnn/README.md)** — See the illustrative GNN structural sketches for three of the eight hypotheses (documentation only; they carry no evidence and are not pipeline inputs).
 
 ---
 

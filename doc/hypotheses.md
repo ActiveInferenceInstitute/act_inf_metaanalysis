@@ -23,6 +23,21 @@ The eight hypotheses have three identifier forms used across different layers of
 - **Code identifier**: used in `src/knowledge_graph/hypothesis.py` (`STANDARD_HYPOTHESES`), `src/knowledge_graph/schema.py` (`DEFAULT_HYPOTHESIS_CATEGORIES`), and LLM prompt output
 - **RDF URI**: used in `nanopublications.trig` RDF export and semantic web queries
 
+## Structural Sketches (Illustrative)
+
+Three of the eight hypotheses — `H1`, `H4`, and `H8` — also have an illustrative,
+machine-readable structural sketch in GNN (Generalized Notation Notation) under
+[`../gnn/`](../gnn/README.md). Each sketch states the minimal generative-model
+structure that a claim about that hypothesis presupposes, which makes the range
+of the claim inspectable and gives a starting point for writing a runnable model.
+
+The sketches are documentation only: they carry no corpus numbers, contribute no
+evidence to any score, and are not read by any pipeline stage. Treat the scored
+nanopublications and the generated outputs as the evidence, and the sketches as a
+way of saying precisely what the evidence is about. See
+[`../gnn/AGENTS.md`](../gnn/AGENTS.md) for the constraints that apply when editing
+them.
+
 ## The Eight Hypotheses
 
 ### 1. FEP_UNIVERSALITY

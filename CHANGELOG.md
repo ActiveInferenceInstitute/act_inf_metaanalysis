@@ -1,5 +1,64 @@
 # CHANGELOG.md
 
+## Unreleased — CI gate repair: dev tools declared, lint rule set stated (2026-11-01)
+
+The workflow runs `ruff check src/ scripts/ tests/` and `mypy src/`, but neither
+tool was declared in the `dev` extra, so every run on `main` since 2026-08-01
+failed at the lint step in 15–22 seconds (`error: Failed to spawn: ruff`). The
+documented development setup in `CONTRIBUTING.md` names the same three gates, so
+the declaration was the missing piece.
+
+- **`pyproject.toml`** — the `dev` extra now declares `ruff>=0.6.0` and
+  `mypy>=1.10.0`, matching the documented commands.
+- **`pyproject.toml`** — the lint gate states its rule set explicitly
+  (`select = ["E4", "E7", "E9", "F"]`), which is the classic default the
+  configuration comment already described. Without it a newer ruff release
+  silently widens the gate: ruff 0.17.3's wider defaults report 199 findings on
+  this unchanged tree, all outside the documented rule set.
+- **`uv.lock`** — regenerated for the two added tools.
+- **Verified on this tree**: `uv run ruff check src/ scripts/ tests/` → "All
+  checks passed!"; `uv run mypy src/` → "Success: no issues found in 60 source
+  files"; `uv run pytest tests/ --cov=src --cov-fail-under=90` → 687 passed,
+  1 skipped, 90.05% coverage.
+
+## Unreleased — GNN structural sketches for H1, H4, and H8 (2026-11-01)
+
+Added `gnn/`, three illustrative GNN (Generalized Notation Notation) models that
+make the generative-model structure behind three Standard Hypotheses explicit and
+machine-readable: a boundary-maintaining system for `H1` (`FEP_UNIVERSALITY`),
+prediction error minimization for `H4` (`PREDICTIVE_CODING`), and predictive
+language comprehension for `H8` (`LANGUAGE_AIF`).
+
+Claim boundary, unchanged by this addition: the sketches are documentation. They
+carry no corpus numbers, contribute no evidence to any score, are read by no
+script, and change no artifact contract, manifest, release package, or manuscript
+variable. `STANDARD_HYPOTHESES` order and the H1–H8 aliases are untouched, and
+`doc/hypotheses.md` gains only a pointer to the sketches.
+
+- **Illustrative parameters only.** Every parameter is an example value (round
+  likelihoods, uniform or near-uniform priors) so no number can be misread as an
+  estimate from the corpus. Each file states its own limitations in
+  `ModelAnnotation`: for H4 the hierarchical direction of predictive coding is
+  not represented, and for H8 the sketch takes no position on the explanatory-gain
+  question its contradicting evidence raises.
+- **Machine-checked structure.** All three sketches parse and type-check with the
+  real GNN pipeline at revision `v5.0.3`
+  (`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`): step 3 `SUCCESS` with 3 of 3 files
+  parsed, 0 failures, 66 serialized formats; step 5 `SUCCESS` with 3 of 3 files
+  valid, 0 errors, 0 warnings. The digests the pipeline recorded for the consumed
+  models are listed in `gnn/README.md` for re-checking with `shasum -a 256`.
+- **Documentation duality.** `gnn/README.md` (human index, claim boundary, worked
+  examples) and `gnn/AGENTS.md` (agent constraints, verification procedure) follow
+  the repository's per-directory pair standard; `README.md`, `AGENTS.md`,
+  `doc/README.md`, `doc/hypotheses.md`, `TODO.md`, and the `.aii` sidecar link to
+  the new directory.
+- **No new dependencies.** The repository gains no GNN dependency; the sketches
+  are plain Markdown with no vendored code.
+- **Gate.** Documentation-only addition, so no source line is added or removed:
+  `uv run pytest --cov=src --cov-fail-under=90 -v` → **687 passed, 1 skipped,
+  90.05% coverage**, exit 0. (The 2026-07-31 baseline in `TODO.md` records 90.24%
+  from a different environment; nothing in this change can move coverage.)
+
 ## Unreleased — hostile red-team review closure (2026-07-31)
 
 Applied the findings of a full hostile deep review of the tree. Test gate now

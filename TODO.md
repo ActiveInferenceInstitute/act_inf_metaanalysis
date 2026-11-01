@@ -35,6 +35,31 @@ A new publication snapshot is not source-complete until all three configured
 sources report successful completion in `output/reports/search_provenance.json`
 (MED-01).
 
+## Additions — 2026-11-01
+
+Added `gnn/` — illustrative GNN (Generalized Notation Notation) structural
+sketches for three of the eight hypotheses (`H1` `FEP_UNIVERSALITY`, `H4`
+`PREDICTIVE_CODING`, `H8` `LANGUAGE_AIF`). Each sketch states the minimal
+generative-model structure that a claim about that hypothesis presupposes, in a
+notation that parses and type-checks (step 3 and step 5 of the GNN pipeline at
+revision `v5.0.3` = `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`).
+
+Claim boundary, unchanged by this addition: the sketches are documentation. They
+carry no corpus numbers, contribute no evidence to any score, are read by no
+script, and change no artifact contract, manifest, release package, or manuscript
+variable. `STANDARD_HYPOTHESES` order and the H1–H8 aliases are untouched.
+
+Forward work from this addition:
+
+- **Re-verify the sketches when the pinned GNN revision moves.** The parser and
+  type checker are the acceptance test; the exact commands and the expected report
+  fields are in `gnn/AGENTS.md`, and the recorded model digests are in
+  `gnn/README.md`.
+- **Optionally extend to the remaining five hypotheses** (`AIF_OPTIMALITY`,
+  `MARKOV_BLANKET_REALISM`, `SCALABILITY`, `CLINICAL_UTILITY`, `MORPHOGENESIS`)
+  one file at a time, using the same section layout and the same claim boundary.
+  No such need exists yet; the set stays bounded until someone asks for it.
+
 ## Completed / closed backlog (historical closure)
 
 The following items are genuinely done in this tree (code, tests, and reports)
