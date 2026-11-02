@@ -216,7 +216,7 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 - **[Data Formats](doc/data_formats.md)** — Schema definitions for Corpus mapping, RDF serializations, and outputs.
 - **[Project Agents](AGENTS.md)** — Operational metadata and configuration requirements for this distinct subproject.
 - **[Documentation Hub](doc/README.md)** — Project-level quick start and advanced pipeline flags.
-- **[GNN sketches](gnn/README.md)** — Illustrative GNN models of the structure behind hypotheses H1, H4, and H8 (documentation, not evidence).
+- **[GNN sketches](gnn/README.md)** — Illustrative GNN models of the structure behind hypotheses H1, H4, and H8 (documentation, not evidence); repositories that consume the notation follow the [GNN downstream adoption guide](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/blob/main/docs/gnn/integration/downstream_adoption.md).
 - **[Project TODO](TODO.md)** — Authoritative forward backlog for minor and medium work, with acceptance gates.
 - **[AI Meta-Analysis Playbook](doc/ai_meta_analysis_playbook.md)** — Reproducible stage-by-stage operating procedure.
 - **[Contributing](CONTRIBUTING.md)** — Conventions and gates for new contributors.
