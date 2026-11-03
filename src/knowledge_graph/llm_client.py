@@ -18,7 +18,9 @@ logger = logging.getLogger(__name__)
 def call_ollama(prompt: str, config: LLMConfig) -> tuple[str, dict[str, float | int]]:
     """Send *prompt* to Ollama ``/api/generate`` and return text + metadata."""
     url = f"{config.base_url}/api/generate"
-    payload = {
+    # Explicit value type: requests 2.32.5 accepted the inferred dict[str, object]
+    # join, while requests 2.34.2 annotates `json` with its JsonType union.
+    payload: dict[str, str | bool | dict[str, float | int]] = {
         "model": config.model,
         "prompt": prompt,
         "system": _SYSTEM_PROMPT,
