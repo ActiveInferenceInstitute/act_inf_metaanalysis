@@ -174,7 +174,10 @@ def _fetch_page(
         requests.HTTPError: If all retries are exhausted.
     """
     sleep_fn = delay_override or time.sleep
-    params = {
+    # Explicit value type: requests 2.32.5 accepted the inferred dict[str, object]
+    # join, while requests 2.34.2 annotates `params` with SuppliesItems over a
+    # bounded value union. The values are strings and ints only.
+    params: dict[str, str | int] = {
         "search_query": query,
         "start": start,
         "max_results": page_size,
