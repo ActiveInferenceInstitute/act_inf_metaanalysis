@@ -30,9 +30,11 @@ standard.
    read as an estimate. The only sanctioned sources of evidence are the scored
    nanopublications and the generated outputs (`output/data/`,
    `output/figures/`, `manuscript/`).
-2. **Never put a sketch in the pipeline.** Do not add `gnn/` to `src/`,
-   `scripts/`, `tests/`, the artifact contract, the pipeline manifest, the
-   release package, or any manuscript variable. The directory is documentation.
+2. **Never put a sketch in the pipeline.** Do not add `gnn/` to the pipeline
+   orchestration, the artifact contract, the pipeline manifest, the release
+   package, or any manuscript variable. The directory is documentation. The
+   dedicated `scripts/validate_gnn_conformance.py` checker is the only script
+   allowed to read it, and it only parses and type-checks the sketches.
 3. **Never reorder or rename the hypotheses.** `STANDARD_HYPOTHESES` in
    `src/knowledge_graph/hypothesis.py` defines the `H1`–`H8` aliases across
    statements, weights, nanopublication targets, and manuscript variables. Cite
@@ -62,8 +64,12 @@ The repository gate is unchanged for code changes:
 uv run pytest --cov=src --cov-fail-under=90 -v
 ```
 
-The sketches themselves are verified by running the GNN parser and type checker
-against the pinned revision (v5.0.3, `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`):
+The sketches themselves are verified by the `gnn conformance (pinned)` CI job.
+It installs the revision in [`../.github/gnn-pin.json`](../.github/gnn-pin.json)
+(v5.0.3, `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`), then runs
+`python scripts/validate_gnn_conformance.py`; locally, use the same command in
+an environment with the pinned GNN package installed. The equivalent full
+pipeline check is:
 
 ```bash
 python src/gnn/main.py --only-steps 3,5 \
