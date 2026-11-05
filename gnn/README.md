@@ -22,9 +22,9 @@ and type-checks.
 They are **not** evidence, **not** results, and **not** inputs to any pipeline
 stage:
 
-- No script in `src/`, `scripts/`, or `tests/` reads this directory.
-- No CI workflow, manifest, artifact contract, or manuscript variable is
-  affected by it.
+- No pipeline orchestration, manifest, artifact contract, or manuscript variable
+  reads this directory. The dedicated `scripts/validate_gnn_conformance.py`
+  checker reads it only to parse and type-check the sketches in CI.
 - The hypothesis scores, confidence intervals, temporal trends, and figures
   published by this project come only from the scored nanopublications
   (`output/data/assertion_summary.json`, `output/figures/`, `manuscript/`).
