@@ -51,7 +51,7 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 ```text
 projects_archive/act_inf_metaanalysis/
 ├── act_inf_metaanalysis_v2.0.6_2026-07-26.pdf  # date-stamped publication artifact
-├── src/                        # Core library (5 packages, 47 modules)
+├── src/                        # Core library (5 packages, 53 modules)
 │   ├── __init__.py
 │   ├── config.py               # Centralized path/seed/query constants
 │   ├── config_loader.py        # YAML project_config (search, kg)
@@ -160,6 +160,18 @@ projects_archive/act_inf_metaanalysis/
 ├── README.md
 └── AGENTS.md
 ```
+
+## Tests
+
+From the repository root:
+
+```bash
+uv sync --extra dev
+uv run pytest tests/ --cov=src --cov-fail-under=90
+```
+
+The suite enforces the same 90% coverage gate as `.github/workflows/ci.yml`;
+CI also runs `uv run ruff check src/ scripts/ tests/` and `uv run mypy src/`.
 
 ## See Also
 

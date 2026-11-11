@@ -9,6 +9,8 @@ build-backend = "setuptools.build_meta"
 name = "act_inf_metaanalysis"
 version = "2.0.6"
 description = "Computational literature meta-analysis of the Active Inference field using probabilistic knowledge graphs"
+readme = "README.md"
+license = { text = "CC-BY-4.0" }
 authors = [
     {name = "Daniel Friedman", email = "daniel@activeinference.institute"},
     {name = "Joel Dietz", email = "jdietz@mit.edu"},
