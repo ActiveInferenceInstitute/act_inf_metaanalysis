@@ -11,6 +11,7 @@ This directory (`doc/`) serves as the comprehensive, long-form technical documen
 - `api_reference.md`: Granular documentation for the public APIs spread across the 5 source packages.
 - `architecture.md`: Pipeline design, data-flow diagrams, and module dependency graphs mapping retrieval to visualization.
 - `data_formats.md`: Strict JSONL, TriG, and Schema definitions governing Corpus storage and nanopublication validation.
+- `citation_metadata.md`: `CITATION.cff`/DOI, per-paper citation fields, canonical-ID priority, and the citation-network artifacts.
 - `hypotheses.md`: Domain theory constraints mapping the 8 core hypotheses to active inference literature.
 - `scripts.md`: Detailed configuration and CLI flag mapping.
 - `testing.md`: Explains the strict zero-mock execution environment and testing philosophy (latest verified gate: 688 collected, 687 passed, 1 skipped, 90.24% coverage; see `testing.md` for refresh commands).

@@ -142,8 +142,8 @@ projects_archive/act_inf_metaanalysis/
 │   └── annotation_schema.md
 ├── doc/                        # Documentation hub
 │   ├── README.md               # Index + onboarding
-│   ├── architecture.md, api_reference.md, data_formats.md, hypotheses.md,
-│   ├── scripts.md, testing.md, visualization_guide.md,
+│   ├── architecture.md, api_reference.md, data_formats.md, citation_metadata.md,
+│   ├── hypotheses.md, scripts.md, testing.md, visualization_guide.md,
 │   ├── ai_meta_analysis_playbook.md, CODE_QUALITY_AUDIT.md
 │   └── tooling_inventory.yaml  # Publication-facing tooling source registry
 ├── gnn/                        # Illustrative GNN structural sketches for H1, H4, H8
