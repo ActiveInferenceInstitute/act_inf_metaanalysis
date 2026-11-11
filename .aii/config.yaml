@@ -1,17 +1,17 @@
-# AII sidecar — InstituteOS metadata. Schema: instituteos.platform.aii_sidecar
+# AII sidecar — InstituteOS metadata. Schema: aii_platform.aii_sidecar
 meta:
-  updated: '2026-11-01'
+  sidecar_version: 1.2.1
+  updated: '2026-11-10'
 repo:
   name: act_inf_metaanalysis
   slug: act-inf-metaanalysis
   full_name: ActiveInferenceInstitute/act_inf_metaanalysis
-  description: A reproducible computational meta-analysis snapshot of the Active
-    Inference and Free Energy Principle literature. The checked-in publication
-    snapshot covers 1,106 retrieved papers and 2,561 extracted nanopublications
-    across theory, tools, and application domains. By mapping these into a
-    citation-weighted knowledge graph, this project provides a reproducible review
-    of hypothesis-level evidence while preserving an explicit boundary around
-    incomplete live-source refreshes.
+  description: A reproducible computational meta-analysis snapshot of the Active Inference
+    and Free Energy Principle literature. The checked-in publication snapshot covers
+    1,106 retrieved papers and 2,561 extracted nanopublications across theory, tools,
+    and application domains. By mapping these into a citation-weighted knowledge graph,
+    this project provides a reproducible review of hypothesis-level evidence while
+    preserving an explicit boundary around incomplete live-source refreshes.
 institute:
   category: publication
   maturity: released
@@ -48,23 +48,51 @@ artifacts:
   description: Date-stamped validated PDF release artifact.
 - path: output
   kind: publication-data
-  description: Versioned data, figures, hydrated manuscript, reports, validation records, release packages, snapshots, and HTML/PDF build outputs.
+  description: Versioned data, figures, hydrated manuscript, reports, validation records,
+    release packages, snapshots, and HTML/PDF build outputs.
+- path: AGENTS.md
+  kind: doc
+  description: Agent guidance.
+- path: LICENSE
+  kind: doc
+  description: License.
+- path: CITATION.cff
+  kind: citation
+  description: Machine-readable citation metadata.
+- path: tests
+  kind: test
+  description: Test suite.
+- path: manuscript
+  kind: publication
+  description: Manuscript sources and artifacts.
+- path: CHANGELOG.md
+  kind: doc
+  description: Changelog.
 provenance:
   license: CC-BY-4.0
   citation:
+    doi: 10.5281/zenodo.19461934`,
     text: Active Inference Institute — act_inf_metaanalysis.
 instituteos:
   tags:
-  - act
-  - inf
-  - metaanalysis
+  - meta-analysis
   - computational
-  - meta
+  - active-inference
   - tex
 capabilities:
 - python-package
 - tested
+- ci
+- citation
+- manuscript-publication
 tasks:
   test:
     cmd: python -m pytest
     description: Run the test suite.
+docs:
+- README.md
+- AGENTS.md
+- docs/INTEGRATION.md
+- docs/README.md
+- docs/AGENTS.md
+schema: aii-sidecar/v1

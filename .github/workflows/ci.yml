@@ -5,6 +5,13 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   gnn-conformance:
     name: gnn conformance (pinned)
@@ -39,6 +46,7 @@ jobs:
         run: python scripts/validate_gnn_conformance.py
 
   test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     strategy:
       matrix:

@@ -1,0 +1,11 @@
+{
+  "schema": "aii-readiness/v1",
+  "repo": "ActiveInferenceInstitute/act_inf_metaanalysis",
+  "tier": "python-library",
+  "standard_version": "1.0.0",
+  "baseline": {
+    "commit": "3f86ab15ab7fdb38a3e085656136c3c67360c58d",
+    "measured_at": "2026-11-10"
+  },
+  "waivers": []
+}
