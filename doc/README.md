@@ -227,6 +227,7 @@ Variable hydration is handled by `src/manuscript/variables.py`, invoked by the c
 | [scripts.md](scripts.md) | Per-script CLI reference with all flags, YAML keys, and examples |
 | [api_reference.md](api_reference.md) | Module-level API documentation (all 5 packages, 25 module sections) |
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
+| [citation_metadata.md](citation_metadata.md) | CITATION.cff/DOI, per-paper citation fields, canonical-ID priority, and citation-network artifacts |
 | [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
 | [ai_meta_analysis_playbook.md](ai_meta_analysis_playbook.md) | Stage-by-stage reproducible operating procedure and recovery rules |

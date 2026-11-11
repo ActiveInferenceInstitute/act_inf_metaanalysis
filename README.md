@@ -22,6 +22,20 @@ and reviewable but not source-complete for a new live publication.
 
 ---
 
+## Table of contents
+
+- [What this project does](#-what-this-project-does)
+- [System architecture](#-system-architecture)
+- [Quick start](#-quick-start)
+- [Archive layout](#archive-layout)
+- [Directory structure](#-directory-structure)
+- [Core methodologies](#-core-methodologies)
+- [Further reading](#-further-reading)
+- [Changelog](#-changelog)
+- [InstituteOS sidecar](#instituteos-sidecar)
+
+---
+
 ## 🎯 What This Project Does
 
 This repository houses the entire data pipeline, source code, and manuscript generation logic to empirically analyze the growth and structure of Active Inference research.
@@ -92,15 +106,16 @@ Use `uv` for dependencies. In the **template monorepo**, this project lives at `
 
 ### Running tests
 
-Use `uv` for dependency management. From **within the project directory** (ensures correct venv context):
+Use `uv` for dependency management. Run from the **repository root** (a standalone
+clone's root is the project root; in the template monorepo it is
+`projects_archive/act_inf_metaanalysis/`):
 
 ```bash
-cd projects_archive/act_inf_metaanalysis   # or the repository root in a standalone clone
 uv sync --extra dev  # First time only: install dependencies
 uv run pytest --cov=src --cov-fail-under=90 -v
 ```
 
-From the **repository root**, pass the project path explicitly:
+From the **template-monorepo root**, pass the project path explicitly:
 
 ```bash
 uv run pytest projects_archive/act_inf_metaanalysis/tests/ --cov=projects_archive/act_inf_metaanalysis/src --cov-fail-under=90
@@ -112,17 +127,14 @@ If any of these are missing, pytest will abort with a clear error listing the mi
 Example single module:
 
 ```bash
-cd projects_archive/act_inf_metaanalysis
 uv run pytest tests/knowledge_graph/test_hypothesis.py -v
 ```
 
 ### Running the orchestration scripts
 
-Thin orchestrators live under `scripts/` (13 numbered scripts plus the canonical `z_` hydrator; run from the project root):
+Thin orchestrators live under `scripts/` (13 numbered scripts plus the canonical `z_` hydrator; run from the **repository root** — in the template monorepo `cd projects_archive/act_inf_metaanalysis` first):
 
 ```bash
-cd projects_archive/act_inf_metaanalysis
-# In a standalone clone, the project root is the repository root.
 # 1. Literature search (multi-source; default merges into existing corpus — use --no-resume to ignore it)
 uv run python scripts/01_literature_search.py --log-level INFO
 
@@ -214,6 +226,7 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 
 - **[Architecture Guide](doc/architecture.md)** — In-depth overview of the data pipeline and module definitions.
 - **[Data Formats](doc/data_formats.md)** — Schema definitions for Corpus mapping, RDF serializations, and outputs.
+- **[Citation Metadata](doc/citation_metadata.md)** — `CITATION.cff`/DOI, per-paper citation fields, canonical-ID priority, and the citation-network artifacts.
 - **[Project Agents](AGENTS.md)** — Operational metadata and configuration requirements for this distinct subproject.
 - **[Documentation Hub](doc/README.md)** — Project-level quick start and advanced pipeline flags.
 - **[GNN sketches](gnn/README.md)** — Illustrative GNN models of the structure behind hypotheses H1, H4, and H8 (documentation, not evidence); repositories that consume the notation follow the [GNN downstream adoption guide](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/blob/main/docs/gnn/integration/downstream_adoption.md).

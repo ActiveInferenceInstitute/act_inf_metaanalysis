@@ -49,6 +49,7 @@
 | `CITATION.cff` | `citation` | Machine-readable citation metadata. |
 | `tests` | `test` | Test suite. |
 | `manuscript` | `publication` | Manuscript sources and artifacts. |
+| `doc` | `doc` | Documentation hub (architecture, data formats, citation metadata, API reference, scripts, testing). |
 | `CHANGELOG.md` | `doc` | Changelog. |
 
 ## Portable tasks

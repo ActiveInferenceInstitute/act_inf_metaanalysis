@@ -66,6 +66,9 @@ artifacts:
 - path: manuscript
   kind: publication
   description: Manuscript sources and artifacts.
+- path: doc
+  kind: doc
+  description: Documentation hub (architecture, data formats, citation metadata, API reference, scripts, testing).
 - path: CHANGELOG.md
   kind: doc
   description: Changelog.
