@@ -1,5 +1,13 @@
 # CHANGELOG.md
 
+## Unreleased — Publishing member migration
+
+- Register the documented gate arms in `.aii/config.yaml`, repair sidecar guide
+  paths, and identify the docs index, manuscript command, and GNN pin there.
+- Point to the lead Publishing contract; carry its identity schema and checker
+  unchanged, with recorded digests checked by `./run.sh docs` alongside the
+  existing GNN pin. Existing member gate implementations remain authoritative.
+
 ## Unreleased — one gate entry point, documentation index, and manuscript render (2026-11-12)
 
 The repository had three scattered gate commands in CI, no local runner, no

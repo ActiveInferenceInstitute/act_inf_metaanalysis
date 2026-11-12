@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -121,6 +122,20 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
     root = args.root.resolve()
+    checker = root / "scripts" / "gate" / "identity.py"
+    for artifact in (
+        "docs/workflows/record-identity.schema.json",
+        "scripts/gate/identity.py",
+        ".github/gnn-pin.json",
+    ):
+        result = subprocess.run(
+            [sys.executable, str(checker), "--verify-copy", artifact],
+            cwd=root,
+            stdin=subprocess.DEVNULL,
+            check=False,
+        )
+        if result.returncode:
+            return result.returncode
     files = markdown_files(root)
     errors, checked = check_links(files)
     errors.extend(check_index(root))

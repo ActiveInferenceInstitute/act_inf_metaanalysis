@@ -20,6 +20,7 @@ Flat index of this repository's long-lived documents. The hub page is
 - [`../.github/GNN.md`](../.github/GNN.md) — what the pinned GNN conformance job parses
 - [`../.github/gnn-pin.json`](../.github/gnn-pin.json) — canonical `gnn-importer-pin/v1` pin
 - [`../.github/workflows/ci.yml`](../.github/workflows/ci.yml) — the workflow that calls the same arms
+- [`workflows/publishing.md`](workflows/publishing.md) — canonical Publishing contract pointer and digest-pinned identity artifacts
 
 ## Pipeline and analysis
 
