@@ -4,6 +4,12 @@
 The sketches are documentation, not pipeline input, so this check does not run
 the repository's literature pipeline. It exercises the same GNN parser and type
 checker that steps 3 and 5 use, from the exact revision in `.github/gnn-pin.json`.
+
+The type checker follows GNN's pipeline contract: ``True`` is exit 0 (success),
+``2`` is ``SUCCESS_WITH_WARNINGS`` (type/consistency problems), and ``False`` is
+exit 1 (error). This gate treats warnings as findings, so only ``True`` is a
+pass; ``2`` and ``False`` both exit non-zero. The printed verdict is therefore
+only "verified" when the type checker actually returned ``True``.
 """
 
 from __future__ import annotations
@@ -91,8 +97,15 @@ def main() -> None:
             raise ConformanceError(f"{sketch.name} is missing required sections: {missing!r}")
 
     with tempfile.TemporaryDirectory(prefix="metaanalysis-gnn-") as output_dir:
-        if not GNNTypeChecker().validate_gnn_files(SKETCH_DIR, Path(output_dir)):
-            raise ConformanceError("GNN type checker rejected the sketch directory")
+        type_check = GNNTypeChecker().validate_gnn_files(SKETCH_DIR, Path(output_dir))
+        if type_check is not True:
+            verdict = "warnings" if type_check == 2 else "error"
+            raise ConformanceError(
+                "GNN type checker did not accept the sketch directory: "
+                f"verdict {verdict!r}, validate_gnn_files returned {type_check!r} "
+                "(GNN contract: True = exit 0, 2 = warnings without --strict, "
+                "False = exit 1)"
+            )
 
     print(
         json.dumps(
@@ -102,6 +115,7 @@ def main() -> None:
                 "sketches": len(sketches),
                 "parsed": len(sketches),
                 "type-checked": len(sketches),
+                "type-checker-result": type_check,
                 "result": "verified",
             },
             indent=2,

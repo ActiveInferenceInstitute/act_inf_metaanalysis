@@ -68,8 +68,13 @@ The sketches themselves are verified by the `gnn conformance (pinned)` CI job.
 It installs the revision in [`../.github/gnn-pin.json`](../.github/gnn-pin.json)
 (v5.0.3, `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`), then runs
 `python scripts/validate_gnn_conformance.py`; locally, use the same command in
-an environment with the pinned GNN package installed. The equivalent full
-pipeline check is:
+an environment with the pinned GNN package installed. The script is strict: it
+passes only when `GNNTypeChecker().validate_gnn_files` returns `True`. GNN's
+pipeline contract is `0` = success, `1` = error, and `2` = success with
+warnings; a `2` (type/consistency problems) or a `False` fails this gate and
+exits non-zero. The receipt's `result` is `verified` only on that `True` path,
+and `type-checker-result` records the value the checker actually returned. The
+equivalent full pipeline check is:
 
 ```bash
 python src/gnn/main.py --only-steps 3,5 \
