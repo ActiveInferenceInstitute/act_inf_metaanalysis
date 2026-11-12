@@ -1,6 +1,6 @@
 # Pipeline Scripts Reference
 
-The meta-analysis pipeline is composed of numbered scripts (01–14) plus the canonical `z_generate_manuscript_variables.py` hydration entrypoint. Each is a **thin orchestrator** that handles only I/O and coordination — all computation is imported from `src/` modules (runners under `src/literature/`, `src/analysis/`, `src/knowledge_graph/`, `src/visualization/`).
+The meta-analysis pipeline is composed of numbered scripts (01–14), the render stage (`15_render_publication.py`), plus the canonical `z_generate_manuscript_variables.py` hydration entrypoint. Each is a **thin orchestrator** that handles only I/O and coordination — all computation is imported from `src/` modules (runners under `src/literature/`, `src/analysis/`, `src/knowledge_graph/`, `src/visualization/`).
 
 Run scripts from the archived project root:
 
@@ -98,6 +98,7 @@ uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yam
   --clear-assertions --checkpoint-interval 25
 uv run python scripts/04_generate_figures.py --dpi 300
 uv run python scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/15_render_publication.py
 uv run python scripts/06_fulltext_assessment.py --output-dir output/data
 uv run python scripts/07_run_validation_study.py --output-dir output
 uv run python scripts/08_validate_artifacts.py
@@ -363,6 +364,53 @@ uv run python scripts/z_generate_manuscript_variables.py --project . --dry-run
 
 ---
 
+## Stage 5b — Publication Render (`15_render_publication.py`)
+
+Renders the hydrated manuscript to PDF and HTML from the declared variables
+file. It does not compute analysis values and it does not re-run hydration: a
+missing or incomplete `output/data/manuscript_variables.json` is a hard failure.
+
+**Inputs:**
+
+- `manuscript/config.yaml` — title, subtitle, authors, DOI, and `render.formats`
+- `manuscript/*.md` — sections ordered by their numeric filename prefix
+- `manuscript/preamble.md` — the fenced `latex` block used as the LaTeX header
+- `output/data/manuscript_variables.json` — the declared `variables` mapping
+- `output/figures/figure_registry.json` plus the generated PNG files
+
+**Behavior:**
+
+- Injects the declared variables into each section and fails on any undeclared
+  token, so a render never contains `{{TOKEN}}` text.
+- Validates the figure registry: every registered file must exist and be
+  non-empty, and every `\includegraphics` in the manuscript must be registered.
+- PDF: pandoc → XeLaTeX → BibTeX → XeLaTeX → XeLaTeX. HTML: pandoc with the
+  same metadata and a table of contents; LaTeX figure environments become
+  `<figure>`/`<img>` blocks pointing at `../figures/`.
+- Fails with the tool name when `pandoc`, `xelatex`, or `bibtex` is missing.
+
+**Outputs:**
+
+| File | Description |
+| --- | --- |
+| `output/pdf/act_inf_metaanalysis_combined.pdf` | PDF render |
+| `output/pdf/_combined_manuscript.{md,tex}` | Combined source and TeX |
+| `output/pdf/_latex_stdout.log` | pandoc/XeLaTeX/BibTeX transcript |
+| `output/web/index.html` | Combined HTML render |
+| `output/reports/render_receipt.json` | Section, figure, variable, and byte counts |
+
+**Example:**
+
+```bash
+# Reproducible production render into output/
+uv run python scripts/15_render_publication.py
+
+# Gate arm: render into .render-check/ without touching versioned artifacts
+./run.sh render
+```
+
+---
+
 ## Stage 6 — Full-Text Availability Assessment (`06_fulltext_assessment.py`)
 
 Audits the corpus for full-text availability and produces a JSON report
@@ -504,6 +552,7 @@ uv run python scripts/02_meta_analysis_pipeline.py --n-topics 8 --seed 42
 uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 uv run python scripts/04_generate_figures.py
 uv run python scripts/z_generate_manuscript_variables.py --project .
+uv run python scripts/15_render_publication.py
 uv run python scripts/06_fulltext_assessment.py
 uv run python scripts/07_run_validation_study.py
 uv run python scripts/08_validate_artifacts.py
@@ -544,9 +593,21 @@ render:
 ```
 
 PDF and HTML are the enabled outputs; slides, DOCX, and EPUB are explicitly
-disabled. The pipeline writes the combined manuscript to `output/pdf/` and the
-HTML export to `output/web/`. The date-stamped root
-`act_inf_metaanalysis_v2.0.6_2026-07-26.pdf` is the public release copy; the
-reproducible render output is `output/pdf/act_inf_metaanalysis_combined.pdf`.
+disabled, and `15_render_publication.py` refuses a configuration that enables a
+format it cannot render. The render reads
+`output/data/manuscript_variables.json` and writes the combined manuscript,
+TeX, and PDF to `output/pdf/`, and the HTML export to `output/web/`. The
+date-stamped root `act_inf_metaanalysis_v2.0.6_2026-07-26.pdf` is the public
+release copy; the reproducible render output is
+`output/pdf/act_inf_metaanalysis_combined.pdf`.
+
+Run it through the gate arm when you do not mean to replace versioned artifacts:
+
+```bash
+./run.sh render   # renders into .render-check/
+```
+
+The render gate needs `pandoc`, `xelatex`, and `bibtex` on `PATH`. A missing
+tool is reported by name and is not replaced with placeholder output.
 
 > **Repository:** [github.com/ActiveInferenceInstitute/act_inf_metaanalysis](https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis)

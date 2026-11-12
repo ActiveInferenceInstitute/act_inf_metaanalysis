@@ -15,6 +15,10 @@ scripts/
 ├── 03_build_knowledge_graph.py   # → knowledge_graph/kg_runner.py
 ├── 04_generate_figures.py        # → visualization/figure_runner.py
 ├── z_generate_manuscript_variables.py # canonical → manuscript/variables.py
+├── 15_render_publication.py     # PDF/HTML render from declared variables
+├── gate.py                      # canonical gate arm commands (./run.sh)
+├── check_docs.py                # relative-link + index check
+├── gnn_conformance.py           # cached pinned GNN parser environment
 ├── 06_fulltext_assessment.py     # → literature/fulltext_assessment.py   (auxiliary QA)
 ├── 07_run_validation_study.py    # → analysis/validation_{sample,labeling,metrics}.py
 ├── 08_validate_artifacts.py      # → analysis/artifact_contract.py
@@ -48,6 +52,7 @@ release-side outputs exist:
 | `03` | `corpus.jsonl` | `nanopublications.jsonl`, `nanopublications.trig`, extraction state/coverage, scores and summaries | `01`, Ollama |
 | `04` | All `output/data/*.json`, `citation_graph.gml` | `output/figures/*.png`, `figure_registry.json` | `02`, `03` |
 | `05` | `output/data/*.json`, `manuscript/*.md` | rendered manuscript, token inventory, and artifact hashes | `02`, `03` |
+| `05b` | Hydrated sections, `manuscript_variables.json`, `figure_registry.json` | `output/pdf/act_inf_metaanalysis_combined.pdf`, `output/web/index.html`, render receipt | `02`, `03`, `04`, `05` |
 | `06` | `corpus.jsonl` | `fulltext_assessment.json` | `01` |
 | `07` | `output/data/nanopublications.jsonl`, `output/data/corpus.jsonl` | `output/validation/sample.csv`, `output/validation/labels_rule_reference.csv`, `output/reports/validation_metrics.json` | `01`, `03` |
 | `08` | All current artifacts | `output/reports/artifact_contract.json` | `01`–`07` |

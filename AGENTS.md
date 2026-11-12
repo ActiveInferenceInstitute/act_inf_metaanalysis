@@ -39,7 +39,7 @@ A computational meta-analysis of the Active Inference and Free Energy Principle 
 
 ### Infrastructure Integration
 
-- **Thin Orchestrators**: 13 numbered scripts (01–04, 06–14) plus the canonical manuscript hydrator import from `src/` for all computation
+- **Thin Orchestrators**: 13 numbered pipeline scripts (01–04, 06–14) plus the render stage (15) and the canonical manuscript hydrator import from `src/` for all computation
 - **≥90% Test Coverage** (gate in `pyproject.toml`): extensive pytest suite using real data and pytest-httpserver for API testing
 - **Deterministic Results**: Fixed RNG seeds (seed=42) for reproducibility
 - **Structured Logging**: All scripts use Python `logging` module with configurable `--log-level`
@@ -130,7 +130,11 @@ projects_archive/act_inf_metaanalysis/
 │   ├── 11_prepare_evidence_pilots.py
 │   ├── 12_snapshot_output.py
 │   ├── 13_verify_tooling_inventory.py
-│   └── 14_verify_release_package.py
+│   ├── 14_verify_release_package.py
+│   ├── 15_render_publication.py     # PDF/HTML render from declared variables
+│   ├── gate.py                     # canonical gate arm commands (./run.sh)
+│   ├── check_docs.py               # relative-link + documentation-index check
+│   └── gnn_conformance.py          # cached pinned GNN parser environment
 ├── manuscript/                 # 20 sections + references
 │   ├── config.yaml             # Single source of truth (paper, hypotheses, pipeline)
 │   ├── config.yaml.example     # Stripped template for new checkouts
@@ -142,16 +146,22 @@ projects_archive/act_inf_metaanalysis/
 │   └── annotation_schema.md
 ├── doc/                        # Documentation hub
 │   ├── README.md               # Index + onboarding
+│   ├── documentation-index.md  # Flat index of long-lived documents
 │   ├── architecture.md, api_reference.md, data_formats.md, citation_metadata.md,
 │   ├── hypotheses.md, scripts.md, testing.md, visualization_guide.md,
 │   ├── ai_meta_analysis_playbook.md, CODE_QUALITY_AUDIT.md
+│   ├── _generated/gate_arms.md # measured arm wall times (./run.sh bench)
 │   └── tooling_inventory.yaml  # Publication-facing tooling source registry
 ├── gnn/                        # Illustrative GNN structural sketches for H1, H4, H8
 │   ├── README.md               # Claim boundary, worked examples, verification receipts
 │   ├── AGENTS.md               # Constraints for editing the sketches
 │   └── h1_*.md, h4_*.md, h8_*.md  # One sketch per hypothesis; documentation only
 ├── output/                     # Versioned generated publication artifacts
-├── .github/workflows/ci.yml    # ruff + mypy + pytest 90% gate
+├── .github/
+│   ├── workflows/ci.yml        # calls the same ./run.sh arms as local gates
+│   ├── gnn-pin.json            # gnn-importer-pin/v1 parser pin
+│   └── GNN.md                  # what the conformance job parses
+├── run.sh                      # single gate entry point
 ├── pyproject.toml
 ├── uv.lock
 ├── LICENSE                     # CC-BY-4.0
@@ -161,23 +171,41 @@ projects_archive/act_inf_metaanalysis/
 └── AGENTS.md
 ```
 
-## Tests
+## Tests and gates
 
 From the repository root:
 
 ```bash
 uv sync --extra dev
-uv run pytest tests/ --cov=src --cov-fail-under=90
+./run.sh            # default arm: fast tests (slow figure tests excluded)
+./run.sh test-full  # full suite with the 90% coverage gate
+./run.sh all        # lint, types, test-full, docs, gnn, render
 ```
 
-The suite enforces the same 90% coverage gate as `.github/workflows/ci.yml`;
-CI also runs `uv run ruff check src/ scripts/ tests/` and `uv run mypy src/`.
+`./run.sh` is the only gate entry point. Each arm runs the command defined in
+`scripts/gate.py`, and `.github/workflows/ci.yml` invokes the same arms
+(`lint`, `types`, `test-full`, `docs`, `gnn`). Hosted GitHub Actions is
+billing-locked for this organization, so local runs are the gate.
+
+- `test-fast`/`test-full` select on the registered `slow` marker
+  (`pyproject.toml`), which marks the figure-generation tests.
+- `docs` runs `scripts/check_docs.py`: relative links, heading anchors, and
+  `doc/documentation-index.md` coverage.
+- `gnn` creates `.gnn-env` from the revision in `.github/gnn-pin.json` and runs
+  `scripts/validate_gnn_conformance.py`; see `.github/GNN.md`.
+- `render` runs `scripts/15_render_publication.py --output-root .render-check`
+  and needs `pandoc`, `xelatex`, and `bibtex` on `PATH`.
+- `bench` refreshes `doc/_generated/gate_arms.md`, the measured wall-time
+  receipt. Never hand-edit those numbers.
 
 ## See Also
 
 - [README.md](README.md) --- Project overview, quick start, and changelog pointer
 - [TODO.md](TODO.md) --- Authoritative forward backlog (Minor / Medium / Major)
 - [doc/](doc/) --- Architecture, API reference, and hypothesis documentation
+- [doc/documentation-index.md](doc/documentation-index.md) --- Flat index of long-lived documents
+- [doc/_generated/gate_arms.md](doc/_generated/gate_arms.md) --- Measured gate-arm wall times
+- [.github/GNN.md](.github/GNN.md) --- Pinned GNN conformance pointer
 - [LICENSE](LICENSE) --- CC-BY-4.0 license terms
 
 *Note: Every directory and subdirectory within `src/` and `tests/` contains localized `AGENTS.md` and `README.md` pairs mapping immediate context.*

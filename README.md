@@ -104,22 +104,23 @@ graph TD
 
 Use `uv` for dependencies. In the **template monorepo**, this project lives at `projects_archive/act_inf_metaanalysis/` and is **not** discovered by `./run.sh` (archive-only).
 
-### Running tests
+### Running the gates
 
-Use `uv` for dependency management. Run from the **repository root** (a standalone
-clone's root is the project root; in the template monorepo it is
+Use `uv` for dependency management and run everything through the single gate
+entry point, from the **repository root** (a standalone clone's root is the
+project root; in the template monorepo it is
 `projects_archive/act_inf_metaanalysis/`):
 
 ```bash
 uv sync --extra dev  # First time only: install dependencies
-uv run pytest --cov=src --cov-fail-under=90 -v
+./run.sh             # default arm: fast tests (slow figure tests excluded)
+./run.sh test-full   # full suite with the 90% coverage gate
+./run.sh all         # lint, types, test-full, docs, gnn, render
 ```
 
-From the **template-monorepo root**, pass the project path explicitly:
-
-```bash
-uv run pytest projects_archive/act_inf_metaanalysis/tests/ --cov=projects_archive/act_inf_metaanalysis/src --cov-fail-under=90
-```
+Each arm runs the command defined in `scripts/gate.py`; `.github/workflows/ci.yml`
+invokes the same arms. Hosted GitHub Actions is billing-locked for this
+organization, so the local runs are the gate.
 
 **Important:** The full test suite requires `rdflib`, `wordcloud`, and `scikit-learn` to be installed.
 If any of these are missing, pytest will abort with a clear error listing the missing packages.
@@ -132,7 +133,7 @@ uv run pytest tests/knowledge_graph/test_hypothesis.py -v
 
 ### Running the orchestration scripts
 
-Thin orchestrators live under `scripts/` (13 numbered scripts plus the canonical `z_` hydrator; run from the **repository root** — in the template monorepo `cd projects_archive/act_inf_metaanalysis` first):
+Thin orchestrators live under `scripts/` (13 numbered pipeline scripts, the render stage `15_render_publication.py`, plus the canonical `z_` hydrator; run from the **repository root** — in the template monorepo `cd projects_archive/act_inf_metaanalysis` first):
 
 ```bash
 # 1. Literature search (multi-source; default merges into existing corpus — use --no-resume to ignore it)
@@ -150,15 +151,18 @@ uv run python scripts/04_generate_figures.py --dpi 300
 # 5. Hydrate manuscript variables through the template-recognized entrypoint
 uv run python scripts/z_generate_manuscript_variables.py --project .
 
-# 6. Audit full-text availability across the corpus
+# 6. Render the hydrated manuscript to PDF and HTML
+uv run python scripts/15_render_publication.py
+
+# 7. Audit full-text availability across the corpus
 uv run python scripts/06_fulltext_assessment.py
 
-# 7. (Validation / QA — optional) Rule-based reference-annotator agreement study.
+# 8. (Validation / QA — optional) Rule-based reference-annotator agreement study.
 #    Deterministic reproducibility floor, NOT a human validation. Not part of the
 #    core content-generation chain; run after 03 has produced nanopublications.
 uv run python scripts/07_run_validation_study.py --sample-fraction 0.10 --min-size 200
 
-# 8–9. Validate cross-artifact consistency and write the pipeline manifest
+# 9–10. Validate cross-artifact consistency and write the pipeline manifest
 uv run python scripts/08_validate_artifacts.py
 uv run python scripts/09_write_pipeline_manifest.py
 uv run python scripts/11_prepare_evidence_pilots.py
@@ -173,7 +177,13 @@ If extraction is interrupted, rerun Stage 3 with the same config and without
 extraction `run_id` is preserved; `output/data/extraction_state.json` records
 whether the run is resumable or complete.
 
-Steps 1–5 are the content-generation chain; steps 6–9 provide full-text QA, deterministic validation, cross-artifact validation, and the initial manifest. Steps 11–13 prepare review queues, snapshots, and tooling-source evidence before Stage 10 runs the release preflight and refreshes the final manifest. Stage 14 verifies the staged release package. See [`doc/scripts.md`](doc/scripts.md) for each script's full flag reference.
+Steps 1–5 produce the manuscript content and figures; `15_render_publication.py`
+renders the hydrated manuscript to PDF and HTML from the declared variables file.
+Scripts 06–09 provide full-text QA, deterministic validation, cross-artifact
+validation, and the initial manifest. Steps 11–13 prepare review queues,
+snapshots, and tooling-source evidence before Stage 10 runs the release preflight
+and refreshes the final manifest. Stage 14 verifies the staged release package.
+See [`doc/scripts.md`](doc/scripts.md) for each script's full flag reference.
 
 ---
 
@@ -229,6 +239,9 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 - **[Citation Metadata](doc/citation_metadata.md)** — `CITATION.cff`/DOI, per-paper citation fields, canonical-ID priority, and the citation-network artifacts.
 - **[Project Agents](AGENTS.md)** — Operational metadata and configuration requirements for this distinct subproject.
 - **[Documentation Hub](doc/README.md)** — Project-level quick start and advanced pipeline flags.
+- **[Documentation Index](doc/documentation-index.md)** — Flat index of every long-lived document.
+- **[Gate Arms](doc/_generated/gate_arms.md)** — Measured wall time per gate arm, refreshed by `./run.sh bench`.
+- **[GNN conformance](.github/GNN.md)** — The `.github/gnn-pin.json` parser pin and what the conformance job parses.
 - **[GNN sketches](gnn/README.md)** — Illustrative GNN models of the structure behind hypotheses H1, H4, and H8 (documentation, not evidence); repositories that consume the notation follow the [GNN downstream adoption guide](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/blob/main/docs/gnn/integration/downstream_adoption.md).
 - **[Project TODO](TODO.md)** — Authoritative forward backlog for minor and medium work, with acceptance gates.
 - **[AI Meta-Analysis Playbook](doc/ai_meta_analysis_playbook.md)** — Reproducible stage-by-stage operating procedure.
@@ -244,7 +257,7 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 
 The canonical, continuously updated changelog lives in **[CHANGELOG.md](CHANGELOG.md)** — treat it as the single source of truth. (An earlier copy was duplicated here and drifted several releases behind; this section is intentionally kept to a short pointer to avoid that recurring.)
 
-**Current release: v2.0.6 (2026-07-26 closure)** — adds configuration-driven live-refresh provenance, partial-year-safe temporal statistics, topic stability diagnostics, cross-artifact validation, canonical manuscript hydration, external tooling verification, and PDF/HTML-only render closure while preserving the honest rule-based validation boundary. The current working tree adds Semantic Scholar retrieval hardening and canonical public-repository metadata; the latest gate has 687 passed tests, 1 skipped, and 90.24% coverage against the 90% gate.
+**Current release: v2.0.6 (2026-07-26 closure)** — adds configuration-driven live-refresh provenance, partial-year-safe temporal statistics, topic stability diagnostics, cross-artifact validation, canonical manuscript hydration, external tooling verification, and PDF/HTML-only render closure while preserving the honest rule-based validation boundary. The current working tree adds Semantic Scholar retrieval hardening and canonical public-repository metadata. The latest measured gate is recorded in [doc/_generated/gate_arms.md](doc/_generated/gate_arms.md) (generated by `./run.sh bench`), not copied here.
 
 See **[CHANGELOG.md](CHANGELOG.md)** for the full per-release history (v2.0.0 → v2.0.6).
 

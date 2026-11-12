@@ -10,6 +10,7 @@ never include private credentials, internal paths, or personal tooling names.
 
 - [`AGENTS.md`](AGENTS.md) — project overview, architecture, and invariant rules.
 - [`doc/README.md`](doc/README.md) — documentation hub index and onboarding order.
+- [`doc/documentation-index.md`](doc/documentation-index.md) — flat index of every long-lived document.
 - [`doc/architecture.md`](doc/architecture.md) — pipeline design and module map.
 - [`doc/scripts.md`](doc/scripts.md) — per-script CLI reference.
 - [`TODO.md`](TODO.md) — authoritative forward backlog (Minor / Medium / Major)
@@ -39,23 +40,32 @@ never include private credentials, internal paths, or personal tooling names.
 ```bash
 # Python 3.12+ is required (see pyproject.toml)
 uv sync --extra dev
-uv run pytest tests/ --cov=src --cov-fail-under=90 -q
-uv run ruff check src/ scripts/ tests/
-uv run mypy src/
+
+# One entry point; every arm runs the same command CI runs.
+./run.sh lint        # ruff check src/ scripts/ tests/
+./run.sh types       # mypy src/
+./run.sh test-fast   # pytest without the slow figure tests (default arm)
+./run.sh test-full   # pytest with the 90% coverage gate
+./run.sh docs        # relative links and documentation index
+./run.sh gnn         # pinned GNN conformance check
+./run.sh render      # manuscript PDF/HTML into .render-check/
 ```
 
-The CI workflow (`.github/workflows/ci.yml`) runs exactly these three gates on
-every push to `main` and on pull requests: `ruff check`, `mypy src/`, and the
-pytest suite with the 90% coverage floor.
+`.github/workflows/ci.yml` calls those same arms; hosted GitHub Actions is
+billing-locked for this organization, so the local runs are the gate. The
+commands themselves live only in `scripts/gate.py`. Measured wall times are in
+[`doc/_generated/gate_arms.md`](doc/_generated/gate_arms.md), refreshed by
+`./run.sh bench`.
 
 ## Documentation contributions
 
 Documentation changes are welcome and are held to the same accuracy standard as
 code: every claim (test counts, corpus size, file paths, flags, schema fields)
-must match the current repository state. Run the cheap validations after doc
-edits (markdown link checks; `ruff`/`mypy` if Python files were touched), and
-keep generated `output/` artifacts out of the diff unless the change
-intentionally regenerates them.
+must match the current repository state. Run `./run.sh docs` after doc edits
+(and `./run.sh lint`/`./run.sh types` if Python files were touched), and keep
+generated `output/` artifacts out of the diff unless the change intentionally
+regenerates them. Do not hand-edit numbers in `doc/_generated/gate_arms.md`;
+refresh them with `./run.sh bench`.
 
 ## License
 

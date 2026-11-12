@@ -56,7 +56,7 @@
 
 | Task | Command | Working directory | Description |
 | --- | --- | --- | --- |
-| `test` | `python -m pytest` | `.` | Run the test suite. |
+| `test` | `./run.sh test-full` | `.` | Run the coverage gate through the repository's single gate entry point. |
 
 ## Validation
 

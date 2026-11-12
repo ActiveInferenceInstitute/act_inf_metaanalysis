@@ -23,6 +23,9 @@ uv run python scripts/04_generate_figures.py --dpi 300
 # 5. Hydrate manuscript variables through the canonical template entrypoint
 uv run python scripts/z_generate_manuscript_variables.py --project .
 
+# 5b. Render the hydrated manuscript to PDF and HTML (pandoc -> XeLaTeX -> BibTeX)
+uv run python scripts/15_render_publication.py
+
 # 6. Assess full-text availability
 uv run python scripts/06_fulltext_assessment.py
 
@@ -48,6 +51,7 @@ Scripts `01`–`04` plus the canonical `z_generate_manuscript_variables.py` entr
 | 03 | `03_build_knowledge_graph.py` | LLM assertion extraction, hypothesis scoring | ~30 min (LLM) |
 | 04 | `04_generate_figures.py` | 16 publication-quality PNG figures | ~15 sec |
 | 05 | `z_generate_manuscript_variables.py` | `{{VAR}}` → real values plus token manifest | ~2 sec |
+| 05b | `15_render_publication.py` | PDF and HTML render from the declared variables file, with figure-registry validation | ~90 sec (local, full manuscript) |
 | 06 | `06_fulltext_assessment.py` | Open access / PDF availability report | ~5 sec |
 | 07 | `07_run_validation_study.py` | Rule-based reference-annotator agreement study — deterministic reproducibility floor, not human validation | ~5 sec |
 | 08 | `08_validate_artifacts.py` | Cross-artifact contract and token/figure/provenance gate | seconds |
@@ -57,6 +61,24 @@ Scripts `01`–`04` plus the canonical `z_generate_manuscript_variables.py` entr
 | 12 | `12_snapshot_output.py` | Safe output inventory and non-overwriting snapshot copy | seconds/minutes |
 
 > **Note:** Scripts `01`–`04` and the canonical hydrator must run in order — each stage depends on prior outputs. Scripts `06` and `07` are optional QA steps run independently (07 consumes the `output/data/` corpus + nanopublications produced by `01`/`03`).
+
+## Gate entry point
+
+`./run.sh` at the repository root is the only gate entry point; the arm
+commands live in `scripts/gate.py`. Use it instead of re-typing tool commands:
+
+```bash
+./run.sh            # default: fast tests
+./run.sh test-full  # coverage gate
+./run.sh docs       # relative links and documentation index
+./run.sh gnn        # pinned GNN conformance
+./run.sh render     # render into .render-check/
+./run.sh all        # every arm
+./run.sh bench      # refresh doc/_generated/gate_arms.md
+```
+
+Scripts `gate.py`, `check_docs.py`, and `gnn_conformance.py` implement those arms;
+`15_render_publication.py` is also the production render command.
 
 ## Common Options
 
@@ -102,6 +124,7 @@ All outputs are written to `output/`:
 - **Python 3.12+** with packages listed in `pyproject.toml`
 - **Ollama** (optional) — required only for `03_build_knowledge_graph.py` LLM extraction
 - **matplotlib** / **networkx** / **scikit-learn** — for analysis and visualization
+- **pandoc**, **xelatex**, **bibtex** (optional) — required only for `15_render_publication.py`
 
 ## Documentation
 

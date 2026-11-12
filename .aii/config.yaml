@@ -1,7 +1,7 @@
 # AII sidecar — InstituteOS metadata. Schema: aii_platform.aii_sidecar
 meta:
   sidecar_version: 1.2.1
-  updated: '2026-11-11'
+  updated: '2026-11-12'
 repo:
   name: act_inf_metaanalysis
   slug: act-inf-metaanalysis
@@ -91,8 +91,8 @@ capabilities:
 - manuscript-publication
 tasks:
   test:
-    cmd: python -m pytest
-    description: Run the test suite.
+    cmd: ./run.sh test-full
+    description: Run the coverage gate through the repository's single gate entry point.
 docs:
 - README.md
 - AGENTS.md
