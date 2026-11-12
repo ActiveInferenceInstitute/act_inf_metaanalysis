@@ -1,8 +1,9 @@
 # GNN conformance
 
-The conformance job is `gnn conformance (pinned)` (job key `gnn-conformance`) in
-`.github/workflows/ci.yml`. It reads the canonical pin file `.github/gnn-pin.json`
-(schema `gnn-importer-pin/v1`), which pins
+The conformance step runs in the workflow's single `gate` job (display name
+`gate (lint, types, docs, gnn, tests)`). The step is named
+`Pinned GNN conformance` and executes `./run.sh gnn`. It reads the canonical pin
+file `.github/gnn-pin.json` (schema `gnn-importer-pin/v1`), which pins
 `ActiveInferenceInstitute/Generalized_Notation_Notation` at tag `v5.0.3`,
 revision `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`.
 

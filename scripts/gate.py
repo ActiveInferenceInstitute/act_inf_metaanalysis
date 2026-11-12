@@ -23,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 LOG_DIR = ROOT / ".gate-logs"
-RECEIPT = ROOT / "doc" / "_generated" / "gate_arms.md"
+RECEIPT = ROOT / "docs" / "_generated" / "gate_arms.md"
 
 # Arm -> exact argv. Keep each command identical to what CI invokes.
 ARMS: dict[str, tuple[str, ...]] = {

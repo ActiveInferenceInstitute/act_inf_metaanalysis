@@ -10,17 +10,18 @@
 
 Project-level documentation for the `act_inf_metaanalysis` pipeline.
 
-`doc/` is this repository's documentation hub. The docxology template names that
-directory `docs/`; this project keeps `doc/` because committed pipeline manifests
-hash `doc/tooling_inventory.yaml`. The hub page is this file and the flat index
-is [`documentation-index.md`](documentation-index.md).
+`docs/` is this repository's documentation hub: this page plus the flat
+[`documentation-index.md`](documentation-index.md). The long-form guides stay in
+[`../doc/`](../doc/) because committed pipeline manifests hash
+`doc/tooling_inventory.yaml`; [`../doc/AGENTS.md`](../doc/AGENTS.md) records the
+conventions for that directory.
 
 The complete generated `output/` tree is versioned in the public repository for
 reproducibility. It contains the current data, 16 figures, hydrated manuscript,
 HTML/PDF renders, reports, validation records, release package, and dated
 snapshots. Local environments and caches remain excluded by `.gitignore`.
 
-> See [AGENTS.md](AGENTS.md) for doc-hub architectural conventions, [../AGENTS.md](../AGENTS.md) for project-wide contributor properties, and the [project README](../README.md) for setup and overview.
+> See [../doc/AGENTS.md](../doc/AGENTS.md) for long-form guide conventions, [../AGENTS.md](../AGENTS.md) for project-wide contributor properties, and the [project README](../README.md) for setup and overview.
 
 ## Gates
 
@@ -41,9 +42,10 @@ organization, so local runs are the gate.
 | `./run.sh all` | lint, types, test-full, docs, gnn, render |
 | `./run.sh bench` | refreshes [`_generated/gate_arms.md`](_generated/gate_arms.md) |
 
-The GNN conformance job is named `gnn conformance (pinned)` (job key
-`gnn-conformance`). It reads `.github/gnn-pin.json` — schema
-`gnn-importer-pin/v1`, repository
+The GNN conformance step runs in the workflow's single `gate` job (display name
+`gate (lint, types, docs, gnn, tests)`); the step is named
+`Pinned GNN conformance` and executes `./run.sh gnn`. It reads
+`.github/gnn-pin.json` — schema `gnn-importer-pin/v1`, repository
 `ActiveInferenceInstitute/Generalized_Notation_Notation`, tag `v5.0.3`,
 revision `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1` — and parses the three
 sketches listed in [`../.github/GNN.md`](../.github/GNN.md). The workflow does
@@ -71,11 +73,11 @@ This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Rese
 
 If you are joining the Active Inference Institute to extend this pipeline, you should consume the documentation hub in the following order:
 
-1. **[architecture.md](architecture.md)** — Understand the 5-stage core data flow (plus the QA/closure scripts 06–14) and why we enforce a "Thin Orchestrator" scripting pattern.
-2. **[data_formats.md](data_formats.md)** — Internalize the schemas (especially JSONL/TriG) that form the nervous system between modules.
-3. **[scripts.md](scripts.md)** — Learn how to execute, pause, configure, and troubleshoot the pipeline from the command line.
-4. **[hypotheses.md](hypotheses.md)** — Understand the theoretical domain bounds and the mathematical formulation of our citation-weighted scoring logic.
-5. **[ai_meta_analysis_playbook.md](ai_meta_analysis_playbook.md)** — Follow the complete reproducible operating procedure and recovery paths.
+1. **[architecture.md](../doc/architecture.md)** — Understand the 5-stage core data flow (plus the QA/closure scripts 06–14) and why we enforce a "Thin Orchestrator" scripting pattern.
+2. **[data_formats.md](../doc/data_formats.md)** — Internalize the schemas (especially JSONL/TriG) that form the nervous system between modules.
+3. **[scripts.md](../doc/scripts.md)** — Learn how to execute, pause, configure, and troubleshoot the pipeline from the command line.
+4. **[hypotheses.md](../doc/hypotheses.md)** — Understand the theoretical domain bounds and the mathematical formulation of our citation-weighted scoring logic.
+5. **[ai_meta_analysis_playbook.md](../doc/ai_meta_analysis_playbook.md)** — Follow the complete reproducible operating procedure and recovery paths.
 6. **[../TODO.md](../TODO.md)** — Review the forward minor/medium backlog and acceptance gates.
 7. **[../gnn/README.md](../gnn/README.md)** — See the illustrative GNN structural sketches for three of the eight hypotheses (documentation only; they carry no evidence and are not pipeline inputs).
 8. **[../.github/GNN.md](../.github/GNN.md)** — Read what the pinned GNN conformance job parses and which revision it uses.
@@ -269,16 +271,17 @@ Variable hydration is handled by `src/manuscript/variables.py`, invoked by the c
 
 | Document | Scope |
 | --- | --- |
-| [architecture.md](architecture.md) | Pipeline design, module dependency graph, data flow |
+| [architecture.md](../doc/architecture.md) | Pipeline design, module dependency graph, data flow |
 | [documentation-index.md](documentation-index.md) | Flat index of every long-lived document |
-| [scripts.md](scripts.md) | Per-script CLI reference with all flags, YAML keys, and examples |
-| [api_reference.md](api_reference.md) | Module-level API documentation (all 5 packages, 25 module sections) |
-| [data_formats.md](data_formats.md) | Output file schemas and field documentation |
-| [citation_metadata.md](citation_metadata.md) | CITATION.cff/DOI, per-paper citation fields, canonical-ID priority, and citation-network artifacts |
-| [hypotheses.md](hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
-| [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
-| [ai_meta_analysis_playbook.md](ai_meta_analysis_playbook.md) | Stage-by-stage reproducible operating procedure and recovery rules |
-| [tooling_inventory.yaml](tooling_inventory.yaml) | Source registry for the publication-facing tooling table |
-| [testing.md](testing.md) | Test architecture, slow-marker split, and coverage configuration |
+| [AGENTS.md](AGENTS.md) | Conventions for this hub and its generated receipt |
+| [scripts.md](../doc/scripts.md) | Per-script CLI reference with all flags, YAML keys, and examples |
+| [api_reference.md](../doc/api_reference.md) | Module-level API documentation (all 5 packages, 25 module sections) |
+| [data_formats.md](../doc/data_formats.md) | Output file schemas and field documentation |
+| [citation_metadata.md](../doc/citation_metadata.md) | CITATION.cff/DOI, per-paper citation fields, canonical-ID priority, and citation-network artifacts |
+| [hypotheses.md](../doc/hypotheses.md) | Hypothesis definitions, scoring formula, and LLM prompt |
+| [visualization_guide.md](../doc/visualization_guide.md) | All 16 figure types with source data and rendering details |
+| [ai_meta_analysis_playbook.md](../doc/ai_meta_analysis_playbook.md) | Stage-by-stage reproducible operating procedure and recovery rules |
+| [tooling_inventory.yaml](../doc/tooling_inventory.yaml) | Source registry for the publication-facing tooling table |
+| [testing.md](../doc/testing.md) | Test architecture, slow-marker split, and coverage configuration |
 | [_generated/gate_arms.md](_generated/gate_arms.md) | Measured wall time per gate arm (generated by `./run.sh bench`) |
-| [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |
+| [CODE_QUALITY_AUDIT.md](../doc/CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |

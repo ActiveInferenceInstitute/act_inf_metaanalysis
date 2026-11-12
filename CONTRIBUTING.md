@@ -9,8 +9,8 @@ never include private credentials, internal paths, or personal tooling names.
 ## Project conventions (read these first)
 
 - [`AGENTS.md`](AGENTS.md) — project overview, architecture, and invariant rules.
-- [`doc/README.md`](doc/README.md) — documentation hub index and onboarding order.
-- [`doc/documentation-index.md`](doc/documentation-index.md) — flat index of every long-lived document.
+- [`docs/README.md`](docs/README.md) — documentation hub index and onboarding order.
+- [`docs/documentation-index.md`](docs/documentation-index.md) — flat index of every long-lived document.
 - [`doc/architecture.md`](doc/architecture.md) — pipeline design and module map.
 - [`doc/scripts.md`](doc/scripts.md) — per-script CLI reference.
 - [`TODO.md`](TODO.md) — authoritative forward backlog (Minor / Medium / Major)
@@ -54,7 +54,7 @@ uv sync --extra dev
 `.github/workflows/ci.yml` calls those same arms; hosted GitHub Actions is
 billing-locked for this organization, so the local runs are the gate. The
 commands themselves live only in `scripts/gate.py`. Measured wall times are in
-[`doc/_generated/gate_arms.md`](doc/_generated/gate_arms.md), refreshed by
+[`docs/_generated/gate_arms.md`](docs/_generated/gate_arms.md), refreshed by
 `./run.sh bench`.
 
 ## Documentation contributions
@@ -64,7 +64,7 @@ code: every claim (test counts, corpus size, file paths, flags, schema fields)
 must match the current repository state. Run `./run.sh docs` after doc edits
 (and `./run.sh lint`/`./run.sh types` if Python files were touched), and keep
 generated `output/` artifacts out of the diff unless the change intentionally
-regenerates them. Do not hand-edit numbers in `doc/_generated/gate_arms.md`;
+regenerates them. Do not hand-edit numbers in `docs/_generated/gate_arms.md`;
 refresh them with `./run.sh bench`.
 
 ## License

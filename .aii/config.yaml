@@ -66,9 +66,12 @@ artifacts:
 - path: manuscript
   kind: publication
   description: Manuscript sources and artifacts.
+- path: docs
+  kind: doc
+  description: Documentation hub (README, documentation index, generated gate receipt).
 - path: doc
   kind: doc
-  description: Documentation hub (architecture, data formats, citation metadata, API reference, scripts, testing).
+  description: Long-form guides (architecture, data formats, citation metadata, API reference, scripts, testing).
 - path: CHANGELOG.md
   kind: doc
   description: Changelog.
