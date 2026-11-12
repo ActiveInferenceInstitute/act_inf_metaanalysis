@@ -144,13 +144,16 @@ projects_archive/act_inf_metaanalysis/
 │   └── references.bib
 ├── data/validation/            # Rule-based reference-annotator agreement schema
 │   └── annotation_schema.md
-├── doc/                        # Documentation hub
-│   ├── README.md               # Index + onboarding
+├── docs/                       # Documentation hub
+│   ├── README.md               # Hub: onboarding, gates, pin facts
 │   ├── documentation-index.md  # Flat index of long-lived documents
+│   ├── AGENTS.md               # Hub conventions
+│   └── _generated/gate_arms.md # measured arm wall times (./run.sh bench)
+├── doc/                        # Long-form guides (paths preserved)
+│   ├── AGENTS.md               # Guide-writing conventions
 │   ├── architecture.md, api_reference.md, data_formats.md, citation_metadata.md,
 │   ├── hypotheses.md, scripts.md, testing.md, visualization_guide.md,
 │   ├── ai_meta_analysis_playbook.md, CODE_QUALITY_AUDIT.md
-│   ├── _generated/gate_arms.md # measured arm wall times (./run.sh bench)
 │   └── tooling_inventory.yaml  # Publication-facing tooling source registry
 ├── gnn/                        # Illustrative GNN structural sketches for H1, H4, H8
 │   ├── README.md               # Claim boundary, worked examples, verification receipts
@@ -190,12 +193,12 @@ billing-locked for this organization, so local runs are the gate.
 - `test-fast`/`test-full` select on the registered `slow` marker
   (`pyproject.toml`), which marks the figure-generation tests.
 - `docs` runs `scripts/check_docs.py`: relative links, heading anchors, and
-  `doc/documentation-index.md` coverage.
+  `docs/documentation-index.md` coverage.
 - `gnn` creates `.gnn-env` from the revision in `.github/gnn-pin.json` and runs
   `scripts/validate_gnn_conformance.py`; see `.github/GNN.md`.
 - `render` runs `scripts/15_render_publication.py --output-root .render-check`
   and needs `pandoc`, `xelatex`, and `bibtex` on `PATH`.
-- `bench` refreshes `doc/_generated/gate_arms.md`, the measured wall-time
+- `bench` refreshes `docs/_generated/gate_arms.md`, the measured wall-time
   receipt. Never hand-edit those numbers.
 
 ## See Also
@@ -203,8 +206,8 @@ billing-locked for this organization, so local runs are the gate.
 - [README.md](README.md) --- Project overview, quick start, and changelog pointer
 - [TODO.md](TODO.md) --- Authoritative forward backlog (Minor / Medium / Major)
 - [doc/](doc/) --- Architecture, API reference, and hypothesis documentation
-- [doc/documentation-index.md](doc/documentation-index.md) --- Flat index of long-lived documents
-- [doc/_generated/gate_arms.md](doc/_generated/gate_arms.md) --- Measured gate-arm wall times
+- [docs/documentation-index.md](docs/documentation-index.md) --- Flat index of long-lived documents
+- [docs/_generated/gate_arms.md](docs/_generated/gate_arms.md) --- Measured gate-arm wall times
 - [.github/GNN.md](.github/GNN.md) --- Pinned GNN conformance pointer
 - [LICENSE](LICENSE) --- CC-BY-4.0 license terms
 

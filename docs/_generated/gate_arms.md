@@ -9,7 +9,7 @@ local runs are the gate.
 
 ## Latest measurement
 
-- Date: 2026-11-12T05:05:11-08:00
+- Date: 2026-11-12T05:11:59-08:00
 - Host: darwin arm64
 - Python: 3.15.2
 - uv: uv 0.13.7 (Homebrew 2026-11-03 aarch64-apple-darwin)
@@ -19,12 +19,12 @@ local runs are the gate.
 | Arm | Command | Wall time | Exit | Evidence |
 | --- | --- | ---: | ---: | --- |
 | `lint` | `uv run ruff check src/ scripts/ tests/` | 0.1s | 0 | completed |
-| `types` | `uv run mypy src/` | 0.5s | 0 | completed |
-| `test-fast` | `uv run pytest tests/ -m not slow -q` | 39.3s | 0 | 681 passed, 1 skipped |
-| `test-full` | `uv run pytest tests/ --cov=src --cov-fail-under=90` | 81.2s | 0 | 687 passed, 1 skipped, 90.08% coverage |
-| `gnn` | `uv run python scripts/gnn_conformance.py` | 0.6s | 0 | gnn 5.0.3, 3 parsed, 3 type-checked, verified |
-| `render` | `uv run python scripts/15_render_publication.py --output-root .render-check` | 88.0s | 0 | 20 sections, 16 figures, PDF 3531520 bytes, HTML 252275 bytes |
-| `docs` | `uv run python scripts/check_docs.py` | 0.8s | 0 | 88 markdown files checked |
+| `types` | `uv run mypy src/` | 0.7s | 0 | completed |
+| `test-fast` | `uv run pytest tests/ -m not slow -q` | 21.9s | 0 | 681 passed, 1 skipped |
+| `test-full` | `uv run pytest tests/ --cov=src --cov-fail-under=90` | 35.4s | 0 | 687 passed, 1 skipped, 90.08% coverage |
+| `gnn` | `uv run python scripts/gnn_conformance.py` | 0.3s | 0 | gnn 5.0.3, 3 parsed, 3 type-checked, verified |
+| `render` | `uv run python scripts/15_render_publication.py --output-root .render-check` | 34.1s | 0 | 20 sections, 16 figures, PDF 3531520 bytes, HTML 252275 bytes |
+| `docs` | `uv run python scripts/check_docs.py` | 0.2s | 0 | 89 markdown files checked |
 
 ## Baseline before consolidation
 

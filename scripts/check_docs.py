@@ -6,7 +6,8 @@ script is the documentation check the `docs` gate arm runs. It verifies:
 
 1. every relative link in tracked Markdown resolves to a file in the tree;
 2. fragment links to Markdown headings resolve to a heading slug;
-3. ``doc/documentation-index.md`` lists every long-lived document in ``doc/``.
+3. ``docs/documentation-index.md`` exists and lists every long-lived guide in
+   ``doc/``; ``docs/README.md`` is the hub.
 
 External URLs and ``mailto:`` targets are not fetched: the check is offline by
 design, so it never turns a network failure into a documentation verdict.
@@ -94,16 +95,19 @@ def check_links(files: list[Path]) -> tuple[list[str], int]:
 
 
 def check_index(root: Path) -> list[str]:
-    index = root / "doc" / "documentation-index.md"
-    if not index.exists():
-        return ["doc/documentation-index.md is missing"]
-    text = index.read_text(encoding="utf-8")
     errors = []
+    hub = root / "docs" / "README.md"
+    if not hub.exists():
+        errors.append("docs/README.md is missing")
+    index = root / "docs" / "documentation-index.md"
+    if not index.exists():
+        return errors + ["docs/documentation-index.md is missing"]
+    text = index.read_text(encoding="utf-8")
     for path in sorted((root / "doc").glob("*.md")):
-        if path.name in {"AGENTS.md", "README.md", "documentation-index.md"}:
+        if path.name in {"AGENTS.md", "README.md"}:
             continue
         if path.name not in text:
-            errors.append(f"doc/documentation-index.md does not list doc/{path.name}")
+            errors.append(f"docs/documentation-index.md does not list doc/{path.name}")
     return errors
 
 

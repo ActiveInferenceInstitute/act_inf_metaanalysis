@@ -6,7 +6,7 @@
 
 The suite collects **688 tests**; the exact pass/skip counts and coverage of the
 latest full run are recorded in
-[`_generated/gate_arms.md`](_generated/gate_arms.md), which `./run.sh bench`
+[`docs/_generated/gate_arms.md`](../docs/_generated/gate_arms.md), which `./run.sh bench`
 regenerates. Tests run against real method implementations — no mocks, fakes, or
 stubs are used for core logic. API clients use `pytest-httpserver` for isolated
 HTTP testing with real request/response cycles.

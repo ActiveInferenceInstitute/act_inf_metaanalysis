@@ -105,7 +105,7 @@ to synthesize the bibliography from the corpus.
 
 ## Related documents
 
-- [`README.md`](README.md) — documentation index
+- [`docs/README.md`](../docs/README.md) — documentation hub
 - [`architecture.md`](architecture.md) — pipeline stages and data flow
 - [`data_formats.md`](data_formats.md) — corpus, nanopublication, and artifact schemas
 - [`hypotheses.md`](hypotheses.md) — citation-weighted scoring formula

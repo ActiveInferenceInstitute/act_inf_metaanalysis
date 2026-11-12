@@ -74,7 +74,7 @@ commands live in `scripts/gate.py`. Use it instead of re-typing tool commands:
 ./run.sh gnn        # pinned GNN conformance
 ./run.sh render     # render into .render-check/
 ./run.sh all        # every arm
-./run.sh bench      # refresh doc/_generated/gate_arms.md
+./run.sh bench      # refresh docs/_generated/gate_arms.md
 ```
 
 Scripts `gate.py`, `check_docs.py`, and `gnn_conformance.py` implement those arms;
