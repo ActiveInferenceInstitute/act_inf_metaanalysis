@@ -7,26 +7,34 @@ are listed under Minor / Medium / Major below; pre-existing open release items
 
 **Owner:** Active Inference Meta-Analysis project.
 
-**Last reviewed:** 2026-08-02 (docs deep review + backlog reconciliation).
+**Last reviewed:** 2026-11-12 (backlog reconciliation against `main` at
+`c04bb1f`; every closed item below re-checked against the current source).
 
 This is the authoritative project-level backlog. It scopes work that can be
 completed without changing the scientific target, hypothesis set, RDF
 namespace, or PDF/HTML publication policy. Completed local implementation is
 represented by source, tests, and reports rather than by a closed-task list.
 
-## Current baseline (verified 2026-07-31)
+## Current baseline (verified 2026-11-12)
 
-Verification was run live against this tree with `uv run pytest --cov=src
---cov-fail-under=90`:
+Counts and scores were re-read from the committed artifacts on 2026-11-12; the
+test gate figure is the last recorded full run (2026-11-01, `CHANGELOG.md`),
+because the full arm is not re-run for a documentation-only change:
 
 - **1,106** deduplicated papers (`output/data/corpus.jsonl`, 1,105 dated);
 - **2,561** provenance-bearing nanopublications (`output/data/nanopublications.jsonl`);
-- 16 registered figures (16 PNG + `figure_registry.json`);
-- hypothesis scores stable across snapshots (e.g. H4 0.8317, H5 1.0);
-- test gate: **687 passed, 1 skipped, 90.24% coverage** after implementing the
-  review findings below (fails at 90 gate only if coverage drops below 90);
-- the one skipped test is `tests/visualization/test_figure_runner.py:291`
+- 16 registered figures (16 PNG + `output/figures/figure_registry.json`);
+- hypothesis scores stable across snapshots (H4 `PREDICTIVE_CODING` 0.8317,
+  H5 `SCALABILITY` 1.0, read from `output/data/hypothesis_scores.json`);
+- **688** tests collected (`uv run pytest --collect-only -q`, 2026-11-12);
+- last recorded full gate: **687 passed, 1 skipped, 90.05% coverage**
+  (`uv run pytest --cov=src --cov-fail-under=90`, 2026-11-01);
+- the one skipped test is `tests/visualization/test_figure_runner.py:294`
   ("template infrastructure not importable") — see MIN-05.
+
+`pymdp` is not a dependency of this repository and is not pinned anywhere: it
+appears only as a cited library in the manuscript and tooling table. There is
+no `inferactively-pymdp` pin to move.
 
 The release-level external blocker from the 2026-07-26 run is unchanged: the
 Semantic Scholar live probe returned a terminal HTTP 429/500 and was recorded
@@ -51,6 +59,15 @@ variable. `STANDARD_HYPOTHESES` order and the H1–H8 aliases are untouched.
 
 Forward work from this addition:
 
+- **Move the pin to the estate revision `v5.1.0`.** `.github/gnn-pin.json`
+  still records tag `v5.0.3` / revision
+  `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`, while the estate-wide importer
+  cutover pins `v5.1.0` at `75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`. The
+  acceptance gate is `./run.sh gnn` green at the new revision plus the
+  `gnn/README.md` model digests re-recorded; the pin file, `gnn/README.md`,
+  `gnn/AGENTS.md`, `.github/GNN.md`, and `docs/README.md` all quote the
+  revision and must move together. Owner: repository maintainer; no external
+  blocker.
 - **Re-verify the sketches when the pinned GNN revision moves.** The parser and
   type checker are the acceptance test; the exact commands and the expected report
   fields are in `gnn/AGENTS.md`, and the recorded model digests are in
@@ -84,6 +101,43 @@ and are retained only as an audit trail. Superseded by the current source.
   (`output/reports/tooling_verification.json`) — the dated report must simply
   be rerun whenever the publication snapshot is refreshed.
 
+### Estate and review closure (2026-11-01 → 2026-11-12)
+
+Each line names the merge that proves it; all are ancestors of `main` at
+`c04bb1f`.
+
+- **One gate entry point.** `./run.sh` + `scripts/gate.py` with `lint`, `types`,
+  `test-fast`, `test-full`, `docs`, `gnn`, `render`, `all`, `bench`; CI calls
+  the same arms; `scripts/check_docs.py` verifies relative links, heading
+  anchors, and the documentation index; `scripts/15_render_publication.py`
+  renders PDF/HTML. Merge `4f3129a` (#19).
+- **Documentation hub and flat index** moved to `docs/`, GNN job keys fixed.
+  Merge `e2c7f26` (#20).
+- **Publishing contract migration**: `.aii/config.yaml` registers the gate
+  arms, the docs index, the manuscript command, and the GNN pin; the identity
+  schema and checker are carried unchanged and digest-checked by
+  `./run.sh docs`. Merge `f8992e8` (#21).
+- **Sidecar-relative documentation declarations** fixed. Merge `c04bb1f` (#22).
+- **Canonical GNN importer pin schema** (`gnn-importer-pin/v1`) adopted.
+  Merge `ed92cae` (#18).
+- **CI gate repair**: `ruff`/`mypy` declared in the `dev` extra and the lint
+  rule set stated explicitly, so the gate no longer fails at `Failed to spawn:
+  ruff`. Commit `649d896`.
+- **Hostile red-team review closed** (MAJ-01, MAJ-02, MED-07…MED-19,
+  MIN-01…MIN-04, MIN-06…MIN-08, MIN-12…MIN-18). Commit `13dac92`; second polish
+  pass `0939c94`. Re-verified in the current source: deterministic sha256
+  title fallback (`src/literature/models.py:99-104`), deterministic nanopub ids
+  and the three-part merge key (`src/knowledge_graph/nanopublication.py:124-130`,
+  `:255`), the renamed `TestCorpusFilterBySubfieldPrimary`
+  (`tests/literature/test_corpus.py:301`), `min_confidence` default 0.6
+  (`src/knowledge_graph/llm_config.py:24`, `kg_runner.py:40`), the hoisted
+  f-string escape (`src/manuscript/variables.py:479`), and the single LLM port
+  11435 across config and docs.
+- **MIN-09 closed**: NMF clamping now logs a warning
+  (`src/analysis/topic_modeling.py:117`, `:175`).
+- **Stale `.coverage_review.json` removed**: the file is absent and untracked
+  (`git ls-files .coverage_review.json` is empty).
+
 ## Pre-existing open release work
 
 These items predate the review and remain the release gate. They are kept as
@@ -92,6 +146,12 @@ the primary order of work below.
 ### MED-01 — Complete the three-source live refresh
 
 **Source:** release blocker confirmed in the 2026-07-26 run.
+
+**Blocker / owner:** the Semantic Scholar API returns a terminal 429/500 for
+the configured query set (`output/reports/search_provenance.json` records
+`"success": false` for that source). Unblocked by a maintainer supplying an
+`x-api-key` or by the provider restoring the endpoint; nothing in this
+repository can clear it.
 
 Retry Semantic Scholar with the configured query set and rate-limit handling.
 If new papers are added, rerun deterministic downstream stages and extract
@@ -118,7 +178,9 @@ Select a durable external deposit target, then publish the already staged and
 locally validated package under the date-stamped output release directory.
 Do not publish a partial or source-incomplete snapshot.
 
-**Dependencies:** explicit deposit target and upload authorization.
+**Dependencies:** explicit deposit target and upload authorization. Owner: the
+project maintainer who holds the deposit account; no code change is required
+before the target is chosen.
 
 **Done when:** the deposit contains the exact validated JSONL/TriG files, has a
 persistent identifier and version/date, links the repository and license, and
@@ -132,7 +194,9 @@ Use the prepared deterministic queue and a pre-registered open-full-text
 sample. Add section-aware quotes and source-location provenance without
 changing headline abstract-only scores.
 
-**Dependencies:** full-text access and a human-reviewed fidelity subset.
+**Dependencies:** full-text access and a human-reviewed fidelity subset. Owner:
+the project maintainer for access, plus a human reviewer for the fidelity
+subset; both are outside this repository.
 
 **Done when:** access failures and exclusions are recorded, quotes retain
 locations, the reviewed subset reports fidelity and stance agreement, and pilot
@@ -147,7 +211,9 @@ Use the prepared stratified calibration queue to create an adjudicated reference
 set across hypotheses, stances, subfields, and years. Measure agreement,
 precision, recall, F1, quote fidelity, uncertainty, and error categories.
 
-**Dependencies:** human annotation and adjudication.
+**Dependencies:** human annotation and adjudication. Owner: a human annotator
+and an adjudicator; the prepared queue exists
+(`scripts/11_prepare_evidence_pilots.py`) but no labels can be produced here.
 
 **Done when:** instructions, blinding, labels, metrics, sample sizes, and the
 confidence policy are versioned, and the manuscript describes results as
@@ -155,15 +221,18 @@ validation evidence rather than model authority.
 
 ## New scoped findings (hostile review, 2026-07-31)
 
-**Implementation status (2026-07-31):** All Major and Medium items below were
+**Implementation status (2026-11-12):** All Major and Medium items below were
 implemented and are covered by tests / CI (`ruff check`, `mypy`, pytest with the
-90% gate) in the same commit. Most Minor items are also fixed (MIN-01, MIN-02,
-MIN-03, MIN-04, MIN-06, MIN-07, MIN-08, MIN-11, MIN-12, MIN-13, MIN-14, MIN-15,
-MIN-16, MIN-17, MIN-18). Remaining open items are low-impact polish: MIN-05 (one
-template-dependent test skips without the external template repo), MIN-09 (NMF
-clamping already emits a warning; optionally fail instead), MIN-10 (optional
-`_io.load_json` requirement flag), and the stale `.coverage_review.json`
-artifact.
+90% gate) in `13dac92` and `0939c94`. All Minor items are fixed except MIN-05,
+MIN-10, and MIN-11; MIN-09 is closed (NMF clamping logs a warning at
+`src/analysis/topic_modeling.py:117`), and the stale `.coverage_review.json`
+artifact no longer exists. Remaining open items are low-impact polish: MIN-05
+(one template-dependent test skips without the external template repo), MIN-10
+(optional `_io.load_json` requirement flag), MIN-11 (the two `temporal_trend`
+implementations are still duplicated; the "dead function / unused import" half
+of that item is stale — `temporal_trend` is the documented public API with
+tests, and `kg_runner.py:13-17` imports only `temporal_trend_with_counts`), and
+the new MIN-19 below.
 
 Each item below is a real, code-verified defect with an acceptance gate. They
 are independent of the pre-existing release work and can be addressed in any
@@ -383,11 +452,16 @@ order; Major items should land before the next publication snapshot.
   proceed with vacuous data if an upstream artifact is absent. For
   release-path artifacts prefer a hard failure (matches the hydration gate).
 
-- **MIN-11 — `temporal_trend`/`temporal_trend_with_counts` are duplicated and
-  `temporal_trend` is effectively dead.**
-  `hypothesis.py:282-354` has two near-identical implementations; ruff flags an
-  unused `temporal_trend` import in `kg_runner.py:16`. Consolidate on
-  `_with_counts` and drop the dead variant + import.
+- **MIN-11 — `temporal_trend`/`temporal_trend_with_counts` are duplicated.**
+  `src/knowledge_graph/hypothesis.py:282` and `:327` are two near-identical
+  implementations of the same cumulative-by-year loop. `temporal_trend` is not
+  dead: it is the documented public API (`doc/api_reference.md:342`,
+  `doc/hypotheses.md:126`, `src/knowledge_graph/README.md:30`) and is covered by
+  `tests/knowledge_graph/test_hypothesis.py:309-350`; `kg_runner.py:13-17`
+  imports only `temporal_trend_with_counts`, so the "unused import" half of the
+  original finding is stale. **Fix:** implement `temporal_trend` as a thin
+  projection of `temporal_trend_with_counts` (drop the `score` key) so the
+  cumulative loop exists once.
 
 - **MIN-12 — `snapshot_manager.copy_snapshot` is not atomic.**
   `snapshot_manager.py:59` `shutil.copytree` writes straight to the final
@@ -435,6 +509,16 @@ order; Major items should land before the next publication snapshot.
   computed over non-neutral assertions only (1751/1828) — rename to
   `NON_NEUTRAL_SUPPORT_PCT` or document the denominator so future prose cannot
   misuse it as a share of all 2,561.
+
+- **MIN-19 — `append_nanopubs` docstring still states the old two-part dedup
+  key.** `src/knowledge_graph/nanopublication.py:310` says the merge
+  "deduplicat[es] by ``(paper_id, hypothesis_id)`` — new wins", but
+  `merge_nanopubs` keys on `(paper_id, hypothesis_id, assertion_type)`
+  (`:255-284`, the MED-07 fix). The code is correct; the docstring is the
+  remaining trace of the collapsed-direction behaviour and would mislead anyone
+  reasoning about incremental resume. **Fix:** state the three-part key in the
+  `append_nanopubs` docstring. Owner: repository maintainer; no external
+  blocker.
 
 ## Docs deep review (2026-08-02)
 
@@ -532,12 +616,14 @@ committed; entries are marked ✓ with the commit reference. Full narrative in
 
 ## Open / deferred
 
-- **MIN-05, MIN-09, MIN-10, MIN-11 (stale `.coverage_review.json` artifact)**
-  from the 2026-07-31 review remain open as before; this docs pass did not
-  touch them.
+- **MIN-05, MIN-10, MIN-11, MIN-19** from the 2026-07-31 review are the only
+  open code items; MIN-09 and the stale `.coverage_review.json` artifact are
+  closed (see the closure section above).
 - **MED-01, MED-03, MED-04, MED-05** remain the release-blocking external items
   (live-source refresh, nanopub deposit, full-text pilot, human calibration) —
   unchanged and out of scope for a docs-only pass.
+- **GNN pin drift** (`v5.0.3` here vs `v5.1.0` estate-wide) is open; see the
+  forward work under "Additions — 2026-11-01".
 - The root `AGENTS.md` archive-status prose keeps the `projects_archive/`
   monorepo context (it is the project's declared home in the template), but all
   monorepo-relative *links* were converted to standalone-resolving targets so
@@ -546,18 +632,20 @@ committed; entries are marked ✓ with the commit reference. Full narrative in
 ## Order of work
 
 1. **MED-01:** resolve the incomplete Semantic Scholar source; this is the sole
-   release blocker and publishes the current scientific results.
-2. **MAJ-01, MAJ-02, MED-07, MED-08, MED-09:** fix the version contract and the
-   data-integrity / reproducibility / test-collection defects before the next
-   snapshot is frozen, since they affect the published artifact and the gate's
-   trustworthiness (MAJ-02 also governs cross-run dedup and resume identity).
-3. **MED-10..MED-19:** robustness (transport retries, fail-closed OpenAlex,
-   min_confidence default), gate enforcement (lint, no-mock), and coverage gaps;
-   land before treating the pipeline as "clean".
-4. **MED-03 / MED-04 / MED-05:** external deposit and validation pilots after the
-   primary source-complete snapshot is frozen.
-5. **Minor items:** fold in opportunistically; MIN-01, MIN-06, MIN-08 affect
-   determinism and should precede any reproducibility assertion.
+   release blocker and publishes the current scientific results. Blocked on the
+   Semantic Scholar API (terminal 429/500); unblocked by a maintainer with an
+   API key or by the provider restoring the endpoint.
+2. **GNN pin move to `v5.1.0`:** re-run `./run.sh gnn`, re-record the model
+   digests, and move the pin file plus the five documents that quote the
+   revision. Internal; no external blocker.
+3. **MED-03 / MED-04 / MED-05:** external deposit and validation pilots after the
+   primary source-complete snapshot is frozen. Each is blocked on a decision or
+   resource outside this repository (deposit target and upload authorization;
+   full-text access and a human-reviewed fidelity subset; human annotation and
+   adjudication).
+4. **Minor items (MIN-05, MIN-10, MIN-11, MIN-19):** fold in opportunistically;
+   MIN-19 is a one-line docstring correction and MIN-11 removes the last
+   duplicated cumulative-score loop.
 
 ## Release gate
 
