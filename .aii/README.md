@@ -39,9 +39,17 @@ Institute repositories without touching this project's own content. The schema i
 
 ## Portable tasks
 
-The command registry is [`config.yaml`](config.yaml), under `tasks:`. Each task
-invokes a documented `./run.sh` arm; the Publishing integration is described in
-[`../docs/workflows/publishing.md`](../docs/workflows/publishing.md).
+| Task | Command | Working directory | Description |
+| --- | --- | --- | --- |
+| `lint` | `./run.sh lint` | `.` | Run the repository lint arm. |
+| `types` | `./run.sh types` | `.` | Run the source type-checking arm. |
+| `test-fast` | `./run.sh test-fast` | `.` | Run tests excluding the slow figure-generation selection. |
+| `test-full` | `./run.sh test-full` | `.` | Run the full suite with the repository coverage gate. |
+| `docs` | `./run.sh docs` | `.` | Check links, docs/documentation-index.md coverage, and Publishing artifact digests. |
+| `gnn` | `./run.sh gnn` | `.` | Check illustrative sketches using the parser pinned in .github/gnn-pin.json. |
+| `render` | `./run.sh render` | `.` | Render the manuscript via uv run python scripts/15_render_publication.py --output-root .render-check. |
+| `all` | `./run.sh all` | `.` | Run the repository's blocking gate sequence. |
+| `bench` | `./run.sh bench` | `.` | Measure the gate arms and regenerate docs/_generated/gate_arms.md. |
 
 ## Links
 
