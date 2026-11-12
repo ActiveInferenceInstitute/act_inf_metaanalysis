@@ -64,7 +64,10 @@ def _install_stand_in(monkeypatch: pytest.MonkeyPatch, module, outcome: object) 
     return syntax_calls
 
 
-@pytest.mark.parametrize(("outcome", "kind"), [(2, "warnings"), (False, "error"), (None, "error")])
+@pytest.mark.parametrize(
+    ("outcome", "kind"),
+    [(2, "warnings"), (False, "error"), (None, "error"), (1, "error")],
+)
 def test_non_true_type_checker_outcome_fails(monkeypatch, outcome, kind):
     module = _load_script()
     _install_stand_in(monkeypatch, module, outcome)
