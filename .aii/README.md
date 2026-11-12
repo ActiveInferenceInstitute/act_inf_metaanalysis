@@ -39,9 +39,9 @@ Institute repositories without touching this project's own content. The schema i
 
 ## Portable tasks
 
-| Task | Command | Working directory | Description |
-| --- | --- | --- | --- |
-| `test` | `python -m pytest` | `.` | Run the test suite. |
+The command registry is [`config.yaml`](config.yaml), under `tasks:`. Each task
+invokes a documented `./run.sh` arm; the Publishing integration is described in
+[`../docs/workflows/publishing.md`](../docs/workflows/publishing.md).
 
 ## Links
 

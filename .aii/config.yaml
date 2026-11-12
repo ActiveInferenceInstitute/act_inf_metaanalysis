@@ -93,13 +93,39 @@ capabilities:
 - citation
 - manuscript-publication
 tasks:
-  test:
+  lint:
+    cmd: ./run.sh lint
+    description: Run the repository lint arm.
+  types:
+    cmd: ./run.sh types
+    description: Run the source type-checking arm.
+  test-fast:
+    cmd: ./run.sh test-fast
+    description: Run tests excluding the slow figure-generation selection.
+  test-full:
     cmd: ./run.sh test-full
-    description: Run the coverage gate through the repository's single gate entry point.
+    description: Run the full suite with the repository coverage gate.
+  docs:
+    cmd: ./run.sh docs
+    description: Check links, docs/documentation-index.md coverage, and Publishing artifact digests.
+  gnn:
+    cmd: ./run.sh gnn
+    description: Check illustrative sketches using the parser pinned in .github/gnn-pin.json.
+  render:
+    cmd: ./run.sh render
+    description: Render the manuscript via uv run python scripts/15_render_publication.py --output-root .render-check.
+  all:
+    cmd: ./run.sh all
+    description: Run the repository's blocking gate sequence.
+  bench:
+    cmd: ./run.sh bench
+    description: Measure the gate arms and regenerate docs/_generated/gate_arms.md.
 docs:
 - README.md
 - AGENTS.md
-- docs/INTEGRATION.md
+- .aii/docs/INTEGRATION.md
 - docs/README.md
-- docs/AGENTS.md
+- .aii/docs/AGENTS.md
+- docs/documentation-index.md
+- docs/workflows/publishing.md
 schema: aii-sidecar/v1
