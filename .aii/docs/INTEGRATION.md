@@ -57,7 +57,15 @@
 
 | Task | Command | Working directory | Description |
 | --- | --- | --- | --- |
-| `test` | `./run.sh test-full` | `.` | Run the coverage gate through the repository's single gate entry point. |
+| `lint` | `./run.sh lint` | `.` | Run the repository lint arm. |
+| `types` | `./run.sh types` | `.` | Run the source type-checking arm. |
+| `test-fast` | `./run.sh test-fast` | `.` | Run tests excluding the slow figure-generation selection. |
+| `test-full` | `./run.sh test-full` | `.` | Run the full suite with the repository coverage gate. |
+| `docs` | `./run.sh docs` | `.` | Check links, docs/documentation-index.md coverage, and Publishing artifact digests. |
+| `gnn` | `./run.sh gnn` | `.` | Check illustrative sketches using the parser pinned in .github/gnn-pin.json. |
+| `render` | `./run.sh render` | `.` | Render the manuscript via uv run python scripts/15_render_publication.py --output-root .render-check. |
+| `all` | `./run.sh all` | `.` | Run the repository's blocking gate sequence. |
+| `bench` | `./run.sh bench` | `.` | Measure the gate arms and regenerate docs/_generated/gate_arms.md. |
 
 ## Validation
 
