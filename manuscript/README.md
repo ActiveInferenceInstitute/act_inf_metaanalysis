@@ -50,11 +50,35 @@ Output goes to `output/manuscript/`. Source files in `manuscript/` are never ove
 
 ---
 
+## Rendering the Manuscript
+
+`scripts/15_render_publication.py` is the authoritative render. It reads the
+declared variable map from `output/data/manuscript_variables.json`, hydrates the
+sections, validates `output/figures/figure_registry.json` against the files the
+manuscript includes, and runs pandoc → XeLaTeX → BibTeX → XeLaTeX. It fails on a
+missing variable, missing figure, or missing tool instead of rendering blank
+text.
+
+```bash
+# Production render into output/pdf/ and output/web/
+uv run python scripts/15_render_publication.py
+
+# Gate arm: same command, writes into .render-check/ instead
+./run.sh render
+```
+
+The gate arm needs `pandoc`, `xelatex`, and `bibtex` on `PATH`. The PDF render
+uses the fenced `latex` block in `preamble.md` as its header and creates a
+temporary `figures/` symbolic link to `output/figures/` while XeLaTeX runs.
+
+---
+
 ## Adding New Citations
 
 1. Add a BibTeX entry to `references.bib`
 2. Use `\citep{key}` or `\citet{key}` in the relevant `.md` section
-3. The build system resolves citations via the `references.bib` file during PDF rendering
+3. Re-run `scripts/15_render_publication.py`; it copies `references.bib` into the
+   build directory and resolves the citations with BibTeX
 
 ---
 

@@ -176,13 +176,13 @@ Hypothesis scoring is validated through unit tests on synthetic data verifying b
 
 ### Pipeline-Level Test Coverage
 
-Test-driven development enforces 90\% minimum code coverage on project modules and 60\% on shared infrastructure, with real data and computation (no mocking). All tests run on every push; failures block merges and releases.
+Test-driven development enforces a 90\% minimum branch-coverage gate over the project modules in `src/`, with real data and computation (no mocking). Figure-generation tests carry a registered `slow` marker so the default local arm stays fast; the full arm runs them with the coverage gate. Failures block merges and releases.
 
 ### Quality Thresholds
 
 \begin{table}[H]
 \centering
-\caption{Multi-level quality-assurance thresholds enforced across the pipeline. Each level defines a metric, minimum threshold, and failure action. Pipeline-level thresholds (90\% coverage, 100\% pass rate) are enforced via CI gates; lower-level checks emit warnings or block release as indicated.}
+\caption{Multi-level quality-assurance thresholds enforced across the pipeline. Each level defines a metric, minimum threshold, and failure action. Pipeline-level thresholds (90\% coverage, 100\% pass rate) are enforced by the repository's local gate arms; \texttt{.github/workflows/ci.yml} invokes the same arms when hosted CI is available. Lower-level checks emit warnings or block release as indicated.}
 \label{tab:quality_thresholds}
 \begin{tabular}{llll}
 \toprule
@@ -195,7 +195,6 @@ Graph & Corpus coverage & $\geq 80\%$ & Warning \\
 Score & Boundary tests (all-support / all-contradict / balanced) & All pass & Block release \\
 Score & Sensitivity-sweep stability & Report rank changes and Spearman $ρ$ & Warning \\
 Pipeline & Project-code coverage & $\geq 90\%$ & Block merge \\
-Pipeline & Infrastructure coverage & $\geq 60\%$ & Block merge \\
 Pipeline & Test pass rate & $100\%$ & Block release \\
 \bottomrule
 \end{tabular}

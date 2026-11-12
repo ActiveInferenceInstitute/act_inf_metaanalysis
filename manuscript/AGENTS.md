@@ -47,6 +47,25 @@ Manuscript source files use double-brace placeholders of the form `{{<NAME>}}` w
 
 All computation lives in `src/manuscript/variables.py`. Do not add variables to scripts directly.
 
+## Render Contract
+
+`scripts/15_render_publication.py` is the only render path:
+
+- It reads the declared map from `output/data/manuscript_variables.json`
+  (`variables` key) and hydrates the source sections itself. It fails on an
+  undeclared token rather than emitting blank text.
+- Section order is the numeric filename prefix (`00_` … `99_`); `preamble.md`
+  is not a section — its fenced `latex` block is the PDF header.
+- `preamble.md` must load `hyperref` explicitly before `\hypersetup`; pandoc
+  passes the `unicode` option, so declaring the package here is safe.
+- The render validates every `\includegraphics{figure}` against
+  `output/figures/figure_registry.json`, and every registered file must exist.
+- `99_references.md` keeps the raw `\bibliography{references}` directive; the
+  script copies `references.bib` into the build directory and runs BibTeX. Do
+  not add a second bibliography directive.
+- `./run.sh render` is the gate arm; it writes to `.render-check/` and needs
+  `pandoc`, `xelatex`, and `bibtex` on `PATH`.
+
 ## Section Ordering Conventions
 
 - `00_` – `07_` — main body sections in display order
