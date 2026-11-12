@@ -10,12 +10,46 @@
 
 Project-level documentation for the `act_inf_metaanalysis` pipeline.
 
+`doc/` is this repository's documentation hub. The docxology template names that
+directory `docs/`; this project keeps `doc/` because committed pipeline manifests
+hash `doc/tooling_inventory.yaml`. The hub page is this file and the flat index
+is [`documentation-index.md`](documentation-index.md).
+
 The complete generated `output/` tree is versioned in the public repository for
 reproducibility. It contains the current data, 16 figures, hydrated manuscript,
 HTML/PDF renders, reports, validation records, release package, and dated
 snapshots. Local environments and caches remain excluded by `.gitignore`.
 
 > See [AGENTS.md](AGENTS.md) for doc-hub architectural conventions, [../AGENTS.md](../AGENTS.md) for project-wide contributor properties, and the [project README](../README.md) for setup and overview.
+
+## Gates
+
+`./run.sh` (repository root) is the only gate entry point. Each arm runs the
+command defined once in `scripts/gate.py`, and `.github/workflows/ci.yml`
+invokes the same arms. Hosted GitHub Actions is billing-locked for this
+organization, so local runs are the gate.
+
+| Arm | What it runs |
+| --- | --- |
+| `./run.sh` | default: `test-fast` (pytest with the `slow` marker excluded) |
+| `./run.sh lint` | `ruff check src/ scripts/ tests/` |
+| `./run.sh types` | `mypy src/` |
+| `./run.sh test-full` | `pytest tests/ --cov=src --cov-fail-under=90` |
+| `./run.sh docs` | `scripts/check_docs.py` (relative links, anchors, index coverage) |
+| `./run.sh gnn` | pinned GNN conformance parse/type check |
+| `./run.sh render` | `scripts/15_render_publication.py --output-root .render-check` |
+| `./run.sh all` | lint, types, test-full, docs, gnn, render |
+| `./run.sh bench` | refreshes [`_generated/gate_arms.md`](_generated/gate_arms.md) |
+
+The GNN conformance job is named `gnn conformance (pinned)` (job key
+`gnn-conformance`). It reads `.github/gnn-pin.json` — schema
+`gnn-importer-pin/v1`, repository
+`ActiveInferenceInstitute/Generalized_Notation_Notation`, tag `v5.0.3`,
+revision `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1` — and parses the three
+sketches listed in [`../.github/GNN.md`](../.github/GNN.md). The workflow does
+not use the `ActiveInferenceInstitute/.github` `setup-python-uv` composite
+action; it pins `actions/checkout`, `actions/setup-python`, and
+`astral-sh/setup-uv` directly.
 
 The authoritative forward backlog is the [project-level TODO](../TODO.md). It
 contains only scoped minor and medium work; each item has dependencies and an
@@ -25,7 +59,7 @@ acceptance gate.
 
 ## Central Philosophy: Reproducible Generative Research
 
-This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **13 numbered scripts** (01–04, 06–14) plus the canonical manuscript hydrator: retrieval, analysis, extraction, figures, hydration, full-text QA, deterministic validation, cross-artifact validation, manifest closure, review-queue preparation, safe snapshot inventory, tooling-source verification, release preflight, and release-package verification. By structuring the literature review this way, this platform ensures:
+This pipeline rejects ad-hoc analysis in favor of **Reproducible Generative Research**. It is built from **13 numbered pipeline scripts** (01–04, 06–14), the render stage (`15_render_publication.py`), and the canonical manuscript hydrator: retrieval, analysis, extraction, figures, hydration, PDF/HTML render, full-text QA, deterministic validation, cross-artifact validation, manifest closure, review-queue preparation, safe snapshot inventory, tooling-source verification, release preflight, and release-package verification. By structuring the literature review this way, this platform ensures:
 
 1. **Verifiable Provenance**: Every paper, classification, and assertion is strictly mapped from public APIs (arXiv, Semantic Scholar, and OpenAlex) through atomic JSONL intermediate states into the final visual output.
 2. **Robust Extensibility**: New papers incrementally stream into the corpus, and new LLM models can instantly backfill metadata assessments via checkpointed resumes.
@@ -44,6 +78,8 @@ If you are joining the Active Inference Institute to extend this pipeline, you s
 5. **[ai_meta_analysis_playbook.md](ai_meta_analysis_playbook.md)** — Follow the complete reproducible operating procedure and recovery paths.
 6. **[../TODO.md](../TODO.md)** — Review the forward minor/medium backlog and acceptance gates.
 7. **[../gnn/README.md](../gnn/README.md)** — See the illustrative GNN structural sketches for three of the eight hypotheses (documentation only; they carry no evidence and are not pipeline inputs).
+8. **[../.github/GNN.md](../.github/GNN.md)** — Read what the pinned GNN conformance job parses and which revision it uses.
+9. **[_generated/gate_arms.md](_generated/gate_arms.md)** — Check the measured wall time per gate arm on the current host.
 
 ---
 
@@ -59,6 +95,10 @@ uv run python scripts/02_meta_analysis_pipeline.py
 uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
 uv run python scripts/04_generate_figures.py
 uv run python scripts/z_generate_manuscript_variables.py --project .
+
+# Render the hydrated manuscript (pandoc -> XeLaTeX -> BibTeX).
+# Use ./run.sh render to render into .render-check/ without touching output/.
+uv run python scripts/15_render_publication.py
 
 # QA and closure scripts (run after the content chain):
 uv run python scripts/06_fulltext_assessment.py
@@ -93,6 +133,9 @@ flowchart LR
     subgraph "Stage 5"
         S5["z_generate_manuscript_variables.py"]
     end
+    subgraph "Render"
+        S5B["15_render_publication.py"]
+    end
     subgraph "QA and closure"
         S6["06_fulltext_assessment.py"]
         S7["07_run_validation_study.py"]
@@ -113,6 +156,8 @@ flowchart LR
     S4 -->|16 PNG figures| Figs["output/figures/"]
     S2 & S3 -->|analysis JSONs| S5
     S5 -->|rendered .md| MS["output/manuscript/"]
+    S5 & S4 -->|hydrated .md + figures| S5B
+    S5B -->|PDF and HTML| Render["output/pdf/, output/web/"]
     S1 -->|corpus.jsonl| S6
     S6 -->|fulltext_assessment.json| Data["output/data/"]
     S1 & S3 -->|corpus + nanopublications| S7
@@ -135,6 +180,7 @@ flowchart LR
 | 3. Knowledge Graph | `03_build_knowledge_graph.py` | `corpus.jsonl`, Ollama LLM | `nanopublications.jsonl`, `nanopublications.trig`, `hypothesis_scores.json`, `hypothesis_trends.json`, `assertion_summary.json` |
 | 4. Visualization | `04_generate_figures.py` | All Stage 2+3 outputs | 16 PNG figures in `output/figures/` |
 | 5. Variable Hydration | `z_generate_manuscript_variables.py` | All Stage 2+3 outputs | Rendered manuscript in `output/manuscript/`, `output/data/manuscript_variables.json` |
+| 5b. Render | `15_render_publication.py` | Hydrated sections, `manuscript_variables.json`, `figure_registry.json` | `output/pdf/act_inf_metaanalysis_combined.pdf`, `output/web/index.html`, `output/reports/render_receipt.json` |
 | 6. Full-Text Assessment | `06_fulltext_assessment.py` | `corpus.jsonl` | `output/data/fulltext_assessment.json` |
 | 7. Validation Study | `07_run_validation_study.py` | `corpus.jsonl`, `nanopublications.jsonl` | `output/validation/sample.csv`, `output/validation/labels_rule_reference.csv`, `output/reports/validation_metrics.json` |
 | 8. Artifact Contract | `08_validate_artifacts.py` | All current artifacts | `output/reports/artifact_contract.json` |
@@ -224,6 +270,7 @@ Variable hydration is handled by `src/manuscript/variables.py`, invoked by the c
 | Document | Scope |
 | --- | --- |
 | [architecture.md](architecture.md) | Pipeline design, module dependency graph, data flow |
+| [documentation-index.md](documentation-index.md) | Flat index of every long-lived document |
 | [scripts.md](scripts.md) | Per-script CLI reference with all flags, YAML keys, and examples |
 | [api_reference.md](api_reference.md) | Module-level API documentation (all 5 packages, 25 module sections) |
 | [data_formats.md](data_formats.md) | Output file schemas and field documentation |
@@ -232,5 +279,6 @@ Variable hydration is handled by `src/manuscript/variables.py`, invoked by the c
 | [visualization_guide.md](visualization_guide.md) | All 16 figure types with source data and rendering details |
 | [ai_meta_analysis_playbook.md](ai_meta_analysis_playbook.md) | Stage-by-stage reproducible operating procedure and recovery rules |
 | [tooling_inventory.yaml](tooling_inventory.yaml) | Source registry for the publication-facing tooling table |
-| [testing.md](testing.md) | Test architecture, latest 687-pass gate, and coverage configuration |
+| [testing.md](testing.md) | Test architecture, slow-marker split, and coverage configuration |
+| [_generated/gate_arms.md](_generated/gate_arms.md) | Measured wall time per gate arm (generated by `./run.sh bench`) |
 | [CODE_QUALITY_AUDIT.md](CODE_QUALITY_AUDIT.md) | Thermo-nuclear maintainability audit (2026-05-24) |

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
 import numpy as np
+import pytest
 from visualization.advanced_plots import (
     plot_word_cloud,
     plot_pca_embeddings,
@@ -54,6 +55,7 @@ class TestAdvancedPlots:
         assert img.width > 0 and img.height > 0
 
     # -- PCA embeddings ---
+    @pytest.mark.slow
     def test_plot_pca_embeddings_creates_file(self, tmp_path: Path) -> None:
         matrix, features, labels = _make_synthetic_tfidf()
         output = tmp_path / "pca.png"

@@ -93,6 +93,7 @@ def _write_full_analysis_inputs(input_dir: Path) -> None:
     nx.write_gml(graph, str(input_dir / "citation_graph.gml"))
 
 
+@pytest.mark.slow
 def test_generate_all_figures_minimal(tmp_path: Path) -> None:
     input_dir = tmp_path / "input"
     output_dir = tmp_path / "figures"
@@ -117,6 +118,7 @@ def test_generate_all_figures_minimal(tmp_path: Path) -> None:
     assert output_dir.exists()
 
 
+@pytest.mark.slow
 def test_generate_all_figures_full_fixture(tmp_path: Path) -> None:
     input_dir = tmp_path / "input"
     output_dir = tmp_path / "figures"
@@ -211,6 +213,7 @@ def test_generate_all_figures_topics_without_word_weights(tmp_path: Path) -> Non
     assert "word_cloud.png" not in names
 
 
+@pytest.mark.slow
 def test_generate_all_figures_tfidf_without_doc_tokens(tmp_path: Path) -> None:
     input_dir = tmp_path / "input"
     output_dir = tmp_path / "figures"

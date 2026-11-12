@@ -1,5 +1,6 @@
 from __future__ import annotations
 from pathlib import Path
+import pytest
 from visualization.temporal_plots import (
     _growth_annotation_text,
     _median_year,
@@ -60,6 +61,7 @@ class TestTemporalPlots:
         img = Image.open(output)
         assert img.width > 0 and img.height > 0
 
+    @pytest.mark.slow
     def test_plot_growth_curve_single_year(self, tmp_path: Path) -> None:
         output = tmp_path / "single_year.png"
         result = plot_growth_curve({2023: 10}, {2023: 10}, output)

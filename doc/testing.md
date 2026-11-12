@@ -4,7 +4,33 @@
 
 ## Overview
 
-The project maintains **688 collected tests** across the test suite (**687 passed, 1 skipped** in the latest full run), achieving coverage on `src/` above the 90% CI gate (**90.24%**, verified 2026-07-31). Tests run against real method implementations — no mocks, fakes, or stubs are used for core logic. API clients use `pytest-httpserver` for isolated HTTP testing with real request/response cycles. Run `uv run pytest tests/ --cov=src --cov-fail-under=90 -q` for the authoritative gate.
+The suite collects **688 tests**; the exact pass/skip counts and coverage of the
+latest full run are recorded in
+[`_generated/gate_arms.md`](_generated/gate_arms.md), which `./run.sh bench`
+regenerates. Tests run against real method implementations — no mocks, fakes, or
+stubs are used for core logic. API clients use `pytest-httpserver` for isolated
+HTTP testing with real request/response cycles.
+
+The authoritative gate is `./run.sh test-full`, which runs
+`uv run pytest tests/ --cov=src --cov-fail-under=90`. `./run.sh test-fast` (the
+default arm) excludes tests marked `slow` — the figure-generation cases listed
+under [Slow marker](#slow-marker) — and does not spend time on coverage.
+
+### Slow marker
+
+`pyproject.toml` registers one marker:
+
+```toml
+markers = [
+    "slow: figure-generation and full-fixture rendering tests excluded from the fast gate arm",
+]
+```
+
+The marker sits on the figure-rendering tests whose runtime dominates the suite
+(`tests/visualization/test_figure_runner.py`, the PCA/word-cloud cases in
+`tests/visualization/test_advanced_plots.py`, the single-year growth curve in
+`tests/visualization/test_temporal_plots.py`, and the figure-generator integration
+case in `tests/test_scripts.py`). The full arm runs them; the fast arm does not.
 
 ### Idempotence checks
 
@@ -52,17 +78,18 @@ To test the LLM extraction loop (`tests/knowledge_graph/test_extraction.py` and 
 ## Running Tests
 
 ```bash
-# Full suite (from project root)
-uv run python -m pytest tests/ -v
+# Gate arms (from project root; commands live in scripts/gate.py)
+./run.sh test-fast    # default arm: pytest -m "not slow", no coverage pass
+./run.sh test-full    # pytest with the 90% coverage gate
 
-# Quick run with fail-fast
-uv run python -m pytest tests/ -x -q
+# Everything
+./run.sh all
 
 # Single module
-uv run python -m pytest tests/literature/test_corpus.py -v
+uv run pytest tests/literature/test_corpus.py -v
 
-# With coverage report
-uv run python -m pytest tests/ --cov=src --cov-report=term-missing
+# With a per-line coverage report
+uv run pytest tests/ --cov=src --cov-report=term-missing
 ```
 
 ## Configuration

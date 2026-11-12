@@ -30,7 +30,10 @@ This file contains LaTeX packages and commands that are automatically included i
 \usepackage{microtype}
 \usepackage{xcolor}
 
-% Cross-references and citations (hyperref loaded by other packages with [unicode]; set options only)
+% Cross-references and citations. Pandoc passes the [unicode] option for
+% hyperref; load it explicitly so \hypersetup below is always defined before
+% pandoc's own header block.
+\usepackage{hyperref}
 \hypersetup{colorlinks=true,linkcolor=red,citecolor=red,urlcolor=red}
 \usepackage[capitalise,noabbrev]{cleveref}
 % NOTE: natbib is auto-injected by Pandoc via --natbib (which also writes
