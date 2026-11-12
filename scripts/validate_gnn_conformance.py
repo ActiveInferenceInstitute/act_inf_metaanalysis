@@ -4,6 +4,12 @@
 The sketches are documentation, not pipeline input, so this check does not run
 the repository's literature pipeline. It exercises the same GNN parser and type
 checker that steps 3 and 5 use, from the exact revision in `.github/gnn-pin.json`.
+
+``GNNTypeChecker.validate_gnn_files`` returns ``True`` when every file validates,
+``2`` when files are invalid or none were found (the warnings/"completed with
+issues" outcome) and ``False`` on a hard failure. Only ``True`` passes here; the
+receipt records the raw value as ``type-checker-result``. ``validate_gnn_syntax`` is
+called with ``is_content=True`` so the sketch text is not probed as a path.
 """
 
 from __future__ import annotations
@@ -82,7 +88,7 @@ def main() -> None:
             raise ConformanceError(f"{sketch.name} did not parse")
         if getattr(parsed, "parse_errors", None):
             raise ConformanceError(f"{sketch.name} parse errors: {parsed.parse_errors!r}")
-        valid, syntax_errors = validate_gnn_syntax(content)
+        valid, syntax_errors = validate_gnn_syntax(content, is_content=True)
         if not valid:
             raise ConformanceError(f"{sketch.name} syntax errors: {syntax_errors!r}")
         section_names = {section["name"] for section in parsed.sections}
@@ -91,8 +97,13 @@ def main() -> None:
             raise ConformanceError(f"{sketch.name} is missing required sections: {missing!r}")
 
     with tempfile.TemporaryDirectory(prefix="metaanalysis-gnn-") as output_dir:
-        if not GNNTypeChecker().validate_gnn_files(SKETCH_DIR, Path(output_dir)):
-            raise ConformanceError("GNN type checker rejected the sketch directory")
+        type_check_result = GNNTypeChecker().validate_gnn_files(SKETCH_DIR, Path(output_dir))
+        if type_check_result is not True:
+            kind = "warnings" if type_check_result == 2 else "error"
+            raise ConformanceError(
+                f"GNN type checker reported {kind} for the sketch directory "
+                f"(returned {type_check_result!r}); only True passes"
+            )
 
     print(
         json.dumps(
@@ -102,6 +113,7 @@ def main() -> None:
                 "sketches": len(sketches),
                 "parsed": len(sketches),
                 "type-checked": len(sketches),
+                "type-checker-result": type_check_result,
                 "result": "verified",
             },
             indent=2,

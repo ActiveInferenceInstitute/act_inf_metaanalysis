@@ -68,7 +68,10 @@ The sketches themselves are verified by the `gnn conformance (pinned)` CI job.
 It installs the revision in [`../.github/gnn-pin.json`](../.github/gnn-pin.json)
 (v5.0.3, `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`), then runs
 `python scripts/validate_gnn_conformance.py`; locally, use the same command in
-an environment with the pinned GNN package installed. The equivalent full
+an environment with the pinned GNN package installed. The script requires
+`GNNTypeChecker.validate_gnn_files` to return exactly `True` (it returns `2` when files
+are invalid or none were found, and `False` on a hard failure) and records the value as
+`type-checker-result` in its receipt. The equivalent full
 pipeline check is:
 
 ```bash
