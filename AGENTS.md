@@ -187,8 +187,7 @@ uv sync --extra dev
 
 `./run.sh` is the only gate entry point. Each arm runs the command defined in
 `scripts/gate.py`, and `.github/workflows/ci.yml` invokes the same arms
-(`lint`, `types`, `test-full`, `docs`, `gnn`). Hosted GitHub Actions is
-billing-locked for this organization, so local runs are the gate.
+(`lint`, `types`, `test-full`, `docs`, `gnn`).
 
 - `test-fast`/`test-full` select on the registered `slow` marker
   (`pyproject.toml`), which marks the figure-generation tests.
@@ -200,6 +199,21 @@ billing-locked for this organization, so local runs are the gate.
   and needs `pandoc`, `xelatex`, and `bibtex` on `PATH`.
 - `bench` refreshes `docs/_generated/gate_arms.md`, the measured wall-time
   receipt. Never hand-edit those numbers.
+
+## Required local PR check
+
+The required GitHub status is `gate (local, lint, types, docs, gnn, tests)`.
+In a clean worktree at the live PR head, prepare the locked Python 3.12
+dev environment and the parser from `.github/gnn-pin.json`. Run
+`./run.sh lint`, `./run.sh types`, `./run.sh docs`, `./run.sh gnn` and
+`./run.sh test-full` in one qualified GitVault test launch. The full test
+arm enforces 90% coverage.
+
+Keep the source-bound receipt and all gate output. Use the mapped
+`github-status` plan and apply workflow to publish success only on the
+verified current PR head, then read back the required check. Repeat
+verification if the head changes.
+[Run and publish the local PR check](README.md#required-local-pr-check).
 
 ## See Also
 

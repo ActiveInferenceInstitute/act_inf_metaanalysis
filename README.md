@@ -27,6 +27,7 @@ and reviewable but not source-complete for a new live publication.
 - [What this project does](#-what-this-project-does)
 - [System architecture](#-system-architecture)
 - [Quick start](#-quick-start)
+- [Required local PR check](#required-local-pr-check)
 - [Archive layout](#archive-layout)
 - [Directory structure](#-directory-structure)
 - [Core methodologies](#-core-methodologies)
@@ -119,8 +120,8 @@ uv sync --extra dev  # First time only: install dependencies
 ```
 
 Each arm runs the command defined in `scripts/gate.py`; `.github/workflows/ci.yml`
-invokes the same arms. Hosted GitHub Actions is billing-locked for this
-organization, so the local runs are the gate.
+invokes the same arms. The [required local PR check](#required-local-pr-check)
+selects the five arms needed for merging.
 
 **Important:** The full test suite requires `rdflib`, `wordcloud`, and `scikit-learn` to be installed.
 If any of these are missing, pytest will abort with a clear error listing the missing packages.
@@ -129,6 +130,122 @@ Example single module:
 
 ```bash
 uv run pytest tests/knowledge_graph/test_hypothesis.py -v
+```
+
+### Required local PR check
+
+The `main` ruleset requires `gate (local, lint, types, docs, gnn, tests)` on the exact
+pull request head. Run the gate locally and publish a commit status from
+GitVault. GitHub Actions is optional.
+
+Set `PR_NUMBER` to the pull request number. From a standalone clone with
+`origin` pointing to this repository, set `PR_CHECKOUT` to an absolute path
+for a new worktree and fetch the exact head. In GitVault, use a separate worktree under
+`Local/worktrees/` and acquire the repository lease for the fetch and
+worktree creation.
+
+```bash
+set -euo pipefail
+repo=ActiveInferenceInstitute/act_inf_metaanalysis
+context='gate (local, lint, types, docs, gnn, tests)'
+live_pr_head() {
+  gh pr view "$PR_NUMBER" --repo "$repo" --json state,baseRefName,headRefOid |
+    jq -er 'select(.state == "OPEN" and .baseRefName == "main") |
+      .headRefOid | select(test("^[0-9a-f]{40}$"))'
+}
+tested_head=$(live_pr_head)
+git fetch --no-tags origin "refs/pull/$PR_NUMBER/head" </dev/null
+test "$(git rev-parse FETCH_HEAD </dev/null)" = "$tested_head"
+git worktree add --detach "$PR_CHECKOUT" "$tested_head" </dev/null
+cd "$PR_CHECKOUT"
+test "$(git rev-parse HEAD </dev/null)" = "$tested_head"
+test -z "$(git status --porcelain </dev/null)"
+```
+
+Prepare the locked development environment with Python 3.12. The pinned GNN
+parser environment must also be prepared for an offline launch. A first
+`./run.sh gnn` provisions it from the revision in
+[`.github/gnn-pin.json`](.github/gnn-pin.json).
+
+```bash
+export UV_PYTHON=3.12 UV_LOCKED=1
+uv sync --locked --extra dev
+./run.sh gnn
+```
+
+Run all required arms with that environment from the clean checkout. In
+GitVault, run the block as one bounded `execute --classification test`
+launch following GitVault's `docs/EXECUTE.md`. Bind this repository and the
+exact `tested_head` in the intent. Prepare the environment before admission
+and keep the gate output with the successful `exit.json` receipt.
+
+Save these arms in a shell file outside the checkout and set `GATE_SCRIPT`
+to its absolute path.
+
+```bash
+set -e
+export UV_PYTHON=3.12 UV_LOCKED=1 UV_OFFLINE=1 MPLBACKEND=Agg
+./run.sh lint
+./run.sh types
+./run.sh docs
+./run.sh gnn
+./run.sh test-full
+```
+
+Set `VAULT` to the GitVault launcher and `GATE_INTENT` to the reviewed
+intent file's absolute path, then launch the check.
+
+```bash
+"$VAULT" execute --classification test --intent "$GATE_INTENT" \
+  --repository "$repo" --cwd "$PR_CHECKOUT" -- /bin/bash "$GATE_SCRIPT"
+```
+
+### Publish the local PR result
+
+An authorized maintainer uses the mapped Institute identity and enables
+status publication through GitVault’s `state` write class. Set
+`GATE_EXIT_RECEIPT` to the launch's `exit.json`. Review the gate output
+to confirm that every required arm passed. Continue in the same shell
+and verify the receipt and live PR head before planning the status.
+
+```bash
+set -euo pipefail
+receipt_head=$(jq -er --arg repo "$repo" '
+  .payload | select(.classification == "test" and .outcome == "SUCCEEDED"
+    and .returncode == 0 and .source_unchanged == true and .binding.source == $repo
+    and .descendants.sample_errors == 0 and .descendants.remaining == [])
+  | .binding.revision | select(test("^[0-9a-f]{40}$"))
+' "$GATE_EXIT_RECEIPT")
+test "$receipt_head" = "$tested_head"
+test "$(live_pr_head)" = "$tested_head"
+digest=$(shasum -a 256 "$GATE_EXIT_RECEIPT")
+status_parameters=$(jq -cn --arg repo "$repo" --arg head "$tested_head" \
+  --arg context "$context" --arg digest "${digest%% *}" '{
+    repository:$repo, expected_commit:$head, context:$context, state:"success",
+    description:("Local gate passed. Receipt SHA-256 " + $digest[:16])
+  }')
+plan=$("$VAULT" plan github-status --parameters "$status_parameters")
+plan_id=$(jq -er .github <<< "$plan")
+phrase=$(jq -er .confirmation <<< "$plan")
+"$VAULT" github-apply --plan "$plan_id"
+```
+
+After reviewing the plan's repository, SHA and context, recheck the
+PR head and apply its confirmation phrase. If the head moved, rerun
+the full gate on the new head and make a fresh plan.
+
+```bash
+test "$(live_pr_head)" = "$tested_head"
+"$VAULT" github-apply --plan "$plan_id" --apply --confirm "$phrase"
+gh api "repos/$repo/commits/$tested_head/status" |
+  jq -e --arg head "$tested_head" --arg context "$context" '
+    .sha == $head and any(.statuses[]; .context == $context and .state == "success")
+  '
+test "$(live_pr_head)" = "$tested_head"
+gh pr checks "$PR_NUMBER" --repo "$repo" --required --json name,state,bucket |
+  jq -e --arg context "$context" '
+    any(.[]; .name == $context and .state == "SUCCESS" and .bucket == "pass")
+  '
 ```
 
 ### Running the orchestration scripts
