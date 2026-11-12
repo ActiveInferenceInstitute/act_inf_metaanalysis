@@ -47,6 +47,9 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 addopts = "-v --tb=short --strict-markers"
+markers = [
+    "slow: figure-generation and full-fixture rendering tests excluded from the fast gate arm",
+]
 
 [tool.coverage.run]
 source = ["src"]

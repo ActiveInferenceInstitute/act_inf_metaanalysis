@@ -13,63 +13,37 @@ permissions:
   contents: read
 
 jobs:
-  gnn-conformance:
-    name: gnn conformance (pinned)
+  gate:
+    name: gate (lint, types, docs, gnn, tests)
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
       - name: Set up Python
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.12"
-      - name: Install pinned GNN parser
-        run: |
-          python -m pip install --disable-pip-version-check defusedxml psutil pyyaml
-          python - <<'PY'
-          import json
-          import subprocess
-          import sys
-          from pathlib import Path
-
-          pin = json.loads(Path(".github/gnn-pin.json").read_text(encoding="utf-8"))
-          assert pin["repository"] == "ActiveInferenceInstitute/Generalized_Notation_Notation"
-          spec = (
-              "generalized-notation-notation @ "
-              f"git+https://github.com/{pin['repository']}.git@{pin['revision']}"
-          )
-          subprocess.check_call(
-              [sys.executable, "-m", "pip", "install", "--disable-pip-version-check", "--no-deps", spec]
-          )
-          PY
-      - name: Parse and type-check GNN sketches
-        run: python scripts/validate_gnn_conformance.py
-
-  test:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.12"]
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Install uv
         uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install dependencies
+      - name: Sync one environment for every arm
         run: uv sync --extra dev
 
-      - name: Lint (ruff check)
-        run: uv run ruff check src/ scripts/ tests/
+      # Every step below calls an arm of the repository's single gate entry
+      # point. The arm commands live in scripts/gate.py, not in this workflow.
+      - name: Lint
+        run: ./run.sh lint
 
-      - name: Type check (mypy)
-        run: uv run mypy src/
+      - name: Type check
+        run: ./run.sh types
+
+      - name: Documentation links and index
+        run: ./run.sh docs
+
+      - name: Pinned GNN conformance
+        run: ./run.sh gnn
 
       - name: Test + coverage gate
-        run: uv run pytest tests/ --cov=src --cov-fail-under=90
+        run: ./run.sh test-full

@@ -13,6 +13,8 @@ import sys
 from contextlib import contextmanager
 from pathlib import Path
 
+import pytest
+
 
 # Scripts directory
 SCRIPTS_DIR = Path(__file__).resolve().parent.parent / "scripts"
@@ -218,6 +220,7 @@ class TestBuildKnowledgeGraphScript:
 class TestGenerateFiguresScript:
     """Integration tests for 04_generate_figures.py entry point."""
 
+    @pytest.mark.slow
     def test_main_with_minimal_data(self, tmp_output_dir):
         """Verify figure generation runs with minimal JSON data."""
         input_dir = Path(tmp_output_dir) / "input"
