@@ -298,30 +298,12 @@ def temporal_trend(
         Dictionary mapping year to cumulative score as of that year.
         Years without any relevant data are omitted.
     """
-    # Build paper_id -> year lookup
-    paper_year: dict[str, int] = {}
-    for p in papers:
-        if p.year is not None:
-            paper_year[p.canonical_id] = p.year
-
-    # Filter to relevant assertions and attach year
-    relevant: list[tuple[int, Assertion]] = []
-    for a in assertions:
-        if a.hypothesis_id == hypothesis_id and a.paper_id in paper_year:
-            relevant.append((paper_year[a.paper_id], a))
-
-    if not relevant:
-        return {}
-
-    # Collect all years and sort
-    years = sorted({yr for yr, _ in relevant})
-
-    trend: dict[int, float] = {}
-    for target_year in years:
-        cumulative = [a for yr, a in relevant if yr <= target_year]
-        trend[target_year] = score_hypothesis(cumulative, hypothesis_id)
-
-    return trend
+    return {
+        year: float(point["score"])
+        for year, point in temporal_trend_with_counts(
+            assertions, hypothesis_id, papers
+        ).items()
+    }
 
 
 def temporal_trend_with_counts(

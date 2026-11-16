@@ -18,6 +18,7 @@ from knowledge_graph.hypothesis import (
     score_all_hypotheses,
     get_hypothesis_by_id,
     temporal_trend,
+    temporal_trend_with_counts,
     _weight,
 )
 import knowledge_graph.schema as schema
@@ -487,3 +488,37 @@ class TestConfigureHypotheses:
 
         result = configure_hypotheses(tmp_path / "missing.yaml")
         assert len(result) == 8
+
+
+def test_temporal_projection_preserves_scores_counts_and_exclusions() -> None:
+    papers = [
+        Paper("Early", doi="10.1/early", year=2020),
+        Paper("Late", doi="10.1/late", year=2021),
+        Paper("Undated", doi="10.1/undated", year=None),
+    ]
+    assertions = [
+        _make_assertion("a", "doi:10.1/early", citation_count=9),
+        _make_assertion("b", "doi:10.1/late", assertion_type="contradicts", citation_count=9),
+        _make_assertion("c", "doi:10.1/undated", citation_count=999),
+        _make_assertion("d", "doi:10.1/missing", citation_count=999),
+        _make_assertion("e", "doi:10.1/early", hypothesis_id="LANGUAGE_AIF", citation_count=999),
+    ]
+    assert temporal_trend(assertions, "FEP_UNIVERSALITY", papers) == {2020: 1.0, 2021: 0.0}
+    assert temporal_trend_with_counts(assertions, "FEP_UNIVERSALITY", papers) == {
+        2020: {"score": 1.0, "assertion_count": 1},
+        2021: {"score": 0.0, "assertion_count": 2},
+    }
+
+
+def test_temporal_apis_agree_when_no_dated_matching_assertions_exist() -> None:
+    dated = Paper("Dated", doi="10.1/dated", year=2020)
+    undated = Paper("Undated", doi="10.1/undated")
+    cases = [
+        ([], []),
+        ([undated], [_make_assertion(paper_id=undated.canonical_id)]),
+        ([dated], [_make_assertion(paper_id="doi:10.1/missing")]),
+        ([dated], [_make_assertion(paper_id=dated.canonical_id, hypothesis_id="LANGUAGE_AIF")]),
+    ]
+    for papers, assertions in cases:
+        assert temporal_trend(assertions, "FEP_UNIVERSALITY", papers) == {}
+        assert temporal_trend_with_counts(assertions, "FEP_UNIVERSALITY", papers) == {}

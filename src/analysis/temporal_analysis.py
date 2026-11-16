@@ -159,7 +159,7 @@ def estimate_growth_rate(
 
     if start_count == 0:
         cagr = float('inf') if end_count > 0 else 0.0
-    elif n_years > 0 and end_count > 0:
+    elif n_years > 0:
         cagr = (end_count / start_count) ** (1 / n_years) - 1
     else:
         cagr = 0.0

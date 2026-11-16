@@ -3,6 +3,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+from rdflib import Dataset, Literal, URIRef
+
 from analysis.release_package import (
     prepare_release_package,
     validate_release_metadata,
@@ -91,3 +94,86 @@ def test_validate_rdf_package_detects_missing_trig(tmp_path: Path) -> None:
     report = validate_rdf_package(tmp_path / "output")
     assert report["status"] == "fail"
     assert "missing nanopublications.trig" in report["errors"]
+
+
+@pytest.mark.parametrize("field", ["claim", "evidence_quote", "assertion_type", "confidence", "provenance", "attribution", "created_date"])
+def test_same_ids_cannot_hide_rdf_payload_changes(tmp_path: Path, field: str) -> None:
+    from knowledge_graph.nanopublication import deserialize_nanopubs
+
+    _write_package_inputs(tmp_path)
+    data = tmp_path / "output" / "data"
+    records = deserialize_nanopubs(data / "nanopublications.jsonl")
+    record = records[0]
+    if field == "provenance":
+        assert record.provenance is not None
+        record.provenance["model_id"] = "different-model"
+    elif field == "confidence":
+        record.assertion.confidence = 0.25
+    elif field == "assertion_type":
+        record.assertion.assertion_type = "contradicts"
+    elif field in {"claim", "evidence_quote"}:
+        setattr(record.assertion, field, "different evidence")
+    elif field == "created_date":
+        record.created_date = "2001-01-01T00:00:00+00:00"
+    else:
+        record.attribution = "different attribution"
+    serialize_nanopubs_to_trig(records, data / "nanopublications.trig")
+    report = validate_rdf_package(tmp_path / "output")
+    assert report["jsonl_count"] == report["rdf_nanopub_count"] == 1
+    assert report["status"] == "fail"
+    assert any("graph content disagrees" in error for error in report["errors"])
+
+
+@pytest.mark.parametrize("mutation", ["extra_graph", "move_triple", "head_link"])
+def test_rdf_named_graph_structure_is_part_of_parity(tmp_path: Path, mutation: str) -> None:
+    _write_package_inputs(tmp_path)
+    trig = tmp_path / "output" / "data" / "nanopublications.trig"
+    dataset = Dataset()
+    dataset.parse(trig, format="trig")
+    if mutation == "extra_graph":
+        dataset.graph(URIRef("urn:unexpected")).add(
+            (URIRef("urn:subject"), URIRef("urn:predicate"), Literal("extra"))
+        )
+    else:
+        suffix = "#assertion" if mutation == "move_triple" else "#head"
+        source = next(graph for graph in dataset.graphs() if str(graph.identifier).endswith(suffix))
+        if mutation == "head_link":
+            triple = next(source.triples((None, URIRef("http://www.nanopub.org/nschema#hasAssertion"), None)))
+            source.remove(triple)
+            source.add((triple[0], triple[1], URIRef("urn:wrong-assertion")))
+        else:
+            triple = next(iter(source))
+            source.remove(triple)
+            target = next(graph for graph in dataset.graphs() if str(graph.identifier).endswith("#provenance"))
+            target.add(triple)
+    dataset.serialize(destination=str(trig), format="trig")
+    report = validate_rdf_package(tmp_path / "output")
+    assert report["rdf_nanopub_count"] == report["jsonl_count"] == 1
+    assert report["status"] == "fail"
+
+
+def test_parity_accepts_reserialized_graphs_but_rejects_invalid_jsonl(tmp_path: Path) -> None:
+    _write_package_inputs(tmp_path)
+    data = tmp_path / "output" / "data"
+    trig = data / "nanopublications.trig"
+    dataset = Dataset()
+    dataset.parse(trig, format="trig")
+    dataset.bind("evidence", URIRef("http://activeinference.institute/ontology/"))
+    dataset.serialize(destination=str(trig), format="trig")
+    assert validate_rdf_package(tmp_path / "output")["status"] == "pass"
+    with (data / "nanopublications.jsonl").open("a") as handle:
+        handle.write("{invalid json}\n")
+    assert validate_rdf_package(tmp_path / "output")["status"] == "fail"
+
+
+def test_failed_semantic_parity_preserves_existing_staged_package(tmp_path: Path) -> None:
+    _write_package_inputs(tmp_path)
+    prepared = prepare_release_package(tmp_path / "output", tmp_path)
+    package = tmp_path / prepared["package_directory"]
+    before = {path.relative_to(package): path.read_bytes() for path in package.rglob("*") if path.is_file()}
+    jsonl = tmp_path / "output" / "data" / "nanopublications.jsonl"
+    row = json.loads(jsonl.read_text())
+    row["assertion"]["confidence"] = 0.125
+    jsonl.write_text(json.dumps(row) + "\n")
+    assert prepare_release_package(tmp_path / "output", tmp_path)["status"] == "fail"
+    assert {path.relative_to(package): path.read_bytes() for path in package.rglob("*") if path.is_file()} == before

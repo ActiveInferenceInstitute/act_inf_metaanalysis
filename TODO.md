@@ -15,6 +15,86 @@ completed without changing the scientific target, hypothesis set, RDF
 namespace, or PDF/HTML publication policy. Completed local implementation is
 represented by source, tests, and reports rather than by a closed-task list.
 
+## Source follow-through — 2026-11-13 (isolated lane)
+
+The governed focused receipts and exact command/source bindings are recorded in
+[CHANGELOG.md](CHANGELOG.md), under "focused source-contract acceptance
+(2026-11-13)". The first cohort recorded **155 passed, 5 failed**; the repaired
+package/render cohort recorded **20 passed**, including real
+Pandoc/XeLaTeX/BibTeX. They overlap and are not summed. This is local evidence
+for the preserved source lane, not full CI, installed-runtime, full-suite,
+coverage, live-source, human-calibration, or scientific acceptance. The dated
+baseline and earlier review findings below are retained as historical evidence.
+This addendum supersedes their source-status statements for MIN-11 and MIN-19.
+
+### Current contracts supported by the focused evidence
+
+- **F1 — Human versus rule-based validation:** `--no-auto-labels` consumes the
+  existing `output/validation/sample.csv` without resampling or rewriting it.
+  Primary human labels are required; secondary human labels are optional.
+  Missing, empty, or invalid annotations fail. Default automatic labeling
+  remains deterministic and refuses to overwrite existing annotations.
+  `reference_kind` distinguishes `human` from `deterministic_rule_based`;
+  `kappa_interannotator` and `kappa_interrule` are separate. Accepted metrics
+  are mirrored. Existing rule-based manuscript results remain rule-based;
+  consuming a human-labeled CSV does not itself establish calibration.
+- **F2 — Release parity:** package preparation checks semantic assertion,
+  provenance, head, and publication graphs against strict JSONL before
+  replacement. Equivalent RDF serialization is allowed; altered content,
+  duplicate IDs, or unexpected graphs fail without replacing a prior package.
+  This does not authorize deposit or make a source-incomplete snapshot releasable.
+- **F3–F5 / AM-N1 — Render ownership:** `--input-root` selects existing data
+  and figures; `--manuscript-dir` owns the source sections and bibliography;
+  `--output-root` is an independent destination. Real-tool regressions cover
+  semantic HTML tables/longtables, citations, bibliography, local staged
+  figures, refreshed BibTeX on reused PDF builds, and absolute external receipt
+  paths for both relative and absolute external destinations.
+  **Parent visual inspection remains open:** inspect actual HTML/PDF tables,
+  captions, citations, bibliography, and local figure resources. No full
+  manuscript or visual acceptance is inferred from fixture regressions.
+- **F6 / F10 — Completion custody:** version-1 receipts include processed and
+  `zero_assertion_paper_ids` with run/model/prompt/pipeline provenance admission.
+  Accepted assertions are persisted first. Resume rejects incompatible
+  provenance or missing positive evidence. Count-only historical receipts cannot
+  prove zero-result completion; do not invent identities or nanopublications.
+  Explicit `--clear-assertions` removes completion sidecars. Cancellation
+  checkpoints accepted results before waiting for active HTTP requests to finish
+  or time out; failed and unprocessed counts remain disjoint. Completion with no
+  assertions does not bypass the nonempty publication-evidence requirement.
+- **F7 — Effective configuration:** `analysis_run.json` is the producer's
+  effective execution-settings receipt, including explicit seed zero for NMF
+  and stability. Frozen configuration is retained separately; manifest and
+  artifact validation consume the effective receipt. Do not manufacture one
+  for historical outputs; a publication refresh needs truthful producer evidence.
+- **F8 / F9 — Publication completeness:** arXiv, Semantic Scholar, and OpenAlex
+  remain mandatory even for a filtered-source run. Every recorded arXiv query
+  must succeed in the shared artifact/manifest/manuscript interpretation.
+  Passing these regressions does not clear MED-01 or any recorded provider failure.
+- **F11 / F12 / MIN-11:** positive-to-zero growth returns CAGR `-1` with the
+  prior zero-start and endpoint policies retained. Explicit empty/invalid
+  `TEMPLATE_REPO_ROOT` fails infrastructure admission, without changing unset
+  discovery or standalone operation. `temporal_trend` now projects the
+  count-bearing implementation's scores; exact score/count and exclusion
+  regressions passed. MIN-11 has focused local implementation evidence, not
+  an independent release-gate closure.
+- **MIN-19 / research prose:** the append docstring now states the existing
+  `(paper_id, hypothesis_id, assertion_type)` key without changing identity or
+  serialization. The conclusion now identifies bibliography import as proposed,
+  approval-dependent work and distinguishes existing abstract-based quote/claim
+  fields from the still-needed human review of fidelity and sufficiency.
+
+### Remaining boundaries
+
+MED-01, MED-03, MED-04, and MED-05 remain open: live full-source refresh,
+authorized external deposit, bounded full-text research, and human annotation/
+adjudication are not supplied by source-contract tests. Curated bibliography
+import still needs a separately approved importer; stored quotes and rule
+agreement are not human calibration or scientific ground truth. GNN migration,
+optional integration, producer prerequisites, configuration pins, rights, and
+publication approvals retain their existing holds. No frozen scientific input,
+generated manuscript/data, headline result, historical receipt, or research
+assumption was changed by this documentation follow-through.
+
 ## Current baseline (verified 2026-11-12)
 
 Counts and scores were re-read from the committed artifacts on 2026-11-12; the
@@ -161,7 +241,8 @@ Preserve the existing snapshot before replacement.
 **Done when:**
 
 - `output/reports/search_provenance.json` reports success for arXiv, Semantic
-  Scholar, and OpenAlex;
+  Scholar, and OpenAlex, with every recorded arXiv query successful; no required
+  source may be skipped by filtering the requested source set;
 - corpus, analysis, extraction, provenance, figures, variables, and manifest
   agree;
 - `scripts/08_validate_artifacts.py` exits 0; and
@@ -462,6 +543,11 @@ order; Major items should land before the next publication snapshot.
   original finding is stale. **Fix:** implement `temporal_trend` as a thin
   projection of `temporal_trend_with_counts` (drop the `score` key) so the
   cumulative loop exists once.
+  **2026-11-13 disposition:** implemented in the isolated lane as a score
+  projection of the count-bearing implementation; the focused hypothesis
+  regressions passed in the recorded first cohort. The original finding above
+  is historical; publication and full-gate acceptance are not implied.
+
 
 - **MIN-12 — `snapshot_manager.copy_snapshot` is not atomic.**
   `snapshot_manager.py:59` `shutil.copytree` writes straight to the final
@@ -519,6 +605,10 @@ order; Major items should land before the next publication snapshot.
   reasoning about incremental resume. **Fix:** state the three-part key in the
   `append_nanopubs` docstring. Owner: repository maintainer; no external
   blocker.
+  **2026-11-13 disposition:** the docstring-only correction is applied in the
+  isolated lane. The merge implementation, nanopublication identity, and
+  serialization are unchanged; the original finding above is historical.
+
 
 ## Docs deep review (2026-08-02)
 
@@ -616,9 +706,10 @@ committed; entries are marked ✓ with the commit reference. Full narrative in
 
 ## Open / deferred
 
-- **MIN-05, MIN-10, MIN-11, MIN-19** from the 2026-07-31 review are the only
-  open code items; MIN-09 and the stale `.coverage_review.json` artifact are
-  closed (see the closure section above).
+- **MIN-05 and the optional MIN-10 proposal** remain outside this follow-through.
+  **MIN-11** has focused local implementation evidence and **MIN-19** has its
+  docstring-only correction; neither remains a source edit to repeat. MIN-09
+  and the stale `.coverage_review.json` artifact retain their prior closure.
 - **MED-01, MED-03, MED-04, MED-05** remain the release-blocking external items
   (live-source refresh, nanopub deposit, full-text pilot, human calibration) —
   unchanged and out of scope for a docs-only pass.
@@ -631,8 +722,8 @@ committed; entries are marked ✓ with the commit reference. Full narrative in
 
 ## Order of work
 
-1. **MED-01:** resolve the incomplete Semantic Scholar source; this is the sole
-   release blocker and publishes the current scientific results. Blocked on the
+1. **MED-01:** resolve the incomplete Semantic Scholar source; this remains the
+   live-source release blocker for a new publication snapshot. Blocked on the
    Semantic Scholar API (terminal 429/500); unblocked by a maintainer with an
    API key or by the provider restoring the endpoint.
 2. **GNN pin move to `v5.1.0`:** re-run `./run.sh gnn`, re-record the model
@@ -643,15 +734,18 @@ committed; entries are marked ✓ with the commit reference. Full narrative in
    resource outside this repository (deposit target and upload authorization;
    full-text access and a human-reviewed fidelity subset; human annotation and
    adjudication).
-4. **Minor items (MIN-05, MIN-10, MIN-11, MIN-19):** fold in opportunistically;
-   MIN-19 is a one-line docstring correction and MIN-11 removes the last
-   duplicated cumulative-score loop.
+4. **Remaining minor scope (MIN-05 and optional MIN-10):** retain the existing
+   dependency/design boundaries. Do not repeat the MIN-11 implementation or
+   MIN-19 docstring correction; their local dispositions are recorded above.
+5. **Visual acceptance:** the parent still needs to inspect the actual HTML and
+   PDF surfaces. Focused real-render regressions do not close that manual step.
 
 ## Release gate
 
 The project is ready for a minor/medium-work release when all applicable items
 above have acceptance evidence, coverage remains at or above 90%, the artifact
-contract exits 0, all configured literature sources complete, the 16-figure
+contract exits 0, arXiv, Semantic Scholar, and OpenAlex all complete (including
+every recorded arXiv query), the 16-figure
 registry is consistent, all manuscript variables resolve, both PDF and HTML
 render/validation pass, the local package verifier passes, and the tooling
 verification is either fully verified or explicitly resolved by the owner. A

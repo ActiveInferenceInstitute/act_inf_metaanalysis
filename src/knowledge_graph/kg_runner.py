@@ -18,7 +18,6 @@ from knowledge_graph.hypothesis import (
 from knowledge_graph.llm_extraction import LLMConfig
 from knowledge_graph.nanopublication import (
     deserialize_nanopubs,
-    get_processed_paper_ids,
     serialize_nanopubs_to_trig,
 )
 from knowledge_graph.provenance import write_provenance_summary
@@ -100,22 +99,14 @@ def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path
     if stale_checkpoint.exists():
         stale_checkpoint.unlink()
 
-    if args.clear_assertions and nanopub_path.exists():
-        nanopub_path.unlink()
+    if args.clear_assertions:
+        for path in (nanopub_path, data_dir / "extraction_state.json", data_dir / "extraction_coverage.json"):
+            path.unlink(missing_ok=True)
 
-    all_nanopubs = deserialize_nanopubs(nanopub_path) if nanopub_path.exists() else []
-    processed_ids = get_processed_paper_ids(all_nanopubs) if all_nanopubs else set()
-    pending = [
-        p for p in papers if p.abstract and p.canonical_id not in processed_ids
-    ]
-
-    if all_nanopubs and not pending and not args.clear_assertions:
-        assertions = [np_obj.assertion for np_obj in all_nanopubs]
-        logger.info("Skipping LLM extraction — corpus already covered.")
-    else:
-        assertions = _run_llm_extraction(papers, args, nanopub_path, kg_cfg, logger)
-        if nanopub_path.exists():
-            all_nanopubs = deserialize_nanopubs(nanopub_path)
+    # The extraction owner admits both assertion-backed and zero-assertion
+    # completion, validates provenance, and avoids HTTP for covered papers.
+    assertions = _run_llm_extraction(papers, args, nanopub_path, kg_cfg, logger)
+    all_nanopubs = deserialize_nanopubs(nanopub_path)
 
     coverage_path = data_dir / "extraction_coverage.json"
     if coverage_path.exists():
@@ -127,16 +118,13 @@ def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path
                 f"{coverage.get('failed_papers', 0)} failed, "
                 f"{coverage.get('unprocessed_papers', 0)} unprocessed"
             )
-    elif papers and not (all_nanopubs and not pending and not args.clear_assertions):
+    else:
         raise RuntimeError("Missing extraction_coverage.json after LLM extraction")
-    elif all_nanopubs and not pending and not args.clear_assertions:
-        logger.warning("Nanopublication fixture has no extraction coverage report")
 
     print(str(nanopub_path))
-    if all_nanopubs:
-        trig_path = nanopub_path.with_suffix(".trig")
-        serialize_nanopubs_to_trig(all_nanopubs, trig_path)
-        print(str(trig_path))
+    trig_path = nanopub_path.with_suffix(".trig")
+    serialize_nanopubs_to_trig(all_nanopubs, trig_path)
+    print(str(trig_path))
 
     scores = score_all_hypotheses(assertions)
     scores_path = data_dir / "hypothesis_scores.json"

@@ -17,6 +17,7 @@ from config import (
     PROMPT_VERSION,
 )
 from config_loader import load_analysis_config, load_kg_config
+from analysis.source_status import literature_source_status
 
 
 def _sha256(path: Path) -> str:
@@ -99,6 +100,8 @@ def write_pipeline_manifest(
     except (OSError, subprocess.CalledProcessError):
         commit = "unknown"
 
+    analysis_path = output_dir / "data" / "analysis_run.json"
+    analysis_run = json.loads(analysis_path.read_text(encoding="utf-8")) if analysis_path.exists() else {}
     coverage_path = output_dir / "data" / "extraction_coverage.json"
     coverage = json.loads(coverage_path.read_text(encoding="utf-8")) if coverage_path.exists() else {}
     state_path = output_dir / "data" / "extraction_state.json"
@@ -156,15 +159,9 @@ def write_pipeline_manifest(
         key: bool(config.get("render", {}).get("formats", {}).get(key))
         for key in ("pdf", "html", "slides", "docx", "epub")
     }
-    latest_sources = search.get("latest_source_status", {})
-    arxiv_events = [
-        event for name, event in latest_sources.items()
-        if str(name).lower().startswith("arxiv[")
-    ]
     source_gate = {
-        "arxiv": bool(arxiv_events) and all(bool(event.get("success")) for event in arxiv_events),
-        "semantic_scholar": bool(latest_sources.get("Semantic Scholar", {}).get("success")),
-        "openalex": bool(latest_sources.get("OpenAlex", {}).get("success")),
+        source: status["success"]
+        for source, status in literature_source_status(search).items()
     }
     gate_results = {
         "render": render_status,
@@ -196,6 +193,8 @@ def write_pipeline_manifest(
         "prompt_version": observed_prompt,
         "model": observed_model,
         "run_id": run_id,
+        "analysis": analysis_run,
+        "seed": analysis_run.get("seed"),
         "as_of_date": analysis_config.get("as_of_date"),
         "complete_year_policy": analysis_config.get(
             "complete_year_policy", DEFAULT_COMPLETE_YEAR_POLICY

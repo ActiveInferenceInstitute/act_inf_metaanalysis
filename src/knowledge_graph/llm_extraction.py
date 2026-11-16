@@ -8,11 +8,13 @@ import time
 
 import requests
 
-from concurrent.futures import ThreadPoolExecutor
+from collections import deque
+from concurrent.futures import CancelledError, Future, ThreadPoolExecutor
 from dataclasses import replace
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterator
+from threading import Event
+from typing import Any
 
 from knowledge_graph.llm_client import call_ollama, parse_llm_response
 from knowledge_graph.llm_config import LLMConfig
@@ -49,44 +51,10 @@ _WORD_CONFIDENCE = {
 }
 
 
-def _write_extraction_state(
-    path: Path | None,
-    *,
-    status: str,
-    run_id: str,
-    model_id: str,
-    pipeline_version: str,
-    total_papers: int,
-    eligible_papers: int,
-    processed_papers: int,
-    failed_papers: int,
-    unprocessed_papers: int,
-    assertions: int,
-    checkpoint_interval: int,
-) -> None:
-    """Atomically persist resumable extraction state.
-
-    The JSONL nanopublication file remains the source of truth for processed
-    papers. This sidecar makes an interrupted run explicit and gives operators
-    a cheap status/resume audit without parsing the entire extraction log.
-    """
+def _write_extraction_state(path: Path | None, payload: dict[str, Any]) -> None:
+    """Atomically publish a receipt after its nanopublications are durable."""
     if path is None:
         return
-    payload = {
-        "status": status,
-        "run_id": run_id,
-        "model_id": model_id,
-        "prompt_version": prompt_version(),
-        "pipeline_version": pipeline_version,
-        "total_papers": total_papers,
-        "eligible_papers": eligible_papers,
-        "processed_papers": processed_papers,
-        "failed_papers": failed_papers,
-        "unprocessed_papers": unprocessed_papers,
-        "assertions": assertions,
-        "checkpoint_interval": checkpoint_interval,
-        "updated_at": datetime.now(timezone.utc).isoformat(),
-    }
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     with temporary.open("w", encoding="utf-8") as handle:
@@ -143,6 +111,7 @@ def assess_paper_hypotheses(
     run_id: str | None = None,
     pipeline_version: str = PIPELINE_VERSION,
     _metrics: dict | None = None,
+    _cancel_event: Event | None = None,
 ) -> list[tuple[Assertion, ExtractionProvenance]]:
     """Assess a single paper against all hypotheses via LLM."""
     hypotheses = hypothesis_dicts()
@@ -153,6 +122,8 @@ def assess_paper_hypotheses(
     extraction_run_id = run_id or new_run_id()
 
     for attempt in range(1, config.max_retries + 1):
+        if _cancel_event is not None and _cancel_event.is_set():
+            raise CancelledError("Extraction interrupted")
         try:
             request_config = (
                 replace(config, max_tokens=max(config.max_tokens, 2048), temperature=0.2)
@@ -227,7 +198,11 @@ def assess_paper_hypotheses(
                 exc,
             )
             if attempt < config.max_retries:
-                time.sleep(config.retry_delay * (2 ** (attempt - 1)))
+                delay = config.retry_delay * (2 ** (attempt - 1))
+                if _cancel_event is None:
+                    time.sleep(delay)
+                elif _cancel_event.wait(delay):
+                    raise CancelledError("Extraction interrupted") from exc
 
     raise RuntimeError(
         f"LLM extraction failed after {config.max_retries} retries "
@@ -242,135 +217,153 @@ def extract_assertions_llm(
     run_id: str | None = None,
     pipeline_version: str = PIPELINE_VERSION,
 ) -> list[Assertion]:
-    """Extract assertions from all papers using an LLM."""
+    """Resume durable paper outcomes, including successful zero-assertion results."""
     if config is None:
         config = LLMConfig()
-
-    papers_with_abstract = [p for p in papers if p.abstract]
+    papers_with_abstract = [paper for paper in papers if paper.abstract]
     logger.info(
         "Starting LLM extraction: %d papers (%d with abstracts), model=%s, url=%s, prompt=%s",
-        len(papers),
-        len(papers_with_abstract),
-        config.model,
-        config.base_url,
-        prompt_version(),
+        len(papers), len(papers_with_abstract), config.model, config.base_url, prompt_version(),
     )
-
     nanopub_path = Path(config.nanopub_path) if config.nanopub_path else None
     state_path = nanopub_path.parent / "extraction_state.json" if nanopub_path else None
+    coverage_path = nanopub_path.parent / "extraction_coverage.json" if nanopub_path else None
     if nanopub_path:
         logger.info("Nanopub persistence file: %s", nanopub_path)
-    if config.max_papers is not None:
-        logger.info(
-            "max_papers=%d — will process at most %d papers",
-            config.max_papers,
-            config.max_papers,
-        )
 
-    processed_ids: set[str] = set()
-    prior_assertions: list[Assertion] = []
-    existing_run_ids: set[str] = set()
+    existing_nanopubs = (
+        deserialize_nanopubs(nanopub_path)
+        if nanopub_path is not None and nanopub_path.exists() else []
+    )
+    processed_ids = get_processed_paper_ids(existing_nanopubs)
+    zero_assertion_ids: set[str] = set()
+    prior_assertions = [record.assertion for record in existing_nanopubs]
+    structured_provenance: list[dict[str, Any]] = [
+        record.provenance for record in existing_nanopubs if record.provenance
+    ]
+    existing_run_ids = {
+        str(item["run_id"]) for item in structured_provenance if item.get("run_id")
+    }
+    if state_path is not None and state_path.exists():
+        try:
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            raise RuntimeError(f"Cannot read extraction completion ledger: {state_path}") from exc
+        if not isinstance(state, dict):
+            raise RuntimeError("Extraction completion ledger must be an object")
+        # Older count-only receipts cannot establish zero-assertion completion.
+        if "completion_ledger_version" in state:
+            if state["completion_ledger_version"] != 1:
+                raise RuntimeError("Unsupported extraction completion ledger version")
+            for field in ("processed_paper_ids", "zero_assertion_paper_ids"):
+                values = state.get(field)
+                if not isinstance(values, list) or any(
+                    not isinstance(value, str) or not value for value in values
+                ):
+                    raise RuntimeError(f"Invalid completion ledger field: {field}")
+            recorded_ids = set(state["processed_paper_ids"])
+            zero_assertion_ids = set(state["zero_assertion_paper_ids"])
+            if not zero_assertion_ids <= recorded_ids:
+                raise RuntimeError("Zero-assertion outcomes are missing from completed paper IDs")
+            if nanopub_path is None or not nanopub_path.is_file():
+                raise RuntimeError("Completion ledger has no persisted nanopublication file")
+            if recorded_ids - zero_assertion_ids - processed_ids:
+                raise RuntimeError("Completion ledger refers to missing persisted assertions")
+            recorded_run = state.get("run_id")
+            if not isinstance(recorded_run, str) or not recorded_run:
+                raise RuntimeError("Completion ledger has no extraction run ID")
+            existing_run_ids.add(recorded_run)
+            structured_provenance.append(state)
+            zero_assertion_ids.difference_update(processed_ids)
+            processed_ids.update(zero_assertion_ids)
 
-    if nanopub_path and nanopub_path.exists():
-        existing_nanopubs = deserialize_nanopubs(nanopub_path)
-        processed_ids = get_processed_paper_ids(existing_nanopubs)
-        prior_assertions = [np_obj.assertion for np_obj in existing_nanopubs]
-        existing_run_ids = {
-            str(np_obj.provenance["run_id"])
-            for np_obj in existing_nanopubs
-            if np_obj.provenance and np_obj.provenance.get("run_id")
-        }
-        structured_provenance = [
-            np_obj.provenance
-            for np_obj in existing_nanopubs
-            if np_obj.provenance
-        ]
-        if structured_provenance:
-            for field, expected in (
-                ("model_id", config.model),
-                ("prompt_version", prompt_version()),
-                ("pipeline_version", pipeline_version),
-            ):
-                observed = {str(item.get(field, "")) for item in structured_provenance}
-                if observed != {expected}:
-                    raise RuntimeError(
-                        "Cannot resume nanopublications with incompatible "
-                        f"{field}: observed={sorted(observed)}, expected={expected}"
-                    )
-        if len(existing_run_ids) > 1:
+    for field, expected in (
+        ("model_id", config.model),
+        ("prompt_version", prompt_version()),
+        ("pipeline_version", pipeline_version),
+    ):
+        observed = {str(item.get(field, "")) for item in structured_provenance}
+        if observed and observed != {expected}:
             raise RuntimeError(
-                "Cannot resume nanopublications with multiple extraction run IDs: "
-                f"{sorted(existing_run_ids)}"
+                "Cannot resume nanopublications with incompatible "
+                f"{field}: observed={sorted(observed)}, expected={expected}"
             )
-        if processed_ids:
-            remaining = sum(
-                1
-                for p in papers
-                if p.canonical_id not in processed_ids and p.abstract
-            )
-            logger.info(
-                "Resuming: %d papers already processed (%d assertions), "
-                "%d remaining | nanopub_path: %s",
-                len(processed_ids),
-                len(prior_assertions),
-                remaining,
-                nanopub_path,
-            )
-    elif nanopub_path:
-        logger.info("Fresh run — nanopubs will be saved to: %s", nanopub_path)
-
-    # A checkpointed run must retain its original run identifier. Generating a
-    # new ID here would create a provenance-fragmented JSONL file after a
-    # restart, even though the paper-level resume logic appears idempotent.
+    if len(existing_run_ids) > 1:
+        raise RuntimeError(
+            "Cannot resume nanopublications with multiple extraction run IDs: "
+            f"{sorted(existing_run_ids)}"
+        )
     if existing_run_ids:
-        existing_run_id = next(iter(existing_run_ids))
-        if run_id is not None and run_id != existing_run_id:
+        extraction_run_id = next(iter(existing_run_ids))
+        if run_id is not None and run_id != extraction_run_id:
             raise RuntimeError(
                 "Requested extraction run ID does not match the checkpoint: "
-                f"{run_id} != {existing_run_id}"
+                f"{run_id} != {extraction_run_id}"
             )
-        extraction_run_id = existing_run_id
         logger.info("Resuming extraction run ID: %s", extraction_run_id)
     else:
         extraction_run_id = run_id or new_run_id()
 
-    buffer: list[Nanopublication] = []
-    new_assertions: list[Assertion] = []
-    filter_metrics: dict[str, int] = {"filtered_total": 0}
-    new_count = 0
-    success_count = 0
-    fail_count = 0
-    t0 = time.monotonic()
-    attribution = f"pipeline_{pipeline_version}:{prompt_version()}"
-
+    eligible_ids = {paper.canonical_id for paper in papers_with_abstract}
     eligible_papers = [
-        paper
-        for paper in papers
-        if paper.abstract and paper.canonical_id not in processed_ids
+        paper for paper in papers_with_abstract if paper.canonical_id not in processed_ids
     ]
+    if processed_ids:
+        logger.info(
+            "Resuming: %d papers already processed (%d assertions), "
+            "%d remaining | nanopub_path: %s",
+            len(processed_ids), len(prior_assertions), len(eligible_papers), nanopub_path,
+        )
     if config.max_papers is not None:
         eligible_papers = eligible_papers[: config.max_papers]
         logger.info(
             "max_papers=%d reached — stopping extraction early; processing at most %d papers",
-            config.max_papers,
-            len(eligible_papers),
+            config.max_papers, len(eligible_papers),
         )
 
-    eligible_ids = {paper.canonical_id for paper in papers if paper.abstract}
-    _write_extraction_state(
-        state_path,
-        status="running",
-        run_id=extraction_run_id,
-        model_id=config.model,
-        pipeline_version=pipeline_version,
-        total_papers=len(papers),
-        eligible_papers=len(eligible_ids),
-        processed_papers=len(eligible_ids & processed_ids),
-        failed_papers=0,
-        unprocessed_papers=len(eligible_ids - processed_ids),
-        assertions=len(prior_assertions),
-        checkpoint_interval=config.checkpoint_interval,
-    )
+    buffer: list[Nanopublication] = []
+    new_assertions: list[Assertion] = []
+    failed_ids: set[str] = set()
+    filter_metrics: dict[str, int] = {"filtered_total": 0}
+    new_count = 0
+    success_count = 0
+    t0 = time.monotonic()
+    attribution = f"pipeline_{pipeline_version}:{prompt_version()}"
+    cancel_event = Event()
+
+    def _coverage() -> dict[str, Any]:
+        return {
+            "total_papers": len(papers),
+            "eligible_papers": len(eligible_ids),
+            "processed_papers": len(eligible_ids & processed_ids),
+            "failed_papers": len(eligible_ids & failed_ids),
+            "unprocessed_papers": len(eligible_ids - processed_ids - failed_ids),
+            "assertions": len(prior_assertions) + len(new_assertions),
+            "model_id": config.model,
+            "prompt_version": prompt_version(),
+            "pipeline_version": pipeline_version,
+            "run_id": extraction_run_id,
+        }
+
+    def _checkpoint(status: str) -> None:
+        if nanopub_path is None:
+            return
+        # Publish assertion bytes first. A crash between these writes can only
+        # require repeating a zero-result assessment, never invent completion.
+        if buffer or not nanopub_path.exists():
+            append_nanopubs(buffer, nanopub_path)
+            logger.info("Nanopublications saved: %s (%d new)", nanopub_path, len(buffer))
+            buffer.clear()
+        coverage = {**_coverage(), "status": status}
+        _write_extraction_state(state_path, {
+            **coverage,
+            "completion_ledger_version": 1,
+            "processed_paper_ids": sorted(processed_ids),
+            "zero_assertion_paper_ids": sorted(zero_assertion_ids & processed_ids),
+            "checkpoint_interval": config.checkpoint_interval,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        })
+        _write_extraction_state(coverage_path, coverage)
 
     worker_urls = tuple(config.worker_urls) or (config.base_url,)
     worker_configs = [replace(config, base_url=url, worker_urls=()) for url in worker_urls]
@@ -378,141 +371,98 @@ def extract_assertions_llm(
 
     def _process(item: tuple[int, Paper]):
         index, paper = item
-        worker_config = worker_configs[index % len(worker_configs)]
         metrics: dict[str, int] = {}
         try:
             pairs = assess_paper_hypotheses(
-                paper,
-                worker_config,
-                run_id=extraction_run_id,
-                pipeline_version=pipeline_version,
-                _metrics=metrics,
+                paper, worker_configs[index % len(worker_configs)],
+                run_id=extraction_run_id, pipeline_version=pipeline_version,
+                _metrics=metrics, _cancel_event=cancel_event,
             )
             return paper, pairs, None, metrics
         except RuntimeError as exc:
             return paper, [], exc, metrics
 
-    if len(worker_configs) == 1:
-        results: Iterator[Any] = map(_process, enumerate(eligible_papers))
-        executor = None
-    else:
-        executor = ThreadPoolExecutor(max_workers=len(worker_configs))
-        results = executor.map(_process, enumerate(eligible_papers))
-
-    try:
-        for paper, pairs, error, metrics in results:
-            filter_metrics["filtered_total"] += metrics.get("filtered_total", 0)
-            if error is not None:
-                logger.error("  ✗ Failed %s: %s", paper.canonical_id[:40], error)
-                fail_count += 1
-                new_count += 1
+    def _accept(result) -> None:
+        nonlocal new_count, success_count
+        paper, pairs, error, metrics = result
+        filter_metrics["filtered_total"] += metrics.get("filtered_total", 0)
+        if error is not None:
+            logger.error("Failed %s: %s", paper.canonical_id[:40], error)
+            if paper.canonical_id not in processed_ids:
+                failed_ids.add(paper.canonical_id)
+        else:
+            records = [
+                create_nanopub(assertion, attribution=attribution, provenance=provenance.to_dict())
+                for assertion, provenance in pairs
+            ]
+            buffer.extend(records)
+            new_assertions.extend(record.assertion for record in records)
+            if records:
+                zero_assertion_ids.discard(paper.canonical_id)
             else:
-                for assertion, provenance in pairs:
-                    new_assertions.append(assertion)
-                    buffer.append(
-                        create_nanopub(
-                            assertion,
-                            attribution=attribution,
-                            provenance=provenance.to_dict(),
-                        )
-                    )
-                processed_ids.add(paper.canonical_id)
-                success_count += 1
-                new_count += 1
+                zero_assertion_ids.add(paper.canonical_id)
+            # Publish completion only after its zero-result classification.
+            # An interrupt before this point may repeat the assessment, but
+            # must not persist a completed paper without a valid outcome.
+            processed_ids.add(paper.canonical_id)
+            failed_ids.discard(paper.canonical_id)
+            success_count += 1
+        new_count += 1
 
-            if (
-                nanopub_path
-                and new_count > 0
-                and new_count % config.checkpoint_interval == 0
-                and buffer
-            ):
-                append_nanopubs(buffer, nanopub_path)
-                buffer.clear()
-                _write_extraction_state(
-                    state_path,
-                    status="checkpoint",
-                    run_id=extraction_run_id,
-                    model_id=config.model,
-                    pipeline_version=pipeline_version,
-                    total_papers=len(papers),
-                    eligible_papers=len(eligible_ids),
-                    processed_papers=len(eligible_ids & processed_ids),
-                    failed_papers=fail_count,
-                    unprocessed_papers=len(eligible_ids - processed_ids),
-                    assertions=len(prior_assertions) + len(new_assertions),
-                    checkpoint_interval=config.checkpoint_interval,
-                )
+    _checkpoint("running")
+    executor = (
+        ThreadPoolExecutor(max_workers=len(worker_configs)) if len(worker_configs) > 1 else None
+    )
+    pending: deque[Future[Any]] = deque()
+    try:
+        if executor is None:
+            for item in enumerate(eligible_papers):
+                _accept(_process(item))
+                if new_count % config.checkpoint_interval == 0:
+                    _checkpoint("checkpoint")
+        else:
+            items = iter(enumerate(eligible_papers))
+            # Never eagerly queue the corpus. At most one outstanding call per
+            # configured worker remains to cancel or drain on interruption.
+            for _ in worker_configs:
+                next_item = next(items, None)
+                if next_item is not None:
+                    pending.append(executor.submit(_process, next_item))
+            while pending:
+                result = pending[0].result()
+                pending.popleft()
+                _accept(result)
+                if new_count % config.checkpoint_interval == 0:
+                    _checkpoint("checkpoint")
+                next_item = next(items, None)
+                if next_item is not None:
+                    pending.append(executor.submit(_process, next_item))
     except KeyboardInterrupt:
-        _write_extraction_state(
-            state_path,
-            status="interrupted",
-            run_id=extraction_run_id,
-            model_id=config.model,
-            pipeline_version=pipeline_version,
-            total_papers=len(papers),
-            eligible_papers=len(eligible_ids),
-            processed_papers=len(eligible_ids & processed_ids),
-            failed_papers=fail_count,
-            unprocessed_papers=len(eligible_ids - processed_ids),
-            assertions=len(prior_assertions) + len(new_assertions),
-            checkpoint_interval=config.checkpoint_interval,
-        )
+        cancel_event.set()
+        for future in pending:
+            future.cancel()
+        for future in pending:
+            if future.done() and not future.cancelled():
+                try:
+                    _accept(future.result())
+                except CancelledError:
+                    pass
+        _checkpoint("interrupted")
         logger.warning(
             "LLM extraction interrupted; resume without --clear-assertions "
-            "to continue run ID %s from the nanopublication checkpoint",
+            "to continue run ID %s from the paper completion ledger",
             extraction_run_id,
         )
         raise
     finally:
         if executor is not None:
-            executor.shutdown(wait=True)
+            executor.shutdown(wait=True, cancel_futures=True)
 
-    if nanopub_path and buffer:
-        append_nanopubs(buffer, nanopub_path)
-        logger.info("Nanopublications saved: %s (%d new)", nanopub_path, len(buffer))
-
-    if nanopub_path:
-        coverage_path = nanopub_path.parent / "extraction_coverage.json"
-        coverage = {
-            "total_papers": len(papers),
-            "eligible_papers": len(eligible_ids),
-            "processed_papers": len(eligible_ids - (eligible_ids - processed_ids)),
-            "failed_papers": fail_count,
-            "unprocessed_papers": len(eligible_ids - processed_ids),
-            "assertions": len(prior_assertions) + len(new_assertions),
-            "model_id": config.model,
-            "prompt_version": prompt_version(),
-            "pipeline_version": pipeline_version,
-            "run_id": extraction_run_id,
-        }
-        with open(coverage_path, "w", encoding="utf-8") as handle:
-            json.dump(coverage, handle, indent=2)
-        logger.info("Extraction coverage saved: %s", coverage_path)
-        terminal_status = (
-            "complete"
-            if coverage["failed_papers"] == 0 and coverage["unprocessed_papers"] == 0
-            else "incomplete"
-        )
-        _write_extraction_state(
-            state_path,
-            status=terminal_status,
-            run_id=extraction_run_id,
-            model_id=config.model,
-            pipeline_version=pipeline_version,
-            total_papers=len(papers),
-            eligible_papers=len(eligible_ids),
-            processed_papers=len(eligible_ids & processed_ids),
-            failed_papers=fail_count,
-            unprocessed_papers=len(eligible_ids - processed_ids),
-            assertions=len(prior_assertions) + len(new_assertions),
-            checkpoint_interval=config.checkpoint_interval,
-        )
-
+    complete = not failed_ids and not (eligible_ids - processed_ids)
+    _checkpoint("complete" if complete else "incomplete")
     logger.info(
         "LLM extraction complete: %d succeeded, %d failed, %d assertions (%.1fs)",
-        success_count,
-        fail_count,
-        len(prior_assertions) + len(new_assertions),
+        success_count, len(failed_ids), len(prior_assertions) + len(new_assertions),
         time.monotonic() - t0,
     )
     return prior_assertions + new_assertions

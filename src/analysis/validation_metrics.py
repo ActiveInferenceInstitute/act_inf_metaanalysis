@@ -1,13 +1,8 @@
-"""Metrics for rule-based reference-annotator extraction agreement.
+"""Agreement metrics for explicitly identified rule or human reference labels.
 
-IMPORTANT — this is NOT a human validation study. The "reference" labels are
-produced by the deterministic keyword-rule protocols in
-``analysis.validation_labeling`` (``apply_primary_rule_protocol`` /
-``apply_secondary_rule_protocol``), not by human annotators. The metrics here
-therefore measure agreement between the LLM extraction pipeline and an
-independent, reproducible rule-based reference — a lower-bound reproducibility
-signal, not a gold-standard accuracy. Human gold-standard annotation is future
-work (see manuscript conclusion, "Human spot-check coverage").
+Rule references measure reproducibility, not human accuracy. Human mode consumes
+the supplied primary annotations; a second annotator is optional and is never
+reported as an inter-rule comparison.
 """
 
 from __future__ import annotations
@@ -60,12 +55,12 @@ def _precision_recall_f1(
 
 
 def _ref_field(row: dict[str, str], suffix: str) -> str:
-    """Read a primary rule-reference column (``ref_<suffix>``)."""
+    """Read a primary reference column (``ref_<suffix>``)."""
     return row.get(f"ref_{suffix}", "")
 
 
 def classify_error(row: dict[str, str]) -> str:
-    """Assign an error taxonomy label comparing the pipeline to the rule reference."""
+    """Assign an error taxonomy label comparing the pipeline to its reference."""
     reference = _ref_field(row, "triage")
     pipeline = row.get("pipeline_triage", "")
     quote = row.get("evidence_quote", "")
@@ -86,30 +81,45 @@ def classify_error(row: dict[str, str]) -> str:
     return "none"
 
 
-def compute_validation_metrics(rows: list[dict[str, str]]) -> dict[str, object]:
-    """Compute agreement between the LLM pipeline and the rule-based reference.
-
-    The "reference" labels come from deterministic keyword-rule protocols, NOT
-    from human annotators (see the module docstring). Metric keys are named
-    accordingly. ``quote_fidelity_rate`` is reported as ``None`` when the
-    current corpus stores no verbatim evidence quotes (abstract-only extraction),
-    to avoid a spurious ``0.0`` that would read as "0% faithful".
-    """
-    labeled = [
-        r for r in rows if r.get("ref_triage") and r.get("secondary_triage")
-    ]
-    if not labeled:
+def compute_validation_metrics(
+    rows: list[dict[str, str]],
+    *,
+    reference_kind: str = "deterministic_rule_based",
+) -> dict[str, object]:
+    """Compute agreement without silently discarding incomplete annotations."""
+    if reference_kind not in {"deterministic_rule_based", "human"}:
+        raise ValueError(f"Unknown reference kind: {reference_kind}")
+    if not rows:
         return {
-            "sample_size": len(rows),
-            "reference_kind": "deterministic_rule_based",
+            "sample_size": 0,
+            "reference_kind": reference_kind,
             "status": "pending_labels",
         }
+    required = {
+        "ref_triage": VALID_TRIAGE,
+        "pipeline_triage": VALID_TRIAGE,
+        "ref_evidence_status": VALID_EVIDENCE_STATUS,
+        "ref_evidence_type": VALID_EVIDENCE_TYPE,
+    }
+    for index, row in enumerate(rows, 1):
+        for field, allowed in required.items():
+            if row.get(field) not in allowed:
+                raise ValueError(f"Annotation row {index} has missing or invalid {field}")
+        secondary = row.get("secondary_triage")
+        if (secondary or reference_kind == "deterministic_rule_based") and secondary not in VALID_TRIAGE:
+            raise ValueError(f"Annotation row {index} has missing or invalid secondary_triage")
 
+    labeled = rows
     ref_triage = [_ref_field(r, "triage") for r in labeled]
-    secondary_triage = [r.get("secondary_triage", "") for r in labeled]
-    pipeline_triage = [r.get("pipeline_triage", "") for r in labeled]
-
-    kappa_interrule = _cohen_kappa(ref_triage, secondary_triage)
+    pipeline_triage = [r["pipeline_triage"] for r in labeled]
+    paired = [r for r in labeled if r.get("secondary_triage")]
+    secondary_kappa = (
+        _cohen_kappa(
+            [r["ref_triage"] for r in paired],
+            [r["secondary_triage"] for r in paired],
+        )
+        if paired else None
+    )
     kappa_reference_pipeline = _cohen_kappa(ref_triage, pipeline_triage)
     precision, recall, f1 = _precision_recall_f1(
         ref_triage, pipeline_triage, positive="supports"
@@ -143,8 +153,10 @@ def compute_validation_metrics(rows: list[dict[str, str]]) -> dict[str, object]:
 
     return {
         "sample_size": total,
-        "reference_kind": "deterministic_rule_based",
-        "kappa_interrule": kappa_interrule,
+        "reference_kind": reference_kind,
+        "kappa_interrule": secondary_kappa if reference_kind == "deterministic_rule_based" else None,
+        "kappa_interannotator": secondary_kappa if reference_kind == "human" else None,
+        "secondary_sample_size": len(paired),
         "kappa_reference_pipeline": kappa_reference_pipeline,
         "precision": precision,
         "recall": recall,
@@ -157,9 +169,16 @@ def compute_validation_metrics(rows: list[dict[str, str]]) -> dict[str, object]:
     }
 
 
-def write_validation_metrics(rows: list[dict[str, str]], output_path: Path) -> dict[str, object]:
-    """Compute metrics and persist JSON."""
-    metrics = compute_validation_metrics(rows)
+def write_validation_metrics(
+    rows: list[dict[str, str]],
+    output_path: Path,
+    *,
+    reference_kind: str = "deterministic_rule_based",
+) -> dict[str, object]:
+    """Persist only complete metrics for the explicitly selected reference."""
+    metrics = compute_validation_metrics(rows, reference_kind=reference_kind)
+    if metrics["status"] != "complete":
+        raise ValueError("No usable reference annotations")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as handle:
         json.dump(metrics, handle, indent=2)
