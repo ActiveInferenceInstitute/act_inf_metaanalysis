@@ -10,7 +10,9 @@ from pathlib import Path
 from typing import Any
 
 from rdflib import Dataset, URIRef
+from rdflib.compare import isomorphic
 from rdflib.namespace import RDF
+from rdflib.term import Identifier
 
 from knowledge_graph.nanopublication import (
     AIF_NS,
@@ -20,6 +22,8 @@ from knowledge_graph.nanopublication import (
     PROV_NS,
     XSD_NS,
     deserialize_nanopubs,
+    nanopub_from_dict,
+    nanopub_to_rdf,
 )
 
 PACKAGE_SCHEMA_VERSION = "1.0"
@@ -65,12 +69,17 @@ def validate_rdf_package(output_dir: Path) -> dict[str, Any]:
         "run_id",
         "processing_date",
     }
+    records = []
 
     if not jsonl_path.exists():
         errors.append("missing nanopublications.jsonl")
     else:
         try:
-            records = [obj for obj in deserialize_nanopubs(jsonl_path)]
+            with jsonl_path.open(encoding="utf-8") as handle:
+                records = [
+                    nanopub_from_dict(json.loads(line))
+                    for line in handle if line.strip()
+                ]
             json_count = len(records)
             for obj in records:
                 json_ids.add(obj.nanopub_id)
@@ -121,6 +130,26 @@ def validate_rdf_package(output_dir: Path) -> dict[str, Any]:
                     uri = str(subject)
                     if uri.startswith(AIF_NANOPUB_BASE):
                         rdf_ids.add("nanopub:" + uri.removeprefix(AIF_NANOPUB_BASE))
+            expected_graphs: set[Identifier] = set()
+            for record in records:
+                expected = nanopub_to_rdf(record)
+                for graph in expected.graphs():
+                    if not len(graph):
+                        continue
+                    expected_graphs.add(graph.identifier)
+                    if not isomorphic(graph, dataset.graph(graph.identifier)):
+                        errors.append(
+                            f"JSONL/TriG graph content disagrees: {graph.identifier}"
+                        )
+            unexpected = {
+                graph.identifier for graph in dataset.graphs()
+                if len(graph) and graph.identifier not in expected_graphs
+            }
+            if unexpected:
+                errors.append(
+                    "TriG contains graphs absent from JSONL: "
+                    + ", ".join(sorted(str(identifier) for identifier in unexpected))
+                )
         except (OSError, ValueError, SyntaxError) as exc:
             errors.append(f"nanopublications.trig is not parseable: {exc}")
 
@@ -129,6 +158,8 @@ def validate_rdf_package(output_dir: Path) -> dict[str, Any]:
             "JSONL/TriG nanopublication IDs disagree "
             f"(jsonl={len(json_ids)}, rdf={len(rdf_ids)})"
         )
+    if json_count != len(json_ids):
+        errors.append("JSONL contains duplicate nanopublication IDs")
     if provenance_missing:
         errors.append(f"{provenance_missing} nanopublications lack provenance")
     if provenance_invalid:

@@ -230,3 +230,19 @@ class TestEstimateGrowthRate:
         assert result["annual_growth_rates"][2016] == pytest.approx(1.0)
         assert result["annual_growth_rates"][2017] == pytest.approx(-0.25)
         assert result["mean_growth_rate"] == pytest.approx(0.375)
+
+
+@pytest.mark.parametrize("end_year", [None, 2022])
+def test_growth_to_zero_is_total_decline(end_year):
+    counts = {2020: 10, 2021: 4, 2022: 0}
+    if end_year is not None:
+        counts[2023] = 100
+    result = estimate_growth_rate(counts, end_year=end_year)
+    assert result["cagr"] == -1.0
+    assert result["cagr_end_year"] == 2022
+    assert result["doubling_time"] is None
+
+
+def test_growth_with_zero_start_retains_undefined_growth_policy():
+    assert math.isinf(estimate_growth_rate({2020: 0, 2021: 1})["cagr"])
+    assert estimate_growth_rate({2020: 0, 2021: 0})["cagr"] == 0.0

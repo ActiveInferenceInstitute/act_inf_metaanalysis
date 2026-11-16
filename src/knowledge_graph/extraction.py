@@ -6,8 +6,8 @@ the eight standard Active Inference hypotheses, producing directed
 assertions with confidence scores and reasoning.
 
 When ``llm_config.nanopub_path`` is set, extraction is **incremental**:
-already-processed papers are automatically skipped, and new assertions
-are flushed to the nanopubs file at regular intervals.
+durable paper outcomes (including zero retained assertions) are skipped,
+and new assertions and completion receipts are checkpointed together.
 """
 
 from __future__ import annotations
@@ -33,10 +33,9 @@ def extract_assertions(
     assesses relevance to each of the eight standard hypotheses,
     returning directed assertions with confidence and reasoning.
 
-    When ``llm_config.nanopub_path`` is set, the extraction supports
-    incremental resume: papers already present in the nanopubs file
-    are skipped, and new results are flushed to disk at the configured
-    checkpoint interval.
+    When ``llm_config.nanopub_path`` is set, incremental resume combines
+    persisted assertions with the provenance-bound completion ledger.
+    Successful zero-assertion assessments are not requested again.
 
     Args:
         papers: Papers to extract assertions from.

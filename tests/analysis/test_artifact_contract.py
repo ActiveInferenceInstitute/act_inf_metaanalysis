@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 import networkx as nx
+import pytest
 
 from analysis.artifact_contract import validate_artifacts
 from knowledge_graph.nanopublication import (
@@ -19,7 +20,8 @@ from literature.corpus import Corpus
 from literature.models import Paper
 
 
-def test_validate_complete_artifact_fixture(tmp_path: Path) -> None:
+@pytest.fixture
+def complete_artifact_project(tmp_path: Path) -> Path:
     project = tmp_path
     output = project / "output"
     data = output / "data"
@@ -97,6 +99,7 @@ def test_validate_complete_artifact_fixture(tmp_path: Path) -> None:
     fixture_scores["FEP_UNIVERSALITY"] = 1.0
     (data / "hypothesis_scores.json").write_text(json.dumps(fixture_scores), encoding="utf-8")
     for name, payload in {
+        "analysis_run.json": {"seed": 42, "n_topics": 2, "topic_stability_seeds": [42, 43]},
         "hypothesis_trends.json": {}, "hypothesis_sensitivity.json": {},
         "fulltext_assessment.json": {
             "total_papers": 1,
@@ -139,6 +142,14 @@ def test_validate_complete_artifact_fixture(tmp_path: Path) -> None:
                     "variables": {"CORPUS_SIZE": "1"}}), encoding="utf-8"
     )
 
+    return project
+
+
+def test_validate_complete_artifact_fixture(complete_artifact_project: Path) -> None:
+    project = complete_artifact_project
+    output = project / "output"
+    data = output / "data"
+    reports = output / "reports"
     report = validate_artifacts(output, project)
     assert report["status"] == "pass", report["errors"]
 
@@ -163,3 +174,46 @@ def test_validate_complete_artifact_fixture(tmp_path: Path) -> None:
     assert any("full-text assessment total" in error for error in adversarial["errors"])
     assert any("full-text abstract_coverage" in error for error in adversarial["errors"])
     assert any("full-text fulltext_source_breakdown" in error for error in adversarial["errors"])
+
+
+@pytest.mark.parametrize("requested", [[], ["arxiv", "openalex"]])
+def test_skipped_source_cannot_weaken_release_contract(
+    complete_artifact_project: Path, requested: list[str],
+) -> None:
+    output = complete_artifact_project / "output"
+    path = output / "reports" / "search_provenance.json"
+    report = json.loads(path.read_text())
+    report["requested_sources"] = requested
+    del report["latest_source_status"]["Semantic Scholar"]
+    path.write_text(json.dumps(report))
+    result = validate_artifacts(output, complete_artifact_project)
+    assert result["status"] == "fail"
+    assert "literature source did not complete successfully: semantic_scholar" in result["errors"]
+
+
+def test_effective_seed_override_is_admitted_and_stale_stability_rejected(
+    complete_artifact_project: Path,
+) -> None:
+    output = complete_artifact_project / "output"
+    data = output / "data"
+    run_path = data / "analysis_run.json"
+    run = json.loads(run_path.read_text())
+    run.update(seed=0, topic_stability_seeds=[42, 43, 0])
+    run_path.write_text(json.dumps(run))
+    stability_path = data / "topic_stability.json"
+    stability = json.loads(stability_path.read_text())
+    stability.update(
+        primary_seed=0, seeds=[42, 43, 0],
+        pairwise_comparisons=[
+            {"seed_a": a, "seed_b": b, "mean_jaccard": 1.0}
+            for a, b in ((42, 43), (42, 0), (43, 0))
+        ],
+    )
+    stability_path.write_text(json.dumps(stability))
+    result = validate_artifacts(output, complete_artifact_project)
+    assert result["status"] == "pass", result["errors"]
+    stability["primary_seed"] = 42
+    stability_path.write_text(json.dumps(stability))
+    result = validate_artifacts(output, complete_artifact_project)
+    assert result["status"] == "fail"
+    assert "topic stability primary seed does not match effective analysis run" in result["errors"]

@@ -1,5 +1,153 @@
 # CHANGELOG.md
 
+## Unreleased — focused source-contract acceptance (2026-11-13)
+
+This entry records governed local evidence for the preserved isolated lane at
+base `c09f537f6ed4406828ff29c38003cbddecb39a32`, not a new scientific snapshot,
+installed release, hosted CI result, or full-suite/coverage qualification.
+The dated entries below remain historical evidence.
+
+- **F1 — Existing-sample validation.** `--no-auto-labels` consumes
+  `output/validation/sample.csv` without resampling or rewriting it. Primary
+  human labels are required; secondary human labels are optional. Missing,
+  empty, or invalid annotations fail. Automatic mode remains deterministic
+  rule-reference labeling and refuses to overwrite existing annotations.
+  Reports distinguish `reference_kind: human` from
+  `reference_kind: deterministic_rule_based`, and
+  `kappa_interannotator` from `kappa_interrule`; accepted metrics are mirrored.
+  Existing rule-labeled manuscript results are not human validation.
+- **F2 — Semantic package parity.** Strict JSONL decoding and graph-aware RDF
+  isomorphism compare assertion, provenance, head, and publication content,
+  not just IDs. Equivalent RDF serialization is accepted; duplicate IDs,
+  altered content, and unexpected graphs fail before an existing staged
+  package is replaced. The resumed source restores the missing
+  `deserialize_nanopubs` import used by package verification.
+- **F3–F5 / AM-N1 — Independent render inputs and destination.**
+  `--input-root ROOT` selects existing `ROOT/data/manuscript_variables.json`,
+  `ROOT/figures/figure_registry.json`, and figure files.
+  `--manuscript-dir DIR` owns the manuscript sources and `references.bib`;
+  `--output-root ROOT` independently selects the PDF/HTML build destination
+  and `reports/render_receipt.json`. Referenced figures are staged as local
+  assets beside each rendered surface, without replacing a figures directory
+  with a symlink. Actual Pandoc conversion retains semantic tables, longtables,
+  citations, bibliography, and MathML; HTML conversion warnings fail the render.
+  Each PDF render runs BibTeX after the first XeLaTeX pass, followed by two
+  XeLaTeX passes, including when reusing a build directory. Off-repository
+  output paths are recorded as absolute paths.
+  The title/front matter is a Pandoc raw-LaTeX block separated from the
+  manuscript Markdown: TeX grouping braces no longer print as text, and the
+  following Results heading remains semantic Markdown. The actual PDF
+  regression rejects those leaks; all three regenerated regression pages were
+  visually inspected. This is fixture-only rendering evidence, not a rebuilt
+  scientific publication. Actual HTML browser verification remains unavailable:
+  the governed browser could not initialize its sandbox; no sandbox bypass was
+  used. Authored References-heading ownership remains a publication decision.
+- **F6 / F10 — Completion and cancellation custody.** Version-1 paper-completion
+  receipts retain processed paper IDs and `zero_assertion_paper_ids` with
+  run/model/prompt/pipeline provenance admission. Accepted assertions are
+  persisted before completion receipts; resume rejects incompatible provenance
+  or missing positive evidence. Count-only historical receipts cannot identify
+  zero-result completions and are not upgraded by inventing paper IDs.
+  `--clear-assertions` explicitly removes completion sidecars. Failed and
+  unprocessed counts are disjoint. Cancellation stops dispatch and retries,
+  cancels pending work, and checkpoints accepted results before waiting for
+  active HTTP requests to finish or reach their configured transport timeout;
+  it does not forcibly terminate an active request. An all-zero completed run
+  does not bypass nonempty release-evidence requirements.
+- **F7 — Effective analysis provenance.** `analysis_run.json` records effective
+  execution settings, including an explicit seed of zero, for the primary NMF
+  fit and stability analysis. Artifact validation and the manifest consume
+  that execution receipt while retaining frozen configuration separately.
+  Historical outputs do not acquire an invented execution receipt.
+- **F8 / F9 — Full publication-source completeness.** arXiv, Semantic Scholar,
+  and OpenAlex are all required even when a run requests fewer sources.
+  Every recorded arXiv query must succeed; a later successful query cannot hide
+  an earlier failure. Artifact validation, the manifest, and manuscript
+  variables share this interpretation; release preflight retains the artifact
+  gate. These regressions do not resolve the live-source release blocker.
+- **F11 / F12 / MIN-11.** Positive-to-zero terminal growth returns CAGR `-1`
+  while retaining existing zero-start and endpoint policies. An explicitly
+  empty or invalid `TEMPLATE_REPO_ROOT` fails infrastructure admission;
+  unset-root discovery and standalone operation remain distinct.
+  `temporal_trend` now projects scores from `temporal_trend_with_counts`,
+  preserving exact cumulative scores/counts and exclusion behavior.
+- **Documentation-only corrections.** MIN-19 now states the existing
+  `(paper_id, hypothesis_id, assertion_type)` merge key. The conclusion no
+  longer advertises an unimplemented bibliography importer or describes
+  already-stored evidence fields as future work. Importer approval, full-text
+  research, human quote review, calibration, and publication authorization
+  remain open; no hypothesis, score, label, or generated artifact was changed
+  by these documentation corrections.
+
+### Recorded commands, bindings, and limits
+
+Both receipts are GitVault `test`-classification launches, using CPython 3.15.2
+and imports selected from the isolated lane. The following path abbreviations
+transcribe the recorded `ACTUAL_COMMAND` arrays, including the first command's
+repeated output options; they are not additional executions:
+
+```bash
+G=/Users/friedman/Documents/Git/gitvault
+PY="$G/Username/ActiveInferenceInstitute/Public/act_inf_metaanalysis/.venv/bin/python"
+C="$G/Local/execution-launches/resume-federation-metaanalysis-contracts-05c4e277/64159-0378b23fcd404cf19d581613b6f946ad"
+R="$G/Local/execution-launches/resume-federation-metaanalysis-fixed-959f7f89/64305-7e43a8f29e92468e8fe1f65356e701aa"
+cd "$G/Local/worktrees/aii-implement-act_inf_metaanalysis-20261113"
+"$PY" -B -m pytest --no-cov -p no:cacheprovider -q \
+  --basetemp="$C/outputs/cases" --junitxml="$C/outputs/regressions.xml" \
+  tests/analysis/test_validation_cli.py \
+  tests/test_quality_remediation.py::test_validation_metrics_on_labeled_rows \
+  tests/test_quality_remediation.py::test_validation_metrics_quote_fidelity_na_when_no_quotes \
+  tests/analysis/test_release_package.py tests/test_render_publication.py \
+  tests/knowledge_graph/test_llm_completion.py \
+  tests/knowledge_graph/test_llm_interrupt.py \
+  tests/knowledge_graph/test_llm_nanopub_resume.py \
+  tests/knowledge_graph/test_llm_max_papers.py \
+  tests/knowledge_graph/test_llm_batch.py tests/knowledge_graph/test_kg_runner.py \
+  tests/analysis/test_pipeline_runner.py tests/analysis/test_topic_modeling.py \
+  tests/analysis/test_temporal_analysis.py tests/analysis/test_artifact_contract.py \
+  tests/analysis/test_pipeline_manifest.py tests/analysis/test_source_status.py \
+  tests/test_bootstrap.py tests/knowledge_graph/test_hypothesis.py \
+  -p no:cacheprovider --basetemp="$C/outputs/cases" \
+  --junitxml="$C/outputs/junit.xml"
+"$PY" -B -m pytest --no-cov -q \
+  tests/analysis/test_release_package.py tests/test_render_publication.py \
+  -p no:cacheprovider --basetemp="$R/outputs/cases" \
+  --junitxml="$R/outputs/junit.xml"
+```
+
+- First receipt (`C`): **155 passed, 5 failed**, exit 1. The failures were two
+  missing-import package checks, two incidental Pandoc title-casing assertions,
+  and a renderer fixture lacking an author. The passing validation, completion,
+  interruption, effective-settings, source-status, growth, bootstrap, and
+  hypothesis cohorts supply the focused evidence for F1, F6–F12, and MIN-11.
+- Repaired receipt (`R`): **20 passed**, exit 0, after restoring the import,
+  correcting the synthetic author fixture, and removing only the incidental
+  title-casing assertion. This supplies focused package and real-render evidence
+  for F2–F5 and AM-N1. The overlapping cohorts are not summed.
+- Source SHA-256 in `C/verified.json`:
+  `51fb59981bfab337b417c137e6c5bf133ac7a4f936e383ffc4872e19ddfef727`;
+  in `R/verified.json`:
+  `097ea208292d2cd81257ecb2512b9346bd75b55a139b43d29b7c574495b3a903`.
+  Both `exit.json` receipts record unchanged bound inputs and reaped children.
+  Each `intent.json` preserves the exact named-input SHA-256 values; each
+  `stdout.raw`, `exit.json`, and `outputs/junit.xml` preserves the command and
+  outcome. These bindings predate the documentation edits, not a new
+  whole-repository qualification.
+- Real Pandoc/XeLaTeX/BibTeX regressions exercised HTML tables/longtables,
+  citations, bibliography, staged images, relative and absolute external roots,
+  and PDF text after changing citations and bibliography in a reused build.
+  Fixture render receipts are under `R/outputs/cases/` at
+  `test_html_retains_tables_citat0/external-render/reports/render_receipt.json`,
+  `test_html_retains_tables_citat1/external-render/reports/render_receipt.json`,
+  and `test_repeated_pdf_render_refre0/external-render/reports/render_receipt.json`;
+  their surface paths are absolute. These are controlled regression fixtures,
+  not a refreshed scientific manuscript. **Parent visual inspection of the
+  actual HTML/PDF remains pending.**
+
+No full CI, installed-runtime, full-suite/coverage, live research, human
+calibration, or scientific qualification is claimed. Frozen inputs/outputs,
+dated receipts, configuration pins, rights, and approval holds are unchanged.
+
 ## Unreleased — Publishing member migration
 
 - Register the documented gate arms in `.aii/config.yaml`, repair sidecar guide

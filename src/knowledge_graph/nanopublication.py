@@ -307,7 +307,7 @@ def append_nanopubs(
     """Atomically append nanopublications to an existing JSONL file.
 
     Reads the existing file (if present), merges with the new entries
-    (deduplicating by ``(paper_id, hypothesis_id)`` — new wins), and
+    (deduplicating by ``(paper_id, hypothesis_id, assertion_type)`` — new wins), and
     writes the result atomically via a temporary file + rename.
 
     This is the **single source of truth** for incremental persistence:

@@ -19,6 +19,7 @@ from knowledge_graph.provenance import summarize_provenance
 from literature.models import Paper
 from manuscript.variables import TOKEN_RE, collect_manuscript_tokens, compute_variables
 from analysis.release_package import validate_rdf_package
+from analysis.source_status import REQUIRED_SOURCE_LABELS, literature_source_status
 
 
 def _load(path: Path) -> Any:
@@ -48,6 +49,7 @@ def validate_artifacts(output_dir: Path, project_root: Path) -> dict[str, Any]:
         "tfidf_data.json",
         "topics.json",
         "topic_stability.json",
+        "analysis_run.json",
         "citation_network.json",
         "citation_graph.gml",
         "nanopublications.jsonl",
@@ -89,22 +91,11 @@ def validate_artifacts(output_dir: Path, project_root: Path) -> dict[str, Any]:
         errors.append("missing report artifact: search_provenance.json")
     else:
         search_report = _load(search_report_path)
-        latest = search_report.get("latest_source_status", {})
-        arxiv_events = [
-            event for name, event in latest.items()
-            if str(name).lower().startswith("arxiv[")
-        ]
-        source_checks = {
-            "arxiv": bool(arxiv_events) and all(
-                bool(event.get("success")) for event in arxiv_events
-            ),
-            "semantic_scholar": bool(latest.get("Semantic Scholar", {}).get("success")),
-            "openalex": bool(latest.get("OpenAlex", {}).get("success")),
-        }
-        for source in search_report.get("requested_sources", []):
-            if source in source_checks and not source_checks[source]:
+        for source, status in literature_source_status(search_report).items():
+            if not status["success"]:
                 errors.append(f"literature source did not complete successfully: {source}")
-            elif source not in source_checks:
+        for source in search_report.get("requested_sources", []):
+            if source not in REQUIRED_SOURCE_LABELS:
                 errors.append(f"literature source has no validator mapping: {source}")
 
     corpus_rows = []
@@ -348,18 +339,26 @@ def validate_artifacts(output_dir: Path, project_root: Path) -> dict[str, Any]:
     if (data_dir / "topics.json").exists():
         topics = _load(data_dir / "topics.json")
         analysis_config = load_analysis_config(project_root / "manuscript" / "config.yaml")
-        expected_topics = analysis_config["n_topics"]
+        run_path = data_dir / "analysis_run.json"
+        analysis_run = _load(run_path) if run_path.exists() else {}
+        expected_topics = analysis_run.get("n_topics")
         if len(topics) != expected_topics:
-            errors.append("topic artifact count does not match configured n_topics")
+            errors.append("topic artifact count does not match effective n_topics")
         stability = _load(data_dir / "topic_stability.json") if (data_dir / "topic_stability.json").exists() else {}
         if stability.get("n_topics") != len(topics):
             errors.append("topic stability artifact does not match topic artifact")
-        if "seeds" in stability and list(stability["seeds"]) != list(
-            analysis_config["topic_stability_seeds"]
-        ):
-            errors.append("topic stability seeds do not match configuration")
-        if "primary_seed" in stability and stability.get("primary_seed") != analysis_config["seed"]:
-            errors.append("topic stability primary seed does not match configuration")
+        primary_seed = analysis_run.get("seed")
+        expected_seeds = list(dict.fromkeys(
+            [*analysis_config["topic_stability_seeds"], primary_seed]
+        ))
+        if not isinstance(primary_seed, int) or isinstance(primary_seed, bool):
+            errors.append("analysis run is missing a valid effective seed")
+        if analysis_run.get("topic_stability_seeds") != expected_seeds:
+            errors.append("analysis run stability seeds do not match configured alternates and effective seed")
+        if stability.get("seeds") != expected_seeds:
+            errors.append("topic stability seeds do not match effective analysis run")
+        if stability.get("primary_seed") != primary_seed:
+            errors.append("topic stability primary seed does not match effective analysis run")
         if "pairwise_comparisons" in stability:
             expected_pairs = len(stability.get("seeds", [])) * (len(stability.get("seeds", [])) - 1) // 2
             if len(stability["pairwise_comparisons"]) != expected_pairs:

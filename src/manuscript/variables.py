@@ -19,6 +19,7 @@ import re
 from pathlib import Path
 
 from config import PIPELINE_VERSION
+from analysis.source_status import REQUIRED_SOURCE_LABELS, literature_source_status
 
 try:
     from infrastructure.core.logging.utils import get_logger
@@ -652,26 +653,18 @@ def compute_variables(output_dir: Path, project_root: Path | None = None) -> dic
     )
 
     search_report = _load_json(output_dir / "reports" / "search_provenance.json")
-    latest_sources = search_report.get("latest_source_status", {}) if "_error" not in search_report else {}
-    source_labels = {
-        "arxiv": "arXiv",
-        "semantic_scholar": "Semantic Scholar",
-        "openalex": "OpenAlex",
-    }
+    source_labels = REQUIRED_SOURCE_LABELS
+    source_statuses = literature_source_status(search_report)
     source_states: list[str] = []
     completed_sources: list[str] = []
     failed_sources: list[str] = []
     for key, label in source_labels.items():
-        if key == "arxiv":
-            events = [event for name, event in latest_sources.items() if str(name).lower().startswith("arxiv[")]
-            event = events[-1] if events else {}
-        else:
-            event = latest_sources.get(label, {})
-        if event.get("success"):
+        status = source_statuses[key]
+        if status["success"]:
             source_states.append(f"{label} complete")
             completed_sources.append(label)
         else:
-            detail = event.get("error_type") or event.get("error") or "not completed"
+            detail = status["error"]
             source_states.append(f"{label} incomplete ({detail})")
             failed_sources.append(key)
     variables["SOURCE_COMPLETION_STATUS"] = "; ".join(source_states) or "source status unavailable"

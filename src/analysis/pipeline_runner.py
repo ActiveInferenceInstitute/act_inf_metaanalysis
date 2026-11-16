@@ -58,6 +58,15 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
     )
     args.min_year = args.min_year if args.min_year is not None else analysis_cfg["min_year"]
     args.seed = args.seed if args.seed is not None else analysis_cfg["seed"]
+    analysis_run = {
+        "seed": args.seed,
+        "n_topics": args.n_topics,
+        "max_features": args.max_features,
+        "min_year": args.min_year,
+        "topic_stability_seeds": list(dict.fromkeys(
+            [*analysis_cfg["topic_stability_seeds"], args.seed]
+        )),
+    }
 
     corpus = Corpus.load(Path(args.corpus))
     papers = [p for p in corpus.papers if p.year is None or p.year >= args.min_year]
@@ -162,7 +171,9 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
         logger.info("TF-IDF data saved: %s", tfidf_path)
 
     if tfidf_matrix is not None and tfidf_matrix.size > 0:
-        topics = fit_nmf_topics(tfidf_matrix, feature_names, n_topics=args.n_topics)
+        topics = fit_nmf_topics(
+            tfidf_matrix, feature_names, n_topics=args.n_topics, seed=args.seed
+        )
         topics_path = data_dir / "topics.json"
         with open(topics_path, "w", encoding="utf-8") as handle:
             json.dump(topics, handle, indent=2)
@@ -173,6 +184,7 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
             feature_names,
             n_topics=args.n_topics,
             seeds=analysis_cfg["topic_stability_seeds"],
+            primary_seed=args.seed,
         )
         stability_path = data_dir / "topic_stability.json"
         with open(stability_path, "w", encoding="utf-8") as handle:
@@ -228,6 +240,10 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
     with open(network_path, "w", encoding="utf-8") as handle:
         json.dump(network_results, handle, indent=2)
     print(str(network_path))
+
+    (data_dir / "analysis_run.json").write_text(
+        json.dumps(analysis_run, indent=2, sort_keys=True), encoding="utf-8"
+    )
 
     logger.info(
         "Pipeline complete in %.1fs (%d papers, %d citation edges)",

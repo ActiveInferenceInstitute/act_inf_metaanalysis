@@ -29,10 +29,15 @@ def bootstrap_project(*, include_infrastructure: bool = False) -> Path:
         # only used as a last resort and always logged (MED-11).
         selected: Path | None = None
         configured_root = os.environ.get("TEMPLATE_REPO_ROOT")
-        if configured_root:
-            candidate = Path(configured_root)
-            if (candidate / "infrastructure").is_dir():
-                selected = candidate
+        if configured_root is not None:
+            if not configured_root.strip():
+                raise ValueError("TEMPLATE_REPO_ROOT is explicitly empty")
+            candidate = Path(configured_root).expanduser().resolve()
+            if not (candidate / "infrastructure").is_dir():
+                raise ValueError(
+                    f"TEMPLATE_REPO_ROOT has no infrastructure directory: {candidate}"
+                )
+            selected = candidate
         if selected is None and (root / "template" / "infrastructure").is_dir():
             selected = root / "template"
         if selected is None:

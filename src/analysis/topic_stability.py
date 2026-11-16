@@ -7,6 +7,7 @@ from itertools import permutations
 import numpy as np
 
 from analysis.topic_modeling import fit_nmf_topics
+from config import DEFAULT_SEED
 
 
 def _best_mean_jaccard(left: list[set[str]], right: list[set[str]]) -> float:
@@ -48,9 +49,10 @@ def compute_topic_stability(
     *,
     n_topics: int,
     seeds: tuple[int, ...] | list[int],
+    primary_seed: int = DEFAULT_SEED,
 ) -> dict:
-    """Compare top-term topic sets over a fixed set of NMF seeds."""
-    seed_list = list(dict.fromkeys(int(seed) for seed in seeds))
+    """Compare fixed alternate seeds plus the actual primary NMF seed."""
+    seed_list = list(dict.fromkeys(int(seed) for seed in [*seeds, primary_seed]))
     runs = {
         seed: fit_nmf_topics(
             tfidf_matrix,
@@ -76,7 +78,7 @@ def compute_topic_stability(
     return {
         "n_topics": n_topics,
         "seeds": seed_list,
-        "primary_seed": 42 if 42 in seed_list else (seed_list[0] if seed_list else None),
+        "primary_seed": primary_seed,
         "pairwise_comparisons": pairwise,
         "mean_jaccard": sum(values) / len(values) if values else 1.0,
         "min_jaccard": min(values) if values else 1.0,

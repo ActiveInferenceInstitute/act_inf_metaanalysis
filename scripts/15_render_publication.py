@@ -18,9 +18,7 @@ XeLaTeX, the same toolchain the published artifacts were built with.
 from __future__ import annotations
 
 import argparse
-import html
 import json
-import os
 import re
 import shutil
 import subprocess
@@ -42,8 +40,6 @@ from manuscript.variables import TOKEN_RE, inject_variables  # noqa: E402
 EXCLUDED_SECTIONS = {"AGENTS.md", "README.md", "SKILL.md", "SYNTAX.md", "preamble.md"}
 SECTION_RE = re.compile(r"^(\d{2}[a-z]?)_")
 INCLUDE_RE = re.compile(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}")
-FIGURE_ENV_RE = re.compile(r"\\begin\{figure\}(?:\[[^\]]*\])?(.*?)\\end\{figure\}", re.S)
-CAPTION_RE = re.compile(r"\\caption\{")
 
 
 class RenderError(SystemExit):
@@ -208,56 +204,33 @@ def title_block(config: dict) -> str:
     return "\n".join(lines)
 
 
-def _strip_latex(value: str) -> str:
-    text = re.sub(r"\\[a-zA-Z@]+\*?(?:\[[^\]]*\])?(?:\{[^{}]*\})?", "", value)
-    text = text.replace("{", "").replace("}", "").replace("$", "")
-    text = re.sub(r"\\\\", " ", text)
-    return re.sub(r"\s+", " ", text).strip()
+def _stage_figures(text: str, figures_dir: Path, build_dir: Path) -> str:
+    """Keep each rendered output's image references local and relocatable."""
+    assets = build_dir / "figures"
+    if assets.is_symlink():
+        _fail(f"refusing to write through a figure-directory symlink: {assets}")
+    assets.mkdir(parents=True, exist_ok=True)
+    for filename in sorted({Path(value).name for value in INCLUDE_RE.findall(text)}):
+        destination = assets / filename
+        if destination.is_symlink():
+            _fail(f"refusing to replace a figure symlink: {destination}")
+        shutil.copy2(figures_dir / filename, destination)
 
-
-def _extract_braced(text: str, start: int) -> tuple[str, int]:
-    if start >= len(text) or text[start] != "{":
-        raise ValueError("expected '{'")
-    depth = 0
-    index = start
-    while index < len(text):
-        char = text[index]
-        if char == "\\":
-            index += 2
-            continue
-        if char == "{":
-            depth += 1
-        elif char == "}":
-            depth -= 1
-            if depth == 0:
-                return text[start + 1 : index], index + 1
-        index += 1
-    raise ValueError("unbalanced braces")
-
-
-def figures_to_html(text: str, figures_dir: Path) -> str:
     def replace(match: re.Match[str]) -> str:
-        body = match.group(1)
-        include = INCLUDE_RE.search(body)
-        if include is None:
-            return match.group(0)
-        filename = Path(include.group(1)).name
-        if not (figures_dir / filename).is_file():
-            _fail(f"HTML conversion found a missing figure: {filename}")
-        caption = ""
-        caption_match = CAPTION_RE.search(body)
-        if caption_match:
-            caption, _ = _extract_braced(body, caption_match.end() - 1)
-        alt = html.escape(_strip_latex(caption), quote=True)
+        start, end = match.span(1)
+        original = match.group(0)
         return (
-            '<figure class="figure">'
-            f'<img src="../figures/{html.escape(filename, quote=True)}" alt="{alt}" '
-            'style="max-width: 90%; height: auto;">'
-            f"<figcaption>{html.escape(caption, quote=False)}</figcaption>"
-            "</figure>"
+            original[: start - match.start()]
+            + f"figures/{Path(match.group(1)).name}"
+            + original[end - match.start() :]
         )
 
-    return FIGURE_ENV_RE.sub(replace, text)
+    return INCLUDE_RE.sub(replace, text)
+
+
+def _receipt_path(path: Path) -> str:
+    resolved = path.resolve()
+    return str(resolved.relative_to(PROJECT_ROOT)) if resolved.is_relative_to(PROJECT_ROOT) else str(resolved)
 
 
 def _require_tool(name: str) -> str:
@@ -285,26 +258,23 @@ def render_pdf(
     config: dict,
     header: str,
     figures_dir: Path,
+    references: Path,
 ) -> Path:
     pandoc = _require_tool("pandoc")
     xelatex = _require_tool("xelatex")
     bibtex = _require_tool("bibtex")
     build_dir.mkdir(parents=True, exist_ok=True)
-    references = PROJECT_ROOT / "manuscript" / "references.bib"
     shutil.copy2(references, build_dir / "references.bib")
 
     markdown_path = build_dir / "_combined_manuscript.md"
-    markdown_path.write_text(title_block(config) + "\n" + combined, encoding="utf-8")
+    staged = _stage_figures(combined, figures_dir, build_dir)
+    markdown_path.write_text(
+        "```{=latex}\n" + title_block(config) + "\n```\n\n" + staged,
+        encoding="utf-8",
+    )
     header_path = build_dir / "_preamble.tex"
     header_path.write_text(header, encoding="utf-8")
 
-    figure_link = build_dir / "figures"
-    if figure_link.is_symlink() or figure_link.exists():
-        if figure_link.is_symlink():
-            figure_link.unlink()
-        else:
-            shutil.rmtree(figure_link)
-    os.symlink(figures_dir.resolve(), figure_link)
 
     log: list[str] = []
     try:
@@ -324,21 +294,19 @@ def render_pdf(
             log,
             "pandoc",
         )
-        for _ in range(3):
+        for pass_number in range(3):
             _run_step(
                 [xelatex, "-interaction=nonstopmode", "-halt-on-error", "_combined_manuscript.tex"],
                 build_dir,
                 log,
                 "xelatex",
             )
-            if not (build_dir / "_combined_manuscript.aux").exists():
-                break
-            if not (build_dir / "_combined_manuscript.bbl").exists():
+            if pass_number == 0:
+                if not (build_dir / "_combined_manuscript.aux").is_file():
+                    _fail("xelatex produced no bibliography auxiliary file")
                 _run_step([bibtex, "_combined_manuscript"], build_dir, log, "bibtex")
     finally:
         (build_dir / "_latex_stdout.log").write_text("\n".join(log), encoding="utf-8")
-        if figure_link.is_symlink():
-            figure_link.unlink()
 
     pdf_path = build_dir / "_combined_manuscript.pdf"
     if not pdf_path.is_file() or pdf_path.stat().st_size == 0:
@@ -350,7 +318,9 @@ def render_pdf(
     return target
 
 
-def render_html(build_dir: Path, combined: str, config: dict, figures_dir: Path) -> Path:
+def render_html(
+    build_dir: Path, combined: str, config: dict, figures_dir: Path, references: Path
+) -> Path:
     pandoc = _require_tool("pandoc")
     build_dir.mkdir(parents=True, exist_ok=True)
     paper = config.get("paper", {})
@@ -371,25 +341,30 @@ def render_html(build_dir: Path, combined: str, config: dict, figures_dir: Path)
         encoding="utf-8",
     )
     markdown_path = build_dir / "_combined_manuscript.md"
-    markdown_path.write_text(figures_to_html(combined, figures_dir), encoding="utf-8")
+    markdown_path.write_text(_stage_figures(combined, figures_dir, build_dir), encoding="utf-8")
+    shutil.copy2(references, build_dir / "references.bib")
     log: list[str] = []
-    _run_step(
-        [
-            pandoc,
-            str(markdown_path),
-            "-o",
-            "index.html",
-            "--standalone",
-            "--toc",
-            "--number-sections",
-            "--metadata-file",
-            str(metadata),
-        ],
-        build_dir,
-        log,
-        "pandoc",
-    )
-    (build_dir / "_pandoc_stdout.log").write_text("\n".join(log), encoding="utf-8")
+    try:
+        # The LaTeX reader parses raw tables, figures and cite/citep commands
+        # into document nodes instead of silently discarding them as raw TeX.
+        _run_step(
+            [
+                pandoc, str(markdown_path), "--from=markdown+raw_tex", "--to=latex",
+                "--natbib", "-o", "_html_source.tex",
+            ],
+            build_dir, log, "pandoc markdown-to-latex",
+        )
+        _run_step(
+            [
+                pandoc, "_html_source.tex", "--from=latex", "--to=html5",
+                "-o", "index.html", "--standalone", "--toc", "--number-sections",
+                "--mathml", "--citeproc", "--bibliography=references.bib",
+                "--metadata-file", str(metadata), "--fail-if-warnings",
+            ],
+            build_dir, log, "pandoc latex-to-html",
+        )
+    finally:
+        (build_dir / "_pandoc_stdout.log").write_text("\n".join(log), encoding="utf-8")
     index = build_dir / "index.html"
     if not index.is_file() or index.stat().st_size == 0:
         _fail("pandoc produced no HTML")
@@ -405,6 +380,12 @@ def main(argv: list[str] | None = None) -> int:
         help="directory receiving pdf/ and web/ (default: output)",
     )
     parser.add_argument(
+        "--input-root",
+        type=Path,
+        default=PROJECT_ROOT / "output",
+        help="existing data/ and figures/ inputs (default: project output)",
+    )
+    parser.add_argument(
         "--manuscript-dir",
         type=Path,
         default=PROJECT_ROOT / "manuscript",
@@ -415,8 +396,15 @@ def main(argv: list[str] | None = None) -> int:
     output_root = args.output_root
     if not output_root.is_absolute():
         output_root = PROJECT_ROOT / output_root
-    manuscript_dir = args.manuscript_dir
-    figures_dir = PROJECT_ROOT / "output" / "figures"
+    output_root = output_root.resolve()
+    manuscript_dir = args.manuscript_dir.resolve()
+    input_root = args.input_root
+    if not input_root.is_absolute():
+        input_root = PROJECT_ROOT / input_root
+    figures_dir = input_root / "figures"
+    references = manuscript_dir / "references.bib"
+    if not references.is_file():
+        _fail(f"missing bibliography: {references}")
     config = _load_yaml(manuscript_dir / "config.yaml")
     formats = config.get("render", {}).get("formats", {})
     if not formats.get("pdf") and not formats.get("html"):
@@ -425,7 +413,7 @@ def main(argv: list[str] | None = None) -> int:
         if formats.get(disabled):
             _fail(f"render format {disabled!r} is enabled but has no renderer")
 
-    variables = load_variables(PROJECT_ROOT / "output")
+    variables = load_variables(input_root)
     sections = hydrate_sections(section_files(manuscript_dir), variables)
     combined = ("\n\n```{=latex}\n\\newpage\n```\n\n").join(text for _, text in sections)
     combined += "\n\n```{=latex}\n\\newpage\n```\n"
@@ -442,12 +430,14 @@ def main(argv: list[str] | None = None) -> int:
     pdf_path = None
     html_path = None
     if formats.get("pdf"):
-        pdf_path = render_pdf(output_root / "pdf", combined, config, header, figures_dir)
-        outputs["pdf"] = str(pdf_path.relative_to(PROJECT_ROOT))
+        pdf_path = render_pdf(
+            output_root / "pdf", combined, config, header, figures_dir, references
+        )
+        outputs["pdf"] = _receipt_path(pdf_path)
         outputs["pdf_bytes"] = pdf_path.stat().st_size
     if formats.get("html"):
-        html_path = render_html(output_root / "web", combined, config, figures_dir)
-        outputs["html"] = str(html_path.relative_to(PROJECT_ROOT))
+        html_path = render_html(output_root / "web", combined, config, figures_dir, references)
+        outputs["html"] = _receipt_path(html_path)
         outputs["html_bytes"] = html_path.stat().st_size
     if pdf_path is None and html_path is None:
         _fail("no configured format was rendered")
