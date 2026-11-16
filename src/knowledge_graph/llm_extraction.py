@@ -359,7 +359,7 @@ def extract_assertions_llm(
             **coverage,
             "completion_ledger_version": 1,
             "processed_paper_ids": sorted(processed_ids),
-            "zero_assertion_paper_ids": sorted(zero_assertion_ids),
+            "zero_assertion_paper_ids": sorted(zero_assertion_ids & processed_ids),
             "checkpoint_interval": config.checkpoint_interval,
             "updated_at": datetime.now(timezone.utc).isoformat(),
         })
@@ -397,12 +397,15 @@ def extract_assertions_llm(
             ]
             buffer.extend(records)
             new_assertions.extend(record.assertion for record in records)
-            processed_ids.add(paper.canonical_id)
-            failed_ids.discard(paper.canonical_id)
             if records:
                 zero_assertion_ids.discard(paper.canonical_id)
             else:
                 zero_assertion_ids.add(paper.canonical_id)
+            # Publish completion only after its zero-result classification.
+            # An interrupt before this point may repeat the assessment, but
+            # must not persist a completed paper without a valid outcome.
+            processed_ids.add(paper.canonical_id)
+            failed_ids.discard(paper.canonical_id)
             success_count += 1
         new_count += 1
 

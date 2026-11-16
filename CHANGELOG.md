@@ -1,5 +1,15 @@
 # CHANGELOG.md
 
+## Unreleased — completion interruption consistency (2026-11-16)
+
+- Classify zero-assertion outcomes before publishing paper completion and
+  checkpoint only zero-result IDs whose completion was committed. SIGINT
+  between those updates can repeat an uncommitted assessment but cannot
+  strand resume with a missing-assertion completion receipt.
+- Add deterministic real-SIGINT regressions at both completion-update
+  boundaries using the existing loopback HTTP extraction fixture.
+  This repair does not acquire corpus evidence or change scientific outputs.
+
 ## Unreleased — focused source-contract acceptance (2026-11-13)
 
 This entry records governed local evidence for the preserved isolated lane at

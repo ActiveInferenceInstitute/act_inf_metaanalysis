@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
+import signal
+import sys
 from dataclasses import replace
 from pathlib import Path
 
@@ -155,3 +158,52 @@ def test_runner_uses_zero_result_ledger_and_clear_removes_its_custody(
     assert state["run_id"] != original_run
     assert state["zero_assertion_paper_ids"] == []
     assert len(httpserver.log) == 2
+
+
+@pytest.mark.parametrize("mutation", ["processed_ids.add", "zero_assertion_ids.add"])
+def test_interrupt_between_completion_updates_keeps_zero_outcome_resumable(
+    httpserver: HTTPServer, tmp_path: Path, mutation: str,
+):
+    _success(httpserver, [])
+    paper = make_paper()
+    config = _config(httpserver, tmp_path / "nanopublications.jsonl")
+    source, first_line = inspect.getsourcelines(extract_assertions_llm)
+    mutation_line = next(
+        first_line + offset for offset, line in enumerate(source)
+        if line.strip() == f"{mutation}(paper.canonical_id)"
+    )
+    armed = False
+    interrupted = False
+
+    def interrupt_after_mutation(frame, event, arg):
+        nonlocal armed, interrupted
+        if (
+            event == "line" and frame.f_code.co_name == "_accept"
+            and frame.f_code.co_filename == extract_assertions_llm.__code__.co_filename
+        ):
+            if armed:
+                interrupted = True
+                signal.raise_signal(signal.SIGINT)
+            armed = frame.f_lineno == mutation_line
+        return interrupt_after_mutation
+
+    previous_trace = sys.gettrace()
+    try:
+        sys.settrace(interrupt_after_mutation)
+        with pytest.raises(KeyboardInterrupt):
+            extract_assertions_llm([paper], config, run_id="interrupt-zero-run")
+    finally:
+        sys.settrace(previous_trace)
+    assert interrupted
+    state = json.loads((tmp_path / "extraction_state.json").read_text())
+    assert state["status"] == "interrupted"
+    assert state["processed_paper_ids"] == state["zero_assertion_paper_ids"]
+    if not state["processed_paper_ids"]:
+        _success(httpserver, [])
+    assert extract_assertions_llm([paper], config) == []
+    resumed = json.loads((tmp_path / "extraction_state.json").read_text())
+    assert resumed["status"] == "complete"
+    assert resumed["run_id"] == "interrupt-zero-run"
+    assert resumed["processed_paper_ids"] == resumed["zero_assertion_paper_ids"] == [
+        paper.canonical_id
+    ]
