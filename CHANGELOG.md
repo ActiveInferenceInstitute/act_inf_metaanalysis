@@ -13,6 +13,8 @@
   mathematical macros expand before MathML conversion, with a real-Pandoc
   regression covering the manuscript's notation. Apply the admitted conclusion
   corrections about proposed bibliography ingestion and existing quote fields.
+  Both PDF and HTML readers explicitly accept LaTeX `\(...\)` / `\[...\]`
+  math delimiters as well as dollar-delimited Markdown math.
 
 ## Unreleased — focused source-contract acceptance (2026-11-13)
 

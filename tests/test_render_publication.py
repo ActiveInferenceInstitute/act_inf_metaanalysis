@@ -159,7 +159,10 @@ def test_html_retains_tables_citations_bibliography_and_external_assets(
 
 
 @pytest.mark.skipif(shutil.which("pandoc") is None, reason="requires installed Pandoc")
-def test_html_expands_declared_manuscript_math_macros(tmp_path: Path):
+@pytest.mark.parametrize("math_open,math_close", [(r"\[", r"\]"), ("$$", "$$")])
+def test_html_expands_declared_manuscript_math_macros(
+    tmp_path: Path, math_open: str, math_close: str,
+):
     manuscript, inputs, output = _inputs(tmp_path)
     preamble = manuscript / "preamble.md"
     preamble.write_text(preamble.read_text().replace(
@@ -173,12 +176,11 @@ def test_html_expands_declared_manuscript_math_macros(tmp_path: Path):
 """,
     ))
     source = manuscript / "01_results.md"
-    source.write_text(source.read_text() + r"""
-
-\[
-\score(H) + \scoreH{1} + \cagr + \F + \KL + \E
-\]
-""")
+    source.write_text(
+        source.read_text() + "\n\n" + math_open + "\n"
+        + r"\score(H) + \scoreH{1} + \cagr + \F + \KL + \E"
+        + "\n" + math_close + "\n"
+    )
     result = _render(manuscript, inputs, output)
     assert result.returncode == 0, result.stderr
     html = (output / "web" / "index.html").read_text()

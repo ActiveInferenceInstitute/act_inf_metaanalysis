@@ -282,6 +282,7 @@ def render_pdf(
             [
                 pandoc,
                 str(markdown_path),
+                "--from=markdown+raw_tex+tex_math_single_backslash",
                 "-o",
                 "_combined_manuscript.tex",
                 "--standalone",
@@ -351,7 +352,8 @@ def render_html(
         # into document nodes instead of silently discarding them as raw TeX.
         _run_step(
             [
-                pandoc, str(markdown_path), "--from=markdown+raw_tex", "--to=latex",
+                pandoc, str(markdown_path), "--from=markdown+raw_tex+tex_math_single_backslash",
+                "--to=latex",
                 "--natbib", "--standalone", "--include-in-header", str(header_path),
                 "-o", "_html_source.tex",
             ],
