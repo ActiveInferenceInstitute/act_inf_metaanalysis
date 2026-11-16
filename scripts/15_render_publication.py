@@ -319,7 +319,7 @@ def render_pdf(
 
 
 def render_html(
-    build_dir: Path, combined: str, config: dict, figures_dir: Path, references: Path
+    build_dir: Path, combined: str, config: dict, header: str, figures_dir: Path, references: Path
 ) -> Path:
     pandoc = _require_tool("pandoc")
     build_dir.mkdir(parents=True, exist_ok=True)
@@ -343,6 +343,8 @@ def render_html(
     markdown_path = build_dir / "_combined_manuscript.md"
     markdown_path.write_text(_stage_figures(combined, figures_dir, build_dir), encoding="utf-8")
     shutil.copy2(references, build_dir / "references.bib")
+    header_path = build_dir / "_preamble.tex"
+    header_path.write_text(header, encoding="utf-8")
     log: list[str] = []
     try:
         # The LaTeX reader parses raw tables, figures and cite/citep commands
@@ -350,13 +352,14 @@ def render_html(
         _run_step(
             [
                 pandoc, str(markdown_path), "--from=markdown+raw_tex", "--to=latex",
-                "--natbib", "-o", "_html_source.tex",
+                "--natbib", "--standalone", "--include-in-header", str(header_path),
+                "-o", "_html_source.tex",
             ],
             build_dir, log, "pandoc markdown-to-latex",
         )
         _run_step(
             [
-                pandoc, "_html_source.tex", "--from=latex", "--to=html5",
+                pandoc, "_html_source.tex", "--from=latex+latex_macros", "--to=html5",
                 "-o", "index.html", "--standalone", "--toc", "--number-sections",
                 "--mathml", "--citeproc", "--bibliography=references.bib",
                 "--metadata-file", str(metadata), "--fail-if-warnings",
@@ -436,7 +439,7 @@ def main(argv: list[str] | None = None) -> int:
         outputs["pdf"] = _receipt_path(pdf_path)
         outputs["pdf_bytes"] = pdf_path.stat().st_size
     if formats.get("html"):
-        html_path = render_html(output_root / "web", combined, config, figures_dir, references)
+        html_path = render_html(output_root / "web", combined, config, header, figures_dir, references)
         outputs["html"] = _receipt_path(html_path)
         outputs["html_bytes"] = html_path.stat().st_size
     if pdf_path is None and html_path is None:

@@ -159,6 +159,38 @@ def test_html_retains_tables_citations_bibliography_and_external_assets(
 
 
 @pytest.mark.skipif(shutil.which("pandoc") is None, reason="requires installed Pandoc")
+def test_html_expands_declared_manuscript_math_macros(tmp_path: Path):
+    manuscript, inputs, output = _inputs(tmp_path)
+    preamble = manuscript / "preamble.md"
+    preamble.write_text(preamble.read_text().replace(
+        "```\n", r"""\newcommand{\score}{\operatorname{score}}
+\newcommand{\cagr}{\text{CAGR}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\KL}{\mathrm{KL}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\scoreH}[1]{\text{score}(H_{#1})}
+```
+""",
+    ))
+    source = manuscript / "01_results.md"
+    source.write_text(source.read_text() + r"""
+
+\[
+\score(H) + \scoreH{1} + \cagr + \F + \KL + \E
+\]
+""")
+    result = _render(manuscript, inputs, output)
+    assert result.returncode == 0, result.stderr
+    html = (output / "web" / "index.html").read_text()
+    assert "<math" in html
+    surface = Surface()
+    surface.feed(html)
+    text = " ".join(surface.text)
+    assert "score" in text and "CAGR" in text and "KL" in text
+    assert not any(command in html for command in (r"\score", r"\cagr", r"\F", r"\KL", r"\E"))
+
+
+@pytest.mark.skipif(shutil.which("pandoc") is None, reason="requires installed Pandoc")
 def test_html_missing_bibliographic_key_does_not_publish_success(tmp_path: Path):
     manuscript, inputs, output = _inputs(tmp_path)
     source = manuscript / "01_results.md"

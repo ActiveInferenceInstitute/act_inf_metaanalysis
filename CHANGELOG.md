@@ -9,6 +9,10 @@
 - Add deterministic real-SIGINT regressions at both completion-update
   boundaries using the existing loopback HTTP extraction fixture.
   This repair does not acquire corpus evidence or change scientific outputs.
+- Feed the declared manuscript preamble into the HTML LaTeX reader so custom
+  mathematical macros expand before MathML conversion, with a real-Pandoc
+  regression covering the manuscript's notation. Apply the admitted conclusion
+  corrections about proposed bibliography ingestion and existing quote fields.
 
 ## Unreleased — focused source-contract acceptance (2026-11-13)
 
