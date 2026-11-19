@@ -25,11 +25,11 @@ and reviewable but not source-complete for a new live publication.
 ## Table of contents
 
 - [What this project does](#-what-this-project-does)
-- [System architecture](#-system-architecture)
+- [System architecture](#%EF%B8%8F-system-architecture)
 - [Quick start](#-quick-start)
 - [Required local PR check](#required-local-pr-check)
 - [Archive layout](#archive-layout)
-- [Directory structure](#-directory-structure)
+- [Directory structure](#%EF%B8%8F-directory-structure)
 - [Core methodologies](#-core-methodologies)
 - [Further reading](#-further-reading)
 - [Changelog](#-changelog)
