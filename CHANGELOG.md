@@ -1,5 +1,16 @@
 # CHANGELOG.md
 
+## Unreleased — GNN importer pin moved to v5.1.0 (2026-11-24)
+
+- Move `.github/gnn-pin.json` and the current-pin statements in `gnn/README.md`,
+  `gnn/AGENTS.md`, `.github/GNN.md` and `docs/README.md` from `v5.0.3`
+  (`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`) to `v5.1.0`
+  (`75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`).
+- `./run.sh gnn` is green at the new revision (3 parsed, 3 type-checked) and the
+  GNN pipeline steps 3 and 5 report the same counts as before. The three sketches
+  are authored here, not extracted from GNN, so their recorded digests are
+  unchanged.
+
 ## Unreleased — completion interruption consistency (2026-11-16)
 
 - Classify zero-assertion outcomes before publishing paper completion and

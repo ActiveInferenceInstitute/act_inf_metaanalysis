@@ -93,13 +93,13 @@ moves belief toward the other reading.
 ## Verification
 
 Parsed and type-checked with the real GNN pipeline (steps 3 and 5, no simulator
-needed) at GNN revision `v5.0.3` (`8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`),
-on 2026-11-01. The revision is exported into a scratch directory first, because a
+needed) at GNN revision `v5.1.0` (`75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`),
+on 2026-11-24. The revision is exported into a scratch directory first, because a
 live checkout can sit ahead of the pin:
 
 ```bash
 # export exactly the pinned revision
-git -C <gnn-checkout> archive 8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1 | tar -x -C /tmp/gnn-pin
+git -C <gnn-checkout> archive 75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf | tar -x -C /tmp/gnn-pin
 # run steps 3 and 5 from that export, with the export's own sources first on the path
 cd /tmp/gnn-pin
 PYTHONPATH=/tmp/gnn-pin/src <gnn-python> src/gnn/main.py --only-steps 3,5 \
@@ -113,7 +113,8 @@ win over any installed copy because `PYTHONPATH` takes precedence.
 
 Observed: step 3 `SUCCESS`, 3 of 3 files parsed, 0 failures, 66 serialized
 formats; step 5 `SUCCESS`, 3 of 3 files valid, 0 errors, 0 warnings; overall
-`SUCCESS` in 6.6s. Recorded model digests:
+`SUCCESS` in 0.5s. The three models are authored in this directory, not extracted
+from GNN, so their digests are unchanged by the pin move. Recorded model digests:
 
 | File | SHA-256 |
 | --- | --- |

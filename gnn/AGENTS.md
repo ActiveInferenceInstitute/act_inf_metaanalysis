@@ -67,7 +67,7 @@ uv run pytest --cov=src --cov-fail-under=90 -v
 The sketches themselves are verified by the `Pinned GNN conformance` step of the
 `gate` job (display name `gate (lint, types, docs, gnn, tests)`). It installs the
 revision in [`../.github/gnn-pin.json`](../.github/gnn-pin.json)
-(v5.0.3, `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`), then runs `./run.sh gnn`,
+(v5.1.0, `75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`), then runs `./run.sh gnn`,
 which runs `python scripts/validate_gnn_conformance.py`; locally, use the same
 command in an environment with the pinned GNN package installed. The script requires
 `GNNTypeChecker.validate_gnn_files` to return exactly `True` (it returns `2` when files

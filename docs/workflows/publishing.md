@@ -25,7 +25,7 @@ pinned below; no journal corpus or publication data is fabricated for this check
 ```text
 record-identity.schema.json  84f6c4df6efc3f15f0d8a9a05c8aabd0cbdc08b0f4feac5fcc8ae860a81e306b
 identity.py  847328ff163fa90c869495164869caf4e83313748e8a444dbab8d4e459b11074
-gnn-pin.json  eb83f7f1b73eb31e116bd05b1f457dd07e6874a2a4ba0e9e95e5bc91f094cd55
+gnn-pin.json  b47c1d77ad9a3e4d08ada1a3e631f0b677b8e4f50a5b68ba25052d161925776e
 ```
 
 `./run.sh docs` invokes these checks from the member root:

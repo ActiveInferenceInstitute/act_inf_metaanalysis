@@ -46,8 +46,8 @@ The GNN conformance step runs in the workflow's single `gate` job (display name
 `gate (lint, types, docs, gnn, tests)`); the step is named
 `Pinned GNN conformance` and executes `./run.sh gnn`. It reads
 `.github/gnn-pin.json` — schema `gnn-importer-pin/v1`, repository
-`ActiveInferenceInstitute/Generalized_Notation_Notation`, tag `v5.0.3`,
-revision `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1` — and parses the three
+`ActiveInferenceInstitute/Generalized_Notation_Notation`, tag `v5.1.0`,
+revision `75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf` — and parses the three
 sketches listed in [`../.github/GNN.md`](../.github/GNN.md). The workflow does
 not use the `ActiveInferenceInstitute/.github` `setup-python-uv` composite
 action; it pins `actions/checkout`, `actions/setup-python`, and

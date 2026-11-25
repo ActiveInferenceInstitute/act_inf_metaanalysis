@@ -4,8 +4,8 @@ The conformance step runs in the workflow's single `gate` job (display name
 `gate (lint, types, docs, gnn, tests)`). The step is named
 `Pinned GNN conformance` and executes `./run.sh gnn`. It reads the canonical pin
 file `.github/gnn-pin.json` (schema `gnn-importer-pin/v1`), which pins
-`ActiveInferenceInstitute/Generalized_Notation_Notation` at tag `v5.0.3`,
-revision `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`.
+`ActiveInferenceInstitute/Generalized_Notation_Notation` at tag `v5.1.0`,
+revision `75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`.
 
 The job installs that pinned parser and parses and type-checks the repository's
 three GNN sketches, `gnn/h1_fep_universality.md`,
