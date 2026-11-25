@@ -139,15 +139,6 @@ variable. `STANDARD_HYPOTHESES` order and the H1–H8 aliases are untouched.
 
 Forward work from this addition:
 
-- **Move the pin to the estate revision `v5.1.0`.** `.github/gnn-pin.json`
-  still records tag `v5.0.3` / revision
-  `8f293d9ba810e6eda5c09842d9c7ed9ffa5f92c1`, while the estate-wide importer
-  cutover pins `v5.1.0` at `75c834bd8519dc7b5adc4d24f16bf393cfd1ecdf`. The
-  acceptance gate is `./run.sh gnn` green at the new revision plus the
-  `gnn/README.md` model digests re-recorded; the pin file, `gnn/README.md`,
-  `gnn/AGENTS.md`, `.github/GNN.md`, and `docs/README.md` all quote the
-  revision and must move together. Owner: repository maintainer; no external
-  blocker.
 - **Re-verify the sketches when the pinned GNN revision moves.** The parser and
   type checker are the acceptance test; the exact commands and the expected report
   fields are in `gnn/AGENTS.md`, and the recorded model digests are in
@@ -713,8 +704,6 @@ committed; entries are marked ✓ with the commit reference. Full narrative in
 - **MED-01, MED-03, MED-04, MED-05** remain the release-blocking external items
   (live-source refresh, nanopub deposit, full-text pilot, human calibration) —
   unchanged and out of scope for a docs-only pass.
-- **GNN pin drift** (`v5.0.3` here vs `v5.1.0` estate-wide) is open; see the
-  forward work under "Additions — 2026-11-01".
 - The root `AGENTS.md` archive-status prose keeps the `projects_archive/`
   monorepo context (it is the project's declared home in the template), but all
   monorepo-relative *links* were converted to standalone-resolving targets so
