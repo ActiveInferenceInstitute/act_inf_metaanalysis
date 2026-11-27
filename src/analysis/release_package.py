@@ -201,7 +201,7 @@ def prepare_release_package(output_dir: Path, project_root: Path) -> dict[str, A
 
     data_dir = output_dir / "data"
     temporal = _load_json(data_dir / "temporal_analysis.json")
-    config = _load_yaml(project_root / "manuscript" / "config.yaml")
+    config = _load_yaml(project_root / "docs" / "manuscript" / "config.yaml")
     snapshot = str(temporal.get("as_of_date", "undated"))
     package_dir = output_dir / "release" / f"nanopublications-{snapshot}"
     if package_dir.exists():
@@ -329,7 +329,7 @@ def verify_release_manifest(package_dir: Path) -> dict[str, Any]:
 def validate_release_metadata(output_dir: Path, project_root: Path) -> dict[str, Any]:
     """Check configuration, provenance, render policy, and release metadata parity."""
     errors: list[str] = []
-    config = _load_yaml(project_root / "manuscript" / "config.yaml")
+    config = _load_yaml(project_root / "docs" / "manuscript" / "config.yaml")
     project_cfg = config.get("project_config", {})
     pipeline_cfg = project_cfg.get("pipeline", {})
     metadata = config.get("metadata", {})

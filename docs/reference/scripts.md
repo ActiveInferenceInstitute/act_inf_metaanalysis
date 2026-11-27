@@ -9,7 +9,7 @@ cd projects_archive/act_inf_metaanalysis
 # In a standalone clone of this repository, the project root is the repository root.
 ```
 
-The live configuration in `manuscript/config.yaml` is the single source of
+The live configuration in `docs/manuscript/config.yaml` is the single source of
 truth for pipeline and prompt versions, the `gemma3:4b` Ollama endpoint,
 eight-topic NMF settings, the frozen temporal snapshot date, and the
 PDF/HTML-only render policy. The example configuration mirrors these controls
@@ -58,9 +58,9 @@ search:
 
 ### arXiv multi-query strategy
 
-Without `--config`, the script uses default queries from [`src/config.py`](../src/config.py) (`DEFAULT_ARXIV_QUERIES` — core AIF / FEP / predictive-coding / EFE / variational phrasing).
+Without `--config`, the script uses default queries from [`src/config.py`](../../src/config.py) (`DEFAULT_ARXIV_QUERIES` — core AIF / FEP / predictive-coding / EFE / variational phrasing).
 
-With `--config manuscript/config.yaml`, `project_config.search.arxiv_queries` replaces that list — the bundled config currently defines **nine** queries, adding EBM-, Helmholtz-, Boltzmann-, and contrastive-divergence–adjacent search strings for broader coverage.
+With `--config docs/manuscript/config.yaml`, `project_config.search.arxiv_queries` replaces that list — the bundled config currently defines **nine** queries, adding EBM-, Helmholtz-, Boltzmann-, and contrastive-divergence–adjacent search strings for broader coverage.
 
 Results are merged and deduplicated via `Corpus.add()` (highest `metadata_completeness` wins).
 
@@ -91,10 +91,10 @@ stages in order. Retrieval is the only stage that intentionally replaces the
 corpus; extraction checkpoints are resumable and retain one run ID.
 
 ```bash
-uv run python scripts/01_literature_search.py --config manuscript/config.yaml \
+uv run python scripts/01_literature_search.py --config docs/manuscript/config.yaml \
   --no-resume --clear-corpus
 uv run python scripts/02_meta_analysis_pipeline.py --log-level INFO
-uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml \
+uv run python scripts/03_build_knowledge_graph.py --config docs/manuscript/config.yaml \
   --clear-assertions --checkpoint-interval 25
 uv run python scripts/04_generate_figures.py --dpi 300
 uv run python scripts/z_generate_manuscript_variables.py --project .
@@ -126,7 +126,7 @@ requested source scope.
 uv run python scripts/01_literature_search.py --max-results 500
 
 # Resume with config file
-uv run python scripts/01_literature_search.py --config manuscript/config.yaml
+uv run python scripts/01_literature_search.py --config docs/manuscript/config.yaml
 
 # arXiv only, fresh start
 uv run python scripts/01_literature_search.py --skip-s2 --skip-openalex --clear-corpus
@@ -191,10 +191,10 @@ Extracts structured assertions from paper abstracts using an LLM (Ollama), score
 | `--output-dir` | `str` | `output/` | Directory for KG results |
 | `--llm-model` | `str` | `gemma3:4b` | Ollama model name |
 | `--llm-url` | `str` | config | Ollama API base URL (the live config uses local port 11435) |
-| `--checkpoint-interval` | `int` | `50` (script default; `manuscript/config.yaml` sets `25`) | Flush to disk every N papers |
+| `--checkpoint-interval` | `int` | `50` (script default; `docs/manuscript/config.yaml` sets `25`) | Flush to disk every N papers |
 | `--clear-assertions` | flag | — | Delete existing nanopubs and start fresh |
 | `--max-papers` | `int` | — | Limit papers to process (useful for testing) |
-| `--config` | `str` | — | YAML config path (auto-discovers `manuscript/config.yaml`) |
+| `--config` | `str` | — | YAML config path (auto-discovers `docs/manuscript/config.yaml`) |
 | `--log-level` | choice | `INFO` | `DEBUG` / `INFO` / `WARNING` / `ERROR` |
 
 ### YAML Config Keys (`knowledge_graph` section)
@@ -229,7 +229,7 @@ ollama serve
 
 # In a second terminal, from the project root:
 uv run python scripts/03_build_knowledge_graph.py \
-  --config manuscript/config.yaml \
+  --config docs/manuscript/config.yaml \
   --checkpoint-interval 25 \
   --log-level INFO
 ```
@@ -255,7 +255,7 @@ Use `--clear-assertions` only to intentionally start a new clean extraction run.
 
 ```bash
 # Standard run (incremental)
-uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
+uv run python scripts/03_build_knowledge_graph.py --config docs/manuscript/config.yaml
 
 # Fresh start with limited papers
 uv run python scripts/03_build_knowledge_graph.py --clear-assertions --max-papers 50
@@ -372,9 +372,9 @@ missing or incomplete `output/data/manuscript_variables.json` is a hard failure.
 
 **Inputs:**
 
-- `manuscript/config.yaml` — title, subtitle, authors, DOI, and `render.formats`
-- `manuscript/*.md` — sections ordered by their numeric filename prefix
-- `manuscript/preamble.md` — the fenced `latex` block used as the LaTeX header
+- `docs/manuscript/config.yaml` — title, subtitle, authors, DOI, and `render.formats`
+- `docs/manuscript/*.md` — sections ordered by their numeric filename prefix
+- `docs/manuscript/preamble.md` — the fenced `latex` block used as the LaTeX header
 - `output/data/manuscript_variables.json` — the declared `variables` mapping
 - `output/figures/figure_registry.json` plus the generated PNG files
 
@@ -547,9 +547,9 @@ so the preflight sees the current tooling report, and Stage 10 refreshes the
 manifest after its own report/package writes.
 
 ```bash
-uv run python scripts/01_literature_search.py --config manuscript/config.yaml
+uv run python scripts/01_literature_search.py --config docs/manuscript/config.yaml
 uv run python scripts/02_meta_analysis_pipeline.py --n-topics 8 --seed 42
-uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
+uv run python scripts/03_build_knowledge_graph.py --config docs/manuscript/config.yaml
 uv run python scripts/04_generate_figures.py
 uv run python scripts/z_generate_manuscript_variables.py --project .
 uv run python scripts/15_render_publication.py
@@ -580,7 +580,7 @@ uv run python scripts/14_verify_release_package.py
 
 ## Render Policy
 
-The publication render is configured in `manuscript/config.yaml` (`render.formats`):
+The publication render is configured in `docs/manuscript/config.yaml` (`render.formats`):
 
 ```yaml
 render:

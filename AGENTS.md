@@ -101,7 +101,7 @@ projects_archive/act_inf_metaanalysis/
 │   │   ├── field_overview.py, citation_plots.py, temporal_plots.py,
 │   │   ├── hypothesis_charts.py, advanced_plots.py (re-export shim)
 │   │   └── advanced/           # labels, word_cloud, embeddings, topics
-│   └── manuscript/             # Manuscript variable computation
+│   └── docs/manuscript/             # Manuscript variable computation
 │       └── variables.py        # compute_variables / inject_variables
 ├── tests/                      # Pytest suite (see `pyproject.toml` coverage gate)
 │   ├── conftest.py             # Path setup, MPLBACKEND=Agg, shared fixtures
@@ -135,7 +135,7 @@ projects_archive/act_inf_metaanalysis/
 │   ├── gate.py                     # canonical gate arm commands (./run.sh)
 │   ├── check_docs.py               # relative-link + documentation-index check
 │   └── gnn_conformance.py          # cached pinned GNN parser environment
-├── manuscript/                 # 20 sections + references
+├── docs/manuscript/                 # 20 sections + references
 │   ├── config.yaml             # Single source of truth (paper, hypotheses, pipeline)
 │   ├── config.yaml.example     # Stripped template for new checkouts
 │   ├── preamble.md
@@ -219,7 +219,7 @@ verification if the head changes.
 
 - [README.md](README.md) --- Project overview, quick start, and changelog pointer
 - [TODO.md](TODO.md) --- Authoritative forward backlog (Minor / Medium / Major)
-- [doc/](doc/) --- Architecture, API reference, and hypothesis documentation
+- [doc/](docs/reference/) --- Architecture, API reference, and hypothesis documentation
 - [docs/documentation-index.md](docs/documentation-index.md) --- Flat index of long-lived documents
 - [docs/_generated/gate_arms.md](docs/_generated/gate_arms.md) --- Measured gate-arm wall times
 - [.github/GNN.md](.github/GNN.md) --- Pinned GNN conformance pointer

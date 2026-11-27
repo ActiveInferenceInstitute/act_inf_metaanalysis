@@ -14,7 +14,7 @@ scripts/
 ├── 02_meta_analysis_pipeline.py  # → analysis/pipeline_runner.py
 ├── 03_build_knowledge_graph.py   # → knowledge_graph/kg_runner.py
 ├── 04_generate_figures.py        # → visualization/figure_runner.py
-├── z_generate_manuscript_variables.py # canonical → manuscript/variables.py
+├── z_generate_manuscript_variables.py # canonical → docs/manuscript/variables.py
 ├── 15_render_publication.py     # PDF/HTML render from declared variables
 ├── gate.py                      # canonical gate arm commands (./run.sh)
 ├── check_docs.py                # relative-link + index check
@@ -51,7 +51,7 @@ release-side outputs exist:
 | `02` | `corpus.jsonl` | `subfield_classification.json`, `temporal_analysis.json`, `tfidf_data.json`, `topics.json`, `citation_network.json`, `citation_graph.gml` | `01` |
 | `03` | `corpus.jsonl` | `nanopublications.jsonl`, `nanopublications.trig`, extraction state/coverage, scores and summaries | `01`, Ollama |
 | `04` | All `output/data/*.json`, `citation_graph.gml` | `output/figures/*.png`, `figure_registry.json` | `02`, `03` |
-| `05` | `output/data/*.json`, `manuscript/*.md` | rendered manuscript, token inventory, and artifact hashes | `02`, `03` |
+| `05` | `output/data/*.json`, `docs/manuscript/*.md` | rendered manuscript, token inventory, and artifact hashes | `02`, `03` |
 | `05b` | Hydrated sections, `manuscript_variables.json`, `figure_registry.json` | `output/pdf/act_inf_metaanalysis_combined.pdf`, `output/web/index.html`, render receipt | `02`, `03`, `04`, `05` |
 | `06` | `corpus.jsonl` | `fulltext_assessment.json` | `01` |
 | `07` | `output/data/nanopublications.jsonl`, `output/data/corpus.jsonl` | `output/validation/sample.csv`, `output/validation/labels_rule_reference.csv`, `output/reports/validation_metrics.json` | `01`, `03` |
@@ -69,7 +69,7 @@ release-side outputs exist:
 
 Multi-source literature search orchestrator.
 
-**APIs queried:** arXiv (default query list in `src/config.py` → `DEFAULT_ARXIV_QUERIES`), Semantic Scholar, OpenAlex. Override via `project_config.search.arxiv_queries` in `manuscript/config.yaml`.
+**APIs queried:** arXiv (default query list in `src/config.py` → `DEFAULT_ARXIV_QUERIES`), Semantic Scholar, OpenAlex. Override via `project_config.search.arxiv_queries` in `docs/manuscript/config.yaml`.
 
 **Key flags:**
 - `--resume` / `--no-resume` — load existing `corpus.jsonl` before fetching (default: resume on)
@@ -112,7 +112,7 @@ LLM-based assertion extraction and hypothesis scoring via Ollama.
 
 **Key flags:**
 - `--llm-model MODEL` — Ollama model name (default: `gemma3:4b`)
-- `--llm-url URL` — Ollama API base URL (default: `http://localhost:11435`, matching `manuscript/config.yaml`; Ollama's stock port is 11434 but the published config injects 11435, so use the config value)
+- `--llm-url URL` — Ollama API base URL (default: `http://localhost:11435`, matching `docs/manuscript/config.yaml`; Ollama's stock port is 11434 but the published config injects 11435, so use the config value)
 - `--checkpoint-interval N` — flush every N papers (default: 25; config-driven)
 - `--clear-assertions` — discard previous extraction results
 - `--max-papers N` — limit LLM processing (default: no limit)
@@ -193,7 +193,7 @@ Violations of this pattern break the architecture and test coverage guarantees.
 
 Scripts `01`, `02`, `03`, `04`, and `06` support `--log-level {DEBUG,INFO,WARNING,ERROR}` for verbosity control (script `07` deliberately does not; see its flag list below).
 
-Scripts `01` and `03` auto-discover or accept `--config PATH` pointing to `manuscript/config.yaml` for project-specific overrides (search queries, relevance keywords, checkpoint intervals, custom hypothesis definitions, etc.).
+Scripts `01` and `03` auto-discover or accept `--config PATH` pointing to `docs/manuscript/config.yaml` for project-specific overrides (search queries, relevance keywords, checkpoint intervals, custom hypothesis definitions, etc.).
 
 ## Output Directory Structure
 
@@ -218,7 +218,7 @@ output/
 ├── figures/                          # 04
 │   ├── *.png (16 figures)
 │   └── figure_registry.json
-├── manuscript/                       # 05
+├── docs/manuscript/                       # 05
 │   └── *.md (rendered with variables)
 ├── reports/
 │   ├── zenodo_deposit_metadata.json  # 05

@@ -38,7 +38,7 @@ def resolve_project_dir(project: str) -> Path:
 
 
 def hydrate(project_dir: Path, *, dry_run: bool = False) -> tuple[int, int]:
-    manuscript_dir = project_dir / "manuscript"
+    manuscript_dir = project_dir / "docs" / "manuscript"
     output_dir = project_dir / "output"
     rendered_dir = output_dir / "manuscript"
     if not manuscript_dir.exists():

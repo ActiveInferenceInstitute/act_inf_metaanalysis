@@ -39,8 +39,8 @@ def _write_package_inputs(root: Path) -> None:
     serialize_nanopubs_to_trig([np_obj], data / "nanopublications.trig")
     write_provenance_summary(data / "nanopublications.jsonl", reports / "extraction_provenance_summary.json")
     (data / "temporal_analysis.json").write_text(json.dumps({"as_of_date": "2026-07-24"}), encoding="utf-8")
-    (root / "manuscript").mkdir()
-    (root / "manuscript" / "config.yaml").write_text(
+    (root / "docs" / "manuscript").mkdir(parents=True)
+    (root / "docs" / "manuscript" / "config.yaml").write_text(
         "metadata:\n  license: CC-BY-4.0\n  repository: https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis\n"
         "publication:\n  doi: 10.5281/zenodo.1\nanalysis:\n  as_of_date: '2026-07-24'\n"
         "project_config:\n  pipeline:\n    pipeline_version: '2.0.6'\n    prompt_version: 'v2.0.6'\n"

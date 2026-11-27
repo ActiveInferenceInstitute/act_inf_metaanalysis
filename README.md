@@ -300,7 +300,7 @@ Scripts 06–09 provide full-text QA, deterministic validation, cross-artifact
 validation, and the initial manifest. Steps 11–13 prepare review queues,
 snapshots, and tooling-source evidence before Stage 10 runs the release preflight
 and refreshes the final manifest. Stage 14 verifies the staged release package.
-See [`doc/scripts.md`](doc/scripts.md) for each script's full flag reference.
+See [`doc/scripts.md`](docs/reference/scripts.md) for each script's full flag reference.
 
 ---
 
@@ -320,7 +320,7 @@ projects_archive/act_inf_metaanalysis/
 ├── src/                        # Core library (literature, analysis, knowledge_graph, visualization)
 ├── tests/                      # Pytest suite; 90% coverage gate in pyproject.toml
 ├── scripts/                    # Numbered orchestrators (01–04, 06–14) plus canonical hydration
-├── manuscript/                 # Markdown sections, config.yaml, references.bib
+├── docs/manuscript/                 # Markdown sections, config.yaml, references.bib
 ├── gnn/                        # Illustrative GNN structural sketches for H1, H4, H8 (docs only)
 └── doc/                        # Architecture, API, data formats, scripts
 ```
@@ -351,9 +351,9 @@ Visualization outputs utilize a central, heavily customized `style.py` module im
 
 Looking to dive deeper? Check out the comprehensive documentation hubs:
 
-- **[Architecture Guide](doc/architecture.md)** — In-depth overview of the data pipeline and module definitions.
-- **[Data Formats](doc/data_formats.md)** — Schema definitions for Corpus mapping, RDF serializations, and outputs.
-- **[Citation Metadata](doc/citation_metadata.md)** — `CITATION.cff`/DOI, per-paper citation fields, canonical-ID priority, and the citation-network artifacts.
+- **[Architecture Guide](docs/reference/architecture.md)** — In-depth overview of the data pipeline and module definitions.
+- **[Data Formats](docs/reference/data_formats.md)** — Schema definitions for Corpus mapping, RDF serializations, and outputs.
+- **[Citation Metadata](docs/reference/citation_metadata.md)** — `CITATION.cff`/DOI, per-paper citation fields, canonical-ID priority, and the citation-network artifacts.
 - **[Project Agents](AGENTS.md)** — Operational metadata and configuration requirements for this distinct subproject.
 - **[Documentation Hub](docs/README.md)** — Project-level quick start and advanced pipeline flags.
 - **[Documentation Index](docs/documentation-index.md)** — Flat index of every long-lived document.
@@ -361,7 +361,7 @@ Looking to dive deeper? Check out the comprehensive documentation hubs:
 - **[GNN conformance](.github/GNN.md)** — The `.github/gnn-pin.json` parser pin and what the conformance job parses.
 - **[GNN sketches](gnn/README.md)** — Illustrative GNN models of the structure behind hypotheses H1, H4, and H8 (documentation, not evidence); repositories that consume the notation follow the [GNN downstream adoption guide](https://github.com/ActiveInferenceInstitute/Generalized_Notation_Notation/blob/main/docs/gnn/integration/downstream_adoption.md).
 - **[Project TODO](TODO.md)** — Authoritative forward backlog for minor and medium work, with acceptance gates.
-- **[AI Meta-Analysis Playbook](doc/ai_meta_analysis_playbook.md)** — Reproducible stage-by-stage operating procedure.
+- **[AI Meta-Analysis Playbook](docs/reference/ai_meta_analysis_playbook.md)** — Reproducible stage-by-stage operating procedure.
 - **[Contributing](CONTRIBUTING.md)** — Conventions and gates for new contributors.
 - **[Citing this work](CITATION.cff)** — Zenodo DOI `10.5281/zenodo.19461934`, CC-BY-4.0.
 - **[Security](SECURITY.md)** — How to report vulnerabilities.

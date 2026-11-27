@@ -226,8 +226,8 @@ def test_corpus_size_alignment_when_output_present() -> None:
 
 
 def test_compute_variables_inclusion_period(tmp_path: Path):
-    manuscript = tmp_path / "manuscript"
-    manuscript.mkdir()
+    manuscript = tmp_path / "docs" / "manuscript"
+    manuscript.mkdir(parents=True)
     (manuscript / "config.yaml").write_text(
         "project_config:\n  search:\n    start_year: 2000\n"
     )

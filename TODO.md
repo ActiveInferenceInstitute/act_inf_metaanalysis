@@ -92,7 +92,7 @@ import still needs a separately approved importer; stored quotes and rule
 agreement are not human calibration or scientific ground truth. GNN migration,
 optional integration, producer prerequisites, configuration pins, rights, and
 publication approvals retain their existing holds. No frozen scientific input,
-generated manuscript/data, headline result, historical receipt, or research
+generated docs/manuscript/data, headline result, historical receipt, or research
 assumption was changed by this documentation follow-through.
 
 ## Current baseline (verified 2026-11-12)
@@ -369,7 +369,7 @@ order; Major items should land before the next publication snapshot.
 - **MED-10 — CLI flags are silently overridden by config.yaml.**
   `scripts/02_meta_analysis_pipeline.py` advertises `--n-topics`,
   `--max-features`, `--min-year`, `--seed`, but `pipeline_runner.py:53-56`
-  unconditionally replaces them from `manuscript/config.yaml`; likewise
+  unconditionally replaces them from `docs/manuscript/config.yaml`; likewise
   `search_runner.py:196-199` overwrites `args.query`/`--max-results` from config.
   A user who sets `--seed 0` or `--query ...` gets a different value with no
   warning — a reproducibility hazard for a published pipeline. **Fix:** honor an
@@ -386,7 +386,7 @@ order; Major items should land before the next publication snapshot.
   intended root is absent; do not scan arbitrary parents.
 
 - **MED-12 — LLM endpoint port is inconsistent across config and docs.**
-  `manuscript/config.yaml:127` sets `base_url: http://localhost:11435` (and two
+  `docs/manuscript/config.yaml:127` sets `base_url: http://localhost:11435` (and two
   `worker_urls` at 11435), while `src/config.py:70`, `llm_config.py:12`, and
   `scripts/AGENTS.md` all document the default as 11434. Config wins at runtime,
   so this is not a live bug, but the contradiction is a reproducibility hazard
@@ -504,7 +504,7 @@ order; Major items should land before the next publication snapshot.
   test loss is caught immediately.
 
 - **MIN-07 — LLM port / worker duplication in config.**
-  `manuscript/config.yaml:128-130` lists the identical URL twice in
+  `docs/manuscript/config.yaml:128-130` lists the identical URL twice in
   `worker_urls`, which spawns two threads against one Ollama endpoint for no
   benefit. Drop the duplicate or make the number of workers intentional.
 
@@ -625,8 +625,8 @@ committed; entries are marked ✓ with the commit reference. Full narrative in
   config_loader, visualization/advanced/, scripts 07–14, newer tests). Now
   matches the tracked tree. (`AGENTS.md`; commit `MAJ-D02`)
 - ✓ **MAJ-D03 — Fix the license contradiction in `README.md`.** Badge claimed
-  MIT while `LICENSE`, `manuscript/config.yaml`, `.aii/config.yaml`, and
-  `manuscript/README.md` all declare CC-BY-4.0. Badge and link now say
+  MIT while `LICENSE`, `docs/manuscript/config.yaml`, `.aii/config.yaml`, and
+  `docs/manuscript/README.md` all declare CC-BY-4.0. Badge and link now say
   CC-BY-4.0. (`README.md`; commit `MAJ-D03`)
 
 ### Medium
@@ -675,7 +675,7 @@ committed; entries are marked ✓ with the commit reference. Full narrative in
   scripts.md already used `uv run python`. Unified, with a clear
   standalone-vs-monorepo `cd` note. (commit `MED-D09`)
 - ✓ **MED-D10 — Add missing code-adjacent docs.** New `CITATION.cff` (Zenodo
-  DOI 10.5281/zenodo.19461934, authors from `manuscript/config.yaml`, CC-BY-4.0),
+  DOI 10.5281/zenodo.19461934, authors from `docs/manuscript/config.yaml`, CC-BY-4.0),
   `CONTRIBUTING.md` (grounded in the repo's zero-mock / thin-orchestrator /
   doc-duality / gate conventions), and `SECURITY.md` (GitHub private
   vulnerability reporting). (commit `MED-D10`)
@@ -684,10 +684,10 @@ committed; entries are marked ✓ with the commit reference. Full narrative in
 
 - ✓ **MIN-D01 — Fix `doc/api_reference.md:431` nanopub_path example** from
   `output/nanopublications.jsonl` to `output/data/nanopublications.jsonl`
-  (matches `manuscript/config.yaml` `checkpoint_path`). (commit `MIN-D01`)
+  (matches `docs/manuscript/config.yaml` `checkpoint_path`). (commit `MIN-D01`)
 - ✓ **MIN-D02 — Clarify `--checkpoint-interval` default in `doc/scripts.md:192`.**
   Script default is `DEFAULT_CHECKPOINT_INTERVAL=50` (`src/config.py`), with
-  `manuscript/config.yaml` setting 25; the table now states both.
+  `docs/manuscript/config.yaml` setting 25; the table now states both.
   (commit `MIN-D02`)
 - ✓ **MIN-D03 — Align `doc/architecture.md:364` checkpoint wording** with the
   live config (25) while noting the 50 code default. (commit `MIN-D03`)

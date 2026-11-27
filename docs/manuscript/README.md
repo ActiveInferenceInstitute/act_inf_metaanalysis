@@ -5,7 +5,7 @@
 Authors: Daniel Friedman (Active Inference Institute) · Joel Dietz (MIT + CIMC)  
 DOI: [Zenodo deposit record](https://doi.org/10.5281/zenodo.19461934) · License: CC-BY-4.0
 
-Current public release: [act_inf_metaanalysis_v2.0.6_2026-07-26.pdf](../act_inf_metaanalysis_v2.0.6_2026-07-26.pdf). The dated root PDF is generated from the same hydrated manuscript and template render validated by the release workflow.
+Current public release: [act_inf_metaanalysis_v2.0.6_2026-07-26.pdf](../../act_inf_metaanalysis_v2.0.6_2026-07-26.pdf). The dated root PDF is generated from the same hydrated manuscript and template render validated by the release workflow.
 
 ---
 
@@ -46,7 +46,7 @@ uv run python scripts/z_generate_manuscript_variables.py --project .
 uv run python scripts/z_generate_manuscript_variables.py --project . --dry-run
 ```
 
-Output goes to `output/manuscript/`. Source files in `manuscript/` are never overwritten. The canonical hydrator also records `output/data/manuscript_variables.json` with the exact source-token inventory and artifact hashes.
+Output goes to `output/manuscript/`. Source files in `docs/manuscript/` are never overwritten. The canonical hydrator also records `output/data/manuscript_variables.json` with the exact source-token inventory and artifact hashes.
 
 ---
 

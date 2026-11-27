@@ -80,8 +80,8 @@ def test_run_meta_analysis_pipeline_temporal_error_on_missing_years(
 def test_explicit_seed_drives_topics_stability_and_manifest(
     tmp_path: Path, sample_corpus_path: str,
 ) -> None:
-    manuscript = tmp_path / "manuscript"
-    manuscript.mkdir()
+    manuscript = tmp_path / "docs" / "manuscript"
+    manuscript.mkdir(parents=True)
     (manuscript / "config.yaml").write_text(
         "analysis:\n  seed: 42\n  n_topics: 2\n  topic_stability_seeds: [42, 43]\n",
         encoding="utf-8",

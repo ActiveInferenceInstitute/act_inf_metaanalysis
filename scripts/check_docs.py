@@ -7,7 +7,7 @@ script is the documentation check the `docs` gate arm runs. It verifies:
 1. every relative link in tracked Markdown resolves to a file in the tree;
 2. fragment links to Markdown headings resolve to a heading slug;
 3. ``docs/documentation-index.md`` exists and lists every long-lived guide in
-   ``doc/``; ``docs/README.md`` is the hub.
+   ``docs/reference/``; ``docs/README.md`` is the hub.
 
 External URLs and ``mailto:`` targets are not fetched: the check is offline by
 design, so it never turns a network failure into a documentation verdict.
@@ -104,11 +104,11 @@ def check_index(root: Path) -> list[str]:
     if not index.exists():
         return errors + ["docs/documentation-index.md is missing"]
     text = index.read_text(encoding="utf-8")
-    for path in sorted((root / "doc").glob("*.md")):
+    for path in sorted((root / "docs" / "reference").glob("*.md")):
         if path.name in {"AGENTS.md", "README.md"}:
             continue
         if path.name not in text:
-            errors.append(f"docs/documentation-index.md does not list doc/{path.name}")
+            errors.append(f"docs/documentation-index.md does not list docs/reference/{path.name}")
     return errors
 
 

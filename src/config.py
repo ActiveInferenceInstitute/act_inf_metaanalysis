@@ -20,7 +20,7 @@ output/
 │   ├── hypothesis_trends.json
 │   └── fulltext_assessment.json
 ├── figures/        Publication-ready PNG figures
-└── manuscript/     Rendered markdown with variables injected
+└── docs/manuscript/     Rendered markdown with variables injected
 
 Pipeline defaults
 -----------------
@@ -45,7 +45,7 @@ FIGURES_DIR = OUTPUT_DIR / "figures"
 
 # Key artifact paths
 CORPUS_PATH = DATA_DIR / "corpus.jsonl"
-MANUSCRIPT_DIR = PROJECT_ROOT / "manuscript"
+MANUSCRIPT_DIR = PROJECT_ROOT / "docs" / "manuscript"
 
 # ---------------------------------------------------------------------------
 # Analysis defaults (02_meta_analysis_pipeline.py)
@@ -67,7 +67,7 @@ PROMPT_VERSION = "v2.0.6"
 # ---------------------------------------------------------------------------
 KG_MIN_YEAR = 1960  # Pre-1960 papers excluded from KG construction
 DEFAULT_LLM_MODEL = "gemma3:4b"
-# Matches `project_config.llm_extraction.base_url` in manuscript/config.yaml
+# Matches `project_config.llm_extraction.base_url` in docs/manuscript/config.yaml
 # (the published snapshot's live Ollama endpoint); kept as a fallback default.
 DEFAULT_LLM_URL = "http://localhost:11435"
 DEFAULT_CHECKPOINT_INTERVAL = 50

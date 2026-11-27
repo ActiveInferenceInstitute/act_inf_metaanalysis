@@ -214,7 +214,7 @@ the consolidation.
   `output/figures/figure_registry.json` against the included figures, and runs
   pandoc → XeLaTeX → BibTeX → XeLaTeX to `output/pdf/` and `output/web/`.
   `./run.sh render` renders into `.render-check/`.
-- **Two render blockers fixed.** `manuscript/preamble.md` now loads `hyperref`
+- **Two render blockers fixed.** `docs/manuscript/preamble.md` now loads `hyperref`
   explicitly before `\hypersetup` (pandoc 3.13 inserts header includes earlier
   than the template's hyperref load), and a `references.bib` comment containing
   `@misc` made BibTeX abort at that line; the comment is reworded.
@@ -309,7 +309,7 @@ and enforced in a new CI workflow.
   so a rate-limited source can no longer silently thin the corpus. OpenAlex DOI
   lookups URL-quote their argument.
 - **CLI over config.** Explicit `--query/--max-results/--n-topics/--max-features/
-  --min-year/--seed` flags are honored over `manuscript/config.yaml` instead of
+  --min-year/--seed` flags are honored over `docs/manuscript/config.yaml` instead of
   being silently overwritten.
 - **Robustness.** `bootstrap_project` prefers `TEMPLATE_REPO_ROOT`/project-local
   template and logs any fallback scan; a malformed nanopub line now fails with a
@@ -394,7 +394,7 @@ and enforced in a new CI workflow.
 - **`output/reports/extraction_provenance_summary.json` was stale**, still showing a pre-v2.0.3 schema (`total: 1490`, prior pipeline attribution, and zero structured provenance) even though the clean three-layer re-extraction had already populated real provenance blocks on all 793 current nanopublications. Because the report's schema did not match what `manuscript.variables` reads (`unique_models` / `prompt_versions`), `{{PROV_MODEL}}` / `{{PROV_PROMPT_VERSION}}` in `02b_methods_extraction.md` were unresolved and variable injection raised `RuntimeError`. Regenerated the report via the existing `provenance.write_provenance_summary` (no LLM call needed — pure aggregation over the already-re-extracted nanopub file): it now reports `gemma3:4b` / `v2.0.0-three-layer` across all 793 records; injection succeeds cleanly (348 variables across 18 files).
 - **Verified idempotency**: `scripts/07_run_validation_study.py` and `scripts/z_generate_manuscript_variables.py` each produce byte-identical output across two consecutive runs against the same pipeline data (seed=42 stratified sampling; deterministic rule protocols).
 - **`data/validation/annotation_schema.md` was a missed call-site of the v2.0.3 reframe**: still titled "Dual-Annotator Validation Schema" and documenting the old fabricated design (`labels_human.csv` / `labels_assistant.csv`, `human_triage` / `assistant_triage` columns, "Human gold labels"). Rewrote it to document the actual current schema (`labels_rule_reference.csv`, `ref_*` / `secondary_*` columns, both deterministic rule protocols) and state plainly this is not a human study.
-- **A repo-wide exhaustive literal sweep (`annotator`, `dual`, `inter-rater`, `kappa`, `agreement`) surfaced two more missed call-sites in `manuscript/05_appendix_tooling.md`**: prose stating "Inter-annotator agreement (κ) is computed when multiple annotators assess the same paper" (present tense, describing a live per-assertion mechanism that does not exist) and a quality-thresholds table row enforcing "Inter-annotator κ ≥ 0.70 → Re-annotate" (a fictional gate — no re-annotation loop exists, and the real measured κ is negative, nowhere near 0.70). Reframed both to describe the actual offline rule-based reference-annotator check, reported not enforced. Also tightened the `98_symbols_glossary.md` κ definition to name the rule-reference-vs-pipeline usage instead of a bare "inter-annotator agreement" that reads as human annotation in isolation.
+- **A repo-wide exhaustive literal sweep (`annotator`, `dual`, `inter-rater`, `kappa`, `agreement`) surfaced two more missed call-sites in `docs/manuscript/05_appendix_tooling.md`**: prose stating "Inter-annotator agreement (κ) is computed when multiple annotators assess the same paper" (present tense, describing a live per-assertion mechanism that does not exist) and a quality-thresholds table row enforcing "Inter-annotator κ ≥ 0.70 → Re-annotate" (a fictional gate — no re-annotation loop exists, and the real measured κ is negative, nowhere near 0.70). Reframed both to describe the actual offline rule-based reference-annotator check, reported not enforced. Also tightened the `98_symbols_glossary.md` κ definition to name the rule-reference-vs-pipeline usage instead of a bare "inter-annotator agreement" that reads as human annotation in isolation.
 - **Added a proof-of-detection test for `analysis.validation_metrics.classify_error`** (`test_classify_error_detects_each_known_bad_case`): asserts the function actually fires the correct taxonomy code on six planted defect shapes (over-extraction, direction inversion, quote mismatch, triage mismatch, evidence-status/type mismatch) plus the well-formed no-error case — this taxonomy previously had no direct unit test, only indirect exercise via aggregate metrics.
 - Removed 4 residual unused imports (`dataclasses.field` in `provenance.py`; `compute_sensitivity_analysis` / `inject_variables` in `test_quality_remediation.py`) flagged by `ruff check` on the touched files; `mypy` clean on all validation/provenance/sensitivity modules.
 - Full suite: 633 passed, 95.18% coverage, single final run at a stable tree (no partial re-runs).
@@ -436,7 +436,7 @@ cover every eligible paper. 558/558 tests pass at 94.76 % coverage.
 - **openalex_client.py** — `_request_with_retry` accepts `delay_override` and
   no longer raises `UnboundLocalError` when retries exhaust
 - **semantic_scholar.py** — same fix as openalex; 429 retries succeed cleanly
-- **manuscript/__init__.py** — replaced absolute `from manuscript.variables`
+- **docs/manuscript/__init__.py** — replaced absolute `from manuscript.variables`
   with the correct relative import (broke any external `import src.manuscript`)
 - **knowledge_graph/__init__.py** — `query.py` is now exported in `__all__`
   alongside the rest of the public API

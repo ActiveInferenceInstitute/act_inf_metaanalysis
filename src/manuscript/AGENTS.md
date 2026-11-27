@@ -28,7 +28,7 @@ Single module (`variables.py`) that reads all pipeline output JSONs and produces
 
 1. Add a computation in `compute_variables()` reading from an existing JSON output file.
 2. Store as a string: `variables["MY_VAR"] = f"{value}"`.
-3. Place `{{MY_VAR}}` in the appropriate `manuscript/*.md` file.
+3. Place `{{MY_VAR}}` in the appropriate `docs/manuscript/*.md` file.
 4. Add a test in `tests/test_variables.py` verifying the value with a synthetic JSON file.
 5. Update `README.md` variable table.
 

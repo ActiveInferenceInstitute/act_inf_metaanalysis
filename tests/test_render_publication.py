@@ -61,10 +61,10 @@ def _png() -> bytes:
 
 
 def _inputs(tmp_path: Path, *, pdf: bool = False) -> tuple[Path, Path, Path]:
-    manuscript = tmp_path / "manuscript"
+    manuscript = tmp_path / "docs" / "manuscript"
     inputs = tmp_path / "inputs"
     output = tmp_path / "external-render"
-    manuscript.mkdir()
+    manuscript.mkdir(parents=True)
     (inputs / "data").mkdir(parents=True)
     (inputs / "figures").mkdir()
     (inputs / "data" / "manuscript_variables.json").write_text(json.dumps({"variables": {"VALUE": "43"}}))

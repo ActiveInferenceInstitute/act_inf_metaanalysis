@@ -28,15 +28,15 @@ def complete_artifact_project(tmp_path: Path) -> Path:
     figures = output / "figures"
     manuscript = output / "manuscript"
     reports = output / "reports"
-    for directory in (data, figures, manuscript, reports, project / "manuscript"):
+    for directory in (data, figures, manuscript, reports, project / "docs" / "manuscript"):
         directory.mkdir(parents=True)
 
-    (project / "manuscript" / "config.yaml").write_text(
+    (project / "docs" / "manuscript" / "config.yaml").write_text(
         "analysis:\n  n_topics: 2\n  topic_stability_seeds: [42, 43]\n",
         encoding="utf-8",
     )
     figure_labels = "\n".join(f"fig:figure_{index}" for index in range(16))
-    (project / "manuscript" / "00_abstract.md").write_text(
+    (project / "docs" / "manuscript" / "00_abstract.md").write_text(
         "Corpus {{CORPUS_SIZE}}\n" + figure_labels, encoding="utf-8"
     )
     corpus = Corpus()

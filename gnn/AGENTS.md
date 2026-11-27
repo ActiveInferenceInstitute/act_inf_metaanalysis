@@ -29,7 +29,7 @@ standard.
    parameter is an example value; keep uniform or round values so nothing can be
    read as an estimate. The only sanctioned sources of evidence are the scored
    nanopublications and the generated outputs (`output/data/`,
-   `output/figures/`, `manuscript/`).
+   `output/figures/`, `docs/manuscript/`).
 2. **Never put a sketch in the pipeline.** Do not add `gnn/` to the pipeline
    orchestration, the artifact contract, the pipeline manifest, the release
    package, or any manuscript variable. The directory is documentation. The
@@ -91,9 +91,9 @@ this way on 2026-11-01.
 ## See also
 
 - [README.md](README.md) — claim boundary and worked examples.
-- [../doc/hypotheses.md](../doc/hypotheses.md) — hypothesis definitions and the
+- [../doc/hypotheses.md](../docs/reference/hypotheses.md) — hypothesis definitions and the
   scoring formula these sketches do not participate in.
 - [../src/knowledge_graph/hypothesis.py](../src/knowledge_graph/hypothesis.py) —
   the authoritative hypothesis identifiers.
-- [../doc/AGENTS.md](../doc/AGENTS.md) — documentation hub rules that also apply
+- [../doc/AGENTS.md](../docs/reference/AGENTS.md) — documentation hub rules that also apply
   to this directory.

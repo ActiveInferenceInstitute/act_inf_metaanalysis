@@ -27,7 +27,7 @@ operation in the pipeline — use incremental mode (the default) whenever possib
 
 ```bash
 # Incremental (default) — skips already-processed papers
-uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml
+uv run python scripts/03_build_knowledge_graph.py --config docs/manuscript/config.yaml
 
 # Full re-extraction (WARNING: overwrites existing assertions in nanopublications.jsonl)
 uv run python scripts/03_build_knowledge_graph.py --clear-assertions
@@ -53,9 +53,9 @@ with the configured model pulled. The current publication config uses `gemma3:4b
 1. Add a `Hypothesis` object to `STANDARD_HYPOTHESES` in `hypothesis.py`.
 2. Add the corresponding URI to `HYPOTHESIS_CATEGORIES` in `schema.py`.
 3. Add the H-alias mapping (`"H9"` → new ID) in `src/manuscript/variables.py`.
-4. Add keyword definitions in `manuscript/config.yaml` under `hypotheses:`.
+4. Add keyword definitions in `docs/manuscript/config.yaml` under `hypotheses:`.
 5. Regenerate nanopublications via `--clear-assertions` (new hypothesis won't have assertions otherwise).
-6. Update `manuscript/03_results_hypothesis.md` with a new row in the evidence table.
+6. Update `docs/manuscript/03_results_hypothesis.md` with a new row in the evidence table.
 
 ## Known Limitations
 

@@ -190,7 +190,7 @@ def run_literature_search(
     clients without changing production defaults.
     """
     logger = logging.getLogger("literature_search")
-    config_path = Path(args.config) if args.config else project_root / "manuscript" / "config.yaml"
+    config_path = Path(args.config) if args.config else project_root / "docs" / "manuscript" / "config.yaml"
     if config_path.exists():
         cfg = load_search_config(config_path)
         if cfg.get("query") and args.query is None:
