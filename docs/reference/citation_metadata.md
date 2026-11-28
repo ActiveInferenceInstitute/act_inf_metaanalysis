@@ -8,7 +8,7 @@ the stage that builds the citation network is described in
 
 ## 1. Citing this work
 
-The machine-readable citation record is [`CITATION.cff`](../CITATION.cff) at the
+The machine-readable citation record is [`CITATION.cff`](../../CITATION.cff) at the
 repository root (Citation File Format 1.2.0). It is the single source of truth for
 the release citation:
 
@@ -23,13 +23,13 @@ the release citation:
 | URL | <https://github.com/ActiveInferenceInstitute/act_inf_metaanalysis> |
 
 Cite the software/data snapshot through the DOI above. The date-stamped root PDF
-[`act_inf_metaanalysis_v2.0.6_2026-07-26.pdf`](../act_inf_metaanalysis_v2.0.6_2026-07-26.pdf)
+[`act_inf_metaanalysis_v2.0.6_2026-07-26.pdf`](../../act_inf_metaanalysis_v2.0.6_2026-07-26.pdf)
 is the public release copy; `output/pdf/act_inf_metaanalysis_combined.pdf` is the
 reproducible pipeline render.
 
 ## 2. Per-paper citation metadata in the corpus
 
-Every retrieved work is a [`src/literature/models.py`](../src/literature/models.py)
+Every retrieved work is a [`src/literature/models.py`](../../src/literature/models.py)
 `Paper` record persisted one-per-line in `output/data/corpus.jsonl`. The
 citation-relevant fields are:
 
@@ -82,14 +82,14 @@ files; Stage 5 injects `CITATION_NODES`, `CITATION_EDGES`, `CITATION_DENSITY_PCT
 and `CITATION_RESOLUTION_PCT` into the manuscript (see
 [`visualization_guide.md`](visualization_guide.md) and
 [`scripts.md`](scripts.md)). The narrative results are in
-`manuscript/03d_results_citation_network.md` and
-`manuscript/02c_methods_bibliometrics.md`.
+`docs/manuscript/03d_results_citation_network.md` and
+`docs/manuscript/02c_methods_bibliometrics.md`.
 
 ## 5. Manuscript bibliography
 
 The manuscript's bibliography is the hand-curated BibTeX file
-[`manuscript/references.bib`](../manuscript/references.bib), rendered from
-[`manuscript/99_references.md`](../manuscript/99_references.md). It is a separate,
+[`docs/manuscript/references.bib`](../manuscript/references.bib), rendered from
+[`docs/manuscript/99_references.md`](../manuscript/99_references.md). It is a separate,
 curated artifact from the retrieved corpus: the BibTeX file carries the citations the
 manuscript actually cites, while `corpus.jsonl` carries the retrieval snapshot. When
 adding a manuscript citation, add it to `references.bib`; do not expect the pipeline
@@ -105,7 +105,7 @@ to synthesize the bibliography from the corpus.
 
 ## Related documents
 
-- [`docs/README.md`](../docs/README.md) — documentation hub
+- [`docs/README.md`](../README.md) — documentation hub
 - [`architecture.md`](architecture.md) — pipeline stages and data flow
 - [`data_formats.md`](data_formats.md) — corpus, nanopublication, and artifact schemas
 - [`hypotheses.md`](hypotheses.md) — citation-weighted scoring formula

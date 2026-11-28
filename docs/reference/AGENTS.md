@@ -1,8 +1,8 @@
 # Long-form guides (`doc/`)
 
 Conventions for the long-form technical guides under `projects_archive/act_inf_metaanalysis/doc/`.
-The documentation hub is [`../docs/README.md`](../docs/README.md) and the flat
-index is [`../docs/documentation-index.md`](../docs/documentation-index.md).
+The documentation hub is [`../docs/README.md`](../README.md) and the flat
+index is [`../docs/documentation-index.md`](../documentation-index.md).
 
 ## Overview
 
@@ -55,4 +55,4 @@ When modifying or extending elements within `src/visualization/`:
 - All text additions (legends, annotations, labels) must explicitly calculate their size via `max(VIZ_CONFIG["font_size"] - X, 16)`.
 - The Wong (2011) colorblind-safe palette defined in `style.py` must never be overridden.
 
-Consult [`../docs/README.md`](../docs/README.md) for the hub and [`../docs/documentation-index.md`](../docs/documentation-index.md) for the flat index.
+Consult [`../docs/README.md`](../README.md) for the hub and [`../docs/documentation-index.md`](../documentation-index.md) for the flat index.

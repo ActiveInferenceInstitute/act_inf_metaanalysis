@@ -17,7 +17,7 @@
 >
 > **Line-count reality check (2026-07-31):** the historical "largest `src/`
 > module ≤250 lines" PASS no longer holds. Post-feature modules that exceed the
-> 250-line aspirational guideline: `manuscript/variables.py` (879),
+> 250-line aspirational guideline: `docs/manuscript/variables.py` (879),
 > `knowledge_graph/llm_extraction.py` (526), `knowledge_graph/nanopublication.py`
 > (484), `literature/semantic_scholar.py` (476), `analysis/artifact_contract.py`
 > (470), `visualization/hypothesis_charts.py` (388), `literature/search_runner.py`
@@ -81,8 +81,8 @@
 
 1. **`advanced_plots.py` split** — `src/visualization/advanced/` (`labels`, `word_cloud`, `embeddings`, `topics`) + re-export shim in `advanced_plots.py`.
 2. **`llm_extraction.py` split** — `llm_config.py`, `llm_client.py`, and `llm_prompts.py`; the remaining module is a slim extraction orchestrator.
-3. **Config-driven search queries** — `DEFAULT_ARXIV_QUERIES` / `DEFAULT_RELEVANCE_KEYWORDS` in `src/config.py`; `src/config_loader.py` loads `project_config.search` from `manuscript/config.yaml` with defaults.
-4. **Example config** — Added `manuscript/config.yaml.example` (stripped template).
+3. **Config-driven search queries** — `DEFAULT_ARXIV_QUERIES` / `DEFAULT_RELEVANCE_KEYWORDS` in `src/config.py`; `src/config_loader.py` loads `project_config.search` from `docs/manuscript/config.yaml` with defaults.
+4. **Example config** — Added `docs/manuscript/config.yaml.example` (stripped template).
 
 ### W3 — Completed (2026-05-24)
 

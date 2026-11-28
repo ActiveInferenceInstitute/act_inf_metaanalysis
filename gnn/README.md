@@ -27,7 +27,7 @@ stage:
   checker reads it only to parse and type-check the sketches in CI.
 - The hypothesis scores, confidence intervals, temporal trends, and figures
   published by this project come only from the scored nanopublications
-  (`output/data/assertion_summary.json`, `output/figures/`, `manuscript/`).
+  (`output/data/assertion_summary.json`, `output/figures/`, `docs/manuscript/`).
 - Every parameter in every file is an **example value**. Uniform priors and
   round likelihoods were chosen on purpose so that no number can be mistaken for
   an estimate from the corpus.

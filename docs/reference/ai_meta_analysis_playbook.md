@@ -14,7 +14,7 @@ cd projects_archive/act_inf_metaanalysis
 uv sync --extra dev
 ```
 
-Treat `manuscript/config.yaml` as the single configuration source. Before a new
+Treat `docs/manuscript/config.yaml` as the single configuration source. Before a new
 snapshot, deliberately update `analysis.as_of_date`, then preserve the prior
 `output/` tree under `output/snapshots/<UTC_TIMESTAMP>/`.
 
@@ -27,7 +27,7 @@ partial. The configured extraction model is local Ollama `gemma3:4b`.
 For a new snapshot, run all configured sources:
 
 ```bash
-uv run python scripts/01_literature_search.py --config manuscript/config.yaml \
+uv run python scripts/01_literature_search.py --config docs/manuscript/config.yaml \
   --no-resume --clear-corpus
 ```
 
@@ -59,7 +59,7 @@ hash and configuration.
 Start the configured local Ollama listener in a separate terminal, then run:
 
 ```bash
-uv run python scripts/03_build_knowledge_graph.py --config manuscript/config.yaml \
+uv run python scripts/03_build_knowledge_graph.py --config docs/manuscript/config.yaml \
   --clear-assertions --checkpoint-interval 25
 ```
 

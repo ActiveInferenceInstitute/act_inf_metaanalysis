@@ -6,7 +6,7 @@
 
 The suite collects **688 tests**; the exact pass/skip counts and coverage of the
 latest full run are recorded in
-[`docs/_generated/gate_arms.md`](../docs/_generated/gate_arms.md), which `./run.sh bench`
+[`docs/_generated/gate_arms.md`](../_generated/gate_arms.md), which `./run.sh bench`
 regenerates. Tests run against real method implementations — no mocks, fakes, or
 stubs are used for core logic. API clients use `pytest-httpserver` for isolated
 HTTP testing with real request/response cycles.
@@ -171,7 +171,7 @@ Key points:
 | `visualization/test_style.py` | `style.py` | ~5 | VIZ_CONFIG palette and font size enforcement |
 | `test_config_loader.py` | `config_loader.py` | 6 | Search/KG YAML loading, defaults, and the no-mock `ImportError` subprocess path |
 | `test_scripts.py` | All orchestrator/helper scripts | ~8 | Argument parsing, defaults, module importability |
-| `test_variables.py` | `manuscript/variables.py` | ~47 | LaTeX formatting, JSONL counting, compute_variables with full/partial/empty output, H1–H8 alias order, inject_variables |
+| `test_variables.py` | `docs/manuscript/variables.py` | ~47 | LaTeX formatting, JSONL counting, compute_variables with full/partial/empty output, H1–H8 alias order, inject_variables |
 | `analysis/test_hypothesis_weights.py` | `hypothesis_weights.py` | 7 | All six weighting policies incl. age-discount decay and field normalization (MED-17) |
 | `test_suite_inventory.py` | (whole suite) | 2 | AST guard: no duplicate top-level test classes, no test-less `Test*` classes (MIN-06) |
 

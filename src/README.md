@@ -12,7 +12,7 @@ lives here; `scripts/` are thin orchestrators that import these modules and hand
 | `analysis/` | Bibliometric, temporal, and text analytics | `corpus.jsonl` | Analysis JSONs |
 | `knowledge_graph/` | LLM extraction, nanopubs, hypothesis scoring | `corpus.jsonl` | `nanopublications.jsonl`, scores |
 | `visualization/` | Publication-ready PNG figure generation | Analysis JSONs | 16 PNG figures |
-| `manuscript/` | Template variable computation and injection | All output JSONs | `dict[str, str]` of 196 current-snapshot variables |
+| `docs/manuscript/` | Template variable computation and injection | All output JSONs | `dict[str, str]` of 196 current-snapshot variables |
 
 ## Pipeline Stage → Module Mapping
 

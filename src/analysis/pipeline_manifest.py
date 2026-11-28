@@ -125,16 +125,16 @@ def write_pipeline_manifest(
     corpus_path = output_dir / "data" / "corpus.jsonl"
     corpus_size = sum(1 for line in corpus_path.read_text(encoding="utf-8").splitlines() if line.strip()) if corpus_path.exists() else 0
     input_paths = [
-        project_root / "manuscript" / "config.yaml",
-        project_root / "manuscript" / "references.bib",
+        project_root / "docs" / "manuscript" / "config.yaml",
+        project_root / "docs" / "manuscript" / "references.bib",
         corpus_path,
         project_root / "pyproject.toml",
         project_root / "uv.lock",
-        project_root / "doc" / "tooling_inventory.yaml",
+        project_root / "docs" / "reference" / "tooling_inventory.yaml",
     ]
     input_paths.extend(
         path
-        for path in sorted((project_root / "manuscript").glob("*.md"))
+        for path in sorted((project_root / "docs" / "manuscript").glob("*.md"))
         if path.name not in _MANUSCRIPT_GUIDANCE_FILES
     )
     input_hashes = {
@@ -147,7 +147,7 @@ def write_pipeline_manifest(
     }
     figures_count = len(list((output_dir / "figures").glob("*.png")))
     manuscript_count = len(list((output_dir / "manuscript").glob("*.md")))
-    config_path = project_root / "manuscript" / "config.yaml"
+    config_path = project_root / "docs" / "manuscript" / "config.yaml"
     config = _load_yaml(config_path)
     analysis_config = load_analysis_config(config_path)
     kg_config = load_kg_config(config_path)

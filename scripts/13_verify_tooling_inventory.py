@@ -348,7 +348,7 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=15.0)
     parser.add_argument("--output", default="output/reports/tooling_verification.json")
     args = parser.parse_args()
-    registry = _load_yaml(PROJECT_ROOT / "doc" / "tooling_inventory.yaml")
+    registry = _load_yaml(PROJECT_ROOT / "docs" / "reference" / "tooling_inventory.yaml")
     output_path = PROJECT_ROOT / args.output
     session = requests.Session()
     token = _github_token()

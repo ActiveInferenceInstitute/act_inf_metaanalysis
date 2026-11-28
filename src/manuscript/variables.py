@@ -105,7 +105,7 @@ def _load_inclusion_year_start(project_root: Path | None = None) -> int:
     """Read ``project_config.search.start_year`` from manuscript config."""
     if project_root is None:
         project_root = Path(__file__).resolve().parent.parent.parent
-    config_path = project_root / "manuscript" / "config.yaml"
+    config_path = project_root / "docs" / "manuscript" / "config.yaml"
     if not config_path.exists():
         return 2000
     try:
@@ -120,7 +120,7 @@ def _load_inclusion_year_start(project_root: Path | None = None) -> int:
 
 def _load_project_config(project_root: Path) -> dict:
     """Load the single manuscript configuration source for status variables."""
-    config_path = project_root / "manuscript" / "config.yaml"
+    config_path = project_root / "docs" / "manuscript" / "config.yaml"
     if not config_path.exists():
         return {}
     try:
@@ -843,7 +843,7 @@ def write_manuscript_variables(
     variables: dict[str, str],
 ) -> Path:
     """Persist variables, token coverage, and source/artifact hashes."""
-    manuscript_dir = project_root / "manuscript"
+    manuscript_dir = project_root / "docs" / "manuscript"
     source_files = {
         str(path.relative_to(project_root)): _sha256(path)
         for path in sorted(manuscript_dir.glob("*.md"))

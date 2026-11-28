@@ -11,8 +11,8 @@ never include private credentials, internal paths, or personal tooling names.
 - [`AGENTS.md`](AGENTS.md) — project overview, architecture, and invariant rules.
 - [`docs/README.md`](docs/README.md) — documentation hub index and onboarding order.
 - [`docs/documentation-index.md`](docs/documentation-index.md) — flat index of every long-lived document.
-- [`doc/architecture.md`](doc/architecture.md) — pipeline design and module map.
-- [`doc/scripts.md`](doc/scripts.md) — per-script CLI reference.
+- [`doc/architecture.md`](docs/reference/architecture.md) — pipeline design and module map.
+- [`doc/scripts.md`](docs/reference/scripts.md) — per-script CLI reference.
 - [`TODO.md`](TODO.md) — authoritative forward backlog (Minor / Medium / Major)
   with acceptance gates; check it before starting work.
 

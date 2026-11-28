@@ -180,7 +180,7 @@ flowchart TD
         adv_plots[advanced_plots.py]
     end
 
-    subgraph manuscript["manuscript/"]
+    subgraph manuscript["docs/manuscript/"]
         vars_mod[variables.py]
     end
 
@@ -276,7 +276,7 @@ flowchart TD
 | `advanced_plots.py` | `plot_word_cloud`, `plot_pca_embeddings`, `plot_term_heatmap`, `plot_dendrogram`, `plot_topic_term_bars`, `plot_cooccurrence_matrix` | PCA scatter, TF-IDF heatmap, Ward dendrogram, co-occurrence matrix |
 | `advanced/` | `labels.py`, `word_cloud.py`, `embeddings.py`, `topics.py` | Split implementations behind the `advanced_plots.py` re-export shim |
 
-### manuscript/ — Manuscript Management
+### docs/manuscript/ — Manuscript Management
 
 | Module | Functions | Purpose |
 | --- | --- | --- |
@@ -342,7 +342,7 @@ Every client (`arxiv_client`, `semantic_scholar`, `llm_extraction`) accepts an o
 Settings are resolved with the following priority (highest first):
 
 1. **CLI flags** — e.g. `--max-results 500` overrides everything
-2. **Config file** — specified via `--config manuscript/config.yaml`
+2. **Config file** — specified via `--config docs/manuscript/config.yaml`
 3. **Script defaults** — hardcoded in each script's `parse_args()`
 
 Config affects:
@@ -372,7 +372,7 @@ Config affects:
 | `assertion_summary.json` | 3 | JSON | Total assertions, type counts, per-hypothesis breakdown |
 | `nanopublications.trig` | 3 | RDF/TriG | Nanopub.net-compliant RDF serialization with four named graphs per nanopub |
 | `figures/*.png` | 4 | PNG | 16 publication-quality visualizations (300 DPI, ≥16pt fonts) |
-| `manuscript/*.md` | 5 | Markdown | Rendered manuscript files with `{{VAR}}` placeholders replaced |
+| `docs/manuscript/*.md` | 5 | Markdown | Rendered manuscript files with `{{VAR}}` placeholders replaced |
 
 ---
 
@@ -385,7 +385,7 @@ Config affects:
 | Knowledge Graph (LLM) | 1–3 hours (corpus on the order of 10^3 papers) | Sequential LLM inference (~0.1 papers/s with gemma3:4b) |
 | Visualization | < 30s | Figure rendering, Matplotlib I/O |
 
-The LLM extraction stage dominates total runtime. Checkpointing every configured interval (25 papers in `manuscript/config.yaml`; code default 50) ensures that interruptions cost at most a bounded amount of re-work.
+The LLM extraction stage dominates total runtime. Checkpointing every configured interval (25 papers in `docs/manuscript/config.yaml`; code default 50) ensures that interruptions cost at most a bounded amount of re-work.
 
 ---
 

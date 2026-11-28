@@ -3,9 +3,9 @@
 
 Inputs (all required, no silent fallbacks):
 
-- ``manuscript/config.yaml`` — title, subtitle, authors, DOI, render formats.
-- ``manuscript/*.md`` — pandoc Markdown sections, ordered by numeric prefix.
-- ``manuscript/preamble.md`` — a fenced ``latex`` block used as the LaTeX header.
+- ``docs/manuscript/config.yaml`` — title, subtitle, authors, DOI, render formats.
+- ``docs/manuscript/*.md`` — pandoc Markdown sections, ordered by numeric prefix.
+- ``docs/manuscript/preamble.md`` — a fenced ``latex`` block used as the LaTeX header.
 - ``output/data/manuscript_variables.json`` — the declared variable map written
   by ``scripts/z_generate_manuscript_variables.py``.
 - ``output/figures/figure_registry.json`` plus the generated PNGs.
@@ -179,7 +179,7 @@ def title_block(config: dict) -> str:
                 "\\footnotesize{\\href{https://orcid.org/" + orcid + "}{ORCID: " + orcid + "}}"
             )
         rendered_authors.append("\\begin{tabular}[t]{c}" + "\n".join(parts) + "\\end{tabular}")
-    lines.append(" \\and ".join(rendered_authors))
+    lines.append("\n\\par\\medskip\n".join(rendered_authors))
     lines.append("\\vspace{1.2em}")
     date = str(publication.get("year", ""))
     if date:
@@ -393,7 +393,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--manuscript-dir",
         type=Path,
-        default=PROJECT_ROOT / "manuscript",
+        default=PROJECT_ROOT / "docs" / "manuscript",
         help="manuscript source directory",
     )
     args = parser.parse_args(argv)

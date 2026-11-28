@@ -11,8 +11,8 @@
 | [`_generated/gate_arms.md`](_generated/gate_arms.md) | Measured wall time and evidence per gate arm |
 
 The long-form guides (`architecture.md`, `scripts.md`, `testing.md`, and the
-rest) live in [`../doc/`](../doc/); they were not moved because committed
-pipeline manifests hash `doc/tooling_inventory.yaml`. [`../doc/AGENTS.md`](../doc/AGENTS.md)
+rest) live in [`../doc/`](reference/); they were not moved because committed
+pipeline manifests hash `doc/tooling_inventory.yaml`. [`../doc/AGENTS.md`](reference/AGENTS.md)
 holds the conventions for those guides.
 
 ## Rules

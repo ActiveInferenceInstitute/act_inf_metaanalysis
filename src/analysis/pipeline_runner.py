@@ -48,7 +48,7 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
     data_dir.mkdir(parents=True, exist_ok=True)
     pipeline_start = time.monotonic()
 
-    config_path = project_root / "manuscript" / "config.yaml"
+    config_path = project_root / "docs" / "manuscript" / "config.yaml"
     analysis_cfg = load_analysis_config(config_path)
     # Explicit CLI values win over config; config fills in whatever was left
     # unset, so `--seed 0` is no longer silently discarded (MED-10).
@@ -72,7 +72,7 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
     papers = [p for p in corpus.papers if p.year is None or p.year >= args.min_year]
     logger.info("Loaded %d papers (filtered >= %d)", len(papers), args.min_year)
 
-    config_path = project_root / "manuscript" / "config.yaml"
+    config_path = project_root / "docs" / "manuscript" / "config.yaml"
     classified = classify_corpus(papers, config_path=config_path)
     subfield_counts = {sf: len(plist) for sf, plist in classified.items()}
     subfield_path = data_dir / "subfield_classification.json"
@@ -92,7 +92,7 @@ def run_meta_analysis_pipeline(args: argparse.Namespace, *, project_root: Path) 
         if not configured_as_of_date:
             logger.warning(
                 "analysis.as_of_date is not configured; using today's date %s — "
-                "set it in manuscript/config.yaml for reproducible snapshots (MIN-08)",
+                "set it in docs/manuscript/config.yaml for reproducible snapshots (MIN-08)",
                 date.today(),
             )
         as_of_date = (

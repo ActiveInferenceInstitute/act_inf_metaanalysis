@@ -155,7 +155,7 @@ def validate_artifacts(output_dir: Path, project_root: Path) -> dict[str, Any]:
                 errors.append("temporal current-year count disagrees with year counts")
         if temporal.get("current_year_is_partial") and temporal.get("cagr_end_year") >= temporal.get("current_year"):
             errors.append("partial current year was included in CAGR endpoint")
-        analysis_config = load_analysis_config(project_root / "manuscript" / "config.yaml")
+        analysis_config = load_analysis_config(project_root / "docs" / "manuscript" / "config.yaml")
         configured_as_of = analysis_config.get("as_of_date")
         if configured_as_of and temporal.get("as_of_date") != configured_as_of:
             errors.append("temporal as_of_date differs from configuration")
@@ -338,7 +338,7 @@ def validate_artifacts(output_dir: Path, project_root: Path) -> dict[str, Any]:
 
     if (data_dir / "topics.json").exists():
         topics = _load(data_dir / "topics.json")
-        analysis_config = load_analysis_config(project_root / "manuscript" / "config.yaml")
+        analysis_config = load_analysis_config(project_root / "docs" / "manuscript" / "config.yaml")
         run_path = data_dir / "analysis_run.json"
         analysis_run = _load(run_path) if run_path.exists() else {}
         expected_topics = analysis_run.get("n_topics")
@@ -382,7 +382,7 @@ def validate_artifacts(output_dir: Path, project_root: Path) -> dict[str, Any]:
         if len(registry) != 16:
             errors.append(f"figure registry must contain 16 entries, found {len(registry)}")
         manuscript_paths = list((output_dir / "manuscript").glob("*.md"))
-        manuscript_paths.extend((project_root / "manuscript").glob("*.md"))
+        manuscript_paths.extend((project_root / "docs" / "manuscript").glob("*.md"))
         rendered_text = "\n".join(path.read_text(encoding="utf-8") for path in manuscript_paths)
         referenced_labels = set(re.findall(r"fig:[A-Za-z0-9_]+", rendered_text))
         registered_labels = {
@@ -429,7 +429,7 @@ def validate_artifacts(output_dir: Path, project_root: Path) -> dict[str, Any]:
         if variable_payload.get("source_files") is not None:
             expected_source_files = {
                 str(path.relative_to(project_root)): _file_metadata(path)["sha256"]
-                for path in sorted((project_root / "manuscript").glob("*.md"))
+                for path in sorted((project_root / "docs" / "manuscript").glob("*.md"))
                 if path.name not in {"AGENTS.md", "README.md", "SKILL.md", "SYNTAX.md"}
             }
             if variable_payload.get("source_files") != expected_source_files:
@@ -445,7 +445,7 @@ def validate_artifacts(output_dir: Path, project_root: Path) -> dict[str, Any]:
             if variable_payload.get("artifact_files") != expected_artifacts:
                 errors.append("manuscript variable artifact hashes do not match current artifacts")
         if variable_payload.get("source_tokens") is not None:
-            expected_tokens = collect_manuscript_tokens(project_root / "manuscript")
+            expected_tokens = collect_manuscript_tokens(project_root / "docs" / "manuscript")
             if variable_payload.get("source_tokens") != expected_tokens:
                 errors.append("manuscript variable source-token inventory is stale")
         if variable_payload.get("source_files") is not None and variable_payload.get("artifact_files") is not None:

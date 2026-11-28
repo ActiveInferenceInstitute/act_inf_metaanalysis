@@ -562,8 +562,8 @@ class TestHypothesisAliasMapping:
         assert variables["CORPUS_SIZE"] == "2"
 
     def test_manuscript_manifest_records_tokens_and_hashes(self, tmp_path):
-        manuscript = tmp_path / "manuscript"
-        manuscript.mkdir()
+        manuscript = tmp_path / "docs" / "manuscript"
+        manuscript.mkdir(parents=True)
         (manuscript / "00_abstract.md").write_text("N={{CORPUS_SIZE}}", encoding="utf-8")
         (manuscript / "AGENTS.md").write_text("{{NOT_A_VARIABLE}}", encoding="utf-8")
         output = tmp_path / "output"

@@ -58,7 +58,7 @@ def _run_llm_extraction(papers, args, nanopub_path, kg_cfg, logger):
 def run_knowledge_graph_pipeline(args: argparse.Namespace, *, project_root: Path) -> None:
     """Build knowledge graph artifacts and score hypotheses."""
     logger = logging.getLogger("build_knowledge_graph")
-    config_path = Path(args.config) if args.config else project_root / "manuscript" / "config.yaml"
+    config_path = Path(args.config) if args.config else project_root / "docs" / "manuscript" / "config.yaml"
     kg_cfg = load_kg_config(config_path) if config_path.exists() else {}
 
     if config_path.exists() and not args.config:

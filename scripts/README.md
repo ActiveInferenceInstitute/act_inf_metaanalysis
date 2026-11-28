@@ -94,7 +94,7 @@ Scripts `01` and `03` also accept:
 
 ## Configuration
 
-Settings can be provided via `manuscript/config.yaml`:
+Settings can be provided via `docs/manuscript/config.yaml`:
 
 ```yaml
 search:
@@ -130,4 +130,4 @@ All outputs are written to `output/`:
 
 - **[AGENTS.md](AGENTS.md)** — Detailed technical documentation for each script
 - **[../src/](../src/)** — Source modules containing all computational logic
-- **[../manuscript/config.yaml](../manuscript/config.yaml)** — Project configuration
+- **[../manuscript/config.yaml](../docs/manuscript/config.yaml)** — Project configuration

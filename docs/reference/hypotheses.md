@@ -19,7 +19,7 @@ The eight hypotheses have three identifier forms used across different layers of
 | `H7` | `MORPHOGENESIS` | `http://activeinference.institute/ontology/H7_MORPHOGENESIS` | Morphogenesis |
 | `H8` | `LANGUAGE_AIF` | `http://activeinference.institute/ontology/H8_LANGUAGE_AIF` | Language AIF |
 
-- **config.yaml key** (H1–H8): used in `manuscript/config.yaml` `hypothesis_definitions` section and in manuscript text
+- **config.yaml key** (H1–H8): used in `docs/manuscript/config.yaml` `hypothesis_definitions` section and in manuscript text
 - **Code identifier**: used in `src/knowledge_graph/hypothesis.py` (`STANDARD_HYPOTHESES`), `src/knowledge_graph/schema.py` (`DEFAULT_HYPOTHESIS_CATEGORIES`), and LLM prompt output
 - **RDF URI**: used in `nanopublications.trig` RDF export and semantic web queries
 
@@ -27,7 +27,7 @@ The eight hypotheses have three identifier forms used across different layers of
 
 Three of the eight hypotheses — `H1`, `H4`, and `H8` — also have an illustrative,
 machine-readable structural sketch in GNN (Generalized Notation Notation) under
-[`../gnn/`](../gnn/README.md). Each sketch states the minimal generative-model
+[`../gnn/`](../../gnn/README.md). Each sketch states the minimal generative-model
 structure that a claim about that hypothesis presupposes, which makes the range
 of the claim inspectable and gives a starting point for writing a runnable model.
 
@@ -35,7 +35,7 @@ The sketches are documentation only: they carry no corpus numbers, contribute no
 evidence to any score, and are not read by any pipeline stage. Treat the scored
 nanopublications and the generated outputs as the evidence, and the sketches as a
 way of saying precisely what the evidence is about. See
-[`../gnn/AGENTS.md`](../gnn/AGENTS.md) for the constraints that apply when editing
+[`../gnn/AGENTS.md`](../../gnn/AGENTS.md) for the constraints that apply when editing
 them.
 
 ## The Eight Hypotheses
@@ -117,7 +117,7 @@ where:
 
 **Logarithmic citation weighting** ensures that highly cited papers carry more influence while preventing any single paper from dominating the score. A paper with 1000 citations gets ~3x the weight of a paper with 10 citations, not 100x.
 
-**Confidence weighting** allows assertions with higher extraction confidence to contribute more to the score. The validated extraction floor is `min_confidence: 0.6` — assertions below it are discarded during extraction (see `LLMConfig.min_confidence` and `manuscript/config.yaml`).
+**Confidence weighting** allows assertions with higher extraction confidence to contribute more to the score. The validated extraction floor is `min_confidence: 0.6` — assertions below it are discarded during extraction (see `LLMConfig.min_confidence` and `docs/manuscript/config.yaml`).
 
 **Neutral assertions** appear in the denominator but not the numerator, acting as a dampening factor. A hypothesis with many neutral assertions and few directional ones will have a score closer to zero, reflecting evidential ambiguity rather than absence. In practice, a "neutral" assertion signifies that the NLP model successfully extracted an assertion related to the domain space, but mathematically determined it neither provided supporting momentum nor explicit denouncement. This serves to penalize highly-debated or poorly-formed hypotheses.
 
@@ -145,7 +145,7 @@ from knowledge_graph.hypothesis import (
 )
 
 # Optional: load hypotheses from config.yaml (otherwise defaults are used)
-configure_hypotheses(Path("manuscript/config.yaml"))
+configure_hypotheses(Path("docs/manuscript/config.yaml"))
 
 # Score a single hypothesis — returns a float in [-1, 1]
 score = score_hypothesis(assertions, "FEP_UNIVERSALITY")
@@ -162,10 +162,10 @@ for year, cumulative_score in trend.items():
     print(f"{year}: {cumulative_score:+.3f}")
 ```
 
-> **Note:** Hypotheses can be customized via the `hypothesis_definitions` section in `manuscript/config.yaml`. If no config is provided, the 8 standard hypotheses are used as defaults.
+> **Note:** Hypotheses can be customized via the `hypothesis_definitions` section in `docs/manuscript/config.yaml`. If no config is provided, the 8 standard hypotheses are used as defaults.
 >
 > **How to Add a Custom Hypothesis:**
-> You do NOT need to edit Python source code to introduce a novel hypothesis into the Knowledge Graph pipeline. Simply open `manuscript/config.yaml` and append an entry matching the following schema:
+> You do NOT need to edit Python source code to introduce a novel hypothesis into the Knowledge Graph pipeline. Simply open `docs/manuscript/config.yaml` and append an entry matching the following schema:
 >
 > ```yaml
 > project_config:

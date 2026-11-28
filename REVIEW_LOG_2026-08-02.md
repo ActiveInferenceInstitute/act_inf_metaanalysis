@@ -13,7 +13,7 @@ or test logic changes unless required to keep the tree green.
 - Inventory: 982 tracked files (774 under `output/`), 69 tracked markdown files
   (excl. generated `output/`), `doc/` hub with 10 docs + tooling registry,
   root `README.md`, `AGENTS.md`, `CHANGELOG.md`, `TODO.md`, `LICENSE`,
-  `.github/workflows/ci.yml`, `manuscript/` (20 sections + config + bib),
+  `.github/workflows/ci.yml`, `docs/manuscript/` (20 sections + config + bib),
   `scripts/` (13 numbered + `z_generate` hydrator + 2 helpers), `src/` (5
   packages, 47 non-init modules), `tests/` (50 files).
 - Baseline gate verified live: **688 collected, 687 passed, 1 skipped,
@@ -46,8 +46,8 @@ into `TODO.md` (section "Docs deep review 2026-08-02") with
   standalone-resolving targets while keeping the `projects_archive/` archive
   context as prose.
 - **MAJ-D03** — License contradiction: `README.md:19` badge claims MIT, but
-  `LICENSE`, `manuscript/config.yaml:51`, `.aii/config.yaml:49`, and
-  `manuscript/README.md:6` all declare **CC-BY-4.0**. Fix the badge + link.
+  `LICENSE`, `docs/manuscript/config.yaml:51`, `.aii/config.yaml:49`, and
+  `docs/manuscript/README.md:6` all declare **CC-BY-4.0**. Fix the badge + link.
 
 ### Medium
 
@@ -105,7 +105,7 @@ into `TODO.md` (section "Docs deep review 2026-08-02") with
   (`src/config.py`), with config.yaml setting 25. Clarify the table row.
 - **MIN-D03** — `doc/architecture.md:364` says "Checkpointing every 50 papers"
   while the live config is 25; align wording to "configured checkpoint interval
-  (25 in `manuscript/config.yaml`; code default 50)".
+  (25 in `docs/manuscript/config.yaml`; code default 50)".
 - **MIN-D04** — `src/SKILL.md:8` says "45+ public APIs"; the api_reference
   documents more than 45 public functions, so the floor claim is safe — leave
   as-is (noted, no change).
