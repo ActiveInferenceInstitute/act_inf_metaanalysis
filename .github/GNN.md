@@ -1,6 +1,7 @@
 # GNN conformance
 
-The conformance step runs in the workflow's single `gate` job (display name
+The conformance step runs in the `gate` job in
+[`.github/workflows/ci.yml`](workflows/ci.yml) (display name
 `gate (lint, types, docs, gnn, tests)`). The step is named
 `Pinned GNN conformance` and executes `./run.sh gnn`. It reads the canonical pin
 file `.github/gnn-pin.json` (schema `gnn-importer-pin/v1`), which pins
